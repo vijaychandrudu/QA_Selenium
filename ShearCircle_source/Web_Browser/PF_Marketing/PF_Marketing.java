@@ -18,9 +18,24 @@ public class PF_Marketing {
 	public WebElement PF_Db_Marketing_submit;
 	
 	@FindBy(xpath="//div/span/button[@class='btn btn-success']")
-	public WebElement PF_Db_Services_addgroup;
+	public WebElement PF_Db_Services_addnewgroup;
 		
 	@FindBy(xpath="//div/input[@name='group_name']")
 	public WebElement PF_Db_Services_addgroup_groupName;
+	
+	@FindBy(xpath="//button[@class='btn btn-primary ng-scope']")
+	public WebElement PF_Db_Services_addgroup_ADd;
+		
+	@FindBy(xpath="//*[@id=\"serviceAddUpdateForm\"]//div[@class='modal-footer']/button[@class='btn btn-default']")
+	public WebElement PF_Db_Services_addgroup_Close;
+
+	@FindBy(xpath="//div[1]/span/a[@class='btn btn-sm btn-primary']")
+	public WebElement PF_Db_Services_addnewservice;
+
+	@FindBy(xpath="//*[@class='form-control  ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched']")
+	public WebElement PF_Db_Services_addnewservice_serviceName;
+
+	@FindBy(xpath="//div/span/button[@class='btn btn-success']")
+	public WebElement PF_Db_Services_addnewgroup1;
 
 }
