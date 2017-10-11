@@ -37,5 +37,4 @@ public class PF_Marketing {
 
 	@FindBy(xpath="//div/span/button[@class='btn btn-success']")
 	public WebElement PF_Db_Services_addnewgroup1;
-
 }
