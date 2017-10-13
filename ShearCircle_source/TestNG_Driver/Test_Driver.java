@@ -13,12 +13,12 @@ public class Test_Driver {
 	
 	@BeforeTest
 	@Parameters({"ApplicationURL"})
-	public void launchapplication(){
+	public void launchapplication(String ApplicationURL ){
 		String url = "https://shearcircle.com/testbed/home";
 		//String url = "http://demo.guru99.com/selenium/newtours/";
 		browserlaunch browserlaunch = new browserlaunch();
 		browserlaunch.getDriver("chrome");
-		browserlaunch.launchbowser_application(url);		
+		browserlaunch.launchbowser_application(ApplicationURL);		
 	}
 	
 	@Test
