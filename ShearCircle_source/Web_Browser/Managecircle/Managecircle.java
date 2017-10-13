@@ -37,6 +37,15 @@ public class Managecircle {
 	@FindBy(xpath="//*[@id='add_new_promotion']//button[@class='btn btn-default']")
 	public WebElement PF_Db_MC_Promotion_close_Button;
 
+	@FindBy(xpath="//div/a[@class='btn btn-block btn-primary']")
+	public WebElement PF_Db_MC_Staff_newstaff_Button;
+
+	@FindBy(xpath="//div/input[@ng-model='searchStaffByKeyword']")
+	public WebElement PF_Db_MC_Staff_search_Edit;
+
+	@FindBy(xpath="//*[@id=\"details\"]/div/div[1]/div[1]/div[1]/input")
+	public WebElement PF_Db_MC_Staff_addstaff_FN;
+
 
 	
 	

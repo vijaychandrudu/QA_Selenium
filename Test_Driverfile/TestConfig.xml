@@ -1,0 +1,30 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" verbose="1" name="Testexecution"
+	annotations="3DK" parallel="tests">
+
+	<parameter name="ApplicationURL" value="https://shearcircle.com/testbed/home"></parameter>
+	<parameter name="customeremail" value="custtest@test.com"></parameter>
+	<parameter name="cust_Password" value="Password"></parameter>
+
+	<parameter name="prpf_Username" value="proftest1@test.com"></parameter>
+	<parameter name="prof_Password" value="Password"></parameter>
+
+	<test name="Test_Driver">
+		<classes>
+			<class name="TestNG_Driver.Test_Driver">
+			</class>
+
+		</classes>
+	</test>
+
+	<test name="Test_Driver2">
+		<classes>
+			<class name="TestNG_Driver.Test_Driver2">
+
+			</class>
+
+		</classes>
+	</test>
+
+
+</suite>
