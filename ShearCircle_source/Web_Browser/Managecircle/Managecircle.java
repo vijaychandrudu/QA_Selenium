@@ -43,10 +43,39 @@ public class Managecircle {
 	@FindBy(xpath="//div/input[@ng-model='searchStaffByKeyword']")
 	public WebElement PF_Db_MC_Staff_search_Edit;
 
-	@FindBy(xpath="//*[@id=\"details\"]/div/div[1]/div[1]/div[1]/input")
+	@FindBy(xpath="//*[@id='details']//div/input[@name='firstname']")
 	public WebElement PF_Db_MC_Staff_addstaff_FN;
 
+	@FindBy(xpath="//*[@id='details']//div/input[@name='lastname']")
+	public WebElement PF_Db_MC_Staff_addstaff_LN;
+	
+	@FindBy(xpath="//*[@id='details']/div/div[1]//input[@name='mobile']")
+	public WebElement PF_Db_MC_Staff_addstaff_MN;
+	
+	@FindBy(xpath="//*[@id='details']//input[@name='email']")
+	public WebElement PF_Db_MC_Staff_addstaff_email;
 
+	@FindBy(xpath="//*[@id='details']/div/div[3]/div//div/label/input[1]")
+	public WebElement PF_Db_MC_Staff_addstaff_day;
+	
+	@FindBy(xpath="//*[@id='details']//label/input[@name='is_appointment_booking_enabled']")
+	public WebElement PF_Db_MC_Staff_addstaff_checkbox;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//div/button[@class='btn btn-default pull-right']")
+	public WebElement PF_Db_MC_Staff_addstaff_button;
+
+	@FindBy(xpath="//*[@id='addStaffForm']//div/button[@class='btn btn-default pull-right']")
+	public WebElement PF_Db_MC_Staff_addstaff_close_button;
+
+	@FindBy(xpath="//*[@id='addStaffForm']//li/a[@aria-controls='services']")
+	public WebElement PF_Db_MC_Staff_addstaff_services;
+
+	@FindBy(xpath="//*[@id='selectAllServices']")
+	public WebElement PF_Db_MC_Staff_addstaff_selectall;
+	
+	@FindBy(xpath="//*[@id=\"services\"]//div/div/label/input")
+	public WebElement PF_Db_MC_Staff_addstaff_selectcheckbox;
 	
 	
+
 }
