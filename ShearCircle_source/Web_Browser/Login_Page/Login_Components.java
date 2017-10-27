@@ -24,11 +24,7 @@ public void customer_login(String p_in_UserName, String p_in_Password){
 	//String p_in_UserName = "test";    
     //String p_in_Password = "test";  
     
-    //getdriver.findElement(By.xpath("//tr[2]/td[2]/input[@name='userName']")).sendKeys("kumar");
-    
-    
- 
-    
+          
 	browser.click(Login.Login_Link);    
     browser.sendkeys(Login.Login_UserName_textbox, p_in_UserName);
     browser.sendkeys(Login.Login_PassWord_textbox, p_in_Password);

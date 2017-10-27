@@ -1,6 +1,7 @@
 package Web_Browser;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 //import com.sun.org.apache.bcel.internal.generic.Select;
 
@@ -13,7 +14,7 @@ public class Web_Browser {
 			if(element.isDisplayed() && element.isEnabled()) {
 				elementdisplayedflag = true; 
 			}else {
-				System.out.println("Text box existance and enabled status Failed");
+				System.out.println("Element existance and enabled status Failed");
 			}
 			
 		}catch(Exception e){
@@ -29,7 +30,7 @@ public class Web_Browser {
 			if(element.isDisplayed()) {
 			  attributevalue = element.getAttribute(p_in_propertyname); 
 			}else {
-				System.out.println("Text box existance and enabled status Failed");
+				System.out.println("Element existance and enabled status Failed");
 			}
 			
 		}catch(Exception e){
@@ -45,7 +46,7 @@ public class Web_Browser {
 			if(element.isDisplayed()) {
 				textvalue = element.getText(); 
 			}else {
-				System.out.println("Text box existance and enabled status Failed");
+				System.out.println("Element existance and enabled status Failed");
 			}
 			
 		}catch(Exception e){
@@ -62,7 +63,7 @@ public class Web_Browser {
 			if(element.isDisplayed() && element.isEnabled()) {
 				element.sendKeys(p_in_inputvalue);
 			}else {
-				System.out.println("Text box existance and enabled status Failed");
+				System.out.println("Element existance and enabled status Failed");
 			}
 
 		}catch(Exception e){
@@ -88,7 +89,7 @@ public class Web_Browser {
 			if(element.isDisplayed() && element.isEnabled()) {
 				element.click();;
 			}else {
-				System.out.println("Link or Web Button or radio button existance and enabled status Failed");
+				System.out.println("Element existance and enabled status Failed");
 			}
 		}catch(Exception e){
 			System.out.println("Error in description: " + e.getStackTrace() );
@@ -99,10 +100,10 @@ public class Web_Browser {
 	public void select_Dropdownvalue(WebElement element, String p_in_inputvalue){
 		try{
 			if(element.isDisplayed() && element.isEnabled()) {
-				//Select dropdown = new Select(element);
-				//dropdown.selectByVisibleText(p_in_inputvalue);
+				Select dropdown = new Select(element);
+				dropdown.selectByVisibleText(p_in_inputvalue);
 			}else {
-				System.out.println("Link or Web Button or radio button existance and enabled status Failed");
+				System.out.println("Element existance and enabled status Failed");
 			}
 		}catch(Exception e){
 			System.out.println("Error in description: " + e.getStackTrace() );
