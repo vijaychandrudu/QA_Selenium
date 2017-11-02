@@ -5,12 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class Customer_Module_Page_Objects{
-
-	/*public String LOGIN = ".//*[@id='navbar-collapse-1']/span/a[1]";
-	public String USERNAME = "username";
-	public String PASSWORD = "password";
-	public String SIGN = ".//*[@id='login_form']/div[3]/div/center/button";	
-	*/
 					
 	@FindBy(xpath="//div/h1/b[text()='Customer?']//parent::h1/following-sibling::a[text()='Join Our Circle']")	
     public WebElement Customer_customerJoinCircle_Link;	
@@ -23,6 +17,7 @@ public class Customer_Module_Page_Objects{
 	
 	@FindBy(xpath="//*[@name='firstname']")	
     public WebElement Customer_FirstName_textbox;	
+	
 	@FindBy(xpath="//input[@name='lastname']")
 	public WebElement Customer_LastName_textbox;	
 	@FindBy(xpath="//input[@name='username']")
