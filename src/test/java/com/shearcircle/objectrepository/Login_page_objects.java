@@ -9,10 +9,15 @@ public class Login_page_objects {
     public WebElement Home_ShearCircle_Image;
 	
 	@FindBy(xpath="//*[contains(@id,'navbar-collapse')]/span/a[text()='Login']")
-    public WebElement Home_Login_Link;	
-	
+    public WebElement Home_Login_Link;		
 	@FindBy(xpath="//*[@id='navbar-collapse-1']/span/a[contains(text(),'Circle')]")
     public WebElement Home_JoinOurCircle_Link;
+	
+	@FindBy(xpath="//*[@id='sub_content']/h1")
+    public WebElement Login_Page_Header;	
+	
+	@FindBy(xpath="//*[@id='sub_content']/h1")
+    public WebElement Joinourcircle_Page_Header;	
 	
 	@FindBy(xpath="//*[@id='username']")
     public WebElement Login_UserName_textbox;
@@ -47,7 +52,6 @@ public class Login_page_objects {
 	
 	@FindBy(xpath="//div/div/h4[@class='invalid-message']")
     public WebElement ResetPassword_InvalidMessage_text;
-	
 	
 	
 	
