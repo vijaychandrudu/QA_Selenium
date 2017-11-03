@@ -66,22 +66,22 @@ public class CommonFunctions extends StaticVariables {
 	}
 
 	/********************* Launch Browser *******************************/
-	public void getAndOpenBrowser(String browser) throws IOException {
+	public void getAndOpenBrowser(String browserType) throws IOException {
 		try {
-			if (browser.equalsIgnoreCase("IE")) {
+			if (browserType.equalsIgnoreCase("IE")) {
 				// IE browser script
 				System.setProperty("webdriver.ie.driver", iEDriverPath());
 				driver = new InternetExplorerDriver();
 			}
-			if (browser.equalsIgnoreCase("CHROME")) {
+			if (browserType.equalsIgnoreCase("CHROME")) {
 				System.setProperty("webdriver.chrome.driver", chromeDriverPath());
 				driver = new ChromeDriver();
 			}
-			if (browser.equalsIgnoreCase("FIREFOX")) {
+			if (browserType.equalsIgnoreCase("FIREFOX")) {
 				System.setProperty("webdriver.gecko.driver", fireFoxDriverPath());
 				driver = new FirefoxDriver();
 			}
-			if (browser.equalsIgnoreCase("Safari")) {
+			if (browserType.equalsIgnoreCase("Safari")) {
 				driver = new SafariDriver();
 			}
 		} catch (WebDriverException e) {
