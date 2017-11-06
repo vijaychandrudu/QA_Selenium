@@ -16,6 +16,9 @@ public class Login_page_objects {
 	@FindBy(xpath="//*[@id='sub_content']/h1")
     public WebElement Login_Page_Header;	
 	
+	@FindBy(xpath="//div/h5[contains(text(),'have an account yet')]//following-sibling::a/u")
+    public WebElement Login_DonthaveaccountJoinOurCircle_Link;
+	
 	@FindBy(xpath="//*[@id='sub_content']/h1")
     public WebElement Joinourcircle_Page_Header;	
 	
@@ -51,11 +54,6 @@ public class Login_page_objects {
     public WebElement ResetPassword_ValidMessage_text;
 	
 	@FindBy(xpath="//div/div/h4[@class='invalid-message']")
-    public WebElement ResetPassword_InvalidMessage_text;
-	
-	
-	
-	
-	
+    public WebElement ResetPassword_InvalidMessage_text;	
 
 }
