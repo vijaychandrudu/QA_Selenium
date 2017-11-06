@@ -103,6 +103,10 @@ public class CommonFunctions extends StaticVariables {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 	}
+	/************************** Get Driver *************************/
+	public WebDriver getDriver() {
+        return driver;
+    }
 
 	/************************** IEDriverPath *************************/
 	/*
