@@ -18,7 +18,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	public CommonFunctions browser;	
 	String TestDataPath = null;
 	
-	public Customer_Module_Page_Components() throws IOException {	
+	public Customer_Module_Page_Components(WebDriver driver) throws IOException {	
 		browser = new CommonFunctions();
 		TestDataPath = browser.TestDataPathOf("CustomerTestData.properties");		
 		CustomerModule = PageFactory.initElements(driver, Customer_Module_Page_Objects.class);
@@ -27,7 +27,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	
 	
 	//Application launch
-	public void launchApplication(){
+	public void ShearCircle_LaunchApplication(){
 		String baseUrl = null;
 		String Applicationtitle = "ShearCircle";
 	    try {   
