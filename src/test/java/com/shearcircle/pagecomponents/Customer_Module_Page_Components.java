@@ -5,7 +5,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-
 import com.shearcircle.objectrepository.Customer_Module_Page_Objects;
 import com.shearcircle.objectrepository.Login_page_objects;
 import com.shearcircle.utilities.CommonFunctions;
@@ -18,22 +17,28 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	public Login_page_objects Login;
 	public CommonFunctions browser;	
 	String TestDataPath = null;
-	public Customer_Module_Page_Components() throws IOException {			
-		TestDataPath = browser.TestDataPathOf("CustomerTestData.properties");
+	
+	public Customer_Module_Page_Components() throws IOException {	
+		browser = new CommonFunctions();
+		TestDataPath = browser.TestDataPathOf("CustomerTestData.properties");		
 		CustomerModule = PageFactory.initElements(driver, Customer_Module_Page_Objects.class);
-		Login = PageFactory.initElements(driver, Login_page_objects.class);
+		Login = PageFactory.initElements(driver, Login_page_objects.class);				
 	}
+	
+	
 	//Application launch
 	public void launchApplication(){
 		String baseUrl = null;
+		String Applicationtitle = "ShearCircle";
 	    try {   
 	    	browser.loaddata(TestDataPath);
-	    	baseUrl = browser.getdata("TestBedURL");
-		    driver.get(baseUrl + "");
-		    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);  
-		    //driver.wait(5);
+	    	baseUrl = browser.getdata("TestBedURL");	    	
+	    	//baseUrl = "https://shearcircle.com/testbed/home";
+	    	//System.out.println("App  URL:"+baseUrl);
+	    	driver.get(baseUrl + "");
+		    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);		    
 		    String apptitle = driver.getTitle();
-		    if (apptitle.equalsIgnoreCase(baseUrl)){
+		    if (apptitle.equalsIgnoreCase(Applicationtitle)){
 		    System.out.println("Browser Tilte:"+apptitle);     
 		    }		    
 			
@@ -54,6 +59,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	
 	public void ShearCircle_Click_Login_OR_JoinOurCircle(String Login_JoinOurCircleflag) {
 		try {
+			
 			if (browser.elmentisdisplayed(Login.Home_Login_Link) && browser.elmentisdisplayed(Login.Home_JoinOurCircle_Link)) {
 				browser.reportscomtep("Passed", "Verify Login and Join Our Circle buttons are displayed",
 						"Login and Join Our Circle buttonsare should be displayed", "Login and Join Our Circle buttons displayed");
@@ -537,4 +543,22 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			System.out.println("Error description: " + e.getStackTrace() );
 		}			
 	 }
+	
+	/**************************Customer clicks on Dont have Account yet JoinOurCircle link in Login page and verifying Customer sent to Join Our Circle page***********************************/
+	public void DonthaveAccountyet_JoinOurCircle_Loginpage(){
+		try{
+			browser.ScrollToElementBottom(Login.Login_DonthaveaccountJoinOurCircle_Link);
+			browser.click(Login.Login_DonthaveaccountJoinOurCircle_Link);
+			if(browser.elmentisdisplayed(CustomerModule.Customer_RegisterWithShearCircle_Header)){
+				browser.reportscomtep("Passed", "click Don't have a ccout yet? JoinCircle link and verify Customer sent to Join Our Circle page"  , "Customer will be sent to Join Our Circle page", "Customer sent to Join Our Circle page");					
+				
+			}else {
+				browser.reportscomtep("Failed", "click Don't have a ccout yet? JoinCircle link and verify Customer sent to Join Our Circle page"  , "Customer will be sent to Join Our Circle page", "Customer not sent to Join Our Circle page");				
+			}						
+			
+		}catch(Exception e){
+			System.out.println("Error description: " + e.getStackTrace() );
+		}
+		
+	}
 }
