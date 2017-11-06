@@ -5,7 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class Customer_Module_Page_Objects{
-//object information					
+//object information
+
+	@FindBy(xpath="//*[@id='sub_content']/h1[text()='Register With ShearCircle']")	
+    public WebElement Customer_RegisterWithShearCircle_Header;	
+	
 	@FindBy(xpath="//div/h1/b[text()='Customer?']//parent::h1/following-sibling::a[text()='Join Our Circle']")	
     public WebElement customerJoinCircle_Link;	
 	
