@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class Customer_Module_Page_Objects{
 	
-	//Object information
+	//Object information with page factory
 					
 	@FindBy(xpath="//div/h1/b[text()='Customer?']//parent::h1/following-sibling::a[text()='Join Our Circle']")	
     public WebElement Customer_customerJoinCircle_Link;	
