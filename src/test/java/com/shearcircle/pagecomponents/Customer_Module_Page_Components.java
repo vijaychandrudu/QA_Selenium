@@ -665,6 +665,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						{
 					browser.reportscomtep("Passed", "Verify Facebook link is  displayed",
 							"Facebook  link  should be displayed", "Facebook link displayed");
+						browser.movetoElement(Login.Login_Facebook_Link);
 						browser.click(Login.Login_Facebook_Link);
 						if (browser.elmentisdisplayed(Login.Facebook_Account_Header)) 
 						{
@@ -673,13 +674,13 @@ public class Customer_Module_Page_Components extends StaticVariables {
 									"Facebook Login popup displayed");
 							browser.sendkeys(Login.Facebook_EmailorPhone_Textbox, "test01@gmail.com");
 							browser.sendkeys(Login.Facebook_Password_Textbox, "00012");
-							browser.click(Login.FacebookClick_Login_Link);
+							browser.click(Login.Facebook_Login_Link);
 							browser.waitforelementtobevisible(Login.Facebook_Continue_Link,10);
-							if(browser.elmentisdisplayed(Login.Facebook_RegisterWithShearCircle_Header))
+							if(browser.elmentisdisplayed(CustomerModule.Customer_RegisterWithShearCircle_Header))
 							{
 								browser.reportscomtep("Passed", "Verify  Join our Circle  header displayed",
 										" Join our Circle  header should be displayed","Join our Circle  header displayed");
-								else
+							}else
 								{
 									browser.reportscomtep("Failed", "Verify Join our  header is  displayed",
 											"Join our Circle  header  should be displayed", "Join our Circle header not displayed");
@@ -702,35 +703,32 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						    System.out.println("Error description: " + e.getStackTrace());
 			}
 			}
-		}
+		
 		/***********************Customer Login with Google user credentials that is not registered with ShearCircle********/
 
 		public void customer_LoginwithGoogle_not_Registeredwith_ShearCircle(){
 			try {
-				WebElement element = driver.findElement(By.linkText("Login with Google"));
-				Actions actions = new Actions(driver);
-				actions.moveToElement(element);
-				if (browser.elmentisdisplayed(Login.Login_Google_Link))
-						{
+				
+				if (browser.elmentisdisplayed(Login.Login_Google_Link)){
 					browser.reportscomtep("Passed", "Verify Google link is  displayed",
 							"Google  link  should be displayed","Google link  displayed");
+					browser.movetoElement(Login.Login_Google_Link);
 					browser.click(Login.Login_Google_Link);
-							if (browser.elmentisdisplayed(Login.Google_Tocontinue_shearcircle_Text)) 
+					if (browser.elmentisdisplayed(Login.Google_Tocontinue_shearcircle_Text)){
+					browser.reportscomtep("Passed", "Verify google popup is displayed",
+							"Google Login popup  should be displayed","Google Login popup displayed");
+					browser.sendkeys(Login.Google_EmailorPhone_Textbox, "test07@gmail.com");
+					browser.click(Login.Google_Next_Link);
+					browser.sendkeys(Login.Google_Password_Textbox, "0001234");
+					browser.click(Login.Google_Next_Link);
+					if(browser.elmentisdisplayed(Login.Google_RegisterWithShearCircle_header))
 							{
-							browser.reportscomtep("Passed", "Verify google popup is displayed",
-									"Google Login popup  should be displayed","Google Login popup displayed");
-							browser.sendkeys(Login.Google_EmailorPhone_Textbox, "test07@gmail.com");
-							browser.click(Login.Google_Next_link);
-							browser.sendkeys(Login.Google_Password_Textbox, "0001234");
-							browser.click(Login.Google_Next_link);
-							if(browser.elmentisdisplayed(Login.Google_RegisterWithShearCircle_header))
-									{
-								browser.reportscomtep("Passed", "Verify Register With ShearCircle is  displayed",
-										"Register With ShearCircle  should be displayed", "Register With ShearCircle  displayed");
-								else{
-									browser.reportscomtep("Failed", "Verify Register With ShearCircle is  displayed",
-											"Register With ShearCircle  should be displayed", "Register With ShearCircle  not displayed");
-								}
+						browser.reportscomtep("Passed", "Verify Register With ShearCircle is  displayed",
+								"Register With ShearCircle  should be displayed", "Register With ShearCircle  displayed");
+							}else{
+							browser.reportscomtep("Failed", "Verify Register With ShearCircle is  displayed",
+									"Register With ShearCircle  should be displayed", "Register With ShearCircle  not displayed");
+						}
 								}
 						else {
 							browser.reportscomtep("Failed", "Verify Google popup is displayed",
@@ -747,7 +745,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 									System.out.println("Error description: " + e.getStackTrace());
 		}
 		}
-		}
+		
 
 	
 	/**************************Customer clicks on Dont have Account yet JoinOurCircle link in Login page and verifying Customer sent to Join Our Circle page***********************************/
