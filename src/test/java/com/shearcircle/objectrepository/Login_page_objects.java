@@ -69,12 +69,16 @@ public class Login_page_objects {
 	public WebElement Facebook_Login_Link;
 	@FindBy(xpath="//*[@name='__CONFIRM__']")
 	public WebElement Facebook_Continue_Link;
-	
+	@FindBy(xpath="//* [@class='animated zoomIn']")
+	public WebElement Facebook_MyDashboard_Header;
+	@FindBy(xpath="//*[@class='animated zoomIn']")
+	public WebElement Facebook_RegisterWithShearCircle_Header;
+
 	
 	
 	/**** google*****/
-	/*@FindBy(xpath="")
-	public WebElement */
+	@FindBy(xpath="//*[@class='FgbZLd']")
+	public WebElement Google_Tocontinue_shearcircle_Text;
 	@FindBy(xpath="//*[@id='identifierLink']")           
 	public WebElement Google_Use_another_account_Link;		
 	@FindBy(xpath="//*[@id='identifierId']")                
@@ -83,5 +87,9 @@ public class Login_page_objects {
 	public WebElement Google_Next_Link;	
 	@FindBy(xpath="//*[@id='password']")
 	public WebElement Google_Password_Textbox;
+	@FindBy(xpath="//*[@id='sub_content']")
+	public WebElement Google_MyDashboard_Header;
+	@FindBy(xpath="//*[@class='animated zoomIn']")
+	public WebElement Google_RegisterWithShearCircle_header;
 
 }
