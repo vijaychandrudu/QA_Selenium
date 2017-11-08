@@ -891,6 +891,22 @@ public class CommonFunctions extends StaticVariables {
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
 	 */
 
+	public void movetoElement(WebElement element) {
+		try {
+			Actions actions = new Actions(driver);
+			actions.moveToElement(element);	
+
+		} catch (Exception e) {
+			System.out.println("Error in description: " + e.getStackTrace());
+		}
+
+	}
+	
+	/************************* MouseHover Actions ************/
+	/*
+	 * Created date:21/10/2017 Description: Parameters: ReturnType:
+	 */
+
 	public void mouseHoveronElement(WebElement element) {
 		try {
 			Actions actions = new Actions(driver);

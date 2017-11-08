@@ -543,6 +543,212 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			System.out.println("Error description: " + e.getStackTrace() );
 		}			
 	 }
+	/**********************Shear Circle Login Page Field validation**************************/
+	public void ShearCircle_Verify_Customer_Login_page_Filed_validation() {
+		try {
+
+			if (browser.elmentisdisplayed(Login.Login_Page_Header)) {
+				browser.reportscomtep("Passed", "Verify Customer Sign In To ShearCircle page header is displayed",
+						"Sign In To ShearCircle page header should be displayed", "Sign In To ShearCircle page header displayed");				
+				browser.Verify_elmentisdisplayed_Report(Login.Login_UserName_textbox, "User Name textbox");
+				browser.Verify_elmentisdisplayed_Report(Login.Login_PassWord_textbox,"Password textbox");
+				browser.Verify_elmentisdisplayed_Report(Login.Login_signin_button,"SIGIN Button");
+				browser.Verify_elmentisdisplayed_Report(Login.Login_forgotPassword_Link,"Forgot Your Password ? Link");
+				browser.Verify_elmentisdisplayed_Report(Login.Login_Facebook_Link,"Login with Facebook link");
+				browser.Verify_elmentisdisplayed_Report(Login.Login_Google_Link,"Login with Google link");
+				browser.Verify_elmentisdisplayed_Report(Login.Login_JoinOurCircle_Link,"Join Our Circle link" );
+			}
+			else {
+				browser.reportscomtep("Failed", "Verify Sign In To ShearCircle page header is displayed",
+						"Sign In To ShearCircle page header should be displayed", "Sign In To ShearCircle page header not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}
+	/****************Customer Login with Facebook Account*********************/
+	public void Customer_LoginwithFacebook() {
+		try {
+			if (browser.elmentisdisplayed(Login.Login_Facebook_Link))
+					{
+				browser.reportscomtep("Passed", "Verify Facebook link is  displayed",
+						"Facebook  link  should be displayed", "Facebook link displayed");
+					browser.movetoElement(Login.Login_Facebook_Link);
+					browser.click(Login.Login_Facebook_Link);
+					}
+					
+					if (browser.elmentisdisplayed(Login.Facebook_Account_Header)) {
+						browser.reportscomtep("Passed", "Verify Facebook Login popup is displayed",
+								"Facebook Login popup  should be displayed",
+								"Facebook Login popup displayed");
+						browser.sendkeys(Login.Facebook_EmailorPhone_Textbox, "test001@gmail.com");
+						browser.sendkeys(Login.Facebook_Password_Textbox, "000123");
+						browser.click(Login.Facebook_Login_Link);
+						if(browser.elmentisdisplayed(CustomerModule.Customer_RegisterWithShearCircle_Header))
+						{
+							browser.reportscomtep("Passed", "Verify MyDashboard is  displayed",
+									"MyDashboard  should be displayed", "MyDashboard  displayed");
+						}else {
+								browser.reportscomtep("Passed", "Verify MyDashboard is  displayed",
+										"MyDashboard  should be displayed", "MyDashboard  displayed");
+							}
+							} 
+					else {
+						browser.reportscomtep("Failed", "Verify Facebook Login popup  is displayed",
+								"Facebook Login popup should be displayed",
+								"Facebook Login popup not displayed");
+						}
+					}
+		catch (Exception e) {
+			browser.reportscomtep("Failed", "Facebool link is displayed",
+					"Facebool link should be displayed", "Facebool link not displayed");
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	
+
+	/******************Customer clicks on Login with Google button.*****************/	
+	
+
+		public void Click_Login_Google_Button(){
+			try {
+				if (browser.elmentisdisplayed(Login.Login_Google_Link))
+						{
+					browser.reportscomtep("Passed", "Verify Google link is  displayed",
+							"Google  link  should be displayed","Google link  displayed");
+					browser.movetoElement(Login.Login_Google_Link);
+					browser.click(Login.Login_Google_Link);	
+						}
+						
+						if (browser.elmentisdisplayed(Login.Google_EmailorPhone_Textbox)) {
+							browser.reportscomtep("Passed", "Verify google popup is displayed",
+									"Google Login popup  should be displayed",
+									"Google Login popup displayed");
+							browser.click(Login.Google_Use_another_account_Link);
+							browser.sendkeys(Login.Google_EmailorPhone_Textbox, "test007@gmail.com");
+							browser.click(Login.Google_Next_Link);
+							browser.sendkeys(Login.Google_Password_Textbox, "00012345");
+							browser.click(Login.Google_Next_Link);
+							if(browser.elmentisdisplayed(CustomerModule.Customer_RegisterWithShearCircle_Header))
+							{
+								browser.reportscomtep("Passed", "Verify MyDashboard is  displayed",
+										"MyDashboard  should be displayed", "MyDashboard  displayed");
+							}else {
+									browser.reportscomtep("Passed", "Verify MyDashboard is  displayed",
+											"MyDashboard  should be displayed", "MyDashboard  displayed");
+								}
+								}  
+						else {
+							browser.reportscomtep("Failed", "Verify Google popup is displayed",
+									"Google popup should be displayed",
+									"Google popup not displayed");
+							}
+						}
+			catch (Exception e) {
+				browser.reportscomtep("Failed", "Google link is displayed",
+						"Google link should be displayed", "Google link not displayed");
+				System.out.println("Error description: " + e.getStackTrace());
+		}
+			}
+		
+			
+		/****Customer Login with Facebook user credentials that is not registered with ShearCircle******/
+
+		public void Customer_LoginwithFacebook_not_registerewith_ShearCircle() 
+		{
+			try {
+				
+				if (browser.elmentisdisplayed(Login.Login_Facebook_Link))
+						{
+					browser.reportscomtep("Passed", "Verify Facebook link is  displayed",
+							"Facebook  link  should be displayed", "Facebook link displayed");
+						browser.click(Login.Login_Facebook_Link);
+						if (browser.elmentisdisplayed(Login.Facebook_Account_Header)) 
+						{
+							browser.reportscomtep("Passed", "Verify Facebook Login popup is displayed",
+									"Facebook Login popup  should be displayed",
+									"Facebook Login popup displayed");
+							browser.sendkeys(Login.Facebook_EmailorPhone_Textbox, "test01@gmail.com");
+							browser.sendkeys(Login.Facebook_Password_Textbox, "00012");
+							browser.click(Login.FacebookClick_Login_Link);
+							browser.waitforelementtobevisible(Login.Facebook_Continue_Link,10);
+							if(browser.elmentisdisplayed(Login.Facebook_RegisterWithShearCircle_Header))
+							{
+								browser.reportscomtep("Passed", "Verify  Join our Circle  header displayed",
+										" Join our Circle  header should be displayed","Join our Circle  header displayed");
+								else
+								{
+									browser.reportscomtep("Failed", "Verify Join our  header is  displayed",
+											"Join our Circle  header  should be displayed", "Join our Circle header not displayed");
+								}
+						}
+						else
+						{
+							browser.reportscomtep("Failed", "Verify Facebook Login popup  is displayed",
+									"Facebook Login popup should be displayed",
+									"Facebook Login popup not displayed");
+						}
+						}
+						else 
+						{
+							browser.reportscomtep("Failed", "Facebool link is displayed",
+									"Facebool link should be displayed", "Facebool link not displayed");
+						}
+						}
+							catch (Exception e) {
+						    System.out.println("Error description: " + e.getStackTrace());
+			}
+			}
+		}
+		/***********************Customer Login with Google user credentials that is not registered with ShearCircle********/
+
+		public void customer_LoginwithGoogle_not_Registeredwith_ShearCircle(){
+			try {
+				WebElement element = driver.findElement(By.linkText("Login with Google"));
+				Actions actions = new Actions(driver);
+				actions.moveToElement(element);
+				if (browser.elmentisdisplayed(Login.Login_Google_Link))
+						{
+					browser.reportscomtep("Passed", "Verify Google link is  displayed",
+							"Google  link  should be displayed","Google link  displayed");
+					browser.click(Login.Login_Google_Link);
+							if (browser.elmentisdisplayed(Login.Google_Tocontinue_shearcircle_Text)) 
+							{
+							browser.reportscomtep("Passed", "Verify google popup is displayed",
+									"Google Login popup  should be displayed","Google Login popup displayed");
+							browser.sendkeys(Login.Google_EmailorPhone_Textbox, "test07@gmail.com");
+							browser.click(Login.Google_Next_link);
+							browser.sendkeys(Login.Google_Password_Textbox, "0001234");
+							browser.click(Login.Google_Next_link);
+							if(browser.elmentisdisplayed(Login.Google_RegisterWithShearCircle_header))
+									{
+								browser.reportscomtep("Passed", "Verify Register With ShearCircle is  displayed",
+										"Register With ShearCircle  should be displayed", "Register With ShearCircle  displayed");
+								else{
+									browser.reportscomtep("Failed", "Verify Register With ShearCircle is  displayed",
+											"Register With ShearCircle  should be displayed", "Register With ShearCircle  not displayed");
+								}
+								}
+						else {
+							browser.reportscomtep("Failed", "Verify Google popup is displayed",
+									"Google popup should be displayed","Google popup not displayed");
+						} 
+							}
+						else
+						{
+							browser.reportscomtep("Failed", "Google link is displayed",
+									"Google link should be displayed", "Google link not displayed");
+							}
+			}
+			catch (Exception e) {
+									System.out.println("Error description: " + e.getStackTrace());
+		}
+		}
+		}
+
 	
 	/**************************Customer clicks on Dont have Account yet JoinOurCircle link in Login page and verifying Customer sent to Join Our Circle page***********************************/
 	public void DonthaveAccountyet_JoinOurCircle_Loginpage(){
