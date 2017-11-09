@@ -568,6 +568,87 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		}
 
 	}
+	/*******************Verify all Login Combinations(valid and Ivvalid)*******************************/
+	public void ShearCircle_Customer_Login_valid_invalid_combination(String p_in_Valid_or_Invalid) {
+		String customerValidEmail = null;		
+		String customerInValidEmail = null;
+		String customerValidPassword = null;		
+		String customerInValidPassword = null;
+		String invalid_Message;
+		String valid_Message;
+		
+		browser.loaddata(TestDataPath);
+		customerValidEmail = browser.getdata("CustomerValidEmail");
+		customerInValidEmail = browser.getdata("CustomerInValidEmail");
+		customerValidPassword = browser.getdata("CustomervalidPassword");
+		customerInValidPassword = browser.getdata("CustomerInvalidPassword");
+		invalid_Message = "No records for the Username";
+		valid_Message = "Password Reset Instructions Sent Successfully";						 
+		String getmessage = null;
+		try{
+			if(browser.elmentisdisplayed(Login.Home_Login_Link)) {
+				browser.reportscomtep("Passed", "Verify Login link is displayed"  , "Login link should be displayed", "Login link is displayed");
+				browser.click(Login.Home_Login_Link);					
+					
+					switch(p_in_Valid_or_Invalid) {
+						case "Enter_Valid_EmailandPassword":
+							browser.sendkeys(Login.Login_UserName_textbox,customerValidEmail);
+							browser.sendkeys(Login.Login_PassWord_textbox,customerValidPassword);
+							browser.click(Login.Login_signin_button);
+							
+							if(browser.elmentisdisplayed(Login.Google_MyDashboard_Header)){
+								browser.reportscomtep("Passed", "Customer enters valid Username and Password and clicks on Sign in button", "Customer should be navigate to the Customer Dashboard page", "Customer navigated to the Customer Dashboard page");
+							}else {
+								browser.reportscomtep("Failed", "Customer enters valid Username and Password and clicks on Sign in button", "Customer should be navigate to the Customer Dashboard page", "Customer Not navigated to the Customer Dashboard page");
+							}
+							break;
+						case "Enter_InValid_EmailandPassword":	
+							browser.sendkeys(Login.Login_UserName_textbox,customerInValidEmail);
+							browser.sendkeys(Login.Login_PassWord_textbox,customerInValidPassword);
+							browser.click(Login.Login_signin_button);
+							if(browser.elmentisdisplayed(Login.ResetPassword_InvalidMessage_text)) {
+								browser.reportscomtep("Passed", "Customer enters Invalid Username and Valid Password and clicks on Sign in button", "An error message should be displayed stating that the User details are not found", "An error message displayed stating that the User details are not found");
+							}else {
+								browser.reportscomtep("Failed", "Customer enters Invalid Username and Valid Password and clicks on Sign in button", "An error message should be displayed stating that the User details are not found", "An error message not displayed stating that the User details are not found");
+							}
+							break;
+										
+						case "Enter_Valid_EmailandInvalid_Password":
+							
+							browser.sendkeys(Login.Login_UserName_textbox,customerValidEmail);
+							browser.sendkeys(Login.Login_PassWord_textbox,customerInValidPassword);
+							browser.click(Login.Login_signin_button);	
+							if(browser.elmentisdisplayed(Login.ResetPassword_InvalidMessage_text)) {
+								browser.reportscomtep("Passed", "Customer enters valid Username and Invalid Password and clicks on Sign in button", "An error message should be displayed stating that the credentials are invalid", "An error message displayed stating that the credentials are invalid ");
+							}else {
+								browser.reportscomtep("Failed", "Customer enters valid Username and Invalid Password and clicks on Sign in button", "An error message should be displayed stating that the credentials are invalid", "An error message not displayed stating that the credentials are invalid ");
+								
+							}
+							
+							break;
+						case "Enter_InValid_Emailandvalid_Password":	
+							browser.sendkeys(Login.Login_UserName_textbox,customerInValidEmail);
+							browser.sendkeys(Login.Login_PassWord_textbox,customerValidPassword);
+							browser.click(Login.Login_signin_button);
+
+							if(browser.elmentisdisplayed(Login.ResetPassword_InvalidMessage_text)) {
+								browser.reportscomtep("Passed", "Customer clicks on Sign in button without entering Username & Password", "Customer should be prompted to enter valid Username & Password ", "Customer prompted to enter valid Username & Password");
+							}else {
+								browser.reportscomtep("Failed", "Customer clicks on Sign in button without entering Username & Password", "Customer should be prompted to enter valid Username & Password ", "Customer not prompted to enter valid Username & Password");
+					
+							}
+							break;
+						}	
+						
+					}
+			else {
+				browser.reportscomtep("Failed", "Verify Login link is displayed"  , "Login link should be displayed", "Login link is not displayed");
+			}
+			
+		}catch(Exception e){
+			System.out.println("Error description: " + e.getStackTrace() );
+		}	
+	}
 	/****************Customer Login with Facebook Account*********************/
 	public void Customer_LoginwithFacebook() {
 		try {
