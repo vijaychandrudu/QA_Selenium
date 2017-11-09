@@ -130,8 +130,38 @@ public class CustomerModule extends StaticVariables {
 		CR.ShearCircle_Verify_Customer_Registrationform_HyperLynks();
 	}
 
+	@Test(priority=11, description="Customer DonthaveAccountyet_JoinOurCircle_Loginpage" )
+	public void Customer_clicksLoginonShearCirclehomepage() throws IOException {		
+		CR.ShearCircle_LaunchApplication();
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
+		CR.ShearCircle_Verify_Customer_Login_page_Filed_validation();	
+	}
 	
-	@Test(priority=10, description="Customer DonthaveAccountyet_JoinOurCircle_Loginpage" )
+	@Test(priority=12, description="Customer DonthaveAccountyet_JoinOurCircle_Loginpage" )
+	public void  Customer_LoginwithregisteredUsernameandPassword() throws IOException {		
+		CR.ShearCircle_LaunchApplication();
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
+		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");		
+	}
+	@Test(priority=13, description="Customer DonthaveAccountyet_JoinOurCircle_Loginpage" )
+	public void Customer_LoginwithInvalidUsernameandvalidPassword() throws IOException {		
+		CR.ShearCircle_LaunchApplication();
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
+		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_InValid_EmailandPassword");		
+	}
+	@Test(priority=13, description="Customer DonthaveAccountyet_JoinOurCircle_Loginpage" )
+	public void Customer_LoginwithvalidUsernameandInvalidPassword() throws IOException {		
+		CR.ShearCircle_LaunchApplication();
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
+		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandInvalid_Password");		
+	}
+	@Test(priority=13, description="Customer DonthaveAccountyet_JoinOurCircle_Loginpage" )
+	public void  Customer_clicksonSigninbuttonwithoutenteringUsernameandPassword() throws IOException {		
+		CR.ShearCircle_LaunchApplication();
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
+		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_InValid_Emailandvalid_Password");		
+	}
+	@Test(priority=15, description="Customer DonthaveAccountyet_JoinOurCircle_Loginpage" )
 	public void Customer_DonthaveAccountyet_JoinOurCircle_Loginpage() throws IOException {		
 		CR.ShearCircle_LaunchApplication();
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");

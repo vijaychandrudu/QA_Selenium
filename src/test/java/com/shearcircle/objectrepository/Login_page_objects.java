@@ -37,6 +37,17 @@ public class Login_page_objects {
 	@FindBy(xpath="//section/div/h5/a/u")
     public WebElement Login_JoinOurCircle_Link;
 	
+	@FindBy(xpath="//h4[@id='infoText']")
+    public WebElement Login_ErrorMessage_Text;
+	
+	@FindBy(xpath="//*[@id='login_form']/div/input[@id='username']/following-sibling::em")
+    public WebElement Login_UserName_Errormessage_Text;
+	
+	@FindBy(xpath="//*[@id='login_form']/div/input[@id='password']/following-sibling::em")
+    public WebElement Login_PasswordErrorMessage_Text;
+	
+	
+	
 	
 	@FindBy(xpath="//div/h2/strong[text()='Reset Password']")
     public WebElement ResetPassword_Header;

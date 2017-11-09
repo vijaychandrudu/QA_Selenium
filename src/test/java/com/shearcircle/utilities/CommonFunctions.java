@@ -705,6 +705,34 @@ public class CommonFunctions extends StaticVariables {
 
 	}
 
+	
+	public boolean verifyElementtext(WebElement element, String text,String textType) {
+		String textvalue = "";
+		boolean verificationflag = false;
+		try {
+			this.waitforelementtobevisible(element, 10);
+			if (element.isDisplayed()) {				
+				textvalue = element.getText();
+				switch(textType.toLowerCase()){
+				case "exact":
+				
+					if(textvalue.equalsIgnoreCase(text)){
+						verificationflag = true;
+					}
+				case "partial":
+					if(textvalue.contains(text)){
+						verificationflag = true;
+					}
+			}
+			} else {
+				System.out.println("Element existance and enabled status Failed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error in description: " + e.getStackTrace());
+		}
+		return verificationflag;
+	}
 	/******************* Get webElement attribute value ****************/
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:

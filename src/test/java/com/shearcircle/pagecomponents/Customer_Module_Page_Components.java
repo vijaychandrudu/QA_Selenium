@@ -574,20 +574,22 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		String customerInValidEmail = null;
 		String customerValidPassword = null;		
 		String customerInValidPassword = null;
-		String invalid_Message;
-		String valid_Message;
+		String InvalidUserName_ErrorMessage = null;
+		String UserName_ErrorMassage = null;
+		String Password_ErrorMassage = null;
+		String InvalidPassword_Message = null;
 		
 		browser.loaddata(TestDataPath);
 		customerValidEmail = browser.getdata("CustomerValidEmail");
 		customerInValidEmail = browser.getdata("CustomerInValidEmail");
 		customerValidPassword = browser.getdata("CustomervalidPassword");
 		customerInValidPassword = browser.getdata("CustomerInvalidPassword");
-		invalid_Message = "No records for the Username";
-		valid_Message = "Password Reset Instructions Sent Successfully";						 
-		String getmessage = null;
+		InvalidUserName_ErrorMessage = "User details not found";
+		InvalidPassword_Message = "Invalid credentials";						 
+		
 		try{
-			if(browser.elmentisdisplayed(Login.Home_Login_Link)) {
-				browser.reportscomtep("Passed", "Verify Login link is displayed"  , "Login link should be displayed", "Login link is displayed");
+			if(browser.elmentisdisplayed(Login.Login_Page_Header)) {
+				browser.reportscomtep("Passed", "Verify Login page is displayed"  , "Login page should be displayed", "Login page displayed");
 				browser.click(Login.Home_Login_Link);					
 					
 					switch(p_in_Valid_or_Invalid) {
@@ -602,36 +604,35 @@ public class Customer_Module_Page_Components extends StaticVariables {
 								browser.reportscomtep("Failed", "Customer enters valid Username and Password and clicks on Sign in button", "Customer should be navigate to the Customer Dashboard page", "Customer Not navigated to the Customer Dashboard page");
 							}
 							break;
-						case "Enter_InValid_EmailandPassword":	
+						case "Enter_InValid_EmailandvalidPassword":	
 							browser.sendkeys(Login.Login_UserName_textbox,customerInValidEmail);
 							browser.sendkeys(Login.Login_PassWord_textbox,customerInValidPassword);
 							browser.click(Login.Login_signin_button);
-							if(browser.elmentisdisplayed(Login.ResetPassword_InvalidMessage_text)) {
+							if(browser.verifyElementtext(Login.Login_ErrorMessage_Text,InvalidUserName_ErrorMessage,"exact")) {
 								browser.reportscomtep("Passed", "Customer enters Invalid Username and Valid Password and clicks on Sign in button", "An error message should be displayed stating that the User details are not found", "An error message displayed stating that the User details are not found");
 							}else {
 								browser.reportscomtep("Failed", "Customer enters Invalid Username and Valid Password and clicks on Sign in button", "An error message should be displayed stating that the User details are not found", "An error message not displayed stating that the User details are not found");
 							}
 							break;
 										
-						case "Enter_Valid_EmailandInvalid_Password":
-							
+						case "Enter_Valid_EmailandInvalid_Password":							
 							browser.sendkeys(Login.Login_UserName_textbox,customerValidEmail);
 							browser.sendkeys(Login.Login_PassWord_textbox,customerInValidPassword);
 							browser.click(Login.Login_signin_button);	
-							if(browser.elmentisdisplayed(Login.ResetPassword_InvalidMessage_text)) {
+							if(browser.verifyElementtext(Login.Login_ErrorMessage_Text,InvalidPassword_Message,"exact")){								
 								browser.reportscomtep("Passed", "Customer enters valid Username and Invalid Password and clicks on Sign in button", "An error message should be displayed stating that the credentials are invalid", "An error message displayed stating that the credentials are invalid ");
 							}else {
 								browser.reportscomtep("Failed", "Customer enters valid Username and Invalid Password and clicks on Sign in button", "An error message should be displayed stating that the credentials are invalid", "An error message not displayed stating that the credentials are invalid ");
-								
 							}
 							
 							break;
-						case "Enter_InValid_Emailandvalid_Password":	
+						case "Enter_without_EmailandPassword":	
 							browser.sendkeys(Login.Login_UserName_textbox,customerInValidEmail);
 							browser.sendkeys(Login.Login_PassWord_textbox,customerValidPassword);
 							browser.click(Login.Login_signin_button);
-
-							if(browser.elmentisdisplayed(Login.ResetPassword_InvalidMessage_text)) {
+							UserName_ErrorMassage = browser.elementgetAttributevalue(Login.Login_UserName_textbox,"class");
+							Password_ErrorMassage = browser.elementgetAttributevalue(Login.Login_PassWord_textbox,"class");
+							if(UserName_ErrorMassage.contains("state-error") && Password_ErrorMassage.contains("state-error")) {
 								browser.reportscomtep("Passed", "Customer clicks on Sign in button without entering Username & Password", "Customer should be prompted to enter valid Username & Password ", "Customer prompted to enter valid Username & Password");
 							}else {
 								browser.reportscomtep("Failed", "Customer clicks on Sign in button without entering Username & Password", "Customer should be prompted to enter valid Username & Password ", "Customer not prompted to enter valid Username & Password");
@@ -642,7 +643,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						
 					}
 			else {
-				browser.reportscomtep("Failed", "Verify Login link is displayed"  , "Login link should be displayed", "Login link is not displayed");
+				browser.reportscomtep("Failed", "Verify Login page is displayed"  , "Login page should be displayed", "Login page not displayed");
 			}
 			
 		}catch(Exception e){
@@ -689,8 +690,6 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		}
 	}
 	
-	
-
 	/******************Customer clicks on Login with Google button.*****************/	
 	
 
