@@ -21,4 +21,5 @@ public class StaticVariables {
 	public static String MethodName = "";
 	
 	public static String TestDataPath = "";
+	public static String defaultWindowHandle = null;
 }

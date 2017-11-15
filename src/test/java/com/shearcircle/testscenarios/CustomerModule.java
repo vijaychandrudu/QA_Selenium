@@ -43,7 +43,7 @@ public class CustomerModule extends StaticVariables {
 		cfn.getAndOpenBrowser(browser);		
 		driver = cfn.getDriver();		
 		CR = new Customer_Module_Page_Components(driver);
-		System.out.println(driver.getWindowHandles());
+		defaultWindowHandle = driver.getWindowHandle();
 	}
 	
 	
@@ -58,115 +58,170 @@ public class CustomerModule extends StaticVariables {
 		driver.quit();
 	}	
 	
-	@Test(priority=0, description="ShearCircle Launchbowser Application.")
+	/*@Test(priority=0, description="ShearCircle Launchbowser Application.")
 	public void goToApplication() throws IOException{	
 		//ExtentTestManager.getTest().setDescription("ShearCircle Launchbowser Application.");
 		CR.ShearCircle_LaunchApplication();		
-	}
+	}*/
 	
-	@Test(priority=1,description="Customer ForgotPassword Valid EmailId Click Sendinstructionstoresetpassword.")
-	public void Customer_ForgotPassword_Valid_EmailId_ClickSendinstructionstoresetpassword() throws IOException {			
-		CR.ShearCircle_Verify_Customer_forgotPassword("Valid", "Click Send instructions to reset password");
-		/*CR.ShearCircle_Verify_Customer_forgotPassword("Valid", "Click Cancel");
-		CR.ShearCircle_Verify_Customer_forgotPassword("InValid", "Click Send instructions to reset password");
-		CR.ShearCircle_Verify_Customer_forgotPassword("InValid", "Click Cancel");*/
-	}
-	
-	
-	@Test(priority=2,description="Customer ForgotPassword Valid EmailId Click Cancel.")
-	public void Customer_ForgotPassword_Valid_EmailId_ClickCancel() throws IOException {		
-		/*CR = new Customer_Module_Page_Components();*/			
-		CR.ShearCircle_Verify_Customer_forgotPassword("Valid", "Click Cancel");
-	}
-	
-	@Test(priority=3, description="Customer ForgotPassword Invalid_EmailId_ClickSendinstructionstoresetpassword.")
-	public void Customer_ForgotPassword_Invalid_EmailId_ClickSendinstructionstoresetpassword() throws IOException {				
-		CR.ShearCircle_Verify_Customer_forgotPassword("InValid", "Click Send instructions to reset password");
-	}
-	
-	@Test(priority=4, description="Customer_ForgotPassword_Invalid_EmailId_ClickCancel")
-	public void Customer_ForgotPassword_Invalid_EmailId_ClickCancel() throws IOException {				
-		CR.ShearCircle_Verify_Customer_forgotPassword("InValid", "Click Cancel");	
-	}	
-	
-	
-	@Test(priority=5, description="1.1 Scenario: Customer visits ShearCircle and Customer clicks JoinOurCircle" )
+		
+	@Test(priority=1, description="1.1 Scenario: Customer visits ShearCircle and Customer clicks JoinOurCircle" )
 	public void Customer_visitsShearCircle_clicks_JoinOurCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_JoinOurCircle");		
 	}
 	
-	@Test(priority=6, description="1.2 Scenario: Customer clicks on Join Our Circle button on Are you a Customer?" )
+	@Test(priority=2, description="1.2 Scenario: Scenario: Customer clicks on Join Our Circle button on Are you a Customer?" )
 	public void Customer_clicksonJoinOurCirclebuttononAreyouaCustomer() throws IOException {		
 		CR.ShearCircle_Click_Customer_OR_Professional_JoinOurCircle("Click_CustomerJoinCircle");
 		CR.ShearCircle_Verify_Customer_Registrationform_Fieldvalidation();
-	}
+	}	
 	
-	/*@Test(priority=7, description="Customer Registration Form Fieldvalidation" )
-	public void Customer_Registration_Form_Fieldvalidation() throws IOException {		
-		CR.ShearCircle_Verify_Customer_Registrationform_Fieldvalidation();		
-	}*/
-	
-	@Test(priority=7, description="1.3 Scenario: Customer clicks on Join Our Circle button after entering valid details"
+	@Test(priority=4, description="1.3 Scenario: Scenario: Customer clicks on Join Our Circle button after entering valid details"
 			+ " and accepting the terms of service, privacy policy & billing agreement. " )
 	public void Customer_clicksonJoinOurCirclebuttonafterenteringvaliddetails() throws IOException {			
 		CR.ShearCircle_Customer_Registrationwithvaliddata();
 	}
 	
-	@Test(priority=8, description="1.5 Scenario: Customer clicks on Join Our Circle button after entering invalid details "
+	@Test(priority=5, description="1.5 Scenario: Scenario: Customer clicks on Join Our Circle button after entering invalid details "
 			+ "and accepting the terms of service, privacy policy & billing agreement. " )
 	public void Customer_clicksonJoinOurCirclebuttonafterenteringInvaliddetails() throws IOException {			
 		CR.ShearCircle_Customer_Registrationwithinvaliddata();
 	}
 	
-	@Test(priority=9, description="1.6 Scenario: Customer clicks on Join Our Circle button after entering valid details "
+	@Test(priority=6, description="1.6 Scenario: Scenario: Customer clicks on Join Our Circle button after entering valid details "
 			+ "and without accepting the terms of service, privacy policy & billing agreement." )
 	public void Customer_clicksonJoinOurCirclebuttonafterenteringvaliddetailswithoutacceptingTandC() throws IOException {			
 		CR.ShearCircle_Customer_Registrationwithvaliddata_without_termsofservice();
 	}
 	
-	@Test(priority=10, description="1.7 Scenario: Customer clicks on the hyperlinks in Customer Registration page. " )
+	@Test(priority=7, description="1.7 Scenario: Scenario: Customer clicks on the hyperlinks in Customer Registration page.")
 	public void Customer_clicksonthehyperlinksinCustomerRegistrationpage() throws IOException {			
 		CR.ShearCircle_Verify_Customer_Registrationform_HyperLynks();
 	}
 
-	@Test(priority=11, description="Customer DonthaveAccountyet_JoinOurCircle_Loginpage" )
+	@Test(priority=8, description="2.1 Scenario: Scenario: Customer clicks Login on ShearCircle home page.")
 	public void Customer_clicksLoginonShearCirclehomepage() throws IOException {		
 		CR.ShearCircle_LaunchApplication();
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
 		CR.ShearCircle_Verify_Customer_Login_page_Filed_validation();	
-	}
+	}	
 	
-	@Test(priority=12, description="Customer DonthaveAccountyet_JoinOurCircle_Loginpage" )
-	public void  Customer_LoginwithregisteredUsernameandPassword() throws IOException {		
-		CR.ShearCircle_LaunchApplication();
-		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
-		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");		
-	}
-	@Test(priority=13, description="Customer DonthaveAccountyet_JoinOurCircle_Loginpage" )
+	@Test(priority=9, description="2.3 Scenario: Scenario: Customer Login with invalid Username(Email id) & valid Password." )
 	public void Customer_LoginwithInvalidUsernameandvalidPassword() throws IOException {		
-		CR.ShearCircle_LaunchApplication();
+		//CR.ShearCircle_LaunchApplication();
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
 		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_InValid_EmailandPassword");		
 	}
-	@Test(priority=13, description="Customer DonthaveAccountyet_JoinOurCircle_Loginpage" )
+	@Test(priority=10, description="2.4 Scenario: Scenario: Customer Login with valid Username(Email id) & invalid Password." )
 	public void Customer_LoginwithvalidUsernameandInvalidPassword() throws IOException {		
-		CR.ShearCircle_LaunchApplication();
+		//CR.ShearCircle_LaunchApplication();
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
 		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandInvalid_Password");		
 	}
-	@Test(priority=13, description="Customer DonthaveAccountyet_JoinOurCircle_Loginpage" )
+	@Test(priority=11, description="2.5 Scenario: Scenario: Customer clicks on Sign in button without entering Username & Password." )
 	public void  Customer_clicksonSigninbuttonwithoutenteringUsernameandPassword() throws IOException {		
 		CR.ShearCircle_LaunchApplication();
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
-		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_InValid_Emailandvalid_Password");		
+		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_without_EmailandPassword");		
 	}
-	@Test(priority=15, description="Customer DonthaveAccountyet_JoinOurCircle_Loginpage" )
+	@Test(priority=12, description="2.12 Scenario: Scenario: Customer clicks on Join Now/Join Our Circle link." )
 	public void Customer_DonthaveAccountyet_JoinOurCircle_Loginpage() throws IOException {		
-		CR.ShearCircle_LaunchApplication();
+		//CR.ShearCircle_LaunchApplication();
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
 		CR.DonthaveAccountyet_JoinOurCircle_Loginpage();		
 	}
+	
+	@Test(priority=13, description="2.2 Scenario: Scenario: Customer Login with registered Username(Email id) & Password." )
+	public void Customer_LoginwithregisteredUsernameandPassword() throws IOException {		
+		//CR.ShearCircle_LaunchApplication();
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
+		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");
+		CR.Customer_JoinOurCircle_LogOutpage();
+	}
+	
+	@Test(priority=14, description="2.6 Scenario: Customer clicks on Login with Facebook button." )
+	public void Customer_clicksonLoginwithFacebook() throws IOException {		
+		CR.ShearCircle_LaunchApplication();
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
+		CR.Click_DoNotHaveAccountjoinourcircle_Loginwith_FaceBook_Google_Bottons("Click_LoginwithFaceBook");		
+	}
+	
+	@Test(priority=15, description="2.7 Scenario: Customer Login with Facebook user credentials with which they have registered with ShearCircle." )
+	public void Customer_clicksonLoginwithFacebookusercredentialsregisteredwithShearCircle() throws IOException {			
+		CR.Customer_LoginwithFacebook();
+		CR.Customer_JoinOurCircle_LogOutpage();
+	}
+	
+	@Test(priority=16, description="2.6 Scenario: Customer clicks on Login with Facebook button." )
+	public void Customer_clicksonLoginwithFacebook1() throws IOException {		
+		CR.ShearCircle_LaunchApplication();
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
+		CR.Click_DoNotHaveAccountjoinourcircle_Loginwith_FaceBook_Google_Bottons("Click_LoginwithFaceBook");
+		
+	}
+	
+	@Test(priority=17, description="2.8 Scenario: Customer Login with Facebook user credentials that is not registered with ShearCircle." )
+	public void Customer_clicksonLoginwithFacebookusercredentialswithoutregisteredwithShearCircle() throws IOException {		
+		
+		CR.Customer_LoginwithFacebook_not_registerewith_ShearCircle();		
+	}
+	
+	@Test(priority=18, description="2.9 Scenario: Customer clicks on Login with Google button." )
+	public void Customer_clicksonLoginwithGoogle1() throws IOException {		
+		CR.ShearCircle_LaunchApplication();
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
+		CR.Click_DoNotHaveAccountjoinourcircle_Loginwith_FaceBook_Google_Bottons("Click_LoginwithGoogle");
+		
+	}
+	
+	@Test(priority=19, description="2.10 Scenario: Customer Login with Google user credentials with which they have registered with ShearCircle")
+	public void Customer_clicksonLoginwithGoogleusercredentialswithregisteredwithShearCircle() throws IOException {			
+		CR.Click_Login_Google_Button();
+		CR.Customer_JoinOurCircle_LogOutpage();
+	}
+	
+	@Test(priority=20, description="2.9 Scenario: Customer clicks on Login with Google button.")
+	public void Customer_clicksonLoginwithGoogle() throws IOException {		
+		CR.ShearCircle_LaunchApplication();
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
+		CR.Click_DoNotHaveAccountjoinourcircle_Loginwith_FaceBook_Google_Bottons("Click_LoginwithGoogle");		
+	}
+	
+	@Test(priority=21, description="2.11 Scenario: Customer Login with Google user credentials that is not registered with ShearCircle" )
+	public void Customer_clicksonLoginwithGoogleusercredentialswithoutregisteredwithShearCircle() throws IOException {				
+		CR.customer_LoginwithGoogle_not_Registeredwith_ShearCircle();
+	}
+	
+	
+	@Test(priority=22, description="2.12 Scenario: Customer clicks on Join Now/Join Our Circle link")
+	public void Customer_Click_DoNotHaveAccountjoinourcircle() throws IOException {		
+		CR.ShearCircle_LaunchApplication();
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
+		CR.Click_DoNotHaveAccountjoinourcircle_Loginwith_FaceBook_Google_Bottons("Click_LoginwithGoogle");
+		
+	}
+	
+	@Test(priority=23,description="2.14 Scenario: Customer Resets password with valid Username")
+	public void Customer_ResetspasswordwithvalidUsername() throws IOException {			
+		CR.ShearCircle_Verify_Customer_forgotPassword("Valid", "Click Send instructions to reset password");		
+	}
+	
+	
+	@Test(priority=24,description="2.17 Scenario: Customer clicks Cancel in Reset Password page.")
+	public void Customer_clicks_CancelinResetPasswordpage() throws IOException {				
+		CR.ShearCircle_Verify_Customer_forgotPassword("Valid", "Click Cancel");
+	}
+	
+	@Test(priority=24, description="Customer ForgotPassword Invalid_EmailId_ClickSendinstructionstoresetpassword.")
+	public void Customer_ForgotPassword_Invalid_EmailId_ClickSendinstructionstoresetpassword() throws IOException {				
+		CR.ShearCircle_Verify_Customer_forgotPassword("InValid", "Click Send instructions to reset password");
+	}
+	
+	@Test(priority=25, description="Customer_ForgotPassword_Invalid_EmailId_ClickCancel")
+	public void Customer_ForgotPassword_Invalid_EmailId_ClickCancel() throws IOException {				
+		CR.ShearCircle_Verify_Customer_forgotPassword("InValid", "Click Cancel");	
+	}	
 
 	
 }

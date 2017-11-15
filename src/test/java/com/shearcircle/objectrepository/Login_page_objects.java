@@ -28,7 +28,7 @@ public class Login_page_objects {
     public WebElement Login_PassWord_textbox;
 	@FindBy(xpath="//*[@id=\"login_form\"]/div/p/a/u[text()='Forgot Your Password ?']")
     public WebElement Login_forgotPassword_Link;
-	@FindBy(xpath="//*[@id='login_form']/div/div/center/button")
+	@FindBy(xpath="//*[@id='login_form']/div/div/center/button[text()='Sign in']")
     public WebElement Login_signin_button;
 	@FindBy(xpath="//*[@id='customBtn']")
     public WebElement Login_Google_Link;
@@ -37,16 +37,20 @@ public class Login_page_objects {
 	@FindBy(xpath="//section/div/h5/a/u")
     public WebElement Login_JoinOurCircle_Link;
 	
+	@FindBy(xpath="//*[@id='navbar-collapse-1']/span/a[text()='Logout']")
+    public WebElement Customer_Logout_Button;
+	
 	@FindBy(xpath="//h4[@id='infoText']")
     public WebElement Login_ErrorMessage_Text;
 	
-	@FindBy(xpath="//*[@id='login_form']/div/input[@id='username']/following-sibling::em")
+	@FindBy(xpath="//input[@id='username']/parent::div")
     public WebElement Login_UserName_Errormessage_Text;
 	
-	@FindBy(xpath="//*[@id='login_form']/div/input[@id='password']/following-sibling::em")
+	@FindBy(xpath="//input[@id='password']/parent::div")
     public WebElement Login_PasswordErrorMessage_Text;
 	
-	
+	@FindBy(xpath="//*[@id='sub_content']/h1[text()='My Dashboard']")
+    public WebElement Customer_MyDashboard_Text;
 	
 	
 	@FindBy(xpath="//div/h2/strong[text()='Reset Password']")
@@ -72,11 +76,11 @@ public class Login_page_objects {
 	
 	@FindBy(xpath="//*[@id='content']")
 	public WebElement Facebook_Account_Header;	
-	@FindBy(xpath="//*[@id='headingText']")
+	@FindBy(xpath="//div[@id='email_container']/div/input[@id='email']")
 	public WebElement Facebook_EmailorPhone_Textbox;	 
 	@FindBy(xpath="//*[@id='pass']")
 	public WebElement Facebook_Password_Textbox;	 
-	@FindBy(xpath="//*[@id='u_0_0']")
+	@FindBy(xpath="//*[@id='u_0_0' and @value='Log In']")
 	public WebElement Facebook_Login_Link;
 	@FindBy(xpath="//*[@name='__CONFIRM__']")
 	public WebElement Facebook_Continue_Link;
@@ -96,8 +100,10 @@ public class Login_page_objects {
 	public WebElement Google_EmailorPhone_Textbox;	
 	@FindBy(xpath="//*[@id='identifierNext']")
 	public WebElement Google_Next_Link;	
-	@FindBy(xpath="//*[@id='password']")
+	@FindBy(xpath="//*[@name='password']")
 	public WebElement Google_Password_Textbox;
+	@FindBy(xpath="//*[@id='passwordNext']/content/span[text()='Next']")
+	public WebElement Google_PasswordNext_Link;	
 	@FindBy(xpath="//*[@id='sub_content']")
 	public WebElement Google_MyDashboard_Header;
 	@FindBy(xpath="//*[@class='animated zoomIn']")

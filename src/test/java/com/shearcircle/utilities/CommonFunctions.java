@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Properties;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import org.apache.commons.io.FileUtils;
@@ -652,7 +653,7 @@ public class CommonFunctions extends StaticVariables {
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
 	 */
 	public String TestDataPathOf(String TestDataFileName) throws IOException {
-		String TestDataPath = ".\\TestData\\" + TestDataFileName;
+		String TestDataPath = ".\\testData\\" + TestDataFileName;
 		System.out.println("TestData path:"+TestDataPath);
 		return TestDataPath;
 
@@ -666,6 +667,7 @@ public class CommonFunctions extends StaticVariables {
 	public boolean elmentisdisplayed(WebElement element) {
 		boolean elementdisplayedflag = false;
 		try {
+			//this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 20);
 			if (element.isDisplayed() && element.isEnabled()) {
 				elementdisplayedflag = true;
@@ -687,9 +689,11 @@ public class CommonFunctions extends StaticVariables {
 
 	public void Verify_elmentisdisplayed_Report(WebElement element, String Reporttext) {
 		try {
+			//this.movetoElement(element);
+			//this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 10);
 			if (element.isDisplayed() && element.isEnabled()) {
-				this.reportscomtep("Passed", "Verify The Element is " + Reporttext + "displayed",
+				this.reportscomtep("Passed", "Verify The Element " + Reporttext + "is displayed",
 						"The Element " + Reporttext + "should be displayed", "The Element " + Reporttext + "displayed");
 
 			} else {
@@ -710,6 +714,7 @@ public class CommonFunctions extends StaticVariables {
 		String textvalue = "";
 		boolean verificationflag = false;
 		try {
+			//this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 10);
 			if (element.isDisplayed()) {				
 				textvalue = element.getText();
@@ -740,6 +745,7 @@ public class CommonFunctions extends StaticVariables {
 	public String elementgetAttributevalue(WebElement element, String p_in_attributename) {
 		String attributevalue = "";
 		try {
+			//this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 10);
 			if (element.isDisplayed()) {				
 				attributevalue = element.getAttribute(p_in_attributename);
@@ -760,6 +766,7 @@ public class CommonFunctions extends StaticVariables {
 	public String getelementtext(WebElement element) {
 		String textvalue = "";
 		try {
+			//this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 10);
 			if (element.isDisplayed()) {				
 				textvalue = element.getText();
@@ -780,6 +787,7 @@ public class CommonFunctions extends StaticVariables {
 
 	public void sendkeys(WebElement element, String p_in_inputvalue) {
 		try {
+			//this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 10);
 			if (element.isDisplayed() && element.isEnabled()) {				
 				element.sendKeys(p_in_inputvalue);
@@ -800,6 +808,7 @@ public class CommonFunctions extends StaticVariables {
 
 	public void check_Checkbox(WebElement element) {
 		try {
+			//this.movetoElement(element);
 			this.explicitWaitUsingElementToBeClickable(element);
 			//this.scrollintoviewelement(element);
 			if (element.isDisplayed() && element.isEnabled()) {
@@ -824,10 +833,11 @@ public class CommonFunctions extends StaticVariables {
 
 	public void click(WebElement element) {
 		try {
+			//this.movetoElement(element);
 			//this.scrollintoviewelement(element);
 			this.explicitWaitUsingElementToBeClickable(element);			
 			if (element.isDisplayed() && element.isEnabled()) {				
-				element.click();		
+				element.click();				
 
 			} else {
 				System.out.println("Element existance and enabled status Failed");
@@ -1041,12 +1051,12 @@ public class CommonFunctions extends StaticVariables {
 		case "PASSED":
 			System.out.println(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
 			Reporter.log(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
-			try {
+			/*try {
 				FileUtils.copyFile(scrFile, new File(ScreenshotsPath + "Pass_" + TimeStampasString() + ".jpg"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 			break;
 		case "Failed":
 		case "Fail":
@@ -1222,4 +1232,69 @@ public class CommonFunctions extends StaticVariables {
 		String Output = inputString.replaceAll("[a-z A-Z]", "");
 		return Output;
 	}
+	
+	public void waitForNewWindowAndSwitchToIt(WebDriver driver) throws InterruptedException {
+        String cHandle = driver.getWindowHandle();
+        String newWindowHandle = null;
+        Set<String> allWindowHandles = driver.getWindowHandles();
+        
+        //Wait for 20 seconds for the new window and throw exception if not found
+        for (int i = 0; i < 20; i++) {
+            if (allWindowHandles.size() > 1) {
+                for (String allHandlers : allWindowHandles) {
+                    if (!allHandlers.equals(cHandle))
+                    	newWindowHandle = allHandlers;
+                }
+                driver.switchTo().window(newWindowHandle);
+                break;
+            } else {
+                Thread.sleep(1000);
+            }
+        }
+        if (cHandle == newWindowHandle) {
+            throw new RuntimeException(
+                    "Time out - No window found");
+        }
+    }
+	
+	public void switchtoDefaultWindow(WebDriver driver) throws InterruptedException {
+        String cHandle = driver.getWindowHandle();
+        String defaultWindowHandle = null;
+        Set<String> allWindowHandles = driver.getWindowHandles();
+        
+        //Wait for 20 seconds for the new window and throw exception if not found
+        for (int i = 0; i < 20; i++) {
+            if (allWindowHandles.size() == 0) {
+                for (String allHandlers : allWindowHandles) {
+                    if (allHandlers.equals(cHandle))
+                    	defaultWindowHandle = allHandlers;
+                }
+                driver.switchTo().window(defaultWindowHandle);
+                break;
+            } else {
+                Thread.sleep(1000);
+            }
+        }
+        if (cHandle != defaultWindowHandle) {
+            throw new RuntimeException(
+                    "Time out - No window found");
+        }
+    }
+	
+	public void switchbacktomainwindow(WebDriver driver){
+		// Store the current window handle
+		String winHandleBefore = driver.getWindowHandle();
+
+		// Perform the click operation that opens new window
+
+		// Switch to new window opened
+		for(String winHandle : driver.getWindowHandles()){
+			//driver.close();
+		}		
+
+		// Switch back to original browser (first window)
+		driver.switchTo().window(winHandleBefore);
+
+	}
+
 }

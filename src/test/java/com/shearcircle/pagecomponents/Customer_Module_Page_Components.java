@@ -20,7 +20,8 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	
 	public Customer_Module_Page_Components(WebDriver driver) throws IOException {	
 		browser = new CommonFunctions();
-		TestDataPath = browser.TestDataPathOf("CustomerTestData.properties");		
+		TestDataPath = browser.TestDataPathOf("CustomerTestData.properties");	
+		browser.loaddata(TestDataPath);		
 		CustomerModule = PageFactory.initElements(driver, Customer_Module_Page_Objects.class);
 		Login = PageFactory.initElements(driver, Login_page_objects.class);				
 	}
@@ -36,6 +37,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	    	//baseUrl = "https://shearcircle.com/testbed/home";
 	    	//System.out.println("App  URL:"+baseUrl);
 	    	driver.get(baseUrl + "");
+	    	driver.manage().window().maximize();
 		    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);		    
 		    String apptitle = driver.getTitle();
 		    if (apptitle.equalsIgnoreCase(Applicationtitle)){
@@ -157,6 +159,9 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			if (browser.elmentisdisplayed(CustomerModule.Customer_JoinNow_Header)) {
 				browser.reportscomtep("Passed", "Verify Customer Registration form Join Now header is displayed",
 						"Customer Registration form Join Now header should be displayed", "Customer Registration form Join Now header displayed");
+				
+				browser.ScrollToElementBottom(CustomerModule.Customer_joinourcircle_button);
+				
 				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_FirstName_textbox,
 						"FirstName textbox");
 
@@ -197,16 +202,17 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		String LastName = null;
 		String customerEmail = null;
 		String Password = null;
-		browser.loaddata(TestDataPath);
-		FirstName = browser.getdata("FirstName");
-		LastName = browser.getdata("LastName");
-		customerEmail = browser.getdata("Email");
-		Password = browser.getdata("Password");
+		//browser.loaddata(TestDataPath);	
 
 		try {
+			FirstName = browser.getdata("FirstName");
+			LastName = browser.getdata("LastName");
+			customerEmail = browser.getdata("Email");
+			Password = browser.getdata("Password");
 			if (browser.elmentisdisplayed(CustomerModule.Customer_JoinNow_Header)) {
 				browser.reportscomtep("Passed", "Verify Customer Registration form Join Now header is displayed",
 						"Customer Registration form Join Now header should be displayed", "Customer Registration form Join Now header displayed");
+				browser.ScrollToElementBottom(CustomerModule.Customer_joinourcircle_button);
 				browser.sendkeys(CustomerModule.Customer_FirstName_textbox, FirstName);
 
 				browser.sendkeys(CustomerModule.Customer_LastName_textbox, LastName);
@@ -260,64 +266,62 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		String Actual_invalidPasswordErrorMessage=null;
 		String Expct_invalidPasswordErrorMessage="Use 6 to 32 characters, no spaces";
 		String Actual_invalidRePasswordErrorMessage=null;
-		String Expct_invalidRePasswordErrorMessage="Confirm Password should match with password";
-		
-		browser.loaddata(TestDataPath);
-		FirstName = browser.getdata("InvalidFirstName");
-		LastName = browser.getdata("InvalidLastName");
-		customerEmail = browser.getdata("InvalidcustomerEmail");
-		Password = browser.getdata("InvalidPassword");
-		
-		try{
-			
-					if(browser.elmentisdisplayed(CustomerModule.Customer_JoinNow_Header)){					
-						browser.reportscomtep("Passed", "Verify Customer Registration form Join Now header is displayed",
-								"Customer Registration form Join Now header should be displayed", "Customer Registration form Join Now header displayed");
-						browser.sendkeys(CustomerModule.Customer_FirstName_textbox,FirstName);
-						
-						browser.sendkeys(CustomerModule.Customer_LastName_textbox,LastName);
-						
-						browser.sendkeys(CustomerModule.Customer_Email_textbox,customerEmail);
-						
-						browser.sendkeys(CustomerModule.Customer_Password_textbox,Password);
-						
-						browser.sendkeys(CustomerModule.Customer_ReEnterPassword_textbox,Password);
-						
-						browser.check_Checkbox(CustomerModule.Customer_Termsofservice_checkbox);
-						
-						browser.check_Checkbox(CustomerModule.Customer_billingagrement_checkbox);
-						
-						browser.click(CustomerModule.Customer_joinourcircle_button);	
-						
-						if(browser.elmentisdisplayed(CustomerModule.Customer_invalidFirstname_errorMessage)){
-							Actual_FirstNameErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidFirstname_errorMessage);
-							browser.assertEquals(Actual_FirstNameErrorMessage,Expct_FirstNameErrorMessage);
-						}
-						
-						if(browser.elmentisdisplayed(CustomerModule.Customer_invalidLastname_errorMessage)){
-							Actual_LastNameErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidLastname_errorMessage);
-							browser.assertEquals(Actual_LastNameErrorMessage,Expct_LastNameErrorMessage);
-						}
-						
-						if(browser.elmentisdisplayed(CustomerModule.Customer_invalidEmail_errorMessage)){
-							Actual_invalidEmailErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidEmail_errorMessage);
-							browser.assertEquals(Actual_invalidEmailErrorMessage,Expct_invalidEmailErrorMessage);
-						}
-						
-						if(browser.elmentisdisplayed(CustomerModule.Customer_invalidPassword_errorMessage)){
-							Actual_invalidPasswordErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidPassword_errorMessage);
-							browser.assertEquals(Actual_invalidPasswordErrorMessage,Expct_invalidPasswordErrorMessage);
-						}
-						
-						if(browser.elmentisdisplayed(CustomerModule.Customer_invalidRePassword_errorMessage)){
-							Actual_invalidRePasswordErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidRePassword_errorMessage);
-							browser.assertEquals(Actual_invalidRePasswordErrorMessage,Expct_invalidRePasswordErrorMessage);
-						}						
-					
-				}else {
-					browser.reportscomtep("Failed", "Verify Customer Registration form Join Now header is displayed",
-							"Customer Registration form Join Now header should be displayed", "Customer Registration form Join Now header  not displayed");
+		String Expct_invalidRePasswordErrorMessage="Confirm Password should match with password";		
+		//browser.loaddata(TestDataPath);		
+		try{	
+			FirstName = browser.getdata("InvalidFirstName");
+			LastName = browser.getdata("InvalidLastName");
+			customerEmail = browser.getdata("InvalidcustomerEmail");
+			Password = browser.getdata("InvalidPassword");
+			if(browser.elmentisdisplayed(CustomerModule.Customer_JoinNow_Header)){					
+				browser.reportscomtep("Passed", "Verify Customer Registration form Join Now header is displayed",
+						"Customer Registration form Join Now header should be displayed", "Customer Registration form Join Now header displayed");
+				browser.ScrollToElementBottom(CustomerModule.Customer_joinourcircle_button);
+				browser.sendkeys(CustomerModule.Customer_FirstName_textbox,FirstName);
+				
+				browser.sendkeys(CustomerModule.Customer_LastName_textbox,LastName);
+				
+				browser.sendkeys(CustomerModule.Customer_Email_textbox,customerEmail);
+				
+				browser.sendkeys(CustomerModule.Customer_Password_textbox,Password);
+				
+				browser.sendkeys(CustomerModule.Customer_ReEnterPassword_textbox,Password);
+				
+				browser.check_Checkbox(CustomerModule.Customer_Termsofservice_checkbox);
+				
+				browser.check_Checkbox(CustomerModule.Customer_billingagrement_checkbox);
+				
+				browser.click(CustomerModule.Customer_joinourcircle_button);	
+				
+				if(browser.elmentisdisplayed(CustomerModule.Customer_invalidFirstname_errorMessage)){
+					Actual_FirstNameErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidFirstname_errorMessage);
+					browser.assertEquals(Actual_FirstNameErrorMessage,Expct_FirstNameErrorMessage);
 				}
+				
+				if(browser.elmentisdisplayed(CustomerModule.Customer_invalidLastname_errorMessage)){
+					Actual_LastNameErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidLastname_errorMessage);
+					browser.assertEquals(Actual_LastNameErrorMessage,Expct_LastNameErrorMessage);
+				}
+				
+				if(browser.elmentisdisplayed(CustomerModule.Customer_invalidEmail_errorMessage)){
+					Actual_invalidEmailErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidEmail_errorMessage);
+					browser.assertEquals(Actual_invalidEmailErrorMessage,Expct_invalidEmailErrorMessage);
+				}
+				
+				if(browser.elmentisdisplayed(CustomerModule.Customer_invalidPassword_errorMessage)){
+					Actual_invalidPasswordErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidPassword_errorMessage);
+					browser.assertEquals(Actual_invalidPasswordErrorMessage,Expct_invalidPasswordErrorMessage);
+				}
+				
+				if(browser.elmentisdisplayed(CustomerModule.Customer_invalidRePassword_errorMessage)){
+					Actual_invalidRePasswordErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidRePassword_errorMessage);
+					browser.assertEquals(Actual_invalidRePasswordErrorMessage,Expct_invalidRePasswordErrorMessage);
+				}						
+			
+		}else {
+			browser.reportscomtep("Failed", "Verify Customer Registration form Join Now header is displayed",
+					"Customer Registration form Join Now header should be displayed", "Customer Registration form Join Now header  not displayed");
+		}
 			
 		}catch(Exception e){
 			System.out.println("Error description: " + e.getStackTrace() );
@@ -331,21 +335,22 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		String FirstName = null;
 		String LastName = null;
 		String customerEmail = null;
-		String Password = null;
-		browser.loaddata(TestDataPath);
-		FirstName = browser.getdata("FirstName");
-		LastName = browser.getdata("LastName");
-		customerEmail = browser.getdata("customerEmail");
-		Password = browser.getdata("Password");
+		String Password = null;		
 		String Actual_AcceptTermsandConditons_errorMessage = null;
 		String Expct_AcceptTermsandConditons_errorMessage = "Please accept terms and conditions"; 
 		String Actual_AcceptourbillingAgreement_errorMessage = null;
 		String Expct_AcceptourbillingAgreement_errorMessage = "Please accept our billing agreement"; 
                    
 		try {
+			//browser.loaddata(TestDataPath);
+			FirstName = browser.getdata("FirstName");
+			LastName = browser.getdata("LastName");
+			customerEmail = browser.getdata("customerEmail");
+			Password = browser.getdata("Password");
 			if (browser.elmentisdisplayed(CustomerModule.Customer_JoinNow_Header)) {
 				browser.reportscomtep("Passed", "Verify Customer Registration form Join Now header is displayed",
 						"Customer Registration form Join Now header should be displayed", "Customer Registration form Join Now header displayed");
+				browser.ScrollToElementBottom(CustomerModule.Customer_joinourcircle_button);
 				browser.sendkeys(CustomerModule.Customer_FirstName_textbox, FirstName);
 
 				browser.sendkeys(CustomerModule.Customer_LastName_textbox, LastName);
@@ -384,18 +389,17 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 	/**************************Create Customer forgot Password with valid and Invalid input data************************************/	
 	public void ShearCircle_Verify_Customer_forgotPassword(String p_in_Valid_or_Invalid, String p_in_FinalAction) {
-		String customerValidEmail = null;		
-		String customerInValidEmail = null;
+		String CustomerValidEmail = null;		
+		String CustomerInValidEmail = null;
 		String invalid_Message;
 		String valid_Message;
-		
-		browser.loaddata(TestDataPath);
-		customerValidEmail = browser.getdata("customerValidEmail");
-		customerInValidEmail = browser.getdata("customerInValidEmail");
-		invalid_Message = "No records for the Username";
-		valid_Message = "Password Reset Instructions Sent Successfully";						 
 		String getmessage = null;
+		//browser.loaddata(TestDataPath);		
 		try{
+			CustomerValidEmail = browser.getdata("CustomerValidEmail");
+			CustomerInValidEmail = browser.getdata("CustomerInValidEmail");
+			invalid_Message = "No records for the Username";
+			valid_Message = "Password Reset Instructions Sent Successfully";	
 			if(browser.elmentisdisplayed(Login.Home_Login_Link)) {
 				browser.reportscomtep("Passed", "Verify Login link is displayed"  , "Login link should be displayed", "Login link is displayed");
 				browser.click(Login.Home_Login_Link);
@@ -413,10 +417,10 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						browser.Verify_elmentisdisplayed_Report(Login.ResetPassword_Cancel_textbox, "Cancel Link");
 						
 						if(p_in_Valid_or_Invalid.equalsIgnoreCase("Valid")) {
-							browser.sendkeys(Login.ResetPassword_UserName_textbox,customerValidEmail);
+							browser.sendkeys(Login.ResetPassword_UserName_textbox,CustomerValidEmail);
 							
 						}else if(p_in_Valid_or_Invalid.equalsIgnoreCase("InValid")){
-							browser.sendkeys(Login.ResetPassword_UserName_textbox,customerInValidEmail);
+							browser.sendkeys(Login.ResetPassword_UserName_textbox,CustomerInValidEmail);
 						}
 						
 						switch(p_in_FinalAction) {
@@ -478,7 +482,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 			if(browser.elmentisdisplayed(CustomerModule.Customer_termsofservice_hyperlynk)){
 				browser.reportscomtep("Passed", "Verify terms of service link is displayed"  , "terms of service link should be displayed", "terms of service link is displayed");
-
+				browser.ScrollToElementBottom(CustomerModule.Customer_joinourcircle_button);
 				browser.click(CustomerModule.Customer_termsofservice_hyperlynk);
 				browser.wait(5);
 				if(browser.elmentisdisplayed(CustomerModule.Customer_termsofservice_hyperlynk_header)){
@@ -522,21 +526,58 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	}
 	
 		
-	public void joinourcircle() {
+	public void Click_DoNotHaveAccountjoinourcircle_Loginwith_FaceBook_Google_Bottons(String Click_FinalAction) {
 		 browser.loaddata(TestDataPath);
 		 try {
-		 if(browser.elmentisdisplayed(Login.Home_JoinOurCircle_Link)) {
-				browser.reportscomtep("Passed", "Verify JoinCircle link is displayed"  , "JoinCircle link should be displayed", "JoinCircle link is displayed");
-				browser.click(Login.Home_JoinOurCircle_Link);
-				//browser.wait(5);
-				if(browser.elmentisdisplayed(CustomerModule.customerJoinCircle_Link)){
-					browser.reportscomtep("Passed", "Verify Customer JoinCircle link is displayed"  , "Customer JoinCircle link should be displayed", "Customer JoinCircle link is displayed");					
-				
-				}else {
-					browser.reportscomtep("Failed", "Verify Profession JoinCircle link is displayed"  , "Profession JoinCircle link should be displayed", "Customer JoinCircle link not displayed");
+			 browser.ScrollToElementBottom(Login.Login_DonthaveaccountJoinOurCircle_Link);
+		 if(browser.elmentisdisplayed(Login.Login_DonthaveaccountJoinOurCircle_Link) && browser.elmentisdisplayed(Login.Login_Facebook_Link) && browser.elmentisdisplayed(Login.Login_Google_Link)) {
+				browser.reportscomtep("Passed", "Verify Don't have an account yet JoinCircle, Login with FaceBood and Login with Google buttons are displayed", "Don't have an account yet JoinCircle, Login with FaceBood and Login with Google buttons should be displayed", "Don't have an account yet JoinCircle, Login with FaceBood and Login with Google buttons displayed");
+				switch (Click_FinalAction){
+					case "Click_Donthaveaccount_JoinOurCircle":
+						//browser.ScrollToElementBottom(Login.Login_DonthaveaccountJoinOurCircle_Link);
+						browser.click(Login.Login_DonthaveaccountJoinOurCircle_Link);
+						
+						if(browser.elmentisdisplayed(CustomerModule.Customer_RegisterWithShearCircle_Header)){
+							browser.reportscomtep("Passed", "click Don't have a ccout yet? JoinCircle link and verify Customer sent to Join Our Circle page"  , "Customer will be sent to Join Our Circle page", "Customer sent to Join Our Circle page");					
+							
+						}else {
+							browser.reportscomtep("Failed", "click Don't have a ccout yet? JoinCircle link and verify Customer sent to Join Our Circle page"  , "Customer will be sent to Join Our Circle page", "Customer not sent to Join Our Circle page");				
+						}	
+						break;
+					case "Click_LoginwithFaceBook":
+						//browser.ScrollToElementBottom(Login.Login_Facebook_Link);
+						browser.click(Login.Login_Facebook_Link);
+						browser.waitForNewWindowAndSwitchToIt(driver);	
+						if (browser.elmentisdisplayed(Login.Facebook_Account_Header)) {
+							browser.reportscomtep("Passed", "Verify Facebook Login popup is displayed",
+									"Facebook Login popup  should be displayed",
+									"Facebook Login popup displayed");
+							
+						}else {
+							browser.reportscomtep("Failed", "Verify Facebook Login popup  is displayed",
+									"Facebook Login popup should be displayed",
+									"Facebook Login popup not displayed");
+							}
+						break;
+					case "Click_LoginwithGoogle":	
+						//browser.ScrollToElementBottom(Login.Login_Google_Link);
+						browser.click(Login.Login_Google_Link);
+						browser.waitForNewWindowAndSwitchToIt(driver);	
+						if (browser.elmentisdisplayed(Login.Google_EmailorPhone_Textbox)) {
+							browser.reportscomtep("Passed", "Verify google popup is displayed",
+									"Google Login popup  should be displayed",
+									"Google Login popup displayed");
+							
+						}else {
+							browser.reportscomtep("Failed", "Verify Google popup is displayed",
+									"Google popup should be displayed",
+									"Google popup not displayed");
+						}		
+						break;
 				}
+				
 		 }else {
-				browser.reportscomtep("Failed", "Verify JoinCircle link is displayed"  , "JoinCircle link should be displayed", "JoinCircle link not displayed");
+				browser.reportscomtep("Failed", "Verify Don't have an account yet JoinCircle, Login with FaceBood and Login with Google buttons are displayed", "Don't have an account yet JoinCircle, Login with FaceBood and Login with Google buttons should be displayed", "Don't have an account yet JoinCircle, Login with FaceBood and Login with Google buttons Not displayed");
 			}
 		 
 		 }catch(Exception e){
@@ -549,10 +590,12 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 			if (browser.elmentisdisplayed(Login.Login_Page_Header)) {
 				browser.reportscomtep("Passed", "Verify Customer Sign In To ShearCircle page header is displayed",
-						"Sign In To ShearCircle page header should be displayed", "Sign In To ShearCircle page header displayed");				
+						"Sign In To ShearCircle page header should be displayed", "Sign In To ShearCircle page header displayed");			
+				
 				browser.Verify_elmentisdisplayed_Report(Login.Login_UserName_textbox, "User Name textbox");
 				browser.Verify_elmentisdisplayed_Report(Login.Login_PassWord_textbox,"Password textbox");
-				browser.Verify_elmentisdisplayed_Report(Login.Login_signin_button,"SIGIN Button");
+				browser.ScrollToElementBottom(Login.Login_JoinOurCircle_Link);
+				browser.Verify_elmentisdisplayed_Report(Login.Login_signin_button,"SIGN IN Button");
 				browser.Verify_elmentisdisplayed_Report(Login.Login_forgotPassword_Link,"Forgot Your Password ? Link");
 				browser.Verify_elmentisdisplayed_Report(Login.Login_Facebook_Link,"Login with Facebook link");
 				browser.Verify_elmentisdisplayed_Report(Login.Login_Google_Link,"Login with Google link");
@@ -570,43 +613,49 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	}
 	/*******************Verify all Login Combinations(valid and Ivvalid)*******************************/
 	public void ShearCircle_Customer_Login_valid_invalid_combination(String p_in_Valid_or_Invalid) {
-		String customerValidEmail = null;		
-		String customerInValidEmail = null;
-		String customerValidPassword = null;		
-		String customerInValidPassword = null;
+		String CustomerValidEmail = null;		
+		String CustomerInValidEmail = null;
+		String CustomerValidPassword = null;		
+		String CustomerInValidPassword = null;
 		String InvalidUserName_ErrorMessage = null;
 		String UserName_ErrorMassage = null;
 		String Password_ErrorMassage = null;
-		String InvalidPassword_Message = null;
-		
-		browser.loaddata(TestDataPath);
-		customerValidEmail = browser.getdata("CustomerValidEmail");
-		customerInValidEmail = browser.getdata("CustomerInValidEmail");
-		customerValidPassword = browser.getdata("CustomervalidPassword");
-		customerInValidPassword = browser.getdata("CustomerInvalidPassword");
-		InvalidUserName_ErrorMessage = "User details not found";
-		InvalidPassword_Message = "Invalid credentials";						 
+		String InvalidPassword_Message = null;		
+		//browser.loaddata(TestDataPath);
 		
 		try{
+			CustomerValidEmail = browser.getdata("CustomerValidEmail");
+			CustomerInValidEmail = browser.getdata("CustomerInValidEmail");		
+			CustomerValidPassword = browser.getdata("CustomerValidPassword");
+			CustomerInValidPassword = browser.getdata("CustomerInValidPassword");
+			
+			InvalidUserName_ErrorMessage = "User details not found";
+			InvalidPassword_Message = "Invalid credentials";						 
+			
 			if(browser.elmentisdisplayed(Login.Login_Page_Header)) {
 				browser.reportscomtep("Passed", "Verify Login page is displayed"  , "Login page should be displayed", "Login page displayed");
 				browser.click(Login.Home_Login_Link);					
 					
 					switch(p_in_Valid_or_Invalid) {
-						case "Enter_Valid_EmailandPassword":
-							browser.sendkeys(Login.Login_UserName_textbox,customerValidEmail);
-							browser.sendkeys(Login.Login_PassWord_textbox,customerValidPassword);
+						case "Enter_Valid_EmailandPassword":							
+							browser.sendkeys(Login.Login_UserName_textbox,CustomerValidEmail);
+							browser.sendkeys(Login.Login_PassWord_textbox,CustomerValidPassword);
+							//browser.movetoElement(Login.Login_signin_button);
+							browser.ScrollToElementBottom(Login.Login_signin_button);
 							browser.click(Login.Login_signin_button);
 							
-							if(browser.elmentisdisplayed(Login.Google_MyDashboard_Header)){
+							if(browser.elmentisdisplayed(Login.Customer_MyDashboard_Text)){
 								browser.reportscomtep("Passed", "Customer enters valid Username and Password and clicks on Sign in button", "Customer should be navigate to the Customer Dashboard page", "Customer navigated to the Customer Dashboard page");
 							}else {
 								browser.reportscomtep("Failed", "Customer enters valid Username and Password and clicks on Sign in button", "Customer should be navigate to the Customer Dashboard page", "Customer Not navigated to the Customer Dashboard page");
-							}
+							}							
+							
 							break;
 						case "Enter_InValid_EmailandvalidPassword":	
-							browser.sendkeys(Login.Login_UserName_textbox,customerInValidEmail);
-							browser.sendkeys(Login.Login_PassWord_textbox,customerInValidPassword);
+							browser.sendkeys(Login.Login_UserName_textbox,CustomerInValidEmail);
+							browser.sendkeys(Login.Login_PassWord_textbox,CustomerValidPassword);
+							//browser.movetoElement(Login.Login_signin_button);
+							browser.ScrollToElementBottom(Login.Login_signin_button);
 							browser.click(Login.Login_signin_button);
 							if(browser.verifyElementtext(Login.Login_ErrorMessage_Text,InvalidUserName_ErrorMessage,"exact")) {
 								browser.reportscomtep("Passed", "Customer enters Invalid Username and Valid Password and clicks on Sign in button", "An error message should be displayed stating that the User details are not found", "An error message displayed stating that the User details are not found");
@@ -616,8 +665,10 @@ public class Customer_Module_Page_Components extends StaticVariables {
 							break;
 										
 						case "Enter_Valid_EmailandInvalid_Password":							
-							browser.sendkeys(Login.Login_UserName_textbox,customerValidEmail);
-							browser.sendkeys(Login.Login_PassWord_textbox,customerInValidPassword);
+							browser.sendkeys(Login.Login_UserName_textbox,CustomerValidEmail);
+							browser.sendkeys(Login.Login_PassWord_textbox,CustomerInValidPassword);
+							//browser.movetoElement(Login.Login_signin_button);
+							browser.ScrollToElementBottom(Login.Login_signin_button);
 							browser.click(Login.Login_signin_button);	
 							if(browser.verifyElementtext(Login.Login_ErrorMessage_Text,InvalidPassword_Message,"exact")){								
 								browser.reportscomtep("Passed", "Customer enters valid Username and Invalid Password and clicks on Sign in button", "An error message should be displayed stating that the credentials are invalid", "An error message displayed stating that the credentials are invalid ");
@@ -627,11 +678,14 @@ public class Customer_Module_Page_Components extends StaticVariables {
 							
 							break;
 						case "Enter_without_EmailandPassword":	
-							browser.sendkeys(Login.Login_UserName_textbox,customerInValidEmail);
-							browser.sendkeys(Login.Login_PassWord_textbox,customerValidPassword);
-							browser.click(Login.Login_signin_button);
-							UserName_ErrorMassage = browser.elementgetAttributevalue(Login.Login_UserName_textbox,"class");
-							Password_ErrorMassage = browser.elementgetAttributevalue(Login.Login_PassWord_textbox,"class");
+							browser.clearText(Login.Login_UserName_textbox);
+							browser.clearText(Login.Login_PassWord_textbox);
+							//browser.movetoElement(Login.Login_signin_button);
+							browser.ScrollToElementBottom(Login.Login_signin_button);
+							browser.click(Login.Login_signin_button);							
+							UserName_ErrorMassage = browser.elementgetAttributevalue(Login.Login_UserName_Errormessage_Text,"class");
+							Password_ErrorMassage = browser.elementgetAttributevalue(Login.Login_PasswordErrorMessage_Text,"class");
+							System.out.println("user error"+ UserName_ErrorMassage+ "&&" + "Password err"+ Password_ErrorMassage);
 							if(UserName_ErrorMassage.contains("state-error") && Password_ErrorMassage.contains("state-error")) {
 								browser.reportscomtep("Passed", "Customer clicks on Sign in button without entering Username & Password", "Customer should be prompted to enter valid Username & Password ", "Customer prompted to enter valid Username & Password");
 							}else {
@@ -641,8 +695,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 							break;
 						}	
 						
-					}
-			else {
+					}else{
 				browser.reportscomtep("Failed", "Verify Login page is displayed"  , "Login page should be displayed", "Login page not displayed");
 			}
 			
@@ -651,182 +704,165 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		}	
 	}
 	/****************Customer Login with Facebook Account*********************/
-	public void Customer_LoginwithFacebook() {
-		try {
-			if (browser.elmentisdisplayed(Login.Login_Facebook_Link))
-					{
-				browser.reportscomtep("Passed", "Verify Facebook link is  displayed",
-						"Facebook  link  should be displayed", "Facebook link displayed");
-					browser.movetoElement(Login.Login_Facebook_Link);
-					browser.click(Login.Login_Facebook_Link);
+	public void Customer_LoginwithFacebook(){
+		String CustomerValidEmail = null;			
+		String CustomerValidPassword = null;
+		CustomerValidEmail = browser.getdata("CustomerValidEmail");			
+		CustomerValidPassword = browser.getdata("CustomerValidPassword");
+		try {						
+			if (browser.elmentisdisplayed(Login.Facebook_Account_Header)) {
+				browser.reportscomtep("Passed", "Verify Facebook Login popup is displayed",
+						"Facebook Login popup  should be displayed",
+						"Facebook Login popup displayed");
+				browser.sendkeys(Login.Facebook_EmailorPhone_Textbox, CustomerValidEmail);
+				browser.sendkeys(Login.Facebook_Password_Textbox, CustomerValidPassword);
+				//browser.explicitWaitUsingElementToBeClickable(Login.Facebook_Login_Link);
+				browser.click(Login.Facebook_Login_Link);
+				//String cHandle = driver.getWindowHandle();
+				driver.switchTo().window(defaultWindowHandle);
+				//browser.switchtoDefaultWindow(driver);	
+				if(browser.elmentisdisplayed(Login.Customer_MyDashboard_Text))
+				{
+					browser.reportscomtep("Passed", "Verify MyDashboard is  displayed",
+							"MyDashboard  should be displayed", "MyDashboard  displayed");
+				}else {
+						browser.reportscomtep("Passed", "Verify MyDashboard is  displayed",
+								"MyDashboard  should be displayed", "MyDashboard  displayed");
 					}
-					
-					if (browser.elmentisdisplayed(Login.Facebook_Account_Header)) {
-						browser.reportscomtep("Passed", "Verify Facebook Login popup is displayed",
-								"Facebook Login popup  should be displayed",
-								"Facebook Login popup displayed");
-						browser.sendkeys(Login.Facebook_EmailorPhone_Textbox, "test001@gmail.com");
-						browser.sendkeys(Login.Facebook_Password_Textbox, "000123");
-						browser.click(Login.Facebook_Login_Link);
-						if(browser.elmentisdisplayed(CustomerModule.Customer_RegisterWithShearCircle_Header))
-						{
-							browser.reportscomtep("Passed", "Verify MyDashboard is  displayed",
-									"MyDashboard  should be displayed", "MyDashboard  displayed");
-						}else {
-								browser.reportscomtep("Passed", "Verify MyDashboard is  displayed",
-										"MyDashboard  should be displayed", "MyDashboard  displayed");
-							}
-							} 
-					else {
-						browser.reportscomtep("Failed", "Verify Facebook Login popup  is displayed",
-								"Facebook Login popup should be displayed",
-								"Facebook Login popup not displayed");
-						}
-					}
-		catch (Exception e) {
+			}else {
+				browser.reportscomtep("Failed", "Verify Facebook Login popup  is displayed",
+						"Facebook Login popup should be displayed",
+						"Facebook Login popup not displayed");
+				}
+			
+			
+		}catch (Exception e) {
 			browser.reportscomtep("Failed", "Facebool link is displayed",
 					"Facebool link should be displayed", "Facebool link not displayed");
 			System.out.println("Error description: " + e.getStackTrace());
 		}
+		
 	}
 	
 	/******************Customer clicks on Login with Google button.*****************/	
 	
 
 		public void Click_Login_Google_Button(){
-			try {
-				if (browser.elmentisdisplayed(Login.Login_Google_Link))
-						{
-					browser.reportscomtep("Passed", "Verify Google link is  displayed",
-							"Google  link  should be displayed","Google link  displayed");
-					browser.movetoElement(Login.Login_Google_Link);
-					browser.click(Login.Login_Google_Link);	
-						}
-						
-						if (browser.elmentisdisplayed(Login.Google_EmailorPhone_Textbox)) {
-							browser.reportscomtep("Passed", "Verify google popup is displayed",
-									"Google Login popup  should be displayed",
-									"Google Login popup displayed");
-							browser.click(Login.Google_Use_another_account_Link);
-							browser.sendkeys(Login.Google_EmailorPhone_Textbox, "test007@gmail.com");
-							browser.click(Login.Google_Next_Link);
-							browser.sendkeys(Login.Google_Password_Textbox, "00012345");
-							browser.click(Login.Google_Next_Link);
-							if(browser.elmentisdisplayed(CustomerModule.Customer_RegisterWithShearCircle_Header))
-							{
-								browser.reportscomtep("Passed", "Verify MyDashboard is  displayed",
-										"MyDashboard  should be displayed", "MyDashboard  displayed");
-							}else {
-									browser.reportscomtep("Passed", "Verify MyDashboard is  displayed",
-											"MyDashboard  should be displayed", "MyDashboard  displayed");
-								}
-								}  
-						else {
-							browser.reportscomtep("Failed", "Verify Google popup is displayed",
-									"Google popup should be displayed",
-									"Google popup not displayed");
-							}
-						}
-			catch (Exception e) {
+			String CustomerValidEmail = null;			
+			String CustomerValidPassword = null;
+			try {				
+				CustomerValidEmail = browser.getdata("CustomerValidEmail");			
+				CustomerValidPassword = browser.getdata("CustomerValidPassword");									
+				if (browser.elmentisdisplayed(Login.Google_EmailorPhone_Textbox)) {
+					browser.reportscomtep("Passed", "Verify google popup is displayed",
+							"Google Login popup  should be displayed",
+							"Google Login popup displayed");
+					//browser.click(Login.Google_Use_another_account_Link);
+					browser.sendkeys(Login.Google_EmailorPhone_Textbox, CustomerValidEmail);
+					browser.click(Login.Google_Next_Link);
+					browser.sendkeys(Login.Google_Password_Textbox, CustomerValidPassword);
+					browser.click(Login.Google_PasswordNext_Link);
+					driver.switchTo().window(defaultWindowHandle);
+					if(browser.elmentisdisplayed(Login.Customer_MyDashboard_Text)){
+						browser.reportscomtep("Passed", "Verify MyDashboard is  displayed",
+								"MyDashboard  should be displayed", "MyDashboard  displayed");
+					}else {
+						browser.reportscomtep("Passed", "Verify MyDashboard is  displayed",
+									"MyDashboard  should be displayed", "MyDashboard  displayed");
+					}
+				}else {
+					browser.reportscomtep("Failed", "Verify Google popup is displayed",
+							"Google popup should be displayed",
+							"Google popup not displayed");
+				}
+			}catch (Exception e) {
 				browser.reportscomtep("Failed", "Google link is displayed",
 						"Google link should be displayed", "Google link not displayed");
 				System.out.println("Error description: " + e.getStackTrace());
-		}
 			}
+		}
 		
 			
 		/****Customer Login with Facebook user credentials that is not registered with ShearCircle******/
 
-		public void Customer_LoginwithFacebook_not_registerewith_ShearCircle() 
-		{
+		public void Customer_LoginwithFacebook_not_registerewith_ShearCircle(){
 			try {
 				
-				if (browser.elmentisdisplayed(Login.Login_Facebook_Link))
-						{
-					browser.reportscomtep("Passed", "Verify Facebook link is  displayed",
-							"Facebook  link  should be displayed", "Facebook link displayed");
-						browser.movetoElement(Login.Login_Facebook_Link);
-						browser.click(Login.Login_Facebook_Link);
-						if (browser.elmentisdisplayed(Login.Facebook_Account_Header)) 
-						{
-							browser.reportscomtep("Passed", "Verify Facebook Login popup is displayed",
-									"Facebook Login popup  should be displayed",
-									"Facebook Login popup displayed");
-							browser.sendkeys(Login.Facebook_EmailorPhone_Textbox, "test01@gmail.com");
-							browser.sendkeys(Login.Facebook_Password_Textbox, "00012");
-							browser.click(Login.Facebook_Login_Link);
-							browser.waitforelementtobevisible(Login.Facebook_Continue_Link,10);
-							if(browser.elmentisdisplayed(CustomerModule.Customer_RegisterWithShearCircle_Header))
-							{
-								browser.reportscomtep("Passed", "Verify  Join our Circle  header displayed",
-										" Join our Circle  header should be displayed","Join our Circle  header displayed");
-							}else
-								{
-									browser.reportscomtep("Failed", "Verify Join our  header is  displayed",
-											"Join our Circle  header  should be displayed", "Join our Circle header not displayed");
-								}
+				if (browser.elmentisdisplayed(Login.Facebook_Account_Header)){
+					browser.reportscomtep("Passed", "Verify Facebook Login popup is displayed",
+							"Facebook Login popup  should be displayed",
+							"Facebook Login popup displayed");
+					browser.sendkeys(Login.Facebook_EmailorPhone_Textbox, "shearcircletestmail1@gmail.com");
+					browser.sendkeys(Login.Facebook_Password_Textbox, "@Digitech17");
+					browser.click(Login.Facebook_Login_Link);
+					if (browser.elmentisdisplayed(Login.Facebook_Continue_Link)){
+						browser.click(Login.Facebook_Continue_Link);
+					}					
+					driver.switchTo().window(defaultWindowHandle);
+					if(browser.elmentisdisplayed(CustomerModule.Customer_RegisterWithShearCircle_Header))
+					{
+						browser.reportscomtep("Passed", "Verify  Join our Circle  header displayed",
+								" Join our Circle  header should be displayed","Join our Circle  header displayed");
+					}else{
+						browser.reportscomtep("Failed", "Verify Join our  header is  displayed",
+									"Join our Circle  header  should be displayed", "Join our Circle header not displayed");
 						}
-						else
-						{
-							browser.reportscomtep("Failed", "Verify Facebook Login popup  is displayed",
-									"Facebook Login popup should be displayed",
-									"Facebook Login popup not displayed");
-						}
-						}
-						else 
-						{
-							browser.reportscomtep("Failed", "Facebool link is displayed",
-									"Facebool link should be displayed", "Facebool link not displayed");
-						}
-						}
-							catch (Exception e) {
+				}else{
+					browser.reportscomtep("Failed", "Verify Facebook Login popup  is displayed",
+							"Facebook Login popup should be displayed",
+							"Facebook Login popup not displayed");
+				}	
+						
+			}catch (Exception e) {
 						    System.out.println("Error description: " + e.getStackTrace());
 			}
-			}
+		}
 		
 		/***********************Customer Login with Google user credentials that is not registered with ShearCircle********/
 
 		public void customer_LoginwithGoogle_not_Registeredwith_ShearCircle(){
-			try {
-				
-				if (browser.elmentisdisplayed(Login.Login_Google_Link)){
-					browser.reportscomtep("Passed", "Verify Google link is  displayed",
-							"Google  link  should be displayed","Google link  displayed");
-					browser.movetoElement(Login.Login_Google_Link);
-					browser.click(Login.Login_Google_Link);
-					if (browser.elmentisdisplayed(Login.Google_Tocontinue_shearcircle_Text)){
+			try {			
+				if (browser.elmentisdisplayed(Login.Google_Tocontinue_shearcircle_Text)){
 					browser.reportscomtep("Passed", "Verify google popup is displayed",
 							"Google Login popup  should be displayed","Google Login popup displayed");
-					browser.sendkeys(Login.Google_EmailorPhone_Textbox, "test07@gmail.com");
+					browser.sendkeys(Login.Google_EmailorPhone_Textbox, "shearcircletestmail1@gmail.com");
 					browser.click(Login.Google_Next_Link);
-					browser.sendkeys(Login.Google_Password_Textbox, "0001234");
-					browser.click(Login.Google_Next_Link);
-					if(browser.elmentisdisplayed(Login.Google_RegisterWithShearCircle_header))
-							{
+					browser.sendkeys(Login.Google_Password_Textbox, "@Digitech17");
+					browser.click(Login.Google_PasswordNext_Link);
+					driver.switchTo().window(defaultWindowHandle);
+					if(browser.elmentisdisplayed(Login.Google_RegisterWithShearCircle_header)){
 						browser.reportscomtep("Passed", "Verify Register With ShearCircle is  displayed",
 								"Register With ShearCircle  should be displayed", "Register With ShearCircle  displayed");
-							}else{
-							browser.reportscomtep("Failed", "Verify Register With ShearCircle is  displayed",
+					}else{
+						browser.reportscomtep("Failed", "Verify Register With ShearCircle is  displayed",
 									"Register With ShearCircle  should be displayed", "Register With ShearCircle  not displayed");
-						}
-								}
-						else {
-							browser.reportscomtep("Failed", "Verify Google popup is displayed",
-									"Google popup should be displayed","Google popup not displayed");
-						} 
-							}
-						else
-						{
-							browser.reportscomtep("Failed", "Google link is displayed",
-									"Google link should be displayed", "Google link not displayed");
-							}
+					}
+				}else {
+					browser.reportscomtep("Failed", "Verify Google popup is displayed",
+								"Google popup should be displayed","Google popup not displayed");
+				} 
+							
+			}catch(Exception e){
+				System.out.println("Error description: " + e.getStackTrace());
 			}
-			catch (Exception e) {
-									System.out.println("Error description: " + e.getStackTrace());
-		}
 		}
 		
-
+		/**************************Customer clicks on Dont have Account yet JoinOurCircle link in Login page and verifying Customer sent to Join Our Circle page***********************************/
+		public void Customer_JoinOurCircle_LogOutpage(){
+			try{
+				browser.click(Login.Customer_Logout_Button);				
+				if(browser.elmentisdisplayed(Login.Home_Login_Link)){
+					browser.reportscomtep("Passed", "click LogOut button link and verify Customer sent to ShearCircle Home page"  , "Customer will sent to ShearCircle Home page", "Customer sent to ShearCircle Home page");					
+					
+				}else {
+					browser.reportscomtep("Failed", "click LogOut button link and verify Customer sent to ShearCircle Home page"  , "Customer will sent to ShearCircle Home page", "Customer Not sent to ShearCircle Home page");				
+				}						
+				
+			}catch(Exception e){
+				System.out.println("Error description: " + e.getStackTrace() );
+			}
+			
+		}
 	
 	/**************************Customer clicks on Dont have Account yet JoinOurCircle link in Login page and verifying Customer sent to Join Our Circle page***********************************/
 	public void DonthaveAccountyet_JoinOurCircle_Loginpage(){
