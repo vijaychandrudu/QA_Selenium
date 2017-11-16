@@ -15,13 +15,13 @@ import com.shearcircle.pagecomponents.Customer_Module_Page_Components;
 import com.shearcircle.utilities.CommonFunctions;
 import com.shearcircle.utilities.StaticVariables;
 
-public class TS_1_01_Customer_clicksJoinOurCircleButton extends StaticVariables {
+public class TS_1_01_CustomerclicksJoinOurCircleButton extends StaticVariables {
 	public String TestDataPath;
 	public Customer_Module_Page_Components CR;
 	public CommonFunctions cfn;
 	public static WebDriver driver;
 	
-	public TS_1_01_Customer_clicksJoinOurCircleButton() throws IOException, InterruptedException{
+	public TS_1_01_CustomerclicksJoinOurCircleButton() throws IOException, InterruptedException{
 		cfn = new CommonFunctions();		
 	}
 		
@@ -53,12 +53,12 @@ public class TS_1_01_Customer_clicksJoinOurCircleButton extends StaticVariables 
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=0, description="TC_002 Customer clicks JoinOurCircle Button " )
+	@Test(priority=1, description="TC_002 Customer clicks JoinOurCircle Button " )
 	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_JoinOurCircle");			
 	}
 	
-	@Test(priority=0, description="TC_003 Customer Check Register With ShearCircle page where they can register either as a Customer or as a Professional" )
+	@Test(priority=2, description="TC_003 Customer Check Register With ShearCircle page where they can register either as a Customer or as a Professional" )
 	public void TC_003_Customer_CheckRegisterWithShearCirclepage() throws IOException {			
 		CR.ShearCircle_Click_Customer_OR_Professional_JoinOurCircle("DoNothing");			
 	}
