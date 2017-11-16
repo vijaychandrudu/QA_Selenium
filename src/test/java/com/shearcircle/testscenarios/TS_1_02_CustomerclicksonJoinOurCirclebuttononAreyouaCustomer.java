@@ -15,13 +15,13 @@ import com.shearcircle.pagecomponents.Customer_Module_Page_Components;
 import com.shearcircle.utilities.CommonFunctions;
 import com.shearcircle.utilities.StaticVariables;
 
-public class TS_1_02_clicksonJoinOurCirclebuttononAreyouaCustomer extends StaticVariables {
+public class TS_1_02_CustomerclicksonJoinOurCirclebuttononAreyouaCustomer extends StaticVariables {
 	public String TestDataPath;
 	public Customer_Module_Page_Components CR;
 	public CommonFunctions cfn;
 	public static WebDriver driver;
 	
-	public TS_1_02_clicksonJoinOurCirclebuttononAreyouaCustomer() throws IOException, InterruptedException{
+	public TS_1_02_CustomerclicksonJoinOurCirclebuttononAreyouaCustomer() throws IOException, InterruptedException{
 		cfn = new CommonFunctions();		
 	}
 		
