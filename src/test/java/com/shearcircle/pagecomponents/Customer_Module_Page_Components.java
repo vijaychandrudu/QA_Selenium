@@ -491,34 +491,36 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			if(browser.elmentisdisplayed(CustomerModule.Customer_termsofservice_hyperlynk)){
 				browser.reportscomtep("Passed", "Verify terms of service link is displayed"  , "terms of service link should be displayed", "terms of service link is displayed");
 				
-				browser.ScrollToElementBottom(CustomerModule.Customer_joinourcircle_button);
-				
+				browser.ScrollToElementBottom(CustomerModule.Customer_joinourcircle_button);				
 				browser.click(CustomerModule.Customer_termsofservice_hyperlynk);
-				//browser.wait(5);
+				
 				if(browser.elmentisdisplayed(CustomerModule.Customer_termsofservice_hyperlynk_header)){
 					browser.reportscomtep("Passed", "Verify terms of service header is displayed"  , "terms of service header should be displayed", "terms of service header is displayed");
+					browser.click(CustomerModule.Customer_Termsofservice_Close_Button);
 				}else {
 					browser.reportscomtep("Failed", "Verify terms of service header is displayed"  , "terms of service header should be displayed", "terms of service header is not displayed");
 				}
 				browser.click(CustomerModule.Customer_privacypolycy_hyperlynk);
-				//browser.wait(5);
+				
 				if(browser.elmentisdisplayed(CustomerModule.Customer_privacypolycy_hyperlynk_header)){
 					browser.reportscomtep("Passed", "Verify privacy polycy header is displayed"  , "privacy polycy header should be displayed", "privacy polycy header is displayed");
-					
+					browser.click(CustomerModule.Customer_Privacypolycy_Close_Button);
 				}else {
 					browser.reportscomtep("Failed", "Verify privacy polycy header is displayed"  , "privacy polycy header should be displayed", "privacy polycy header is not displayed");
 				}
-				
+				browser.waitforelementtobevisible(CustomerModule.Customer_billingaggrement_hyperlynk, 5);
 				browser.click(CustomerModule.Customer_billingaggrement_hyperlynk);
-				//browser.wait(5);
+			
 				if(browser.elmentisdisplayed(CustomerModule.Customer_billingaggrement_hyperlynk_header)){
 					browser.reportscomtep("Passed", "Verify billing aggrement hyperlynk header is displayed"  , "billing aggrement hyperlynk header should be displayed", "billing aggrement hyperlynk header is displayed");
+					browser.ScrollToElementBottom(CustomerModule.Customer_Billingaggrement_Close_Button);
+					browser.click(CustomerModule.Customer_Billingaggrement_Close_Button);
 				}else {
 					browser.reportscomtep("Failed", "Verify billing aggrement hyperlynk header is displayed"  , "billing aggrement hyperlynk header should be displayed", " billing aggrement hyperlynk header is not displayed");
 				}
-				
+				browser.ScrollToElementBottom(CustomerModule.Customer_signin_hyperlynk);	
 				browser.click(CustomerModule.Customer_signin_hyperlynk);
-				//browser.wait(5);
+				
 				if(browser.elmentisdisplayed(CustomerModule.Customer_signin_hyperlynk_header)){
 					browser.reportscomtep("Passed", "Verify sign_in lynk header is displayed"  , "sign_in lynk header should be displayed", "sign_in lynk header is displayed");
 				}else {
@@ -661,7 +663,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 							}							
 							
 							break;
-						case "Enter_InValid_EmailandvalidPassword":	
+						case "Enter_Invalid_EmailandValidPassword":	
 							browser.sendkeys(Login.Login_UserName_textbox,CustomerInValidEmail);
 							browser.sendkeys(Login.Login_PassWord_textbox,CustomerValidPassword);
 							//browser.movetoElement(Login.Login_signin_button);
