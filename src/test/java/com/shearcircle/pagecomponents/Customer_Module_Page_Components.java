@@ -64,7 +64,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			
 			if (browser.elmentisdisplayed(Login.Home_Login_Link) && browser.elmentisdisplayed(Login.Home_JoinOurCircle_Link)) {
 				browser.reportscomtep("Passed", "Verify Login and Join Our Circle buttons are displayed",
-						"Login and Join Our Circle buttonsare should be displayed", "Login and Join Our Circle buttons displayed");
+						"Login and Join Our Circle buttons should be displayed", "Login and Join Our Circle buttons displayed");
 				
 				switch (Login_JoinOurCircleflag) {
 				case "Click_Login":
@@ -83,13 +83,13 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				case "Click_JoinOurCircle":
 					browser.click(Login.Home_JoinOurCircle_Link);
 					if (browser.elmentisdisplayed(Login.Joinourcircle_Page_Header)) {
-						browser.reportscomtep("Passed", "Verify Join Our Circle Page is displayed",
-								"Join Our Circle Page should be displayed",
-								"Join Our Circle Page displayed");
+						browser.reportscomtep("Passed", "Customer clicks on the Join Our Circle Button and Verify Register to ShearCircle Page is displayed",
+								"Register to ShearCircle Page should be displayed",
+								"Register to ShearCircle Page displayed");
 					} else {
-						browser.reportscomtep("Failed", "Verify Join Our Circle Page is displayed",
-								"Join Our Circle Page should be displayed",
-								"Join Our Circle Page not displayed");
+						browser.reportscomtep("Failed", "Customer clicks on the Join Our Circle Button and Verify Register to ShearCircle Page is displayed",
+								"Register to ShearCircle Page should be displayed",
+								"Register to ShearCircle Page Not displayed");
 					}
 					break;
 				}
@@ -139,6 +139,8 @@ public class Customer_Module_Page_Components extends StaticVariables {
 								"Profession Registration form not displayed");
 					}
 					break;
+				case "DoNothing":
+					break;
 				}
 
 			} else {
@@ -163,9 +165,9 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				browser.ScrollToElementBottom(CustomerModule.Customer_joinourcircle_button);
 				
 				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_FirstName_textbox,
-						"FirstName textbox");
+						"First Name textbox");
 
-				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_LastName_textbox, "LastName textbox");
+				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_LastName_textbox, "Last Name textbox");
 
 				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_Email_textbox, "Email textbox");
 
@@ -173,13 +175,13 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						"Password textbox");
 
 				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_ReEnterPassword_textbox,
-						"ReEnteredPassword textbox");
+						"ReEntered Password textbox");
 
 				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_Termsofservice_checkbox,
 						"Termsofservice checkbox");
 
 				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_billingagrement_checkbox,
-						"billingagrement Checkbox");
+						"Billing agrement Checkbox");
 
 				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_joinourcircle_button,
 						"JoinCircle Button");
@@ -230,14 +232,14 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				browser.click(CustomerModule.Customer_joinourcircle_button);
 				if (browser.elmentisdisplayed(CustomerModule.Customer_Success_Message)
 						&& browser.elmentisdisplayed(CustomerModule.Customer_Success_Message1)) {
-					browser.reportscomtep("Passed", "Verify Customer Registration Success message is displayed",
-							"Customer Registration Success message should be displayed",
-							"Customer Registration Success message displayed");
+					browser.reportscomtep("Passed", "Customer clicks on Join Our Circle button after entering valid details and accepting the terms of service, privacy policy & billing agreement and Verify Customer Registration Success message popup is displayed",
+							" A popup message appears which displays the message that the registration should be successful ",
+							" A popup message appears which displays the message that the registration is successful");
 					browser.click(CustomerModule.Customer_Confirmation_OK_Button);
 				} else {
-					browser.reportscomtep("Failed", "Verify Customer Registration Success message is displayed",
-							"Customer Registration Success message should be displayed",
-							"Customer Registration Success message not displayed");
+					browser.reportscomtep("Failed", "Customer clicks on Join Our Circle button after entering valid details and accepting the terms of service, privacy policy & billing agreement and Verify Customer Registration Success message popup is displayed",
+							" A popup message appears which displays the message that the registration should be successful ",
+							" A popup message Not appears which displays the message that the registration is successful");
 				}
 
 			} else {
@@ -253,26 +255,32 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	/**************************Create Customer Registration with Invalid input data************************************/
 	
 	public void ShearCircle_Customer_Registrationwithinvaliddata(){
-		String FirstName = null;
-		String LastName = null;
-		String customerEmail = null;
-		String Password = null;
-		String Actual_FirstNameErrorMessage = null;
-		String Expct_FirstNameErrorMessage = "Alphabets only";
-		String Actual_LastNameErrorMessage = null;
-		String Expct_LastNameErrorMessage = "Alphabets only";
-		String Actual_invalidEmailErrorMessage=null;
-		String Expct_invalidEmailErrorMessage="Please enter a valid email address";
-		String Actual_invalidPasswordErrorMessage=null;
-		String Expct_invalidPasswordErrorMessage="Use 6 to 32 characters, no spaces";
-		String Actual_invalidRePasswordErrorMessage=null;
-		String Expct_invalidRePasswordErrorMessage="Confirm Password should match with password";		
+			
 		//browser.loaddata(TestDataPath);		
 		try{	
+			String FirstName = null;
+			String LastName = null;
+			String customerEmail = null;
+			String Password = null;
+			String ConfirmPassword = null;
+			String Actual_FirstNameErrorMessage = null;
+			String Actual_LastNameErrorMessage = null;
+			String Actual_invalidEmailErrorMessage=null;
+			String Actual_invalidPasswordErrorMessage=null;
+			String Actual_invalidRePasswordErrorMessage=null;
+			
+			String Expct_FirstNameErrorMessage = "Alphabets only";		
+			String Expct_LastNameErrorMessage = "Alphabets only";		
+			String Expct_invalidEmailErrorMessage="Please enter a valid email address";		
+			String Expct_invalidPasswordErrorMessage="Use 6 to 32 characters, no spaces";		
+			String Expct_invalidRePasswordErrorMessage="Confirm Password should match with password";
+			
 			FirstName = browser.getdata("InvalidFirstName");
 			LastName = browser.getdata("InvalidLastName");
-			customerEmail = browser.getdata("InvalidcustomerEmail");
+			customerEmail = browser.getdata("InvalidEmail");
 			Password = browser.getdata("InvalidPassword");
+			ConfirmPassword = browser.getdata("InvalidConfirmPassword");
+			
 			if(browser.elmentisdisplayed(CustomerModule.Customer_JoinNow_Header)){					
 				browser.reportscomtep("Passed", "Verify Customer Registration form Join Now header is displayed",
 						"Customer Registration form Join Now header should be displayed", "Customer Registration form Join Now header displayed");
@@ -285,7 +293,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				
 				browser.sendkeys(CustomerModule.Customer_Password_textbox,Password);
 				
-				browser.sendkeys(CustomerModule.Customer_ReEnterPassword_textbox,Password);
+				browser.sendkeys(CustomerModule.Customer_ReEnterPassword_textbox,ConfirmPassword);
 				
 				browser.check_Checkbox(CustomerModule.Customer_Termsofservice_checkbox);
 				
@@ -345,7 +353,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			//browser.loaddata(TestDataPath);
 			FirstName = browser.getdata("FirstName");
 			LastName = browser.getdata("LastName");
-			customerEmail = browser.getdata("customerEmail");
+			customerEmail = browser.getdata("Email");
 			Password = browser.getdata("Password");
 			if (browser.elmentisdisplayed(CustomerModule.Customer_JoinNow_Header)) {
 				browser.reportscomtep("Passed", "Verify Customer Registration form Join Now header is displayed",
@@ -482,38 +490,40 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 			if(browser.elmentisdisplayed(CustomerModule.Customer_termsofservice_hyperlynk)){
 				browser.reportscomtep("Passed", "Verify terms of service link is displayed"  , "terms of service link should be displayed", "terms of service link is displayed");
+				
 				browser.ScrollToElementBottom(CustomerModule.Customer_joinourcircle_button);
+				
 				browser.click(CustomerModule.Customer_termsofservice_hyperlynk);
-				browser.wait(5);
+				//browser.wait(5);
 				if(browser.elmentisdisplayed(CustomerModule.Customer_termsofservice_hyperlynk_header)){
 					browser.reportscomtep("Passed", "Verify terms of service header is displayed"  , "terms of service header should be displayed", "terms of service header is displayed");
 				}else {
 					browser.reportscomtep("Failed", "Verify terms of service header is displayed"  , "terms of service header should be displayed", "terms of service header is not displayed");
 				}
 				browser.click(CustomerModule.Customer_privacypolycy_hyperlynk);
-				browser.wait(5);
-					if(browser.elmentisdisplayed(CustomerModule.Customer_privacypolycy_hyperlynk_header)){
-						browser.reportscomtep("Passed", "Verify privacy polycy header is displayed"  , "privacy polycy header should be displayed", "privacy polycy header is displayed");
-						
-					}else {
-						browser.reportscomtep("Failed", "Verify privacy polycy header is displayed"  , "privacy polycy header should be displayed", "privacy polycy header is not displayed");
-					}
+				//browser.wait(5);
+				if(browser.elmentisdisplayed(CustomerModule.Customer_privacypolycy_hyperlynk_header)){
+					browser.reportscomtep("Passed", "Verify privacy polycy header is displayed"  , "privacy polycy header should be displayed", "privacy polycy header is displayed");
 					
-					browser.click(CustomerModule.Customer_billingaggrement_hyperlynk);
-					browser.wait(5);
-						if(browser.elmentisdisplayed(CustomerModule.Customer_billingaggrement_hyperlynk_header)){
-							browser.reportscomtep("Passed", "Verify billing aggrement hyperlynk header is displayed"  , "billing aggrement hyperlynk header should be displayed", "billing aggrement hyperlynk header is displayed");
-						}else {
-							browser.reportscomtep("Failed", "Verify billing aggrement hyperlynk header is displayed"  , "billing aggrement hyperlynk header should be displayed", " billing aggrement hyperlynk header is not displayed");
-						}
-						
-						browser.click(CustomerModule.Customer_signin_hyperlynk);
-						browser.wait(5);
-							if(browser.elmentisdisplayed(CustomerModule.Customer_signin_hyperlynk_header)){
-								browser.reportscomtep("Passed", "Verify sign_in lynk header is displayed"  , "sign_in lynk header should be displayed", "sign_in lynk header is displayed");
-							}else {
-								browser.reportscomtep("Failed", "Verify sign_in lynk header is displayed"  , "sign_in lynk header should be displayed", "sign_in lynk header is not displayed");
-							}
+				}else {
+					browser.reportscomtep("Failed", "Verify privacy polycy header is displayed"  , "privacy polycy header should be displayed", "privacy polycy header is not displayed");
+				}
+				
+				browser.click(CustomerModule.Customer_billingaggrement_hyperlynk);
+				//browser.wait(5);
+				if(browser.elmentisdisplayed(CustomerModule.Customer_billingaggrement_hyperlynk_header)){
+					browser.reportscomtep("Passed", "Verify billing aggrement hyperlynk header is displayed"  , "billing aggrement hyperlynk header should be displayed", "billing aggrement hyperlynk header is displayed");
+				}else {
+					browser.reportscomtep("Failed", "Verify billing aggrement hyperlynk header is displayed"  , "billing aggrement hyperlynk header should be displayed", " billing aggrement hyperlynk header is not displayed");
+				}
+				
+				browser.click(CustomerModule.Customer_signin_hyperlynk);
+				//browser.wait(5);
+				if(browser.elmentisdisplayed(CustomerModule.Customer_signin_hyperlynk_header)){
+					browser.reportscomtep("Passed", "Verify sign_in lynk header is displayed"  , "sign_in lynk header should be displayed", "sign_in lynk header is displayed");
+				}else {
+					browser.reportscomtep("Failed", "Verify sign_in lynk header is displayed"  , "sign_in lynk header should be displayed", "sign_in lynk header is not displayed");
+				}
 							
 			}else {
 				browser.reportscomtep("Failed", "Verify terms of service link is displayed"  , "terms of service link should be displayed", "terms of service link is not displayed");

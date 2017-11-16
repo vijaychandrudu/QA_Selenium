@@ -693,7 +693,7 @@ public class CommonFunctions extends StaticVariables {
 			//this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 10);
 			if (element.isDisplayed() && element.isEnabled()) {
-				this.reportscomtep("Passed", "Verify The Element " + Reporttext + "is displayed",
+				this.reportscomtep("Passed", "Verify The Element " + Reporttext + " is displayed",
 						"The Element " + Reporttext + "should be displayed", "The Element " + Reporttext + "displayed");
 
 			} else {

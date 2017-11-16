@@ -63,8 +63,7 @@ public class CustomerModule extends StaticVariables {
 		//ExtentTestManager.getTest().setDescription("ShearCircle Launchbowser Application.");
 		CR.ShearCircle_LaunchApplication();		
 	}*/
-	
-		
+			
 	@Test(priority=1, description="1.1 Scenario: Customer visits ShearCircle and Customer clicks JoinOurCircle" )
 	public void Customer_visitsShearCircle_clicks_JoinOurCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();

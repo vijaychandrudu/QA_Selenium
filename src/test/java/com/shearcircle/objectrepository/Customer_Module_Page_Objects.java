@@ -58,7 +58,7 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='register_form']/div/em[@for='lastname']")
 	public WebElement Customer_invalidLastname_errorMessage;	
 		
-	@FindBy(xpath="//*[@id='register_form']/div/em[text()='The entered email is already registered.']")
+	@FindBy(xpath="//*[@id='register_form']/div/em[text()='Please enter a valid email address']")
 	public WebElement Customer_invalidEmail_errorMessage;
 	
 	@FindBy(xpath="//*[@id='register_form']/div/em[@for='password']")
@@ -73,13 +73,13 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='register_form']/div//em[@for='accepted_billing_agreement']")
 	public WebElement Customer_AcceptourbillingAgreement_errorMessage;	
 	
-	@FindBy(xpath="//*[@id='register_form']//u[text()='Terms of Service']")
+	@FindBy(xpath="//*[@id='register_form']//u[text()='Terms of Service']/parent::a")
 	public WebElement Customer_termsofservice_hyperlynk;
 
-	@FindBy(xpath="//*[@id='register_form']//u[text()='Privacy Policy']")
+	@FindBy(xpath="//*[@id='register_form']//u[text()='Privacy Policy']/parent::a")
 	public WebElement Customer_privacypolycy_hyperlynk;
 
-	@FindBy(xpath="//*[@id='register_form']//u[text()='Billing Agreement']")
+	@FindBy(xpath="//*[@id='register_form']//u[text()='Billing Agreement']/parent::a")
 	public WebElement Customer_billingaggrement_hyperlynk;
 
 	@FindBy(xpath="//*[@id='myModalLabel'][text()='Terms and Conditions']")
