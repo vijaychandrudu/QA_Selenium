@@ -84,19 +84,30 @@ public class Customer_Module_Page_Objects{
 
 	@FindBy(xpath="//*[@id='myModalLabel'][text()='Terms and Conditions']")
 	public WebElement Customer_termsofservice_hyperlynk_header;
+	
+	@FindBy(xpath="/html/body/div[3]/div/div/div/div/button[text()='Close']")
+	public WebElement Customer_Termsofservice_Close_Button;
 
 	@FindBy(xpath="//section[2]/div/h5/a/u[text()='Sign in']")
 	public WebElement Customer_signin_hyperlynk;
 
 	@FindBy(xpath="//*[@id='myModalLabel'][text()='Privacy Policy']")
 	public WebElement Customer_privacypolycy_hyperlynk_header;
+	
+	@FindBy(xpath="/html/body/div[4]/div/div/div/div/button[text()='Close']")
+	public WebElement Customer_Privacypolycy_Close_Button;
 
 	@FindBy(xpath="//*[@id='myModalLabel'][text()='Billing Agreement']")
 	public WebElement Customer_billingaggrement_hyperlynk_header;
+	
+	@FindBy(xpath="/html/body/div[5]/div/div/div/div/button[text()='Close']")
+	public WebElement Customer_Billingaggrement_Close_Button;
 
 	@FindBy(xpath="//*[@id='sub_content']/h1")
-	public WebElement Customer_signin_hyperlynk_header;
+	public WebElement Customer_signin_hyperlynk_header;	
 	
+	
+	//div[@class='modal-header']/h3/parent::div/following-sibling::div[@class='modal-footer']/button[text()='Close' and @class='btn btn-primary']
 	
 	
 	
