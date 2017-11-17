@@ -53,22 +53,22 @@ public class TS_2_07_CustomerLoginwithFacebookuserwhichregisteredShearCircle ext
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=0, description="TC_002 Customer clicks Login on ShearCircle home page " )
+	@Test(priority=1, description="TC_002 Customer clicks Login on ShearCircle home page " )
 	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
-	@Test(priority=0, description="TC_003 Customer clicks on Login with Facebook button" )
+	@Test(priority=2, description="TC_003 Customer clicks on Login with Facebook button" )
 	public void TC_003_CustomerclicksonLoginwithFacebookbutton() throws IOException {			
 		CR.Click_DoNotHaveAccountjoinourcircle_Loginwith_FaceBook_Google_Bottons("Click_LoginwithFaceBook");		
 	}	
 	
-	@Test(priority=0, description="TC_004  Customer Login with Facebook user credentials with which they have registered with ShearCircle " )
+	@Test(priority=3, description="TC_004  Customer Login with Facebook user credentials with which they have registered with ShearCircle " )
 	public void TC_004_CustomerLoginwithFacebookUserwithregisteredSC() throws IOException {			
 		CR.Customer_LoginwithFacebook();		
 	}	
 
-	@Test(priority=0, description="TC_005 Customer checks dashboard page and clicks Logout from dashboard" )
+	@Test(priority=4, description="TC_005 Customer checks dashboard page and clicks Logout from dashboard" )
 	public void TC_005_Customer_CheckcheckDashboardpageandLogout() throws IOException {			
 		CR.Customer_JoinOurCircle_LogOutpage();	
 	}	
