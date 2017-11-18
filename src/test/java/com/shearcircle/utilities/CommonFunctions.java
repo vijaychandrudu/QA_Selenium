@@ -344,7 +344,7 @@ public class CommonFunctions extends StaticVariables {
 	public void waitforelementtobevisible(WebElement element, int waitTime) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, waitTime);
-			wait.until(ExpectedConditions.visibilityOf(element));
+			wait.until(ExpectedConditions.visibilityOf(element));   
 	
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -659,12 +659,12 @@ public class CommonFunctions extends StaticVariables {
 
 	}
 
-	/************************** elmentisdisplayed *********************/
+	/************************** elementisdisplayed *********************/
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
 	 */
 
-	public boolean elmentisdisplayed(WebElement element) {
+	public boolean elementisdisplayed(WebElement element) {
 		boolean elementdisplayedflag = false;
 		try {
 			//this.scrollintoviewelement(element);
@@ -682,12 +682,12 @@ public class CommonFunctions extends StaticVariables {
 
 	}
 
-	/*********************** Verify_elmentisdisplayed_Report *********************/
+	/*********************** Verify_elementisdisplayed_Report *********************/
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
 	 */
 
-	public void Verify_elmentisdisplayed_Report(WebElement element, String Reporttext) {
+	public void Verify_elementisdisplayed_Report(WebElement element, String Reporttext) {
 		try {
 			//this.movetoElement(element);
 			//this.scrollintoviewelement(element);
