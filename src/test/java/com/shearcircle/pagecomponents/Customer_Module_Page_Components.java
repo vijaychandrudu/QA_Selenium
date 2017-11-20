@@ -44,7 +44,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		    System.out.println("Browser Tilte:"+apptitle);     
 		    }		    
 			
-		    if(browser.elmentisdisplayed(Login.Home_ShearCircle_Image)) {
+		    if(browser.elementisdisplayed(Login.Home_ShearCircle_Image)) {
 		    	browser.reportscomtep("Passed", "Verify ShearCircle Home page is displayed", "ShearCircle Home page should be displayed", "ShearCircle Home page displayed");
 				 System.out.println("ShearCircle Home page is displayed");
 			 }else {
@@ -62,7 +62,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	public void ShearCircle_Click_Login_OR_JoinOurCircle(String Login_JoinOurCircleflag) {
 		try {
 			
-			if (browser.elmentisdisplayed(Login.Home_Login_Link) && browser.elmentisdisplayed(Login.Home_JoinOurCircle_Link)) {
+			if (browser.elementisdisplayed(Login.Home_Login_Link) && browser.elementisdisplayed(Login.Home_JoinOurCircle_Link)) {
 				browser.reportscomtep("Passed", "Verify Login and Join Our Circle buttons are displayed",
 						"Login and Join Our Circle buttons should be displayed", "Login and Join Our Circle buttons displayed");
 				
@@ -70,7 +70,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				case "Click_Login":
 					browser.click(Login.Home_Login_Link);
 					
-					if (browser.elmentisdisplayed(Login.Login_Page_Header)) {
+					if (browser.elementisdisplayed(Login.Login_Page_Header)) {
 						browser.reportscomtep("Passed", "Verify Login page is displayed",
 								"Login page should be displayed",
 								"Login page displayed");
@@ -82,7 +82,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 					break;
 				case "Click_JoinOurCircle":
 					browser.click(Login.Home_JoinOurCircle_Link);
-					if (browser.elmentisdisplayed(Login.Joinourcircle_Page_Header)) {
+					if (browser.elementisdisplayed(Login.Joinourcircle_Page_Header)) {
 						browser.reportscomtep("Passed", "Customer clicks on the Join Our Circle Button and Verify Register to ShearCircle Page is displayed",
 								"Register to ShearCircle Page should be displayed",
 								"Register to ShearCircle Page displayed");
@@ -109,7 +109,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	
 	public void ShearCircle_Click_Customer_OR_Professional_JoinOurCircle(String JoinOurCircleflag) {
 		try {
-			if (browser.elmentisdisplayed(CustomerModule.customerJoinCircle_Link) && browser.elmentisdisplayed(CustomerModule.ProfessionalJoinCircle_Link)) {
+			if (browser.elementisdisplayed(CustomerModule.customerJoinCircle_Link) && browser.elementisdisplayed(CustomerModule.ProfessionalJoinCircle_Link)) {
 				browser.reportscomtep("Passed", "Verify Are you a Customer and Are you a Professional JoinCircle links are displayed",
 						"Are you a Customer and Are you a Professional JoinCircle links are should be displayed", "Are you a Customer and Are you a Professional JoinCircle links displayed");
 				
@@ -117,7 +117,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				case "Click_CustomerJoinCircle":
 					browser.click(CustomerModule.customerJoinCircle_Link);
 					
-					if (browser.elmentisdisplayed(CustomerModule.Customer_Joincircle_navigation)) {
+					if (browser.elementisdisplayed(CustomerModule.Customer_Joincircle_navigation)) {
 						browser.reportscomtep("Passed", "Verify Customer Registration form is displayed",
 								"Customer Registration form should be displayed",
 								"Customer Registration form displayed");
@@ -129,7 +129,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 					break;
 				case "Click_ProfessionalJoinCircle":
 					browser.click(CustomerModule.ProfessionalJoinCircle_Link);
-					if (browser.elmentisdisplayed(CustomerModule.Subscriber_Joincircle_navigation)) {
+					if (browser.elementisdisplayed(CustomerModule.Subscriber_Joincircle_navigation)) {
 						browser.reportscomtep("Passed", "Verify Profession Registration form is displayed",
 								"Profession Registration form should be displayed",
 								"Profession Registration form displayed");
@@ -158,32 +158,32 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	public void ShearCircle_Verify_Customer_Registrationform_Fieldvalidation() {
 		try {
 
-			if (browser.elmentisdisplayed(CustomerModule.Customer_JoinNow_Header)) {
+			if (browser.elementisdisplayed(CustomerModule.Customer_JoinNow_Header)) {
 				browser.reportscomtep("Passed", "Verify Customer Registration form Join Now header is displayed",
 						"Customer Registration form Join Now header should be displayed", "Customer Registration form Join Now header displayed");
 				
 				browser.ScrollToElementBottom(CustomerModule.Customer_joinourcircle_button);
 				
-				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_FirstName_textbox,
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_FirstName_textbox,
 						"First Name textbox");
 
-				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_LastName_textbox, "Last Name textbox");
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_LastName_textbox, "Last Name textbox");
 
-				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_Email_textbox, "Email textbox");
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Email_textbox, "Email textbox");
 
-				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_Password_textbox,
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Password_textbox,
 						"Password textbox");
 
-				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_ReEnterPassword_textbox,
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ReEnterPassword_textbox,
 						"ReEntered Password textbox");
 
-				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_Termsofservice_checkbox,
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Termsofservice_checkbox,
 						"Termsofservice checkbox");
 
-				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_billingagrement_checkbox,
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_billingagrement_checkbox,
 						"Billing agrement Checkbox");
 
-				browser.Verify_elmentisdisplayed_Report(CustomerModule.Customer_joinourcircle_button,
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_joinourcircle_button,
 						"JoinCircle Button");
 
 			} else {
@@ -202,16 +202,21 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	public void ShearCircle_Customer_Registrationwithvaliddata() {
 		String FirstName = null;
 		String LastName = null;
-		String customerEmail = null;
+		String CustomerEmail = null;
 		String Password = null;
+		int GetRandomNo = 0;
+		String AppendEmail= null;
 		//browser.loaddata(TestDataPath);	
 
 		try {
 			FirstName = browser.getdata("FirstName");
 			LastName = browser.getdata("LastName");
-			customerEmail = browser.getdata("Email");
+			CustomerEmail = browser.getdata("Email");
 			Password = browser.getdata("Password");
-			if (browser.elmentisdisplayed(CustomerModule.Customer_JoinNow_Header)) {
+			
+			GetRandomNo = browser.getRandomNumberInRange(000, 9999);
+			AppendEmail =CustomerEmail+GetRandomNo+"@testmail.com";
+			if (browser.elementisdisplayed(CustomerModule.Customer_JoinNow_Header)) {
 				browser.reportscomtep("Passed", "Verify Customer Registration form Join Now header is displayed",
 						"Customer Registration form Join Now header should be displayed", "Customer Registration form Join Now header displayed");
 				browser.ScrollToElementBottom(CustomerModule.Customer_joinourcircle_button);
@@ -219,7 +224,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 				browser.sendkeys(CustomerModule.Customer_LastName_textbox, LastName);
 
-				browser.sendkeys(CustomerModule.Customer_Email_textbox, customerEmail);
+				browser.sendkeys(CustomerModule.Customer_Email_textbox, AppendEmail);
 
 				browser.sendkeys(CustomerModule.Customer_Password_textbox, Password);
 
@@ -230,8 +235,8 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				browser.check_Checkbox(CustomerModule.Customer_billingagrement_checkbox);
 
 				browser.click(CustomerModule.Customer_joinourcircle_button);
-				if (browser.elmentisdisplayed(CustomerModule.Customer_Success_Message)
-						&& browser.elmentisdisplayed(CustomerModule.Customer_Success_Message1)) {
+				if (browser.elementisdisplayed(CustomerModule.Customer_Success_Message)
+						&& browser.elementisdisplayed(CustomerModule.Customer_Success_Message1)) {
 					browser.reportscomtep("Passed", "Customer clicks on Join Our Circle button after entering valid details and accepting the terms of service, privacy policy & billing agreement and Verify Customer Registration Success message popup is displayed",
 							" A popup message appears which displays the message that the registration should be successful ",
 							" A popup message appears which displays the message that the registration is successful");
@@ -281,7 +286,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			Password = browser.getdata("InvalidPassword");
 			ConfirmPassword = browser.getdata("InvalidConfirmPassword");
 			
-			if(browser.elmentisdisplayed(CustomerModule.Customer_JoinNow_Header)){					
+			if(browser.elementisdisplayed(CustomerModule.Customer_JoinNow_Header)){					
 				browser.reportscomtep("Passed", "Verify Customer Registration form Join Now header is displayed",
 						"Customer Registration form Join Now header should be displayed", "Customer Registration form Join Now header displayed");
 				browser.ScrollToElementBottom(CustomerModule.Customer_joinourcircle_button);
@@ -301,27 +306,27 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				
 				browser.click(CustomerModule.Customer_joinourcircle_button);	
 				
-				if(browser.elmentisdisplayed(CustomerModule.Customer_invalidFirstname_errorMessage)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_invalidFirstname_errorMessage)){
 					Actual_FirstNameErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidFirstname_errorMessage);
 					browser.assertEquals(Actual_FirstNameErrorMessage,Expct_FirstNameErrorMessage);
 				}
 				
-				if(browser.elmentisdisplayed(CustomerModule.Customer_invalidLastname_errorMessage)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_invalidLastname_errorMessage)){
 					Actual_LastNameErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidLastname_errorMessage);
 					browser.assertEquals(Actual_LastNameErrorMessage,Expct_LastNameErrorMessage);
 				}
 				
-				if(browser.elmentisdisplayed(CustomerModule.Customer_invalidEmail_errorMessage)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_invalidEmail_errorMessage)){
 					Actual_invalidEmailErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidEmail_errorMessage);
 					browser.assertEquals(Actual_invalidEmailErrorMessage,Expct_invalidEmailErrorMessage);
 				}
 				
-				if(browser.elmentisdisplayed(CustomerModule.Customer_invalidPassword_errorMessage)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_invalidPassword_errorMessage)){
 					Actual_invalidPasswordErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidPassword_errorMessage);
 					browser.assertEquals(Actual_invalidPasswordErrorMessage,Expct_invalidPasswordErrorMessage);
 				}
 				
-				if(browser.elmentisdisplayed(CustomerModule.Customer_invalidRePassword_errorMessage)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_invalidRePassword_errorMessage)){
 					Actual_invalidRePasswordErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidRePassword_errorMessage);
 					browser.assertEquals(Actual_invalidRePasswordErrorMessage,Expct_invalidRePasswordErrorMessage);
 				}						
@@ -355,7 +360,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			LastName = browser.getdata("LastName");
 			customerEmail = browser.getdata("Email");
 			Password = browser.getdata("Password");
-			if (browser.elmentisdisplayed(CustomerModule.Customer_JoinNow_Header)) {
+			if (browser.elementisdisplayed(CustomerModule.Customer_JoinNow_Header)) {
 				browser.reportscomtep("Passed", "Verify Customer Registration form Join Now header is displayed",
 						"Customer Registration form Join Now header should be displayed", "Customer Registration form Join Now header displayed");
 				browser.ScrollToElementBottom(CustomerModule.Customer_joinourcircle_button);
@@ -375,12 +380,12 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				
 				browser.click(CustomerModule.Customer_joinourcircle_button);				
 										
-				if(browser.elmentisdisplayed(CustomerModule.Customer_AcceptTermsandConditons_errorMessage)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_AcceptTermsandConditons_errorMessage)){
 					Actual_AcceptTermsandConditons_errorMessage= browser.getelementtext(CustomerModule.Customer_AcceptTermsandConditons_errorMessage);
 					browser.assertEquals(Actual_AcceptTermsandConditons_errorMessage,Expct_AcceptTermsandConditons_errorMessage);
 				}
 				
-				if(browser.elmentisdisplayed(CustomerModule.Customer_AcceptourbillingAgreement_errorMessage)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_AcceptourbillingAgreement_errorMessage)){
 					Actual_AcceptourbillingAgreement_errorMessage = browser.getelementtext(CustomerModule.Customer_AcceptourbillingAgreement_errorMessage);
 					browser.assertEquals(Actual_AcceptourbillingAgreement_errorMessage,Expct_AcceptourbillingAgreement_errorMessage);
 				}						
@@ -408,21 +413,27 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			CustomerInValidEmail = browser.getdata("CustomerInValidEmail");
 			invalid_Message = "No records for the Username";
 			valid_Message = "Password Reset Instructions Sent Successfully";	
-			/*if(browser.elmentisdisplayed(Login.Home_Login_Link)) {
+
+			/*if(browser.elmentisdisplayed(Login.Home_Login_Link)) {		
+
 				browser.reportscomtep("Passed", "Verify Login link is displayed"  , "Login link should be displayed", "Login link is displayed");
+
 				browser.click(Login.Home_Login_Link);*/				
-				
-			if(browser.elmentisdisplayed(Login.Login_forgotPassword_Link)){
+			
+				if(browser.elementisdisplayed(Login.Login_forgotPassword_Link)){
+
 					browser.reportscomtep("Passed", "Verify Forgotpassword link is displayed"  , "Forgotpassword link should be displayed", "Forgotpassword link is displayed");
 					
-					browser.click(Login.Login_forgotPassword_Link);
-				
-					if(browser.elmentisdisplayed(Login.ResetPassword_Header)){
+					browser.click(Login.Login_forgotPassword_Link);	
+
+					
+					if(browser.elementisdisplayed(Login.ResetPassword_Header)){
+
 						browser.reportscomtep("Passed", "Verify Reset Password is displayed"  , "Reset Password should be displayed", "Reset Password is displayed");
 						
-						browser.Verify_elmentisdisplayed_Report(Login.ResetPassword_UserName_textbox, "UserName textbox");
-						browser.Verify_elmentisdisplayed_Report(Login.ResetPassword_SendInstruction_Link, "Send Instruction ForgotPassword Button");
-						browser.Verify_elmentisdisplayed_Report(Login.ResetPassword_Cancel_textbox, "Cancel Link");
+						browser.Verify_elementisdisplayed_Report(Login.ResetPassword_UserName_textbox, "UserName textbox");
+						browser.Verify_elementisdisplayed_Report(Login.ResetPassword_SendInstruction_Link, "Send Instruction ForgotPassword Button");
+						browser.Verify_elementisdisplayed_Report(Login.ResetPassword_Cancel_textbox, "Cancel Link");
 						
 						if(p_in_Valid_or_Invalid.equalsIgnoreCase("Valid")) {
 							browser.sendkeys(Login.ResetPassword_UserName_textbox,CustomerValidEmail);
@@ -458,7 +469,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 								break;
 							case "Click Cancel":	
 								browser.click(Login.ResetPassword_Cancel_textbox);
-								if(browser.elmentisdisplayed(Login.Login_forgotPassword_Link)) {
+								if(browser.elementisdisplayed(Login.Login_forgotPassword_Link)) {
 									browser.reportscomtep("Passed", p_in_FinalAction+ " and Verify Customer navigate Reset Password page"  , "Customer should be navigate Reset Password page", "Customer navigated Reset Password page");
 								}else {
 									browser.reportscomtep("Failed", p_in_FinalAction+ " and Verify Customer navigate Reset Password page"  , "Customer should be navigate Reset Password page", "Customer Not navigated Reset Password page");
@@ -492,13 +503,13 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		
 		try {
 
-			if(browser.elmentisdisplayed(CustomerModule.Customer_termsofservice_hyperlynk)){
+			if(browser.elementisdisplayed(CustomerModule.Customer_termsofservice_hyperlynk)){
 				browser.reportscomtep("Passed", "Verify terms of service link is displayed"  , "terms of service link should be displayed", "terms of service link is displayed");
 				
 				browser.ScrollToElementBottom(CustomerModule.Customer_joinourcircle_button);				
 				browser.click(CustomerModule.Customer_termsofservice_hyperlynk);
 				
-				if(browser.elmentisdisplayed(CustomerModule.Customer_termsofservice_hyperlynk_header)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_termsofservice_hyperlynk_header)){
 					browser.reportscomtep("Passed", "Verify terms of service header is displayed"  , "terms of service header should be displayed", "terms of service header is displayed");
 					browser.click(CustomerModule.Customer_Termsofservice_Close_Button);
 				}else {
@@ -506,7 +517,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				}
 				browser.click(CustomerModule.Customer_privacypolycy_hyperlynk);
 				
-				if(browser.elmentisdisplayed(CustomerModule.Customer_privacypolycy_hyperlynk_header)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_privacypolycy_hyperlynk_header)){
 					browser.reportscomtep("Passed", "Verify privacy polycy header is displayed"  , "privacy polycy header should be displayed", "privacy polycy header is displayed");
 					browser.click(CustomerModule.Customer_Privacypolycy_Close_Button);
 				}else {
@@ -515,7 +526,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				browser.waitforelementtobevisible(CustomerModule.Customer_billingaggrement_hyperlynk, 5);
 				browser.click(CustomerModule.Customer_billingaggrement_hyperlynk);
 			
-				if(browser.elmentisdisplayed(CustomerModule.Customer_billingaggrement_hyperlynk_header)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_billingaggrement_hyperlynk_header)){
 					browser.reportscomtep("Passed", "Verify billing aggrement hyperlynk header is displayed"  , "billing aggrement hyperlynk header should be displayed", "billing aggrement hyperlynk header is displayed");
 					browser.ScrollToElementBottom(CustomerModule.Customer_Billingaggrement_Close_Button);
 					browser.click(CustomerModule.Customer_Billingaggrement_Close_Button);
@@ -525,7 +536,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				browser.ScrollToElementBottom(CustomerModule.Customer_signin_hyperlynk);	
 				browser.click(CustomerModule.Customer_signin_hyperlynk);
 				
-				if(browser.elmentisdisplayed(CustomerModule.Customer_signin_hyperlynk_header)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_signin_hyperlynk_header)){
 					browser.reportscomtep("Passed", "Verify sign_in lynk header is displayed"  , "sign_in lynk header should be displayed", "sign_in lynk header is displayed");
 				}else {
 					browser.reportscomtep("Failed", "Verify sign_in lynk header is displayed"  , "sign_in lynk header should be displayed", "sign_in lynk header is not displayed");
@@ -546,14 +557,14 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		 browser.loaddata(TestDataPath);
 		 try {
 			 browser.ScrollToElementBottom(Login.Login_DonthaveaccountJoinOurCircle_Link);
-		 if(browser.elmentisdisplayed(Login.Login_DonthaveaccountJoinOurCircle_Link) && browser.elmentisdisplayed(Login.Login_Facebook_Link) && browser.elmentisdisplayed(Login.Login_Google_Link)) {
+		 if(browser.elementisdisplayed(Login.Login_DonthaveaccountJoinOurCircle_Link) && browser.elementisdisplayed(Login.Login_Facebook_Link) && browser.elementisdisplayed(Login.Login_Google_Link)) {
 				browser.reportscomtep("Passed", "Verify Don't have an account yet JoinCircle, Login with FaceBood and Login with Google buttons are displayed", "Don't have an account yet JoinCircle, Login with FaceBood and Login with Google buttons should be displayed", "Don't have an account yet JoinCircle, Login with FaceBood and Login with Google buttons displayed");
 				switch (Click_FinalAction){
 					case "Click_Donthaveaccount_JoinOurCircle":
 						//browser.ScrollToElementBottom(Login.Login_DonthaveaccountJoinOurCircle_Link);
 						browser.click(Login.Login_DonthaveaccountJoinOurCircle_Link);
 						
-						if(browser.elmentisdisplayed(CustomerModule.Customer_RegisterWithShearCircle_Header)){
+						if(browser.elementisdisplayed(CustomerModule.Customer_RegisterWithShearCircle_Header)){
 							browser.reportscomtep("Passed", "click Don't have a ccout yet? JoinCircle link and verify Customer sent to Join Our Circle page"  , "Customer will be sent to Join Our Circle page", "Customer sent to Join Our Circle page");					
 							
 						}else {
@@ -564,7 +575,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						//browser.ScrollToElementBottom(Login.Login_Facebook_Link);
 						browser.click(Login.Login_Facebook_Link);
 						browser.waitForNewWindowAndSwitchToIt(driver);	
-						if (browser.elmentisdisplayed(Login.Facebook_Account_Header)) {
+						if (browser.elementisdisplayed(Login.Facebook_Account_Header)) {
 							browser.reportscomtep("Passed", "Verify Facebook Login popup is displayed",
 									"Facebook Login popup  should be displayed",
 									"Facebook Login popup displayed");
@@ -579,7 +590,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						//browser.ScrollToElementBottom(Login.Login_Google_Link);
 						browser.click(Login.Login_Google_Link);
 						browser.waitForNewWindowAndSwitchToIt(driver);	
-						if (browser.elmentisdisplayed(Login.Google_EmailorPhone_Textbox)) {
+						if (browser.elementisdisplayed(Login.Google_EmailorPhone_Textbox)) {
 							browser.reportscomtep("Passed", "Verify google popup is displayed",
 									"Google Login popup  should be displayed",
 									"Google Login popup displayed");
@@ -604,18 +615,18 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	public void ShearCircle_Verify_Customer_Login_page_Filed_validation() {
 		try {
 
-			if (browser.elmentisdisplayed(Login.Login_Page_Header)) {
+			if (browser.elementisdisplayed(Login.Login_Page_Header)) {
 				browser.reportscomtep("Passed", "Verify Customer Sign In To ShearCircle page header is displayed",
 						"Sign In To ShearCircle page header should be displayed", "Sign In To ShearCircle page header displayed");			
 				
-				browser.Verify_elmentisdisplayed_Report(Login.Login_UserName_textbox, "User Name textbox");
-				browser.Verify_elmentisdisplayed_Report(Login.Login_PassWord_textbox,"Password textbox");
+				browser.Verify_elementisdisplayed_Report(Login.Login_UserName_textbox, "User Name textbox");
+				browser.Verify_elementisdisplayed_Report(Login.Login_PassWord_textbox,"Password textbox");
 				browser.ScrollToElementBottom(Login.Login_JoinOurCircle_Link);
-				browser.Verify_elmentisdisplayed_Report(Login.Login_signin_button,"SIGN IN Button");
-				browser.Verify_elmentisdisplayed_Report(Login.Login_forgotPassword_Link,"Forgot Your Password ? Link");
-				browser.Verify_elmentisdisplayed_Report(Login.Login_Facebook_Link,"Login with Facebook link");
-				browser.Verify_elmentisdisplayed_Report(Login.Login_Google_Link,"Login with Google link");
-				browser.Verify_elmentisdisplayed_Report(Login.Login_JoinOurCircle_Link,"Join Our Circle link" );
+				browser.Verify_elementisdisplayed_Report(Login.Login_signin_button,"SIGN IN Button");
+				browser.Verify_elementisdisplayed_Report(Login.Login_forgotPassword_Link,"Forgot Your Password ? Link");
+				browser.Verify_elementisdisplayed_Report(Login.Login_Facebook_Link,"Login with Facebook link");
+				browser.Verify_elementisdisplayed_Report(Login.Login_Google_Link,"Login with Google link");
+				browser.Verify_elementisdisplayed_Report(Login.Login_JoinOurCircle_Link,"Join Our Circle link" );
 			}
 			else {
 				browser.reportscomtep("Failed", "Verify Sign In To ShearCircle page header is displayed",
@@ -648,7 +659,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			InvalidUserName_ErrorMessage = "User details not found";
 			InvalidPassword_Message = "Invalid credentials";						 
 			
-			if(browser.elmentisdisplayed(Login.Login_Page_Header)) {
+			if(browser.elementisdisplayed(Login.Login_Page_Header)) {
 				browser.reportscomtep("Passed", "Verify Login page is displayed"  , "Login page should be displayed", "Login page displayed");
 				browser.click(Login.Home_Login_Link);					
 					
@@ -660,7 +671,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 							browser.ScrollToElementBottom(Login.Login_signin_button);
 							browser.click(Login.Login_signin_button);
 							
-							if(browser.elmentisdisplayed(Login.Customer_MyDashboard_Text)){
+							if(browser.elementisdisplayed(Login.Customer_MyDashboard_Text)){
 								browser.reportscomtep("Passed", "Customer enters valid Username and Password and clicks on Sign in button", "Customer should be navigate to the Customer Dashboard page", "Customer navigated to the Customer Dashboard page");
 							}else {
 								browser.reportscomtep("Failed", "Customer enters valid Username and Password and clicks on Sign in button", "Customer should be navigate to the Customer Dashboard page", "Customer Not navigated to the Customer Dashboard page");
@@ -726,7 +737,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		CustomerValidEmail = browser.getdata("CustomerValidEmail");			
 		CustomerValidPassword = browser.getdata("CustomerValidPassword");
 		try {						
-			if (browser.elmentisdisplayed(Login.Facebook_Account_Header)) {
+			if (browser.elementisdisplayed(Login.Facebook_Account_Header)) {
 				browser.reportscomtep("Passed", "Verify Facebook Login popup is displayed",
 						"Facebook Login popup  should be displayed",
 						"Facebook Login popup displayed");
@@ -737,7 +748,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				//String cHandle = driver.getWindowHandle();
 				driver.switchTo().window(defaultWindowHandle);
 				//browser.switchtoDefaultWindow(driver);	
-				if(browser.elmentisdisplayed(Login.Customer_MyDashboard_Text))
+				if(browser.elementisdisplayed(Login.Customer_MyDashboard_Text))
 				{
 					browser.reportscomtep("Passed", "Verify MyDashboard is  displayed",
 							"MyDashboard  should be displayed", "MyDashboard  displayed");
@@ -769,7 +780,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			try {				
 				CustomerValidEmail = browser.getdata("CustomerValidEmail");			
 				CustomerValidPassword = browser.getdata("CustomerValidPassword");									
-				if (browser.elmentisdisplayed(Login.Google_EmailorPhone_Textbox)) {
+				if (browser.elementisdisplayed(Login.Google_EmailorPhone_Textbox)) {
 					browser.reportscomtep("Passed", "Verify google popup is displayed",
 							"Google Login popup  should be displayed",
 							"Google Login popup displayed");
@@ -779,7 +790,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 					browser.sendkeys(Login.Google_Password_Textbox, CustomerValidPassword);
 					browser.click(Login.Google_PasswordNext_Link);
 					driver.switchTo().window(defaultWindowHandle);
-					if(browser.elmentisdisplayed(Login.Customer_MyDashboard_Text)){
+					if(browser.elementisdisplayed(Login.Customer_MyDashboard_Text)){
 						browser.reportscomtep("Passed", "Verify MyDashboard is  displayed",
 								"MyDashboard  should be displayed", "MyDashboard  displayed");
 					}else {
@@ -808,18 +819,18 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				CustomerFBEmail = browser.getdata("CustomerNotSC_FBUsername");			
 				CustomerFBPassword = browser.getdata("CustomerNotSC_FBPassword");	
 				
-				if (browser.elmentisdisplayed(Login.Facebook_Account_Header)){
+				if (browser.elementisdisplayed(Login.Facebook_Account_Header)){
 					browser.reportscomtep("Passed", "Verify Facebook Login popup is displayed",
 							"Facebook Login popup  should be displayed",
 							"Facebook Login popup displayed");
 					browser.sendkeys(Login.Facebook_EmailorPhone_Textbox, CustomerFBEmail);
 					browser.sendkeys(Login.Facebook_Password_Textbox, CustomerFBPassword);
 					browser.click(Login.Facebook_Login_Link);
-					if (browser.elmentisdisplayed(Login.Facebook_Continue_Link)){
+					if (browser.elementisdisplayed(Login.Facebook_Continue_Link)){
 						browser.click(Login.Facebook_Continue_Link);
 					}					
 					driver.switchTo().window(defaultWindowHandle);
-					if(browser.elmentisdisplayed(CustomerModule.Customer_RegisterWithShearCircle_Header))
+					if(browser.elementisdisplayed(CustomerModule.Customer_RegisterWithShearCircle_Header))
 					{
 						browser.reportscomtep("Passed", "Verify  Join our Circle  header displayed",
 								" Join our Circle  header should be displayed","Join our Circle  header displayed");
@@ -841,12 +852,14 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		/***********************Customer Login with Google user credentials that is not registered with ShearCircle********/
 
 		public void customer_LoginwithGoogle_not_Registeredwith_ShearCircle(){
+
 			String CustomerGoogleEmail = null;			
 			String CustomerGooglePassword = null;
 			try {				
 				CustomerGoogleEmail = browser.getdata("CustomerNotSC_GoogleUsername");			
 				CustomerGooglePassword = browser.getdata("CustomerNotSC_GooglePassword");			
-				if (browser.elmentisdisplayed(Login.Google_Tocontinue_shearcircle_Text)){
+				if (browser.elementisdisplayed(Login.Google_Tocontinue_shearcircle_Text)){
+
 					browser.reportscomtep("Passed", "Verify google popup is displayed",
 							"Google Login popup  should be displayed","Google Login popup displayed");
 					browser.sendkeys(Login.Google_EmailorPhone_Textbox, CustomerGoogleEmail);
@@ -854,7 +867,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 					browser.sendkeys(Login.Google_Password_Textbox, CustomerGooglePassword);
 					browser.click(Login.Google_PasswordNext_Link);
 					driver.switchTo().window(defaultWindowHandle);
-					if(browser.elmentisdisplayed(Login.Google_RegisterWithShearCircle_header)){
+					if(browser.elementisdisplayed(Login.Google_RegisterWithShearCircle_header)){
 						browser.reportscomtep("Passed", "Verify Register With ShearCircle is  displayed",
 								"Register With ShearCircle  should be displayed", "Register With ShearCircle  displayed");
 					}else{
@@ -875,7 +888,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		public void Customer_JoinOurCircle_LogOutpage(){
 			try{
 				browser.click(Login.Customer_Logout_Button);				
-				if(browser.elmentisdisplayed(Login.Home_Login_Link)){
+				if(browser.elementisdisplayed(Login.Home_Login_Link)){
 					browser.reportscomtep("Passed", "click LogOut button link and verify Customer sent to ShearCircle Home page"  , "Customer will sent to ShearCircle Home page", "Customer sent to ShearCircle Home page");					
 					
 				}else {
@@ -893,7 +906,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		try{
 			browser.ScrollToElementBottom(Login.Login_DonthaveaccountJoinOurCircle_Link);
 			browser.click(Login.Login_DonthaveaccountJoinOurCircle_Link);
-			if(browser.elmentisdisplayed(CustomerModule.Customer_RegisterWithShearCircle_Header)){
+			if(browser.elementisdisplayed(CustomerModule.Customer_RegisterWithShearCircle_Header)){
 				browser.reportscomtep("Passed", "click Don't have a ccout yet? JoinCircle link and verify Customer sent to Join Our Circle page"  , "Customer will be sent to Join Our Circle page", "Customer sent to Join Our Circle page");					
 				
 			}else {
@@ -903,6 +916,374 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		}catch(Exception e){
 			System.out.println("Error description: " + e.getStackTrace() );
 		}
+	}
+		/***********************Customer Login to Customer Dashboard for the first time*****************************/
+
+		public void ShearCircle_Verify_Customer_Login_customer_dashboard() {
+			try {
+
+				if (browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_header)) {
+					
+					browser.reportscomtep("Passed", "Verify Customer Registration form My dashboard header is displayed",
+							"Customer Registration form My dashboard header should be displayed", "Customer Registration form My dashboard header is displayed");
+					
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_fullname,
+							"Mydashboard fullname");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_LastLoginDatetime, "Mydashboard LastLoginDatetime");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_upcomingbookings, "Mydashboard upcomingbookings");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_Pastbookings, "Mydashboard Pastbookings");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_Profilepicture,
+							"Mydashboard Profilepicture");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_changeProfilepicture,
+							"Mydashboard changeProfilepicture");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites,
+							"Mydashboard_myfavourites");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_Myappoinments,
+							"Mydashboard Myappoinments");
+					
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings,
+							"Mydashboard settings");
+					
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_Logout,
+							"Mydashboard Logout");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_Myaccount,
+							"Mydashboard Myaccount");
+					
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_searchbar,
+							"Mydashboard searchbar");
+				
+					
+				} else {
+					
+					browser.reportscomtep("Failed", "Verify Customer Registration form My dashboard header is displayed",
+							"Customer Registration form My dashboard header should be displayed", "Customer Registration form My dashboard header is not displayed");
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace() );
+			}
+		}
+
+		/***********************Customer clicks on My Favourites (in progress) *****************************/
+
+		public void ShearCircle_Verify_customer_dashboard_clickson_MyFavourites() {
+			try {
+
+				if (browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_header)) {
+					
+					browser.reportscomtep("Passed", "Verify Customer Registration form My dashboard header is displayed",
+							"Customer Registration form My dashboard header should be displayed", "Customer Registration form My dashboard header is displayed");
+					
+					browser.click(CustomerModule.CustomerReg_Mydashboard_myfavourites);
+					browser.wait(5);
+					
+					if(browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist)){
+						browser.reportscomtep("Passed", "Verify list of favourites is displayed"  , "list of favourites should be displayed", "list of favourites is displayed");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist_bookme,
+								"Mydashboard myfavourites businesslist bookme");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist_remove,
+								"Mydashboard myfavourites businesslist remove");
+			
+					}else if(browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_myfavourites_header)){
+						browser.reportscomtep("passed", "Verify Zero favourites is displayed"  , "Zero favourites should be displayed", " Zero favourites is  displayed");
+					} else {
+						browser.reportscomtep("Failed", "Verify list of favourites is displayed",
+								"list of favourites should be displayed", "list of favourites is not displayed");
+					}
+					}else {
+						browser.reportscomtep("Failed", "Verify Customer Registration form My dashboard header is displayed",
+								"Customer Registration form My dashboard header should be displayed", "Customer Registration form My dashboard header is not displayed");
+					}
+					
+					}catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+					}
+
+		/******************************  Customer clicks on Book Me button in My Favourites ********************************/
+
+		public void ShearCircle_Verify_bookme_button_inmyfavourites() {
+			
+			try {
+
+				if(browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist)){
+					browser.reportscomtep("Passed", "Verify list of favourites is displayed"  , "list of favourites should be displayed", "list of favourites is displayed");
+				
+					browser.click(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist_bookme);
+					browser.wait(5);
+					if(browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_digitekheader)){
+						browser.reportscomtep("Passed", "Verify bookme digitek header is displayed"  , "bookme digitek header should be displayed", "bookme digitek header is displayed");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_fullname,
+								"Mydashboard fullname");
+
+						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_services, "Mydashboard bookme services");
+
+						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_overview, "Mydashboard bookme overview");
+
+						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_inquiry, "Mydashboard bookme reviews");
+
+						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_reviews,
+								"Mydashboard bookme inquiry");
+
+						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_promotions,
+								"Mydashboard bookme promotions");
+
+						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_videos,
+								"Mydashboard bookme videos");
+
+						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_photos,
+								"Mydashboard bookme photos");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_contactus,
+								"Mydashboard bookme contactus");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_jobs,
+								"Mydashboard bookme jobs");
+
+						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_markedasfavourite,
+								"Mydashboard bookme markedas favourite ");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_share,
+								"Mydashboard bookme share");
+
+					}else {
+						browser.reportscomtep("Failed", "Verify bookme digitek header is displayed"  , "bookme digitek header should be displayed", "bookme digitek header is not displayed");
+					}
+				
+					}else {
+					browser.reportscomtep("Failed", "Verify list of favourites is displayed"  , "list of favourites should be displayed", "list of favourites is not displayed");
+					}
+							
+						}catch(Exception e){
+				System.out.println("Error description: " + e.getStackTrace() );
+						
+			}
+					
+			}
+		
+
+		
+
+		/*****************************  Customer clicks on Remove button in My Favourites(in progress) *************************/
+		
+	public void ShearCircle_Verify_Customer_RemoveButton_in_Myfavourites() {
+			
+			try {
+
+				if(browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist)){
+					browser.reportscomtep("Passed", "Verify list of favourites is displayed"  , "list of favourites should be displayed", "list of favourites is displayed");
+				
+					browser.click(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist_remove);
+					browser.wait(5);
+					if(browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist_remove_header)){
+						browser.reportscomtep("Passed", "Verify Removed popup is displayed"  , "Removed popup should be displayed", "Removed popup is displayed");
+						browser.click(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist_remove_header_ok);
+					
+					}else {
+						browser.reportscomtep("Failed", "Verify Removed popup is displayed"  , "Removed popup should be displayed", "Removed popup is not displayed");
+						}	
+					}else {
+						browser.reportscomtep("Failed", "Verify list of favourites is displayed"  , "list of favourites should be displayed", "list of favourites is not displayed");
+						}	
+				}catch(Exception e){
+					System.out.println("Error description: " + e.getStackTrace() );
+				
+				}
+		
+		}
+
+	/*****************************  Customer clicks on My Appointments  *************************/
+
+	public void ShearCircle_Verify_Customer_clickson_Myappoinments() {
+			
+		try {
+
+			if (browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_header)) {
+
+				browser.reportscomtep("Passed", "Verify Customer Registration form My dashboard header is displayed",
+						"Customer Registration form My dashboard header should be displayed",
+						"Customer Registration form My dashboard header is displayed");
+
+				browser.click(CustomerModule.CustomerReg_Mydashboard_Myappoinments);
+				browser.wait(5);
+
+				if (browser.elementisdisplayed(
+						CustomerModule.CustomerReg_Mydashboard_Myappoinments_Noappoinments_header)) {
+					browser.reportscomtep("Passed", "Verify no appoinments is displayed",
+							"no appoinments should be displayed", "no appoinments is displayed");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_Myappoinments_ID,
+							"Myappoinments ID");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_Myappoinments_Datetime, "Myappoinments datetime");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_Myappoinments_businessname,
+							"Myappoinments business name");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_Myappoinments_amount, "Myappoinments Amount");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_Myappoinments_appoinmentstatus,
+							"Myappoinments Appinmentstatus");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_Myappoinments_paymentstatus,
+							"Myappoinments payment status");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_Myappoinments_action, "Myappoinments action");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_Myappoinments_type,
+							"Myappoinments filter type");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_Myappoinments_upcomingappinments,
+							"Myappoinments upcoming appoinments");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_Myappoinments_pastappinments,
+							"Myappoinments past appoinments");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_Myappoinments_status, "Myappoinments status");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_Myappoinments_status_completed,
+							"Myappoinments status completed");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_Myappoinments_status_pending,
+							"Myappoinments status pending");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_Myappoinments_status_cancelled,
+							"Myappoinments status cancelled");
+
+					/*
+					 * }else if(browser.elementisdisplayed(CustomerModule.
+					 * CustomerReg_Mydashboard_Myappoinments_selectedappoinments_header
+					 * )){ browser.reportscomtep("passed",
+					 * "Verify selected appoinments is displayed" ,
+					 * "selected appoinments should be displayed",
+					 * " selected appoinments is  displayed");
+					 * 
+					 * }else { browser.reportscomtep("Failed",
+					 * "Verify selected appoinments is displayed" ,
+					 * "selected appoinments should be displayed",
+					 * " selected appoinments is not displayed");
+					 * 
+					 * 
+					 * }
+					 */
+				} else {
+					browser.reportscomtep("Failed", "Verify no appoinments is displayed",
+							"no appoinments should be displayed", "no appoinments is not displayed");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Verify Customer Registration form My dashboard header is displayed",
+						"Customer Registration form My dashboard header should be displayed",
+						"Customer Registration form My dashboard header is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+
+	  }
+
+	/*****************************  Customer clicks on Settings   *************************/
+
+	public void ShearCircle_Verify_Customer_clickson_Settings() {
+
+		try {
+
+			if (browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_header)) {
+
+				browser.reportscomtep("Passed", "Verify Customer Registration form My dashboard header is displayed",
+						"Customer Registration form My dashboard header should be displayed",
+						"Customer Registration form My dashboard header is displayed");
+
+				browser.click(CustomerModule.CustomerReg_Mydashboard_settings);
+				browser.wait(5);
+
+				if (browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_settings_header)) {
+					browser.reportscomtep("Passed", "Verify settings header is displayed",
+							"settings header should be displayed", "settings header is displayed");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_FirstName,
+							" dashboard settings firstname");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_LastName,
+							"dashboard settings lastnme");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_Email,
+							"dashboard settings");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_settings_Gender_Male, "dashboard settings male");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_settings_Gender_Female, "dashboard settings female");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_Phone,
+							"dashboard settings phone");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_Address,
+							"dashboard settings address");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_city,
+							"dashboard settings city");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_State,
+							"dashboard settings state");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_Country,
+							"dashboard settings country");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_zipcode,
+							"dashboard settings zipcode");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_settings_Birthday_date,
+							"dashboard settings birthday date");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_settings_Birthday_Month,
+							"dashboard settings birthday month");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.CustomerReg_Mydashboard_settings_changepassword_lynk,
+							"dashboard settings changepassword lynk");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_cancel,
+							"dashboard settings cancel");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_Update,
+							"dashboard settings update");
+
+				} else {
+					browser.reportscomtep("Failed", "Verify settings header is displayed",
+							"settings header should be displayed", "settings header is not displayed");
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
 		
 	}
-}
+

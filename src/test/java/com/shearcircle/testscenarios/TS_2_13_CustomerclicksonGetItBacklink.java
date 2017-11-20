@@ -59,7 +59,7 @@ public class TS_2_13_CustomerclicksonGetItBacklink extends StaticVariables {
 	}
 	
 	@Test(priority=2, description="TC_003 Customer clicks on Get It Back link." )
-	public void TC_003_Customer_ClickonGetItBacklink() throws IOException {			
+	public void TC_003_Customer_ClickonGetItBacklink() throws IOException {	
 		CR.ShearCircle_Verify_Customer_forgotPassword("DoNothing", "DoNothing");		
 	}	
 

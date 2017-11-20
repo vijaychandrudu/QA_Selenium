@@ -344,7 +344,7 @@ public class CommonFunctions extends StaticVariables {
 	public void waitforelementtobevisible(WebElement element, int waitTime) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, waitTime);
-			wait.until(ExpectedConditions.visibilityOf(element));
+			wait.until(ExpectedConditions.visibilityOf(element));   
 	
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -659,17 +659,20 @@ public class CommonFunctions extends StaticVariables {
 
 	}
 
-	/************************** elmentisdisplayed *********************/
+	/************************** elementisdisplayed *********************/
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
 	 */
 
-	public boolean elmentisdisplayed(WebElement element) {
+	public boolean elementisdisplayed(WebElement element) {
 		boolean elementdisplayedflag = false;
 		try {
 			//this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 20);
-			if (element.isDisplayed() && element.isEnabled()) {
+			if (element.isDisplayed() && element.isEnabled()){
+				if (driver instanceof JavascriptExecutor) {
+			        ((JavascriptExecutor)driver).executeScript("arguments[0].style.border='4px solid green'", element);
+			    }
 				elementdisplayedflag = true;
 			} else {
 				System.out.println("Element existance and enabled status Failed");
@@ -682,12 +685,12 @@ public class CommonFunctions extends StaticVariables {
 
 	}
 
-	/*********************** Verify_elmentisdisplayed_Report *********************/
+	/*********************** Verify_elementisdisplayed_Report *********************/
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
 	 */
 
-	public void Verify_elmentisdisplayed_Report(WebElement element, String Reporttext) {
+	public void Verify_elementisdisplayed_Report(WebElement element, String Reporttext) {
 		try {
 			//this.movetoElement(element);
 			//this.scrollintoviewelement(element);
@@ -789,7 +792,10 @@ public class CommonFunctions extends StaticVariables {
 		try {
 			//this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 10);
-			if (element.isDisplayed() && element.isEnabled()) {				
+			if (element.isDisplayed() && element.isEnabled()) {	
+				if (driver instanceof JavascriptExecutor) {
+			        ((JavascriptExecutor)driver).executeScript("arguments[0].style.border='3px solid red'", element);
+			    }
 				element.sendKeys(p_in_inputvalue);
 			} else {
 				System.out.println("Element existance and enabled status Failed");
@@ -836,7 +842,10 @@ public class CommonFunctions extends StaticVariables {
 			//this.movetoElement(element);
 			//this.scrollintoviewelement(element);
 			this.explicitWaitUsingElementToBeClickable(element);			
-			if (element.isDisplayed() && element.isEnabled()) {				
+			if (element.isDisplayed() && element.isEnabled()) {		
+				if (driver instanceof JavascriptExecutor) {
+			        ((JavascriptExecutor)driver).executeScript("arguments[0].style.border='2px solid red'", element);
+			    }
 				element.click();				
 
 			} else {

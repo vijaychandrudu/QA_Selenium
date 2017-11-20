@@ -58,6 +58,7 @@ public class TS_2_14_CustomerResetspasswordwithvalidUsername extends StaticVaria
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
+
 	@Test(priority=2, description="TC_003 Customer Resets password with valid Username." )
 	public void TC_003_CustomerResetspasswordwithvalidUsername() throws IOException {			
 		CR.ShearCircle_Verify_Customer_forgotPassword("Valid", "Click Send instructions to reset password");		

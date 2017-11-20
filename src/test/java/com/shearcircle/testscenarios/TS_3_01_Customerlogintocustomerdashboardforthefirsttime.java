@@ -15,13 +15,13 @@ import com.shearcircle.pagecomponents.Customer_Module_Page_Components;
 import com.shearcircle.utilities.CommonFunctions;
 import com.shearcircle.utilities.StaticVariables;
 
-public class TS_2_17_CustomerclicksCancelinResetPasswordpage extends StaticVariables {
+public class TS_3_01_Customerlogintocustomerdashboardforthefirsttime extends StaticVariables {
 	public String TestDataPath;
 	public Customer_Module_Page_Components CR;
 	public CommonFunctions cfn;
 	public static WebDriver driver;
 	
-	public TS_2_17_CustomerclicksCancelinResetPasswordpage() throws IOException, InterruptedException{
+	public TS_3_01_Customerlogintocustomerdashboardforthefirsttime() throws IOException, InterruptedException{
 		cfn = new CommonFunctions();		
 	}
 		
@@ -53,14 +53,15 @@ public class TS_2_17_CustomerclicksCancelinResetPasswordpage extends StaticVaria
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=1, description="TC_002 Customer clicks Login on ShearCircle home page " )
+	@Test(priority=1, description="TC_002 Customer clicks JoinOurCircle Button " )
 	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {			
-		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
-	}	
-
-	@Test(priority=2, description="TC_003  Customer clicks Cancel in Reset Password page." )
-	public void TC_003_Customer_Click_Cancellink() throws IOException {	
-		CR.ShearCircle_Verify_Customer_forgotPassword("Valid", "Click Cancel");		
-	}	
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_JoinOurCircle");			
+	}
+	
+	@Test(priority=2, description="TC_003 Customer Check Register With ShearCircle page where they can register either as a Customer or as a Professional" )
+	public void TC_003_Customer_CheckRegisterWithShearCirclepage() throws IOException {			
+		CR.ShearCircle_Click_Customer_OR_Professional_JoinOurCircle("DoNothing");			
+	}
+	
 
 }
