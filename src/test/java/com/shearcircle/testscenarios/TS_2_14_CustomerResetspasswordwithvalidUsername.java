@@ -15,13 +15,13 @@ import com.shearcircle.pagecomponents.Customer_Module_Page_Components;
 import com.shearcircle.utilities.CommonFunctions;
 import com.shearcircle.utilities.StaticVariables;
 
-public class TS_2_13_CustomerclicksonGetItBacklink extends StaticVariables {
+public class TS_2_14_CustomerResetspasswordwithvalidUsername extends StaticVariables {
 	public String TestDataPath;
 	public Customer_Module_Page_Components CR;
 	public CommonFunctions cfn;
 	public static WebDriver driver;
 	
-	public TS_2_13_CustomerclicksonGetItBacklink() throws IOException, InterruptedException{
+	public TS_2_14_CustomerResetspasswordwithvalidUsername() throws IOException, InterruptedException{
 		cfn = new CommonFunctions();		
 	}
 		
@@ -58,9 +58,9 @@ public class TS_2_13_CustomerclicksonGetItBacklink extends StaticVariables {
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
-	@Test(priority=2, description="TC_003 Customer clicks on Get It Back link." )
-	public void TC_003_Customer_ClickonGetItBacklink() throws IOException {			
-		CR.ShearCircle_Verify_Customer_forgotPassword("DoNothing", "DoNothing");		
+	@Test(priority=2, description="TC_003 Customer Resets password with valid Username." )
+	public void TC_003_CustomerResetspasswordwithvalidUsername() throws IOException {			
+		CR.ShearCircle_Verify_Customer_forgotPassword("Valid", "Click Send instructions to reset password");		
 	}	
 
 }
