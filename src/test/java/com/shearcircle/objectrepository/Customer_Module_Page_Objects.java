@@ -108,7 +108,203 @@ public class Customer_Module_Page_Objects{
 	
 	
 	//div[@class='modal-header']/h3/parent::div/following-sibling::div[@class='modal-footer']/button[text()='Close' and @class='btn btn-primary']
+	@FindBy(xpath="//div/div/h3[text()='Welcome  Akhil Chandh']")
+	public WebElement CustomerReg_Mydashboard_fullname;
 	
+	@FindBy(xpath="//div/div/div/div/div/div/p")
+	public WebElement CustomerReg_Mydashboard_LastLoginDatetime;	
+	
+	@FindBy(xpath="//div/div/div/div[text()='Upcoming']")
+	public WebElement CustomerReg_Mydashboard_upcomingbookings;
+
+	@FindBy(xpath="//div/div[text()='Past Bookings']")
+	public WebElement CustomerReg_Mydashboard_Pastbookings;
+
+	@FindBy(xpath="//div[3]//div/div/button")
+	public WebElement CustomerReg_Mydashboard_changeProfilepicture;
+	
+	@FindBy(xpath="//div/div/div/div/div/div/img")
+	public WebElement CustomerReg_Mydashboard_Profilepicture;
+
+
+	@FindBy(xpath="//*[@id='filters_col']//li[@class='active']/a")
+	public WebElement CustomerReg_Mydashboard_myfavourites;
+
+	@FindBy(xpath="//*[@id='filters_col']//a[@href='https://shearcircle.com/testbed/customer/appointments']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments;
+
+	@FindBy(xpath="/html/body/div/div/div/div/div/div[@class='col-md-12']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_header;
+
+	@FindBy(xpath="//table/tbody/tr[2]/td/h3[text()='No Appointments Found']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_Noappoinments_header;
+
+	@FindBy(xpath="/html/body/div/div/div/div/div/div[@class='col-md-12']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_selectedappoinments_header;
+
+	@FindBy(xpath="//div/table/tbody/tr/th[text()='# ID']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_ID;
+
+	@FindBy(xpath="//div/table/tbody/tr/th[text()='Appointment Date & Time']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_Datetime;
+
+	@FindBy(xpath="//div/table/tbody/tr/th[text()='Business Name']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_businessname;
+
+	@FindBy(xpath="//div/table/tbody/tr/th[text()='Business Name']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_amount;
+
+	@FindBy(xpath="//div/table/tbody/tr/th[text()='Business Name']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_appoinmentstatus;
+
+	@FindBy(xpath="//div/table/tbody/tr/th[text()='Business Name']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_paymentstatus;
+
+	@FindBy(xpath="//div/table/tbody/tr/th[text()='Business Name']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_action;
+	
+	@FindBy(xpath="//div/div/select/option[text()='Type']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_type;
+
+	@FindBy(xpath="//div/div/select/option[text()='Upcoming Appointments']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_upcomingappinments;
+
+	@FindBy(xpath="//div/div/select/option[text()='Past Appointments']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_pastappinments;
+	
+	@FindBy(xpath="//div/div/select/option[text()='Status']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_status;
+
+	@FindBy(xpath="//div/div/select/option[text()='Completed']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_status_completed;
+
+	@FindBy(xpath="//div/div/select/option[text()='Pending']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_status_pending;
+
+	@FindBy(xpath="//div/div/select/option[text()='Canceled']")
+	public WebElement CustomerReg_Mydashboard_Myappoinments_status_cancelled;
+
+	@FindBy(xpath="//*[@id='filters_col']//a[@href='https://shearcircle.com/testbed/customer/settings']")
+	public WebElement CustomerReg_Mydashboard_settings;
+
+	@FindBy(xpath="//*[@id='filters_col']//a[@href='https://shearcircle.com/testbed/customer/settings']")
+	public WebElement CustomerReg_Mydashboard_settings_header;
+
+	@FindBy(xpath="//*[@id='navbar-collapse-1']/span/a[text()='Logout']")
+	public WebElement CustomerReg_Mydashboard_Logout;
+
+	@FindBy(xpath="//*[@id='navbar-collapse-1']/span/a[text()='My Account ']")
+	public WebElement CustomerReg_Mydashboard_Myaccount;
+	
+	@FindBy(xpath="//*[@id='navbar-collapse-1'//button/i[@class='icon-search']")
+	public WebElement CustomerReg_Mydashboard_searchbar;
+
+	@FindBy(xpath="//*[@id='sub_content']/h1[text()='My Dashboard']")
+	public WebElement CustomerReg_Mydashboard_header;
+
+	@FindBy(xpath="/html/body/div/div/div/div/div/div[@class='col-md-12']")
+	public WebElement CustomerReg_Mydashboard_myfavourites_header;
+
+	@FindBy(xpath="/html/body/div[3]/div/div[2]/div/div/div/div[2]/div[2]")
+	public WebElement CustomerReg_Mydashboard_myfavourites_businesslist;
+	
+	@FindBy(xpath="//div[2]/div/div/div/div[2]/div[1]//a[text()='Book Me']")
+	public WebElement CustomerReg_Mydashboard_myfavourites_businesslist_bookme;
+	
+	@FindBy(xpath="//div[1]/div/div/div/a[text()='Remove']")
+	public WebElement CustomerReg_Mydashboard_myfavourites_businesslist_remove;
+	
+	@FindBy(xpath="/html/body/div[@class='sweet-alert showSweetAlert visible']")
+	public WebElement CustomerReg_Mydashboard_myfavourites_businesslist_remove_header;
+	
+	@FindBy(xpath="//div/div/button[@class='confirm']")
+	public WebElement CustomerReg_Mydashboard_myfavourites_businesslist_remove_header_ok;
+	
+	@FindBy(xpath="//*[@id='container_pin']//a[@aria-controls='services']")
+	public WebElement CustomerReg_Mydashboard_myfavourites_bookme_services;
+
+	@FindBy(xpath="//*[@id='container_pin']//a[@aria-controls='overview']")
+	public WebElement CustomerReg_Mydashboard_myfavourites_bookme_overview;
+
+	@FindBy(xpath="//*[@id='container_pin']/div/ul/li/a[@aria-controls='reviews']")
+	public WebElement CustomerReg_Mydashboard_myfavourites_bookme_reviews;
+
+	@FindBy(xpath="//*[@id='container_pin']//a[@aria-controls='feedbacks']")
+	public WebElement CustomerReg_Mydashboard_myfavourites_bookme_inquiry;
+
+	@FindBy(xpath="//*[@id='container_pin']//a[@aria-controls='promotions']")
+	public WebElement CustomerReg_Mydashboard_myfavourites_bookme_promotions;
+
+	@FindBy(xpath="//*[@id='container_pin']//a[@aria-controls='videos']")
+	public WebElement CustomerReg_Mydashboard_myfavourites_bookme_videos;
+
+	@FindBy(xpath="//*[@id='container_pin']//a[@href='#photos']")
+	public WebElement CustomerReg_Mydashboard_myfavourites_bookme_photos;
+
+	@FindBy(xpath="//*[@id='contact_us_tab']/i")
+	public WebElement CustomerReg_Mydashboard_myfavourites_bookme_contactus;
+
+	@FindBy(xpath="//*[@id='container_pin']//a[@href='#jobs']")
+	public WebElement CustomerReg_Mydashboard_myfavourites_bookme_jobs;
+
+	@FindBy(xpath="//*[@id='sub_content']//button")
+	public WebElement CustomerReg_Mydashboard_myfavourites_bookme_markedasfavourite;
+
+	@FindBy(xpath="//*[@id='position']//a/img")
+	public WebElement CustomerReg_Mydashboard_myfavourites_bookme_share;
+	
+	@FindBy(xpath="//*[@id='sub_content']//div[@class='media-body']")
+	public WebElement CustomerReg_Mydashboard_myfavourites_bookme_digitekheader;
+
+	@FindBy(xpath="//*[@id='edit_profile']//input[@name='firstname']")
+	public WebElement CustomerReg_Mydashboard_settings_FirstName;
+
+	@FindBy(xpath="//*[@id='edit_profile']//input[@name='lastname']")
+	public WebElement CustomerReg_Mydashboard_settings_LastName;
+
+	@FindBy(xpath="//*[@id='edit_profile']//input[@name='username']")
+	public WebElement CustomerReg_Mydashboard_settings_Email;
+
+	@FindBy(xpath="//*[@id='edit_profile']//input[@value='Male']")
+	public WebElement CustomerReg_Mydashboard_settings_Gender_Male;
+	
+	@FindBy(xpath="//*[@id='edit_profile']//input[@value='Female']")
+	public WebElement CustomerReg_Mydashboard_settings_Gender_Female;
+	
+	
+	@FindBy(xpath="//*[@id='edit_profile']//input[@name='mobile']")
+	public WebElement CustomerReg_Mydashboard_settings_Phone;
+	
+	@FindBy(xpath="//*[@id='edit_profile']//input[@name='address']")
+	public WebElement CustomerReg_Mydashboard_settings_Address;
+	
+	@FindBy(xpath="//*[@id='edit_profile']//input[@name='city']")
+	public WebElement CustomerReg_Mydashboard_settings_city;
+	
+	@FindBy(xpath="//*[@id='edit_profile']//div/select[@name='state']")
+	public WebElement CustomerReg_Mydashboard_settings_State;
+	
+	@FindBy(xpath="//*[@id='edit_profile']//select[@ng-model='profileData.country']")
+	public WebElement CustomerReg_Mydashboard_settings_Country;
+
+	@FindBy(xpath="//*[@id='edit_profile']//input[@name='zipcode']")
+	public WebElement CustomerReg_Mydashboard_settings_zipcode;
+
+	@FindBy(xpath="//div[@style='padding-left:0px']//select")
+	public WebElement CustomerReg_Mydashboard_settings_Birthday_date;
+
+	@FindBy(xpath="//div[@style='padding-right:0px']//select")
+	public WebElement CustomerReg_Mydashboard_settings_Birthday_Month;
+
+	@FindBy(xpath="//*[@id='edit_profile']//a[text()='Click here to change password']")
+	public WebElement CustomerReg_Mydashboard_settings_changepassword_lynk;
+
+	@FindBy(xpath="//*[@id='edit_profile']//a[text()='CANCEL']")
+	public WebElement CustomerReg_Mydashboard_settings_cancel;
+
+	@FindBy(xpath="//*[@id='edit_profile']//input[@value='UPDATE']")
+	public WebElement CustomerReg_Mydashboard_settings_Update;
+
 	
 	
 
