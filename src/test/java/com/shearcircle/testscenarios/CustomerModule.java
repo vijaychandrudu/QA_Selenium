@@ -110,7 +110,7 @@ public class CustomerModule extends StaticVariables {
 	public void Customer_LoginwithInvalidUsernameandvalidPassword() throws IOException {		
 		//CR.ShearCircle_LaunchApplication();
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
-		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_InValid_EmailandPassword");		
+		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Invalid_EmailandValidPassword");		
 	}
 	@Test(priority=10, description="2.4 Scenario: Scenario: Customer Login with valid Username(Email id) & invalid Password." )
 	public void Customer_LoginwithvalidUsernameandInvalidPassword() throws IOException {		
@@ -197,7 +197,7 @@ public class CustomerModule extends StaticVariables {
 	public void Customer_Click_DoNotHaveAccountjoinourcircle() throws IOException {		
 		CR.ShearCircle_LaunchApplication();
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");
-		CR.Click_DoNotHaveAccountjoinourcircle_Loginwith_FaceBook_Google_Bottons("Click_LoginwithGoogle");
+		CR.Click_DoNotHaveAccountjoinourcircle_Loginwith_FaceBook_Google_Bottons("Click_Donthaveaccount_JoinOurCircle");
 		
 	}
 	

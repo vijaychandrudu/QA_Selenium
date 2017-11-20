@@ -408,15 +408,15 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			CustomerInValidEmail = browser.getdata("CustomerInValidEmail");
 			invalid_Message = "No records for the Username";
 			valid_Message = "Password Reset Instructions Sent Successfully";	
-			if(browser.elmentisdisplayed(Login.Home_Login_Link)) {
+			/*if(browser.elmentisdisplayed(Login.Home_Login_Link)) {
 				browser.reportscomtep("Passed", "Verify Login link is displayed"  , "Login link should be displayed", "Login link is displayed");
-				browser.click(Login.Home_Login_Link);
-				//browser.wait(5);
-				if(browser.elmentisdisplayed(Login.Login_forgotPassword_Link)){
+				browser.click(Login.Home_Login_Link);*/				
+				
+			if(browser.elmentisdisplayed(Login.Login_forgotPassword_Link)){
 					browser.reportscomtep("Passed", "Verify Forgotpassword link is displayed"  , "Forgotpassword link should be displayed", "Forgotpassword link is displayed");
 					
 					browser.click(Login.Login_forgotPassword_Link);
-					//browser.wait(5);
+				
 					if(browser.elmentisdisplayed(Login.ResetPassword_Header)){
 						browser.reportscomtep("Passed", "Verify Reset Password is displayed"  , "Reset Password should be displayed", "Reset Password is displayed");
 						
@@ -429,6 +429,8 @@ public class Customer_Module_Page_Components extends StaticVariables {
 							
 						}else if(p_in_Valid_or_Invalid.equalsIgnoreCase("InValid")){
 							browser.sendkeys(Login.ResetPassword_UserName_textbox,CustomerInValidEmail);
+						}else if(p_in_Valid_or_Invalid.equalsIgnoreCase("DoNothing")){
+							
 						}
 						
 						switch(p_in_FinalAction) {
@@ -463,6 +465,8 @@ public class Customer_Module_Page_Components extends StaticVariables {
 									
 								}
 							break;
+							case "DoNothing":
+							break;	
 						}					
 						
 						
@@ -473,9 +477,9 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				}else {
 					browser.reportscomtep("Failed", "Verify Forgotpassword link is displayed"  , "Forgotpassword link should be displayed", "Forgotpassword link Not displayed");
 				}
-			}else {
+			/*}else {
 				browser.reportscomtep("Failed", "Verify Login link is displayed"  , "Login link should be displayed", "Login link is not displayed");
-			}
+			}*/
 			
 		}catch(Exception e){
 			System.out.println("Error description: " + e.getStackTrace() );
@@ -798,14 +802,18 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		/****Customer Login with Facebook user credentials that is not registered with ShearCircle******/
 
 		public void Customer_LoginwithFacebook_not_registerewith_ShearCircle(){
-			try {
+			String CustomerFBEmail = null;			
+			String CustomerFBPassword = null;
+			try {				
+				CustomerFBEmail = browser.getdata("CustomerNotSC_FBUsername");			
+				CustomerFBPassword = browser.getdata("CustomerNotSC_FBPassword");	
 				
 				if (browser.elmentisdisplayed(Login.Facebook_Account_Header)){
 					browser.reportscomtep("Passed", "Verify Facebook Login popup is displayed",
 							"Facebook Login popup  should be displayed",
 							"Facebook Login popup displayed");
-					browser.sendkeys(Login.Facebook_EmailorPhone_Textbox, "shearcircletestmail1@gmail.com");
-					browser.sendkeys(Login.Facebook_Password_Textbox, "@Digitech17");
+					browser.sendkeys(Login.Facebook_EmailorPhone_Textbox, CustomerFBEmail);
+					browser.sendkeys(Login.Facebook_Password_Textbox, CustomerFBPassword);
 					browser.click(Login.Facebook_Login_Link);
 					if (browser.elmentisdisplayed(Login.Facebook_Continue_Link)){
 						browser.click(Login.Facebook_Continue_Link);
@@ -833,13 +841,17 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		/***********************Customer Login with Google user credentials that is not registered with ShearCircle********/
 
 		public void customer_LoginwithGoogle_not_Registeredwith_ShearCircle(){
-			try {			
+			String CustomerGoogleEmail = null;			
+			String CustomerGooglePassword = null;
+			try {				
+				CustomerGoogleEmail = browser.getdata("CustomerNotSC_GoogleUsername");			
+				CustomerGooglePassword = browser.getdata("CustomerNotSC_GooglePassword");			
 				if (browser.elmentisdisplayed(Login.Google_Tocontinue_shearcircle_Text)){
 					browser.reportscomtep("Passed", "Verify google popup is displayed",
 							"Google Login popup  should be displayed","Google Login popup displayed");
-					browser.sendkeys(Login.Google_EmailorPhone_Textbox, "shearcircletestmail1@gmail.com");
+					browser.sendkeys(Login.Google_EmailorPhone_Textbox, CustomerGoogleEmail);
 					browser.click(Login.Google_Next_Link);
-					browser.sendkeys(Login.Google_Password_Textbox, "@Digitech17");
+					browser.sendkeys(Login.Google_Password_Textbox, CustomerGooglePassword);
 					browser.click(Login.Google_PasswordNext_Link);
 					driver.switchTo().window(defaultWindowHandle);
 					if(browser.elmentisdisplayed(Login.Google_RegisterWithShearCircle_header)){
