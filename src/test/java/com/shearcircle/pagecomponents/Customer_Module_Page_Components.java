@@ -917,54 +917,55 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			System.out.println("Error description: " + e.getStackTrace() );
 		}
 	}
-		/***********************Customer Login to Customer Dashboard for the first time*****************************/
+		/***********************Customer Logged into Customer Dashboard for the first time*****************************/
 
-		public void ShearCircle_Verify_Customer_Login_customer_dashboard() {
+		public void ShearCircle_Verify_customer_dashboard_fieldvalidation() {
+			String WelcomeFullName = null;
+			String LastLoginDateTime = null;
+			String NumberofUpcomingBookings = null;
+			String NumberofPastbookings = null;
+			
 			try {
 
-				if (browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_header)) {
+				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
 					
-					browser.reportscomtep("Passed", "Verify Customer Registration form My dashboard header is displayed",
-							"Customer Registration form My dashboard header should be displayed", "Customer Registration form My dashboard header is displayed");
+					browser.reportscomtep("Passed", "Verify Customer Dashboard header is displayed",
+							"Customer Dashboard header should be displayed", "Customer Dashboard header displayed");
+					WelcomeFullName = browser.getelementtext(CustomerModule.Customer_Mydashboard_fullname);
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_fullname, WelcomeFullName);
+					LastLoginDateTime = browser.getelementtext(CustomerModule.Customer_Mydashboard_LastLoginDatetime);
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_LastLoginDatetime, LastLoginDateTime);
+					NumberofUpcomingBookings = browser.getelementtext(CustomerModule.Customer_Mydashboard_upcomingbookings_count);
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_upcomingbookings, "Mydashboard Number of Upcoming Bookings: "+NumberofUpcomingBookings);
+					NumberofPastbookings = browser.getelementtext(CustomerModule.Customer_Mydashboard_Pastbookings_count);
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Pastbookings, "Mydashboard Number of Past Bookings: "+ NumberofPastbookings);
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Profilepicture,
+							"Mydashboard Profilepicture--Default human icon ");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_changeProfilepicture, "Mydashboard changeProfilepicture");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites, "Mydashboard_myfavourites");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments, "Mydashboard Myappoinments");
 					
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_fullname,
-							"Mydashboard fullname");
-
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_LastLoginDatetime, "Mydashboard LastLoginDatetime");
-
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_upcomingbookings, "Mydashboard upcomingbookings");
-
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_Pastbookings, "Mydashboard Pastbookings");
-
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_Profilepicture,
-							"Mydashboard Profilepicture");
-
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_changeProfilepicture,
-							"Mydashboard changeProfilepicture");
-
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites,
-							"Mydashboard_myfavourites");
-
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_Myappoinments,
-							"Mydashboard Myappoinments");
-					
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings,
 							"Mydashboard settings");
 					
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_Logout,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Logout,
 							"Mydashboard Logout");
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_Myaccount,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myaccount,
 							"Mydashboard Myaccount");
 					
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_searchbar,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_searchbar,
 							"Mydashboard searchbar");
 				
 					
 				} else {
 					
-					browser.reportscomtep("Failed", "Verify Customer Registration form My dashboard header is displayed",
-							"Customer Registration form My dashboard header should be displayed", "Customer Registration form My dashboard header is not displayed");
+					browser.reportscomtep("Failed", "Verify Customer Dashboard header is displayed",
+							"Customer Dashboard header should be displayed", "Customer Dashboard header not displayed");
 				}
 			} catch (Exception e) {
 				System.out.println("Error description: " + e.getStackTrace() );
@@ -976,24 +977,24 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		public void ShearCircle_Verify_customer_dashboard_clickson_MyFavourites() {
 			try {
 
-				if (browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_header)) {
+				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
 					
 					browser.reportscomtep("Passed", "Verify Customer Registration form My dashboard header is displayed",
 							"Customer Registration form My dashboard header should be displayed", "Customer Registration form My dashboard header is displayed");
 					
-					browser.click(CustomerModule.CustomerReg_Mydashboard_myfavourites);
+					browser.click(CustomerModule.Customer_Mydashboard_myfavourites);
 					browser.wait(5);
 					
-					if(browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist)){
+					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_businesslist)){
 						browser.reportscomtep("Passed", "Verify list of favourites is displayed"  , "list of favourites should be displayed", "list of favourites is displayed");
 						
-						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist_bookme,
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_bookme,
 								"Mydashboard myfavourites businesslist bookme");
 						
-						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist_remove,
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_remove,
 								"Mydashboard myfavourites businesslist remove");
 			
-					}else if(browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_myfavourites_header)){
+					}else if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_header)){
 						browser.reportscomtep("passed", "Verify Zero favourites is displayed"  , "Zero favourites should be displayed", " Zero favourites is  displayed");
 					} else {
 						browser.reportscomtep("Failed", "Verify list of favourites is displayed",
@@ -1015,44 +1016,44 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			
 			try {
 
-				if(browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_businesslist)){
 					browser.reportscomtep("Passed", "Verify list of favourites is displayed"  , "list of favourites should be displayed", "list of favourites is displayed");
 				
-					browser.click(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist_bookme);
+					browser.click(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_bookme);
 					browser.wait(5);
-					if(browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_digitekheader)){
+					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_bookme_digitekheader)){
 						browser.reportscomtep("Passed", "Verify bookme digitek header is displayed"  , "bookme digitek header should be displayed", "bookme digitek header is displayed");
-						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_fullname,
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_fullname,
 								"Mydashboard fullname");
 
-						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_services, "Mydashboard bookme services");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_bookme_services, "Mydashboard bookme services");
 
-						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_overview, "Mydashboard bookme overview");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_bookme_overview, "Mydashboard bookme overview");
 
-						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_inquiry, "Mydashboard bookme reviews");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_bookme_inquiry, "Mydashboard bookme reviews");
 
-						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_reviews,
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_bookme_reviews,
 								"Mydashboard bookme inquiry");
 
-						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_promotions,
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_bookme_promotions,
 								"Mydashboard bookme promotions");
 
-						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_videos,
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_bookme_videos,
 								"Mydashboard bookme videos");
 
-						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_photos,
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_bookme_photos,
 								"Mydashboard bookme photos");
 						
-						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_contactus,
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_bookme_contactus,
 								"Mydashboard bookme contactus");
 						
-						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_jobs,
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_bookme_jobs,
 								"Mydashboard bookme jobs");
 
-						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_markedasfavourite,
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_bookme_markedasfavourite,
 								"Mydashboard bookme markedas favourite ");
 						
-						browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_myfavourites_bookme_share,
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_bookme_share,
 								"Mydashboard bookme share");
 
 					}else {
@@ -1079,14 +1080,14 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			
 			try {
 
-				if(browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_businesslist)){
 					browser.reportscomtep("Passed", "Verify list of favourites is displayed"  , "list of favourites should be displayed", "list of favourites is displayed");
 				
-					browser.click(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist_remove);
+					browser.click(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_remove);
 					browser.wait(5);
-					if(browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist_remove_header)){
+					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_remove_header)){
 						browser.reportscomtep("Passed", "Verify Removed popup is displayed"  , "Removed popup should be displayed", "Removed popup is displayed");
-						browser.click(CustomerModule.CustomerReg_Mydashboard_myfavourites_businesslist_remove_header_ok);
+						browser.click(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_remove_header_ok);
 					
 					}else {
 						browser.reportscomtep("Failed", "Verify Removed popup is displayed"  , "Removed popup should be displayed", "Removed popup is not displayed");
@@ -1107,72 +1108,72 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			
 		try {
 
-			if (browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_header)) {
+			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
 
 				browser.reportscomtep("Passed", "Verify Customer Registration form My dashboard header is displayed",
 						"Customer Registration form My dashboard header should be displayed",
 						"Customer Registration form My dashboard header is displayed");
 
-				browser.click(CustomerModule.CustomerReg_Mydashboard_Myappoinments);
+				browser.click(CustomerModule.Customer_Mydashboard_Myappoinments);
 				browser.wait(5);
 
 				if (browser.elementisdisplayed(
-						CustomerModule.CustomerReg_Mydashboard_Myappoinments_Noappoinments_header)) {
+						CustomerModule.Customer_Mydashboard_Myappoinments_Noappoinments_header)) {
 					browser.reportscomtep("Passed", "Verify no appoinments is displayed",
 							"no appoinments should be displayed", "no appoinments is displayed");
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_Myappoinments_ID,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_ID,
 							"Myappoinments ID");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_Myappoinments_Datetime, "Myappoinments datetime");
+							CustomerModule.Customer_Mydashboard_Myappoinments_Datetime, "Myappoinments datetime");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_Myappoinments_businessname,
+							CustomerModule.Customer_Mydashboard_Myappoinments_businessname,
 							"Myappoinments business name");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_Myappoinments_amount, "Myappoinments Amount");
+							CustomerModule.Customer_Mydashboard_Myappoinments_amount, "Myappoinments Amount");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_Myappoinments_appoinmentstatus,
+							CustomerModule.Customer_Mydashboard_Myappoinments_appoinmentstatus,
 							"Myappoinments Appinmentstatus");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_Myappoinments_paymentstatus,
+							CustomerModule.Customer_Mydashboard_Myappoinments_paymentstatus,
 							"Myappoinments payment status");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_Myappoinments_action, "Myappoinments action");
+							CustomerModule.Customer_Mydashboard_Myappoinments_action, "Myappoinments action");
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_Myappoinments_type,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_type,
 							"Myappoinments filter type");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_Myappoinments_upcomingappinments,
+							CustomerModule.Customer_Mydashboard_Myappoinments_upcomingappinments,
 							"Myappoinments upcoming appoinments");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_Myappoinments_pastappinments,
+							CustomerModule.Customer_Mydashboard_Myappoinments_pastappinments,
 							"Myappoinments past appoinments");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_Myappoinments_status, "Myappoinments status");
+							CustomerModule.Customer_Mydashboard_Myappoinments_status, "Myappoinments status");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_Myappoinments_status_completed,
+							CustomerModule.Customer_Mydashboard_Myappoinments_status_completed,
 							"Myappoinments status completed");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_Myappoinments_status_pending,
+							CustomerModule.Customer_Mydashboard_Myappoinments_status_pending,
 							"Myappoinments status pending");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_Myappoinments_status_cancelled,
+							CustomerModule.Customer_Mydashboard_Myappoinments_status_cancelled,
 							"Myappoinments status cancelled");
 
 					/*
 					 * }else if(browser.elementisdisplayed(CustomerModule.
-					 * CustomerReg_Mydashboard_Myappoinments_selectedappoinments_header
+					 * Customer_Mydashboard_Myappoinments_selectedappoinments_header
 					 * )){ browser.reportscomtep("passed",
 					 * "Verify selected appoinments is displayed" ,
 					 * "selected appoinments should be displayed",
@@ -1210,67 +1211,67 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 		try {
 
-			if (browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_header)) {
+			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
 
 				browser.reportscomtep("Passed", "Verify Customer Registration form My dashboard header is displayed",
 						"Customer Registration form My dashboard header should be displayed",
 						"Customer Registration form My dashboard header is displayed");
 
-				browser.click(CustomerModule.CustomerReg_Mydashboard_settings);
+				browser.click(CustomerModule.Customer_Mydashboard_settings);
 				browser.wait(5);
 
-				if (browser.elementisdisplayed(CustomerModule.CustomerReg_Mydashboard_settings_header)) {
+				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_settings_header)) {
 					browser.reportscomtep("Passed", "Verify settings header is displayed",
 							"settings header should be displayed", "settings header is displayed");
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_FirstName,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_FirstName,
 							" dashboard settings firstname");
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_LastName,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_LastName,
 							"dashboard settings lastnme");
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_Email,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_Email,
 							"dashboard settings");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_settings_Gender_Male, "dashboard settings male");
+							CustomerModule.Customer_Mydashboard_settings_Gender_Male, "dashboard settings male");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_settings_Gender_Female, "dashboard settings female");
+							CustomerModule.Customer_Mydashboard_settings_Gender_Female, "dashboard settings female");
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_Phone,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_Phone,
 							"dashboard settings phone");
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_Address,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_Address,
 							"dashboard settings address");
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_city,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_city,
 							"dashboard settings city");
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_State,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_State,
 							"dashboard settings state");
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_Country,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_Country,
 							"dashboard settings country");
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_zipcode,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_zipcode,
 							"dashboard settings zipcode");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_settings_Birthday_date,
+							CustomerModule.Customer_Mydashboard_settings_Birthday_date,
 							"dashboard settings birthday date");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_settings_Birthday_Month,
+							CustomerModule.Customer_Mydashboard_settings_Birthday_Month,
 							"dashboard settings birthday month");
 
 					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.CustomerReg_Mydashboard_settings_changepassword_lynk,
+							CustomerModule.Customer_Mydashboard_settings_changepassword_lynk,
 							"dashboard settings changepassword lynk");
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_cancel,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_cancel,
 							"dashboard settings cancel");
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.CustomerReg_Mydashboard_settings_Update,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_Update,
 							"dashboard settings update");
 
 				} else {

@@ -48,19 +48,23 @@ public class TS_3_01_Customerlogintocustomerdashboardforthefirsttime extends Sta
 		driver.quit();
 	}
 	
-	@Test(priority=0, description="TC_001 Customer visits ShearCircle page" )
+	@Test(priority=0, description="TC_3_1_001 Customer visits ShearCircle page" )
 	public void TC_001_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=1, description="TC_002 Customer clicks JoinOurCircle Button " )
+	@Test(priority=1, description="TC_3_1_002 Customer clicks Login Button " )
 	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {			
-		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_JoinOurCircle");			
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
-	@Test(priority=2, description="TC_003 Customer Check Register With ShearCircle page where they can register either as a Customer or as a Professional" )
+	@Test(priority=2, description="TC_3_1_003 Customer Login with registered Username(Email id) & Password " )
 	public void TC_003_Customer_CheckRegisterWithShearCirclepage() throws IOException {			
-		CR.ShearCircle_Click_Customer_OR_Professional_JoinOurCircle("DoNothing");			
+		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");			
+	}
+	@Test(priority=3, description="TC_3_1_004  Customer Login to Customer Dashboard for the first time ")
+	public void TC_003_Customer_CheckDashboardfieldsvalidation() throws IOException {			
+		CR.ShearCircle_Verify_customer_dashboard_fieldvalidation();			
 	}
 	
 
