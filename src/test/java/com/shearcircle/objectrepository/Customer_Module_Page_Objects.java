@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 public class Customer_Module_Page_Objects{
 
 //object information
+	
 	@FindBy(xpath="//*[@id='sub_content']/h1[text()='Register With ShearCircle']")	
     public WebElement Customer_RegisterWithShearCircle_Header;	
 
