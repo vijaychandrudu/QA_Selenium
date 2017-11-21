@@ -58,7 +58,7 @@ public class SubscriberSignup extends StaticVariables  {
 	@Test(description = "Subscriber clicks on Start 14 Day Free Trial button ")
 	public void TS002() throws Exception {
 		SR =new Subscriber_Module_Page_Components() ;
-		SR.TS02();
+		//SR.TS02();
 	}
 
 }
