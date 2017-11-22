@@ -67,8 +67,8 @@ public class TS_3_01_Customerlogintocustomerdashboardforthefirsttime extends Sta
 		CR.shearCircle_Verify_Customer_Dashboard_VieldValidation();			
 	}
 	
-	@Test(priority=3, description="TC_3_1_002 Customer Check whether My Favorite is clickable")
-	public void TC_3_1_01_Customer_CheckMyFavouritesclickable() throws IOException {			
+	@Test(priority=4, description="TC_3_1_002 Customer Check whether My Favorite is clickable")
+	public void TC_3_1_02_Customer_CheckMyFavouritesclickable() throws IOException {			
 		CR.shearCircle_Verify_Customer_Dashboard_clickson_MyFavourites();			
 	}
 	
