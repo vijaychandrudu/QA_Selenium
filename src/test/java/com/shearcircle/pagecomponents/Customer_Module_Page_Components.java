@@ -919,7 +919,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	}
 		/***********************Customer Logged into Customer Dashboard for the first time*****************************/
 
-		public void shearCircle_Verify_Customer_Dashboard_VieldValidation() {
+		public void shearCircle_Verify_Customer_Dashboard_fieldValidation() {
 			String WelcomeFullName = null;
 			String LastLoginDateTime = null;
 			String NumberofUpcomingBookings = null;
@@ -945,11 +945,11 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_changeProfilepicture, "Mydashboard changeProfilepicture");
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites, "Mydashboard_myfavourites");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_MyFavourites_Button, "Mydashboard Myfavourites");
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments, "Mydashboard Myappoinments");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Myappoinments_Button, "Mydashboard Myappoinments");
 					
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Settings_Button,
 							"Mydashboard settings");
 					
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Logout,
@@ -977,12 +977,12 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		public void shearCircle_Verify_Customer_Dashboard_clickson_MyFavourites() {
 			try {
 
-				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites)) {
+				if (browser.elementisdisplayed(CustomerModule.Customer_MyFavourites_Button)) {
 					
 					browser.reportscomtep("Passed", "Verify MyFavourites Button is displayed in MyDashboard page",
 							"MyFavourites Button should be displayed in MyDashboard page", "MyFavourites Button displayed in MyDashboard page");
 					
-					browser.click(CustomerModule.Customer_Mydashboard_myfavourites);
+					browser.click(CustomerModule.Customer_MyFavourites_Button);
 					
 					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_header)){
 						browser.reportscomtep("passed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page displayed");
@@ -1022,12 +1022,12 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		public void verify_MyFavorites_firsttimeloginorwithoutpreviouslyadded() {
 			try {
 
-				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites)) {
+				if (browser.elementisdisplayed(CustomerModule.Customer_MyFavourites_Button)) {
 					
 					browser.reportscomtep("Passed", "Verify MyFavourites Button is displayed in MyDashboard page",
 							"MyFavourites Button should be displayed in MyDashboard page", "MyFavourites Button displayed in MyDashboard page");
 					
-					browser.click(CustomerModule.Customer_Mydashboard_myfavourites);
+					browser.click(CustomerModule.Customer_MyFavourites_Button);
 					
 					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_header)){
 						browser.reportscomtep("passed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page displayed");
@@ -1058,12 +1058,12 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		public void verify_MyFavoritewhereSalonsarealreadyadded() {
 			try {
 
-				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites)) {
+				if (browser.elementisdisplayed(CustomerModule.Customer_MyFavourites_Button)) {
 					
 					browser.reportscomtep("Passed", "Verify MyFavourites Button is displayed in MyDashboard page",
 							"MyFavourites Button should be displayed in MyDashboard page", "MyFavourites Button displayed in MyDashboard page");
 					
-					browser.click(CustomerModule.Customer_Mydashboard_myfavourites);
+					browser.click(CustomerModule.Customer_MyFavourites_Button);
 					
 					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_header)){
 						browser.reportscomtep("passed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page displayed");
@@ -1200,7 +1200,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						"Customer Registration form My dashboard header should be displayed",
 						"Customer Registration form My dashboard header is displayed");
 
-				browser.click(CustomerModule.Customer_Mydashboard_Myappoinments);
+				browser.click(CustomerModule.Customer_Myappoinments_Button);
 				browser.wait(5);
 
 				if (browser.elementisdisplayed(
@@ -1303,7 +1303,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						"Customer Registration form My dashboard header should be displayed",
 						"Customer Registration form My dashboard header is displayed");
 
-				browser.click(CustomerModule.Customer_Mydashboard_settings);
+				browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);
 				browser.wait(5);
 
 				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_settings_header)) {

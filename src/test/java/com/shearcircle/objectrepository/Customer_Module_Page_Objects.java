@@ -134,11 +134,11 @@ public class Customer_Module_Page_Objects{
 	public WebElement Customer_Mydashboard_Profilepicture;
 
 
-	@FindBy(xpath="//*[@id='filters_col']//li[@class='active']/a[text()=' My Dashboard']")
-	public WebElement Customer_Mydashboard_myfavourites;
+	@FindBy(xpath="//*[@id='filters_col']//li/a[text()=' My Favorites']")
+	public WebElement Customer_MyFavourites_Button;
 
 	@FindBy(xpath="//*[@id='filters_col']//a[text()=' My Appointments']")
-	public WebElement Customer_Mydashboard_Myappoinments;
+	public WebElement Customer_Myappoinments_Button;
 
 	@FindBy(xpath="/html/body/div/div/div/div/div/div[@class='col-md-12']")
 	public WebElement Customer_Mydashboard_Myappoinments_header;
@@ -192,7 +192,7 @@ public class Customer_Module_Page_Objects{
 	public WebElement Customer_Mydashboard_Myappoinments_status_cancelled;
 
 	@FindBy(xpath="//*[@id='filters_col']//a[text()=' Settings']")
-	public WebElement Customer_Mydashboard_settings;
+	public WebElement Customer_Mydashboard_Settings_Button;
 
 	@FindBy(xpath="//*[@id='filters_col']//a[@href='https://shearcircle.com/testbed/customer/settings']")
 	public WebElement Customer_Mydashboard_settings_header;

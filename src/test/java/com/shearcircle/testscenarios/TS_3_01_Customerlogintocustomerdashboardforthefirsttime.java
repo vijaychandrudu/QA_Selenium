@@ -64,7 +64,7 @@ public class TS_3_01_Customerlogintocustomerdashboardforthefirsttime extends Sta
 	}
 	@Test(priority=3, description="TC_3_1_001 Customer checks Dashboard page field validation")
 	public void TC_3_1_01_Customer_CheckDashboardfieldsvalidation() throws IOException {			
-		CR.shearCircle_Verify_Customer_Dashboard_VieldValidation();			
+		CR.shearCircle_Verify_Customer_Dashboard_fieldValidation();			
 	}
 	
 	@Test(priority=4, description="TC_3_1_002 Customer Check whether My Favorite is clickable")
