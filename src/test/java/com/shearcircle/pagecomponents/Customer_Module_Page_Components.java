@@ -919,7 +919,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	}
 		/***********************Customer Logged into Customer Dashboard for the first time*****************************/
 
-		public void ShearCircle_Verify_customer_dashboard_fieldvalidation() {
+		public void shearCircle_Verify_Customer_Dashboard_VieldValidation() {
 			String WelcomeFullName = null;
 			String LastLoginDateTime = null;
 			String NumberofUpcomingBookings = null;
@@ -972,43 +972,129 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			}
 		}
 
-		/***********************Customer clicks on My Favourites (in progress) *****************************/
+		/***********************Customer clicks on My Favourites and verify list of added MyFavourites or No list added message *****************************/
 
-		public void ShearCircle_Verify_customer_dashboard_clickson_MyFavourites() {
+		public void shearCircle_Verify_Customer_Dashboard_clickson_MyFavourites() {
 			try {
 
-				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
+				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites)) {
 					
-					browser.reportscomtep("Passed", "Verify Customer Registration form My dashboard header is displayed",
-							"Customer Registration form My dashboard header should be displayed", "Customer Registration form My dashboard header is displayed");
+					browser.reportscomtep("Passed", "Verify MyFavourites Button is displayed in MyDashboard page",
+							"MyFavourites Button should be displayed in MyDashboard page", "MyFavourites Button displayed in MyDashboard page");
 					
 					browser.click(CustomerModule.Customer_Mydashboard_myfavourites);
-					browser.wait(5);
 					
-					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_businesslist)){
-						browser.reportscomtep("Passed", "Verify list of favourites is displayed"  , "list of favourites should be displayed", "list of favourites is displayed");
+					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_header)){
+						browser.reportscomtep("passed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page displayed");
 						
-						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_bookme,
-								"Mydashboard myfavourites businesslist bookme");
-						
-						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_remove,
-								"Mydashboard myfavourites businesslist remove");
-			
-					}else if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_header)){
-						browser.reportscomtep("passed", "Verify Zero favourites is displayed"  , "Zero favourites should be displayed", " Zero favourites is  displayed");
 					} else {
-						browser.reportscomtep("Failed", "Verify list of favourites is displayed",
-								"list of favourites should be displayed", "list of favourites is not displayed");
+						browser.reportscomtep("Failed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page not displayed");
 					}
-					}else {
-						browser.reportscomtep("Failed", "Verify Customer Registration form My dashboard header is displayed",
-								"Customer Registration form My dashboard header should be displayed", "Customer Registration form My dashboard header is not displayed");
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_businesslist)){
+						browser.reportscomtep("Passed", "Verify List of Favourites or No Favorites Added Yet message is displayed"  , "List of Favourites or No Favorites Added Yet message should be displayed", "List of Salons added as Favourites displayed");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_myfavourites_Bookme_Button,
+								"MyFavourites businesslist Bookme Button");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_myfavourites_Remove_Button,
+								"MyFavourites businesslist Remove Button");			
+					
+					}else if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_NoList_Message)){
+						browser.reportscomtep("Passed", "Verify List of Favourites or No Favorites Added Yet message is displayed"  , "List of Favourites or No Favorites Added Yet message should be displayed", "No Favorites Added Yet message displayed if no Salons are marked as Favorite/ 1st time login");
+					}else{
+						browser.reportscomtep("Failed", "Verify List of Favourites or No Favorites Added Yet message is displayed"  , "List of Favourites or No Favorites Added Yet message should be displayed", "List of Salons added as Favourites or No Favorites Added Yet message not displayed");
 					}
+										
+					
+				}else {
+					browser.reportscomtep("Failed", "Verify MyFavourites Button is displayed in MyDashboard page",
+							"MyFavourites Button should be displayed in MyDashboard page", "MyFavourites Button Not displayed in MyDashboard page");
+				}
 					
 					}catch (Exception e) {
 						System.out.println("Error description: " + e.getStackTrace());
+				}
+			}
+		
+		/***********************Customer clicks on My Favourites (in progress) *****************************/
+
+		public void verify_MyFavorites_firsttimeloginorwithoutpreviouslyadded() {
+			try {
+
+				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites)) {
+					
+					browser.reportscomtep("Passed", "Verify MyFavourites Button is displayed in MyDashboard page",
+							"MyFavourites Button should be displayed in MyDashboard page", "MyFavourites Button displayed in MyDashboard page");
+					
+					browser.click(CustomerModule.Customer_Mydashboard_myfavourites);
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_header)){
+						browser.reportscomtep("passed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page displayed");
+						
+					} else {
+						browser.reportscomtep("Failed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page not displayed");
+					}						
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_NoList_Message)){
+						browser.reportscomtep("Passed", "Verify No Favorites Added Yet message is displayed if no Salons are marked as Favorite/ 1st time login"  , "No Favorites Added Yet message should be displayed", "No Favorites Added Yet message displayed");
+					}else{
+						browser.reportscomtep("Failed", "Verify No Favorites Added Yet message is displayed if no Salons are marked as Favorite/ 1st time login"  , "No Favorites Added Yet message should be displayed", "No Favorites Added Yet message Not displayed");
 					}
+										
+					
+				}else {
+					browser.reportscomtep("Failed", "Verify MyFavourites Button is displayed in MyDashboard page",
+							"MyFavourites Button should be displayed in MyDashboard page", "MyFavourites Button Not displayed in MyDashboard page");
+				}
+					
+					}catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+				}
+			}
+		
+		/***********************Customer clicks on My Favourites and verify list of added MyFavourites *****************************/
+
+		public void verify_MyFavoritewhereSalonsarealreadyadded() {
+			try {
+
+				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites)) {
+					
+					browser.reportscomtep("Passed", "Verify MyFavourites Button is displayed in MyDashboard page",
+							"MyFavourites Button should be displayed in MyDashboard page", "MyFavourites Button displayed in MyDashboard page");
+					
+					browser.click(CustomerModule.Customer_Mydashboard_myfavourites);
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_header)){
+						browser.reportscomtep("passed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page displayed");
+						
+					} else {
+						browser.reportscomtep("Failed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page not displayed");
 					}
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_businesslist)){
+						browser.reportscomtep("Passed", "Verify List of Favourites is displayed where Salons are already added as Favorites"  , "List of Favourites should be displayed", "List of Salons added as Favourites displayed");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_myfavourites_Bookme_Button,
+								"MyFavourites businesslist Bookme Button");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_myfavourites_Remove_Button,
+								"MyFavourites businesslist Remove Button");						
+					
+					}else{
+						browser.reportscomtep("Failed", "Verify List of Favourites is displayed where Salons are already added as Favorites"  , "List of Favourites should be displayed", "List of Salons added as Favourites Not displayed");
+					}
+										
+					
+				}else {
+					browser.reportscomtep("Failed", "Verify MyFavourites Button is displayed in MyDashboard page",
+							"MyFavourites Button should be displayed in MyDashboard page", "MyFavourites Button Not displayed in MyDashboard page");
+				}
+					
+					}catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+				}
+			}
 
 		/******************************  Customer clicks on Book Me button in My Favourites ********************************/
 
@@ -1016,10 +1102,10 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			
 			try {
 
-				if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_businesslist)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_businesslist)){
 					browser.reportscomtep("Passed", "Verify list of favourites is displayed"  , "list of favourites should be displayed", "list of favourites is displayed");
 				
-					browser.click(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_bookme);
+					browser.click(CustomerModule.Customer_myfavourites_Bookme_Button);
 					browser.wait(5);
 					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_bookme_digitekheader)){
 						browser.reportscomtep("Passed", "Verify bookme digitek header is displayed"  , "bookme digitek header should be displayed", "bookme digitek header is displayed");
@@ -1080,10 +1166,10 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			
 			try {
 
-				if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_businesslist)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_businesslist)){
 					browser.reportscomtep("Passed", "Verify list of favourites is displayed"  , "list of favourites should be displayed", "list of favourites is displayed");
 				
-					browser.click(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_remove);
+					browser.click(CustomerModule.Customer_myfavourites_Remove_Button);
 					browser.wait(5);
 					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_remove_header)){
 						browser.reportscomtep("Passed", "Verify Removed popup is displayed"  , "Removed popup should be displayed", "Removed popup is displayed");

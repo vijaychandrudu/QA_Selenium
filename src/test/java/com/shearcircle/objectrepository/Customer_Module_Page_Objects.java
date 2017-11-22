@@ -209,17 +209,20 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='sub_content']/h1[text()='My Dashboard']")
 	public WebElement Customer_Mydashboard_header;
 
-	@FindBy(xpath="/html/body/div/div/div/div/div/div[@class='col-md-12']")
+	@FindBy(xpath="//div/h3[text()='Favorites']")
 	public WebElement Customer_Mydashboard_myfavourites_header;
 
 	@FindBy(xpath="/html/body/div[3]/div/div[2]/div/div/div/div[2]/div[2]")
-	public WebElement Customer_Mydashboard_myfavourites_businesslist;
+	public WebElement Customer_Myfavourites_businesslist;
+	
+	@FindBy(xpath="//div[2]/h4[text()='No Favorites Added Yet']")
+	public WebElement Customer_Myfavourites_NoList_Message;
 	
 	@FindBy(xpath="//div[2]/div/div/div/div[2]/div[1]//a[text()='Book Me']")
-	public WebElement Customer_Mydashboard_myfavourites_businesslist_bookme;
+	public WebElement Customer_myfavourites_Bookme_Button;
 	
 	@FindBy(xpath="//div[1]/div/div/div/a[text()='Remove']")
-	public WebElement Customer_Mydashboard_myfavourites_businesslist_remove;
+	public WebElement Customer_myfavourites_Remove_Button;
 	
 	@FindBy(xpath="/html/body/div[@class='sweet-alert showSweetAlert visible']")
 	public WebElement Customer_Mydashboard_myfavourites_businesslist_remove_header;
