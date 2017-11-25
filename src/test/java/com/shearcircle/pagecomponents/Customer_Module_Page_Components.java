@@ -1106,9 +1106,9 @@ public class Customer_Module_Page_Components extends StaticVariables {
 					browser.reportscomtep("Passed", "Verify list of favourites is displayed"  , "list of favourites should be displayed", "list of favourites is displayed");
 				
 					browser.click(CustomerModule.Customer_myfavourites_Bookme_Button);
-					browser.wait(5);
+					
 					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_bookme_digitekheader)){
-						browser.reportscomtep("Passed", "Verify bookme digitek header is displayed"  , "bookme digitek header should be displayed", "bookme digitek header is displayed");
+						browser.reportscomtep("Passed", "Click on Bookme button and Verify bookme digitek header is displayed"  , "bookme digitek header should be displayed", "bookme digitek header is displayed");
 						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_fullname,
 								"Mydashboard fullname");
 
@@ -1143,7 +1143,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 								"Mydashboard bookme share");
 
 					}else {
-						browser.reportscomtep("Failed", "Verify bookme digitek header is displayed"  , "bookme digitek header should be displayed", "bookme digitek header is not displayed");
+						browser.reportscomtep("Failed", "Click on Bookme button and Verify bookme digitek header is displayed"  , "bookme digitek header should be displayed", "bookme digitek header is not displayed");
 					}
 				
 					}else {
