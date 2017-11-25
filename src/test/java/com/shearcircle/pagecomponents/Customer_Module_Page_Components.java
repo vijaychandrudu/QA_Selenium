@@ -1098,7 +1098,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 		/******************************  Customer clicks on Book Me button in My Favourites ********************************/
 
-		public void ShearCircle_Verify_bookme_button_inmyfavourites() {
+		public void shearCircle_Verify_Bookme_Button_InmyFavourites() {
 			
 			try {
 
@@ -1162,7 +1162,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 		/*****************************  Customer clicks on Remove button in My Favourites(in progress) *************************/
 		
-	public void ShearCircle_Verify_Customer_RemoveButton_in_Myfavourites() {
+	public void shearCircle_Verify_Customer_RemoveButton_in_Myfavourites() {
 			
 			try {
 
@@ -1190,7 +1190,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 	/*****************************  Customer clicks on My Appointments  *************************/
 
-	public void ShearCircle_Verify_Customer_clickson_Myappoinments() {
+	public void shearCircle_Verify_Customer_clickson_Myappoinments() {
 			
 		try {
 
@@ -1201,7 +1201,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						"Customer Registration form My dashboard header is displayed");
 
 				browser.click(CustomerModule.Customer_Myappoinments_Button);
-				browser.wait(5);
+				
 
 				if (browser.elementisdisplayed(
 						CustomerModule.Customer_Mydashboard_Myappoinments_Noappoinments_header)) {
@@ -1293,7 +1293,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 	/*****************************  Customer clicks on Settings   *************************/
 
-	public void ShearCircle_Verify_Customer_clickson_Settings() {
+	public void shearCircle_Verify_Customer_clickson_Settings() {
 
 		try {
 
@@ -1303,7 +1303,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						"Customer Registration form My dashboard header should be displayed",
 						"Customer Registration form My dashboard header is displayed");
 
-				browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);
+				browser.click(CustomerModule.Customer_Mydashboard_Settings);
 				browser.wait(5);
 
 				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_settings_header)) {
@@ -1316,7 +1316,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 							"dashboard settings lastnme");
 
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_Email,
-							"dashboard settings");
+							"dashboard settings EMail");
 
 					browser.Verify_elementisdisplayed_Report(
 							CustomerModule.Customer_Mydashboard_settings_Gender_Male, "dashboard settings male");
@@ -1371,6 +1371,207 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 		}
 	}
+
+	/*****************************  Check whether My Appointments is clickable	  *************************/
+
+	public void shearCircle_Verify_Customer_Clickson_MyAppoinments() {
+			
+		try {
+
+			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
+
+				browser.reportscomtep("Passed", "Verify Customer My dashboard header is displayed",
+						"Customer My dashboard header should be displayed",
+						"Customers My dashboard header is displayed");
+
+				browser.click(CustomerModule.Customer_Myappoinments_Button);
 		
+				if (browser.elementisdisplayed(
+						CustomerModule.Customer_Mydashboard_Myappoinments_header)) {
+					browser.reportscomtep("Passed", "verify My appoinments header is displayed ",
+							"My appoinments header should be displayed", "My appoinments header is displayed");
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Mydashboard_Myappoinments_Noappoinments_header,
+							"Mydashbord Noappoinments header");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Mydashboard_Myappoinments_selectedappoinments_header,
+							"Mydashboard selected appoinments header");
+
+				} else {
+					browser.reportscomtep("Failed", "verify My appoinments header is displayed ",
+							"My appoinments header should be displayed", "My appoinments header is not displayed");
+					
+				}
+				} else {
+				browser.reportscomtep("Failed", "Verify Customer Registration form My dashboard header is displayed",
+						"Customer Registration form My dashboard header should be displayed",
+						"Customer Registration form My dashboard header is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+
+
 	}
+	
+	/*****************************  Check whether Settings is clickable	  *************************/
+
+	public void shearCircle_Verify_Customer_Clickson_Settings() {
+			
+		try {
+
+			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
+
+				browser.reportscomtep("Passed", "Verify Customer My dashboard header is displayed",
+						"Customer My dashboard header should be displayed",
+						"Customers My dashboard header is displayed");
+
+				browser.click(CustomerModule.Customer_Mydashboard_Settings);
+		
+				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_settings_header)) {
+					browser.reportscomtep("Passed", "Verify settings header is displayed",
+							"settings header should be displayed", "settings header is displayed");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_FirstName,
+							" dashboard settings firstname");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_LastName,
+							"dashboard settings lastnme");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_Email,
+							"dashboard settings EMail");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Mydashboard_settings_Gender_Male, "dashboard settings male");
+
+				} else {
+					browser.reportscomtep("Failed", "Verify settings header is displayed",
+							"settings header should be displayed", "settings header is not displayed");
+				}
+					
+			} else {
+				browser.reportscomtep("Failed", "Verify Customer Registration form My dashboard header is displayed",
+						"Customer Registration form My dashboard header should be displayed",
+						"Customer Registration form My dashboard header is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+		/*****************************  Check the info in My Appointments for first time login/ without creating any bookings	  *************************/
+
+	public void shearCircle_Verify_Customer_Clickson_MyAppoinments_firsttime_Login() {
+		
+		try {
+
+			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
+
+				browser.reportscomtep("Passed", "Verify Customer My dashboard header is displayed",
+						"Customer My dashboard header should be displayed",
+						"Customers My dashboard header is displayed");
+
+				browser.click(CustomerModule.Customer_Myappoinments_Button);
+				if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Myappoinments_Noappoinments_header)){
+					browser.reportscomtep("Passed", "Verify No Appoinments is displayed",
+												"No Appoinments should be displayed", "No Appoinments is displayed");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_Noappoinments_header,
+							"Mydashboard Noappoinments header");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_type,
+							"Mydashboard Myappoinments Type");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_status,
+							"Mydashboard Myappoinments Status");
+
+				}else{
+					browser.reportscomtep("Failed", "Verify No Appoinments is displayed",
+							"No Appoinments should be displayed", "No Appoinments is not displayed");
+				}
+				
+					
+			} else {
+				browser.reportscomtep("Failed", "Verify Customer Registration form My dashboard header is displayed",
+						"Customer Registration form My dashboard header should be displayed",
+						"Customer Registration form My dashboard header is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+
+
+	}
+	/*****************************  Check info in My Appointments for account that has made bookings previously		  *************************/
+
+	public void shearCircle_Verify_Customer_Clickson_MyAppoinments_Accountholder_Login() {
+		
+		try {
+
+			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
+
+				browser.reportscomtep("Passed", "Verify Customer My dashboard header is displayed",
+						"Customer My dashboard header should be displayed",
+						"Customers My dashboard header is displayed");
+
+				browser.click(CustomerModule.Customer_Myappoinments_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Myappoinments_selectedappoinments_header)) {
+					browser.reportscomtep("Passed", "Verify list of appoinments is displayed with view button",
+							"list of appoinments with view button should be displayed", "list of appoinments  with view button is displayed");
+					
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_View,
+							"Mydashboard appoinments View");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_pagebookings,
+							"Mydashboard appoinments pagebookings");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_ID,
+							"My dashboard Myappoinments ID");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Mydashboard_Myappoinments_Datetime, "Myappoinments datetime");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Mydashboard_Myappoinments_businessname,
+							"Myappoinments business name");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Mydashboard_Myappoinments_amount, "Myappoinments Amount");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Mydashboard_Myappoinments_appoinmentstatus,
+							"Myappoinments Appinmentstatus");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Mydashboard_Myappoinments_paymentstatus,
+							"Myappoinments payment status");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_type,
+							"Mydashboard Myappoinments Type");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_status,
+							"Mydashboard Myappoinments Status");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_arrow_pagenumbers,
+							"Mydashboard Myappoinments arrow pagenumbers");
+
+				} else {
+					browser.reportscomtep("Failed", "Verify list of appoinments is displayed with view button",
+							"list of appoinments with view button should be displayed", "list of appoinments  with view button is not displayed");
+				}
+									
+			} else {
+				browser.reportscomtep("Failed", "Verify Customer Registration form My dashboard header is displayed",
+						"Customer Registration form My dashboard header should be displayed",
+						"Customer Registration form My dashboard header is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+
+
+	}
+	
+			}
 

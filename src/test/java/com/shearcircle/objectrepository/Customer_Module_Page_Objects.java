@@ -149,6 +149,9 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="/html/body/div/div/div/div/div/div[@class='col-md-12']")
 	public WebElement Customer_Mydashboard_Myappoinments_selectedappoinments_header;
 
+	@FindBy(xpath="/html/body/div[3]/div/div[2]/div/div/div/div[2]")
+	public WebElement Customer_Mydashboard_Myappoinments_pagebookings;
+
 	@FindBy(xpath="//div/table/tbody/tr/th[text()='# ID']")
 	public WebElement Customer_Mydashboard_Myappoinments_ID;
 
@@ -169,6 +172,12 @@ public class Customer_Module_Page_Objects{
 
 	@FindBy(xpath="//div/table/tbody/tr/th[text()='Business Name']")
 	public WebElement Customer_Mydashboard_Myappoinments_action;
+	
+	@FindBy(xpath="/html/body//tr[2]/td/a[@class='btn btn-xs btn-success']")
+	public WebElement Customer_Mydashboard_Myappoinments_View;
+
+	@FindBy(xpath="/html/body//div/p[@class='text-center ng-binding']")
+	public WebElement Customer_Mydashboard_Myappoinments_arrow_pagenumbers;
 	
 	@FindBy(xpath="//div/div/select/option[text()='Type']")
 	public WebElement Customer_Mydashboard_Myappoinments_type;
@@ -192,7 +201,7 @@ public class Customer_Module_Page_Objects{
 	public WebElement Customer_Mydashboard_Myappoinments_status_cancelled;
 
 	@FindBy(xpath="//*[@id='filters_col']//a[text()=' Settings']")
-	public WebElement Customer_Mydashboard_Settings_Button;
+	public WebElement Customer_Mydashboard_Settings;
 
 	@FindBy(xpath="//*[@id='filters_col']//a[@href='https://shearcircle.com/testbed/customer/settings']")
 	public WebElement Customer_Mydashboard_settings_header;
