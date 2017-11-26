@@ -71,6 +71,14 @@ public class TS_3_01_Customerlogintocustomerdashboardforthefirsttime extends Sta
 	public void TC_3_1_02_Customer_CheckMyFavouritesclickable() throws IOException {			
 		CR.shearCircle_Verify_Customer_Dashboard_clickson_MyFavourites();			
 	}
+	@Test(priority=4, description="TC_3_1_003 Customer Check whether My Appointments is clickable")
+	public void TC_3_1_03_Customer_CheckMyAppointmentsclickable() throws IOException {			
+		CR.shearCircle_Verify_Customer_Clickson_MyAppoinments();			
+	}
+	@Test(priority=4, description="TC_3_1_004 Customer Check whether Settings is clickable")
+	public void TC_3_1_04_Customer_CheckSettingsclickable() throws IOException {			
+		CR.shearCircle_Verify_Customer_Clickson_Settings();			
+	}
 	
 
 }
