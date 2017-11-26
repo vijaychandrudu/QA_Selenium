@@ -1,10 +1,13 @@
 package com.shearcircle.pagecomponents;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+
 import com.shearcircle.objectrepository.Customer_Module_Page_Objects;
 import com.shearcircle.objectrepository.Login_page_objects;
 import com.shearcircle.utilities.CommonFunctions;
@@ -1570,8 +1573,307 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 		}
 
-
 	}
 	
+	/****************************Login ***************************/
+	public void ShearCircle_Customer_Login() {
+		String CustomerValidEmail = null;
+		String CustomerValidPassword = null;
+		browser.loaddata(TestDataPath);
+		CustomerValidEmail = browser.getdata("CustomerValidEmail");
+		CustomerValidPassword = browser.getdata("CustomerValidPassword");
+		try {
+			if (browser.elementisdisplayed(Login.Home_Login_Link)) {
+				browser.reportscomtep("Passed", "Verify Login link is displayed", "Login link should be displayed",
+						"Login link is displayed");
+				browser.click(Login.Home_Login_Link);
+				browser.sendkeys(Login.Login_UserName_textbox, CustomerValidEmail);
+				browser.sendkeys(Login.Login_PassWord_textbox, CustomerValidPassword);
+				browser.click(Login.Login_signin_button);
+				//browser.assertEquals(browser.getelementtext(Login.MyDashboard_ValidMessage_text),"My Dashboard");
+				browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header);
+				browser.click(CustomerModule.Customer_MyAppoinment_Link);
+			} else {
+				browser.reportscomtep("Failed", "Verify Sign In To ShearCircle page header is displayed",
+						"Sign In To ShearCircle page header should be displayed",
+						"Sign In To ShearCircle page header not displayed");
 			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+	
+	
+/******************TC_3_3_03	Check whether the View button is clickable ************/
+
+	public void Check_View_Button_Is_clickable() {
+		try {
+
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinment_Header)) {
+				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
+				if (browser.elementisdisplayed(CustomerModule.Customer_AppointmentID_Text)) {
+					browser.reportscomtep("Passed", "Verify AppointmentID is displayed ",
+							"AppointmentID should be displayed", "AppointmentID displayed");
+					String ParentWindowHandle = driver.getWindowHandle();
+					System.out.println("ParentWindowHandle " + ParentWindowHandle);
+					browser.click(CustomerModule.Customer_ClicksOnView_Button);
+					Thread.sleep(4000);
+					for (String handle : driver.getWindowHandles()) {
+						System.out.println(handle);
+						driver.switchTo().window(handle);
+						}
+					Thread.sleep(4000);
+					if (browser.elementisdisplayed(CustomerModule.Customer_ViewBookingSummary_Text)) {
+						browser.reportscomtep("Passed", "Verify View Booking Summary is displayed ",
+								"View Booking Summary should be displayed", "View Booking Summary displayed");
+					} else {
+						browser.reportscomtep("Failed", "Verify View Booking Summary is displayed ",
+								"View Booking Summary should be displayed", "View Booking Summary not displayed");
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify AppointmentID is displayed ",
+							"AppointmentID should be displayed", "AppointmentID not displayed");
+					}
+			} else {
+				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header not displayed");
+				}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+			}
+	}
+
+	/*************
+	 * TC_3_3_04 Check whether the page navigation forward arrows are clickable
+	 ***************/
+	public void checkWhether_ThePageNavigation_ForwardArrowsAre_Clickable() {
+		try {
+			browser.ScrollToXY(0, 250);
+			if (browser.elementisdisplayed(CustomerModule.Customer_FirstPageShowing_Link)) {
+				browser.reportscomtep("Passed", "Verify  My Appaintments are defafulted in  first page",
+						" My Appaintments should be in  first page", "Verify My Appaintments in  first page");
+				browser.click(CustomerModule.Customer_NavigateToNextPage_Link);
+				Thread.sleep(6000);
+				System.out.println("click on > take to next page i.e 2 page of  list is showed");
+				browser.click(CustomerModule.Customer_NavigateToLastPage_Link);
+				Thread.sleep(10000);
+				System.out.println("click on >> take to last page i.e 20 page of list is showed");
+			} else {
+				browser.reportscomtep("Failed", "Verify My Appaintments are defafulted  in  first page",
+						"Verify My Appaintments should be in  first page", "Verify My Appaintments not in  first page");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+
+	/************
+	 * TC_3_3_05 Check whether the page navigation backward arrows are clickable
+	 ****************/
+
+	public void checkWhether_ThePageNavigation_BackwardArrowsAre_Clickable() {
+		try { 
+			browser.ScrollToXY(0, 250);
+			browser.click(CustomerModule.Customer_NavigateToLastPage_Link);
+			Thread.sleep(8000);
+			System.out.println("click on >> take to  page i.e 20 page of list is showed");
+			browser.click(CustomerModule.Customer_NaviagateToPreviousPage_Link);
+			Thread.sleep(8000);
+			System.out.println("click on < take to last page i.e 19 page of list is showed");
+			browser.click(CustomerModule.Customer_NaviagateToFirstPage_Link);
+			Thread.sleep(8000);
+			System.out.println("click on << take to  page i.e  1 page of list is showed");
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+
+	/***********************
+	 * TC_3_3_06 Check whether the correct page is displayed by clicking on page
+	 * number
+	 *******************/
+	public void checkWhether_TheCorrectPage_IsDIsplayedBy_ClickingoOnPage_Number() {
+		try {
+				browser.ScrollToXY(0, 250);
+			if (browser.elementisdisplayed(CustomerModule.Customer_FirstPageShowing_Link)) {
+				browser.reportscomtep("Passed", "Verify  My Appaintments are defafulted in  first page",
+						" My Appaintments should be in  first page", "Verify My Appaintments in  first page");
+				Thread.sleep(8000);
+				browser.click(CustomerModule.Customer_ThiredPage_Link);
+				System.out.println("click on 3 take to page i.e 3 page of list is showed");
+				wait();
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify My Appaintments are defafulted  in  first page",
+						"Verify My Appaintments should be in  first page", "Verify My Appaintments not in  first page");
+		} 
+		}catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	/****************************
+	 * TC_3_3_07 Check the available filters in Type
+	 *********************/
+
+	public void checkThe_Available_Filters_InType() {
+		try {
+		/*	List<WebElement> Type = driver.findElements(By.xpath("//*[@ng-model='filter']"));
+			for (WebElement ele : Type) {
+				System.out.println("Displays list of filters: " +ele.getText().toUpperCase());
+			}
+			Select dropDown = new Select(CustomerModule.Customer_Dropdown_Type));
+			Thread.sleep(8000);
+			List<WebElement> element = dropDown.getOptions();
+			int itemCount = element.size();
+
+			for(int i = 0; i<itemCount; i++)
+			{
+			    System.out.println(element.get(i).getText());
+			}*/
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+
+	/****************************
+	 * TC_3_3_08 Check the available filters in Status
+	 *******************/
+
+	public void checkThe_Available_Status_InType() {
+		try {
+			/*List<WebElement> Status = driver.findElements(By.xpath("html/body//div[1]/div[3]/select/option"));
+			for (WebElement ele : Status) {
+				System.out.println("Displays list of filters: " + ele.getText());
+				}
+			Select dropDown = new Select(driver.findElement(By.xpath("//*[@ng-model='appointment_status']")));
+			Thread.sleep(8000);
+			List<WebElement> element = dropDown.getOptions();
+			int itemCount = element.size();
+
+			for(int i = 0; i<itemCount; i++)
+			{
+				System.out.println(element.get(i).getText());
+			}
+*/		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+
+	/*****************************
+	 * TC_3_3_09 Check the upcoming bookings
+	 ************************/
+	public void check_Upcoming_Bookings() {
+		try {
+		/*	Select drpType = new Select(driver.findElement(By.xpath("//*[@ng-model='filter']")));
+			drpType.selectByVisibleText("Upcoming Appointments");
+			System.out.println("Sleceted Appointment is"+ (drpType).getFirstSelectedOption());
+			WebElement Type = driver
+					.findElement(By.xpath("//*[@ng-model='filter']"));
+			Select Upcoming_Appointments = new Select(Type);
+			Upcoming_Appointments.selectByValue("upcoming");
+			Thread.sleep(3000);
+			if (browser.elementisdisplayed(CustomerModule.Customer_UpcomingAppointments_Message)) {
+				browser.reportscomtep("Passed", "Verify No Appointments Found message is displayed",
+						"No Appointments Found message should be displayed", "No Appointments Found message displayed");
+			} else {
+				browser.reportscomtep("Passed", "Verify No Appointments Found message is displayed",
+						"No Appointments Found message should be displayed",
+						"No Appointments Found message not displayed");
+			}
+		*/} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	/***************
+	 * TC_3_3_10 Check the past bookings ***************{not Execute}
+	 ***/
+
+	public void checkThe_Past_Bookings() {
+		try {
+			/*WebElement Type = driver
+					.findElement(By.xpath("//*[@ng-model='appointment_status']"));
+			Select Past_Appointments = new Select(Type);
+			Past_Appointments.selectByValue("past");
+			Thread.sleep(3000);
+			if (browser.elementisdisplayed(CustomerModule.Customer_PastAppointments_List)) {
+				browser.reportscomtep("Passed", "Verify Past Bookings of the list is Displayed",
+						"Past Bookings of the listshould be displayed", "Past Bookings of the list  Displayed");
+			} else {
+				browser.reportscomtep("Failed", "Verify Past Bookings of the list is Displayed",
+						"Past Bookings of the listshould be displayed", "Past Bookings of the list not  Displayed");
+			}*/
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	/********************** TC_3_3_11 Check the Completed bookings ************/
+
+	public void checkThe_Completed_Bookings() {
+		try {
+			/*WebElement Type = driver.findElement(By.xpath("//*[@ng-model='appointment_status']"));
+			Select Completed = new Select(Type);
+			Completed.selectByValue("completed");
+			if (browser.elementisdisplayed(CustomerModule.Customer_PastAppointments_List)) {
+				browser.reportscomtep("Passed", "","", "");
+				Thread.sleep(3000);
+			} else {
+				browser.reportscomtep("Failed", "","","");
+			}*/
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	/********************* TC_3_3_12 Check the Pending bookings *************/
+	public void checkThe_Pending_Bookings() {
+		try {
+			//WebElement Status = driver.findElement(By.xpath("//*[@ng-model='appointment_status']"));
+			Select Pending = new Select(CustomerModule.Customer_Dropdown_Status);
+			Pending.selectByValue("pending");
+			Thread.sleep(3000);
+			if (browser.elementisdisplayed(CustomerModule.Customer_PastAppointments_List)) {
+				browser.reportscomtep("Passed", "","", "");
+				Thread.sleep(3000);
+			} else {
+				browser.reportscomtep("Failed", "","","");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	/*********************
+	 * TC_3_3_13 Check the Canceled bookings
+	 *********************/
+
+	public void checkThe_Canceled_Bookings() {
+		try {
+			//WebElement Status = driver.findElement(By.xpath("//*[@ng-model='appointment_status']"));
+			Select Canceled = new Select(CustomerModule.Customer_Dropdown_Status);
+			Canceled.selectByValue("canceled");
+			Thread.sleep(3000);
+			if (browser.elementisdisplayed(CustomerModule.Customer_PastAppointments_List)) {
+				browser.reportscomtep("Passed", "","", "");
+				Thread.sleep(3000);
+			} else {
+				browser.reportscomtep("Failed", "","","");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+		
+}
 

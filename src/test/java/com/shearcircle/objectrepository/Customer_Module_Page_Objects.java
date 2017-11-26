@@ -382,6 +382,8 @@ public class Customer_Module_Page_Objects{
     @FindBy(xpath="//*[@ng-model='filter']")
     public WebElement Customer_Dropdown_Type;
     
+    
+    
    /* @FindBy(xpath="//div[2]/select/option")
    public  List<WebElement> Customer_Displays_Listof_Type;
     
