@@ -1303,7 +1303,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						"Customer Registration form My dashboard header should be displayed",
 						"Customer Registration form My dashboard header is displayed");
 
-				browser.click(CustomerModule.Customer_Mydashboard_Settings);
+				browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);
 				browser.wait(5);
 
 				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_settings_header)) {
@@ -1429,7 +1429,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						"Customer My dashboard header should be displayed",
 						"Customers My dashboard header is displayed");
 
-				browser.click(CustomerModule.Customer_Mydashboard_Settings);
+				browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);
 		
 				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_settings_header)) {
 					browser.reportscomtep("Passed", "Verify settings header is displayed",

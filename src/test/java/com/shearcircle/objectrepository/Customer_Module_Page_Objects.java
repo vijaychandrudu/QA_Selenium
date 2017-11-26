@@ -201,7 +201,7 @@ public class Customer_Module_Page_Objects{
 	public WebElement Customer_Mydashboard_Myappoinments_status_cancelled;
 
 	@FindBy(xpath="//*[@id='filters_col']//a[text()=' Settings']")
-	public WebElement Customer_Mydashboard_Settings;
+	public WebElement Customer_Mydashboard_Settings_Button;
 
 	@FindBy(xpath="//*[@id='filters_col']//a[@href='https://shearcircle.com/testbed/customer/settings']")
 	public WebElement Customer_Mydashboard_settings_header;
