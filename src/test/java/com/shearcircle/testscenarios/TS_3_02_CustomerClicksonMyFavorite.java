@@ -15,13 +15,13 @@ import com.shearcircle.pagecomponents.Customer_Module_Page_Components;
 import com.shearcircle.utilities.CommonFunctions;
 import com.shearcircle.utilities.StaticVariables;
 
-public class TS_3_01_Customerlogintocustomerdashboardforthefirsttime extends StaticVariables {
+public class TS_3_02_CustomerClicksonMyFavorite extends StaticVariables {
 	public String TestDataPath;
 	public Customer_Module_Page_Components CR;
 	public CommonFunctions cfn;
 	public static WebDriver driver;
 	
-	public TS_3_01_Customerlogintocustomerdashboardforthefirsttime() throws IOException, InterruptedException{
+	public TS_3_02_CustomerClicksonMyFavorite() throws IOException, InterruptedException{
 		cfn = new CommonFunctions();		
 	}
 		
@@ -62,22 +62,14 @@ public class TS_3_01_Customerlogintocustomerdashboardforthefirsttime extends Sta
 	public void Customer_CheckRegisterWithShearCirclepage() throws IOException {			
 		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");			
 	}
-	@Test(priority=3, description="TC_3_1_001 Customer checks Dashboard page field validation")
-	public void TC_3_1_01_Customer_CheckDashboardfieldsvalidation() throws IOException {			
-		CR.shearCircle_Verify_Customer_Dashboard_fieldValidation();			
+	@Test(priority=3, description="TC_3_2_001 Check the info in My Favorite for first time login/ without previously adding Favorites")
+	public void TC_3_1_01_Customer_CheckMyFavoritesFirsttimelogin_Or_Withoutadding() throws IOException {			
+		CR.verify_MyFavorites_firsttimeloginorwithoutpreviouslyadded();			
 	}
 	
-	@Test(priority=4, description="TC_3_1_002 Customer Check whether My Favorite is clickable")
-	public void TC_3_1_02_Customer_CheckMyFavouritesclickable() throws IOException {			
-		CR.shearCircle_Verify_Customer_Dashboard_clickson_MyFavourites();			
-	}
-	@Test(priority=4, description="TC_3_1_003 Customer Check whether My Appointments is clickable")
-	public void TC_3_1_03_Customer_CheckMyAppointmentsclickable() throws IOException {			
-		CR.shearCircle_Verify_Customer_Clickson_MyAppoinments();			
-	}
-	@Test(priority=4, description="TC_3_1_004 Customer Check whether Settings is clickable")
-	public void TC_3_1_04_Customer_CheckSettingsclickable() throws IOException {			
-		CR.shearCircle_Verify_Customer_Clickson_Settings();			
+	@Test(priority=4, description="TC_3_2_002 Check the info in My Favorite where Salons are already added as Favorites")
+	public void TC_3_1_02_Customer_CheckMyFavouritesalreadyAdded() throws IOException {			
+		CR.verify_MyFavoritewhereSalonsarealreadyadded();			
 	}
 	
 

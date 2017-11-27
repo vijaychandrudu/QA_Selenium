@@ -201,7 +201,7 @@ public class Customer_Module_Page_Objects{
 	public WebElement Customer_Mydashboard_Myappoinments_status_cancelled;
 
 	@FindBy(xpath="//*[@id='filters_col']//a[text()=' Settings']")
-	public WebElement Customer_Mydashboard_Settings;
+	public WebElement Customer_Mydashboard_Settings_Button;
 
 	@FindBy(xpath="//*[@id='filters_col']//a[@href='https://shearcircle.com/testbed/customer/settings']")
 	public WebElement Customer_Mydashboard_settings_header;
@@ -324,7 +324,107 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='edit_profile']//input[@value='UPDATE']")
 	public WebElement Customer_Mydashboard_settings_Update;
 
-	
+/*********************TC_3_3_03************************/
+    
+    @FindBy(xpath="//a[contains(text(),'My App')]")
+    public WebElement Customer_MyAppoinment_Link;
+    
+    @FindBy(xpath="//h3[contains(text(),'My App')]")
+    public WebElement Customer_MyAppoinment_Header;
+    
+    @FindBy(xpath="//td[contains(text(),'157')]")
+    public WebElement Customer_AppointmentID_Text;
+    
+
+    @FindBy(xpath="//tbody/tr[2]/td[7]/a[@href[contains(text(),'')]]")
+    public WebElement Customer_ClicksOnView_Button;
+    
+
+    @FindBy(xpath="//*[contains(text(),'View ')]")
+    public WebElement Customer_ViewBookingSummary_Text;
+    
+
+    @FindBy(xpath="//*[contains(text(),'Appointment I')]")
+    public WebElement Customer_AppointmentID_Heading;
+    
+    /***************TC_3_3_04***************/
+    @FindBy(xpath="//*[text()='1']")
+    public WebElement Customer_FirstPageShowing_Link;
+    
+    @FindBy(xpath="//*[@rel='next']")
+    public WebElement Customer_NavigateToNextPage_Link;
+    
+    @FindBy(xpath="//*[text()='2']")
+    public WebElement Customer_NextPageShowing_Link;
+
+    @FindBy(xpath="//*[text()='>>']")
+    public WebElement Customer_NavigateToLastPage_Link;
+    
+    @FindBy(xpath="//*[text()='20']")
+    public WebElement Customer_LastPageShowing_Link;
+    
+ 
+   /*******************TC_3_3_05****************/
+    
+    @FindBy(xpath="//*[@rel='prev']")
+    public WebElement Customer_NaviagateToPreviousPage_Link;
+    
+    @FindBy(xpath="//*[@rel='start']")
+    public WebElement Customer_NaviagateToFirstPage_Link;
+    
+    /*****************TC_3_3_06***************/
+    
+    @FindBy(xpath="//*[text()='3']")
+    public WebElement Customer_ThiredPage_Link;
+    
+    /********************TC_3_3_07*********************/
+    
+    @FindBy(xpath="//*[@ng-model='filter']")
+    public WebElement Customer_Dropdown_Type;
+    
+    
+    
+   /* @FindBy(xpath="//div[2]/select/option")
+   public  List<WebElement> Customer_Displays_Listof_Type;
+    
+    @FindBy(xpath="/html/body/div[3]//div[2]/select/option[contains(text(),'Upc')]")
+    public WebElement Customer_DropdownOption_UpcomingAppointments;
+    
+    @FindBy(xpath="/html/body/div[3]//div[2]/select/option[contains(text(),'Past')]")
+    public WebElement Customer_DropdownOption_PastAppointments; */
+    
+    /**********************TC_3_3_08*****************************/
+    
+    @FindBy(xpath="//*[@ng-model='appointment_status']")
+    public WebElement Customer_Dropdown_Status;
+    
+  /*  @FindBy(xpath="html/body//div[1]/div[3]/select/option[contains(text(),'Co')]")
+    public WebElement Customer_DropdownOption_Completed;
+    
+    @FindBy(xpath="html/body//div[1]/div[3]/select/option")
+    public List<WebElement> Customer_Displays_ListOf_Status;
+    
+    @FindBy(xpath="html/body//div[1]/div[3]/select/option[contains(text(),'P')]")
+    public WebElement Customer_DropdownOption_Pending;
+    
+    @FindBy(xpath="html/body//div[1]/div[3]/select/option[contains(text(),'Ca')]")
+    public WebElement  Customer_DropdownOption_Canceled;*/
+    
+    /*************TC_3_3_09***********************************/
+   
+    @FindBy(xpath="//*[contains(text(),'No Appoint')]")
+    public WebElement Customer_UpcomingAppointments_Message ;
+    
+    /*************TC_3_3_10***********************************/
+    
+    @FindBy(xpath="//table[@class='table styapp']")
+    public WebElement Customer_PastAppointments_List;
+    
+    /*************************TC_3_3_11**************/
+   
+    @FindBy(xpath="//table[@class='table styapp']")
+    public WebElement Customer_Completed_List;
+
 	
 
 }
