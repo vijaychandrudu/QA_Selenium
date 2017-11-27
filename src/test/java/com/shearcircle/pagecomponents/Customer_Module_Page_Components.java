@@ -1112,7 +1112,8 @@ public class Customer_Module_Page_Components extends StaticVariables {
 					
 					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_bookme_digitekheader)){
 						browser.reportscomtep("Passed", "Click on Bookme button and Verify bookme digitek header is displayed"  , "bookme digitek header should be displayed", "bookme digitek header is displayed");
-						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_fullname,
+						
+						/*browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_fullname,
 								"Mydashboard fullname");
 
 						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_bookme_services, "Mydashboard bookme services");
@@ -1143,7 +1144,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 								"Mydashboard bookme markedas favourite ");
 						
 						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_bookme_share,
-								"Mydashboard bookme share");
+								"Mydashboard bookme share");*/
 
 					}else {
 						browser.reportscomtep("Failed", "Click on Bookme button and Verify bookme digitek header is displayed"  , "bookme digitek header should be displayed", "bookme digitek header is not displayed");
