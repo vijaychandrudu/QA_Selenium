@@ -1174,10 +1174,10 @@ public class Customer_Module_Page_Components extends StaticVariables {
 					browser.reportscomtep("Passed", "Verify list of favourites is displayed"  , "list of favourites should be displayed", "list of favourites is displayed");
 				
 					browser.click(CustomerModule.Customer_myfavourites_Remove_Button);
-					browser.wait(5);
-					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_remove_header)){
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_Remove_Header)){
 						browser.reportscomtep("Passed", "Verify Removed popup is displayed"  , "Removed popup should be displayed", "Removed popup is displayed");
-						browser.click(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_remove_header_ok);
+						browser.click(CustomerModule.Customer_Myfavourites_Remove_Popup_ok);
 					
 					}else {
 						browser.reportscomtep("Failed", "Verify Removed popup is displayed"  , "Removed popup should be displayed", "Removed popup is not displayed");
@@ -1194,7 +1194,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 	/*****************************  Customer clicks on My Appointments  *************************/
 
-	public void shearCircle_Verify_Customer_clickson_Myappoinments() {
+	public void shearCircle_Verify_Customer_clickson_MyappoinmentsandVerifyFields() {
 			
 		try {
 
@@ -1208,7 +1208,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				
 
 				if (browser.elementisdisplayed(
-						CustomerModule.Customer_Mydashboard_Myappoinments_Noappoinments_header)) {
+						CustomerModule.Customer_Myappoinments_Noappoinments_Message)) {
 					browser.reportscomtep("Passed", "Verify no appoinments is displayed",
 							"no appoinments should be displayed", "no appoinments is displayed");
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_ID,
@@ -1382,35 +1382,36 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			
 		try {
 
-			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
-
-				browser.reportscomtep("Passed", "Verify Customer My dashboard header is displayed",
-						"Customer My dashboard header should be displayed",
-						"Customers My dashboard header is displayed");
+			if (browser.elementisdisplayed(CustomerModule.Customer_Myappoinments_Button)) {		
+				browser.reportscomtep("Passed", "Verify Myappoinments Button is displayed in MyDashboard page",
+						"Myappoinments Button should be displayed in MyDashboard page", "Myappoinments Button displayed in MyDashboard page");
 
 				browser.click(CustomerModule.Customer_Myappoinments_Button);
 		
-				if (browser.elementisdisplayed(
-						CustomerModule.Customer_Mydashboard_Myappoinments_header)) {
-					browser.reportscomtep("Passed", "verify My appoinments header is displayed ",
-							"My appoinments header should be displayed", "My appoinments header is displayed");
-					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.Customer_Mydashboard_Myappoinments_Noappoinments_header,
-							"Mydashbord Noappoinments header");
-
-					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.Customer_Mydashboard_Myappoinments_selectedappoinments_header,
-							"Mydashboard selected appoinments header");
+				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Myappoinments_header)){
+					browser.reportscomtep("Passed", "Clicks on Myappoinments button and verify My appoinments header is displayed ",
+							"My appoinments header should be displayed", "Myappoinments header displayed");					
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myappoinments_Table)){
+						browser.reportscomtep("Passed", "Verify List of Myappoinments table or No appoinments Added Yet message is displayed"  , "List of Myappoinments table or No appoinments Added Yet message should be displayed", "List of MyAppointments table displayed");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Myappoinments_View_Buttons.get(0),"List of Myappoinments with View button next to each booking");								
+					
+					}else if(browser.elementisdisplayed(CustomerModule.Customer_Myappoinments_Noappoinments_Message)){
+						browser.reportscomtep("Passed", "Verify List of Myappoinments table or No appoinments Added Yet message is displayed"  , "List of Myappoinments table or No appoinments Added Yet message should be displayed", "No Appointment found Yet message displayed if no bookings are made/for 1st time login");
+					}else{
+						browser.reportscomtep("Failed", "Verify List of Myappoinments table or No appoinments Added Yet message is displayed"  , "List of Myappoinments table or No appoinments Added Yet message should be displayed", "List of MyAppointments or No Appointment found Yet message not displayed");
+					}
 
 				} else {
-					browser.reportscomtep("Failed", "verify My appoinments header is displayed ",
-							"My appoinments header should be displayed", "My appoinments header is not displayed");
+					browser.reportscomtep("Failed", "Clicks on Myappoinments button and verify My appoinments header is displayed ",
+							"My appoinments header should be displayed", "Myappoinments header Not displayed");
 					
 				}
-				} else {
-				browser.reportscomtep("Failed", "Verify Customer Registration form My dashboard header is displayed",
-						"Customer Registration form My dashboard header should be displayed",
-						"Customer Registration form My dashboard header is not displayed");
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify Myappoinments Button is displayed in MyDashboard page",
+						"Myappoinments Button should be displayed in MyDashboard page", "Myappoinments Button Not displayed in MyDashboard page");
 			}
 
 		} catch (Exception e) {
@@ -1471,34 +1472,31 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		
 		try {
 
-			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
-
-				browser.reportscomtep("Passed", "Verify Customer My dashboard header is displayed",
-						"Customer My dashboard header should be displayed",
-						"Customers My dashboard header is displayed");
+			if (browser.elementisdisplayed(CustomerModule.Customer_Myappoinments_Button)) {		
+				browser.reportscomtep("Passed", "Verify Myappoinments Button is displayed in MyDashboard page",
+						"Myappoinments Button should be displayed in MyDashboard page", "Myappoinments Button displayed in MyDashboard page");
 
 				browser.click(CustomerModule.Customer_Myappoinments_Button);
-				if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Myappoinments_Noappoinments_header)){
-					browser.reportscomtep("Passed", "Verify No Appoinments is displayed",
-												"No Appoinments should be displayed", "No Appoinments is displayed");
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_Noappoinments_header,
-							"Mydashboard Noappoinments header");
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_type,
-							"Mydashboard Myappoinments Type");
+		
+				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Myappoinments_header)){
+					browser.reportscomtep("Passed", "Clicks on Myappoinments button and verify My appoinments header is displayed ",
+							"My appoinments header should be displayed", "Myappoinments header displayed");					
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myappoinments_Noappoinments_Message)){
+						browser.reportscomtep("Passed", "Verify List of Myappoinments table or No appoinments Added Yet message is displayed"  , "List of Myappoinments table or No appoinments Added Yet message should be displayed", "No Appointment found Yet message displayed if no bookings are made/for 1st time login");
+					}else{
+						browser.reportscomtep("Failed", "Verify List of Myappoinments table or No appoinments Added Yet message is displayed"  , "List of Myappoinments table or No appoinments Added Yet message should be displayed", "No Appointment found Yet message Not displayed if no bookings are made/for 1st time login");
+					}
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_status,
-							"Mydashboard Myappoinments Status");
-
-				}else{
-					browser.reportscomtep("Failed", "Verify No Appoinments is displayed",
-							"No Appoinments should be displayed", "No Appoinments is not displayed");
+				} else {
+					browser.reportscomtep("Failed", "Clicks on Myappoinments button and verify My appoinments header is displayed ",
+							"My appoinments header should be displayed", "Myappoinments header Not displayed");
+					
 				}
 				
-					
 			} else {
-				browser.reportscomtep("Failed", "Verify Customer Registration form My dashboard header is displayed",
-						"Customer Registration form My dashboard header should be displayed",
-						"Customer Registration form My dashboard header is not displayed");
+				browser.reportscomtep("Failed", "Verify Myappoinments Button is displayed in MyDashboard page",
+						"Myappoinments Button should be displayed in MyDashboard page", "Myappoinments Button Not displayed in MyDashboard page");
 			}
 
 		} catch (Exception e) {
@@ -1509,7 +1507,47 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 	}
 	/*****************************  Check info in My Appointments for account that has made bookings previously		  *************************/
+	public void shearCircle_Verify_Customer_Clickson_MyAppoinmentsforExistingUser() {
+		
+		try {
 
+			if (browser.elementisdisplayed(CustomerModule.Customer_Myappoinments_Button)) {		
+				browser.reportscomtep("Passed", "Verify Myappoinments Button is displayed in MyDashboard page",
+						"Myappoinments Button should be displayed in MyDashboard page", "Myappoinments Button displayed in MyDashboard page");
+
+				browser.click(CustomerModule.Customer_Myappoinments_Button);
+		
+				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Myappoinments_header)){
+					browser.reportscomtep("Passed", "Clicks on Myappoinments button and verify My appoinments header is displayed ",
+							"My appoinments header should be displayed", "Myappoinments header displayed");					
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myappoinments_Table)){
+						browser.reportscomtep("Passed", "Verify List of Myappoinments table or No appoinments Added Yet message is displayed"  , "List of Myappoinments table or No appoinments Added Yet message should be displayed", "List of MyAppointment table displayed");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Myappoinments_View_Buttons.get(0),"List of Myappoinments with View button next to each booking");								
+					
+					}else{
+						browser.reportscomtep("Failed", "Verify List of Myappoinments table or No appoinments Added Yet message is displayed"  , "List of Myappoinments table or No appoinments Added Yet message should be displayed", "List of MyAppointment table not displayed");
+					}
+
+				} else {
+					browser.reportscomtep("Failed", "Clicks on Myappoinments button and verify My appoinments header is displayed ",
+							"My appoinments header should be displayed", "Myappoinments header Not displayed");
+					
+				}
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify Myappoinments Button is displayed in MyDashboard page",
+						"Myappoinments Button should be displayed in MyDashboard page", "Myappoinments Button Not displayed in MyDashboard page");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+
+
+	}
 	public void shearCircle_Verify_Customer_Clickson_MyAppoinments_Accountholder_Login() {
 		
 		try {
@@ -1521,13 +1559,13 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						"Customers My dashboard header is displayed");
 
 				browser.click(CustomerModule.Customer_Myappoinments_Button);
-			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Myappoinments_selectedappoinments_header)) {
+			if (browser.elementisdisplayed(CustomerModule.Customer_Myappoinments_Table)) {
 					browser.reportscomtep("Passed", "Verify list of appoinments is displayed with view button",
 							"list of appoinments with view button should be displayed", "list of appoinments  with view button is displayed");
 					
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_View,
 							"Mydashboard appoinments View");
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_pagebookings,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Myappoinments_Table,
 							"Mydashboard appoinments pagebookings");
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_ID,
 							"My dashboard Myappoinments ID");
