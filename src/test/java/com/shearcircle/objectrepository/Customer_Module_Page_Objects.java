@@ -1,5 +1,7 @@
 package com.shearcircle.objectrepository;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -144,13 +146,16 @@ public class Customer_Module_Page_Objects{
 	public WebElement Customer_Mydashboard_Myappoinments_header;
 
 	@FindBy(xpath="//table/tbody/tr[2]/td/h3[text()='No Appointments Found']")
-	public WebElement Customer_Mydashboard_Myappoinments_Noappoinments_header;
+	public WebElement Customer_Myappoinments_Noappoinments_Message;
 
-	@FindBy(xpath="/html/body/div/div/div/div/div/div[@class='col-md-12']")
-	public WebElement Customer_Mydashboard_Myappoinments_selectedappoinments_header;
+	@FindBy(xpath="//div/div/table[@class='table styapp']")
+	public WebElement Customer_Myappoinments_Table;
+	
+	@FindBy(xpath="//div/div/table[@class='table styapp']/tbody/tr/td//a[text()=' View']")
+	public List<WebElement> Customer_Myappoinments_View_Buttons;
 
 	@FindBy(xpath="/html/body/div[3]/div/div[2]/div/div/div/div[2]")
-	public WebElement Customer_Mydashboard_Myappoinments_pagebookings;
+	public WebElement Customer_Myappoinments_pagebookings;
 
 	@FindBy(xpath="//div/table/tbody/tr/th[text()='# ID']")
 	public WebElement Customer_Mydashboard_Myappoinments_ID;
@@ -234,10 +239,10 @@ public class Customer_Module_Page_Objects{
 	public WebElement Customer_myfavourites_Remove_Button;
 	
 	@FindBy(xpath="/html/body/div[@class='sweet-alert showSweetAlert visible']")
-	public WebElement Customer_Mydashboard_myfavourites_businesslist_remove_header;
+	public WebElement Customer_Myfavourites_Remove_Header;
 	
 	@FindBy(xpath="//div/div/button[@class='confirm']")
-	public WebElement Customer_Mydashboard_myfavourites_businesslist_remove_header_ok;
+	public WebElement Customer_Myfavourites_Remove_Popup_ok;
 	
 	@FindBy(xpath="//*[@id='container_pin']//a[@aria-controls='services']")
 	public WebElement Customer_Mydashboard_myfavourites_bookme_services;

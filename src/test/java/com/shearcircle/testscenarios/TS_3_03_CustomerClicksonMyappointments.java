@@ -15,13 +15,13 @@ import com.shearcircle.pagecomponents.Customer_Module_Page_Components;
 import com.shearcircle.utilities.CommonFunctions;
 import com.shearcircle.utilities.StaticVariables;
 
-public class TS_3_02_CustomerClicksonMyFavorite extends StaticVariables {
+public class TS_3_03_CustomerClicksonMyappointments extends StaticVariables {
 	public String TestDataPath;
 	public Customer_Module_Page_Components CR;
 	public CommonFunctions cfn;
 	public static WebDriver driver;
 	
-	public TS_3_02_CustomerClicksonMyFavorite() throws IOException, InterruptedException{
+	public TS_3_03_CustomerClicksonMyappointments() throws IOException, InterruptedException{
 		cfn = new CommonFunctions();		
 	}
 		
@@ -62,24 +62,15 @@ public class TS_3_02_CustomerClicksonMyFavorite extends StaticVariables {
 	public void Customer_CheckRegisterWithShearCirclepage() throws IOException {			
 		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");			
 	}
-	@Test(priority=3, description="TC_3_2_001 Check the info in My Favorite for first time login/ without previously adding Favorites")
-	public void TC_3_2_01_Customer_CheckMyFavoritesFirsttimelogin_Or_Withoutadding() throws IOException {			
-		CR.verify_MyFavorites_firsttimeloginorwithoutpreviouslyadded();			
+	@Test(priority=3, description="TC_3_3_001 Check the info in My Appointments for first time login/ without creating any bookings")
+	public void TC_3_3_01_Customer_CheckMyAppointmentsFirsttimelogin_Or_Withoutadding() throws IOException {			
+		CR.shearCircle_Verify_Customer_Clickson_MyAppoinments_firsttime_Login();			
 	}
 	
 	@Test(priority=4, description="TC_3_2_002 Check the info in My Favorite where Salons are already added as Favorites")
-	public void TC_3_2_02_Customer_CheckMyFavouritesalreadyAdded() throws IOException {			
-		CR.verify_MyFavoritewhereSalonsarealreadyadded();			
+	public void TC_3_3_02_Customer_CheckMyAppointmentsalreadyAdded() throws IOException {			
+		CR.shearCircle_Verify_Customer_Clickson_MyAppoinmentsforExistingUser();			
 	}	
-	@Test(priority=5, description="TC_3_2_003 Check whether Book Me button is clickable")
-	public void TC_3_2_03_Customer_CheckwhetherBookMebuttonisclickable() throws IOException {			
-		CR.shearCircle_Verify_Bookme_Button_InmyFavourites();			
-	}
-	
-	@Test(priority=6, description="TC_3_2_004 Check whether a Salon can be removed from Favorites")
-	public void TC_3_2_03_Customer_CheckwhetheraSaloncanberemovedfromFavorites() throws IOException {			
-		CR.shearCircle_Verify_Customer_RemoveButton_in_Myfavourites();			
-	}
 	
 	
 
