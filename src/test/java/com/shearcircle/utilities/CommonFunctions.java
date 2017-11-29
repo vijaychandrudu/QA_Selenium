@@ -672,6 +672,7 @@ public class CommonFunctions extends StaticVariables {
 			if (element.isDisplayed() && element.isEnabled()){
 				if (driver instanceof JavascriptExecutor) {
 			        ((JavascriptExecutor)driver).executeScript("arguments[0].style.border='4px solid green'", element);
+			        ((JavascriptExecutor)driver).executeScript("arguments[0].style.border=''", element);
 			    }
 				elementdisplayedflag = true;
 			} else {
@@ -696,6 +697,8 @@ public class CommonFunctions extends StaticVariables {
 			//this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 10);
 			if (element.isDisplayed() && element.isEnabled()) {
+				((JavascriptExecutor)driver).executeScript("arguments[0].style.border='2px solid red'", element);
+		        ((JavascriptExecutor)driver).executeScript("arguments[0].style.border=''", element);
 				this.reportscomtep("Passed", "Verify The Element " + Reporttext + " is displayed",
 						"The Element " + Reporttext + "should be displayed", "The Element " + Reporttext + "displayed");
 
@@ -794,7 +797,11 @@ public class CommonFunctions extends StaticVariables {
 			this.waitforelementtobevisible(element, 10);
 			if (element.isDisplayed() && element.isEnabled()) {	
 				if (driver instanceof JavascriptExecutor) {
-			        ((JavascriptExecutor)driver).executeScript("arguments[0].style.border='3px solid red'", element);
+					for(int i = 1; i<3; i++){
+						 ((JavascriptExecutor)driver).executeScript("arguments[0].style.border='3px solid red'", element);
+					     ((JavascriptExecutor)driver).executeScript("arguments[0].style.border=''", element);
+					}
+			       
 			    }
 				element.sendKeys(p_in_inputvalue);
 			} else {
@@ -818,6 +825,10 @@ public class CommonFunctions extends StaticVariables {
 			this.explicitWaitUsingElementToBeClickable(element);
 			//this.scrollintoviewelement(element);
 			if (element.isDisplayed() && element.isEnabled()) {
+				for(int i = 1; i<3; i++){
+					 ((JavascriptExecutor)driver).executeScript("arguments[0].style.border='3px solid red'", element);
+				     ((JavascriptExecutor)driver).executeScript("arguments[0].style.border=''", element);
+				}
 				if (element.isSelected()) {
 					System.out.println("Check box already selected");
 				} else {					
@@ -844,7 +855,10 @@ public class CommonFunctions extends StaticVariables {
 			this.explicitWaitUsingElementToBeClickable(element);			
 			if (element.isDisplayed() && element.isEnabled()) {		
 				if (driver instanceof JavascriptExecutor) {
-			        ((JavascriptExecutor)driver).executeScript("arguments[0].style.border='2px solid red'", element);
+					for(int i = 1; i<3; i++){
+						 ((JavascriptExecutor)driver).executeScript("arguments[0].style.border='3px solid red'", element);
+					     ((JavascriptExecutor)driver).executeScript("arguments[0].style.border=''", element);
+					}
 			    }
 				element.click();				
 

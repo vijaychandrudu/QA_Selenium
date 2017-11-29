@@ -63,22 +63,28 @@ public class TS_3_01_Customerlogintocustomerdashboardforthefirsttime extends Sta
 		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");			
 	}
 	@Test(priority=3, description="TC_3_1_001 Customer checks Dashboard page field validation")
-	public void TC_3_1_01_Customer_CheckDashboardfieldsvalidation() throws IOException {			
+	public void TC_3_1_001_Customer_CheckDashboardfieldsvalidation() throws IOException {			
 		CR.shearCircle_Verify_Customer_Dashboard_fieldValidation();			
 	}
 	
 	@Test(priority=4, description="TC_3_1_002 Customer Check whether My Favorite is clickable")
-	public void TC_3_1_02_Customer_CheckMyFavouritesclickable() throws IOException {			
+	public void TC_3_1_002_Customer_CheckMyFavouritesclickable() throws IOException {			
 		CR.shearCircle_Verify_Customer_Dashboard_clickson_MyFavourites();			
 	}
 	@Test(priority=4, description="TC_3_1_003 Customer Check whether My Appointments is clickable")
-	public void TC_3_1_03_Customer_CheckMyAppointmentsclickable() throws IOException {			
+	public void TC_3_1_003_Customer_CheckMyAppointmentsclickable() throws IOException {			
 		CR.shearCircle_Verify_Customer_Clickson_MyAppoinments();			
 	}
 	@Test(priority=4, description="TC_3_1_004 Customer Check whether Settings is clickable")
-	public void TC_3_1_04_Customer_CheckSettingsclickable() throws IOException {			
+	public void TC_3_1_004_Customer_CheckSettingsclickable() throws IOException {			
 		CR.shearCircle_Verify_Customer_Clickson_Settings();			
 	}
 	
+	@Test(priority=4, description="TC_3_1_005 Customer Check whether My Account button is clickable")
+	public void TC_3_1_005_Customer_CheckMyAccountbuttonisclickable() throws IOException {			
+		CR.shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable("My Favorites");
+		CR.shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable("My Appointments");
+		CR.shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable("Settings");
+	}
 
 }

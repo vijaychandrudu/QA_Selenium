@@ -59,18 +59,23 @@ public class TS_3_03_CustomerClicksonMyappointments extends StaticVariables {
 	}
 	
 	@Test(priority=2, description="Customer Login with registered Username(Email id) & Password " )
-	public void Customer_CheckRegisterWithShearCirclepage() throws IOException {			
+	public void Customer_CheckRegisterWithShearCirclepage()throws IOException {			
 		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");			
 	}
-	@Test(priority=3, description="TC_3_3_001 Check the info in My Appointments for first time login/ without creating any bookings")
+	/*@Test(priority=3, description="TC_3_3_001 Check the info in My Appointments for first time login/without creating any bookings")
 	public void TC_3_3_01_Customer_CheckMyAppointmentsFirsttimelogin_Or_Withoutadding() throws IOException {			
 		CR.shearCircle_Verify_Customer_Clickson_MyAppoinments_firsttime_Login();			
+	}*/
+	
+	@Test(priority=4, description="TC_3_3_002 Check the info in My Favorite where Salons are already added as Favorites")
+	public void TC_3_3_002_Customer_CheckMyAppointmentsalreadyAdded()throws IOException {			
+		CR.shearCircle_Verify_Customer_Clickson_MyAppoinmentsforExistingUser();			
 	}
 	
-	@Test(priority=4, description="TC_3_2_002 Check the info in My Favorite where Salons are already added as Favorites")
-	public void TC_3_3_02_Customer_CheckMyAppointmentsalreadyAdded() throws IOException {			
-		CR.shearCircle_Verify_Customer_Clickson_MyAppoinmentsforExistingUser();			
-	}	
+	@Test(priority=4, description="TC_3_3_003 Check whether the View button is clickable")
+	public void TC_3_3_003_Customer_CheckViewbuttonclickable()throws IOException {			
+		CR.Check_View_Button_Is_clickable();		
+	}
 	
 	
 

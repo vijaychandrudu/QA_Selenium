@@ -1298,7 +1298,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 	/*****************************  Customer clicks on Settings   *************************/
 
-	public void shearCircle_Verify_Customer_clickson_Settings() {
+	/*public void shearCircle_Verify_Customer_clickson_Settings() {
 
 		try {
 
@@ -1375,7 +1375,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			System.out.println("Error description: " + e.getStackTrace());
 
 		}
-	}
+	}*/
 
 	/*****************************  Check whether My Appointments is clickable	  *************************/
 
@@ -1428,6 +1428,11 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	public void shearCircle_Verify_Customer_Clickson_Settings() {
 			
 		try {
+			String firstName = "";
+			String lastName = "";
+			String emailId="";
+			String gender="";
+			boolean genderSelection = false;
 
 			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
 
@@ -1439,21 +1444,32 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		
 				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_settings_header)) {
 					browser.reportscomtep("Passed", "Verify settings header is displayed",
-							"settings header should be displayed", "settings header is displayed");
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_FirstName,
-							" dashboard settings firstname");
+							"settings header should be displayed", "settings header displayed");
+					firstName = browser.getelementtext(CustomerModule.Customer_Settings_FirstName);
+					lastName = browser.getelementtext(CustomerModule.Customer_Settings_LastName);
+					emailId = browser.getelementtext(CustomerModule.Customer_Settings_Email);
+					
+					if(CustomerModule.Customer_Settings_Gender_Male.isSelected()){
+						gender = browser.elementgetAttributevalue(CustomerModule.Customer_Settings_Gender_Male, "value");
+						genderSelection = true;
+					}else if(CustomerModule.Customer_Settings_Gender_Female.isSelected()){
+						gender = browser.elementgetAttributevalue(CustomerModule.Customer_Settings_Gender_Female, "value");
+						genderSelection = true;
+					}
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_LastName,
-							"dashboard settings lastnme");
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_Email,
-							"dashboard settings EMail");
-
-					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.Customer_Mydashboard_settings_Gender_Male, "dashboard settings male");
+					if (firstName != "" && lastName !="" && emailId!="" && genderSelection == true){
+						browser.reportscomtep("Passed", "Verify Customer autopopulated data in Settings page",
+								"Customer data should be autopopulated in Settings page",
+								"Customer data autopopulated in Settings page for the fields FirstName: "+firstName+", LastNAme: "+lastName+", Email: "+emailId+", Gender: "+gender);
+					}else{
+						browser.reportscomtep("Passed", "Verify Customer autopopulated data in Settings page",
+								"Customer data should be autopopulated in Settings page",
+								"Customer data Not autopopulated in Settings page");
+					}
 
 				} else {
 					browser.reportscomtep("Failed", "Verify settings header is displayed",
-							"settings header should be displayed", "settings header is not displayed");
+							"settings header should be displayed", "settings header not displayed");
 				}
 					
 			} else {
@@ -2036,46 +2052,35 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 
 /*************************Check whether My Account button is clickable	*************/
-public void shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable() {
+public void shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable(String myAccountLinkName) {
 	
 	try {
 
 		if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_MyAccount_Button)) {		
 			browser.reportscomtep("Passed", "Verify My Account Button is displayed in MyDashboard page",
 					"My Account Button should be displayed in MyDashboard page", "My Account Button displayed in MyDashboard page");
-
 			browser.click(CustomerModule.Customer_Mydashboard_MyAccount_Button);
-	
-			browser.Verify_elementisdisplayed_Report(
-					CustomerModule.Customer_Mydashboard_Welcome_Name_Header, "Mydashboard HeaderName");
-				
-			browser.click(CustomerModule.Customer_Myfavourites_Link);
+			browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Welcome_Name_Header, "Mydashboard HeaderName");
+			switch(myAccountLinkName){
+				case "My Favorites":						
+					browser.click(CustomerModule.Customer_MyFavourites_Button);
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Myfavourites_Header, "MyFavourites Header");
+					break;
+				case "My Appointments":					
+					browser.click(CustomerModule.Customer_MyAppoinments_Link);
+					browser.Verify_elementisdisplayed_Report(
+								CustomerModule.Customer_MyAppoinments_Header, "MyAppoinments Header");
+					break;
+				case "Settings":				
+					browser.click(CustomerModule.Customer_Settings_Link);
+					browser.Verify_elementisdisplayed_Report(
+								CustomerModule.Customer_Settings_Header, "Mysettings Header");
+					break;
+			}
+			
 		
-			browser.Verify_elementisdisplayed_Report(
-				CustomerModule.Customer_Myfavourites_Header, "MyFavourites Header");
-			browser.click(CustomerModule.Customer_Mydashboard_MyAccount_Button);
-			
-			browser.Verify_elementisdisplayed_Report(
-					CustomerModule.Customer_Mydashboard_Welcome_Name_Header, "Mydashboard HeaderName");	
-		
-			browser.click(CustomerModule.Customer_MyAppoinments_Link);
-			browser.Verify_elementisdisplayed_Report(
-						CustomerModule.Customer_MyAppoinments_Header, "MyAppoinments Header");
-			
-			browser.click(CustomerModule.Customer_Mydashboard_MyAccount_Button);			
-			browser.Verify_elementisdisplayed_Report(
-					CustomerModule.Customer_Mydashboard_Welcome_Name_Header, "Mydashboard HeaderName");	
-				
-			browser.click(CustomerModule.Customer_Settings_Link);
-			browser.Verify_elementisdisplayed_Report(
-						CustomerModule.Customer_Settings_Header, "Mysettings Header");
-			browser.click(CustomerModule.Customer_Mydashboard_MyAccount_Button);
-			
-			browser.Verify_elementisdisplayed_Report(
-					CustomerModule.Customer_Mydashboard_Welcome_Name_Header, "Mydashboard HeaderName");
-	
-				
-				} else {
+		} else {
 			browser.reportscomtep("Failed", "Verify My Account Button is displayed in MyDashboard page",
 					"My Account Button should be displayed in MyDashboard page", "My Account Button is not displayed in MyDashboard page");
 		}

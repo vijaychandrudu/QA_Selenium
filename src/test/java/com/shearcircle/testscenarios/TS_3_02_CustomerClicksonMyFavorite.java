@@ -62,22 +62,23 @@ public class TS_3_02_CustomerClicksonMyFavorite extends StaticVariables {
 	public void Customer_CheckRegisterWithShearCirclepage() throws IOException {			
 		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");			
 	}
-	@Test(priority=3, description="TC_3_2_001 Check the info in My Favorite for first time login/ without previously adding Favorites")
+	/*@Test(priority=3, description="TC_3_2_001 Check the info in My Favorite for first time login/ without previously adding Favorites")
 	public void TC_3_2_01_Customer_CheckMyFavoritesFirsttimelogin_Or_Withoutadding() throws IOException {			
 		CR.verify_MyFavorites_firsttimeloginorwithoutpreviouslyadded();			
 	}
-	
+	*/
 	@Test(priority=4, description="TC_3_2_002 Check the info in My Favorite where Salons are already added as Favorites")
-	public void TC_3_2_02_Customer_CheckMyFavouritesalreadyAdded() throws IOException {			
+	public void TC_3_2_002_Customer_CheckMyFavouritesalreadyAdded() throws IOException {			
 		CR.verify_MyFavoritewhereSalonsarealreadyadded();			
 	}	
 	@Test(priority=5, description="TC_3_2_003 Check whether Book Me button is clickable")
-	public void TC_3_2_03_Customer_CheckwhetherBookMebuttonisclickable() throws IOException {			
+	public void TC_3_2_003_Customer_CheckwhetherBookMebuttonisclickable() throws IOException {			
 		CR.shearCircle_Verify_Bookme_Button_InmyFavourites();			
 	}
 	
 	@Test(priority=6, description="TC_3_2_004 Check whether a Salon can be removed from Favorites")
-	public void TC_3_2_03_Customer_CheckwhetheraSaloncanberemovedfromFavorites() throws IOException {			
+	public void TC_3_2_003_Customer_CheckwhetheraSaloncanberemovedfromFavorites() throws IOException {	
+		CR.shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable("My Favorites");
 		CR.shearCircle_Verify_Customer_RemoveButton_in_Myfavourites();			
 	}
 	

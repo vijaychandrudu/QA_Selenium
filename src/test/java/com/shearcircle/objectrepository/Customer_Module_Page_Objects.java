@@ -210,7 +210,7 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='filters_col']//a[text()=' Settings']")
 	public WebElement Customer_Mydashboard_Settings_Button;
 
-	@FindBy(xpath="//*[@id='filters_col']//a[@href='https://shearcircle.com/testbed/customer/settings']")
+	@FindBy(xpath="//*[@id='edit_profile']/div/div/div/div/h3[text()='Settings']")
 	public WebElement Customer_Mydashboard_settings_header;
 
 	@FindBy(xpath="//*[@id='navbar-collapse-1']/span/a[text()='Logout']")
@@ -231,7 +231,7 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//nav/div/ul/li[@class='active']/a")
 	public WebElement Customer_Myfavourites_Link;
 
-	@FindBy(xpath="/html/body/div[3]/div/div[2]/div/div/div/div[2]/div[2]")
+	@FindBy(xpath="//div/div[@class='col-md-12']/div[2]/div[1]")
 	public WebElement Customer_Myfavourites_businesslist;
 	
 	@FindBy(xpath="//div[2]/h4[text()='No Favorites Added Yet']")
@@ -286,23 +286,23 @@ public class Customer_Module_Page_Objects{
 	public WebElement Customer_Mydashboard_myfavourites_bookme_digitekheader;
 
 	@FindBy(xpath="//*[@id='edit_profile']//input[@name='firstname']")
-	public WebElement Customer_Mydashboard_settings_FirstName;
+	public WebElement Customer_Settings_FirstName;
 	
 	@FindBy(xpath="//div/div/nav/div/ul/li[@class='active']/a")
 	public WebElement Customer_Settings_Link;
 
 
 	@FindBy(xpath="//*[@id='edit_profile']//input[@name='lastname']")
-	public WebElement Customer_Mydashboard_settings_LastName;
+	public WebElement Customer_Settings_LastName;
 
 	@FindBy(xpath="//*[@id='edit_profile']//input[@name='username']")
-	public WebElement Customer_Mydashboard_settings_Email;
+	public WebElement Customer_Settings_Email;
 
 	@FindBy(xpath="//*[@id='edit_profile']//input[@value='Male']")
-	public WebElement Customer_Mydashboard_settings_Gender_Male;
+	public WebElement Customer_Settings_Gender_Male;
 	
 	@FindBy(xpath="//*[@id='edit_profile']//input[@value='Female']")
-	public WebElement Customer_Mydashboard_settings_Gender_Female;
+	public WebElement Customer_Settings_Gender_Female;
 	
 	@FindBy(xpath="//*[@id='edit_profile']//input[@value='Female']")
 	public WebElement Customer_Settings_Header;
@@ -343,7 +343,6 @@ public class Customer_Module_Page_Objects{
 /*********************TC_3_3_03************************/
     
     @FindBy(xpath="//a[contains(text(),'My App')]")
-
     public WebElement Customer_MyAppoinments_Link;
     
     @FindBy(xpath="//h3[contains(text(),'My App')]")
