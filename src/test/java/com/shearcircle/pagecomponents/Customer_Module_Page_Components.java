@@ -935,8 +935,8 @@ public class Customer_Module_Page_Components extends StaticVariables {
 					
 					browser.reportscomtep("Passed", "Verify Customer Dashboard header is displayed",
 							"Customer Dashboard header should be displayed", "Customer Dashboard header displayed");
-					WelcomeFullName = browser.getelementtext(CustomerModule.Customer_Mydashboard_fullname);
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_fullname, WelcomeFullName);
+					WelcomeFullName = browser.getelementtext(CustomerModule.Customer_Mydashboard_Welcome_Name_Header);
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Welcome_Name_Header, WelcomeFullName);
 					LastLoginDateTime = browser.getelementtext(CustomerModule.Customer_Mydashboard_LastLoginDatetime);
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_LastLoginDatetime, LastLoginDateTime);
 					NumberofUpcomingBookings = browser.getelementtext(CustomerModule.Customer_Mydashboard_upcomingbookings_count);
@@ -988,7 +988,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 					
 					browser.click(CustomerModule.Customer_MyFavourites_Button);
 					
-					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_header)){
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_Header)){
 						browser.reportscomtep("passed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page displayed");
 						
 					} else {
@@ -1033,7 +1033,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 					
 					browser.click(CustomerModule.Customer_MyFavourites_Button);
 					
-					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_header)){
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_Header)){
 						browser.reportscomtep("passed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page displayed");
 						
 					} else {
@@ -1069,7 +1069,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 					
 					browser.click(CustomerModule.Customer_MyFavourites_Button);
 					
-					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_header)){
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_Header)){
 						browser.reportscomtep("passed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page displayed");
 						
 					} else {
@@ -1114,7 +1114,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_bookme_digitekheader)){
 						browser.reportscomtep("Passed", "Click on Bookme button and Verify bookme digitek header is displayed"  , "bookme digitek header should be displayed", "bookme digitek header is displayed");
 						
-						/*browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_fullname,
+						/*browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Welcome_Name_Header,
 								"Mydashboard fullname");
 
 						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_bookme_services, "Mydashboard bookme services");
@@ -1632,7 +1632,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				browser.click(Login.Login_signin_button);
 				//browser.assertEquals(browser.getelementtext(Login.MyDashboard_ValidMessage_text),"My Dashboard");
 				browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header);
-				browser.click(CustomerModule.Customer_MyAppoinment_Link);
+				browser.click(CustomerModule.Customer_MyAppoinments_Link);
 			} else {
 				browser.reportscomtep("Failed", "Verify Sign In To ShearCircle page header is displayed",
 						"Sign In To ShearCircle page header should be displayed",
@@ -1650,7 +1650,9 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 	public void Check_View_Button_Is_clickable() {
 		try {
-			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Myappoinments_header)) {
+
+
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
 				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
 						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
 				if (browser.elementisdisplayed(CustomerModule.Customer_ClicksOnView_Button)) {
@@ -2031,5 +2033,54 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	}
 	
 		
-}
 
+
+/*************************Check whether My Account button is clickable	*************/
+public void shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable() {
+	
+	try {
+
+		if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_MyAccount_Button)) {		
+			browser.reportscomtep("Passed", "Verify My Account Button is displayed in MyDashboard page",
+					"My Account Button should be displayed in MyDashboard page", "My Account Button displayed in MyDashboard page");
+
+			browser.click(CustomerModule.Customer_Mydashboard_MyAccount_Button);
+	
+			browser.Verify_elementisdisplayed_Report(
+					CustomerModule.Customer_Mydashboard_Welcome_Name_Header, "Mydashboard HeaderName");
+				
+			browser.click(CustomerModule.Customer_Myfavourites_Link);
+		
+			browser.Verify_elementisdisplayed_Report(
+				CustomerModule.Customer_Myfavourites_Header, "MyFavourites Header");
+			browser.click(CustomerModule.Customer_Mydashboard_MyAccount_Button);
+			
+			browser.Verify_elementisdisplayed_Report(
+					CustomerModule.Customer_Mydashboard_Welcome_Name_Header, "Mydashboard HeaderName");	
+		
+			browser.click(CustomerModule.Customer_MyAppoinments_Link);
+			browser.Verify_elementisdisplayed_Report(
+						CustomerModule.Customer_MyAppoinments_Header, "MyAppoinments Header");
+			
+			browser.click(CustomerModule.Customer_Mydashboard_MyAccount_Button);			
+			browser.Verify_elementisdisplayed_Report(
+					CustomerModule.Customer_Mydashboard_Welcome_Name_Header, "Mydashboard HeaderName");	
+				
+			browser.click(CustomerModule.Customer_Settings_Link);
+			browser.Verify_elementisdisplayed_Report(
+						CustomerModule.Customer_Settings_Header, "Mysettings Header");
+			browser.click(CustomerModule.Customer_Mydashboard_MyAccount_Button);
+			
+			browser.Verify_elementisdisplayed_Report(
+					CustomerModule.Customer_Mydashboard_Welcome_Name_Header, "Mydashboard HeaderName");
+	
+				
+				} else {
+			browser.reportscomtep("Failed", "Verify My Account Button is displayed in MyDashboard page",
+					"My Account Button should be displayed in MyDashboard page", "My Account Button is not displayed in MyDashboard page");
+		}
+	}catch(Exception e){
+		System.out.println("Error description: " + e.getStackTrace() );
+	}			
+ }
+}
