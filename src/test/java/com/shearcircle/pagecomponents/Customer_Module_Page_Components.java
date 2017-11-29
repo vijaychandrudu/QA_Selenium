@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
@@ -1649,60 +1650,168 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 	public void Check_View_Button_Is_clickable() {
 		try {
-
-			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinment_Header)) {
+			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Myappoinments_header)) {
 				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
 						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
-				if (browser.elementisdisplayed(CustomerModule.Customer_AppointmentID_Text)) {
-					browser.reportscomtep("Passed", "Verify AppointmentID is displayed ",
-							"AppointmentID should be displayed", "AppointmentID displayed");
-					String ParentWindowHandle = driver.getWindowHandle();
-					System.out.println("ParentWindowHandle " + ParentWindowHandle);
+				if (browser.elementisdisplayed(CustomerModule.Customer_ClicksOnView_Button)) {
+					browser.reportscomtep("Passed", "Verify view button is displayed ",
+							"View button should be displayed for each booking", "view button displayed for each booking");
 					browser.click(CustomerModule.Customer_ClicksOnView_Button);
-					Thread.sleep(4000);
-					for (String handle : driver.getWindowHandles()) {
-						System.out.println(handle);
-						driver.switchTo().window(handle);
-						}
-					Thread.sleep(4000);
+					browser.waitForNewWindowAndSwitchToIt(driver);
 					if (browser.elementisdisplayed(CustomerModule.Customer_ViewBookingSummary_Text)) {
-						browser.reportscomtep("Passed", "Verify View Booking Summary is displayed ",
-								"View Booking Summary should be displayed", "View Booking Summary displayed");
+						browser.reportscomtep("Passed", "Click on View button and Verify  View Booking Summary page in new tab is opened ",
+								"View Booking Summary page in new tab should be opened",
+								" View Booking Summary page in new tab open");
 					} else {
-						browser.reportscomtep("Failed", "Verify View Booking Summary is displayed ",
-								"View Booking Summary should be displayed", "View Booking Summary not displayed");
+						browser.reportscomtep("Failed", "Click on View button and Verify  View Booking Summary page in new tab is opened ",
+								"View Booking Summary page in new tab should be opened",
+								" View Booking Summary page in new tab not open");
 					}
 				} else {
-					browser.reportscomtep("Failed", "Verify AppointmentID is displayed ",
-							"AppointmentID should be displayed", "AppointmentID not displayed");
-					}
+					browser.reportscomtep("Failed", "Verify view button is displayed ",
+							"View button should be displayed for each booking", "view button displayed for each booking");
+				}
 			} else {
 				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
 						"MyAppoinments Header should be displayed", "MyAppoinments Header not displayed");
-				}
+			}
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
-			}
+		}
 	}
 
 	/*************
 	 * TC_3_3_04 Check whether the page navigation forward arrows are clickable
 	 ***************/
-	public void checkWhether_ThePageNavigation_ForwardArrowsAre_Clickable() {
+	
+	public void checkWhether_ThePageNavigation_ForwardArrows_Clickable() {
 		try {
+			String PageLinkActiveStatus="";
+			String PageLinkActiveStatus1="";
 			browser.ScrollToXY(0, 250);
-			if (browser.elementisdisplayed(CustomerModule.Customer_FirstPageShowing_Link)) {
-				browser.reportscomtep("Passed", "Verify  My Appaintments are defafulted in  first page",
-						" My Appaintments should be in  first page", "Verify My Appaintments in  first page");
-				browser.click(CustomerModule.Customer_NavigateToNextPage_Link);
-				Thread.sleep(6000);
-				System.out.println("click on > take to next page i.e 2 page of  list is showed");
-				browser.click(CustomerModule.Customer_NavigateToLastPage_Link);
-				Thread.sleep(10000);
-				System.out.println("click on >> take to last page i.e 20 page of list is showed");
+			if (browser.elementisdisplayed(CustomerModule.Customer_Page1_Link)) {
+				browser.reportscomtep("Passed", "Verify  My Appaintments are defafulted in first page",
+						" My Appaintments should be in first page", "Verify My Appaintments in first page");
+				if (browser.elementisdisplayed(CustomerModule.Customer_NavigateToNextPage_Link)) {
+					browser.reportscomtep("Passed", "Verify navigate to next page i.e '>' link is displayed",
+							"  Navigate to next page i.e '>' link should be displayed",
+							" Navigate to next page i.e '>' link displayed");
+					browser.click(CustomerModule.Customer_NavigateToNextPage_Link);
+					PageLinkActiveStatus = browser.elementgetAttributevalue(CustomerModule.Customer_NextPageShowing_Link, "class");
+					if(PageLinkActiveStatus.equalsIgnoreCase("active")){
+						browser.reportscomtep("Passed", "Click on '>' link and Verify page 2 is displayed",
+								"Verify page 2 should be displayed",
+								"Verify page 2 displayed");	
+					}else{
+						browser.reportscomtep("Failed", "Click on '>' link and Verify page 2 is displayed",
+								"  Navigate to next page i.e '>' link should be displayed",
+								" Navigate to next page i.e '>' link displayed");	
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify navigate to next page i.e '>' link is displayed",
+							"  Navigate to next page i.e '>' link should be displayed",
+							" Navigate to next page i.e '>' link not displayed");
+				}
+				
+				if (browser.elementisdisplayed(CustomerModule.Customer_NavigateToLastPage_Link)) {
+					browser.reportscomtep("Passed", "Verify navigate to next page i.e '>>' link is displayed",
+							"  Navigate to next page i.e '>>' link should be displayed",
+							" Navigate to next page i.e '>>' link displayed");
+					browser.click(CustomerModule.Customer_NavigateToLastPage_Link);
+					PageLinkActiveStatus1= browser.elementgetAttributevalue(CustomerModule.Customer_LastPageShowing_Link, "class");
+					if(PageLinkActiveStatus1.equalsIgnoreCase("active")){
+						browser.reportscomtep("Passed", "Click on '>>' link and Verify Last page  is displayed",
+								"Verify Last Page should be displayed",
+								"Verify Last page displayed");	
+					}else{
+						browser.reportscomtep("Failed", "Click on '>>' link and Verify Last page is displayed",
+								"Verify Last Page should be displayed",
+								"Verify Last page not displayed");	
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify navigate to next page i.e '<<' link is displayed",
+							"  Navigate to next page i.e '>>' link should be displayed",
+							" Navigate to next page i.e '>>' link not displayed");
+				}
 			} else {
-				browser.reportscomtep("Failed", "Verify My Appaintments are defafulted  in  first page",
-						"Verify My Appaintments should be in  first page", "Verify My Appaintments not in  first page");
+				browser.reportscomtep("Failed", "Verify My Appaintments are defafulted in first page",
+						"Verify My Appaintments should be in first page", "Verify My Appaintments not in first page");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+	/************
+	 * TC_3_3_05 Check whether the page navigation backward arrows are clickable
+	 ****************/
+
+	public void checkWhether_ThePageNavigation_BackwardArrowsAre_Clickable() {
+		try {
+			String PageLinkActiveStatus="";
+			String PageLinkActiveStatus1="";
+			String LastpageNo = "";
+			int pagelinkscount = 0;
+			int selectedPageNo = 0;
+			String PageNumber = "";
+			browser.ScrollToXY(0, 250);
+			if (browser.elementisdisplayed(CustomerModule.Customer_LastPageShowing_Link)){
+				LastpageNo = browser.getelementtext(CustomerModule.Customer_LastPageShowing_Link);
+				browser.reportscomtep("Passed", "Verify Last page i.e "+LastpageNo+" link is displayed",
+						"  Last page i.e "+LastpageNo+" link should be displayed",
+						" Last page i.e "+LastpageNo+" link displayed");
+				if (browser.elementisdisplayed(CustomerModule.Customer_NaviagateToPreviousPage_Link)) {
+					browser.reportscomtep("Passed", "Verify navigate to next page i.e '<' link is displayed",
+							"  Navigate to next page i.e '<' link should be displayed",
+							" Navigate to next page i.e '<' link displayed");
+					browser.click(CustomerModule.Customer_NaviagateToPreviousPage_Link);
+					pagelinkscount = CustomerModule.Customer_Page_Links.size();
+					selectedPageNo = pagelinkscount-2;
+					//if(selectedPageNo==5){
+						PageLinkActiveStatus = browser.elementgetAttributevalue(CustomerModule.Customer_Page_Links.get(selectedPageNo), "class");						
+					//}			
+					
+					if(PageLinkActiveStatus.equalsIgnoreCase("active")){
+						PageNumber = CustomerModule.Customer_Page_Links.get(selectedPageNo).getText();
+						browser.reportscomtep("Passed", "Click on '<' link and Verify Last to previous page is displayed",
+								"Last to previous page should be displayed",
+								"Last to previous page i.e "+PageNumber+" displayed");	
+					}else{
+						browser.reportscomtep("Failed", "Click on '<' link and Verify Last to previous page is displayed",
+								"Last to previous page should be displayed",
+								"Last to previous page Not displayed");	
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify navigate to next page i.e '<' link is displayed",
+							"  Navigate to next page i.e '<' link should be displayed",
+							" Navigate to next page i.e '<' link not displayed");
+				}
+				
+				if (browser.elementisdisplayed(CustomerModule.Customer_NaviagateToFirstPage_Link)) {
+					browser.reportscomtep("Passed", "Verify takes you to the first page i.e '<<' link is displayed",
+							" Takes you to the first page i.e '<<' link should be displayed",
+							" Takes you to the first page i.e '<<' link displayed");
+					browser.click(CustomerModule.Customer_NaviagateToFirstPage_Link);
+					PageLinkActiveStatus1 = browser.elementgetAttributevalue(CustomerModule.Customer_Page1_Link, "class");
+					if(PageLinkActiveStatus1.equalsIgnoreCase("active")){
+						browser.reportscomtep("Passed", "Click on '<<' link and Verify First page is displayed",
+								"First Page should be displayed",
+								"First page i.e 1 displayed");	
+					}else{
+						browser.reportscomtep("Failed", "Click on '<<' link and Verify First page is displayed",
+								"First Page should be displayed",
+								"First Page Not displayed");
+					}
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify takes you to the first page i.e '<<' link is displayed",
+							" Takes you to the first page i.e '<<' link should be displayed",
+							" Takes you to the first page i.e '<<' link Not displayed");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify Last page i.e "+LastpageNo+" link is displayed",
+						" Last page i.e "+LastpageNo+" link should be displayed",
+						" Last page i.e "+LastpageNo+" link not displayed");
 			}
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
@@ -1710,50 +1819,58 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		}
 	}
 
-	/************
-	 * TC_3_3_05 Check whether the page navigation backward arrows are clickable
-	 ****************/
-
-	public void checkWhether_ThePageNavigation_BackwardArrowsAre_Clickable() {
-		try { 
-			browser.ScrollToXY(0, 250);
-			browser.click(CustomerModule.Customer_NavigateToLastPage_Link);
-			Thread.sleep(8000);
-			System.out.println("click on >> take to  page i.e 20 page of list is showed");
-			browser.click(CustomerModule.Customer_NaviagateToPreviousPage_Link);
-			Thread.sleep(8000);
-			System.out.println("click on < take to last page i.e 19 page of list is showed");
-			browser.click(CustomerModule.Customer_NaviagateToFirstPage_Link);
-			Thread.sleep(8000);
-			System.out.println("click on << take to  page i.e  1 page of list is showed");
-		} catch (Exception e) {
-			System.out.println("Error description: " + e.getStackTrace());
-
-		}
-	}
-
+	
 	/***********************
-	 * TC_3_3_06 Check whether the correct page is displayed by clicking on page
-	 * number
+	 * TC_3_3_06 Check whether the correct page is displayed by clicking on page number
 	 *******************/
 	public void checkWhether_TheCorrectPage_IsDIsplayedBy_ClickingoOnPage_Number() {
-		try {
-				browser.ScrollToXY(0, 250);
-			if (browser.elementisdisplayed(CustomerModule.Customer_FirstPageShowing_Link)) {
-				browser.reportscomtep("Passed", "Verify  My Appaintments are defafulted in  first page",
-						" My Appaintments should be in  first page", "Verify My Appaintments in  first page");
-				Thread.sleep(8000);
-				browser.click(CustomerModule.Customer_ThiredPage_Link);
-				System.out.println("click on 3 take to page i.e 3 page of list is showed");
-				wait();
-				
-			} else {
-				browser.reportscomtep("Failed", "Verify My Appaintments are defafulted  in  first page",
-						"Verify My Appaintments should be in  first page", "Verify My Appaintments not in  first page");
-		} 
-		}catch (Exception e) {
-			System.out.println("Error description: " + e.getStackTrace());
-		}
+		try { 
+			String PageLinkActiveStatus="";
+			String PageNumber = "";
+			browser.ScrollToXY(0, 250);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Page1_Link)) {
+				browser.reportscomtep("Passed", "Verify My Appaintments are defafulted in first page",
+						" My Appaintments should be in first page", "Verify My Appaintments in first page");				
+				//browser.click(CustomerModule.Customer_Page1_Link);
+				if (CustomerModule.Customer_Page_Links.size()>3){
+					for(WebElement link:CustomerModule.Customer_Page_Links){
+						PageNumber = link.getText();
+						if(PageNumber.equalsIgnoreCase("2")){
+							browser.reportscomtep("Passed", "Verify Page '2' link is displayed",
+									"Page i.e '2' link should be displayed",
+									"Page i.e '2' link displayed");
+							browser.click(link);
+							PageLinkActiveStatus = browser.elementgetAttributevalue(link, "class");
+							if(PageLinkActiveStatus.equalsIgnoreCase("active")){
+								browser.reportscomtep("Passed", "Click on '2' link and Verify page 2 is displayed",
+										"Verify page 2 should be displayed",
+										"Verify page 2 displayed");	
+							}else{
+								browser.reportscomtep("Failed", "Click on '2' link and Verify page 2 is displayed",
+										"Verify page 2 should be displayed",
+										"Verify page 2 not displayed");	
+							}
+							}else {
+								browser.reportscomtep("Failed", "Verify Page '2' link is displayed",
+										"Page '2' should be displayed",
+										"Page '2' link not displayed");
+							}
+						}
+							
+						}else{
+							browser.reportscomtep("Failed", "Verify navigate to page i.e Page Number links are displayed More than 3",
+									" Page Number links shoud be displayed More than 3",
+									" Page Number links are Not displayed More than 3");
+						}
+					
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify My Appaintments are defafulted in first page",
+							"Verify My Appaintments should be in first page", "Verify My Appaintments not in first page");
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
 	}
 
 	/****************************

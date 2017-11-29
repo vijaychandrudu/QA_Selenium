@@ -142,7 +142,7 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='filters_col']//a[text()=' My Appointments']")
 	public WebElement Customer_Myappoinments_Button;
 
-	@FindBy(xpath="/html/body/div/div/div/div/div/div[@class='col-md-12']")
+	@FindBy(xpath="h3[contains(text(),'My App')]")
 	public WebElement Customer_Mydashboard_Myappoinments_header;
 
 	@FindBy(xpath="//table/tbody/tr[2]/td/h3[text()='No Appointments Found']")
@@ -333,39 +333,42 @@ public class Customer_Module_Page_Objects{
     
     @FindBy(xpath="//a[contains(text(),'My App')]")
     public WebElement Customer_MyAppoinment_Link;
-    
-    @FindBy(xpath="//h3[contains(text(),'My App')]")
-    public WebElement Customer_MyAppoinment_Header;
+   
     
     @FindBy(xpath="//td[contains(text(),'157')]")
     public WebElement Customer_AppointmentID_Text;
     
 
-    @FindBy(xpath="//tbody/tr[2]/td[7]/a[@href[contains(text(),'')]]")
+    @FindBy(xpath="//tbody/tr[2]/td/a[text()=' View']")
     public WebElement Customer_ClicksOnView_Button;
     
 
-    @FindBy(xpath="//*[contains(text(),'View ')]")
-    public WebElement Customer_ViewBookingSummary_Text;
-    
+    @FindBy(xpath="//h1[text()='View Booking Summary']")
+    public WebElement Customer_ViewBookingSummary_Text;    
 
     @FindBy(xpath="//*[contains(text(),'Appointment I')]")
     public WebElement Customer_AppointmentID_Heading;
     
     /***************TC_3_3_04***************/
     @FindBy(xpath="//*[text()='1']")
+    public WebElement Customer_Page1_Link;
+    
+    /*@FindBy(xpath="//*[text()='2']")
+    public WebElement Customer_Page2_Link;*/
+    
+    @FindBy(xpath="//*[text()='1']")
     public WebElement Customer_FirstPageShowing_Link;
     
     @FindBy(xpath="//*[@rel='next']")
     public WebElement Customer_NavigateToNextPage_Link;
     
-    @FindBy(xpath="//*[text()='2']")
+    @FindBy(css=" p > ul > li:nth-child(3)>a")
     public WebElement Customer_NextPageShowing_Link;
 
     @FindBy(xpath="//*[text()='>>']")
     public WebElement Customer_NavigateToLastPage_Link;
     
-    @FindBy(xpath="//*[text()='20']")
+    @FindBy(css=" p > ul > li:last-child>a")
     public WebElement Customer_LastPageShowing_Link;
     
  
@@ -374,13 +377,20 @@ public class Customer_Module_Page_Objects{
     @FindBy(xpath="//*[@rel='prev']")
     public WebElement Customer_NaviagateToPreviousPage_Link;
     
+    @FindBy(xpath="//*[text()='19']")
+    public WebElement Customer_Page19_Link;
+    
+    
     @FindBy(xpath="//*[@rel='start']")
     public WebElement Customer_NaviagateToFirstPage_Link;
     
     /*****************TC_3_3_06***************/
     
     @FindBy(xpath="//*[text()='3']")
-    public WebElement Customer_ThiredPage_Link;
+    public WebElement Customer_Page3_Link;
+    
+    @FindBy(xpath="//div/div[2]/p/ul/li/a")
+    public List<WebElement> Customer_Page_Links;
     
     /********************TC_3_3_07*********************/
     
