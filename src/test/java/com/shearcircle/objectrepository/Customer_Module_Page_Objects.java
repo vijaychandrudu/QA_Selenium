@@ -109,10 +109,12 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='sub_content']/h1")
 	public WebElement Customer_signin_hyperlynk_header;	
 	
-	
+	@FindBy(xpath="//*[@id='navbar-collapse-1']/span/a[text()='My Account ']")
+	public WebElement Customer_Mydashboard_MyAccount_Button;	
+
 	//div[@class='modal-header']/h3/parent::div/following-sibling::div[@class='modal-footer']/button[text()='Close' and @class='btn btn-primary']
 	@FindBy(xpath="//div/div/h3[contains(text(),'Welcome')]")
-	public WebElement Customer_Mydashboard_fullname;
+	public WebElement Customer_Mydashboard_Welcome_Name_Header;
 	
 	@FindBy(xpath="//div/div/div/div/div/div/p")
 	public WebElement Customer_Mydashboard_LastLoginDatetime;	
@@ -224,7 +226,10 @@ public class Customer_Module_Page_Objects{
 	public WebElement Customer_Mydashboard_header;
 
 	@FindBy(xpath="//div/h3[text()='Favorites']")
-	public WebElement Customer_Mydashboard_myfavourites_header;
+	public WebElement Customer_Myfavourites_Header;
+
+	@FindBy(xpath="//nav/div/ul/li[@class='active']/a")
+	public WebElement Customer_Myfavourites_Link;
 
 	@FindBy(xpath="/html/body/div[3]/div/div[2]/div/div/div/div[2]/div[2]")
 	public WebElement Customer_Myfavourites_businesslist;
@@ -282,6 +287,10 @@ public class Customer_Module_Page_Objects{
 
 	@FindBy(xpath="//*[@id='edit_profile']//input[@name='firstname']")
 	public WebElement Customer_Mydashboard_settings_FirstName;
+	
+	@FindBy(xpath="//div/div/nav/div/ul/li[@class='active']/a")
+	public WebElement Customer_Settings_Link;
+
 
 	@FindBy(xpath="//*[@id='edit_profile']//input[@name='lastname']")
 	public WebElement Customer_Mydashboard_settings_LastName;
@@ -295,7 +304,9 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='edit_profile']//input[@value='Female']")
 	public WebElement Customer_Mydashboard_settings_Gender_Female;
 	
-	
+	@FindBy(xpath="//*[@id='edit_profile']//input[@value='Female']")
+	public WebElement Customer_Settings_Header;
+
 	@FindBy(xpath="//*[@id='edit_profile']//input[@name='mobile']")
 	public WebElement Customer_Mydashboard_settings_Phone;
 	
@@ -332,10 +343,10 @@ public class Customer_Module_Page_Objects{
 /*********************TC_3_3_03************************/
     
     @FindBy(xpath="//a[contains(text(),'My App')]")
-    public WebElement Customer_MyAppoinment_Link;
+    public WebElement Customer_MyAppoinments_Link;
     
     @FindBy(xpath="//h3[contains(text(),'My App')]")
-    public WebElement Customer_MyAppoinment_Header;
+    public WebElement Customer_MyAppoinments_Header;
     
     @FindBy(xpath="//td[contains(text(),'157')]")
     public WebElement Customer_AppointmentID_Text;
