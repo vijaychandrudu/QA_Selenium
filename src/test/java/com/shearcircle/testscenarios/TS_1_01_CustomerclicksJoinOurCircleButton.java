@@ -10,10 +10,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import com.shearcircle.pagecomponents.Customer_Module_Page_Components;
 import com.shearcircle.utilities.CommonFunctions;
 import com.shearcircle.utilities.StaticVariables;
+import utils.ExtentReports.ExtentTestManager;
 
 public class TS_1_01_CustomerclicksJoinOurCircleButton extends StaticVariables {
 	public String TestDataPath;
@@ -49,17 +49,20 @@ public class TS_1_01_CustomerclicksJoinOurCircleButton extends StaticVariables {
 	}
 	
 	@Test(priority=0, description="TC_001 Customer visits ShearCircle page" )
-	public void TC_001_Customer_visitsShearCircle() throws IOException {			
+	public void TC_001_Customer_visitsShearCircle() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_001 Customer visits ShearCircle page.");
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
 	@Test(priority=1, description="TC_002 Customer clicks JoinOurCircle Button " )
-	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {			
+	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_002 Customer clicks JoinOurCircle Button.");
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_JoinOurCircle");			
 	}
 	
 	@Test(priority=2, description="TC_003 Customer Check Register With ShearCircle page where they can register either as a Customer or as a Professional" )
-	public void TC_003_Customer_CheckRegisterWithShearCirclepage() throws IOException {			
+	public void TC_003_Customer_CheckRegisterWithShearCirclepage() throws IOException {		
+		ExtentTestManager.getTest().setDescription("TC_002 Customer clicks JoinOurCircle Button.");
 		CR.ShearCircle_Click_Customer_OR_Professional_JoinOurCircle("DoNothing");			
 	}
 	
