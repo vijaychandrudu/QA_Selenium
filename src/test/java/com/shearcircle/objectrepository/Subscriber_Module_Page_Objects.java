@@ -73,7 +73,7 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath = ".//*[@id='register_form']/div[5]/div/em")
 	public WebElement Subscriber_Subdomain_errMsg;
 
-	@FindBy(xpath = "//*[@id='navbar-collapse-1']/span/a[1]")
+	@FindBy(xpath = ".//*[@id='navbar-collapse-1']/span/a[1]")
 	public WebElement Subscriber_Login_Button;
 	@FindBy(xpath = "//*[@id='username']")
 	public WebElement Subscriber_UserName_TextBox;
@@ -147,14 +147,13 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Subscriber_Clients;
 	@FindBy(xpath = "html/body/section[2]/div[1]/div[1]/div/div/div/div[1]/h3")
 	public WebElement Subscriber_Bookingspage;
-	@FindBy(xpath = "html/body/section[1]/nav/div/div[2]/ul[2]/li/a")									
+	@FindBy(xpath = "html/body/section[1]/nav/div/div[2]/ul[2]/li/a")
 	public WebElement Subscriber_UserIcon;
 	@FindBy(xpath = "html/body/section[1]/nav/div/div[2]/ul[2]/li/ul/li[5]/a")
 	public WebElement Subscriber_Logout;
 	@FindBy(xpath = ".//*[@id='infoText']")
 	public WebElement Subscriber_Invalidcredentials;
-	
-	
+
 	@FindBy(xpath = "")
 	public WebElement Subscriber_;
 
@@ -178,8 +177,10 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Subscriber_Yopmail_GetWelcomeEmailText;
 
 	// Human Icon
-/*	@FindBy(xpath = "/html/body/section[1]/nav/div/div[2]/ul[2]/li/a")
-	public WebElement Subscriber_HumanIconOnTopMenu;*/
+	/*
+	 * @FindBy(xpath = "/html/body/section[1]/nav/div/div[2]/ul[2]/li/a") public
+	 * WebElement Subscriber_HumanIconOnTopMenu;
+	 */
 
 	@FindBy(xpath = "html/body/section[1]/nav/div/div[2]/ul[2]/li/ul/li[3]/a")
 	public WebElement Subscriber_ClickOnChangePassword;
@@ -198,29 +199,25 @@ public class Subscriber_Module_Page_Objects {
 
 	@FindBy(xpath = ".//*[@id='update_profile_password']/div/div[4]/div[1]/div/em")
 	public WebElement Subscriber_GetNewPasswordMessage;
-	
+
 	@FindBy(xpath = ".//*[@id='update_profile_password']/div/div[4]/div[2]/div/em")
 	public WebElement Subscriber_RetypePasswordMessage;
-	
+
 	@FindBy(xpath = ".//*[@id='update_profile_password']/div/div[3]/div/div/input")
 	public WebElement Subscriber_EnterOldPasswordText;
 
 	@FindBy(xpath = ".//*[@id='password']")
 	public WebElement Subscriber_EnterNewPasswordText;
 
-	
 	@FindBy(xpath = ".//*[@id='update_profile_password']/div/div[4]/div[2]/div/input")
 	public WebElement Subscriber_EnterRetypePasswordText;
 
 	@FindBy(xpath = ".//*[@id='update_profile_password']/div/div[2]/div/div[2]/h4")
 	public WebElement Subscriber_InvalidCurrentPassword;
-	
+
 	@FindBy(xpath = ".//*[@id='update_profile_password']/div/div[2]/div/div[1]/h4")
 	public WebElement Subscriber_PasswordUpdatedSuccessfully;
-	
-	
-	
-	
+
 	@FindBy(xpath = "//div/div/button[@class='btn btn-block btn-primary']")
 	public WebElement Subscriber_Db_MC_Promotion_AddNew;
 
@@ -308,5 +305,55 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Subscriber_Db_Services_addnewservice_serviceName;
 	@FindBy(xpath = "//div/span/button[@class='btn btn-success']")
 	public WebElement Subscriber_Db_Services_addnewgroup1;
+
+	// TS004
+	@FindBy(xpath = "html/body/section[2]/div/div/div/div/h2/b")
+	public WebElement Subscriber_SignIn_Text;
+	@FindBy(xpath = ".//*[@id='navbar-collapse-1']/span/a[2]")
+	public WebElement Subscriber_MyAccount;
+	@FindBy(xpath = ".//*[@id='sub_content']/h1")
+	public WebElement Subscriber_WhatDescribesYouBest_Text;
+	@FindBy(xpath = ".//*[@id='navbar-collapse-1']/span/a[1]")
+	public WebElement Subscriber_WhatDescribesYouBest_logout_Text;
+	@FindBy(xpath = ".//*[@id='validateStep2']/button")
+	public WebElement Subscriber_WhatDescribesYouBest_NextStep;
+	@FindBy(xpath = ".//*[@id='described_service']/em")
+	public WebElement Subscriber_WhatDescribesYouBest_Pleasechooseservice;
+	@FindBy(xpath = "//*[@id='validateStep2']/div[6]/label")
+	public WebElement Subscriber_WhatDescribesYouBest_OtherService;
+	@FindBy(xpath = "//*[@id='validateStep2']/div[7]/div/input")
+	public WebElement Subscriber_WhatDescribesYouBest_AddService_Text;
+	@FindBy(xpath = ".//*[@id='validateStep2']/div[7]/div/span/button")
+	public WebElement Subscriber_WhatDescribesYouBest_AddService_button;
+	@FindBy(xpath = "html/body/section[2]/div/h2")
+	public WebElement Subscriber_WhatDescribesYouBest_YourBusinessDetails;
+	@FindBy(xpath = ".//*[@id='step3Form']/div[5]/button")
+	public WebElement Subscriber_WhatDescribesYouBest_BusinessDetailsNextStep;
+	@FindBy(xpath = ".//*[@id='step3Form']/div[1]/div/em")
+	public WebElement Subscriber_BusinessDetails_PleaseEnterAddress_Text;
+	@FindBy(xpath = ".//*[@id='step3Form']/div[1]/div/input")
+	public WebElement Subscriber_BusinessDetails_PleaseEnterAddress_Editbox;
+	@FindBy(xpath = ".//*[@id='step3Form']/div[2]/div[1]/em")
+	public WebElement Subscriber_BusinessDetails_PleaseEnterCity_Text;
+	@FindBy(xpath = ".//*[@id='step3Form']/div[2]/div[1]/input")
+	public WebElement Subscriber_BusinessDetails_PleaseEnterCity_Editbox;
+	@FindBy(xpath = ".//*[@id='step3Form']/div[3]/div[1]/em")
+	public WebElement Subscriber_BusinessDetails_PleaseEnterZipcode_Text;
+	@FindBy(xpath = ".//*[@id='step3Form']/div[3]/div[1]/input")
+	public WebElement Subscriber_BusinessDetails_PleaseEnterZipcode_Editbox;
+	@FindBy(xpath = ".//*[@id='step3Form']/div[2]/div[2]/select")
+	public WebElement Subscriber_BusinessDetails_PleaseEnterState_Dropdownbox;
+
+	@FindBy(xpath = "html/body/section[1]/nav/div/div[2]/ul[2]/li/a")
+	public WebElement Subscriber_HumanIcon;
+	@FindBy(xpath = "html/body/section[1]/nav/div/div[2]/ul[2]/li/ul/li[5]/a")
+	public WebElement Subscriber_HumanIcon_logout_link;
+	@FindBy(xpath = "html/body/section[1]/nav/div/div[2]/ul[2]/li/ul/li[1]/a")
+	public WebElement Subscriber_HumanIcon_MySettings_link;
+	
+	@FindBy(xpath = ".//*[@id='infoText']")
+	public WebElement Subscriber_InvalidUserErrMsg;
+	
+	
 
 }
