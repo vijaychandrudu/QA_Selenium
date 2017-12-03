@@ -9,7 +9,10 @@ import com.shearcircle.utilities.CommonFunctions;
 import com.shearcircle.utilities.StaticVariables;
 
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
@@ -35,7 +38,7 @@ public class CustomerModule extends StaticVariables {
 		//CR = new Customer_Module_Page_Components();	
 	}
 		
-	@BeforeClass
+	@BeforeTest
 	@Parameters("browser")
 	public void beforeclass(@Optional("chrome") String browser) throws IOException, InterruptedException {
 		TestDataPath = cfn.TestDataPathOf("CustomerTestData.properties");
@@ -53,7 +56,7 @@ public class CustomerModule extends StaticVariables {
 		Thread.sleep(1000);
 	}
 
-	@AfterClass
+	@AfterTest
 	public void afterClass() {
 		driver.quit();
 	}	
@@ -64,7 +67,7 @@ public class CustomerModule extends StaticVariables {
 		CR.ShearCircle_LaunchApplication();		
 	}*/
 			
-	@Test(priority=1, description="1.1 Scenario: Customer visits ShearCircle and Customer clicks JoinOurCircle" )
+	/*@Test(priority=1, description="1.1 Scenario: Customer visits ShearCircle and Customer clicks JoinOurCircle" )
 	public void Customer_visitsShearCircle_clicks_JoinOurCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_JoinOurCircle");		
@@ -220,7 +223,7 @@ public class CustomerModule extends StaticVariables {
 	@Test(priority=25, description="Customer_ForgotPassword_Invalid_EmailId_ClickCancel")
 	public void Customer_ForgotPassword_Invalid_EmailId_ClickCancel() throws IOException {				
 		CR.ShearCircle_Verify_Customer_forgotPassword("InValid", "Click Cancel");	
-	}	
+	}*/	
 
 	
 }

@@ -35,13 +35,17 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.log4testng.Logger;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.relevantcodes.extentreports.LogStatus;
+
 import net.sourceforge.htmlunit.corejs.javascript.ast.WhileLoop;
 import utils.ExtentReports.ExtentTestManager;
+import utils.Listeners.TestListener;
 
 public class CommonFunctions extends StaticVariables {
 
@@ -55,7 +59,7 @@ public class CommonFunctions extends StaticVariables {
 
 	public CommonFunctions() {
 		ProjectDir = System.getProperty("user.dir");
-
+		
 		File file = new File(ProjectDir + "\\screenshots");
 		boolean a = false;
 		if (!file.exists()) {
@@ -71,12 +75,12 @@ public class CommonFunctions extends StaticVariables {
 		System.out.println("For screenshots path: " + ScreenshotsPath);
 		System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.Jdk14Logger");
 	}
-
+	
 	/********************* Launch Browser *******************************/
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
 	 */
-
+	
 	public void getAndOpenBrowser(String browser) throws IOException {
 		try {
 			if (browser.equalsIgnoreCase("IE")) {
@@ -695,11 +699,12 @@ public class CommonFunctions extends StaticVariables {
 			//this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 10);
 			if (element.isDisplayed() && element.isEnabled()) {
-				this.highlightElement(element);	
+				this.highlightElement(element);				
 				this.reportscomtep("Passed", "Verify The Element " + Reporttext + " is displayed",
-						"The Element " + Reporttext + "should be displayed", "The Element " + Reporttext + "displayed");
+						"The Element " + Reporttext + "should be displayed", "The Element " + Reporttext + " displayed");
 
 			} else {
+			    
 				this.reportscomtep("Failed", "Verify The Element is " + Reporttext + "displayed",
 						"The Element " + Reporttext + "should be displayed",
 						"The Element " + Reporttext + "Not displayed");
@@ -918,18 +923,18 @@ public class CommonFunctions extends StaticVariables {
 	 */
 
 	public List<WebElement> getOptions(WebElement element) {
-		List<WebElement> elementCount = null;
+		List<WebElement> dropdownvalues = null;
 		try {
 			if (element.isDisplayed() && element.isEnabled()) {
 				Select dropdown = new Select(element);
-				elementCount = dropdown.getOptions();
+				dropdownvalues = dropdown.getOptions();
 			} else {
 				System.out.println("Element existance and enabled status Failed");
 			}
 		} catch (Exception e) {
 			System.out.println("Error in description: " + e.getStackTrace());
 		}
-		return elementCount;
+		return dropdownvalues;
 	}
 
 	/************************* MouseHover Actions ************/
@@ -1063,7 +1068,9 @@ public class CommonFunctions extends StaticVariables {
 		case "pass":
 		case "passed":
 		case "PASSED":
-			ExtentTestManager.getTest().setDescription(Description+","+Actualvalue);
+			String base64Screenshot1 = "data:image/png;base64,"+((TakesScreenshot)driver).
+            getScreenshotAs(OutputType.BASE64);
+			ExtentTestManager.getTest().log(LogStatus.PASS, Description, Actualvalue+ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot1));
 			System.out.println(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
 			Reporter.log(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
 			/*try {
@@ -1078,6 +1085,12 @@ public class CommonFunctions extends StaticVariables {
 		case "fail":
 		case "failed":
 		case "FAILED":
+			
+
+	        //Take base64Screenshot screenshot.
+	        String base64Screenshot = "data:image/png;base64,"+((TakesScreenshot)driver).
+	                getScreenshotAs(OutputType.BASE64);
+			ExtentTestManager.getTest().log(LogStatus.FAIL, Description,Actualvalue+ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
 			System.out.println(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
 			Reporter.log(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
 			try {

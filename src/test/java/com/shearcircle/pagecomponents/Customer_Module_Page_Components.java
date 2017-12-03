@@ -8,14 +8,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.ITestNGListener;
 
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 import com.shearcircle.objectrepository.Customer_Module_Page_Objects;
 import com.shearcircle.objectrepository.Login_page_objects;
 import com.shearcircle.utilities.CommonFunctions;
 import com.shearcircle.utilities.StaticVariables;
 
-public class Customer_Module_Page_Components extends StaticVariables {
-	
+import utils.ExtentReports.ExtentTestManager;
+import utils.Listeners.TestListener;
+
+public class Customer_Module_Page_Components extends StaticVariables {	
 	//public static WebDriver driver;
 	public Customer_Module_Page_Objects CustomerModule;
 	public Login_page_objects Login;
@@ -23,7 +29,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	String TestDataPath = null;
 	
 	public Customer_Module_Page_Components(WebDriver driver) throws IOException {	
-		browser = new CommonFunctions();
+		browser = new CommonFunctions();		
 		TestDataPath = browser.TestDataPathOf("CustomerTestData.properties");	
 		browser.loaddata(TestDataPath);		
 		CustomerModule = PageFactory.initElements(driver, Customer_Module_Page_Objects.class);
@@ -47,8 +53,9 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		    if (apptitle.equalsIgnoreCase(Applicationtitle)){
 		    System.out.println("Browser Tilte:"+apptitle);     
 		    }		    
-			
+		    
 		    if(browser.elementisdisplayed(Login.Home_ShearCircle_Image)) {
+		    	
 		    	browser.reportscomtep("Passed", "Verify ShearCircle Home page is displayed", "ShearCircle Home page should be displayed", "ShearCircle Home page displayed");
 				 System.out.println("ShearCircle Home page is displayed");
 			 }else {
@@ -1389,7 +1396,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 				browser.click(CustomerModule.Customer_Myappoinments_Button);
 		
-				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Myappoinments_header)){
+				if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)){
 					browser.reportscomtep("Passed", "Clicks on Myappoinments button and verify My appoinments header is displayed ",
 							"My appoinments header should be displayed", "Myappoinments header displayed");					
 					
@@ -1534,7 +1541,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 				browser.click(CustomerModule.Customer_Myappoinments_Button);
 		
-				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Myappoinments_header)){
+				if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)){
 					browser.reportscomtep("Passed", "Clicks on Myappoinments button and verify My appoinments header is displayed ",
 							"My appoinments header should be displayed", "Myappoinments header displayed");					
 					
@@ -1685,6 +1692,8 @@ public class Customer_Module_Page_Components extends StaticVariables {
 								"View Booking Summary page in new tab should be opened",
 								" View Booking Summary page in new tab not open");
 					}
+					//browser.switchtoDefaultWindow(driver);
+					driver.switchTo().window(defaultWindowHandle);
 				} else {
 					browser.reportscomtep("Failed", "Verify view button is displayed ",
 							"View button should be displayed for each booking", "view button displayed for each booking");
@@ -1710,12 +1719,14 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			if (browser.elementisdisplayed(CustomerModule.Customer_Page1_Link)) {
 				browser.reportscomtep("Passed", "Verify  My Appaintments are defafulted in first page",
 						" My Appaintments should be in first page", "Verify My Appaintments in first page");
-				if (browser.elementisdisplayed(CustomerModule.Customer_NavigateToNextPage_Link)) {
+				if (browser.elementisdisplayed(CustomerModule.Customer_NavigateToNextPage_Link)){
 					browser.reportscomtep("Passed", "Verify navigate to next page i.e '>' link is displayed",
 							"  Navigate to next page i.e '>' link should be displayed",
 							" Navigate to next page i.e '>' link displayed");
 					browser.click(CustomerModule.Customer_NavigateToNextPage_Link);
-					PageLinkActiveStatus = browser.elementgetAttributevalue(CustomerModule.Customer_NextPageShowing_Link, "class");
+					browser.waitforelementtobevisible(CustomerModule.Customer_Myappoinments_Table, 15);
+					Thread.sleep(10000);
+					PageLinkActiveStatus = browser.elementgetAttributevalue(CustomerModule.Customer_NextPageActive_Link, "class");
 					if(PageLinkActiveStatus.equalsIgnoreCase("active")){
 						browser.reportscomtep("Passed", "Click on '>' link and Verify page 2 is displayed",
 								"Verify page 2 should be displayed",
@@ -1731,12 +1742,14 @@ public class Customer_Module_Page_Components extends StaticVariables {
 							" Navigate to next page i.e '>' link not displayed");
 				}
 				
-				if (browser.elementisdisplayed(CustomerModule.Customer_NavigateToLastPage_Link)) {
+				if (browser.elementisdisplayed(CustomerModule.Customer_NavigateToLastPage_Link)){
 					browser.reportscomtep("Passed", "Verify navigate to next page i.e '>>' link is displayed",
 							"  Navigate to next page i.e '>>' link should be displayed",
 							" Navigate to next page i.e '>>' link displayed");
 					browser.click(CustomerModule.Customer_NavigateToLastPage_Link);
-					PageLinkActiveStatus1= browser.elementgetAttributevalue(CustomerModule.Customer_LastPageShowing_Link, "class");
+					browser.waitforelementtobevisible(CustomerModule.Customer_Myappoinments_Table, 15);
+					Thread.sleep(10000);
+					PageLinkActiveStatus1= browser.elementgetAttributevalue(CustomerModule.Customer_LastPageActive_Link, "class");
 					if(PageLinkActiveStatus1.equalsIgnoreCase("active")){
 						browser.reportscomtep("Passed", "Click on '>>' link and Verify Last page  is displayed",
 								"Verify Last Page should be displayed",
@@ -1783,14 +1796,21 @@ public class Customer_Module_Page_Components extends StaticVariables {
 							"  Navigate to next page i.e '<' link should be displayed",
 							" Navigate to next page i.e '<' link displayed");
 					browser.click(CustomerModule.Customer_NaviagateToPreviousPage_Link);
-					pagelinkscount = CustomerModule.Customer_Page_Links.size();
+					browser.waitforelementtobevisible(CustomerModule.Customer_Myappoinments_Table, 15);
+					Thread.sleep(10000);
+					pagelinkscount = CustomerModule.Customer_PageNumber_Links.size();
 					selectedPageNo = pagelinkscount-2;
 					//if(selectedPageNo==5){
-						PageLinkActiveStatus = browser.elementgetAttributevalue(CustomerModule.Customer_Page_Links.get(selectedPageNo), "class");						
+					/*for(int i =1; i<5;i++){
+						Thread.sleep(10000);
+						PageLinkActiveStatus = browser.elementgetAttributevalue(CustomerModule.Customer_Page_Links.get(selectedPageNo), "class");	
+					}	*/
+					PageLinkActiveStatus = browser.elementgetAttributevalue(CustomerModule.Customer_Page_Links, "class");						
+						System.out.println("PageLinkActiveStatus: "+PageLinkActiveStatus);
 					//}			
 					
 					if(PageLinkActiveStatus.equalsIgnoreCase("active")){
-						PageNumber = CustomerModule.Customer_Page_Links.get(selectedPageNo).getText();
+						PageNumber = CustomerModule.Customer_PageNumber_Links.get(selectedPageNo).getText();
 						browser.reportscomtep("Passed", "Click on '<' link and Verify Last to previous page is displayed",
 								"Last to previous page should be displayed",
 								"Last to previous page i.e "+PageNumber+" displayed");	
@@ -1810,7 +1830,9 @@ public class Customer_Module_Page_Components extends StaticVariables {
 							" Takes you to the first page i.e '<<' link should be displayed",
 							" Takes you to the first page i.e '<<' link displayed");
 					browser.click(CustomerModule.Customer_NaviagateToFirstPage_Link);
-					PageLinkActiveStatus1 = browser.elementgetAttributevalue(CustomerModule.Customer_Page1_Link, "class");
+					browser.waitforelementtobevisible(CustomerModule.Customer_Page1_Link, 15);
+					Thread.sleep(10000);
+					PageLinkActiveStatus1 = browser.elementgetAttributevalue(CustomerModule.Customer_FirstPageActive_Link, "class");
 					if(PageLinkActiveStatus1.equalsIgnoreCase("active")){
 						browser.reportscomtep("Passed", "Click on '<<' link and Verify First page is displayed",
 								"First Page should be displayed",
@@ -1845,35 +1867,47 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		try { 
 			String PageLinkActiveStatus="";
 			String PageNumber = "";
+			boolean isPagetwodisplayed = false;
 			browser.ScrollToXY(0, 250);
 			if (browser.elementisdisplayed(CustomerModule.Customer_Page1_Link)) {
 				browser.reportscomtep("Passed", "Verify My Appaintments are defafulted in first page",
 						" My Appaintments should be in first page", "Verify My Appaintments in first page");				
 				//browser.click(CustomerModule.Customer_Page1_Link);
-				if (CustomerModule.Customer_Page_Links.size()>3){
-					for(WebElement link:CustomerModule.Customer_Page_Links){
+				if (CustomerModule.Customer_PageNumber_Links.size()>3){
+					for(WebElement link:CustomerModule.Customer_PageNumber_Links){
 						PageNumber = link.getText();
 						if(PageNumber.equalsIgnoreCase("2")){
+							isPagetwodisplayed = true;
 							browser.reportscomtep("Passed", "Verify Page '2' link is displayed",
 									"Page i.e '2' link should be displayed",
 									"Page i.e '2' link displayed");
 							browser.click(link);
-							PageLinkActiveStatus = browser.elementgetAttributevalue(link, "class");
+							browser.waitforelementtobevisible(CustomerModule.Customer_Myappoinments_Table, 15);
+							Thread.sleep(10000);
+							PageLinkActiveStatus = browser.elementgetAttributevalue(CustomerModule.Customer_NextPageActive_Link, "class");
 							if(PageLinkActiveStatus.equalsIgnoreCase("active")){
 								browser.reportscomtep("Passed", "Click on '2' link and Verify page 2 is displayed",
 										"Verify page 2 should be displayed",
 										"Verify page 2 displayed");	
+								break;
+								
 							}else{
 								browser.reportscomtep("Failed", "Click on '2' link and Verify page 2 is displayed",
 										"Verify page 2 should be displayed",
 										"Verify page 2 not displayed");	
+								break;
 							}
-							}else {
-								browser.reportscomtep("Failed", "Verify Page '2' link is displayed",
-										"Page '2' should be displayed",
-										"Page '2' link not displayed");
+							
+						
 							}
+					}
+						
+					if(isPagetwodisplayed==false){						
+							browser.reportscomtep("Failed", "Verify Page '2' link is displayed",
+									"Page '2' should be displayed",
+									"Page '2' link not displayed");
 						}
+					
 							
 						}else{
 							browser.reportscomtep("Failed", "Verify navigate to page i.e Page Number links are displayed More than 3",
@@ -1897,19 +1931,42 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 	public void checkThe_Available_Filters_InType() {
 		try {
-		/*	List<WebElement> Type = driver.findElements(By.xpath("//*[@ng-model='filter']"));
-			for (WebElement ele : Type) {
-				System.out.println("Displays list of filters: " +ele.getText().toUpperCase());
-			}
-			Select dropDown = new Select(CustomerModule.Customer_Dropdown_Type));
-			Thread.sleep(8000);
-			List<WebElement> element = dropDown.getOptions();
-			int itemCount = element.size();
+			int itemCount = 0;
+			String typeDropdownvlaues ="";
+			String expectedTypeValues= "Type;Upcoming Appointments;Past Appointments";
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
+				if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Type_Dropdown)) {
+					browser.reportscomtep("Passed", "Verify Type dropdown box is dispalyed ",
+							"Type dropdown box should be dispalyed", "Type dropdown box dispalyed");
+					browser.scrollUp(200);
+					List<WebElement> Type = browser.getOptions(CustomerModule.Customer_MyAppoinments_Type_Dropdown);
+					itemCount = Type.size();
+					if(itemCount>0){
+						for(WebElement listvalue:Type) {
+							typeDropdownvlaues = typeDropdownvlaues+";"+listvalue.getText();
+							System.out.println("Type List value:"+typeDropdownvlaues);
+						}
+						if(expectedTypeValues.equalsIgnoreCase(typeDropdownvlaues.substring(1))){
+							browser.reportscomtep("Passed", "Verify list of filters dispalyed in Type dropdown box.",
+									"List of filters should be dispalyed in Type dropdown box.", "List of filters dispalyed as : "+typeDropdownvlaues+" in Type dropdown box.");
+						}else{
+							browser.reportscomtep("Failed", "Verify list of filters dispalyed in Type dropdown box.",
+									"List of filters should be dispalyed in Type dropdown box.", "List of filters Not dispalyed in Type dropdown box.");
+						}
+					}
 
-			for(int i = 0; i<itemCount; i++)
-			{
-			    System.out.println(element.get(i).getText());
-			}*/
+				} else {
+					browser.reportscomtep("Failed", "Verify Type dropdown box is dispalyed ",
+							"Type dropdown box should be dispalyed", "Type dropdown box not dispalyed");
+
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header Not displayed");
+			}
+
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
 
@@ -1920,24 +1977,45 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	 * TC_3_3_08 Check the available filters in Status
 	 *******************/
 
-	public void checkThe_Available_Status_InType() {
+	public void checkThe_Available_FiltersInStatus() {
 		try {
-			/*List<WebElement> Status = driver.findElements(By.xpath("html/body//div[1]/div[3]/select/option"));
-			for (WebElement ele : Status) {
-				System.out.println("Displays list of filters: " + ele.getText());
+			int itemCount = 0;
+			String typeDropdownvlaues ="";
+			String expectedTypeValues= "Status;Completed;Pending;Canceled";
+			
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
+				if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Dropdown_Status)) {
+					browser.reportscomtep("Passed", "Verify Status dropdown box is dispalyed ",
+							"Status dropdown box should be dispalyed", "Status dropdown box dispalyed");
+					
+					List<WebElement> Status = browser.getOptions(CustomerModule.Customer_MyAppoinments_Dropdown_Status);
+					itemCount = Status.size();
+					if(itemCount>0){
+						for(WebElement listvalue:Status) {
+							typeDropdownvlaues = typeDropdownvlaues+";"+listvalue.getText();
+							System.out.println("Type List value:"+typeDropdownvlaues);
+						}
+						if(expectedTypeValues.equalsIgnoreCase(typeDropdownvlaues.substring(1))){
+							browser.reportscomtep("Passed", "Verify list of filters dispalyed in Status dropdown box.",
+									"List of filters should be dispalyed in Status dropdown box.", "List of filters dispalyed as : "+typeDropdownvlaues+" in Status dropdown box.");
+						}else{
+							browser.reportscomtep("Failed", "Verify list of filters dispalyed in Status dropdown box.",
+									"List of filters should be dispalyed in Status dropdown box.", "List of filters Not dispalyed in Status dropdown box.");
+						}
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify Status dropdown box is dispalyed ",
+							"Status dropdown box should be dispalyed", "Status dropdown box not dispalyed");
 				}
-			Select dropDown = new Select(driver.findElement(By.xpath("//*[@ng-model='appointment_status']")));
-			Thread.sleep(8000);
-			List<WebElement> element = dropDown.getOptions();
-			int itemCount = element.size();
+			} else {
 
-			for(int i = 0; i<itemCount; i++)
-			{
-				System.out.println(element.get(i).getText());
+				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header not displayed");
 			}
-*/		} catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
-
 		}
 	}
 
@@ -1946,23 +2024,25 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	 ************************/
 	public void check_Upcoming_Bookings() {
 		try {
-		/*	Select drpType = new Select(driver.findElement(By.xpath("//*[@ng-model='filter']")));
-			drpType.selectByVisibleText("Upcoming Appointments");
-			System.out.println("Sleceted Appointment is"+ (drpType).getFirstSelectedOption());
-			WebElement Type = driver
-					.findElement(By.xpath("//*[@ng-model='filter']"));
-			Select Upcoming_Appointments = new Select(Type);
-			Upcoming_Appointments.selectByValue("upcoming");
-			Thread.sleep(3000);
-			if (browser.elementisdisplayed(CustomerModule.Customer_UpcomingAppointments_Message)) {
-				browser.reportscomtep("Passed", "Verify No Appointments Found message is displayed",
-						"No Appointments Found message should be displayed", "No Appointments Found message displayed");
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
+				browser.selectByVisibleText(CustomerModule.Customer_MyAppoinments_Type_Dropdown, "Upcoming Appointments");	
+				Thread.sleep(10000);
+				if (browser.elementisdisplayed(CustomerModule.Customer_UpcomingAppointments_Message)) {
+					browser.reportscomtep("Passed", "Verify No Appointments Found message is displayed",
+							"No Appointments Found message should be displayed",
+							"No Appointments Found message displayed");
+				} else {
+					browser.reportscomtep("Failed", "Verify No Appointments Found message is displayed",
+							"No Appointments Found message should be displayed",
+							"No Appointments Found message not displayed");
+				}
 			} else {
-				browser.reportscomtep("Passed", "Verify No Appointments Found message is displayed",
-						"No Appointments Found message should be displayed",
-						"No Appointments Found message not displayed");
+				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header not displayed");
 			}
-		*/} catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
 	}
@@ -1973,18 +2053,23 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 	public void checkThe_Past_Bookings() {
 		try {
-			/*WebElement Type = driver
-					.findElement(By.xpath("//*[@ng-model='appointment_status']"));
-			Select Past_Appointments = new Select(Type);
-			Past_Appointments.selectByValue("past");
-			Thread.sleep(3000);
-			if (browser.elementisdisplayed(CustomerModule.Customer_PastAppointments_List)) {
-				browser.reportscomtep("Passed", "Verify Past Bookings of the list is Displayed",
-						"Past Bookings of the listshould be displayed", "Past Bookings of the list  Displayed");
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
+
+				browser.selectByVisibleText(CustomerModule.Customer_MyAppoinments_Type_Dropdown, "Past Appointments");	
+				
+				if (browser.elementisdisplayed(CustomerModule.Customer_PastAppointments_List)) {
+					browser.reportscomtep("Passed", "Verify Past Bookings of the list is Displayed",
+							"Past Bookings of the listshould be displayed", "Past Bookings of the list  Displayed");
+				} else {
+					browser.reportscomtep("Failed", "Verify Past Bookings of the list is Displayed",
+							"Past Bookings of the listshould be displayed", "Past Bookings of the list not  Displayed");
+				}
 			} else {
-				browser.reportscomtep("Failed", "Verify Past Bookings of the list is Displayed",
-						"Past Bookings of the listshould be displayed", "Past Bookings of the list not  Displayed");
-			}*/
+				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header not displayed");
+			}
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
@@ -2013,7 +2098,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	public void checkThe_Pending_Bookings() {
 		try {
 			//WebElement Status = driver.findElement(By.xpath("//*[@ng-model='appointment_status']"));
-			Select Pending = new Select(CustomerModule.Customer_Dropdown_Status);
+			Select Pending = new Select(CustomerModule.Customer_MyAppoinments_Dropdown_Status);
 			Pending.selectByValue("pending");
 			Thread.sleep(3000);
 			if (browser.elementisdisplayed(CustomerModule.Customer_PastAppointments_List)) {
@@ -2034,7 +2119,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	public void checkThe_Canceled_Bookings() {
 		try {
 			//WebElement Status = driver.findElement(By.xpath("//*[@ng-model='appointment_status']"));
-			Select Canceled = new Select(CustomerModule.Customer_Dropdown_Status);
+			Select Canceled = new Select(CustomerModule.Customer_MyAppoinments_Dropdown_Status);
 			Canceled.selectByValue("canceled");
 			Thread.sleep(3000);
 			if (browser.elementisdisplayed(CustomerModule.Customer_PastAppointments_List)) {

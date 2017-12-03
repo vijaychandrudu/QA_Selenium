@@ -228,7 +228,7 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//div/h3[text()='Favorites']")
 	public WebElement Customer_Myfavourites_Header;
 
-	@FindBy(xpath="//nav/div/ul/li[@class='active']/a")
+	@FindBy(xpath="//nav/div/ul/li/a[text()=' My Favorites']")
 	public WebElement Customer_Myfavourites_Link;
 
 	@FindBy(xpath="//div/div[@class='col-md-12']/div[2]/div[1]")
@@ -347,8 +347,10 @@ public class Customer_Module_Page_Objects{
     
     @FindBy(xpath="//h3[contains(text(),'My App')]")
     public WebElement Customer_MyAppoinments_Header;
-
     
+    @FindBy(xpath="//div[2]/select")
+    public WebElement Customer_MyAppoinments_Type_Dropdown;    
+       
     @FindBy(xpath="//td[contains(text(),'157')]")
     public WebElement Customer_AppointmentID_Text;
     
@@ -367,6 +369,10 @@ public class Customer_Module_Page_Objects{
     @FindBy(xpath="//*[text()='1']")
     public WebElement Customer_Page1_Link;
     
+    @FindBy(xpath="//p/ul[@class='pagination']/li/a[text()='1']/parent::li")
+    public WebElement Customer_FirstPageActive_Link;
+
+    
     /*@FindBy(xpath="//*[text()='2']")
     public WebElement Customer_Page2_Link;*/
     
@@ -378,6 +384,9 @@ public class Customer_Module_Page_Objects{
     
     @FindBy(css=" p > ul > li:nth-child(3)>a")
     public WebElement Customer_NextPageShowing_Link;
+    
+    @FindBy(xpath="//p/ul[@class='pagination']/li/a[text()='2']/parent::li")
+    public WebElement Customer_NextPageActive_Link;
 
     @FindBy(xpath="//*[text()='>>']")
     public WebElement Customer_NavigateToLastPage_Link;
@@ -385,7 +394,9 @@ public class Customer_Module_Page_Objects{
     @FindBy(css=" p > ul > li:last-child>a")
     public WebElement Customer_LastPageShowing_Link;
     
- 
+    @FindBy(xpath="//p/ul[@class='pagination']/li[5]/a/parent::li")
+    public WebElement Customer_LastPageActive_Link;
+    
    /*******************TC_3_3_05****************/
     
     @FindBy(xpath="//*[@rel='prev']")
@@ -404,14 +415,15 @@ public class Customer_Module_Page_Objects{
     public WebElement Customer_Page3_Link;
     
     @FindBy(xpath="//div/div[2]/p/ul/li/a")
-    public List<WebElement> Customer_Page_Links;
+    public List<WebElement> Customer_PageNumber_Links;
+    
+    @FindBy(xpath="//div/div[2]/p/ul/li[5]")
+    public WebElement Customer_Page_Links;
     
     /********************TC_3_3_07*********************/
     
     @FindBy(xpath="//*[@ng-model='filter']")
-    public WebElement Customer_Dropdown_Type;
-    
-    
+    public WebElement Customer_Dropdown_Type;    
     
    /* @FindBy(xpath="//div[2]/select/option")
    public  List<WebElement> Customer_Displays_Listof_Type;
@@ -425,7 +437,7 @@ public class Customer_Module_Page_Objects{
     /**********************TC_3_3_08*****************************/
     
     @FindBy(xpath="//*[@ng-model='appointment_status']")
-    public WebElement Customer_Dropdown_Status;
+    public WebElement Customer_MyAppoinments_Dropdown_Status;
     
   /*  @FindBy(xpath="html/body//div[1]/div[3]/select/option[contains(text(),'Co')]")
     public WebElement Customer_DropdownOption_Completed;

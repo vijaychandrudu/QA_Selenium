@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="N11 Test Suite" >
+    <listeners>
+        <listener class-name="utils.Listeners.TestListener"/>
+        <listener class-name="utils.Listeners.AnnotationTransformer"/>
+    </listeners>
+    
+   <!--  <test name="Shearcircle_Testscenarios">
+    <packages>
+    <package name="com.shearcircle.testscenarios"></package>
+    </packages>
+    </test> -->
+
+    <test name="Shearcircle_Testscenarios">
+        <classes>
+        	<class name="com.shearcircle.testscenarios.CustomerModule"/>
+        	<!-- <class name="com.shearcircle.testscenarios.TS_3_01_Customerlogintocustomerdashboardforthefirsttime"/> -->
+        	<!-- <class name="com.shearcircle.testscenarios.TS_3_02_CustomerClicksonMyFavorite"/> -->
+        	<class name="com.shearcircle.testscenarios.TS_3_03_CustomerClicksonMyappointments"/>            
+        </classes>
+    </test>
+</suite>
