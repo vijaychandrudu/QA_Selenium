@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -30,7 +31,7 @@ public class TS_3_03_CustomerClicksonMyappointments extends StaticVariables {
 	public void beforeclass(@Optional("chrome") String browser) throws IOException, InterruptedException {
 		TestDataPath = cfn.TestDataPathOf("CustomerTestData.properties");
 		Browser = browser;
-		cfn.getAndOpenBrowser(browser);		
+		//cfn.getAndOpenBrowser(browser);		
 		driver = cfn.getDriver();		
 		CR = new Customer_Module_Page_Components(driver);
 		defaultWindowHandle = driver.getWindowHandle();
@@ -43,23 +44,28 @@ public class TS_3_03_CustomerClicksonMyappointments extends StaticVariables {
 		Thread.sleep(1000);
 	}
 
-	@AfterClass
-	public void afterClass() {
+	@AfterTest
+	public void afterTest() {
 		driver.quit();
 	}
 	
-	@Test(priority=0, description="Customer visits ShearCircle page" )
-	public void TC_001_Customer_visitsShearCircle() throws IOException {			
+	@AfterClass
+	public void logOut(){
+		CR.Customer_JoinOurCircle_LogOutpage();
+	}
+	
+	@Test(priority=331, description="Customer visits ShearCircle page" )
+	public void TC_3_3_1_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=1, description="Customer clicks Login Button " )
-	public void Customer_clicks_JoinOurCircleButton() throws IOException {			
+	@Test(priority=332, description="Customer clicks Login Button " )
+	public void TC_3_3_2Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
-	@Test(priority=2, description="Customer Login with registered Username(Email id) & Password " )
-	public void Customer_CheckRegisterWithShearCirclepage()throws IOException {			
+	@Test(priority=333, description="Customer Login with registered Username(Email id) & Password " )
+	public void TC_3_3_3Customer_CheckRegisterWithShearCirclepage()throws IOException {			
 		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");			
 	}
 	/*@Test(priority=3, description="TC_3_3_001 Check the info in My Appointments for first time login/without creating any bookings")
@@ -67,16 +73,47 @@ public class TS_3_03_CustomerClicksonMyappointments extends StaticVariables {
 		CR.shearCircle_Verify_Customer_Clickson_MyAppoinments_firsttime_Login();			
 	}*/
 	
-	@Test(priority=4, description="TC_3_3_002 Check the info in My Favorite where Salons are already added as Favorites")
+	@Test(priority=335, description="TC_3_3_002 Check the info in My Favorite where Salons are already added as Favorites")
 	public void TC_3_3_002_Customer_CheckMyAppointmentsalreadyAdded()throws IOException {			
 		CR.shearCircle_Verify_Customer_Clickson_MyAppoinmentsforExistingUser();			
 	}
 	
-	@Test(priority=4, description="TC_3_3_003 Check whether the View button is clickable")
+	@Test(priority=336, description="TC_3_3_003 Check whether the View button is clickable")
 	public void TC_3_3_003_Customer_CheckViewbuttonclickable()throws IOException {			
 		CR.Check_View_Button_Is_clickable();		
 	}
 	
+	@Test(priority=337, description="TC_3_3_004 Check whether the page navigation forward arrows are clickable")
+	public void TC_3_3_004_Customer_CheckPageNavigationForwardArrowsclickable()throws IOException {			
+		CR.checkWhether_ThePageNavigation_ForwardArrows_Clickable();		
+	}
 	
+	@Test(priority=338, description="TC_3_3_005 Check whether the page navigation backward arrows are clickable")
+	public void TC_3_3_005_Customer_CheckPageNavigationBackwardArrowsclickable()throws IOException {			
+		CR.checkWhether_ThePageNavigation_BackwardArrowsAre_Clickable();		
+	}
+	@Test(priority=339, description="TC_3_3_006 Check whether the correct page is displayed by clicking on page number")
+	public void TC_3_3_006_Customer_CheckCorrectpagedisplayedbyclickingpageNumber()throws IOException {			
+		CR.checkWhether_TheCorrectPage_IsDIsplayedBy_ClickingoOnPage_Number();		
+	}
+	
+	@Test(priority=3310, description="TC_3_3_007 Check the available filters in Type")
+	public void TC_3_3_007_Customer_CheckAvailableFiltersType()throws IOException {			
+		CR.checkThe_Available_Filters_InType();		
+	}
+	
+	@Test(priority=3311, description="TC_3_3_008 Check the available filters in Status")
+	public void TC_3_3_008_Customer_CheckAvailableFiltersStatus()throws IOException {			
+		CR.checkThe_Available_FiltersInStatus();		
+	}
+	
+	@Test(priority=3312, description="TC_3_3_009 Check the upcoming bookings")
+	public void TC_3_3_009_Customer_CheckUpcomingBookings()throws IOException {			
+		CR.check_Upcoming_Bookings();		
+	}
+	@Test(priority=3312, description="TC_3_3_010 Check the past bookings")
+	public void TC_3_3_010_Customer_CheckPastBookings()throws IOException {			
+		CR.checkThe_Past_Bookings();		
+	}
 
 }

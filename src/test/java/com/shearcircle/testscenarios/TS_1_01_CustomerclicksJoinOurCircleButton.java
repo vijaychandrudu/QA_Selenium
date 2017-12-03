@@ -30,7 +30,7 @@ public class TS_1_01_CustomerclicksJoinOurCircleButton extends StaticVariables {
 	public void beforeclass(@Optional("chrome") String browser) throws IOException, InterruptedException {
 		TestDataPath = cfn.TestDataPathOf("CustomerTestData.properties");
 		Browser = browser;
-		cfn.getAndOpenBrowser(browser);		
+		//cfn.getAndOpenBrowser(browser);		
 		driver = cfn.getDriver();		
 		CR = new Customer_Module_Page_Components(driver);
 		defaultWindowHandle = driver.getWindowHandle();

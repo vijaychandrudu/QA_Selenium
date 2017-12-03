@@ -69,7 +69,7 @@ public class TS_2_07_CustomerLoginwithFacebookuserwhichregisteredShearCircle ext
 	}	
 
 	@Test(priority=4, description="TC_005 Customer checks dashboard page and clicks Logout from dashboard" )
-	public void TC_005_Customer_CheckcheckDashboardpageandLogout() throws IOException {			
+	public void TC_005_Customer_checkDashboardpageandLogout() throws IOException {			
 		CR.Customer_JoinOurCircle_LogOutpage();	
 	}	
 }

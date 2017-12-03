@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -30,7 +31,7 @@ public class TS_3_02_CustomerClicksonMyFavorite extends StaticVariables {
 	public void beforeclass(@Optional("chrome") String browser) throws IOException, InterruptedException {
 		TestDataPath = cfn.TestDataPathOf("CustomerTestData.properties");
 		Browser = browser;
-		cfn.getAndOpenBrowser(browser);		
+		//cfn.getAndOpenBrowser(browser);		
 		driver = cfn.getDriver();		
 		CR = new Customer_Module_Page_Components(driver);
 		defaultWindowHandle = driver.getWindowHandle();
@@ -43,23 +44,28 @@ public class TS_3_02_CustomerClicksonMyFavorite extends StaticVariables {
 		Thread.sleep(1000);
 	}
 
-	@AfterClass
-	public void afterClass() {
+	@AfterTest
+	public void afterTest() {
 		driver.quit();
 	}
 	
-	@Test(priority=0, description="Customer visits ShearCircle page" )
-	public void TC_001_Customer_visitsShearCircle() throws IOException {			
+	@AfterClass
+	public void logOut(){
+		CR.Customer_JoinOurCircle_LogOutpage();
+	}
+	
+	@Test(priority=321, description="Customer visits ShearCircle page" )
+	public void TC_3_2_1_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=1, description="Customer clicks Login Button " )
-	public void Customer_clicks_JoinOurCircleButton() throws IOException {			
+	@Test(priority=322, description="Customer clicks Login Button " )
+	public void TC_3_2_2_Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
-	@Test(priority=2, description="Customer Login with registered Username(Email id) & Password " )
-	public void Customer_CheckRegisterWithShearCirclepage() throws IOException {			
+	@Test(priority=323, description="Customer Login with registered Username(Email id) & Password " )
+	public void TC_3_2_3_Customer_CheckRegisterWithShearCirclepage() throws IOException {			
 		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");			
 	}
 	/*@Test(priority=3, description="TC_3_2_001 Check the info in My Favorite for first time login/ without previously adding Favorites")
@@ -67,17 +73,17 @@ public class TS_3_02_CustomerClicksonMyFavorite extends StaticVariables {
 		CR.verify_MyFavorites_firsttimeloginorwithoutpreviouslyadded();			
 	}
 	*/
-	@Test(priority=4, description="TC_3_2_002 Check the info in My Favorite where Salons are already added as Favorites")
+	@Test(priority=325, description="TC_3_2_002 Check the info in My Favorite where Salons are already added as Favorites")
 	public void TC_3_2_002_Customer_CheckMyFavouritesalreadyAdded() throws IOException {			
 		CR.verify_MyFavoritewhereSalonsarealreadyadded();			
 	}	
-	@Test(priority=5, description="TC_3_2_003 Check whether Book Me button is clickable")
+	@Test(priority=326, description="TC_3_2_003 Check whether Book Me button is clickable")
 	public void TC_3_2_003_Customer_CheckwhetherBookMebuttonisclickable() throws IOException {			
 		CR.shearCircle_Verify_Bookme_Button_InmyFavourites();			
 	}
 	
-	@Test(priority=6, description="TC_3_2_004 Check whether a Salon can be removed from Favorites")
-	public void TC_3_2_003_Customer_CheckwhetheraSaloncanberemovedfromFavorites() throws IOException {	
+	@Test(priority=327, description="TC_3_2_004 Check whether a Salon can be removed from Favorites")
+	public void TC_3_2_004_Customer_CheckwhetheraSaloncanberemovedfromFavorites() throws IOException {	
 		CR.shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable("My Favorites");
 		CR.shearCircle_Verify_Customer_RemoveButton_in_Myfavourites();			
 	}
