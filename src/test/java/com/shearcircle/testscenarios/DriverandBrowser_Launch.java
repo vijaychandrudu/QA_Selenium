@@ -27,13 +27,13 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 
-public class CustomerModule extends StaticVariables {
+public class DriverandBrowser_Launch extends StaticVariables {
 	public String TestDataPath;
 	public Customer_Module_Page_Components CR;
 	public CommonFunctions cfn;
 	public static WebDriver driver;
 	
-	public CustomerModule() throws IOException, InterruptedException{
+	public DriverandBrowser_Launch() throws IOException, InterruptedException{
 		cfn = new CommonFunctions();
 		//CR = new Customer_Module_Page_Components();	
 	}
@@ -57,7 +57,7 @@ public class CustomerModule extends StaticVariables {
 	}
 
 	@AfterTest
-	public void afterClass() {
+	public void afterTest() {
 		driver.quit();
 	}	
 	

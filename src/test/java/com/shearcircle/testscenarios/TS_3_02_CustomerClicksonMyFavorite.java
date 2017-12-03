@@ -54,36 +54,36 @@ public class TS_3_02_CustomerClicksonMyFavorite extends StaticVariables {
 		CR.Customer_JoinOurCircle_LogOutpage();
 	}
 	
-	@Test(priority=321, description="Customer visits ShearCircle page" )
+	@Test(priority=3201, description="Customer visits ShearCircle page" )
 	public void TC_3_2_1_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=322, description="Customer clicks Login Button " )
+	@Test(priority=3202, description="Customer clicks Login Button " )
 	public void TC_3_2_2_Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
-	@Test(priority=323, description="Customer Login with registered Username(Email id) & Password " )
+	@Test(priority=3203, description="Customer Login with registered Username(Email id) & Password " )
 	public void TC_3_2_3_Customer_CheckRegisterWithShearCirclepage() throws IOException {			
 		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");			
 	}
-	/*@Test(priority=3, description="TC_3_2_001 Check the info in My Favorite for first time login/ without previously adding Favorites")
-	public void TC_3_2_01_Customer_CheckMyFavoritesFirsttimelogin_Or_Withoutadding() throws IOException {			
+	/*@Test(priority=3, description="TC_3_2_01 Check the info in My Favorite for first time login/ without previously adding Favorites")
+	public void TC_3_2_1_Customer_CheckMyFavoritesFirsttimelogin_Or_Withoutadding() throws IOException {			
 		CR.verify_MyFavorites_firsttimeloginorwithoutpreviouslyadded();			
 	}
 	*/
-	@Test(priority=325, description="TC_3_2_002 Check the info in My Favorite where Salons are already added as Favorites")
-	public void TC_3_2_002_Customer_CheckMyFavouritesalreadyAdded() throws IOException {			
+	@Test(priority=3205, description="TC_3_2_02 Check the info in My Favorite where Salons are already added as Favorites")
+	public void TC_3_2_02_Customer_CheckMyFavouritesalreadyAdded() throws IOException {			
 		CR.verify_MyFavoritewhereSalonsarealreadyadded();			
 	}	
-	@Test(priority=326, description="TC_3_2_003 Check whether Book Me button is clickable")
-	public void TC_3_2_003_Customer_CheckwhetherBookMebuttonisclickable() throws IOException {			
+	@Test(priority=3206, description="TC_3_2_03 Check whether Book Me button is clickable")
+	public void TC_3_2_03_Customer_CheckwhetherBookMebuttonisclickable() throws IOException {			
 		CR.shearCircle_Verify_Bookme_Button_InmyFavourites();			
 	}
 	
-	@Test(priority=327, description="TC_3_2_004 Check whether a Salon can be removed from Favorites")
-	public void TC_3_2_004_Customer_CheckwhetheraSaloncanberemovedfromFavorites() throws IOException {	
+	@Test(priority=3207, description="TC_3_2_04 Check whether a Salon can be removed from Favorites")
+	public void TC_3_2_04_Customer_CheckwhetheraSaloncanberemovedfromFavorites() throws IOException {	
 		CR.shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable("My Favorites");
 		CR.shearCircle_Verify_Customer_RemoveButton_in_Myfavourites();			
 	}
