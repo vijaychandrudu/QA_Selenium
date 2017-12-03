@@ -134,8 +134,17 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//div[3]//div/div/button[text()=' Change Profile Picture']")
 	public WebElement Customer_Mydashboard_changeProfilepicture;
 	
+	@FindBy(xpath="//*[@id='profile_image']")
+	public WebElement Customer_Mydashboard_ChooseFile_Button;
+	
 	@FindBy(xpath="//div/div/div/div/div/div/img")
 	public WebElement Customer_Mydashboard_Profilepicture;
+	
+	@FindBy(xpath="//*[@id='sub_content']/h1[contains(text(),'results for')]")	
+    public WebElement Customer_Search_Resultspage_Header;	
+
+	@FindBy(xpath="//*[@id='navbar-collapse-1']/form//button/i[@class='icon-search']")
+	public WebElement Customer_Mydashboard_Search_Button;
 
 
 	@FindBy(xpath="//*[@id='filters_col']//li/a[text()=' My Favorites']")

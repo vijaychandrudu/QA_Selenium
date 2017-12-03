@@ -900,10 +900,10 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			try{
 				browser.click(Login.Customer_Logout_Button);				
 				if(browser.elementisdisplayed(Login.Home_Login_Link)){
-					browser.reportscomtep("Passed", "click LogOut button link and verify Customer sent to ShearCircle Home page"  , "Customer will sent to ShearCircle Home page", "Customer sent to ShearCircle Home page");					
+					browser.reportscomtep("Passed", "click LogOut button and verify Log out of the dashboard and return to Login page"  , "Log out of the dashboard and should be return to Login page", "Log out of the dashboard and return to Login page");					
 					
 				}else {
-					browser.reportscomtep("Failed", "click LogOut button link and verify Customer sent to ShearCircle Home page"  , "Customer will sent to ShearCircle Home page", "Customer Not sent to ShearCircle Home page");				
+					browser.reportscomtep("Failed", "click LogOut button and verify Log out of the dashboard and return to Login page"  , "Log out of the dashboard and should be return to Login page", "Log out of the dashboard and Not return to Login page");				
 				}						
 				
 			}catch(Exception e){
@@ -1441,14 +1441,12 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			String gender="";
 			boolean genderSelection = false;
 
-			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
-
+			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)){
 				browser.reportscomtep("Passed", "Verify Customer My dashboard header is displayed",
 						"Customer My dashboard header should be displayed",
 						"Customers My dashboard header is displayed");
 
-				browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);
-		
+				browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);		
 				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_settings_header)) {
 					browser.reportscomtep("Passed", "Verify settings header is displayed",
 							"settings header should be displayed", "settings header displayed");
@@ -1489,6 +1487,54 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			System.out.println("Error description: " + e.getStackTrace());
 
 		}
+	}
+	
+	/************************** Check whether Change Profile Picture button is Clickable	*************/
+
+	public void shearCircle_Customer_Verify_Change_Profile_Picture_Buttonis_Clickable() {
+		
+	try {
+
+		if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_changeProfilepicture)) {		
+			browser.reportscomtep("Passed", "Verify Change Profile picture Button is displayed in MyDashboard page",
+					"Change profile picture Button should be displayed in MyDashboard page", "Change profile picture Button isplayed in MyDashboard page");
+
+			browser.click(CustomerModule.Customer_Mydashboard_changeProfilepicture);
+
+			browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_ChooseFile_Button, "Mydashboard Choosefile Button");
+						
+		} else {					
+			browser.reportscomtep("Failed", "Verify Change Profile picture Button is displayed in MyDashboard page",
+					"Change profile picture Button should be displayed in MyDashboard page", "Change profile picture Button is not displayed in MyDashboard page");
+
+		}
+	}catch(Exception e){
+		System.out.println("Error description: " + e.getStackTrace() );
+	}			
+	}
+	/************************** Check whether the Search button is clickable			*************/
+
+	public void shearCircle_Verify_Customer_Search_Button_IsClickable() {
+		
+	try {
+
+		if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Search_Button)) {		
+			browser.reportscomtep("Passed", "Verify Search Button is displayed in Login page",
+					"Search Button should be displayed in Login page", "Search Button is displayed in Login page");
+
+			browser.click(CustomerModule.Customer_Mydashboard_Search_Button);
+			browser.waitforelementtobevisible(CustomerModule.Customer_Search_Resultspage_Header, 20);
+			browser.Verify_elementisdisplayed_Report(
+					CustomerModule.Customer_Search_Resultspage_Header, "Opens the Search Results page and displays all available Salons");			
+					
+				} else {
+					
+			browser.reportscomtep("Failed", "Verify Search Button is displayed in Login page",
+					"Search Button should be displayed in Login page", "Search Button is not displayed in Login page");
+		}
+	}catch(Exception e){
+		System.out.println("Error description: " + e.getStackTrace() );
+	}			
 	}
 		/*****************************  Check the info in My Appointments for first time login/ without creating any bookings	  *************************/
 
@@ -1569,8 +1615,6 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			System.out.println("Error description: " + e.getStackTrace());
 
 		}
-
-
 	}
 	public void shearCircle_Verify_Customer_Clickson_MyAppoinments_Accountholder_Login() {
 		

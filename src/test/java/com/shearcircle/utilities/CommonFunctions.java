@@ -697,17 +697,17 @@ public class CommonFunctions extends StaticVariables {
 		try {
 			//this.movetoElement(element);
 			//this.scrollintoviewelement(element);
-			this.waitforelementtobevisible(element, 10);
+			this.waitforelementtobevisible(element, 15);
 			if (element.isDisplayed() && element.isEnabled()) {
 				this.highlightElement(element);				
 				this.reportscomtep("Passed", "Verify The Element " + Reporttext + " is displayed",
-						"The Element " + Reporttext + "should be displayed", "The Element " + Reporttext + " displayed");
+						"The Element " + Reporttext + " should be displayed", "The Element " + Reporttext + " displayed");
 
 			} else {
 			    
-				this.reportscomtep("Failed", "Verify The Element is " + Reporttext + "displayed",
-						"The Element " + Reporttext + "should be displayed",
-						"The Element " + Reporttext + "Not displayed");
+				this.reportscomtep("Failed", "Verify The Element is " + Reporttext + " displayed",
+						"The Element " + Reporttext + " should be displayed",
+						"The Element " + Reporttext + " Not displayed");
 			}
 
 		} catch (Exception e) {
