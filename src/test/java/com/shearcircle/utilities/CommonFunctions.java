@@ -937,6 +937,25 @@ public class CommonFunctions extends StaticVariables {
 		return dropdownvalues;
 	}
 
+	
+	public String getDropdownSelectedValue(WebElement element){
+		String dropdownvalue = "";
+		  try{			  
+			  if (element.isDisplayed() && element.isEnabled()) {
+					Select dropdown = new Select(element);
+					dropdownvalue = dropdown.getFirstSelectedOption().getText();
+				} else {
+					System.out.println("Element existance and enabled status Failed");
+				}
+			  
+		  }catch(Exception e){
+			  System.out.println("Error in description: " + e.getStackTrace());
+		  }		  
+		  return dropdownvalue;
+		 
+		 
+		
+		 }
 	/************************* MouseHover Actions ************/
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
@@ -1068,9 +1087,12 @@ public class CommonFunctions extends StaticVariables {
 		case "pass":
 		case "passed":
 		case "PASSED":
+			
+						
 			String base64Screenshot1 = "data:image/png;base64,"+((TakesScreenshot)driver).
             getScreenshotAs(OutputType.BASE64);
 			ExtentTestManager.getTest().log(LogStatus.PASS, Description, Actualvalue+ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot1));
+			//ExtentTestManager.getTest().log(LogStatus.PASS, Description, Actualvalue+ExtentTestManager.getTest().addScreenCapture(ScreenshotsPath+ "Pass_" + TimeStampasString() + ".jpg"));
 			System.out.println(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
 			Reporter.log(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
 			/*try {

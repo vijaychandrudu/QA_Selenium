@@ -1267,24 +1267,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 					browser.Verify_elementisdisplayed_Report(
 							CustomerModule.Customer_Mydashboard_Myappoinments_status_cancelled,
-							"Myappoinments status cancelled");
-
-					/*
-					 * }else if(browser.elementisdisplayed(CustomerModule.
-					 * Customer_Mydashboard_Myappoinments_selectedappoinments_header
-					 * )){ browser.reportscomtep("passed",
-					 * "Verify selected appoinments is displayed" ,
-					 * "selected appoinments should be displayed",
-					 * " selected appoinments is  displayed");
-					 * 
-					 * }else { browser.reportscomtep("Failed",
-					 * "Verify selected appoinments is displayed" ,
-					 * "selected appoinments should be displayed",
-					 * " selected appoinments is not displayed");
-					 * 
-					 * 
-					 * }
-					 */
+							"Myappoinments status cancelled");					
 				} else {
 					browser.reportscomtep("Failed", "Verify no appoinments is displayed",
 							"no appoinments should be displayed", "no appoinments is not displayed");
@@ -2177,9 +2160,6 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		}
 	}
 	
-		
-
-
 /*************************Check whether My Account button is clickable	*************/
 public void shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable(String myAccountLinkName) {
 	
@@ -2217,4 +2197,474 @@ public void shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable(String myAc
 		System.out.println("Error description: " + e.getStackTrace() );
 	}			
  }
+
+/******************TC_3_4_02 Check if the Cancel button is clickable*************/
+
+public void check_CancelButton_IsClickable() {
+	try {
+		
+			browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Settings_Header)) {
+				browser.reportscomtep("Passed", "Verify Settings header is displayed",
+						"Settings header should be displayed", "Settings header  displayed");
+				browser.ScrollToXY(0,250);
+				browser.click(CustomerModule.Customer_Mydashboard_settings_cancel);
+				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Welcome_Name_Header)) {
+					browser.reportscomtep("Passed", "Click on Cancel button and Verify Settings page Return to My Dashboard page",
+							"Settings page should be Return to My Dashboard page",
+							"Settings page Return to My Dashboard page");
+				} else {
+					browser.reportscomtep("Failed", "Click on Cancel button and Verify Settings page Return to My Dashboard page",
+							"Settings page should be Return to My Dashboard page",
+							"Settings page Not Return to My Dashboard page");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify Settings header is displayed",
+						"Settings header should be displayed", "Settings header not displayed");
+				}
+		
+	} catch (Exception e) {
+		System.out.println("Error description: " + e.getStackTrace());
+
+	}
+}
+
+/*********TC_3_4_03	Check the field validation******************/
+
+public void check_SettingsPageField_Validation_withInvaliddata() {
+	String customerFirstName = null;
+	String customerLastName = null;
+	String customerMobileNo = null;
+	String customerAddress = null;
+	String customerCity = null;
+	String customerZipCode = null;
+	String customerState = "";
+	try {
+		customerFirstName = browser.getdata("settings_InvalidFirstName");
+		customerLastName = browser.getdata("settings_InvalidLastName");
+		customerMobileNo = browser.getdata("settings_InvalidMobileNo");
+		customerAddress = browser.getdata("settings_InvalidAddress");
+		customerCity = browser.getdata("settings_InvalidCity");
+		customerZipCode = browser.getdata("settings_InvalidZipCode");
+		customerState = browser.getdata("settings_InvalidState");
+		
+			browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Settings_Header)) {
+				browser.reportscomtep("Passed", "Verify Settings header is displayed",
+						"Settings header should be displayed", "Settings header  displayed");
+				browser.clearText(CustomerModule.Customer_Settings_FirstName);
+				browser.sendkeys(CustomerModule.Customer_Settings_FirstName, customerFirstName);
+				
+				browser.clearText(CustomerModule.Customer_Settings_LastName);
+				browser.sendkeys(CustomerModule.Customer_Settings_LastName, customerLastName);
+				
+				browser.clearText(CustomerModule.Customer_Mydashboard_settings_Phone);
+				browser.sendkeys(CustomerModule.Customer_Mydashboard_settings_Phone, customerMobileNo);				
+				
+				browser.clearText(CustomerModule.Customer_Mydashboard_settings_Address);
+				browser.sendkeys(CustomerModule.Customer_Mydashboard_settings_Address, customerAddress);
+				
+				browser.clearText(CustomerModule.Customer_Mydashboard_settings_city);
+				browser.sendkeys(CustomerModule.Customer_Mydashboard_settings_city, customerCity);
+												
+				browser.ScrollToXY(0, 250);
+				
+				browser.selectByVisibleText(CustomerModule.Customer_Mydashboard_settings_State, customerState);
+				
+				browser.clearText(CustomerModule.Customer_Mydashboard_settings_zipcode);
+				browser.sendkeys(CustomerModule.Customer_Mydashboard_settings_zipcode, customerZipCode);							
+
+				browser.click(CustomerModule.Customer_Mydashboard_settings_Update);
+				browser.scrollUp(250);
+				if (browser.elementisdisplayed(CustomerModule.Customer_ProfileUpdatedSuccessfully_Message)) {
+					browser.reportscomtep("Passed",
+							"Click on Update button and Verify Profile Updated Successfully message displayed",
+							"Profile Updated Successfully message should be displayed",
+							"Profile Updated Successfully message displayed");
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Update button and Verify Profile Updated Successfully message displayed",
+							"Profile Updated Successfully message should be displayed",
+							"Profile Updated Successfully message displayed");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Verify Settings header is displayed",
+						"Verify Settings header should be displayed", "Verify Settings header not displayed");
+			}		
+
+	} catch (Exception e) {
+		System.out.println("Error description: " + e.getStackTrace());
+
+	}
+}
+
+/******TC_3_4_04	Check the mandatory fields**********/
+
+
+public void check_MandatoryFieldsinSettingsPage() {
+	try {		
+			browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Settings_Header)) {
+				browser.reportscomtep("Passed", "Verify Settings header is displayed",
+						"Settings header should be displayed", "Settings header  displayed");
+				browser.clearText(CustomerModule.Customer_Settings_FirstName);
+				
+				browser.clearText(CustomerModule.Customer_Settings_LastName);				
+				
+				browser.clearText(CustomerModule.Customer_Mydashboard_settings_Phone);						
+				
+				browser.clearText(CustomerModule.Customer_Mydashboard_settings_Address);				
+				
+				browser.clearText(CustomerModule.Customer_Mydashboard_settings_city);				
+												
+				browser.ScrollToXY(0, 250);			
+				
+				browser.clearText(CustomerModule.Customer_Mydashboard_settings_zipcode);
+				
+				browser.click(CustomerModule.Customer_Mydashboard_settings_Update);
+				browser.scrollUp(250);
+				if (browser.elementisdisplayed(CustomerModule.Customer_PleaseEnterFirstName_ErrorMessage)
+						&& browser.elementisdisplayed(CustomerModule.Customer_PleaseEnterLastName_ErrorMessage)) {
+					browser.reportscomtep("Passed",
+							"Click on Update button with out entering mandatory fields and Verify Please Enter First Name and Last name ErrorMessage is dispalyed ",
+							"First Name and Last name ErrorMessage should be dispalyed",
+							"Please Enter First Name and Please enter Last name Error Message dispalyed");
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Update button with out entering mandatory fields and Verify Please Enter First Name and Last name ErrorMessage is dispalyed ",
+							"First Name and Last name  ErrorMessage should be dispalyed",
+							"Please enter First Name and Please enter Last name  Error Message not dispalyed");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify Settings header is displayed",
+						"Verify Settings header should be displayed", "Verify Settings header not displayed");
+			}		
+
+	} catch (Exception e) {
+		System.out.println("Error description: " + e.getStackTrace());
+
+	}
+}
+/*********TC_3_4_05	Check whether Change Password link is clickable********/
+public void checkWhether_ChangePassword_LinkIs_Clickable() {
+	try {
+		if (browser.elementisdisplayed(CustomerModule.Customer_Settings_Header)) {
+			browser.reportscomtep("Passed", "Verify Settings header is displayed",
+					"Settings header should be displayed", "Settings header  displayed");
+			browser.ScrollToXY(0, 250);
+			browser.click(CustomerModule.Customer_ChangePassword_Link);
+			if (browser.elementisdisplayed(CustomerModule.Customer_SecureYourProfileByChangingPassword_Header)) {
+				browser.reportscomtep("Passed",
+						"Click change password link and Verify settings page redirects to change password page displayed.",
+						" Settings page should be redirects to change password page displayed.",
+						" Settings page Redirects to change password page displayed.");
+			} else {
+				browser.reportscomtep("Failed",
+						"Click change password link and Verify settings page redirects to change password page displayed.",
+						" Settings page should be redirects to change password page displayed.",
+						" Settings page Not Redirects to change password page displayed.");
+			}
+		} else {
+			browser.reportscomtep("Failed", "Verify Settings header is displayed",
+					"Verify Settings header should be displayed", "Verify Settings header not displayed");
+		}
+
+	} catch (Exception e) {
+		System.out.println("Error description: " + e.getStackTrace());
+
+	}
+}
+
+/**********TC_3_4_06	Check whether the password can be updated without entering any data***********/
+
+	public void check_WhetherThePassword_CanbeUpdated_WithOut_EnteringAnyData() {
+		try {
+			if (browser.elementisdisplayed(CustomerModule.Customer_SecureYourProfileByChangingPassword_Header)) {
+				browser.reportscomtep("Passed", "Verify Secure Your Profile by Changing Password Header is displayed ",
+						"Secure Your Profile by Changing Password Header should be displayed",
+						"Secure Your Profile by Changing Password Header displayed");
+				browser.click(CustomerModule.Customer_Profile_ChangingPassword_Update_Button);
+				if (browser.elementisdisplayed(CustomerModule.Customer_Oldpassword_Errormessage) && browser.elementisdisplayed(CustomerModule.Customer_Newpassword_Errormessage)) {
+					browser.reportscomtep("Passed", "Click on Update button and Verify Current Password and New Password validation messages is displayed",
+							"Current Password and New Password validation messages should be displayed",
+							"Please enter Current Password and Please enter New Password validation messages is displayed");
+				} else {
+					browser.reportscomtep("Failed", "Click on Update button and Verify Current Password and New Password validation messages is displayed",
+							"Current Password and New Password validation messages should be displayed",
+							"Please enter Current Password and Please enter New Password validation messages Not displayed");					
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify Secure Your Profile by Changing Password Header is displayed ",
+						"Secure Your Profile by Changing Password Header should be displayed",
+						"Secure Your Profile by Changing Password Header not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+
+	/***********TC_3_4_07	Check whether the password can be updated by entering new password less than 6 characters/spaces******/
+	
+	public void enteringNew_PasswordLessThan_SixCharacters_Or_Spaces(String p_in_FinalAction) {
+		String CustomerCurrentPassword = null;
+		String newPwdLessThan6chars = null;
+		String newPasswordWithspaces = null;
+		try {
+			CustomerCurrentPassword = browser.getdata("CustomerOldPassword");
+			newPwdLessThan6chars = browser.getdata("CustomerNewPwdLessThan6chars");
+			newPasswordWithspaces = browser.getdata("CustomerNewPasswordWithspaces");
+			
+				if (browser.elementisdisplayed(CustomerModule.Customer_SecureYourProfileByChangingPassword_Header)) {
+					browser.reportscomtep("Passed", "Verify Secure Your Profile by Changing Password Header is displayed ",
+				"Secure Your Profile by Changing Password Header should be displayed",
+				"Secure Your Profile by Changing Password Header displayed");
+				browser.sendkeys(CustomerModule.Customer_CurrentPassword_TextBox, CustomerCurrentPassword);
+				switch (p_in_FinalAction) {
+				case "Enter_NewPwdLessThan6chars":
+					browser.sendkeys(CustomerModule.Customer_NewPassword_TextBox, newPwdLessThan6chars);
+					if (browser.elementisdisplayed(CustomerModule.Customer_Pwd_Minimum6letters_ErrorMessage)) {
+						browser.reportscomtep("Passed",
+								"Enter new Password less than 6 chars and Verify new Password validation message is dispalyed.",
+								"New Password validation message is dispalyed.",
+								"Password Lenght should be minimum 6 letters validation message dispalyed");
+					} else {
+						browser.reportscomtep("Failed",
+								"Enter new Password less than 6 chars and Verify new Password validation message is dispalyed.",
+								"New Password validation message is dispalyed.",
+								"Password Lenght should be minimum 6 letters validation message Not dispalyed");
+		
+					}
+					break;
+				case "Enter_NewPwddWithspaces":
+					browser.sendkeys(CustomerModule.Customer_NewPassword_TextBox, newPasswordWithspaces);
+					if (browser.elementisdisplayed(CustomerModule.Customer_Pwd_SpacePlease_ErrorMessage)) {
+						browser.reportscomtep("Passed",
+								"Enter new Password including spaces and Verify new Password validation message is dispalyed.",
+								"New Password validation message is dispalyed.",
+								"No white space please validation message dispalyed");
+					} else {
+						browser.reportscomtep("Failed",
+								"Enter new Password including spaces and Verify new Password validation message is dispalyed.",
+								"New Password validation message is dispalyed.",
+								"No white space please validation message Not dispalyed");
+					}
+				}
+
+	} else {
+		browser.reportscomtep("Failed", "Verify Secure Your Profile by Changing Password Header is displayed ",
+				"Secure Your Profile by Changing Password Header should be displayed",
+				"Secure Your Profile by Changing Password Header not displayed");
+	}
+
+} catch (Exception e) {
+	System.out.println("Error description: " + e.getStackTrace());
+
+}
+}
+	
+	/***********TC_3_4_08	Check whether password can be updated by entering valid data**************/
+	public void password_CanBeUpdatedBy_Entering_ValidData() {
+		String CustomerOldPassword = null;
+		String CustomerNewPassword = null;
+		String CustomerRetypePassword = null;
+		try {
+			CustomerOldPassword = browser.getdata("CustomerOldPassword");
+			CustomerNewPassword = browser.getdata("CustomerNewPassword");
+			CustomerRetypePassword = browser.getdata("CustomerRetypePassword");
+			if (browser.elementisdisplayed(CustomerModule.Customer_SecureYourProfileByChangingPassword_Header)) {
+				browser.reportscomtep("Passed", "Verify Secure Your Profile by Changing Password Header is displayed ",
+						"Secure Your Profile by Changing Password Header should be displayed",
+						"Secure Your Profile by Changing Password Header displayed");
+				browser.sendkeys(CustomerModule.Customer_CurrentPassword_TextBox, CustomerOldPassword);
+				browser.sendkeys(CustomerModule.Customer_NewPassword_TextBox, CustomerNewPassword);
+				browser.sendkeys(CustomerModule.Customer_CurrentPassword_TextBox, CustomerRetypePassword);
+				if (browser.elementisdisplayed(CustomerModule.Customer_PasswordUpdatedSuccessfully_Message)) {
+					browser.reportscomtep("Passed", "Verify Password Updated Successfully Message is displayed",
+							"Password Updated Successfully Message should be displayed",
+							"Password Updated Successfully Message displayed");
+				} else {
+					browser.reportscomtep("Failed", "Verify Password Updated Successfully Message is displayed",
+							"Password Updated Successfully Message should be displayed",
+							"Password Updated Successfully Message not displayed");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify Secure Your Profile by Changing Password Header is displayed ",
+						"Secure Your Profile by Changing Password Header should be displayed",
+						"Secure Your Profile by Changing Password Header not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+	
+	/**TC_3_4_09	Check whether the Cancel button is clickable and Redirects to My DDashboard***/
+     
+
+	public void verify_Cancel_Button_IsClickable_Changepasswordpage() {
+		
+	try {
+
+		if (browser.elementisdisplayed(CustomerModule.Customer_ChangingPassword_Cancel_Button)) {		
+			browser.reportscomtep("Passed", "Verify Cancel Button is displayed in Profile by changing password page",
+					"Cancel Button should be displayed in Profile by changing password page", "Cancel Button is displayed in Profile by changing password page");
+			browser.click(CustomerModule.Customer_ChangingPassword_Cancel_Button);
+					
+			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Welcome_Name_Header)) {
+				browser.reportscomtep("Passed", "Click Cancel button and verify Change Password page Return to My Dashboard",
+						"Change Password page should be Return to My Dashboard",
+						"Change Password page Return to My Dashboard");
+			} else {
+				browser.reportscomtep("Failed", "Click Cancel button and verify Change Password page Return to My Dashboard",
+						"Change Password page should be Return to My Dashboard",
+						"Change Password page Not Return to My Dashboard");
+			}
+						
+		} else {
+					
+			browser.reportscomtep("Failed", "Verify Cancel Button is displayed in  your Profile by changing password page",
+					"Cancel Button should be displayed in Profile by changing password page", "Cancel Button is not displayed in Profile by changing password page");
+		}
+	}catch(Exception e){
+		System.out.println("Error description: " + e.getStackTrace() );
+	}			
+	}
+	
+	public void verify_PrepopulatedvaluesinSettingspage() {
+		
+		try {
+			String firstName = "";
+			String lastName = "";
+			String emailId = "";
+			String address = "";
+			String city = "";
+			String state = "";
+			String mobile = "";
+			boolean gemderisslection = false;
+			String zipCode = "";
+			String birtMonth = "";
+			String birthDay = "";
+			String expctEmailID = "";
+			
+			expctEmailID = browser.getdata("CustomerValidEmail");
+			browser.waitforelementtobevisible(CustomerModule.Customer_Mydashboard_Settings_Button, 20);		
+			browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_settings_header)) {		
+				browser.reportscomtep("Passed", "Verify Settings header is displayed",
+						"Settings header should be displayed", "Settings header displayed");
+				
+				firstName = browser.elementgetAttributevalue(CustomerModule.Customer_Settings_FirstName, "value");
+				lastName = browser.elementgetAttributevalue(CustomerModule.Customer_Settings_LastName, "value");
+				if(firstName!="" && lastName!=""){
+					browser.reportscomtep("Passed", "Verify Prepopulated FirstName and LastName is displayed",
+							"Prepopulated FirstName and LastName should be displayed", "Prepopulated FirstName :" + firstName +" and LastName : "+lastName +" displayed" );
+				}else{
+					browser.reportscomtep("Failed", "Verify Prepopulated FirstName and LastName is displayed",
+							"Prepopulated FirstName and LastName should be displayed", "Prepopulated FirstName and LastName not displayed" );
+				}
+				
+				emailId = browser.elementgetAttributevalue(CustomerModule.Customer_Settings_Email, "value");				
+				if(emailId.trim().equalsIgnoreCase(expctEmailID)){
+					browser.reportscomtep("Passed", "Verify Prepopulated Registered EmailID is displayed",
+							"Prepopulated Registered EmailID should be displayed", "Prepopulated Registered EmailID :" + emailId +" displayed" );
+				}else{
+					browser.reportscomtep("Failed", "Verify Prepopulated Registered EmailID is displayed",
+							"Prepopulated Registered EmailID should be displayed", "Prepopulated Registred EmailID not displayed" );
+				}
+				
+				mobile = browser.elementgetAttributevalue(CustomerModule.Customer_Mydashboard_settings_Phone, "value");				
+				if(mobile.trim()==""){
+					browser.reportscomtep("Passed", "Verify Prepopulated Registered mobile is displayed",
+							"Prepopulated Registered mobile should be displayed", "Prepopulated Registered mobile not displayed as expected if previously not added" );
+				}else if(mobile.trim()!="" ){
+					browser.reportscomtep("Passed", "Verify Prepopulated Registered mobile is displayed",
+							"Prepopulated Registered mobile should be displayed", "Prepopulated Registered mobile :" + mobile +" displayed as expected if previously added" );
+				}else{	
+					browser.reportscomtep("Failed", "Verify Prepopulated Registered mobile is displayed",
+							"Prepopulated Registered mobile should be displayed", "Mobile field having error" );
+				}
+				String genderType = "";
+				if(CustomerModule.Customer_Settings_Gender_Male.isSelected()){
+					genderType = browser.elementgetAttributevalue(CustomerModule.Customer_Settings_Gender_Male, "value");
+					gemderisslection = true;
+				}else if(CustomerModule.Customer_Settings_Gender_Female.isSelected()){
+					genderType = browser.elementgetAttributevalue(CustomerModule.Customer_Settings_Gender_Female, "value");
+					gemderisslection = true;
+				}
+			
+				if(gemderisslection){
+					browser.reportscomtep("Passed", "Verify PreSelected Gender.",
+							"Gender should be preselected", "PreSelected Gender is: " + genderType);
+				}else{
+					browser.reportscomtep("Failed", "Verify PreSelected Gender.",
+							"Gender should be preselected", "No PreSelected Gender");					
+				}			
+				
+				address = browser.elementgetAttributevalue(CustomerModule.Customer_Mydashboard_settings_Address, "value");				
+				if(address.trim()==""){
+					browser.reportscomtep("Passed", "Verify Prepopulated address is displayed",
+							"Prepopulated address should be displayed", "Prepopulated address not displayed as expected if previously not added" );
+				}else if(zipCode.trim()!="" ){
+					browser.reportscomtep("Passed", "Verify Prepopulated address is displayed",
+							"Prepopulated address should be displayed", "Prepopulated address :" + address +" displayed as expected if previously added" );
+				}else{	
+					browser.reportscomtep("Failed", "Verify Prepopulated address is displayed",
+							"Prepopulated address should be displayed", "Address field having error" );
+				}
+				
+				city = browser.elementgetAttributevalue(CustomerModule.Customer_Mydashboard_settings_city, "value");				
+				if(city.trim()==""){
+					browser.reportscomtep("Passed", "Verify Prepopulated City is displayed",
+							"Prepopulated City should be displayed", "Prepopulated City not displayed as expected if previously not added" );
+				}else if(zipCode.trim()!="" ){
+					browser.reportscomtep("Passed", "Verify Prepopulated City is displayed",
+							"Prepopulated City should be displayed", "Prepopulated City :" + city +" displayed as expected if previously added" );
+				}else{	
+					browser.reportscomtep("Failed", "Verify Prepopulated City is displayed",
+							"Prepopulated City should be displayed", "City field having error" );
+				}				
+				
+				state = browser.getDropdownSelectedValue(CustomerModule.Customer_Mydashboard_settings_State);				
+				if(state.trim()==""){
+					browser.reportscomtep("Passed", "Verify PreSelected State is displayed",
+							"PreSelected State should be displayed", "PreSelected State not displayed as expected if previously not Selected");
+				}else if(state.trim()!="" ){
+					browser.reportscomtep("Passed", "Verify PreSelected State is displayed",
+							"PreSelected State should be displayed", "PreSelected State :" + state +" displayed as expected if previously Selected");
+				}else{	
+					browser.reportscomtep("Failed", "Verify PreSelected State is displayed",
+							"PreSelected State should be displayed", "PreSelected field having error");
+				}				
+				
+				zipCode = browser.elementgetAttributevalue(CustomerModule.Customer_Mydashboard_settings_zipcode, "value");				
+				if(zipCode.trim()==""){
+					browser.reportscomtep("Passed", "Verify Prepopulated ZipCode is displayed",
+							"Prepopulated ZipCode should be displayed", "Prepopulated ZipCode not displayed as expected if previously not added" );
+				}else if(zipCode.trim()!="" ){
+					browser.reportscomtep("Passed", "Verify Prepopulated ZipCode is displayed",
+							"Prepopulated ZipCode should be displayed", "Prepopulated ZipCode :" + zipCode +" displayed as expected if previously added" );
+				}else{	
+					browser.reportscomtep("Failed", "Verify Prepopulated ZipCode is displayed",
+							"Prepopulated ZipCode should be displayed", "ZipCode field having error" );
+				}				
+				
+			} else {
+						
+				browser.reportscomtep("Failed", "Verify Settings header is displayed",
+						"Settings header should be displayed", "Settings header not displayed");
+			}
+		}catch(Exception e){
+			System.out.println("Error description: " + e.getStackTrace() );
+		}			
+		}
+		
+	
+	
+
 }

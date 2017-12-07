@@ -297,7 +297,7 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='edit_profile']//input[@name='firstname']")
 	public WebElement Customer_Settings_FirstName;
 	
-	@FindBy(xpath="//div/div/nav/div/ul/li[@class='active']/a")
+	@FindBy(xpath="//ul/li/a[text()=' Settings']")
 	public WebElement Customer_Settings_Link;
 
 
@@ -348,6 +348,54 @@ public class Customer_Module_Page_Objects{
 
 	@FindBy(xpath="//*[@id='edit_profile']//input[@value='UPDATE']")
 	public WebElement Customer_Mydashboard_settings_Update;
+	
+	@FindBy(xpath="//h4[text()='Profile Updated Successfully']")
+	public WebElement Customer_ProfileUpdatedSuccessfully_Message;
+	
+	@FindBy(xpath = "//*[text()='Please enter firstname']")
+	public WebElement Customer_PleaseEnterFirstName_ErrorMessage;
+
+	@FindBy(xpath = "//*[text()='Please enter lastname']")
+	public WebElement Customer_PleaseEnterLastName_ErrorMessage;
+	
+	@FindBy(xpath = "//*[text()='Click here to change password']")
+	public WebElement Customer_ChangePassword_Link;
+	
+	@FindBy(xpath="//*[text()='Secure Your Profile by Changing Password']")
+	public WebElement Customer_SecureYourProfileByChangingPassword_Header;
+	
+	@FindBy(xpath="//*[@id='update_profile']//div/input[@type='submit']")
+	public WebElement Customer_Profile_ChangingPassword_Update_Button;
+	
+	@FindBy(xpath = "//*[@name='current_password']")
+	public WebElement Customer_CurrentPassword_TextBox;
+	
+	@FindBy(xpath = "//*[@name='password']")
+	public WebElement Customer_NewPassword_TextBox;
+	
+	@FindBy(xpath = "//*[@id='update_profile']//div/a[text()='CANCEL']")
+	public WebElement Customer_ChangingPassword_Cancel_Button;
+	
+	@FindBy(xpath = "//*[@name='cnf_password']")
+	public WebElement Customer_RetypePassword_TextBox;
+    
+    @FindBy(xpath="//*[text()='Password Updated Successfully']")
+    public WebElement Customer_PasswordUpdatedSuccessfully_Message;
+    
+	
+	@FindBy(xpath="//*[text()='Please enter Current Password']")
+	public WebElement Customer_Oldpassword_Errormessage;
+
+	@FindBy(xpath="//*[text()='Please enter New Password']")
+	public WebElement Customer_Newpassword_Errormessage;
+	
+	@FindBy(xpath = "//*[text()='No white space please']")
+	public WebElement Customer_Pwd_SpacePlease_ErrorMessage;
+	
+	@FindBy(xpath = "//*[text()='Password Lenght should be minimum 6 letters']")
+	public WebElement Customer_Pwd_Minimum6letters_ErrorMessage;
+	
+	
 
 /*********************TC_3_3_03************************/
     
