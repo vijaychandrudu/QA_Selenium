@@ -40,7 +40,7 @@ public class TS_1_01_CustomerclicksJoinOurCircleButton extends StaticVariables {
 	@AfterMethod
 	public void StatusScreenShots(ITestResult testResult) throws IOException, InterruptedException {
 		cfn.ScreenshotOnPassFail(testResult);
-		Thread.sleep(1000);
+		Thread.sleep(11_1_00);
 	}
 
 	@AfterClass
@@ -48,21 +48,21 @@ public class TS_1_01_CustomerclicksJoinOurCircleButton extends StaticVariables {
 		driver.quit();
 	}
 	
-	@Test(priority=0, description="TC_001 Customer visits ShearCircle page" )
-	public void TC_001_Customer_visitsShearCircle() throws IOException {
-		ExtentTestManager.getTest().setDescription("TC_001 Customer visits ShearCircle page.");
+	@Test(priority=1101, description="TC_1_1_01 Customer visits ShearCircle page")
+	public void TC_1_1_01_Customer_visitsShearCircle() throws IOException {		
+		ExtentTestManager.getTest().setDescription("Customer visits ShearCircle page");
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=1, description="TC_002 Customer clicks JoinOurCircle Button " )
-	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {
-		ExtentTestManager.getTest().setDescription("TC_002 Customer clicks JoinOurCircle Button.");
+	@Test(priority=1102, description="TC_1_1_02 Customer clicks JoinOurCircle Button " )
+	public void TC_1_1_02_Customer_clicks_JoinOurCircleButton() throws IOException {
+		ExtentTestManager.getTest().setDescription("Customer clicks JoinOurCircle Button.");
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_JoinOurCircle");			
 	}
 	
-	@Test(priority=2, description="TC_003 Customer Check Register With ShearCircle page where they can register either as a Customer or as a Professional" )
-	public void TC_003_Customer_CheckRegisterWithShearCirclepage() throws IOException {		
-		ExtentTestManager.getTest().setDescription("TC_002 Customer clicks JoinOurCircle Button.");
+	@Test(priority=1103, description="TC_1_1_03 Customer Check Register With ShearCircle page where they can register either as a Customer or as a Professional" )
+	public void TC_1_1_03_Customer_CheckRegisterWithShearCirclepage() throws IOException {		
+		ExtentTestManager.getTest().setDescription("Customer Check Register With ShearCircle page where they can register either as a Customer or as a Professional.");
 		CR.ShearCircle_Click_Customer_OR_Professional_JoinOurCircle("DoNothing");			
 	}
 	

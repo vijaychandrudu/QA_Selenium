@@ -14,10 +14,12 @@
 
     <test name="Shearcircle_Testscenarios">
         <classes>
-        	<class name="com.shearcircle.testscenarios.CustomerModule"/>
-        	<!-- <class name="com.shearcircle.testscenarios.TS_3_01_Customerlogintocustomerdashboardforthefirsttime"/> -->
+        	<class name="com.shearcircle.testscenarios.DriverandBrowser_Launch"/>
+        	<!-- <class name="com.shearcircle.testscenarios.TS_1_01_CustomerclicksJoinOurCircleButton"/> -->
+        	<!-- <class name="com.shearcircle.testscenarios.TS_3_01_CustomerLogintoDashboard"/> -->
         	<!-- <class name="com.shearcircle.testscenarios.TS_3_02_CustomerClicksonMyFavorite"/> -->
-        	<class name="com.shearcircle.testscenarios.TS_3_03_CustomerClicksonMyappointments"/>            
+        	<!-- <class name="com.shearcircle.testscenarios.TS_3_03_CustomerClicksonMyappointments"/> -->
+        	<class name="com.shearcircle.testscenarios.TS_3_04_CustomerclicksonSettings"/>            
         </classes>
     </test>
 </suite>
