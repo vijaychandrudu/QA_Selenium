@@ -58,8 +58,7 @@ public class CommonFunctions extends StaticVariables {
 	 */
 
 	public CommonFunctions() {
-		ProjectDir = System.getProperty("user.dir");
-		
+		ProjectDir = System.getProperty("user.dir");		
 		File file = new File(ProjectDir + "\\screenshots");
 		boolean a = false;
 		if (!file.exists()) {
@@ -714,8 +713,7 @@ public class CommonFunctions extends StaticVariables {
 			System.out.println("Error in description: " + e.getStackTrace());
 		}
 
-	}
-
+	}	
 	
 	public boolean verifyElementtext(WebElement element, String text,String textType) {
 		String textvalue = "";
@@ -796,7 +794,8 @@ public class CommonFunctions extends StaticVariables {
 		try {
 			//this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 10);
-			if (element.isDisplayed() && element.isEnabled()) {	
+			if (element.isDisplayed() && element.isEnabled()) {
+				this.clearText(element);
 				this.highlightElement(element);	
 				element.sendKeys(p_in_inputvalue);
 			} else {
@@ -940,7 +939,8 @@ public class CommonFunctions extends StaticVariables {
 	
 	public String getDropdownSelectedValue(WebElement element){
 		String dropdownvalue = "";
-		  try{			  
+		  try{		
+			  this.waitforelementtobevisible(element, 20);
 			  if (element.isDisplayed() && element.isEnabled()) {
 					Select dropdown = new Select(element);
 					dropdownvalue = dropdown.getFirstSelectedOption().getText();
@@ -1357,6 +1357,15 @@ public class CommonFunctions extends StaticVariables {
 		// Switch back to original browser (first window)
 		driver.switchTo().window(winHandleBefore);
 
+	}
+	
+	public void refreshBrowser(WebDriver driver){
+		try{
+			driver.navigate().refresh();
+		}catch(Exception e){
+			 System.out.println("Error in description: " + e.getStackTrace());
+		}
+		
 	}
 		
 

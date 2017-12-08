@@ -520,8 +520,11 @@ public class Customer_Module_Page_Objects{
     
     /*************************TC_3_3_11**************/
    
-    @FindBy(xpath="//table[@class='table styapp']")
-    public WebElement Customer_Completed_List;
+    @FindBy(xpath="//table/tbody/tr/td[5]/span")
+    public List<WebElement> Customer_AppointmentStatus_List;
+    
+    @FindBy(xpath="//table/tbody/tr/td[6]/span")
+    public List<WebElement> Customer_PaymentStatus_List;
 
 	
 

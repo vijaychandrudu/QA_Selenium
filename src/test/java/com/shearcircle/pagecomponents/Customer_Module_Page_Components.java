@@ -2104,17 +2104,92 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 	/********************** TC_3_3_11 Check the Completed bookings ************/
 
-	public void checkThe_Completed_Bookings() {
+	public void check_Completed_Status_Bookings() {
 		try {
-			/*WebElement Type = driver.findElement(By.xpath("//*[@ng-model='appointment_status']"));
-			Select Completed = new Select(Type);
-			Completed.selectByValue("completed");
-			if (browser.elementisdisplayed(CustomerModule.Customer_PastAppointments_List)) {
-				browser.reportscomtep("Passed", "","", "");
-				Thread.sleep(3000);
+			String appointmentStatus = "";
+			String paymentStatus = "";
+			String selectedType = "";
+			String selectedStatus = "";
+					
+			boolean completedAppointmentStatus = false;
+			boolean completedPaymentStatus = false;
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
+				
+				browser.selectByVisibleText(CustomerModule.Customer_MyAppoinments_Type_Dropdown, "Past Appointments");
+				
+				selectedType = browser.getDropdownSelectedValue(CustomerModule.Customer_MyAppoinments_Type_Dropdown);
+				if(selectedType.equalsIgnoreCase("Past Appointments")){
+					browser.reportscomtep("Passed", "Verify Selected MyAppoinments_Type dropdown value",
+							"MyAppoinments_Type dropdown value should be selected", "MyAppoinments_Type dropdown value selected as : "+ selectedType );
+				} else {
+					browser.reportscomtep("Failed", "Verify Selected MyAppoinments_Type dropdown value",
+							"MyAppoinments_Type dropdown value should be selected", "MyAppoinments_Type dropdown value Not selected");
+				}	
+				
+				browser.selectByVisibleText(CustomerModule.Customer_MyAppoinments_Dropdown_Status, "Completed");	
+				
+				selectedStatus = browser.getDropdownSelectedValue(CustomerModule.Customer_MyAppoinments_Dropdown_Status);
+				
+				if(selectedStatus.equalsIgnoreCase("Completed")){
+					browser.reportscomtep("Passed", "Verify Selected MyAppoinments_Status dropdown value",
+							"MyAppoinments_Status dropdown value should be selected", "MyAppoinments_Status dropdown value selected as : "+ selectedStatus );
+				} else {
+					browser.reportscomtep("Failed", "Verify Selected MyAppoinments_Status dropdown value",
+							"MyAppoinments_Status dropdown value should be selected", "MyAppoinments_Status dropdown value Not selected");
+				}
+				browser.ScrollToXY(0, 250);
+				if (CustomerModule.Customer_AppointmentStatus_List.size()>0) {
+					for(WebElement appointmentStatuselement : CustomerModule.Customer_AppointmentStatus_List){
+						appointmentStatus = browser.getelementtext(appointmentStatuselement);
+						System.out.println("AS: "+appointmentStatus);
+						if(appointmentStatus.trim().equalsIgnoreCase("Completed")){
+							completedAppointmentStatus = true;
+						}else{
+							completedAppointmentStatus = false;
+						}
+					}
+					
+					if(completedAppointmentStatus){
+						browser.reportscomtep("Passed", "Verify AppointmentStatus for the bookings while selecting Status as Completed ",
+								"AppointmentStatus should be 'Completed' for the bookings while selecting Status as Completed", "AppointmentStatus displyed as 'Completed'");
+					}else{
+						browser.reportscomtep("Failed", "Verify AppointmentStatus for the bookings while selecting Status as Completed ",
+								"AppointmentStatus should be 'Completed' for the bookings while selecting Status as Completed", "AppointmentStatus Not displyed as 'Completed'");
+					}									
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify AppointmentStatus for the bookings while selecting Status as Completed ",
+								"AppointmentStatus should be 'Completed' for the bookings while selecting Status as Completed", "Booking Records not displayed");
+				}
+				
+				if (CustomerModule.Customer_PaymentStatus_List.size()>0) {
+					for(WebElement paymentStatuselement : CustomerModule.Customer_PaymentStatus_List){
+						appointmentStatus = browser.getelementtext(paymentStatuselement);
+						if(appointmentStatus.trim().equalsIgnoreCase("Paid")){
+							completedPaymentStatus = true;
+						}else{
+							completedPaymentStatus = false;
+						}
+					}
+					
+					if(completedPaymentStatus){
+						browser.reportscomtep("Passed", "Verify PaymentStatus for the bookings while selecting Status as Completed ",
+								"PaymentStatus should be 'Completed' for the bookings while selecting Status as Completed", "PaymentStatus displyed as 'Completed'");
+					}else{
+						browser.reportscomtep("Failed", "Verify PaymentStatus for the bookings while selecting Status as Completed ",
+								"PaymentStatus should be 'Completed' for the bookings while selecting Status as Completed", "PaymentStatus Not displyed as 'Completed'");
+					}									
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify PaymentStatus for the bookings while selecting Status as Completed ",
+								"PaymentStatus should be 'Completed' for the bookings while selecting Status as Completed", "Booking Records not displayed");
+				}
 			} else {
-				browser.reportscomtep("Failed", "","","");
-			}*/
+				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header not displayed");
+			}
 
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
@@ -2252,26 +2327,26 @@ public void check_SettingsPageField_Validation_withInvaliddata() {
 			if (browser.elementisdisplayed(CustomerModule.Customer_Settings_Header)) {
 				browser.reportscomtep("Passed", "Verify Settings header is displayed",
 						"Settings header should be displayed", "Settings header  displayed");
-				browser.clearText(CustomerModule.Customer_Settings_FirstName);
+				//browser.clearText(CustomerModule.Customer_Settings_FirstName);
 				browser.sendkeys(CustomerModule.Customer_Settings_FirstName, customerFirstName);
 				
-				browser.clearText(CustomerModule.Customer_Settings_LastName);
+				//browser.clearText(CustomerModule.Customer_Settings_LastName);
 				browser.sendkeys(CustomerModule.Customer_Settings_LastName, customerLastName);
 				
-				browser.clearText(CustomerModule.Customer_Mydashboard_settings_Phone);
+				//browser.clearText(CustomerModule.Customer_Mydashboard_settings_Phone);
 				browser.sendkeys(CustomerModule.Customer_Mydashboard_settings_Phone, customerMobileNo);				
 				
-				browser.clearText(CustomerModule.Customer_Mydashboard_settings_Address);
+				//browser.clearText(CustomerModule.Customer_Mydashboard_settings_Address);
 				browser.sendkeys(CustomerModule.Customer_Mydashboard_settings_Address, customerAddress);
 				
-				browser.clearText(CustomerModule.Customer_Mydashboard_settings_city);
+				//browser.clearText(CustomerModule.Customer_Mydashboard_settings_city);
 				browser.sendkeys(CustomerModule.Customer_Mydashboard_settings_city, customerCity);
 												
 				browser.ScrollToXY(0, 250);
 				
 				browser.selectByVisibleText(CustomerModule.Customer_Mydashboard_settings_State, customerState);
 				
-				browser.clearText(CustomerModule.Customer_Mydashboard_settings_zipcode);
+				//browser.clearText(CustomerModule.Customer_Mydashboard_settings_zipcode);
 				browser.sendkeys(CustomerModule.Customer_Mydashboard_settings_zipcode, customerZipCode);							
 
 				browser.click(CustomerModule.Customer_Mydashboard_settings_Update);
@@ -2396,12 +2471,15 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 							"Current Password and New Password validation messages should be displayed",
 							"Please enter Current Password and Please enter New Password validation messages Not displayed");					
 				}
+				
+				browser.refreshBrowser(driver);	
+				browser.explicitWaitUsingElementToBeClickable(CustomerModule.Customer_Profile_ChangingPassword_Update_Button);
 			} else {
 				browser.reportscomtep("Failed", "Verify Secure Your Profile by Changing Password Header is displayed ",
 						"Secure Your Profile by Changing Password Header should be displayed",
 						"Secure Your Profile by Changing Password Header not displayed");
 			}
-
+			
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
 
@@ -2419,14 +2497,15 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 			newPwdLessThan6chars = browser.getdata("CustomerNewPwdLessThan6chars");
 			newPasswordWithspaces = browser.getdata("CustomerNewPasswordWithspaces");
 			
-				if (browser.elementisdisplayed(CustomerModule.Customer_SecureYourProfileByChangingPassword_Header)) {
-					browser.reportscomtep("Passed", "Verify Secure Your Profile by Changing Password Header is displayed ",
+			if (browser.elementisdisplayed(CustomerModule.Customer_SecureYourProfileByChangingPassword_Header)) {
+				browser.reportscomtep("Passed", "Verify Secure Your Profile by Changing Password Header is displayed ",
 				"Secure Your Profile by Changing Password Header should be displayed",
 				"Secure Your Profile by Changing Password Header displayed");
 				browser.sendkeys(CustomerModule.Customer_CurrentPassword_TextBox, CustomerCurrentPassword);
 				switch (p_in_FinalAction) {
 				case "Enter_NewPwdLessThan6chars":
 					browser.sendkeys(CustomerModule.Customer_NewPassword_TextBox, newPwdLessThan6chars);
+					CustomerModule.Customer_ReEnterPassword_textbox.click();
 					if (browser.elementisdisplayed(CustomerModule.Customer_Pwd_Minimum6letters_ErrorMessage)) {
 						browser.reportscomtep("Passed",
 								"Enter new Password less than 6 chars and Verify new Password validation message is dispalyed.",
@@ -2442,6 +2521,7 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 					break;
 				case "Enter_NewPwddWithspaces":
 					browser.sendkeys(CustomerModule.Customer_NewPassword_TextBox, newPasswordWithspaces);
+					CustomerModule.Customer_ReEnterPassword_textbox.click();
 					if (browser.elementisdisplayed(CustomerModule.Customer_Pwd_SpacePlease_ErrorMessage)) {
 						browser.reportscomtep("Passed",
 								"Enter new Password including spaces and Verify new Password validation message is dispalyed.",
@@ -2454,6 +2534,8 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 								"No white space please validation message Not dispalyed");
 					}
 				}
+				browser.refreshBrowser(driver);	
+				browser.explicitWaitUsingElementToBeClickable(CustomerModule.Customer_Profile_ChangingPassword_Update_Button);
 
 	} else {
 		browser.reportscomtep("Failed", "Verify Secure Your Profile by Changing Password Header is displayed ",
@@ -2479,10 +2561,11 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 			if (browser.elementisdisplayed(CustomerModule.Customer_SecureYourProfileByChangingPassword_Header)) {
 				browser.reportscomtep("Passed", "Verify Secure Your Profile by Changing Password Header is displayed ",
 						"Secure Your Profile by Changing Password Header should be displayed",
-						"Secure Your Profile by Changing Password Header displayed");
+						"Secure Your Profile by Changing Password Header displayed");				
 				browser.sendkeys(CustomerModule.Customer_CurrentPassword_TextBox, CustomerOldPassword);
 				browser.sendkeys(CustomerModule.Customer_NewPassword_TextBox, CustomerNewPassword);
-				browser.sendkeys(CustomerModule.Customer_CurrentPassword_TextBox, CustomerRetypePassword);
+				browser.sendkeys(CustomerModule.Customer_ReEnterPassword_textbox, CustomerRetypePassword);
+				browser.click(CustomerModule.Customer_Profile_ChangingPassword_Update_Button);
 				if (browser.elementisdisplayed(CustomerModule.Customer_PasswordUpdatedSuccessfully_Message)) {
 					browser.reportscomtep("Passed", "Verify Password Updated Successfully Message is displayed",
 							"Password Updated Successfully Message should be displayed",
@@ -2545,10 +2628,11 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 			String address = "";
 			String city = "";
 			String state = "";
+			String country = "";
 			String mobile = "";
 			boolean gemderisslection = false;
 			String zipCode = "";
-			String birtMonth = "";
+			String birthMonth = "";
 			String birthDay = "";
 			String expctEmailID = "";
 			
@@ -2604,13 +2688,15 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 				}else{
 					browser.reportscomtep("Failed", "Verify PreSelected Gender.",
 							"Gender should be preselected", "No PreSelected Gender");					
-				}			
+				}	
+				
+				browser.ScrollToElementBottom(CustomerModule.Customer_Mydashboard_settings_Update);
 				
 				address = browser.elementgetAttributevalue(CustomerModule.Customer_Mydashboard_settings_Address, "value");				
 				if(address.trim()==""){
 					browser.reportscomtep("Passed", "Verify Prepopulated address is displayed",
 							"Prepopulated address should be displayed", "Prepopulated address not displayed as expected if previously not added" );
-				}else if(zipCode.trim()!="" ){
+				}else if(address.trim()!="" ){
 					browser.reportscomtep("Passed", "Verify Prepopulated address is displayed",
 							"Prepopulated address should be displayed", "Prepopulated address :" + address +" displayed as expected if previously added" );
 				}else{	
@@ -2622,7 +2708,7 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 				if(city.trim()==""){
 					browser.reportscomtep("Passed", "Verify Prepopulated City is displayed",
 							"Prepopulated City should be displayed", "Prepopulated City not displayed as expected if previously not added" );
-				}else if(zipCode.trim()!="" ){
+				}else if(city.trim()!="" ){
 					browser.reportscomtep("Passed", "Verify Prepopulated City is displayed",
 							"Prepopulated City should be displayed", "Prepopulated City :" + city +" displayed as expected if previously added" );
 				}else{	
@@ -2639,9 +2725,44 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 							"PreSelected State should be displayed", "PreSelected State :" + state +" displayed as expected if previously Selected");
 				}else{	
 					browser.reportscomtep("Failed", "Verify PreSelected State is displayed",
-							"PreSelected State should be displayed", "PreSelected field having error");
-				}				
+							"PreSelected State should be displayed", "State field having error");
+				}
 				
+				country = browser.getDropdownSelectedValue(CustomerModule.Customer_Mydashboard_settings_State);				
+				if(country.trim()==""){
+					browser.reportscomtep("Passed", "Verify PreSelected Country is displayed",
+							"PreSelected Country should be displayed", "PreSelected Country not displayed as expected if previously not Selected");
+				}else if(country.trim()!="" ){
+					browser.reportscomtep("Passed", "Verify PreSelected Country is displayed",
+							"PreSelected Country should be displayed", "PreSelected Country :" + country +" displayed as expected if previously Selected");
+				}else{	
+					browser.reportscomtep("Failed", "Verify PreSelected Country is displayed",
+							"PreSelected Country should be displayed", "Country field having error");
+				}
+				
+				birthMonth = browser.getDropdownSelectedValue(CustomerModule.Customer_Mydashboard_settings_Birthday_Month);				
+				if(birthMonth.trim()==""){
+					browser.reportscomtep("Passed", "Verify PreSelected Birth Month is displayed",
+							"PreSelected Birth Month should be displayed", "PreSelected Birth Month not displayed as expected if previously not Selected");
+				}else if(birthMonth.trim()!="" ){
+					browser.reportscomtep("Passed", "Verify PreSelected Birth Month is displayed",
+							"PreSelected Birth Month should be displayed", "PreSelected Birth Month :" + birthMonth +" displayed as expected if previously Selected");
+				}else{	
+					browser.reportscomtep("Failed", "Verify PreSelected Birth Month is displayed",
+							"PreSelected Birth Month should be displayed", "Birth Month field having error");
+				}
+				
+				birthDay = browser.getDropdownSelectedValue(CustomerModule.Customer_Mydashboard_settings_Birthday_date);				
+				if(birthDay.trim()==""){
+					browser.reportscomtep("Passed", "Verify PreSelected Birth Day is displayed",
+							"PreSelected Birth Day should be displayed", "PreSelected Birth Day not displayed as expected if previously not Selected");
+				}else if(birthDay.trim()!="" ){
+					browser.reportscomtep("Passed", "Verify PreSelected Birth Day is displayed",
+							"PreSelected Birth Day should be displayed", "PreSelected Birth Day :" + birthDay +" displayed as expected if previously Selected");
+				}else{	
+					browser.reportscomtep("Failed", "Verify PreSelected Birth Day is displayed",
+							"PreSelected Birth Day should be displayed", "Birth Month field having error");
+				}				
 				zipCode = browser.elementgetAttributevalue(CustomerModule.Customer_Mydashboard_settings_zipcode, "value");				
 				if(zipCode.trim()==""){
 					browser.reportscomtep("Passed", "Verify Prepopulated ZipCode is displayed",
@@ -2652,7 +2773,13 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 				}else{	
 					browser.reportscomtep("Failed", "Verify Prepopulated ZipCode is displayed",
 							"Prepopulated ZipCode should be displayed", "ZipCode field having error" );
-				}				
+				}	
+				
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_changepassword_lynk, "Click here to change password Link");
+				
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_Update, "Update Button");
+				
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_cancel, "Cancel Button");
 				
 			} else {
 						

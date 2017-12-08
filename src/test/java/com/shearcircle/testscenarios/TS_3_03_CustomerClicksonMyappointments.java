@@ -78,7 +78,7 @@ public class TS_3_03_CustomerClicksonMyappointments extends StaticVariables {
 		CR.shearCircle_Verify_Customer_Clickson_MyAppoinmentsforExistingUser();			
 	}
 	
-	@Test(priority=3306, description="TC_3_3_03 Check whether the View button is clickable")
+	/*@Test(priority=3306, description="TC_3_3_03 Check whether the View button is clickable")
 	public void TC_3_3_03_Customer_CheckViewbuttonclickable()throws IOException {			
 		CR.Check_View_Button_Is_clickable();		
 	}
@@ -114,6 +114,11 @@ public class TS_3_03_CustomerClicksonMyappointments extends StaticVariables {
 	@Test(priority=33012, description="TC_3_3_010 Check the past bookings")
 	public void TC_3_3_010_Customer_CheckPastBookings()throws IOException {			
 		CR.checkThe_Past_Bookings();		
+	}*/
+	
+	@Test(priority=33013, description="TC_3_3_011 Check the Completed status bookings")
+	public void TC_3_3_010_Customer_CheckCompletedStatusBookings()throws IOException {			
+		CR.check_Completed_Status_Bookings();		
 	}
 
 }
