@@ -520,7 +520,7 @@ public class Customer_Module_Page_Objects{
     
     /*************************TC_3_3_11**************/
    
-    @FindBy(xpath="//table/tbody/tr/td[5]/span")
+    @FindBy(xpath="//table/tbody/tr/td[5]")
     public List<WebElement> Customer_AppointmentStatus_List;
     
     @FindBy(xpath="//table/tbody/tr/td[6]/span")

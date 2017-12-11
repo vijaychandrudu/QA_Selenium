@@ -127,7 +127,5 @@ public class TS_3_04_CustomerclicksonSettings extends StaticVariables {
 		CR.verify_Cancel_Button_IsClickable_Changepasswordpage();		
 	}
 	
-	
-	
 
 }

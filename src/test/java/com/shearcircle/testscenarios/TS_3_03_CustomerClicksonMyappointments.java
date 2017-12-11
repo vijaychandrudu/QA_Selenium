@@ -116,9 +116,14 @@ public class TS_3_03_CustomerClicksonMyappointments extends StaticVariables {
 		CR.checkThe_Past_Bookings();		
 	}*/
 	
-	@Test(priority=33013, description="TC_3_3_011 Check the Completed status bookings")
-	public void TC_3_3_010_Customer_CheckCompletedStatusBookings()throws IOException {			
-		CR.check_Completed_Status_Bookings();		
+	@Test(priority=33013, description="TC_3_3_011 Check the Completed status for the bookings of AppointmentStatus and PamentStatus")
+	public void TC_3_3_011_Customer_CheckCompletedStatusBookings()throws IOException {			
+		CR.check_Completed_Status_Bookings_AppointmentStatusandPamentStatus();		
+	}
+	
+	@Test(priority=33014, description="TC_3_3_012 Check the Pending status bookings for the bookings of AppointmentStatus and PamentStatus")
+	public void TC_3_3_012_Customer_CheckPendingStatusBookings()throws IOException {			
+		CR.checkThe_Pending_Bookings_AppointmentStatusandPamentStatus();		
 	}
 
 }

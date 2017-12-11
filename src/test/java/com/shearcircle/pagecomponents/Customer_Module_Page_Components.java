@@ -2104,15 +2104,17 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 	/********************** TC_3_3_11 Check the Completed bookings ************/
 
-	public void check_Completed_Status_Bookings() {
+	public void check_Completed_Status_Bookings_AppointmentStatusandPamentStatus() {
 		try {
 			String appointmentStatus = "";
 			String paymentStatus = "";
 			String selectedType = "";
 			String selectedStatus = "";
 					
-			boolean completedAppointmentStatus = false;
-			boolean completedPaymentStatus = false;
+			boolean completedAppointmentStatustrue = false;
+			boolean completedAppointmentStatusfalse = true;
+			boolean completedPaymentStatustrue = false;
+			boolean completedPaymentStatusfalse = true;
 			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
 				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
 						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
@@ -2145,41 +2147,41 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						appointmentStatus = browser.getelementtext(appointmentStatuselement);
 						System.out.println("AS: "+appointmentStatus);
 						if(appointmentStatus.trim().equalsIgnoreCase("Completed")){
-							completedAppointmentStatus = true;
+							completedAppointmentStatustrue = true;
 						}else{
-							completedAppointmentStatus = false;
+							completedAppointmentStatusfalse = false;
 						}
 					}
 					
-					if(completedAppointmentStatus){
-						browser.reportscomtep("Passed", "Verify AppointmentStatus for the bookings while selecting Status as Completed ",
+					if(completedAppointmentStatustrue && completedAppointmentStatusfalse ){
+						browser.reportscomtep("Passed", "Verify AppointmentStatus for the bookings while selecting Status as 'Completed' ",
 								"AppointmentStatus should be 'Completed' for the bookings while selecting Status as Completed", "AppointmentStatus displyed as 'Completed'");
 					}else{
-						browser.reportscomtep("Failed", "Verify AppointmentStatus for the bookings while selecting Status as Completed ",
-								"AppointmentStatus should be 'Completed' for the bookings while selecting Status as Completed", "AppointmentStatus Not displyed as 'Completed'");
+						browser.reportscomtep("Failed", "Verify AppointmentStatus for the bookings while selecting Status as 'Completed'",
+								"AppointmentStatus should be 'Completed' for the bookings while selecting Status as 'Completed'", "AppointmentStatus Not displyed as 'Completed'");
 					}									
 					
 				} else {
-					browser.reportscomtep("Failed", "Verify AppointmentStatus for the bookings while selecting Status as Completed ",
-								"AppointmentStatus should be 'Completed' for the bookings while selecting Status as Completed", "Booking Records not displayed");
+					browser.reportscomtep("Failed", "Verify AppointmentStatus for the bookings while selecting Status as 'Completed' ",
+								"AppointmentStatus should be 'Completed' for the bookings while selecting Status as 'Completed'", "Booking Records not displayed");
 				}
 				
 				if (CustomerModule.Customer_PaymentStatus_List.size()>0) {
 					for(WebElement paymentStatuselement : CustomerModule.Customer_PaymentStatus_List){
-						appointmentStatus = browser.getelementtext(paymentStatuselement);
-						if(appointmentStatus.trim().equalsIgnoreCase("Paid")){
-							completedPaymentStatus = true;
+						paymentStatus = browser.getelementtext(paymentStatuselement);
+						if(paymentStatus.trim().equalsIgnoreCase("Paid")){
+							completedPaymentStatustrue = true;
 						}else{
-							completedPaymentStatus = false;
+							completedPaymentStatusfalse = false;
 						}
 					}
 					
-					if(completedPaymentStatus){
+					if(completedPaymentStatustrue && completedPaymentStatusfalse){
 						browser.reportscomtep("Passed", "Verify PaymentStatus for the bookings while selecting Status as Completed ",
-								"PaymentStatus should be 'Completed' for the bookings while selecting Status as Completed", "PaymentStatus displyed as 'Completed'");
+								"PaymentStatus should be 'Completed' for the bookings while selecting Status as Completed", "PaymentStatus displyed as 'Paid'");
 					}else{
 						browser.reportscomtep("Failed", "Verify PaymentStatus for the bookings while selecting Status as Completed ",
-								"PaymentStatus should be 'Completed' for the bookings while selecting Status as Completed", "PaymentStatus Not displyed as 'Completed'");
+								"PaymentStatus should be 'Completed' for the bookings while selecting Status as Completed", "PaymentStatus Not displyed as 'Paid'");
 					}									
 					
 				} else {
@@ -2197,17 +2199,187 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	}
 
 	/********************* TC_3_3_12 Check the Pending bookings *************/
-	public void checkThe_Pending_Bookings() {
+	public void checkThe_Pending_Bookings_AppointmentStatusandPamentStatus() {
 		try {
-			//WebElement Status = driver.findElement(By.xpath("//*[@ng-model='appointment_status']"));
-			Select Pending = new Select(CustomerModule.Customer_MyAppoinments_Dropdown_Status);
-			Pending.selectByValue("pending");
-			Thread.sleep(3000);
-			if (browser.elementisdisplayed(CustomerModule.Customer_PastAppointments_List)) {
-				browser.reportscomtep("Passed", "","", "");
-				Thread.sleep(3000);
+			String appointmentStatus = "";
+			String paymentStatus = "";
+			String selectedType = "";
+			String selectedStatus = "";
+					
+			boolean pendingAppointmentStatustrue = false;
+			boolean pendingAppointmentStatusfalse = true;
+			boolean pendingPaymentStatustrue = false;
+			boolean pendingPaymentStatusfalse = true;
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
+				
+				browser.selectByVisibleText(CustomerModule.Customer_MyAppoinments_Type_Dropdown, "Past Appointments");
+				
+				selectedType = browser.getDropdownSelectedValue(CustomerModule.Customer_MyAppoinments_Type_Dropdown);
+				if(selectedType.equalsIgnoreCase("Past Appointments")){
+					browser.reportscomtep("Passed", "Verify Selected MyAppoinments_Type dropdown value",
+							"MyAppoinments_Type dropdown value should be selected", "MyAppoinments_Type dropdown value selected as : "+ selectedType );
+				} else {
+					browser.reportscomtep("Failed", "Verify Selected MyAppoinments_Type dropdown value",
+							"MyAppoinments_Type dropdown value should be selected", "MyAppoinments_Type dropdown value Not selected");
+				}	
+				
+				browser.selectByVisibleText(CustomerModule.Customer_MyAppoinments_Dropdown_Status, "Pending");	
+				
+				selectedStatus = browser.getDropdownSelectedValue(CustomerModule.Customer_MyAppoinments_Dropdown_Status);
+				
+				if(selectedStatus.equalsIgnoreCase("Pending")){
+					browser.reportscomtep("Passed", "Verify Selected MyAppoinments_Status dropdown value",
+							"MyAppoinments_Status dropdown value should be selected", "MyAppoinments_Status dropdown value selected as : "+ selectedStatus );
+				} else {
+					browser.reportscomtep("Failed", "Verify Selected MyAppoinments_Status dropdown value",
+							"MyAppoinments_Status dropdown value should be selected", "MyAppoinments_Status dropdown value Not selected");
+				}
+				browser.ScrollToXY(0, 250);
+				if (CustomerModule.Customer_AppointmentStatus_List.size()>0) {
+					for(WebElement appointmentStatuselement : CustomerModule.Customer_AppointmentStatus_List){
+						appointmentStatus = browser.getelementtext(appointmentStatuselement);
+						System.out.println("AS: "+appointmentStatus);
+						if(appointmentStatus.trim().equalsIgnoreCase("New") || appointmentStatus.trim().equalsIgnoreCase("Canceled") || appointmentStatus.trim().equalsIgnoreCase("")){
+							pendingAppointmentStatustrue = true;
+						}else if(appointmentStatus.equalsIgnoreCase("Completed")){
+							pendingAppointmentStatusfalse = false;
+						}
+					}
+					
+					if(pendingAppointmentStatustrue && pendingAppointmentStatusfalse){
+						browser.reportscomtep("Passed", "Verify AppointmentStatus for the bookings while selecting Status as 'Pending' ",
+								"AppointmentStatus should be 'Canceled or New' for the bookings while selecting Status as 'Pending'", "AppointmentStatus displyed as 'New or Canceled'");
+					}else{
+						browser.reportscomtep("Failed", "Verify AppointmentStatus for the bookings while selecting Status as 'Pending' ",
+								"AppointmentStatus should be 'Canceled or New' for the bookings while selecting Status as 'Pending'", "AppointmentStatus Not displyed as 'New or Canceled'");
+					}									
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify AppointmentStatus for the bookings while selecting Status as 'Pending' ",
+								"AppointmentStatus should be 'Canceled or New' for the bookings while selecting Status as 'Pending'", "Booking Records not displayed");
+				}
+				
+				if (CustomerModule.Customer_PaymentStatus_List.size()>0) {
+					for(WebElement paymentStatuselement : CustomerModule.Customer_PaymentStatus_List){
+						paymentStatus = browser.getelementtext(paymentStatuselement);
+						if(paymentStatus.trim().equalsIgnoreCase("Pending") || paymentStatus.trim().equalsIgnoreCase("Canceled") || paymentStatus.trim().equalsIgnoreCase("")){
+							pendingPaymentStatustrue = true;
+						}else if(paymentStatus.equalsIgnoreCase("Completed")){
+							pendingPaymentStatusfalse = false;
+						}
+					}
+					
+					if(pendingPaymentStatustrue && pendingPaymentStatusfalse ){
+						browser.reportscomtep("Passed", "Verify PaymentStatus for the bookings while selecting Status as 'Pending' ",
+								"PaymentStatus should be 'Pending or Canceled' for the bookings while selecting Status as 'Pending'", "PaymentStatus displyed as 'Pending or Canceled" );
+					}else{
+						browser.reportscomtep("Failed", "Verify PaymentStatus for the bookings while selecting Status as 'Pending' ",
+								"PaymentStatus should be 'Pending or Canceled' for the bookings while selecting Status as 'Pending'", "PaymentStatus Not displyed as 'Pending or Canceled" );
+					}					
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify PaymentStatus for the bookings while selecting Status as 'Pending' ",
+							"PaymentStatus should be 'Pending or Canceled' for the bookings while selecting Status as 'Pending'", "Booking Records not displayed");
+				}
 			} else {
-				browser.reportscomtep("Failed", "","","");
+				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	/********************* TC_3_3_12 Check the canceled bookings *************/
+	public void checkThe_Canceled_Bookings_AppointmentStatusandPamentStatus() {
+		try {
+			String appointmentStatus = "";
+			String paymentStatus = "";
+			String selectedType = "";
+			String selectedStatus = "";
+					
+			boolean canceledAppointmentStatustrue = false;
+			boolean canceledAppointmentStatusfalse = true;
+			boolean canceledPaymentStatustrue = false;
+			boolean canceledPaymentStatusfalse = true;
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
+				
+				browser.selectByVisibleText(CustomerModule.Customer_MyAppoinments_Type_Dropdown, "Past Appointments");
+				
+				selectedType = browser.getDropdownSelectedValue(CustomerModule.Customer_MyAppoinments_Type_Dropdown);
+				if(selectedType.equalsIgnoreCase("Past Appointments")){
+					browser.reportscomtep("Passed", "Verify Selected MyAppoinments_Type dropdown value",
+							"MyAppoinments_Type dropdown value should be selected", "MyAppoinments_Type dropdown value selected as : "+ selectedType );
+				} else {
+					browser.reportscomtep("Failed", "Verify Selected MyAppoinments_Type dropdown value",
+							"MyAppoinments_Type dropdown value should be selected", "MyAppoinments_Type dropdown value Not selected");
+				}	
+				
+				browser.selectByVisibleText(CustomerModule.Customer_MyAppoinments_Dropdown_Status, "Pending");	
+				
+				selectedStatus = browser.getDropdownSelectedValue(CustomerModule.Customer_MyAppoinments_Dropdown_Status);
+				
+				if(selectedStatus.equalsIgnoreCase("Pending")){
+					browser.reportscomtep("Passed", "Verify Selected MyAppoinments_Status dropdown value",
+							"MyAppoinments_Status dropdown value should be selected", "MyAppoinments_Status dropdown value selected as : "+ selectedStatus );
+				} else {
+					browser.reportscomtep("Failed", "Verify Selected MyAppoinments_Status dropdown value",
+							"MyAppoinments_Status dropdown value should be selected", "MyAppoinments_Status dropdown value Not selected");
+				}
+				browser.ScrollToXY(0, 250);
+				if (CustomerModule.Customer_AppointmentStatus_List.size()>0) {
+					for(WebElement appointmentStatuselement : CustomerModule.Customer_AppointmentStatus_List){
+						appointmentStatus = browser.getelementtext(appointmentStatuselement);
+						System.out.println("AS: "+appointmentStatus);
+						if(appointmentStatus.trim().equalsIgnoreCase("New") || appointmentStatus.trim().equalsIgnoreCase("Canceled") || appointmentStatus.trim().equalsIgnoreCase("")){
+							canceledAppointmentStatustrue = true;
+						}else if(appointmentStatus.equalsIgnoreCase("Completed")){
+							canceledAppointmentStatusfalse = false;
+						}
+					}
+					
+					if(canceledAppointmentStatustrue && canceledAppointmentStatusfalse){
+						browser.reportscomtep("Passed", "Verify AppointmentStatus for the bookings while selecting Status as 'Pending' ",
+								"AppointmentStatus should be 'Canceled or New' for the bookings while selecting Status as 'Pending'", "AppointmentStatus displyed as 'New or Canceled'");
+					}else{
+						browser.reportscomtep("Failed", "Verify AppointmentStatus for the bookings while selecting Status as 'Pending' ",
+								"AppointmentStatus should be 'Canceled or New' for the bookings while selecting Status as 'Pending'", "AppointmentStatus Not displyed as 'New or Canceled'");
+					}									
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify AppointmentStatus for the bookings while selecting Status as 'Pending' ",
+								"AppointmentStatus should be 'Canceled or New' for the bookings while selecting Status as 'Pending'", "Booking Records not displayed");
+				}
+				
+				if (CustomerModule.Customer_PaymentStatus_List.size()>0) {
+					for(WebElement paymentStatuselement : CustomerModule.Customer_PaymentStatus_List){
+						paymentStatus = browser.getelementtext(paymentStatuselement);
+						if(paymentStatus.trim().equalsIgnoreCase("Pending") || paymentStatus.trim().equalsIgnoreCase("Canceled") || paymentStatus.trim().equalsIgnoreCase("")){
+							canceledPaymentStatustrue = true;
+						}else if(paymentStatus.equalsIgnoreCase("Completed")){
+							canceledPaymentStatusfalse = false;
+						}
+					}
+					
+					if(canceledPaymentStatustrue && canceledPaymentStatusfalse ){
+						browser.reportscomtep("Passed", "Verify PaymentStatus for the bookings while selecting Status as 'Pending' ",
+								"PaymentStatus should be 'Pending or Canceled' for the bookings while selecting Status as 'Pending'", "PaymentStatus displyed as 'Pending or Canceled" );
+					}else{
+						browser.reportscomtep("Failed", "Verify PaymentStatus for the bookings while selecting Status as 'Pending' ",
+								"PaymentStatus should be 'Pending or Canceled' for the bookings while selecting Status as 'Pending'", "PaymentStatus Not displyed as 'Pending or Canceled" );
+					}					
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify PaymentStatus for the bookings while selecting Status as 'Pending' ",
+							"PaymentStatus should be 'Pending or Canceled' for the bookings while selecting Status as 'Pending'", "Booking Records not displayed");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header not displayed");
 			}
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
@@ -2234,6 +2406,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
 	}
+	
 	
 /*************************Check whether My Account button is clickable	*************/
 public void shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable(String myAccountLinkName) {
