@@ -48,28 +48,28 @@ public class TS_2_07_CustomerLoginwithFacebookuserwhichregisteredShearCircle ext
 		driver.quit();
 	}
 	
-	@Test(priority=0, description="TC_001 Customer visits ShearCircle page" )
-	public void TC_001_Customer_visitsShearCircle() throws IOException {			
+	@Test(priority=2701, description="TC_2_7_01 Customer visits ShearCircle page" )
+	public void TC_2_7_01_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=1, description="TC_002 Customer clicks Login on ShearCircle home page " )
-	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {			
+	@Test(priority=2702, description="TC_2_7_02 Customer clicks Login on ShearCircle home page " )
+	public void TC_2_7_02_Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
-	@Test(priority=2, description="TC_003 Customer clicks on Login with Facebook button" )
-	public void TC_003_CustomerclicksonLoginwithFacebookbutton() throws IOException {			
+	@Test(priority=2703, description="TC_2_7_03 Customer clicks on Login with Facebook button" )
+	public void TC_2_7_03_CustomerclicksonLoginwithFacebookbutton() throws IOException {			
 		CR.Click_DoNotHaveAccountjoinourcircle_Loginwith_FaceBook_Google_Bottons("Click_LoginwithFaceBook");		
 	}	
 	
-	@Test(priority=3, description="TC_004  Customer Login with Facebook user credentials with which they have registered with ShearCircle " )
-	public void TC_004_CustomerLoginwithFacebookUserwithregisteredSC() throws IOException {			
+	@Test(priority=2704, description="TC_2_7_04  Customer Login with Facebook user credentials with which they have registered with ShearCircle " )
+	public void TC_2_7_04_CustomerLoginwithFacebookUserwithregisteredSC() throws IOException {			
 		CR.Customer_LoginwithFacebook();		
 	}	
 
-	@Test(priority=4, description="TC_005 Customer checks dashboard page and clicks Logout from dashboard" )
-	public void TC_005_Customer_checkDashboardpageandLogout() throws IOException {			
+	@Test(priority=2705, description="TC_2_7_05 Customer checks dashboard page and clicks Logout from dashboard" )
+	public void TC_2_7_05_Customer_checkDashboardpageandLogout() throws IOException {			
 		CR.Customer_JoinOurCircle_LogOutpage();	
 	}	
 }

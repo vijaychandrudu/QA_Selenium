@@ -48,26 +48,26 @@ public class TS_1_05_CustomerclicksonJoinOurCirclebuttonafterenteringInvaliddeta
 		driver.quit();
 	}
 	
-	@Test(priority=0, description="TC_001 Customer visits ShearCircle page" )
-	public void TC_001_Customer_visitsShearCircle() throws IOException {			
+	@Test(priority=1501, description="TC_1_5_01 Customer visits ShearCircle page" )
+	public void TC_1_5_01_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=1, description="TC_002 Customer clicks Join Our Circle Button " )
-	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {			
+	@Test(priority=1502, description="TC_1_5_02 Customer clicks Join Our Circle Button " )
+	public void TC_1_5_02_Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_JoinOurCircle");			
 	}
 	
-	@Test(priority=2, description="TC_003 Customer Check Register With ShearCircle page where they can register either as a Customer or as a Professional")
-	public void TC_003_Customer_CheckRegisterWithShearCirclepage() throws IOException {			
+	@Test(priority=1503, description="TC_1_5_03 Customer Check Register With ShearCircle page where they can register either as a Customer or as a Professional")
+	public void TC_1_5_03_Customer_CheckRegisterWithShearCirclepage() throws IOException {			
 		CR.ShearCircle_Click_Customer_OR_Professional_JoinOurCircle("Click_CustomerJoinCircle");			
 	}
-	@Test(priority=3, description="TC_004 Customer Check Registration page all fields" )
-	public void TC_004_Customer_CheckRegistrationpageallfields() throws IOException {			
+	@Test(priority=1504, description="TC_1_5_04 Customer Check Registration page all fields" )
+	public void TC_1_5_04_Customer_CheckRegistrationpageallfields() throws IOException {			
 		CR.ShearCircle_Verify_Customer_Registrationform_Fieldvalidation();			
 	}
-	@Test(priority=4, description="TC_005 Customer clicks on Join Our Circle button after entering Invalid details and accepting the terms of service, privacy policy & billing agreement." )
-	public void TC_005_CustomerclicksonJoinOurCirclebuttonafterenteringvaliddetails() throws IOException {			
+	@Test(priority=1505, description="TC_1_5_05 Customer clicks on Join Our Circle button after entering Invalid details and accepting the terms of service, privacy policy & billing agreement." )
+	public void TC_1_5_05_CustomerclicksonJoinOurCirclebuttonafterenteringvaliddetails() throws IOException {			
 		CR.ShearCircle_Customer_Registrationwithinvaliddata();			
 	}
 

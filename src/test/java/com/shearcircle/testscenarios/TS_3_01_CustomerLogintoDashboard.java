@@ -49,56 +49,56 @@ public class TS_3_01_CustomerLogintoDashboard extends StaticVariables {
 		driver.quit();
 	}	
 		
-	@Test(priority=3101, description="Customer visits ShearCircle page" )
+	@Test(priority=30101, description="Customer visits ShearCircle page" )
 	public void TC_3_1_1_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=3102, description="Customer clicks Login Button " )
+	@Test(priority=30102, description="Customer clicks Login Button " )
 	public void TC_3_1_2_Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
-	@Test(priority=3103, description="Customer Login with registered Username(Email id) & Password " )
+	@Test(priority=30103, description="Customer Login with registered Username(Email id) & Password " )
 	public void TC_3_1_3_Customer_CheckRegisterWithShearCirclepage() throws IOException {			
 		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");			
 	}
-	@Test(priority=3104, description="TC_3_1_01 Customer checks Dashboard page field validation")
+	@Test(priority=30104, description="TC_3_1_01 Customer checks Dashboard page field validation")
 	public void TC_3_1_01_Customer_CheckDashboardfieldsvalidation() throws IOException {			
 		CR.shearCircle_Verify_Customer_Dashboard_fieldValidation();			
 	}
 	
-	@Test(priority=3105, description="TC_3_1_02 Customer Check whether My Favorite is clickable")
+	@Test(priority=30105, description="TC_3_1_02 Customer Check whether My Favorite is clickable")
 	public void TC_3_1_02_Customer_CheckMyFavouritesclickable() throws IOException {			
 		CR.shearCircle_Verify_Customer_Dashboard_clickson_MyFavourites();			
 	}
-	@Test(priority=3106, description="TC_3_1_03 Customer Check whether My Appointments is clickable")
+	@Test(priority=30106, description="TC_3_1_03 Customer Check whether My Appointments is clickable")
 	public void TC_3_1_03_Customer_CheckMyAppointmentsclickable() throws IOException {			
 		CR.shearCircle_Verify_Customer_Clickson_MyAppoinments();			
 	}
-	@Test(priority=3107, description="TC_3_1_04 Customer Check whether Settings is clickable")
+	@Test(priority=30107, description="TC_3_1_04 Customer Check whether Settings is clickable")
 	public void TC_3_1_04_Customer_CheckSettingsclickable() throws IOException {			
 		CR.shearCircle_Verify_Customer_Clickson_Settings();			
 	}
 	
-	@Test(priority=3108, description="TC_3_1_05 Customer Check whether My Account button is clickable")
+	@Test(priority=30108, description="TC_3_1_05 Customer Check whether My Account button is clickable")
 	public void TC_3_1_05_Customer_CheckMyAccountbuttonisclickable() throws IOException {			
 		CR.shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable("My Favorites");
 		CR.shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable("My Appointments");
 		CR.shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable("Settings");
 	}
 	
-	@Test(priority=3109, description="TC_3_1_06 Check whether Change Profile Picture button is clickable")
+	@Test(priority=30109, description="TC_3_1_06 Check whether Change Profile Picture button is clickable")
 	public void TC_3_1_06_Customer_CheckChangeProfilePicturebuttonclickable()throws IOException {			
 		CR.shearCircle_Customer_Verify_Change_Profile_Picture_Buttonis_Clickable();	
 	}
 	
-	@Test(priority=3112, description="TC_3_1_09 Check whether Change Profile Picture button is clickable")
+	@Test(priority=30112, description="TC_3_1_09 Check whether Change Profile Picture button is clickable")
 	public void TC_3_1_09_CheckSearchbuttonclickable()throws IOException {			
 		CR.shearCircle_Verify_Customer_Search_Button_IsClickable();	
 	}
 	
-	@Test(priority=3113, description="TC_3_1_10 Check whether the Logout button is clickable")
+	@Test(priority=30113, description="TC_3_1_10 Check whether the Logout button is clickable")
 	public void TC_3_1_10_CheckLogoutbuttonclickable()throws IOException {			
 		CR.Customer_JoinOurCircle_LogOutpage();
 	}

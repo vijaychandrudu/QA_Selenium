@@ -56,72 +56,72 @@ public class TS_3_04_CustomerclicksonSettings extends StaticVariables {
 		CR.Customer_JoinOurCircle_LogOutpage();
 	}
 	
-	@Test(priority=3401, description="Customer visits ShearCircle page" )
+	@Test(priority=30401, description="Customer visits ShearCircle page" )
 	public void TC_3_4_1_Customer_visitsShearCircle() throws IOException {	
 		ExtentTestManager.getTest().setDescription("Customer visits ShearCircle page");
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=3402, description="Customer clicks Login Button " )
+	@Test(priority=30402, description="Customer clicks Login Button " )
 	public void TC_3_4_2Customer_clicks_JoinOurCircleButton() throws IOException {	
 		ExtentTestManager.getTest().setDescription("Customer clicks JoinOurCircle Button.");
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
-	@Test(priority=3403, description="Customer Login with registered Username(Email id) & Password " )
+	@Test(priority=30403, description="Customer Login with registered Username(Email id) & Password " )
 	public void TC_3_4_3Customer_CheckRegisterWithShearCirclepage()throws IOException {	
 		ExtentTestManager.getTest().setDescription("Customer Login with registered Username(Email id) & Password .");
 		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");			
 	}
-	@Test(priority=3404, description="TC_3_4_01 Check the info in Settings page")
+	@Test(priority=30404, description="TC_3_4_01 Check the info in Settings page")
 	public void TC_3_4_01_Customer_ChecktheInfoinSettingspage() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the info in Settings page");			
 		CR.verify_PrepopulatedvaluesinSettingspage();
 	}
-	@Test(priority=3405, description="TC_3_4_02 Check if the Cancel button is clickable in settings page")
+	@Test(priority=30405, description="TC_3_4_02 Check if the Cancel button is clickable in settings page")
 	public void TC_3_4_02_Customer_CheckCancelButtonClickable() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the info in Settings page");
 		CR.check_CancelButton_IsClickable();			
 	}
 	
-	@Test(priority=3406, description="TC_3_4_03 Check the My dashboard Settings pagefield validation with entering invalid data")
+	@Test(priority=30406, description="TC_3_4_03 Check the My dashboard Settings pagefield validation with entering invalid data")
 	public void TC_3_4_03_Customer_CheckCheckFieldValidation() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the My dashboard Settings pagefield validation with entering invalid data");		
 		CR.check_SettingsPageField_Validation_withInvaliddata();			
 	}
 	
-	@Test(priority=3407, description="TC_3_4_04 Check the My dashboard Settings page mandatory fields with out entering data")
+	@Test(priority=30407, description="TC_3_4_04 Check the My dashboard Settings page mandatory fields with out entering data")
 	public void TC_3_4_04_Customer_Checkmandatoryfields() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the My dashboard Settings page mandatory fields with out entering data");
 		CR.check_MandatoryFieldsinSettingsPage();		
 	}
 	
-	@Test(priority=3408, description="TC_3_4_05 Check whether Change Password link is clickable")
+	@Test(priority=30408, description="TC_3_4_05 Check whether Change Password link is clickable")
 	public void TC_3_4_05_Customer_CheckChangePasswordlinkClickable() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether Change Password link is clickable");
 		CR.checkWhether_ChangePassword_LinkIs_Clickable();			
 	}
 	
-	@Test(priority=3409, description="TC_3_4_06 Check whether the password can be updated without entering any data")
+	@Test(priority=30409, description="TC_3_4_06 Check whether the password can be updated without entering any data")
 	public void TC_3_4_06_Customer_Checkpasswordupdatedwithoutenteringdata() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the password can be updated without entering any data");
 		CR.check_WhetherThePassword_CanbeUpdated_WithOut_EnteringAnyData();			
 	}
 	
-	@Test(priority=3410, description="TC_3_4_07 Check whether the password can be updated by entering new password less than 6 characters/spaces")
+	@Test(priority=30410, description="TC_3_4_07 Check whether the password can be updated by entering new password less than 6 characters/spaces")
 	public void TC_3_4_07_Customer_CheckPasswordwithlessthan6charsorspaces() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the password can be updated by entering new password less than 6 characters/spaces");
 		CR.enteringNew_PasswordLessThan_SixCharacters_Or_Spaces("Enter_NewPwdLessThan6chars");
 		CR.enteringNew_PasswordLessThan_SixCharacters_Or_Spaces("Enter_NewPwddWithspaces");
 	}
 	
-	@Test(priority=3411, description="TC_3_4_08 Check whether password can be updated by entering valid data")
+	@Test(priority=30411, description="TC_3_4_08 Check whether password can be updated by entering valid data")
 	public void TC_3_4_08_Customer_Checkpasswordupdatedwithvaliddata() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether password can be updated by entering valid data");
 		CR.password_CanBeUpdatedBy_Entering_ValidData();		
 	}
 	
-	@Test(priority=3412, description="TC_3_4_09 Check whether the Cancel button is clickable in Secure password change page")
+	@Test(priority=30412, description="TC_3_4_09 Check whether the Cancel button is clickable in Secure password change page")
 	public void TC_3_4_09_Customer_CheckCancelButtonclickable() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the Cancel button is clickable in Secure password change page");
 		CR.verify_Cancel_Button_IsClickable_Changepasswordpage();		

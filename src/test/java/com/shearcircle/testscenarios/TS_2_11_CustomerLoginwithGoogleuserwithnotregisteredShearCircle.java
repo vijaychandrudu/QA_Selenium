@@ -48,23 +48,23 @@ public class TS_2_11_CustomerLoginwithGoogleuserwithnotregisteredShearCircle ext
 		driver.quit();
 	}
 	
-	@Test(priority=0, description="TC_001 Customer visits ShearCircle page" )
-	public void TC_001_Customer_visitsShearCircle() throws IOException {			
+	@Test(priority=21101, description="TC_2_11_01 Customer visits ShearCircle page" )
+	public void TC_2_11_01_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=1, description="TC_002 Customer clicks Login on ShearCircle home page " )
-	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {			
+	@Test(priority=21102, description="TC_2_11_02 Customer clicks Login on ShearCircle home page " )
+	public void TC_2_11_02_Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
-	@Test(priority=2, description="TC_003 Customer clicks on Login with Google button" )
-	public void TC_003_CustomerclicksonLoginwithFacebookbutton() throws IOException {			
+	@Test(priority=21103, description="TC_2_11_03 Customer clicks on Login with Google button" )
+	public void TC_2_11_03_CustomerclicksonLoginwithFacebookbutton() throws IOException {			
 		CR.Click_DoNotHaveAccountjoinourcircle_Loginwith_FaceBook_Google_Bottons("Click_LoginwithGoogle");		
 	}
 	
-	@Test(priority=3, description="TC_004  Customer Login with Google user credentials with which they have registered with ShearCircle " )
-	public void TC_003_CustomerLoginwithGoogleuserwithnotregisteredSC() throws IOException {			
+	@Test(priority=21104, description="TC_2_11_04  Customer Login with Google user credentials with which they have registered with ShearCircle " )
+	public void TC_2_11_03_CustomerLoginwithGoogleuserwithnotregisteredSC() throws IOException {			
 		CR.customer_LoginwithGoogle_not_Registeredwith_ShearCircle();		
 	}
 	
