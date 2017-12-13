@@ -1368,5 +1368,42 @@ public class CommonFunctions extends StaticVariables {
 		
 	}
 		
+	/************** Display Element Text with value ************/
+	public void displayTextWithValue(WebElement element, WebElement Value)
+	{
+		String elementText= getelementtext(element);
+		 String elementValue= getelementtext(Value);
+		System.out.println(elementText  +  "is "+elementValue+ "displayed");
+	}
+	/*****************
+	 * * Find total number of TextBoxes on a Webpage
+	 ************************/
+	public void FindNumberOfTextBoxes() {
+		int textfield1 = driver.findElements(By.xpath("//input[@type='text']")).size();
+		int textfield2 = driver.findElements(By.xpath("//input[@type='email']")).size();
+		int textfield3 = driver.findElements(By.xpath("//input[@type='password']")).size();
+		// Number of text boxes present.
+		int textfield = textfield1 + textfield2 + textfield3;
+		System.out.println("Number of text boxes are   " + textfield);
+	}
 
+	public void FindNumberOfCheckBoxes() {
+		int numberOfBoxes = driver.findElements(By.xpath("//input[@type='checkbox']")).size();
+		System.out.println("Number of text boxes are   " + numberOfBoxes);
+
+	}
+
+	public void FindNumberOfLinks() {
+		int links = driver.findElements(By.tagName("a")).size();
+		System.out.println(links);
+
+	}
+
+	public void FindNumberOfDropdown() throws Exception {
+		int allText = driver.findElements(By.tagName("select")).size();
+		System.out.println(allText);
+
+	}
+
+	
 }
