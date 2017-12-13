@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -42,7 +43,6 @@ public class TS_2_06_CustomerclicksonLoginwithFacebookbutton extends StaticVaria
 		cfn.ScreenshotOnPassFail(testResult);
 		Thread.sleep(1000);
 	}
-
 	@AfterClass
 	public void afterClass() {
 		driver.quit();

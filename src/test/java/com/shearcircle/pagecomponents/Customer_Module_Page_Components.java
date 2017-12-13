@@ -225,7 +225,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			CustomerEmail = browser.getdata("Email");
 			Password = browser.getdata("Password");
 			
-			GetRandomNo = browser.getRandomNumberInRange(000, 9999);
+			GetRandomNo = browser.getRandomNumberInRange(0000, 9999);
 			AppendEmail =CustomerEmail+GetRandomNo+"@testmail.com";
 			if (browser.elementisdisplayed(CustomerModule.Customer_JoinNow_Header)) {
 				browser.reportscomtep("Passed", "Verify Customer Registration form Join Now header is displayed",
