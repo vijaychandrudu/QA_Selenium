@@ -1,17 +1,27 @@
 package com.shearcircle.pagecomponents;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.ITestNGListener;
+
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 import com.shearcircle.objectrepository.Customer_Module_Page_Objects;
 import com.shearcircle.objectrepository.Login_page_objects;
 import com.shearcircle.utilities.CommonFunctions;
 import com.shearcircle.utilities.StaticVariables;
 
-public class Customer_Module_Page_Components extends StaticVariables {
-	
+import utils.ExtentReports.ExtentTestManager;
+import utils.Listeners.TestListener;
+
+public class Customer_Module_Page_Components extends StaticVariables {	
 	//public static WebDriver driver;
 	public Customer_Module_Page_Objects CustomerModule;
 	public Login_page_objects Login;
@@ -19,7 +29,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	String TestDataPath = null;
 	
 	public Customer_Module_Page_Components(WebDriver driver) throws IOException {	
-		browser = new CommonFunctions();
+		browser = new CommonFunctions();		
 		TestDataPath = browser.TestDataPathOf("CustomerTestData.properties");	
 		browser.loaddata(TestDataPath);		
 		CustomerModule = PageFactory.initElements(driver, Customer_Module_Page_Objects.class);
@@ -43,8 +53,9 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		    if (apptitle.equalsIgnoreCase(Applicationtitle)){
 		    System.out.println("Browser Tilte:"+apptitle);     
 		    }		    
-			
+		    
 		    if(browser.elementisdisplayed(Login.Home_ShearCircle_Image)) {
+		    	
 		    	browser.reportscomtep("Passed", "Verify ShearCircle Home page is displayed", "ShearCircle Home page should be displayed", "ShearCircle Home page displayed");
 				 System.out.println("ShearCircle Home page is displayed");
 			 }else {
@@ -889,10 +900,10 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			try{
 				browser.click(Login.Customer_Logout_Button);				
 				if(browser.elementisdisplayed(Login.Home_Login_Link)){
-					browser.reportscomtep("Passed", "click LogOut button link and verify Customer sent to ShearCircle Home page"  , "Customer will sent to ShearCircle Home page", "Customer sent to ShearCircle Home page");					
+					browser.reportscomtep("Passed", "click LogOut button and verify Log out of the dashboard and return to Login page"  , "Log out of the dashboard and should be return to Login page", "Log out of the dashboard and return to Login page");					
 					
 				}else {
-					browser.reportscomtep("Failed", "click LogOut button link and verify Customer sent to ShearCircle Home page"  , "Customer will sent to ShearCircle Home page", "Customer Not sent to ShearCircle Home page");				
+					browser.reportscomtep("Failed", "click LogOut button and verify Log out of the dashboard and return to Login page"  , "Log out of the dashboard and should be return to Login page", "Log out of the dashboard and Not return to Login page");				
 				}						
 				
 			}catch(Exception e){
@@ -919,7 +930,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	}
 		/***********************Customer Logged into Customer Dashboard for the first time*****************************/
 
-		public void ShearCircle_Verify_customer_dashboard_fieldvalidation() {
+		public void shearCircle_Verify_Customer_Dashboard_fieldValidation() {
 			String WelcomeFullName = null;
 			String LastLoginDateTime = null;
 			String NumberofUpcomingBookings = null;
@@ -931,8 +942,8 @@ public class Customer_Module_Page_Components extends StaticVariables {
 					
 					browser.reportscomtep("Passed", "Verify Customer Dashboard header is displayed",
 							"Customer Dashboard header should be displayed", "Customer Dashboard header displayed");
-					WelcomeFullName = browser.getelementtext(CustomerModule.Customer_Mydashboard_fullname);
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_fullname, WelcomeFullName);
+					WelcomeFullName = browser.getelementtext(CustomerModule.Customer_Mydashboard_Welcome_Name_Header);
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Welcome_Name_Header, WelcomeFullName);
 					LastLoginDateTime = browser.getelementtext(CustomerModule.Customer_Mydashboard_LastLoginDatetime);
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_LastLoginDatetime, LastLoginDateTime);
 					NumberofUpcomingBookings = browser.getelementtext(CustomerModule.Customer_Mydashboard_upcomingbookings_count);
@@ -945,11 +956,11 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_changeProfilepicture, "Mydashboard changeProfilepicture");
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites, "Mydashboard_myfavourites");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_MyFavourites_Button, "Mydashboard Myfavourites");
 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments, "Mydashboard Myappoinments");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Myappoinments_Button, "Mydashboard Myappoinments");
 					
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings,
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Settings_Button,
 							"Mydashboard settings");
 					
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Logout,
@@ -972,58 +983,145 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			}
 		}
 
-		/***********************Customer clicks on My Favourites (in progress) *****************************/
+		/***********************Customer clicks on My Favourites and verify list of added MyFavourites or No list added message *****************************/
 
-		public void ShearCircle_Verify_customer_dashboard_clickson_MyFavourites() {
+		public void shearCircle_Verify_Customer_Dashboard_clickson_MyFavourites() {
 			try {
 
-				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
+				if (browser.elementisdisplayed(CustomerModule.Customer_MyFavourites_Button)) {
 					
-					browser.reportscomtep("Passed", "Verify Customer Registration form My dashboard header is displayed",
-							"Customer Registration form My dashboard header should be displayed", "Customer Registration form My dashboard header is displayed");
+					browser.reportscomtep("Passed", "Verify MyFavourites Button is displayed in MyDashboard page",
+							"MyFavourites Button should be displayed in MyDashboard page", "MyFavourites Button displayed in MyDashboard page");
 					
-					browser.click(CustomerModule.Customer_Mydashboard_myfavourites);
-					browser.wait(5);
+					browser.click(CustomerModule.Customer_MyFavourites_Button);
 					
-					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_businesslist)){
-						browser.reportscomtep("Passed", "Verify list of favourites is displayed"  , "list of favourites should be displayed", "list of favourites is displayed");
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_Header)){
+						browser.reportscomtep("passed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page displayed");
 						
-						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_bookme,
-								"Mydashboard myfavourites businesslist bookme");
-						
-						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_remove,
-								"Mydashboard myfavourites businesslist remove");
-			
-					}else if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_header)){
-						browser.reportscomtep("passed", "Verify Zero favourites is displayed"  , "Zero favourites should be displayed", " Zero favourites is  displayed");
 					} else {
-						browser.reportscomtep("Failed", "Verify list of favourites is displayed",
-								"list of favourites should be displayed", "list of favourites is not displayed");
+						browser.reportscomtep("Failed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page not displayed");
 					}
-					}else {
-						browser.reportscomtep("Failed", "Verify Customer Registration form My dashboard header is displayed",
-								"Customer Registration form My dashboard header should be displayed", "Customer Registration form My dashboard header is not displayed");
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_businesslist)){
+						browser.reportscomtep("Passed", "Verify List of Favourites or No Favorites Added Yet message is displayed"  , "List of Favourites or No Favorites Added Yet message should be displayed", "List of Salons added as Favourites displayed");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_myfavourites_Bookme_Button,
+								"MyFavourites businesslist Bookme Button");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_myfavourites_Remove_Button,
+								"MyFavourites businesslist Remove Button");			
+					
+					}else if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_NoList_Message)){
+						browser.reportscomtep("Passed", "Verify List of Favourites or No Favorites Added Yet message is displayed"  , "List of Favourites or No Favorites Added Yet message should be displayed", "No Favorites Added Yet message displayed if no Salons are marked as Favorite/ 1st time login");
+					}else{
+						browser.reportscomtep("Failed", "Verify List of Favourites or No Favorites Added Yet message is displayed"  , "List of Favourites or No Favorites Added Yet message should be displayed", "List of Salons added as Favourites or No Favorites Added Yet message not displayed");
 					}
+										
+					
+				}else {
+					browser.reportscomtep("Failed", "Verify MyFavourites Button is displayed in MyDashboard page",
+							"MyFavourites Button should be displayed in MyDashboard page", "MyFavourites Button Not displayed in MyDashboard page");
+				}
 					
 					}catch (Exception e) {
 						System.out.println("Error description: " + e.getStackTrace());
+				}
+			}
+		
+		/***********************Customer clicks on My Favourites (in progress) *****************************/
+
+		public void verify_MyFavorites_firsttimeloginorwithoutpreviouslyadded() {
+			try {
+
+				if (browser.elementisdisplayed(CustomerModule.Customer_MyFavourites_Button)) {
+					
+					browser.reportscomtep("Passed", "Verify MyFavourites Button is displayed in MyDashboard page",
+							"MyFavourites Button should be displayed in MyDashboard page", "MyFavourites Button displayed in MyDashboard page");
+					
+					browser.click(CustomerModule.Customer_MyFavourites_Button);
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_Header)){
+						browser.reportscomtep("passed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page displayed");
+						
+					} else {
+						browser.reportscomtep("Failed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page not displayed");
+					}						
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_NoList_Message)){
+						browser.reportscomtep("Passed", "Verify No Favorites Added Yet message is displayed if no Salons are marked as Favorite/ 1st time login"  , "No Favorites Added Yet message should be displayed", "No Favorites Added Yet message displayed");
+					}else{
+						browser.reportscomtep("Failed", "Verify No Favorites Added Yet message is displayed if no Salons are marked as Favorite/ 1st time login"  , "No Favorites Added Yet message should be displayed", "No Favorites Added Yet message Not displayed");
 					}
+										
+					
+				}else {
+					browser.reportscomtep("Failed", "Verify MyFavourites Button is displayed in MyDashboard page",
+							"MyFavourites Button should be displayed in MyDashboard page", "MyFavourites Button Not displayed in MyDashboard page");
+				}
+					
+					}catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+				}
+			}
+		
+		/***********************Customer clicks on My Favourites and verify list of added MyFavourites *****************************/
+
+		public void verify_MyFavoritewhereSalonsarealreadyadded() {
+			try {
+
+				if (browser.elementisdisplayed(CustomerModule.Customer_MyFavourites_Button)) {
+					
+					browser.reportscomtep("Passed", "Verify MyFavourites Button is displayed in MyDashboard page",
+							"MyFavourites Button should be displayed in MyDashboard page", "MyFavourites Button displayed in MyDashboard page");
+					
+					browser.click(CustomerModule.Customer_MyFavourites_Button);
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_Header)){
+						browser.reportscomtep("passed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page displayed");
+						
+					} else {
+						browser.reportscomtep("Failed", "Click on MyFavourites Button and Verify Favourites page is displayed"  , "Favourites page should be displayed", "Favourites page not displayed");
 					}
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_businesslist)){
+						browser.reportscomtep("Passed", "Verify List of Favourites is displayed where Salons are already added as Favorites"  , "List of Favourites should be displayed", "List of Salons added as Favourites displayed");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_myfavourites_Bookme_Button,
+								"MyFavourites businesslist Bookme Button");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_myfavourites_Remove_Button,
+								"MyFavourites businesslist Remove Button");						
+					
+					}else{
+						browser.reportscomtep("Failed", "Verify List of Favourites is displayed where Salons are already added as Favorites"  , "List of Favourites should be displayed", "List of Salons added as Favourites Not displayed");
+					}
+										
+					
+				}else {
+					browser.reportscomtep("Failed", "Verify MyFavourites Button is displayed in MyDashboard page",
+							"MyFavourites Button should be displayed in MyDashboard page", "MyFavourites Button Not displayed in MyDashboard page");
+				}
+					
+					}catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+				}
+			}
 
 		/******************************  Customer clicks on Book Me button in My Favourites ********************************/
 
-		public void ShearCircle_Verify_bookme_button_inmyfavourites() {
+		public void shearCircle_Verify_Bookme_Button_InmyFavourites() {
 			
 			try {
 
-				if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_businesslist)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_businesslist)){
 					browser.reportscomtep("Passed", "Verify list of favourites is displayed"  , "list of favourites should be displayed", "list of favourites is displayed");
 				
-					browser.click(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_bookme);
-					browser.wait(5);
+					browser.click(CustomerModule.Customer_myfavourites_Bookme_Button);
+					
 					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_bookme_digitekheader)){
-						browser.reportscomtep("Passed", "Verify bookme digitek header is displayed"  , "bookme digitek header should be displayed", "bookme digitek header is displayed");
-						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_fullname,
+						browser.reportscomtep("Passed", "Click on Bookme button and Verify bookme digitek header is displayed"  , "bookme digitek header should be displayed", "bookme digitek header is displayed");
+						
+						/*browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Welcome_Name_Header,
 								"Mydashboard fullname");
 
 						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_bookme_services, "Mydashboard bookme services");
@@ -1054,10 +1152,10 @@ public class Customer_Module_Page_Components extends StaticVariables {
 								"Mydashboard bookme markedas favourite ");
 						
 						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_myfavourites_bookme_share,
-								"Mydashboard bookme share");
+								"Mydashboard bookme share");*/
 
 					}else {
-						browser.reportscomtep("Failed", "Verify bookme digitek header is displayed"  , "bookme digitek header should be displayed", "bookme digitek header is not displayed");
+						browser.reportscomtep("Failed", "Click on Bookme button and Verify bookme digitek header is displayed"  , "bookme digitek header should be displayed", "bookme digitek header is not displayed");
 					}
 				
 					}else {
@@ -1076,18 +1174,18 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 		/*****************************  Customer clicks on Remove button in My Favourites(in progress) *************************/
 		
-	public void ShearCircle_Verify_Customer_RemoveButton_in_Myfavourites() {
+	public void shearCircle_Verify_Customer_RemoveButton_in_Myfavourites() {
 			
 			try {
 
-				if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_businesslist)){
+				if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_businesslist)){
 					browser.reportscomtep("Passed", "Verify list of favourites is displayed"  , "list of favourites should be displayed", "list of favourites is displayed");
 				
-					browser.click(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_remove);
-					browser.wait(5);
-					if(browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_remove_header)){
+					browser.click(CustomerModule.Customer_myfavourites_Remove_Button);
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myfavourites_Remove_Header)){
 						browser.reportscomtep("Passed", "Verify Removed popup is displayed"  , "Removed popup should be displayed", "Removed popup is displayed");
-						browser.click(CustomerModule.Customer_Mydashboard_myfavourites_businesslist_remove_header_ok);
+						browser.click(CustomerModule.Customer_Myfavourites_Remove_Popup_ok);
 					
 					}else {
 						browser.reportscomtep("Failed", "Verify Removed popup is displayed"  , "Removed popup should be displayed", "Removed popup is not displayed");
@@ -1104,7 +1202,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 	/*****************************  Customer clicks on My Appointments  *************************/
 
-	public void ShearCircle_Verify_Customer_clickson_Myappoinments() {
+	public void shearCircle_Verify_Customer_clickson_MyappoinmentsandVerifyFields() {
 			
 		try {
 
@@ -1114,11 +1212,11 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						"Customer Registration form My dashboard header should be displayed",
 						"Customer Registration form My dashboard header is displayed");
 
-				browser.click(CustomerModule.Customer_Mydashboard_Myappoinments);
-				browser.wait(5);
+				browser.click(CustomerModule.Customer_Myappoinments_Button);
+				
 
 				if (browser.elementisdisplayed(
-						CustomerModule.Customer_Mydashboard_Myappoinments_Noappoinments_header)) {
+						CustomerModule.Customer_Myappoinments_Noappoinments_Message)) {
 					browser.reportscomtep("Passed", "Verify no appoinments is displayed",
 							"no appoinments should be displayed", "no appoinments is displayed");
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_ID,
@@ -1169,24 +1267,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 					browser.Verify_elementisdisplayed_Report(
 							CustomerModule.Customer_Mydashboard_Myappoinments_status_cancelled,
-							"Myappoinments status cancelled");
-
-					/*
-					 * }else if(browser.elementisdisplayed(CustomerModule.
-					 * Customer_Mydashboard_Myappoinments_selectedappoinments_header
-					 * )){ browser.reportscomtep("passed",
-					 * "Verify selected appoinments is displayed" ,
-					 * "selected appoinments should be displayed",
-					 * " selected appoinments is  displayed");
-					 * 
-					 * }else { browser.reportscomtep("Failed",
-					 * "Verify selected appoinments is displayed" ,
-					 * "selected appoinments should be displayed",
-					 * " selected appoinments is not displayed");
-					 * 
-					 * 
-					 * }
-					 */
+							"Myappoinments status cancelled");					
 				} else {
 					browser.reportscomtep("Failed", "Verify no appoinments is displayed",
 							"no appoinments should be displayed", "no appoinments is not displayed");
@@ -1207,7 +1288,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 
 	/*****************************  Customer clicks on Settings   *************************/
 
-	public void ShearCircle_Verify_Customer_clickson_Settings() {
+	/*public void shearCircle_Verify_Customer_clickson_Settings() {
 
 		try {
 
@@ -1217,7 +1298,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 						"Customer Registration form My dashboard header should be displayed",
 						"Customer Registration form My dashboard header is displayed");
 
-				browser.click(CustomerModule.Customer_Mydashboard_settings);
+				browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);
 				browser.wait(5);
 
 				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_settings_header)) {
@@ -1230,7 +1311,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 							"dashboard settings lastnme");
 
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_Email,
-							"dashboard settings");
+							"dashboard settings EMail");
 
 					browser.Verify_elementisdisplayed_Report(
 							CustomerModule.Customer_Mydashboard_settings_Gender_Male, "dashboard settings male");
@@ -1284,7 +1365,1606 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			System.out.println("Error description: " + e.getStackTrace());
 
 		}
-	}
+	}*/
+
+	/*****************************  Check whether My Appointments is clickable	  *************************/
+
+	public void shearCircle_Verify_Customer_Clickson_MyAppoinments() {
+			
+		try {
+
+			if (browser.elementisdisplayed(CustomerModule.Customer_Myappoinments_Button)) {		
+				browser.reportscomtep("Passed", "Verify Myappoinments Button is displayed in MyDashboard page",
+						"Myappoinments Button should be displayed in MyDashboard page", "Myappoinments Button displayed in MyDashboard page");
+
+				browser.click(CustomerModule.Customer_Myappoinments_Button);
 		
+				if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)){
+					browser.reportscomtep("Passed", "Clicks on Myappoinments button and verify My appoinments header is displayed ",
+							"My appoinments header should be displayed", "Myappoinments header displayed");					
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myappoinments_Table)){
+						browser.reportscomtep("Passed", "Verify List of Myappoinments table or No appoinments Added Yet message is displayed"  , "List of Myappoinments table or No appoinments Added Yet message should be displayed", "List of MyAppointments table displayed");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Myappoinments_View_Buttons.get(0),"List of Myappoinments with View button next to each booking");								
+					
+					}else if(browser.elementisdisplayed(CustomerModule.Customer_Myappoinments_Noappoinments_Message)){
+						browser.reportscomtep("Passed", "Verify List of Myappoinments table or No appoinments Added Yet message is displayed"  , "List of Myappoinments table or No appoinments Added Yet message should be displayed", "No Appointment found Yet message displayed if no bookings are made/for 1st time login");
+					}else{
+						browser.reportscomtep("Failed", "Verify List of Myappoinments table or No appoinments Added Yet message is displayed"  , "List of Myappoinments table or No appoinments Added Yet message should be displayed", "List of MyAppointments or No Appointment found Yet message not displayed");
+					}
+
+				} else {
+					browser.reportscomtep("Failed", "Clicks on Myappoinments button and verify My appoinments header is displayed ",
+							"My appoinments header should be displayed", "Myappoinments header Not displayed");
+					
+				}
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify Myappoinments Button is displayed in MyDashboard page",
+						"Myappoinments Button should be displayed in MyDashboard page", "Myappoinments Button Not displayed in MyDashboard page");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+
+
+	}
+	
+	/*****************************  Check whether Settings is clickable	  *************************/
+
+	public void shearCircle_Verify_Customer_Clickson_Settings() {
+			
+		try {
+			String firstName = "";
+			String lastName = "";
+			String emailId="";
+			String gender="";
+			boolean genderSelection = false;
+
+			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)){
+				browser.reportscomtep("Passed", "Verify Customer My dashboard header is displayed",
+						"Customer My dashboard header should be displayed",
+						"Customers My dashboard header is displayed");
+
+				browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);		
+				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_settings_header)) {
+					browser.reportscomtep("Passed", "Verify settings header is displayed",
+							"settings header should be displayed", "settings header displayed");
+					firstName = browser.getelementtext(CustomerModule.Customer_Settings_FirstName);
+					lastName = browser.getelementtext(CustomerModule.Customer_Settings_LastName);
+					emailId = browser.getelementtext(CustomerModule.Customer_Settings_Email);
+					
+					if(CustomerModule.Customer_Settings_Gender_Male.isSelected()){
+						gender = browser.elementgetAttributevalue(CustomerModule.Customer_Settings_Gender_Male, "value");
+						genderSelection = true;
+					}else if(CustomerModule.Customer_Settings_Gender_Female.isSelected()){
+						gender = browser.elementgetAttributevalue(CustomerModule.Customer_Settings_Gender_Female, "value");
+						genderSelection = true;
+					}
+
+					if (firstName != "" && lastName !="" && emailId!="" && genderSelection == true){
+						browser.reportscomtep("Passed", "Verify Customer autopopulated data in Settings page",
+								"Customer data should be autopopulated in Settings page",
+								"Customer data autopopulated in Settings page for the fields FirstName: "+firstName+", LastNAme: "+lastName+", Email: "+emailId+", Gender: "+gender);
+					}else{
+						browser.reportscomtep("Passed", "Verify Customer autopopulated data in Settings page",
+								"Customer data should be autopopulated in Settings page",
+								"Customer data Not autopopulated in Settings page");
+					}
+
+				} else {
+					browser.reportscomtep("Failed", "Verify settings header is displayed",
+							"settings header should be displayed", "settings header not displayed");
+				}
+					
+			} else {
+				browser.reportscomtep("Failed", "Verify Customer Registration form My dashboard header is displayed",
+						"Customer Registration form My dashboard header should be displayed",
+						"Customer Registration form My dashboard header is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+	
+	/************************** Check whether Change Profile Picture button is Clickable	*************/
+
+	public void shearCircle_Customer_Verify_Change_Profile_Picture_Buttonis_Clickable() {
+		
+	try {
+
+		if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_changeProfilepicture)) {		
+			browser.reportscomtep("Passed", "Verify Change Profile picture Button is displayed in MyDashboard page",
+					"Change profile picture Button should be displayed in MyDashboard page", "Change profile picture Button isplayed in MyDashboard page");
+
+			browser.click(CustomerModule.Customer_Mydashboard_changeProfilepicture);
+
+			browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_ChooseFile_Button, "Mydashboard Choosefile Button");
+						
+		} else {					
+			browser.reportscomtep("Failed", "Verify Change Profile picture Button is displayed in MyDashboard page",
+					"Change profile picture Button should be displayed in MyDashboard page", "Change profile picture Button is not displayed in MyDashboard page");
+
+		}
+	}catch(Exception e){
+		System.out.println("Error description: " + e.getStackTrace() );
+	}			
+	}
+	/************************** Check whether the Search button is clickable			*************/
+
+	public void shearCircle_Verify_Customer_Search_Button_IsClickable() {
+		
+	try {
+
+		if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Search_Button)) {		
+			browser.reportscomtep("Passed", "Verify Search Button is displayed in Login page",
+					"Search Button should be displayed in Login page", "Search Button is displayed in Login page");
+
+			browser.click(CustomerModule.Customer_Mydashboard_Search_Button);
+			browser.waitforelementtobevisible(CustomerModule.Customer_Search_Resultspage_Header, 20);
+			browser.Verify_elementisdisplayed_Report(
+					CustomerModule.Customer_Search_Resultspage_Header, "Opens the Search Results page and displays all available Salons");			
+					
+				} else {
+					
+			browser.reportscomtep("Failed", "Verify Search Button is displayed in Login page",
+					"Search Button should be displayed in Login page", "Search Button is not displayed in Login page");
+		}
+	}catch(Exception e){
+		System.out.println("Error description: " + e.getStackTrace() );
+	}			
+	}
+		/*****************************  Check the info in My Appointments for first time login/ without creating any bookings	  *************************/
+
+	public void shearCircle_Verify_Customer_Clickson_MyAppoinments_firsttime_Login() {
+		
+		try {
+
+			if (browser.elementisdisplayed(CustomerModule.Customer_Myappoinments_Button)) {		
+				browser.reportscomtep("Passed", "Verify Myappoinments Button is displayed in MyDashboard page",
+						"Myappoinments Button should be displayed in MyDashboard page", "Myappoinments Button displayed in MyDashboard page");
+
+				browser.click(CustomerModule.Customer_Myappoinments_Button);
+		
+				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Myappoinments_header)){
+					browser.reportscomtep("Passed", "Clicks on Myappoinments button and verify My appoinments header is displayed ",
+							"My appoinments header should be displayed", "Myappoinments header displayed");					
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myappoinments_Noappoinments_Message)){
+						browser.reportscomtep("Passed", "Verify List of Myappoinments table or No appoinments Added Yet message is displayed"  , "List of Myappoinments table or No appoinments Added Yet message should be displayed", "No Appointment found Yet message displayed if no bookings are made/for 1st time login");
+					}else{
+						browser.reportscomtep("Failed", "Verify List of Myappoinments table or No appoinments Added Yet message is displayed"  , "List of Myappoinments table or No appoinments Added Yet message should be displayed", "No Appointment found Yet message Not displayed if no bookings are made/for 1st time login");
+					}
+
+				} else {
+					browser.reportscomtep("Failed", "Clicks on Myappoinments button and verify My appoinments header is displayed ",
+							"My appoinments header should be displayed", "Myappoinments header Not displayed");
+					
+				}
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify Myappoinments Button is displayed in MyDashboard page",
+						"Myappoinments Button should be displayed in MyDashboard page", "Myappoinments Button Not displayed in MyDashboard page");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+
+
+	}
+	/*****************************  Check info in My Appointments for account that has made bookings previously		  *************************/
+	public void shearCircle_Verify_Customer_Clickson_MyAppoinmentsforExistingUser() {
+		
+		try {
+
+			if (browser.elementisdisplayed(CustomerModule.Customer_Myappoinments_Button)) {		
+				browser.reportscomtep("Passed", "Verify Myappoinments Button is displayed in MyDashboard page",
+						"Myappoinments Button should be displayed in MyDashboard page", "Myappoinments Button displayed in MyDashboard page");
+
+				browser.click(CustomerModule.Customer_Myappoinments_Button);
+		
+				if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)){
+					browser.reportscomtep("Passed", "Clicks on Myappoinments button and verify My appoinments header is displayed ",
+							"My appoinments header should be displayed", "Myappoinments header displayed");					
+					
+					if(browser.elementisdisplayed(CustomerModule.Customer_Myappoinments_Table)){
+						browser.reportscomtep("Passed", "Verify List of Myappoinments table or No appoinments Added Yet message is displayed"  , "List of Myappoinments table or No appoinments Added Yet message should be displayed", "List of MyAppointment table displayed");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Myappoinments_View_Buttons.get(0),"List of Myappoinments with View button next to each booking");								
+					
+					}else{
+						browser.reportscomtep("Failed", "Verify List of Myappoinments table or No appoinments Added Yet message is displayed"  , "List of Myappoinments table or No appoinments Added Yet message should be displayed", "List of MyAppointment table not displayed");
+					}
+
+				} else {
+					browser.reportscomtep("Failed", "Clicks on Myappoinments button and verify My appoinments header is displayed ",
+							"My appoinments header should be displayed", "Myappoinments header Not displayed");
+					
+				}
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify Myappoinments Button is displayed in MyDashboard page",
+						"Myappoinments Button should be displayed in MyDashboard page", "Myappoinments Button Not displayed in MyDashboard page");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+	public void shearCircle_Verify_Customer_Clickson_MyAppoinments_Accountholder_Login() {
+		
+		try {
+
+			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
+
+				browser.reportscomtep("Passed", "Verify Customer My dashboard header is displayed",
+						"Customer My dashboard header should be displayed",
+						"Customers My dashboard header is displayed");
+
+				browser.click(CustomerModule.Customer_Myappoinments_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Myappoinments_Table)) {
+					browser.reportscomtep("Passed", "Verify list of appoinments is displayed with view button",
+							"list of appoinments with view button should be displayed", "list of appoinments  with view button is displayed");
+					
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_View,
+							"Mydashboard appoinments View");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Myappoinments_Table,
+							"Mydashboard appoinments pagebookings");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_ID,
+							"My dashboard Myappoinments ID");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Mydashboard_Myappoinments_Datetime, "Myappoinments datetime");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Mydashboard_Myappoinments_businessname,
+							"Myappoinments business name");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Mydashboard_Myappoinments_amount, "Myappoinments Amount");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Mydashboard_Myappoinments_appoinmentstatus,
+							"Myappoinments Appinmentstatus");
+
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Mydashboard_Myappoinments_paymentstatus,
+							"Myappoinments payment status");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_type,
+							"Mydashboard Myappoinments Type");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_status,
+							"Mydashboard Myappoinments Status");
+
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_arrow_pagenumbers,
+							"Mydashboard Myappoinments arrow pagenumbers");
+
+				} else {
+					browser.reportscomtep("Failed", "Verify list of appoinments is displayed with view button",
+							"list of appoinments with view button should be displayed", "list of appoinments  with view button is not displayed");
+				}
+									
+			} else {
+				browser.reportscomtep("Failed", "Verify Customer Registration form My dashboard header is displayed",
+						"Customer Registration form My dashboard header should be displayed",
+						"Customer Registration form My dashboard header is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+
+	}
+	
+	/****************************Login ***************************/
+	public void ShearCircle_Customer_Login() {
+		String CustomerValidEmail = null;
+		String CustomerValidPassword = null;
+		browser.loaddata(TestDataPath);
+		CustomerValidEmail = browser.getdata("CustomerValidEmail");
+		CustomerValidPassword = browser.getdata("CustomerValidPassword");
+		try {
+			if (browser.elementisdisplayed(Login.Home_Login_Link)) {
+				browser.reportscomtep("Passed", "Verify Login link is displayed", "Login link should be displayed",
+						"Login link is displayed");
+				browser.click(Login.Home_Login_Link);
+				browser.sendkeys(Login.Login_UserName_textbox, CustomerValidEmail);
+				browser.sendkeys(Login.Login_PassWord_textbox, CustomerValidPassword);
+				browser.click(Login.Login_signin_button);
+				//browser.assertEquals(browser.getelementtext(Login.MyDashboard_ValidMessage_text),"My Dashboard");
+				browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header);
+				browser.click(CustomerModule.Customer_MyAppoinments_Link);
+			} else {
+				browser.reportscomtep("Failed", "Verify Sign In To ShearCircle page header is displayed",
+						"Sign In To ShearCircle page header should be displayed",
+						"Sign In To ShearCircle page header not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+	
+	
+/******************TC_3_3_03	Check whether the View button is clickable ************/
+
+	public void Check_View_Button_Is_clickable() {
+		try {
+
+
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
+				if (browser.elementisdisplayed(CustomerModule.Customer_ClicksOnView_Button)) {
+					browser.reportscomtep("Passed", "Verify view button is displayed ",
+							"View button should be displayed for each booking", "view button displayed for each booking");
+					browser.click(CustomerModule.Customer_ClicksOnView_Button);
+					browser.waitForNewWindowAndSwitchToIt(driver);
+					if (browser.elementisdisplayed(CustomerModule.Customer_ViewBookingSummary_Text)) {
+						browser.reportscomtep("Passed", "Click on View button and Verify  View Booking Summary page in new tab is opened ",
+								"View Booking Summary page in new tab should be opened",
+								" View Booking Summary page in new tab open");
+					} else {
+						browser.reportscomtep("Failed", "Click on View button and Verify  View Booking Summary page in new tab is opened ",
+								"View Booking Summary page in new tab should be opened",
+								" View Booking Summary page in new tab not open");
+					}
+					//browser.switchtoDefaultWindow(driver);
+					driver.switchTo().window(defaultWindowHandle);
+				} else {
+					browser.reportscomtep("Failed", "Verify view button is displayed ",
+							"View button should be displayed for each booking", "view button displayed for each booking");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
 	}
 
+	/*************
+	 * TC_3_3_04 Check whether the page navigation forward arrows are clickable
+	 ***************/
+	
+	public void checkWhether_ThePageNavigation_ForwardArrows_Clickable() {
+		try {
+			String PageLinkActiveStatus="";
+			String PageLinkActiveStatus1="";
+			browser.ScrollToXY(0, 250);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Page1_Link)) {
+				browser.reportscomtep("Passed", "Verify  My Appaintments are defafulted in first page",
+						" My Appaintments should be in first page", "Verify My Appaintments in first page");
+				if (browser.elementisdisplayed(CustomerModule.Customer_NavigateToNextPage_Link)){
+					browser.reportscomtep("Passed", "Verify navigate to next page i.e '>' link is displayed",
+							"  Navigate to next page i.e '>' link should be displayed",
+							" Navigate to next page i.e '>' link displayed");
+					browser.click(CustomerModule.Customer_NavigateToNextPage_Link);
+					browser.waitforelementtobevisible(CustomerModule.Customer_Myappoinments_Table, 15);
+					Thread.sleep(10000);
+					PageLinkActiveStatus = browser.elementgetAttributevalue(CustomerModule.Customer_NextPageActive_Link, "class");
+					if(PageLinkActiveStatus.equalsIgnoreCase("active")){
+						browser.reportscomtep("Passed", "Click on '>' link and Verify page 2 is displayed",
+								"Verify page 2 should be displayed",
+								"Verify page 2 displayed");	
+					}else{
+						browser.reportscomtep("Failed", "Click on '>' link and Verify page 2 is displayed",
+								"  Navigate to next page i.e '>' link should be displayed",
+								" Navigate to next page i.e '>' link displayed");	
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify navigate to next page i.e '>' link is displayed",
+							"  Navigate to next page i.e '>' link should be displayed",
+							" Navigate to next page i.e '>' link not displayed");
+				}
+				
+				if (browser.elementisdisplayed(CustomerModule.Customer_NavigateToLastPage_Link)){
+					browser.reportscomtep("Passed", "Verify navigate to next page i.e '>>' link is displayed",
+							"  Navigate to next page i.e '>>' link should be displayed",
+							" Navigate to next page i.e '>>' link displayed");
+					browser.click(CustomerModule.Customer_NavigateToLastPage_Link);
+					browser.waitforelementtobevisible(CustomerModule.Customer_Myappoinments_Table, 15);
+					Thread.sleep(10000);
+					PageLinkActiveStatus1= browser.elementgetAttributevalue(CustomerModule.Customer_LastPageActive_Link, "class");
+					if(PageLinkActiveStatus1.equalsIgnoreCase("active")){
+						browser.reportscomtep("Passed", "Click on '>>' link and Verify Last page  is displayed",
+								"Verify Last Page should be displayed",
+								"Verify Last page displayed");	
+					}else{
+						browser.reportscomtep("Failed", "Click on '>>' link and Verify Last page is displayed",
+								"Verify Last Page should be displayed",
+								"Verify Last page not displayed");	
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify navigate to next page i.e '<<' link is displayed",
+							"  Navigate to next page i.e '>>' link should be displayed",
+							" Navigate to next page i.e '>>' link not displayed");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify My Appaintments are defafulted in first page",
+						"Verify My Appaintments should be in first page", "Verify My Appaintments not in first page");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+	/************
+	 * TC_3_3_05 Check whether the page navigation backward arrows are clickable
+	 ****************/
+
+	public void checkWhether_ThePageNavigation_BackwardArrowsAre_Clickable() {
+		try {
+			String PageLinkActiveStatus="";
+			String PageLinkActiveStatus1="";
+			String LastpageNo = "";
+			int pagelinkscount = 0;
+			int selectedPageNo = 0;
+			String PageNumber = "";
+			browser.ScrollToXY(0, 250);
+			if (browser.elementisdisplayed(CustomerModule.Customer_LastPageShowing_Link)){
+				LastpageNo = browser.getelementtext(CustomerModule.Customer_LastPageShowing_Link);
+				browser.reportscomtep("Passed", "Verify Last page i.e "+LastpageNo+" link is displayed",
+						"  Last page i.e "+LastpageNo+" link should be displayed",
+						" Last page i.e "+LastpageNo+" link displayed");
+				if (browser.elementisdisplayed(CustomerModule.Customer_NaviagateToPreviousPage_Link)) {
+					browser.reportscomtep("Passed", "Verify navigate to next page i.e '<' link is displayed",
+							"  Navigate to next page i.e '<' link should be displayed",
+							" Navigate to next page i.e '<' link displayed");
+					browser.click(CustomerModule.Customer_NaviagateToPreviousPage_Link);
+					browser.waitforelementtobevisible(CustomerModule.Customer_Myappoinments_Table, 15);
+					Thread.sleep(10000);
+					pagelinkscount = CustomerModule.Customer_PageNumber_Links.size();
+					selectedPageNo = pagelinkscount-2;
+					//if(selectedPageNo==5){
+					/*for(int i =1; i<5;i++){
+						Thread.sleep(10000);
+						PageLinkActiveStatus = browser.elementgetAttributevalue(CustomerModule.Customer_Page_Links.get(selectedPageNo), "class");	
+					}	*/
+					PageLinkActiveStatus = browser.elementgetAttributevalue(CustomerModule.Customer_Page_Links, "class");						
+						System.out.println("PageLinkActiveStatus: "+PageLinkActiveStatus);
+					//}			
+					
+					if(PageLinkActiveStatus.equalsIgnoreCase("active")){
+						PageNumber = CustomerModule.Customer_PageNumber_Links.get(selectedPageNo).getText();
+						browser.reportscomtep("Passed", "Click on '<' link and Verify Last to previous page is displayed",
+								"Last to previous page should be displayed",
+								"Last to previous page i.e "+PageNumber+" displayed");	
+					}else{
+						browser.reportscomtep("Failed", "Click on '<' link and Verify Last to previous page is displayed",
+								"Last to previous page should be displayed",
+								"Last to previous page Not displayed");	
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify navigate to next page i.e '<' link is displayed",
+							"  Navigate to next page i.e '<' link should be displayed",
+							" Navigate to next page i.e '<' link not displayed");
+				}
+				
+				if (browser.elementisdisplayed(CustomerModule.Customer_NaviagateToFirstPage_Link)) {
+					browser.reportscomtep("Passed", "Verify takes you to the first page i.e '<<' link is displayed",
+							" Takes you to the first page i.e '<<' link should be displayed",
+							" Takes you to the first page i.e '<<' link displayed");
+					browser.click(CustomerModule.Customer_NaviagateToFirstPage_Link);
+					browser.waitforelementtobevisible(CustomerModule.Customer_Page1_Link, 15);
+					Thread.sleep(10000);
+					PageLinkActiveStatus1 = browser.elementgetAttributevalue(CustomerModule.Customer_FirstPageActive_Link, "class");
+					if(PageLinkActiveStatus1.equalsIgnoreCase("active")){
+						browser.reportscomtep("Passed", "Click on '<<' link and Verify First page is displayed",
+								"First Page should be displayed",
+								"First page i.e 1 displayed");	
+					}else{
+						browser.reportscomtep("Failed", "Click on '<<' link and Verify First page is displayed",
+								"First Page should be displayed",
+								"First Page Not displayed");
+					}
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify takes you to the first page i.e '<<' link is displayed",
+							" Takes you to the first page i.e '<<' link should be displayed",
+							" Takes you to the first page i.e '<<' link Not displayed");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify Last page i.e "+LastpageNo+" link is displayed",
+						" Last page i.e "+LastpageNo+" link should be displayed",
+						" Last page i.e "+LastpageNo+" link not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+
+	
+	/***********************
+	 * TC_3_3_06 Check whether the correct page is displayed by clicking on page number
+	 *******************/
+	public void checkWhether_TheCorrectPage_IsDIsplayedBy_ClickingoOnPage_Number() {
+		try { 
+			String PageLinkActiveStatus="";
+			String PageNumber = "";
+			boolean isPagetwodisplayed = false;
+			browser.ScrollToXY(0, 250);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Page1_Link)) {
+				browser.reportscomtep("Passed", "Verify My Appaintments are defafulted in first page",
+						" My Appaintments should be in first page", "Verify My Appaintments in first page");				
+				//browser.click(CustomerModule.Customer_Page1_Link);
+				if (CustomerModule.Customer_PageNumber_Links.size()>3){
+					for(WebElement link:CustomerModule.Customer_PageNumber_Links){
+						PageNumber = link.getText();
+						if(PageNumber.equalsIgnoreCase("2")){
+							isPagetwodisplayed = true;
+							browser.reportscomtep("Passed", "Verify Page '2' link is displayed",
+									"Page i.e '2' link should be displayed",
+									"Page i.e '2' link displayed");
+							browser.click(link);
+							browser.waitforelementtobevisible(CustomerModule.Customer_Myappoinments_Table, 15);
+							Thread.sleep(10000);
+							PageLinkActiveStatus = browser.elementgetAttributevalue(CustomerModule.Customer_NextPageActive_Link, "class");
+							if(PageLinkActiveStatus.equalsIgnoreCase("active")){
+								browser.reportscomtep("Passed", "Click on '2' link and Verify page 2 is displayed",
+										"Verify page 2 should be displayed",
+										"Verify page 2 displayed");	
+								break;
+								
+							}else{
+								browser.reportscomtep("Failed", "Click on '2' link and Verify page 2 is displayed",
+										"Verify page 2 should be displayed",
+										"Verify page 2 not displayed");	
+								break;
+							}
+							
+						
+							}
+					}
+						
+					if(isPagetwodisplayed==false){						
+							browser.reportscomtep("Failed", "Verify Page '2' link is displayed",
+									"Page '2' should be displayed",
+									"Page '2' link not displayed");
+						}
+					
+							
+						}else{
+							browser.reportscomtep("Failed", "Verify navigate to page i.e Page Number links are displayed More than 3",
+									" Page Number links shoud be displayed More than 3",
+									" Page Number links are Not displayed More than 3");
+						}
+					
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify My Appaintments are defafulted in first page",
+							"Verify My Appaintments should be in first page", "Verify My Appaintments not in first page");
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+	}
+
+	/****************************
+	 * TC_3_3_07 Check the available filters in Type
+	 *********************/
+
+	public void checkThe_Available_Filters_InType() {
+		try {
+			int itemCount = 0;
+			String typeDropdownvlaues ="";
+			String expectedTypeValues= "Type;Upcoming Appointments;Past Appointments";
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
+				if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Type_Dropdown)) {
+					browser.reportscomtep("Passed", "Verify Type dropdown box is dispalyed ",
+							"Type dropdown box should be dispalyed", "Type dropdown box dispalyed");
+					browser.scrollUp(200);
+					List<WebElement> Type = browser.getOptions(CustomerModule.Customer_MyAppoinments_Type_Dropdown);
+					itemCount = Type.size();
+					if(itemCount>0){
+						for(WebElement listvalue:Type) {
+							typeDropdownvlaues = typeDropdownvlaues+";"+listvalue.getText();
+							System.out.println("Type List value:"+typeDropdownvlaues);
+						}
+						if(expectedTypeValues.equalsIgnoreCase(typeDropdownvlaues.substring(1))){
+							browser.reportscomtep("Passed", "Verify list of filters dispalyed in Type dropdown box.",
+									"List of filters should be dispalyed in Type dropdown box.", "List of filters dispalyed as : "+typeDropdownvlaues+" in Type dropdown box.");
+						}else{
+							browser.reportscomtep("Failed", "Verify list of filters dispalyed in Type dropdown box.",
+									"List of filters should be dispalyed in Type dropdown box.", "List of filters Not dispalyed in Type dropdown box.");
+						}
+					}
+
+				} else {
+					browser.reportscomtep("Failed", "Verify Type dropdown box is dispalyed ",
+							"Type dropdown box should be dispalyed", "Type dropdown box not dispalyed");
+
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header Not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+
+	/****************************
+	 * TC_3_3_08 Check the available filters in Status
+	 *******************/
+
+	public void checkThe_Available_FiltersInStatus() {
+		try {
+			int itemCount = 0;
+			String typeDropdownvlaues ="";
+			String expectedTypeValues= "Status;Completed;Pending;Canceled";
+			
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
+				if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Dropdown_Status)) {
+					browser.reportscomtep("Passed", "Verify Status dropdown box is dispalyed ",
+							"Status dropdown box should be dispalyed", "Status dropdown box dispalyed");
+					
+					List<WebElement> Status = browser.getOptions(CustomerModule.Customer_MyAppoinments_Dropdown_Status);
+					itemCount = Status.size();
+					if(itemCount>0){
+						for(WebElement listvalue:Status) {
+							typeDropdownvlaues = typeDropdownvlaues+";"+listvalue.getText();
+							System.out.println("Type List value:"+typeDropdownvlaues);
+						}
+						if(expectedTypeValues.equalsIgnoreCase(typeDropdownvlaues.substring(1))){
+							browser.reportscomtep("Passed", "Verify list of filters dispalyed in Status dropdown box.",
+									"List of filters should be dispalyed in Status dropdown box.", "List of filters dispalyed as : "+typeDropdownvlaues+" in Status dropdown box.");
+						}else{
+							browser.reportscomtep("Failed", "Verify list of filters dispalyed in Status dropdown box.",
+									"List of filters should be dispalyed in Status dropdown box.", "List of filters Not dispalyed in Status dropdown box.");
+						}
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify Status dropdown box is dispalyed ",
+							"Status dropdown box should be dispalyed", "Status dropdown box not dispalyed");
+				}
+			} else {
+
+				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	/*****************************
+	 * TC_3_3_09 Check the upcoming bookings
+	 ************************/
+	public void check_Upcoming_Bookings() {
+		try {
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
+				browser.selectByVisibleText(CustomerModule.Customer_MyAppoinments_Type_Dropdown, "Upcoming Appointments");	
+				Thread.sleep(10000);
+				if (browser.elementisdisplayed(CustomerModule.Customer_UpcomingAppointments_Message)) {
+					browser.reportscomtep("Passed", "Verify No Appointments Found message is displayed",
+							"No Appointments Found message should be displayed",
+							"No Appointments Found message displayed");
+				} else {
+					browser.reportscomtep("Failed", "Verify No Appointments Found message is displayed",
+							"No Appointments Found message should be displayed",
+							"No Appointments Found message not displayed");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	/***************
+	 * TC_3_3_10 Check the past bookings ***************{not Execute}
+	 ***/
+
+	public void checkThe_Past_Bookings() {
+		try {
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
+
+				browser.selectByVisibleText(CustomerModule.Customer_MyAppoinments_Type_Dropdown, "Past Appointments");	
+				
+				if (browser.elementisdisplayed(CustomerModule.Customer_PastAppointments_List)) {
+					browser.reportscomtep("Passed", "Verify Past Bookings of the list is Displayed",
+							"Past Bookings of the listshould be displayed", "Past Bookings of the list  Displayed");
+				} else {
+					browser.reportscomtep("Failed", "Verify Past Bookings of the list is Displayed",
+							"Past Bookings of the listshould be displayed", "Past Bookings of the list not  Displayed");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	/********************** TC_3_3_11 Check the Completed bookings ************/
+
+	public void check_Completed_Status_Bookings_AppointmentStatusandPamentStatus() {
+		try {
+			String appointmentStatus = "";
+			String paymentStatus = "";
+			String selectedType = "";
+			String selectedStatus = "";
+					
+			boolean completedAppointmentStatustrue = false;
+			boolean completedAppointmentStatusfalse = true;
+			boolean completedPaymentStatustrue = false;
+			boolean completedPaymentStatusfalse = true;
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
+				
+				browser.selectByVisibleText(CustomerModule.Customer_MyAppoinments_Type_Dropdown, "Past Appointments");
+				
+				selectedType = browser.getDropdownSelectedValue(CustomerModule.Customer_MyAppoinments_Type_Dropdown);
+				if(selectedType.equalsIgnoreCase("Past Appointments")){
+					browser.reportscomtep("Passed", "Verify Selected MyAppoinments_Type dropdown value",
+							"MyAppoinments_Type dropdown value should be selected", "MyAppoinments_Type dropdown value selected as : "+ selectedType );
+				} else {
+					browser.reportscomtep("Failed", "Verify Selected MyAppoinments_Type dropdown value",
+							"MyAppoinments_Type dropdown value should be selected", "MyAppoinments_Type dropdown value Not selected");
+				}	
+				
+				browser.selectByVisibleText(CustomerModule.Customer_MyAppoinments_Dropdown_Status, "Completed");	
+				
+				selectedStatus = browser.getDropdownSelectedValue(CustomerModule.Customer_MyAppoinments_Dropdown_Status);
+				
+				if(selectedStatus.equalsIgnoreCase("Completed")){
+					browser.reportscomtep("Passed", "Verify Selected MyAppoinments_Status dropdown value",
+							"MyAppoinments_Status dropdown value should be selected", "MyAppoinments_Status dropdown value selected as : "+ selectedStatus );
+				} else {
+					browser.reportscomtep("Failed", "Verify Selected MyAppoinments_Status dropdown value",
+							"MyAppoinments_Status dropdown value should be selected", "MyAppoinments_Status dropdown value Not selected");
+				}
+				browser.ScrollToXY(0, 250);
+				if (CustomerModule.Customer_AppointmentStatus_List.size()>0) {
+					for(WebElement appointmentStatuselement : CustomerModule.Customer_AppointmentStatus_List){
+						appointmentStatus = browser.getelementtext(appointmentStatuselement);
+						System.out.println("AS: "+appointmentStatus);
+						if(appointmentStatus.trim().equalsIgnoreCase("Completed")){
+							completedAppointmentStatustrue = true;
+						}else{
+							completedAppointmentStatusfalse = false;
+						}
+					}
+					
+					if(completedAppointmentStatustrue && completedAppointmentStatusfalse ){
+						browser.reportscomtep("Passed", "Verify AppointmentStatus for the bookings while selecting Status as 'Completed' ",
+								"AppointmentStatus should be 'Completed' for the bookings while selecting Status as Completed", "AppointmentStatus displyed as 'Completed'");
+					}else{
+						browser.reportscomtep("Failed", "Verify AppointmentStatus for the bookings while selecting Status as 'Completed'",
+								"AppointmentStatus should be 'Completed' for the bookings while selecting Status as 'Completed'", "AppointmentStatus Not displyed as 'Completed'");
+					}									
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify AppointmentStatus for the bookings while selecting Status as 'Completed' ",
+								"AppointmentStatus should be 'Completed' for the bookings while selecting Status as 'Completed'", "Booking Records not displayed");
+				}
+				
+				if (CustomerModule.Customer_PaymentStatus_List.size()>0) {
+					for(WebElement paymentStatuselement : CustomerModule.Customer_PaymentStatus_List){
+						paymentStatus = browser.getelementtext(paymentStatuselement);
+						if(paymentStatus.trim().equalsIgnoreCase("Paid")){
+							completedPaymentStatustrue = true;
+						}else{
+							completedPaymentStatusfalse = false;
+						}
+					}
+					
+					if(completedPaymentStatustrue && completedPaymentStatusfalse){
+						browser.reportscomtep("Passed", "Verify PaymentStatus for the bookings while selecting Status as Completed ",
+								"PaymentStatus should be 'Completed' for the bookings while selecting Status as Completed", "PaymentStatus displyed as 'Paid'");
+					}else{
+						browser.reportscomtep("Failed", "Verify PaymentStatus for the bookings while selecting Status as Completed ",
+								"PaymentStatus should be 'Completed' for the bookings while selecting Status as Completed", "PaymentStatus Not displyed as 'Paid'");
+					}									
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify PaymentStatus for the bookings while selecting Status as Completed ",
+								"PaymentStatus should be 'Completed' for the bookings while selecting Status as Completed", "Booking Records not displayed");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	/********************* TC_3_3_12 Check the Pending bookings *************/
+	public void checkThe_Pending_Bookings_AppointmentStatusandPamentStatus() {
+		try {
+			String appointmentStatus = "";
+			String paymentStatus = "";
+			String selectedType = "";
+			String selectedStatus = "";
+					
+			boolean pendingAppointmentStatustrue = false;
+			boolean pendingAppointmentStatusfalse = true;
+			boolean pendingPaymentStatustrue = false;
+			boolean pendingPaymentStatusfalse = true;
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
+				
+				browser.selectByVisibleText(CustomerModule.Customer_MyAppoinments_Type_Dropdown, "Past Appointments");
+				
+				selectedType = browser.getDropdownSelectedValue(CustomerModule.Customer_MyAppoinments_Type_Dropdown);
+				if(selectedType.equalsIgnoreCase("Past Appointments")){
+					browser.reportscomtep("Passed", "Verify Selected MyAppoinments_Type dropdown value",
+							"MyAppoinments_Type dropdown value should be selected", "MyAppoinments_Type dropdown value selected as : "+ selectedType );
+				} else {
+					browser.reportscomtep("Failed", "Verify Selected MyAppoinments_Type dropdown value",
+							"MyAppoinments_Type dropdown value should be selected", "MyAppoinments_Type dropdown value Not selected");
+				}	
+				
+				browser.selectByVisibleText(CustomerModule.Customer_MyAppoinments_Dropdown_Status, "Pending");	
+				
+				selectedStatus = browser.getDropdownSelectedValue(CustomerModule.Customer_MyAppoinments_Dropdown_Status);
+				
+				if(selectedStatus.equalsIgnoreCase("Pending")){
+					browser.reportscomtep("Passed", "Verify Selected MyAppoinments_Status dropdown value",
+							"MyAppoinments_Status dropdown value should be selected", "MyAppoinments_Status dropdown value selected as : "+ selectedStatus );
+				} else {
+					browser.reportscomtep("Failed", "Verify Selected MyAppoinments_Status dropdown value",
+							"MyAppoinments_Status dropdown value should be selected", "MyAppoinments_Status dropdown value Not selected");
+				}
+				browser.ScrollToXY(0, 250);
+				if (CustomerModule.Customer_AppointmentStatus_List.size()>0) {
+					for(WebElement appointmentStatuselement : CustomerModule.Customer_AppointmentStatus_List){
+						appointmentStatus = browser.getelementtext(appointmentStatuselement);
+						System.out.println("AS: "+appointmentStatus);
+						if(appointmentStatus.trim().equalsIgnoreCase("New") || appointmentStatus.trim().equalsIgnoreCase("Canceled") || appointmentStatus.trim().equalsIgnoreCase("")){
+							pendingAppointmentStatustrue = true;
+						}else if(appointmentStatus.equalsIgnoreCase("Completed")){
+							pendingAppointmentStatusfalse = false;
+						}
+					}
+					
+					if(pendingAppointmentStatustrue && pendingAppointmentStatusfalse){
+						browser.reportscomtep("Passed", "Verify AppointmentStatus for the bookings while selecting Status as 'Pending' ",
+								"AppointmentStatus should be 'Canceled or New' for the bookings while selecting Status as 'Pending'", "AppointmentStatus displyed as 'New or Canceled'");
+					}else{
+						browser.reportscomtep("Failed", "Verify AppointmentStatus for the bookings while selecting Status as 'Pending' ",
+								"AppointmentStatus should be 'Canceled or New' for the bookings while selecting Status as 'Pending'", "AppointmentStatus Not displyed as 'New or Canceled'");
+					}									
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify AppointmentStatus for the bookings while selecting Status as 'Pending' ",
+								"AppointmentStatus should be 'Canceled or New' for the bookings while selecting Status as 'Pending'", "Booking Records not displayed");
+				}
+				
+				if (CustomerModule.Customer_PaymentStatus_List.size()>0) {
+					for(WebElement paymentStatuselement : CustomerModule.Customer_PaymentStatus_List){
+						paymentStatus = browser.getelementtext(paymentStatuselement);
+						if(paymentStatus.trim().equalsIgnoreCase("Pending") || paymentStatus.trim().equalsIgnoreCase("Canceled") || paymentStatus.trim().equalsIgnoreCase("")){
+							pendingPaymentStatustrue = true;
+						}else if(paymentStatus.equalsIgnoreCase("Completed")){
+							pendingPaymentStatusfalse = false;
+						}
+					}
+					
+					if(pendingPaymentStatustrue && pendingPaymentStatusfalse ){
+						browser.reportscomtep("Passed", "Verify PaymentStatus for the bookings while selecting Status as 'Pending' ",
+								"PaymentStatus should be 'Pending or Canceled' for the bookings while selecting Status as 'Pending'", "PaymentStatus displyed as 'Pending or Canceled" );
+					}else{
+						browser.reportscomtep("Failed", "Verify PaymentStatus for the bookings while selecting Status as 'Pending' ",
+								"PaymentStatus should be 'Pending or Canceled' for the bookings while selecting Status as 'Pending'", "PaymentStatus Not displyed as 'Pending or Canceled" );
+					}					
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify PaymentStatus for the bookings while selecting Status as 'Pending' ",
+							"PaymentStatus should be 'Pending or Canceled' for the bookings while selecting Status as 'Pending'", "Booking Records not displayed");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	/********************* TC_3_3_12 Check the canceled bookings *************/
+	public void checkThe_Canceled_Bookings_AppointmentStatusandPamentStatus() {
+		try {
+			String appointmentStatus = "";
+			String paymentStatus = "";
+			String selectedType = "";
+			String selectedStatus = "";
+					
+			boolean canceledAppointmentStatustrue = false;
+			boolean canceledAppointmentStatusfalse = true;
+			boolean canceledPaymentStatustrue = false;
+			boolean canceledPaymentStatusfalse = true;
+			if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+				browser.reportscomtep("Passed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header displayed");
+				
+				browser.selectByVisibleText(CustomerModule.Customer_MyAppoinments_Type_Dropdown, "Past Appointments");
+				
+				selectedType = browser.getDropdownSelectedValue(CustomerModule.Customer_MyAppoinments_Type_Dropdown);
+				if(selectedType.equalsIgnoreCase("Past Appointments")){
+					browser.reportscomtep("Passed", "Verify Selected MyAppoinments_Type dropdown value",
+							"MyAppoinments_Type dropdown value should be selected", "MyAppoinments_Type dropdown value selected as : "+ selectedType );
+				} else {
+					browser.reportscomtep("Failed", "Verify Selected MyAppoinments_Type dropdown value",
+							"MyAppoinments_Type dropdown value should be selected", "MyAppoinments_Type dropdown value Not selected");
+				}	
+				
+				browser.selectByVisibleText(CustomerModule.Customer_MyAppoinments_Dropdown_Status, "Pending");	
+				
+				selectedStatus = browser.getDropdownSelectedValue(CustomerModule.Customer_MyAppoinments_Dropdown_Status);
+				
+				if(selectedStatus.equalsIgnoreCase("Pending")){
+					browser.reportscomtep("Passed", "Verify Selected MyAppoinments_Status dropdown value",
+							"MyAppoinments_Status dropdown value should be selected", "MyAppoinments_Status dropdown value selected as : "+ selectedStatus );
+				} else {
+					browser.reportscomtep("Failed", "Verify Selected MyAppoinments_Status dropdown value",
+							"MyAppoinments_Status dropdown value should be selected", "MyAppoinments_Status dropdown value Not selected");
+				}
+				browser.ScrollToXY(0, 250);
+				if (CustomerModule.Customer_AppointmentStatus_List.size()>0) {
+					for(WebElement appointmentStatuselement : CustomerModule.Customer_AppointmentStatus_List){
+						appointmentStatus = browser.getelementtext(appointmentStatuselement);
+						System.out.println("AS: "+appointmentStatus);
+						if(appointmentStatus.trim().equalsIgnoreCase("New") || appointmentStatus.trim().equalsIgnoreCase("Canceled") || appointmentStatus.trim().equalsIgnoreCase("")){
+							canceledAppointmentStatustrue = true;
+						}else if(appointmentStatus.equalsIgnoreCase("Completed")){
+							canceledAppointmentStatusfalse = false;
+						}
+					}
+					
+					if(canceledAppointmentStatustrue && canceledAppointmentStatusfalse){
+						browser.reportscomtep("Passed", "Verify AppointmentStatus for the bookings while selecting Status as 'Pending' ",
+								"AppointmentStatus should be 'Canceled or New' for the bookings while selecting Status as 'Pending'", "AppointmentStatus displyed as 'New or Canceled'");
+					}else{
+						browser.reportscomtep("Failed", "Verify AppointmentStatus for the bookings while selecting Status as 'Pending' ",
+								"AppointmentStatus should be 'Canceled or New' for the bookings while selecting Status as 'Pending'", "AppointmentStatus Not displyed as 'New or Canceled'");
+					}									
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify AppointmentStatus for the bookings while selecting Status as 'Pending' ",
+								"AppointmentStatus should be 'Canceled or New' for the bookings while selecting Status as 'Pending'", "Booking Records not displayed");
+				}
+				
+				if (CustomerModule.Customer_PaymentStatus_List.size()>0) {
+					for(WebElement paymentStatuselement : CustomerModule.Customer_PaymentStatus_List){
+						paymentStatus = browser.getelementtext(paymentStatuselement);
+						if(paymentStatus.trim().equalsIgnoreCase("Pending") || paymentStatus.trim().equalsIgnoreCase("Canceled") || paymentStatus.trim().equalsIgnoreCase("")){
+							canceledPaymentStatustrue = true;
+						}else if(paymentStatus.equalsIgnoreCase("Completed")){
+							canceledPaymentStatusfalse = false;
+						}
+					}
+					
+					if(canceledPaymentStatustrue && canceledPaymentStatusfalse ){
+						browser.reportscomtep("Passed", "Verify PaymentStatus for the bookings while selecting Status as 'Pending' ",
+								"PaymentStatus should be 'Pending or Canceled' for the bookings while selecting Status as 'Pending'", "PaymentStatus displyed as 'Pending or Canceled" );
+					}else{
+						browser.reportscomtep("Failed", "Verify PaymentStatus for the bookings while selecting Status as 'Pending' ",
+								"PaymentStatus should be 'Pending or Canceled' for the bookings while selecting Status as 'Pending'", "PaymentStatus Not displyed as 'Pending or Canceled" );
+					}					
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify PaymentStatus for the bookings while selecting Status as 'Pending' ",
+							"PaymentStatus should be 'Pending or Canceled' for the bookings while selecting Status as 'Pending'", "Booking Records not displayed");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify MyAppoinments Header is displayed ",
+						"MyAppoinments Header should be displayed", "MyAppoinments Header not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	/*********************
+	 * TC_3_3_13 Check the Canceled bookings
+	 *********************/
+
+	public void checkThe_Canceled_Bookings() {
+		try {
+			//WebElement Status = driver.findElement(By.xpath("//*[@ng-model='appointment_status']"));
+			Select Canceled = new Select(CustomerModule.Customer_MyAppoinments_Dropdown_Status);
+			Canceled.selectByValue("canceled");
+			Thread.sleep(3000);
+			if (browser.elementisdisplayed(CustomerModule.Customer_PastAppointments_List)) {
+				browser.reportscomtep("Passed", "","", "");
+				Thread.sleep(3000);
+			} else {
+				browser.reportscomtep("Failed", "","","");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	
+/*************************Check whether My Account button is clickable	*************/
+public void shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable(String myAccountLinkName) {
+	
+	try {
+
+		if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_MyAccount_Button)) {		
+			browser.reportscomtep("Passed", "Verify My Account Button is displayed in MyDashboard page",
+					"My Account Button should be displayed in MyDashboard page", "My Account Button displayed in MyDashboard page");
+			browser.click(CustomerModule.Customer_Mydashboard_MyAccount_Button);
+			browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Welcome_Name_Header, "Mydashboard HeaderName");
+			switch(myAccountLinkName){
+				case "My Favorites":						
+					browser.click(CustomerModule.Customer_MyFavourites_Button);
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Myfavourites_Header, "MyFavourites Header");
+					break;
+				case "My Appointments":					
+					browser.click(CustomerModule.Customer_MyAppoinments_Link);
+					browser.Verify_elementisdisplayed_Report(
+								CustomerModule.Customer_MyAppoinments_Header, "MyAppoinments Header");
+					break;
+				case "Settings":				
+					browser.click(CustomerModule.Customer_Settings_Link);
+					browser.Verify_elementisdisplayed_Report(
+								CustomerModule.Customer_Settings_Header, "Mysettings Header");
+					break;
+			}
+			
+		
+		} else {
+			browser.reportscomtep("Failed", "Verify My Account Button is displayed in MyDashboard page",
+					"My Account Button should be displayed in MyDashboard page", "My Account Button is not displayed in MyDashboard page");
+		}
+	}catch(Exception e){
+		System.out.println("Error description: " + e.getStackTrace() );
+	}			
+ }
+
+/******************TC_3_4_02 Check if the Cancel button is clickable*************/
+
+public void check_CancelButton_IsClickable() {
+	try {
+		
+			browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Settings_Header)) {
+				browser.reportscomtep("Passed", "Verify Settings header is displayed",
+						"Settings header should be displayed", "Settings header  displayed");
+				browser.ScrollToXY(0,250);
+				browser.click(CustomerModule.Customer_Mydashboard_settings_cancel);
+				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Welcome_Name_Header)) {
+					browser.reportscomtep("Passed", "Click on Cancel button and Verify Settings page Return to My Dashboard page",
+							"Settings page should be Return to My Dashboard page",
+							"Settings page Return to My Dashboard page");
+				} else {
+					browser.reportscomtep("Failed", "Click on Cancel button and Verify Settings page Return to My Dashboard page",
+							"Settings page should be Return to My Dashboard page",
+							"Settings page Not Return to My Dashboard page");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify Settings header is displayed",
+						"Settings header should be displayed", "Settings header not displayed");
+				}
+		
+	} catch (Exception e) {
+		System.out.println("Error description: " + e.getStackTrace());
+
+	}
+}
+
+/*********TC_3_4_03	Check the field validation******************/
+
+public void check_SettingsPageField_Validation_withInvaliddata() {
+	String customerFirstName = null;
+	String customerLastName = null;
+	String customerMobileNo = null;
+	String customerAddress = null;
+	String customerCity = null;
+	String customerZipCode = null;
+	String customerState = "";
+	try {
+		customerFirstName = browser.getdata("settings_InvalidFirstName");
+		customerLastName = browser.getdata("settings_InvalidLastName");
+		customerMobileNo = browser.getdata("settings_InvalidMobileNo");
+		customerAddress = browser.getdata("settings_InvalidAddress");
+		customerCity = browser.getdata("settings_InvalidCity");
+		customerZipCode = browser.getdata("settings_InvalidZipCode");
+		customerState = browser.getdata("settings_InvalidState");
+		
+			browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Settings_Header)) {
+				browser.reportscomtep("Passed", "Verify Settings header is displayed",
+						"Settings header should be displayed", "Settings header  displayed");
+				//browser.clearText(CustomerModule.Customer_Settings_FirstName);
+				browser.sendkeys(CustomerModule.Customer_Settings_FirstName, customerFirstName);
+				
+				//browser.clearText(CustomerModule.Customer_Settings_LastName);
+				browser.sendkeys(CustomerModule.Customer_Settings_LastName, customerLastName);
+				
+				//browser.clearText(CustomerModule.Customer_Mydashboard_settings_Phone);
+				browser.sendkeys(CustomerModule.Customer_Mydashboard_settings_Phone, customerMobileNo);				
+				
+				//browser.clearText(CustomerModule.Customer_Mydashboard_settings_Address);
+				browser.sendkeys(CustomerModule.Customer_Mydashboard_settings_Address, customerAddress);
+				
+				//browser.clearText(CustomerModule.Customer_Mydashboard_settings_city);
+				browser.sendkeys(CustomerModule.Customer_Mydashboard_settings_city, customerCity);
+												
+				browser.ScrollToXY(0, 250);
+				
+				browser.selectByVisibleText(CustomerModule.Customer_Mydashboard_settings_State, customerState);
+				
+				//browser.clearText(CustomerModule.Customer_Mydashboard_settings_zipcode);
+				browser.sendkeys(CustomerModule.Customer_Mydashboard_settings_zipcode, customerZipCode);							
+
+				browser.click(CustomerModule.Customer_Mydashboard_settings_Update);
+				browser.scrollUp(250);
+				if (browser.elementisdisplayed(CustomerModule.Customer_ProfileUpdatedSuccessfully_Message)) {
+					browser.reportscomtep("Passed",
+							"Click on Update button and Verify Profile Updated Successfully message displayed",
+							"Profile Updated Successfully message should be displayed",
+							"Profile Updated Successfully message displayed");
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Update button and Verify Profile Updated Successfully message displayed",
+							"Profile Updated Successfully message should be displayed",
+							"Profile Updated Successfully message displayed");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Verify Settings header is displayed",
+						"Verify Settings header should be displayed", "Verify Settings header not displayed");
+			}		
+
+	} catch (Exception e) {
+		System.out.println("Error description: " + e.getStackTrace());
+
+	}
+}
+
+/******TC_3_4_04	Check the mandatory fields**********/
+
+
+public void check_MandatoryFieldsinSettingsPage() {
+	try {		
+			browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Settings_Header)) {
+				browser.reportscomtep("Passed", "Verify Settings header is displayed",
+						"Settings header should be displayed", "Settings header  displayed");
+				browser.clearText(CustomerModule.Customer_Settings_FirstName);
+				
+				browser.clearText(CustomerModule.Customer_Settings_LastName);				
+				
+				browser.clearText(CustomerModule.Customer_Mydashboard_settings_Phone);						
+				
+				browser.clearText(CustomerModule.Customer_Mydashboard_settings_Address);				
+				
+				browser.clearText(CustomerModule.Customer_Mydashboard_settings_city);				
+												
+				browser.ScrollToXY(0, 250);			
+				
+				browser.clearText(CustomerModule.Customer_Mydashboard_settings_zipcode);
+				
+				browser.click(CustomerModule.Customer_Mydashboard_settings_Update);
+				browser.scrollUp(250);
+				if (browser.elementisdisplayed(CustomerModule.Customer_PleaseEnterFirstName_ErrorMessage)
+						&& browser.elementisdisplayed(CustomerModule.Customer_PleaseEnterLastName_ErrorMessage)) {
+					browser.reportscomtep("Passed",
+							"Click on Update button with out entering mandatory fields and Verify Please Enter First Name and Last name ErrorMessage is dispalyed ",
+							"First Name and Last name ErrorMessage should be dispalyed",
+							"Please Enter First Name and Please enter Last name Error Message dispalyed");
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Update button with out entering mandatory fields and Verify Please Enter First Name and Last name ErrorMessage is dispalyed ",
+							"First Name and Last name  ErrorMessage should be dispalyed",
+							"Please enter First Name and Please enter Last name  Error Message not dispalyed");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify Settings header is displayed",
+						"Verify Settings header should be displayed", "Verify Settings header not displayed");
+			}		
+
+	} catch (Exception e) {
+		System.out.println("Error description: " + e.getStackTrace());
+
+	}
+}
+/*********TC_3_4_05	Check whether Change Password link is clickable********/
+public void checkWhether_ChangePassword_LinkIs_Clickable() {
+	try {
+		if (browser.elementisdisplayed(CustomerModule.Customer_Settings_Header)) {
+			browser.reportscomtep("Passed", "Verify Settings header is displayed",
+					"Settings header should be displayed", "Settings header  displayed");
+			browser.ScrollToXY(0, 250);
+			browser.click(CustomerModule.Customer_ChangePassword_Link);
+			if (browser.elementisdisplayed(CustomerModule.Customer_SecureYourProfileByChangingPassword_Header)) {
+				browser.reportscomtep("Passed",
+						"Click change password link and Verify settings page redirects to change password page displayed.",
+						" Settings page should be redirects to change password page displayed.",
+						" Settings page Redirects to change password page displayed.");
+			} else {
+				browser.reportscomtep("Failed",
+						"Click change password link and Verify settings page redirects to change password page displayed.",
+						" Settings page should be redirects to change password page displayed.",
+						" Settings page Not Redirects to change password page displayed.");
+			}
+		} else {
+			browser.reportscomtep("Failed", "Verify Settings header is displayed",
+					"Verify Settings header should be displayed", "Verify Settings header not displayed");
+		}
+
+	} catch (Exception e) {
+		System.out.println("Error description: " + e.getStackTrace());
+
+	}
+}
+
+/**********TC_3_4_06	Check whether the password can be updated without entering any data***********/
+
+	public void check_WhetherThePassword_CanbeUpdated_WithOut_EnteringAnyData() {
+		try {
+			if (browser.elementisdisplayed(CustomerModule.Customer_SecureYourProfileByChangingPassword_Header)) {
+				browser.reportscomtep("Passed", "Verify Secure Your Profile by Changing Password Header is displayed ",
+						"Secure Your Profile by Changing Password Header should be displayed",
+						"Secure Your Profile by Changing Password Header displayed");
+				browser.click(CustomerModule.Customer_Profile_ChangingPassword_Update_Button);
+				if (browser.elementisdisplayed(CustomerModule.Customer_Oldpassword_Errormessage) && browser.elementisdisplayed(CustomerModule.Customer_Newpassword_Errormessage)) {
+					browser.reportscomtep("Passed", "Click on Update button and Verify Current Password and New Password validation messages is displayed",
+							"Current Password and New Password validation messages should be displayed",
+							"Please enter Current Password and Please enter New Password validation messages is displayed");
+				} else {
+					browser.reportscomtep("Failed", "Click on Update button and Verify Current Password and New Password validation messages is displayed",
+							"Current Password and New Password validation messages should be displayed",
+							"Please enter Current Password and Please enter New Password validation messages Not displayed");					
+				}
+				
+				browser.refreshBrowser(driver);	
+				browser.explicitWaitUsingElementToBeClickable(CustomerModule.Customer_Profile_ChangingPassword_Update_Button);
+			} else {
+				browser.reportscomtep("Failed", "Verify Secure Your Profile by Changing Password Header is displayed ",
+						"Secure Your Profile by Changing Password Header should be displayed",
+						"Secure Your Profile by Changing Password Header not displayed");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+
+	/***********TC_3_4_07	Check whether the password can be updated by entering new password less than 6 characters/spaces******/
+	
+	public void enteringNew_PasswordLessThan_SixCharacters_Or_Spaces(String p_in_FinalAction) {
+		String CustomerCurrentPassword = null;
+		String newPwdLessThan6chars = null;
+		String newPasswordWithspaces = null;
+		try {
+			CustomerCurrentPassword = browser.getdata("CustomerOldPassword");
+			newPwdLessThan6chars = browser.getdata("CustomerNewPwdLessThan6chars");
+			newPasswordWithspaces = browser.getdata("CustomerNewPasswordWithspaces");
+			
+			if (browser.elementisdisplayed(CustomerModule.Customer_SecureYourProfileByChangingPassword_Header)) {
+				browser.reportscomtep("Passed", "Verify Secure Your Profile by Changing Password Header is displayed ",
+				"Secure Your Profile by Changing Password Header should be displayed",
+				"Secure Your Profile by Changing Password Header displayed");
+				browser.sendkeys(CustomerModule.Customer_CurrentPassword_TextBox, CustomerCurrentPassword);
+				switch (p_in_FinalAction) {
+				case "Enter_NewPwdLessThan6chars":
+					browser.sendkeys(CustomerModule.Customer_NewPassword_TextBox, newPwdLessThan6chars);
+					CustomerModule.Customer_ReEnterPassword_textbox.click();
+					if (browser.elementisdisplayed(CustomerModule.Customer_Pwd_Minimum6letters_ErrorMessage)) {
+						browser.reportscomtep("Passed",
+								"Enter new Password less than 6 chars and Verify new Password validation message is dispalyed.",
+								"New Password validation message is dispalyed.",
+								"Password Lenght should be minimum 6 letters validation message dispalyed");
+					} else {
+						browser.reportscomtep("Failed",
+								"Enter new Password less than 6 chars and Verify new Password validation message is dispalyed.",
+								"New Password validation message is dispalyed.",
+								"Password Lenght should be minimum 6 letters validation message Not dispalyed");
+		
+					}
+					break;
+				case "Enter_NewPwddWithspaces":
+					browser.sendkeys(CustomerModule.Customer_NewPassword_TextBox, newPasswordWithspaces);
+					CustomerModule.Customer_ReEnterPassword_textbox.click();
+					if (browser.elementisdisplayed(CustomerModule.Customer_Pwd_SpacePlease_ErrorMessage)) {
+						browser.reportscomtep("Passed",
+								"Enter new Password including spaces and Verify new Password validation message is dispalyed.",
+								"New Password validation message is dispalyed.",
+								"No white space please validation message dispalyed");
+					} else {
+						browser.reportscomtep("Failed",
+								"Enter new Password including spaces and Verify new Password validation message is dispalyed.",
+								"New Password validation message is dispalyed.",
+								"No white space please validation message Not dispalyed");
+					}
+				}
+				browser.refreshBrowser(driver);	
+				browser.explicitWaitUsingElementToBeClickable(CustomerModule.Customer_Profile_ChangingPassword_Update_Button);
+
+	} else {
+		browser.reportscomtep("Failed", "Verify Secure Your Profile by Changing Password Header is displayed ",
+				"Secure Your Profile by Changing Password Header should be displayed",
+				"Secure Your Profile by Changing Password Header not displayed");
+	}
+
+} catch (Exception e) {
+	System.out.println("Error description: " + e.getStackTrace());
+
+}
+}
+	
+	/***********TC_3_4_08	Check whether password can be updated by entering valid data**************/
+	public void password_CanBeUpdatedBy_Entering_ValidData() {
+		String CustomerOldPassword = null;
+		String CustomerNewPassword = null;
+		String CustomerRetypePassword = null;
+		try {
+			CustomerOldPassword = browser.getdata("CustomerOldPassword");
+			CustomerNewPassword = browser.getdata("CustomerNewPassword");
+			CustomerRetypePassword = browser.getdata("CustomerRetypePassword");
+			if (browser.elementisdisplayed(CustomerModule.Customer_SecureYourProfileByChangingPassword_Header)) {
+				browser.reportscomtep("Passed", "Verify Secure Your Profile by Changing Password Header is displayed ",
+						"Secure Your Profile by Changing Password Header should be displayed",
+						"Secure Your Profile by Changing Password Header displayed");				
+				browser.sendkeys(CustomerModule.Customer_CurrentPassword_TextBox, CustomerOldPassword);
+				browser.sendkeys(CustomerModule.Customer_NewPassword_TextBox, CustomerNewPassword);
+				browser.sendkeys(CustomerModule.Customer_ReEnterPassword_textbox, CustomerRetypePassword);
+				browser.click(CustomerModule.Customer_Profile_ChangingPassword_Update_Button);
+				if (browser.elementisdisplayed(CustomerModule.Customer_PasswordUpdatedSuccessfully_Message)) {
+					browser.reportscomtep("Passed", "Verify Password Updated Successfully Message is displayed",
+							"Password Updated Successfully Message should be displayed",
+							"Password Updated Successfully Message displayed");
+				} else {
+					browser.reportscomtep("Failed", "Verify Password Updated Successfully Message is displayed",
+							"Password Updated Successfully Message should be displayed",
+							"Password Updated Successfully Message not displayed");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify Secure Your Profile by Changing Password Header is displayed ",
+						"Secure Your Profile by Changing Password Header should be displayed",
+						"Secure Your Profile by Changing Password Header not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
+	}
+	
+	/**TC_3_4_09	Check whether the Cancel button is clickable and Redirects to My DDashboard***/
+     
+
+	public void verify_Cancel_Button_IsClickable_Changepasswordpage() {
+		
+	try {
+
+		if (browser.elementisdisplayed(CustomerModule.Customer_ChangingPassword_Cancel_Button)) {		
+			browser.reportscomtep("Passed", "Verify Cancel Button is displayed in Profile by changing password page",
+					"Cancel Button should be displayed in Profile by changing password page", "Cancel Button is displayed in Profile by changing password page");
+			browser.click(CustomerModule.Customer_ChangingPassword_Cancel_Button);
+					
+			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Welcome_Name_Header)) {
+				browser.reportscomtep("Passed", "Click Cancel button and verify Change Password page Return to My Dashboard",
+						"Change Password page should be Return to My Dashboard",
+						"Change Password page Return to My Dashboard");
+			} else {
+				browser.reportscomtep("Failed", "Click Cancel button and verify Change Password page Return to My Dashboard",
+						"Change Password page should be Return to My Dashboard",
+						"Change Password page Not Return to My Dashboard");
+			}
+						
+		} else {
+					
+			browser.reportscomtep("Failed", "Verify Cancel Button is displayed in  your Profile by changing password page",
+					"Cancel Button should be displayed in Profile by changing password page", "Cancel Button is not displayed in Profile by changing password page");
+		}
+	}catch(Exception e){
+		System.out.println("Error description: " + e.getStackTrace() );
+	}			
+	}
+	
+	public void verify_PrepopulatedvaluesinSettingspage() {
+		
+		try {
+			String firstName = "";
+			String lastName = "";
+			String emailId = "";
+			String address = "";
+			String city = "";
+			String state = "";
+			String country = "";
+			String mobile = "";
+			boolean gemderisslection = false;
+			String zipCode = "";
+			String birthMonth = "";
+			String birthDay = "";
+			String expctEmailID = "";
+			
+			expctEmailID = browser.getdata("CustomerValidEmail");
+			browser.waitforelementtobevisible(CustomerModule.Customer_Mydashboard_Settings_Button, 20);		
+			browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_settings_header)) {		
+				browser.reportscomtep("Passed", "Verify Settings header is displayed",
+						"Settings header should be displayed", "Settings header displayed");
+				
+				firstName = browser.elementgetAttributevalue(CustomerModule.Customer_Settings_FirstName, "value");
+				lastName = browser.elementgetAttributevalue(CustomerModule.Customer_Settings_LastName, "value");
+				if(firstName!="" && lastName!=""){
+					browser.reportscomtep("Passed", "Verify Prepopulated FirstName and LastName is displayed",
+							"Prepopulated FirstName and LastName should be displayed", "Prepopulated FirstName :" + firstName +" and LastName : "+lastName +" displayed" );
+				}else{
+					browser.reportscomtep("Failed", "Verify Prepopulated FirstName and LastName is displayed",
+							"Prepopulated FirstName and LastName should be displayed", "Prepopulated FirstName and LastName not displayed" );
+				}
+				
+				emailId = browser.elementgetAttributevalue(CustomerModule.Customer_Settings_Email, "value");				
+				if(emailId.trim().equalsIgnoreCase(expctEmailID)){
+					browser.reportscomtep("Passed", "Verify Prepopulated Registered EmailID is displayed",
+							"Prepopulated Registered EmailID should be displayed", "Prepopulated Registered EmailID :" + emailId +" displayed" );
+				}else{
+					browser.reportscomtep("Failed", "Verify Prepopulated Registered EmailID is displayed",
+							"Prepopulated Registered EmailID should be displayed", "Prepopulated Registred EmailID not displayed" );
+				}
+				
+				mobile = browser.elementgetAttributevalue(CustomerModule.Customer_Mydashboard_settings_Phone, "value");				
+				if(mobile.trim()==""){
+					browser.reportscomtep("Passed", "Verify Prepopulated Registered mobile is displayed",
+							"Prepopulated Registered mobile should be displayed", "Prepopulated Registered mobile not displayed as expected if previously not added" );
+				}else if(mobile.trim()!="" ){
+					browser.reportscomtep("Passed", "Verify Prepopulated Registered mobile is displayed",
+							"Prepopulated Registered mobile should be displayed", "Prepopulated Registered mobile :" + mobile +" displayed as expected if previously added" );
+				}else{	
+					browser.reportscomtep("Failed", "Verify Prepopulated Registered mobile is displayed",
+							"Prepopulated Registered mobile should be displayed", "Mobile field having error" );
+				}
+				String genderType = "";
+				if(CustomerModule.Customer_Settings_Gender_Male.isSelected()){
+					genderType = browser.elementgetAttributevalue(CustomerModule.Customer_Settings_Gender_Male, "value");
+					gemderisslection = true;
+				}else if(CustomerModule.Customer_Settings_Gender_Female.isSelected()){
+					genderType = browser.elementgetAttributevalue(CustomerModule.Customer_Settings_Gender_Female, "value");
+					gemderisslection = true;
+				}
+			
+				if(gemderisslection){
+					browser.reportscomtep("Passed", "Verify PreSelected Gender.",
+							"Gender should be preselected", "PreSelected Gender is: " + genderType);
+				}else{
+					browser.reportscomtep("Failed", "Verify PreSelected Gender.",
+							"Gender should be preselected", "No PreSelected Gender");					
+				}	
+				
+				browser.ScrollToElementBottom(CustomerModule.Customer_Mydashboard_settings_Update);
+				
+				address = browser.elementgetAttributevalue(CustomerModule.Customer_Mydashboard_settings_Address, "value");				
+				if(address.trim()==""){
+					browser.reportscomtep("Passed", "Verify Prepopulated address is displayed",
+							"Prepopulated address should be displayed", "Prepopulated address not displayed as expected if previously not added" );
+				}else if(address.trim()!="" ){
+					browser.reportscomtep("Passed", "Verify Prepopulated address is displayed",
+							"Prepopulated address should be displayed", "Prepopulated address :" + address +" displayed as expected if previously added" );
+				}else{	
+					browser.reportscomtep("Failed", "Verify Prepopulated address is displayed",
+							"Prepopulated address should be displayed", "Address field having error" );
+				}
+				
+				city = browser.elementgetAttributevalue(CustomerModule.Customer_Mydashboard_settings_city, "value");				
+				if(city.trim()==""){
+					browser.reportscomtep("Passed", "Verify Prepopulated City is displayed",
+							"Prepopulated City should be displayed", "Prepopulated City not displayed as expected if previously not added" );
+				}else if(city.trim()!="" ){
+					browser.reportscomtep("Passed", "Verify Prepopulated City is displayed",
+							"Prepopulated City should be displayed", "Prepopulated City :" + city +" displayed as expected if previously added" );
+				}else{	
+					browser.reportscomtep("Failed", "Verify Prepopulated City is displayed",
+							"Prepopulated City should be displayed", "City field having error" );
+				}				
+				
+				state = browser.getDropdownSelectedValue(CustomerModule.Customer_Mydashboard_settings_State);				
+				if(state.trim()==""){
+					browser.reportscomtep("Passed", "Verify PreSelected State is displayed",
+							"PreSelected State should be displayed", "PreSelected State not displayed as expected if previously not Selected");
+				}else if(state.trim()!="" ){
+					browser.reportscomtep("Passed", "Verify PreSelected State is displayed",
+							"PreSelected State should be displayed", "PreSelected State :" + state +" displayed as expected if previously Selected");
+				}else{	
+					browser.reportscomtep("Failed", "Verify PreSelected State is displayed",
+							"PreSelected State should be displayed", "State field having error");
+				}
+				
+				country = browser.getDropdownSelectedValue(CustomerModule.Customer_Mydashboard_settings_State);				
+				if(country.trim()==""){
+					browser.reportscomtep("Passed", "Verify PreSelected Country is displayed",
+							"PreSelected Country should be displayed", "PreSelected Country not displayed as expected if previously not Selected");
+				}else if(country.trim()!="" ){
+					browser.reportscomtep("Passed", "Verify PreSelected Country is displayed",
+							"PreSelected Country should be displayed", "PreSelected Country :" + country +" displayed as expected if previously Selected");
+				}else{	
+					browser.reportscomtep("Failed", "Verify PreSelected Country is displayed",
+							"PreSelected Country should be displayed", "Country field having error");
+				}
+				
+				birthMonth = browser.getDropdownSelectedValue(CustomerModule.Customer_Mydashboard_settings_Birthday_Month);				
+				if(birthMonth.trim()==""){
+					browser.reportscomtep("Passed", "Verify PreSelected Birth Month is displayed",
+							"PreSelected Birth Month should be displayed", "PreSelected Birth Month not displayed as expected if previously not Selected");
+				}else if(birthMonth.trim()!="" ){
+					browser.reportscomtep("Passed", "Verify PreSelected Birth Month is displayed",
+							"PreSelected Birth Month should be displayed", "PreSelected Birth Month :" + birthMonth +" displayed as expected if previously Selected");
+				}else{	
+					browser.reportscomtep("Failed", "Verify PreSelected Birth Month is displayed",
+							"PreSelected Birth Month should be displayed", "Birth Month field having error");
+				}
+				
+				birthDay = browser.getDropdownSelectedValue(CustomerModule.Customer_Mydashboard_settings_Birthday_date);				
+				if(birthDay.trim()==""){
+					browser.reportscomtep("Passed", "Verify PreSelected Birth Day is displayed",
+							"PreSelected Birth Day should be displayed", "PreSelected Birth Day not displayed as expected if previously not Selected");
+				}else if(birthDay.trim()!="" ){
+					browser.reportscomtep("Passed", "Verify PreSelected Birth Day is displayed",
+							"PreSelected Birth Day should be displayed", "PreSelected Birth Day :" + birthDay +" displayed as expected if previously Selected");
+				}else{	
+					browser.reportscomtep("Failed", "Verify PreSelected Birth Day is displayed",
+							"PreSelected Birth Day should be displayed", "Birth Month field having error");
+				}				
+				zipCode = browser.elementgetAttributevalue(CustomerModule.Customer_Mydashboard_settings_zipcode, "value");				
+				if(zipCode.trim()==""){
+					browser.reportscomtep("Passed", "Verify Prepopulated ZipCode is displayed",
+							"Prepopulated ZipCode should be displayed", "Prepopulated ZipCode not displayed as expected if previously not added" );
+				}else if(zipCode.trim()!="" ){
+					browser.reportscomtep("Passed", "Verify Prepopulated ZipCode is displayed",
+							"Prepopulated ZipCode should be displayed", "Prepopulated ZipCode :" + zipCode +" displayed as expected if previously added" );
+				}else{	
+					browser.reportscomtep("Failed", "Verify Prepopulated ZipCode is displayed",
+							"Prepopulated ZipCode should be displayed", "ZipCode field having error" );
+				}	
+				
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_changepassword_lynk, "Click here to change password Link");
+				
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_Update, "Update Button");
+				
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_settings_cancel, "Cancel Button");
+				
+			} else {
+						
+				browser.reportscomtep("Failed", "Verify Settings header is displayed",
+						"Settings header should be displayed", "Settings header not displayed");
+			}
+		}catch(Exception e){
+			System.out.println("Error description: " + e.getStackTrace() );
+		}			
+		}
+		
+	
+	
+
+}

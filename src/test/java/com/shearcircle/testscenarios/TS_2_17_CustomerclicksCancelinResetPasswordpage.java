@@ -48,18 +48,18 @@ public class TS_2_17_CustomerclicksCancelinResetPasswordpage extends StaticVaria
 		driver.quit();
 	}
 	
-	@Test(priority=0, description="TC_001 Customer visits ShearCircle page" )
-	public void TC_001_Customer_visitsShearCircle() throws IOException {			
+	@Test(priority=21701, description="TC_2_17_01 Customer visits ShearCircle page" )
+	public void TC_2_17_01_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=1, description="TC_002 Customer clicks Login on ShearCircle home page " )
-	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {			
+	@Test(priority=21702, description="TC_2_17_02 Customer clicks Login on ShearCircle home page " )
+	public void TC_2_17_02_Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}	
 
-	@Test(priority=2, description="TC_003  Customer clicks Cancel in Reset Password page." )
-	public void TC_003_Customer_Click_Cancellink() throws IOException {	
+	@Test(priority=21703, description="TC_2_17_03  Customer clicks Cancel in Reset Password page." )
+	public void TC_2_17_03_Customer_Click_Cancellink() throws IOException {	
 		CR.ShearCircle_Verify_Customer_forgotPassword("Valid", "Click Cancel");		
 	}	
 

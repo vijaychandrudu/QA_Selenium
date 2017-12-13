@@ -48,19 +48,19 @@ public class TS_2_14_CustomerResetspasswordwithvalidUsername extends StaticVaria
 		driver.quit();
 	}
 	
-	@Test(priority=0, description="TC_001 Customer visits ShearCircle page" )
-	public void TC_001_Customer_visitsShearCircle() throws IOException {			
+	@Test(priority=21401, description="TC_2_14_01 Customer visits ShearCircle page" )
+	public void TC_2_14_01_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=1, description="TC_002 Customer clicks Login on ShearCircle home page " )
-	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {			
+	@Test(priority=21402, description="TC_2_14_02 Customer clicks Login on ShearCircle home page " )
+	public void TC_2_14_02_Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
 
-	@Test(priority=2, description="TC_003 Customer Resets password with valid Username." )
-	public void TC_003_CustomerResetspasswordwithvalidUsername() throws IOException {			
+	@Test(priority=21403, description="TC_2_14_03 Customer Resets password with valid Username." )
+	public void TC_2_14_03_CustomerResetspasswordwithvalidUsername() throws IOException {			
 		CR.ShearCircle_Verify_Customer_forgotPassword("Valid", "Click Send instructions to reset password");		
 	}	
 

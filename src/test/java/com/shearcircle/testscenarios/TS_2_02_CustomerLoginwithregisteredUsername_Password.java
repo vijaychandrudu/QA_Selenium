@@ -48,23 +48,23 @@ public class TS_2_02_CustomerLoginwithregisteredUsername_Password extends Static
 		driver.quit();
 	}
 	
-	@Test(priority=0, description="TC_001 Customer visits ShearCircle page" )
-	public void TC_001_Customer_visitsShearCircle() throws IOException {			
+	@Test(priority=2201, description="TC_2_2_01 Customer visits ShearCircle page" )
+	public void TC_2_2_01_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=1, description="TC_002 Customer clicks Login on ShearCircle home page " )
-	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {			
+	@Test(priority=2202, description="TC_2_2_02 Customer clicks Login on ShearCircle home page " )
+	public void TC_2_2_02_Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
-	@Test(priority=2, description="TC_003 Customer Login with registered Username(Email id) & Password " )
-	public void TC_003_Customer_CheckRegisterWithShearCirclepage() throws IOException {			
+	@Test(priority=2203, description="TC_2_2_03 Customer Login with registered Username(Email id) & Password " )
+	public void TC_2_2_03_Customer_CheckRegisterWithShearCirclepage() throws IOException {			
 		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");			
 	}
 	
-	@Test(priority=3, description="TC_004 Customer checks dashboard page and clicks Logout from dashboard " )
-	public void TC_004_Customer_CheckcheckDashboardpageandLogout() throws IOException {			
+	@Test(priority=2204, description="TC_2_2_04 Customer checks dashboard page and clicks Logout from dashboard " )
+	public void TC_2_2_04_Customer_CheckcheckDashboardpageandLogout() throws IOException {			
 		CR.Customer_JoinOurCircle_LogOutpage();			
 	}
 	
