@@ -10,6 +10,39 @@ public class Customer_Module_Page_Objects{
 
 //object information
 	
+	@FindBy(xpath="//div/div[1]/a/img")
+    public WebElement Home_ShearCircle_Image;
+	
+	@FindBy(xpath="//*[@id='sub_content']/div/div/h1[text()='Book Appointments with Professionals Near You']")
+    public WebElement Home_H1_Header;
+	
+	@FindBy(xpath="//*[contains(@id,'navbar-collapse')]/span/a[text()='Login']")
+    public WebElement Home_Login_Link;		
+	@FindBy(xpath="//*[@id='navbar-collapse-1']/span/a[contains(text(),'Circle')]")
+    public WebElement Home_JoinOurCircle_Link;
+	@FindBy(xpath="//ul/li/a[text()='About Us']")
+    public WebElement Home_AboutUs_Link;
+	
+	@FindBy(xpath="//*[@id='sub_content']//input[@name='q']")
+    public WebElement home_FindSalon_Spa_Professionals_Textbox;
+	
+	@FindBy(xpath="//*[@id='sub_content']//input[@name='loc']")
+    public WebElement home_Zip_City_State_Textbox;
+	
+	@FindBy(xpath="//*[@id='sub_content']//input[@value='Locate']")
+    public WebElement home_Locate_Button;
+	
+	@FindBy(xpath="//*[@id='navbar-collapse-1']//input[@name='q']")
+    public WebElement customer_FindSalon_Spa_Professionals_Textbox;
+	
+	@FindBy(xpath="//*[@id='navbar-collapse-1']//input[@name='loc']")
+    public WebElement customer_Zip_City_State_Textbox;
+	
+	@FindBy(xpath="//*[@id='navbar-collapse-1']//i[@class='icon-search']/parent::button")
+    public WebElement customer_Search_Button;
+	
+	
+	
 	@FindBy(xpath="//*[@id='sub_content']/h1[text()='Register With ShearCircle']")	
     public WebElement Customer_RegisterWithShearCircle_Header;	
 
