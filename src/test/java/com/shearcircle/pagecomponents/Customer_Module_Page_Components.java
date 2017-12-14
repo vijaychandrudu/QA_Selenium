@@ -2964,7 +2964,68 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 		}			
 		}
 		
+	/*****TC_4_1_01	Verify the search box in Home page**********/
+
+	public void verify_SearchBox_inHomePageFieldValidation() {
+		try {
+			if (browser.elementisdisplayed(CustomerModule.Home_H1_Header)) {
+				browser.reportscomtep("Passed", "Verify ShearCircle Home page is dislayed",
+						"ShearCircle Home page should be dislayed", " ShearCircle Home page dislayed");
+				browser.Verify_elementisdisplayed_Report(CustomerModule.home_FindSalon_Spa_Professionals_Textbox,
+						"Salon/Spa/Professionals TextBox");
+				browser.Verify_elementisdisplayed_Report(CustomerModule.home_Zip_City_State_Textbox,
+						"ZipCode/City,State TextBox");
+				browser.Verify_elementisdisplayed_Report(CustomerModule.home_Locate_Button, "Locate Button");
+			}else{
+				browser.reportscomtep("Failed", "Verify ShearCircle Home page is dislayed",
+						"ShearCircle Home page should be dislayed", " ShearCircle Home page not dislayed");
+			}	
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
 	
+	/***************TC_4_1_02	Verify the search box in inner pages************/
+	
+	public void verify_SearchBoxIn_InnerPage_FieldValidations(String click_login_or_AboutUs) {
+		try {
+			if (browser.elementisdisplayed(CustomerModule.Home_H1_Header)) {
+				
+				browser.reportscomtep("Passed", "Verify ShearCircle Home page is dislayed",
+						"ShearCircle Home page should be dislayed", " ShearCircle Home page dislayed");
+
+				switch (click_login_or_AboutUs) {
+					case "Click_Login":
+						browser.click(CustomerModule.Home_Login_Link);	
+						browser.reportscomtep("Passed", "Click on Login button", "Login button should be clicked", "Login button clicked");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.home_FindSalon_Spa_Professionals_Textbox,
+								"Salon/Spa/Professionals TextBox in Login Page");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.home_Zip_City_State_Textbox,
+								"ZipCode/City,State TextBox in Login Page");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.home_Locate_Button, "Locate Button in Login Page");
+						break;
+					case "Click_AboutUs":
+						browser.scrollintoviewelement(CustomerModule.Home_AboutUs_Link);
+						browser.click(CustomerModule.Home_AboutUs_Link);
+						browser.reportscomtep("Passed", "Click on AboutUs link", "AboutUs link should be clicked", "AboutUs link clicked");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.home_FindSalon_Spa_Professionals_Textbox,
+								"Salon/Spa/Professionals TextBox in AboutUs Page");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.home_Zip_City_State_Textbox,
+								"ZipCode/City,State TextBox in AboutUs Page");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.home_Locate_Button, "Locate Button in AboutUs Page");
+						break;
+				}			
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify ShearCircle Home page is dislayed",
+						"ShearCircle Home page should be dislayed", " ShearCircle Home page not dislayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
 	
 
 }
