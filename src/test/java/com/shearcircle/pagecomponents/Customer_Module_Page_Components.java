@@ -2969,16 +2969,16 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 	public void verify_SearchBox_inHomePageFieldValidation() {
 		try {
 			if (browser.elementisdisplayed(CustomerModule.Home_H1_Header)) {
-				browser.reportscomtep("Passed", "Verify ShearCircle Home page is dislayed",
-						"ShearCircle Home page should be dislayed", " ShearCircle Home page dislayed");
+				browser.reportscomtep("Passed", "Verify ShearCircle Home page is displayed",
+						"ShearCircle Home page should be displayed", " ShearCircle Home page displayed");
 				browser.Verify_elementisdisplayed_Report(CustomerModule.home_FindSalon_Spa_Professionals_Textbox,
 						"Salon/Spa/Professionals TextBox");
 				browser.Verify_elementisdisplayed_Report(CustomerModule.home_Zip_City_State_Textbox,
 						"ZipCode/City,State TextBox");
 				browser.Verify_elementisdisplayed_Report(CustomerModule.home_Locate_Button, "Locate Button");
 			}else{
-				browser.reportscomtep("Failed", "Verify ShearCircle Home page is dislayed",
-						"ShearCircle Home page should be dislayed", " ShearCircle Home page not dislayed");
+				browser.reportscomtep("Failed", "Verify ShearCircle Home page is displayed",
+						"ShearCircle Home page should be displayed", " ShearCircle Home page not displayed");
 			}	
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
@@ -2991,8 +2991,8 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 		try {
 			if (browser.elementisdisplayed(CustomerModule.Home_H1_Header)) {
 				
-				browser.reportscomtep("Passed", "Verify ShearCircle Home page is dislayed",
-						"ShearCircle Home page should be dislayed", " ShearCircle Home page dislayed");
+				browser.reportscomtep("Passed", "Verify ShearCircle Home page is displayed",
+						"ShearCircle Home page should be displayed", " ShearCircle Home page displayed");
 
 				switch (click_login_or_AboutUs) {
 					case "Click_Login":
@@ -3004,6 +3004,7 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 						browser.Verify_elementisdisplayed_Report(CustomerModule.home_Zip_City_State_Textbox,
 								"ZipCode/City,State TextBox in Login Page");
 						browser.Verify_elementisdisplayed_Report(CustomerModule.home_Locate_Button, "Locate Button in Login Page");
+						browser.click(CustomerModule.customer_Home_Link);
 						break;
 					case "Click_AboutUs":
 						browser.scrollintoviewelement(CustomerModule.Home_AboutUs_Link);
@@ -3015,17 +3016,319 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 						browser.Verify_elementisdisplayed_Report(CustomerModule.home_Zip_City_State_Textbox,
 								"ZipCode/City,State TextBox in AboutUs Page");
 						browser.Verify_elementisdisplayed_Report(CustomerModule.home_Locate_Button, "Locate Button in AboutUs Page");
+						browser.click(CustomerModule.customer_Home_Link);
 						break;
 				}			
 				
 			} else {
-				browser.reportscomtep("Failed", "Verify ShearCircle Home page is dislayed",
-						"ShearCircle Home page should be dislayed", " ShearCircle Home page not dislayed");
+				browser.reportscomtep("Failed", "Verify ShearCircle Home page is displayed",
+						"ShearCircle Home page should be displayed", " ShearCircle Home page not displayed");
 			}
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
 	}
 	
+	
+	/*****TC_4_1_04	Check the details in Search Results page**********/
+
+	public void verify_searchItems_in_Search_Results_page() {
+		try {
+			String searchresultcount= "";
+			String[] p_in_filters_list = {"Accept Online Payments","Accept Cash On Service","Search Promotions","Search Jobs"}; 
+			String actFilters_name = "";	
+			String actAllFilters= "";
+			boolean filtersAvailability = false;
+			String Service_names = "";
+			String allServiceNames = "";
+			int[] ratings_list = {5,4,3,2,1}; 
+			String ratings_name ="";
+			String allRatings = "";
+			boolean ratingssAvailability = false;
+			String DropdownList="";
+			int itemCount=0;
+			
+			if (browser.elementisdisplayed(CustomerModule.Home_SearchResultsPage_H1_Header)) {
+				browser.reportscomtep("Passed", "Verify SearchResults Page Header is displayed",
+						"SearchResults Page Header should be displayed", "SearchResults Page Header displayed");
+				searchresultcount = browser.getelementtext(CustomerModule.home_SearchResults_Message);
+				browser.Verify_elementisdisplayed_Report(CustomerModule.home_SearchResults_Message,searchresultcount);
+				
+				if(CustomerModule.home_SearchResultssalons_firstpage_list.size()>0){
+					browser.reportscomtep("Passed", "Verify List of all available Salons in SearchResults Page",
+							"List of all available Salons should be displayed in SearchResults Page", "List of all available Salons displayed");
+				}else if(CustomerModule.home_SearchResultssalons_firstpage_list.size()==0){
+					browser.reportscomtep("Passed", "Verify List of all available Salons in SearchResults Page",
+							"List of all available Salons should be displayed in SearchResults Page", "List of all available Salons displayed");
+				}else{
+					browser.reportscomtep("Failed", "Verify List of all available Salons in SearchResults Page",
+							"List of all available Salons should be displayed in SearchResults Page", "List of all available Salons Not displayed");
+				}			
+							
+				if (CustomerModule.SR_Filters_checkbox_list.size() > 0) {
+					for (String filtercheckbox : p_in_filters_list) {
+						for (WebElement Checkbox : CustomerModule.SR_Filters_checkbox_list) {
+							actFilters_name = Checkbox.getText();
+							if (filtercheckbox.equalsIgnoreCase(actFilters_name)) {
+								filtersAvailability = true;
+								actAllFilters = actAllFilters + "\n" + actFilters_name;
+								break;
+							}
+						}
+					}
+
+					if (filtersAvailability) {
+						actAllFilters = actAllFilters.substring(1);
+						browser.reportscomtep("Passed", "Verify Filters section is displayed with filters",
+								"Filters section should be displayed with filters",
+								"Filters section is displayed with filters as :" + actAllFilters);
+					} else {
+						browser.reportscomtep("Failed", "Verify Filters section is displayed with filters",
+								"Filters section should be displayed with filters",
+								"Filters section Not displayed with filters");
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify Filters section is displayed with filters",
+							"Filters section should be displayed with filters",
+							"Filters section Not displayed with filters");
+				}		
+				
+				if(CustomerModule.SR_Servies_checkbox_list.size()>0){
+					for (WebElement Checkbox : CustomerModule.SR_Servies_checkbox_list) {
+						Service_names = Checkbox.getText();
+						if (Service_names != "") {
+							allServiceNames = allServiceNames + "\n" + Service_names;
+						}
+					}
+					
+					if (allServiceNames!=""){
+						allServiceNames = allServiceNames.substring(1);
+						browser.reportscomtep("Passed", "Verify Services section is displayed with Services",
+								"Services section  should be displayed with Services", "Services section is displayed with Services as :"+ allServiceNames);
+					}else{
+						browser.reportscomtep("Failed", "Verify Services section is displayed with Services",
+								"Services section should be displayed with Services", "Services section Not displayed with Services");
+					}
+				}else{
+					browser.reportscomtep("Failed", "Verify Services section is displayed with Services",
+							"Services section should be displayed with Services", "Services section Not displayed with Services");
+				}
+				browser.ScrollToElementBottom(CustomerModule.SR_Ratings_checkbox_list.get(5));
+				if(CustomerModule.SR_Ratings_checkbox_list.size() > 0){
+					for (int Ratingscheckbox : ratings_list) {
+						for (WebElement Checkbox : CustomerModule.SR_Ratings_checkbox_list) {
+							ratings_name = browser.elementgetAttributevalue(Checkbox,"value");							
+							if (Ratingscheckbox==Integer.parseInt(ratings_name)) {
+								ratingssAvailability = true;
+								allRatings = allRatings + "\n" + ratings_name;
+								break;
+							}
+
+						}
+					}
+
+					if(ratingssAvailability){
+						allRatings = allRatings.substring(1);
+						browser.reportscomtep("Passed", "Verify Ratings Filter section is displayed with Ratings",
+								"Ratings Filter section should be displayed with Ratings",
+								"Ratings Filter section displayed with Ratings as :" + allRatings);
+					}else{
+						browser.reportscomtep("Failed", "Verify Ratings Filter section is displayed with Ratings",
+								"Ratings Filter section should be displayed with Ratings",
+								"Ratings Filter section displayed with Ratings");
+					}
+					
+					browser.scrollintoviewelement(CustomerModule.customer_PageNavigation_Buttons);
+					if(browser.elementisdisplayed(CustomerModule.customer_PageNavigation_Buttons)){
+						browser.reportscomtep("Passed",
+								"Verify Page navigation buttons at the bottom of the page is dispalyed",
+								"Page navigation buttons at the bottom of the page should be dispalyed",
+								"Page navigation buttons at the bottom of the page dispalyed");
+					}else{
+						browser.reportscomtep("Failed",
+							"Verify Page navigation buttons at the bottom of the page is dispalyed",
+							"Page navigation buttons at the bottom of the page should be dispalyed",
+							"Page navigation buttons at the bottom of the page not dispalyed");
+						
+					}
+					browser.scrollUp(250);
+					List<WebElement> Dropdown_Topmost_PartOfList = browser.getOptions(CustomerModule.SR_DropdownOnTopmostPartOf_List);
+					itemCount = Dropdown_Topmost_PartOfList.size();
+					if(itemCount>0){
+						for(WebElement listvalue:Dropdown_Topmost_PartOfList) {
+							DropdownList = DropdownList+";"+listvalue.getText();
+							System.out.println("Dropdown Topmost PartofList:"+DropdownList);
+						}						
+					}
+					if(DropdownList!=""){
+						DropdownList = DropdownList.substring(1);
+						browser.reportscomtep("Passed", "Verify Topmost part of List Dropdown is displayed",
+							"Topmost part of List Dropdown should be displayed",
+							"Topmost part of List Dropdown displayed options as :" + DropdownList);
+					}else{
+						browser.reportscomtep("Failed", "Verify Topmost part of List Dropdown is displayed",
+							"Topmost part of List Dropdown should be displayed",
+							"Topmost part of List Dropdown displayed options");
+				}
+					
+					
+				}
+				
+				browser.click(CustomerModule.customer_Home_Link);
+			}else{
+				browser.reportscomtep("Failed", "Verify SearchResults Page Header is displayed",
+						"SearchResults Page Header should be displayed", "SearchResults Page Header Not displayed");
+			}	
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+/**************TC_4_1_03	Check the Locate button************/
+	
+	public void checkThe_Locate_Button() {
+		try {
+			if (browser.elementisdisplayed(CustomerModule.Home_H1_Header)) {
+				browser.reportscomtep("Passed", "Verify ShearCircle Home page is displayed",
+						"ShearCircle Home page should be displayed", " ShearCircle Home page displayed");
+				browser.click(CustomerModule.home_Locate_Button);
+				if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message)) {
+					browser.reportscomtep("Passed",
+							"Click on Locate button without entering any search text and Verify Opens Search Results page is Displayed with all Salons are available",
+							"Search Results page should be Displayed with all Salons are available",
+							"Search Results page Displayed with all Salons are available");
+					
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Locate button without entering any search text and Verify Opens Search Results page is Displayed with all Salons are available",
+							"Search Results page should be Displayed with all Salons are available",
+							"Search Results page Not Displayed with all Salons are available");
+				}
+				browser.click(CustomerModule.customer_Home_Link);
+			} else {
+				browser.reportscomtep("Failed", "Verify ShearCircle Home page is displayed",
+						"ShearCircle Home page should be displayed", " ShearCircle Home page not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/**********TC_4_1_05	Check the search result by entering keyword in Salon/Spa/Professional box -(Name)******/
+
+	public void checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional(String click_Locate_Or_SearchIcon) {
+		try {
+			String SalonOrSpaOrProfessional = "";
+			String actSalonName = "";
+			boolean salonsavailablity = false;
+			SalonOrSpaOrProfessional = browser.getdata("SalonOrSpaOrProfessional");
+			if (browser.elementisdisplayed(CustomerModule.Home_H1_Header)) {
+				browser.reportscomtep("Passed", "Verify ShearCircle Home page is displayed",
+						"ShearCircle Home page should be displayed", " ShearCircle Home page displayed");
+				switch (click_Locate_Or_SearchIcon) {
+					case "Click_Locate_Button":
+						browser.sendkeys(CustomerModule.home_FindSalon_Spa_Professionals_Textbox, SalonOrSpaOrProfessional);
+						browser.click(CustomerModule.home_Locate_Button);						
+						break;
+					case "Click_SearchIcon":
+						browser.click(CustomerModule.Home_Login_Link);
+						browser.sendkeys(CustomerModule.home_FindSalon_Spa_Professionals_Textbox, SalonOrSpaOrProfessional);
+						browser.click(CustomerModule.customer_Search_Button);					
+						break;
+				}			
+				
+				if(CustomerModule.customer_Search_SalonNames.size()>0){
+					for(WebElement listvalue:CustomerModule.customer_Search_SalonNames){
+						actSalonName = listvalue.getText();
+						if(SalonOrSpaOrProfessional.equalsIgnoreCase(actSalonName.trim()))
+							salonsavailablity = true;
+							break;
+					}
+				}
+				browser.waitforelementtobevisible(CustomerModule.home_SearchResults_Message, 20);
+				if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message) && salonsavailablity) {
+					browser.reportscomtep("Passed",
+							"Enter Salon/Spa/Professional in search text boxe and click on Locate button and verify Search results page dispalyed results with given keyword",
+							"Search results page should be dispalyed results with given keyword",
+							"Search results page dispalyed results with given keyword "+ SalonOrSpaOrProfessional);
+				} else {
+					browser.reportscomtep("Failed",
+							"Enter Salon/Spa/Professional in search text boxe and click on Locate button and verify Search results page dispalyed results with given keyword",
+							"Search results page should be dispalyed results with given keyword",
+							"Search results page Not dispalyed results with given keyword "+ SalonOrSpaOrProfessional);
+				}
+				browser.click(CustomerModule.customer_Home_Link);
+			} else {
+				browser.reportscomtep("Failed", "Verify ShearCircle Home page is displayed",
+						"ShearCircle Home page should be displayed", " ShearCircle Home page not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+/***TC_4_1_07	Check the search result by entering keyword in both Name & Location textboxes*****/
+	
+	public void checkSearchResult_ByEntering_keyword_InBothNameAndLocation(String click_Locate_Or_SearchIcon) {
+		try {
+			String SalonOrSpaOrProfessional = "";
+			String loacationZipcode = "";
+			String actSalonName ="";
+			String actZipcode = "";
+			boolean salonszicodeavailablity = false;
+			SalonOrSpaOrProfessional = browser.getdata("SalonOrSpaOrProfessional");
+			loacationZipcode = browser.getdata("LoacationZipcode");
+			if (browser.elementisdisplayed(CustomerModule.Home_H1_Header)) {
+				browser.reportscomtep("Passed", "Verify ShearCircle Home page is displayed",
+						"ShearCircle Home page should be displayed", " ShearCircle Home page displayed");
+				switch (click_Locate_Or_SearchIcon) {
+					case "Click_Locate_Button":
+						browser.sendkeys(CustomerModule.home_FindSalon_Spa_Professionals_Textbox, SalonOrSpaOrProfessional);
+						browser.sendkeys(CustomerModule.home_Zip_City_State_Textbox, loacationZipcode);
+						browser.click(CustomerModule.home_Locate_Button);						
+						break;
+					case "Click_SearchIcon":
+						browser.click(CustomerModule.Home_Login_Link);
+						browser.sendkeys(CustomerModule.home_FindSalon_Spa_Professionals_Textbox, SalonOrSpaOrProfessional);
+						browser.sendkeys(CustomerModule.home_Zip_City_State_Textbox, loacationZipcode);
+						browser.click(CustomerModule.customer_Search_Button);						
+						break;
+				}
+				int i = 1;
+				if(CustomerModule.customer_Search_SalonNames.size()>0){
+					for(WebElement listvalue:CustomerModule.customer_Search_SalonNames){
+						actSalonName = listvalue.getText();
+						actZipcode = CustomerModule.customer_Search_SalonLocatonZipCodes.get(i).getText();
+						if(SalonOrSpaOrProfessional.equalsIgnoreCase(actSalonName.trim()) && actZipcode.contains(loacationZipcode)){
+							salonszicodeavailablity = true;
+							break;
+					}
+				}
+				
+				browser.waitforelementtobevisible(CustomerModule.home_SearchResults_Message, 20);
+				if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message) && salonszicodeavailablity) {
+					browser.reportscomtep("Passed",
+							"Enter Salon/Spa/Professional, ZipCode/City/State in search text boxes and click on Locate button and verify Search results page dispalyed results with given keyword",
+							"Search results page should be dispalyed results with given keyword",
+							"Search results page dispalyed results with given keyword "+ SalonOrSpaOrProfessional + "\n" + loacationZipcode);
+				} else {
+					browser.reportscomtep("Failed",
+							"Enter Salon/Spa/Professional, ZipCode/City/State in search text boxes and click on Locate button and verify Search results page dispalyed results with given keyword",
+							"Search results page should be dispalyed results with given keyword",
+							"Search results page Not dispalyed results with given keyword "+ SalonOrSpaOrProfessional + "\n" + loacationZipcode);
+				}
+				}
+				browser.click(CustomerModule.customer_Home_Link);
+			} else {
+				browser.reportscomtep("Failed", "Verify ShearCircle Home page is displayed",
+						"ShearCircle Home page should be displayed", " ShearCircle Home page not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
 
 }

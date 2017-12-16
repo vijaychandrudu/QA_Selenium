@@ -13,17 +13,9 @@ public class Login_page_objects {
 	
 	@FindBy(xpath="//*[contains(@id,'navbar-collapse')]/span/a[text()='Login']")
     public WebElement Home_Login_Link;		
+	
 	@FindBy(xpath="//*[@id='navbar-collapse-1']/span/a[contains(text(),'Circle')]")
-    public WebElement Home_JoinOurCircle_Link;	
-	@FindBy(xpath="//*[@id='sub_content']//input[@name='q']")
-    public WebElement home_FindSalon_Spa_Professionals_Textbox;
-	
-	@FindBy(xpath="//*[@id='sub_content']//input[@name='loc']")
-    public WebElement home_Zip_City_State_Textbox;
-	
-	@FindBy(xpath="//*[@id='sub_content']//input[@value='Locate']")
-    public WebElement home_Locate_Button;
-	
+    public WebElement Home_JoinOurCircle_Link;
 	
 	@FindBy(xpath="//*[@id='sub_content']/h1")
     public WebElement Login_Page_Header;	
