@@ -16,6 +16,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.record.PageBreakRecord.Break;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
@@ -52,9 +53,7 @@ public class CommonFunctions extends StaticVariables {
 	/************** CommonFunctions Constructor *********************/
 
 	/*
-	 * Created date:21/10/2017 
-	 * Description: Parameters: 
-	 * ReturnType:
+	 * Created date:21/10/2017 Description: Parameters: ReturnType:
 	 */
 
 	public CommonFunctions() {
@@ -108,10 +107,11 @@ public class CommonFunctions extends StaticVariables {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 	}
+
 	/************************** Get Driver *************************/
 	public WebDriver getDriver() {
-        return driver;
-    }
+		return driver;
+	}
 
 	/************************** IEDriverPath *************************/
 	/*
@@ -170,9 +170,9 @@ public class CommonFunctions extends StaticVariables {
 	 */
 	public void launchURL(String URL) {
 		try {
-		driver.navigate().to(URL);
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.navigate().to(URL);
+			driver.manage().window().maximize();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
 			Reporter.log("Error description: " + e.getStackTrace());
@@ -261,7 +261,7 @@ public class CommonFunctions extends StaticVariables {
 			timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
-					Reporter.log("Error description: " + e.getStackTrace());
+			Reporter.log("Error description: " + e.getStackTrace());
 		}
 		return timeStamp;
 	}
@@ -317,7 +317,7 @@ public class CommonFunctions extends StaticVariables {
 			System.out.println("***Placed screen shot in " + ScreenshotsPath + " ***");
 			Reporter.log("***Placed screen shot in " + ScreenshotsPath + " ***");
 		} catch (WebDriverException e) {
-			//e.printStackTrace();
+			// e.printStackTrace();
 			Reporter.log(e.getMessage());
 		}
 
@@ -348,13 +348,14 @@ public class CommonFunctions extends StaticVariables {
 	public void waitforelementtobevisible(WebElement element, int waitTime) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, waitTime);
-			wait.until(ExpectedConditions.visibilityOf(element));   
-	
+			wait.until(ExpectedConditions.visibilityOf(element));
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			Reporter.log(e.getMessage());
 		}
 	}
+
 	/************************ waitforelementinvisibility ********************/
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
@@ -362,7 +363,7 @@ public class CommonFunctions extends StaticVariables {
 
 	public void waitforelementinvisibility(WebElement element, int waitTime) {
 		try {
-		
+
 			WebDriverWait wait = new WebDriverWait(driver, waitTime);
 			wait.until(ExpectedConditions.invisibilityOf(element));
 		} catch (Exception e) {
@@ -377,22 +378,23 @@ public class CommonFunctions extends StaticVariables {
 	 */
 
 	public void Fluent_Wait(WebElement El) {
-		try {			
-		
+		try {
+
 			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(30, TimeUnit.SECONDS)
 					.pollingEvery(5, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
-	
+
 			WebElement foo = wait.until(new Function<WebDriver, WebElement>() {
 				public WebElement apply(WebDriver driver) {
 					return El;
 				}
 			});
-		
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			Reporter.log(e.getMessage());
 		}
-}
+	}
+
 	/**
 	 * instead of fluent wait use customized While loop statement
 	 * 
@@ -403,7 +405,7 @@ public class CommonFunctions extends StaticVariables {
 	 */
 	public void waitforElement(String locater) throws Exception {
 		int i = 0;
-		try {		
+		try {
 			while (driver.findElements(By.xpath(locater)).size() < 1) {
 				Thread.sleep(500);
 				System.out.println("Wait for the element***************");
@@ -413,7 +415,7 @@ public class CommonFunctions extends StaticVariables {
 					System.out.println("Element is not present");
 					Reporter.log("Element is not present");
 					break;
-	
+
 				}
 			}
 		} catch (Exception e) {
@@ -422,7 +424,9 @@ public class CommonFunctions extends StaticVariables {
 		}
 	}
 
-	/************ Get Random number with in the range********************************/
+	/************
+	 * Get Random number with in the range
+	 ********************************/
 
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
@@ -658,7 +662,7 @@ public class CommonFunctions extends StaticVariables {
 	 */
 	public String TestDataPathOf(String TestDataFileName) throws IOException {
 		String TestDataPath = ".\\testData\\" + TestDataFileName;
-		System.out.println("TestData path:"+TestDataPath);
+		System.out.println("TestData path:" + TestDataPath);
 		return TestDataPath;
 
 	}
@@ -671,10 +675,12 @@ public class CommonFunctions extends StaticVariables {
 	public boolean elementisdisplayed(WebElement element) {
 		boolean elementdisplayedflag = false;
 		try {
-			//this.scrollintoviewelement(element);
+			// this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 20);
-			if (element.isDisplayed() && element.isEnabled()){
-				this.highlightElement(element);				
+			if (element.isDisplayed() && element.isEnabled()) {
+				if (driver instanceof JavascriptExecutor) {
+					((JavascriptExecutor) driver).executeScript("arguments[0].style.border='4px solid green'", element);
+				}
 				elementdisplayedflag = true;
 			} else {
 				System.out.println("Element existance and enabled status Failed");
@@ -694,9 +700,10 @@ public class CommonFunctions extends StaticVariables {
 
 	public void Verify_elementisdisplayed_Report(WebElement element, String Reporttext) {
 		try {
-			//this.movetoElement(element);
-			//this.scrollintoviewelement(element);
-			this.waitforelementtobevisible(element, 15);
+
+			// this.movetoElement(element);
+			// this.scrollintoviewelement(element);
+			this.waitforelementtobevisible(element, 10);
 			if (element.isDisplayed() && element.isEnabled()) {
 				this.highlightElement(element);				
 				this.reportscomtep("Passed", "Verify The Element " + Reporttext + " is displayed",
@@ -713,27 +720,27 @@ public class CommonFunctions extends StaticVariables {
 			System.out.println("Error in description: " + e.getStackTrace());
 		}
 
-	}	
+
 	
 	public boolean verifyElementtext(WebElement element, String text,String textType) {
 		String textvalue = "";
 		boolean verificationflag = false;
 		try {
-			//this.scrollintoviewelement(element);
+			// this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 10);
-			if (element.isDisplayed()) {				
+			if (element.isDisplayed()) {
 				textvalue = element.getText();
-				switch(textType.toLowerCase()){
+				switch (textType.toLowerCase()) {
 				case "exact":
-				
-					if(textvalue.equalsIgnoreCase(text)){
+
+					if (textvalue.equalsIgnoreCase(text)) {
 						verificationflag = true;
 					}
 				case "partial":
-					if(textvalue.contains(text)){
+					if (textvalue.contains(text)) {
 						verificationflag = true;
 					}
-			}
+				}
 			} else {
 				System.out.println("Element existance and enabled status Failed");
 			}
@@ -743,6 +750,7 @@ public class CommonFunctions extends StaticVariables {
 		}
 		return verificationflag;
 	}
+
 	/******************* Get webElement attribute value ****************/
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
@@ -750,9 +758,9 @@ public class CommonFunctions extends StaticVariables {
 	public String elementgetAttributevalue(WebElement element, String p_in_attributename) {
 		String attributevalue = "";
 		try {
-			//this.scrollintoviewelement(element);
+			// this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 10);
-			if (element.isDisplayed()) {				
+			if (element.isDisplayed()) {
 				attributevalue = element.getAttribute(p_in_attributename);
 			} else {
 				System.out.println("Element existance and enabled status Failed");
@@ -771,9 +779,9 @@ public class CommonFunctions extends StaticVariables {
 	public String getelementtext(WebElement element) {
 		String textvalue = "";
 		try {
-			//this.scrollintoviewelement(element);
+			// this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 10);
-			if (element.isDisplayed()) {				
+			if (element.isDisplayed()) {
 				textvalue = element.getText();
 			} else {
 				System.out.println("Element existance and enabled status Failed");
@@ -792,11 +800,17 @@ public class CommonFunctions extends StaticVariables {
 
 	public void sendkeys(WebElement element, String p_in_inputvalue) {
 		try {
-			//this.scrollintoviewelement(element);
+			// this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 10);
 			if (element.isDisplayed() && element.isEnabled()) {
+
+				if (driver instanceof JavascriptExecutor) {
+					((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", element);
+				}
+
 				this.clearText(element);
 				this.highlightElement(element);	
+
 				element.sendKeys(p_in_inputvalue);
 			} else {
 				System.out.println("Element existance and enabled status Failed");
@@ -815,14 +829,14 @@ public class CommonFunctions extends StaticVariables {
 
 	public void check_Checkbox(WebElement element) {
 		try {
-			//this.movetoElement(element);
+			// this.movetoElement(element);
 			this.explicitWaitUsingElementToBeClickable(element);
-			//this.scrollintoviewelement(element);
+			// this.scrollintoviewelement(element);
 			if (element.isDisplayed() && element.isEnabled()) {
 				this.highlightElement(element);	
 				if (element.isSelected()) {
 					System.out.println("Check box already selected");
-				} else {					
+				} else {
 					element.click();
 				}
 
@@ -966,13 +980,12 @@ public class CommonFunctions extends StaticVariables {
 			this.highlightElement(element);	
 			Actions actions = new Actions(driver);
 			actions.moveToElement(element);		
-
 		} catch (Exception e) {
 			System.out.println("Error in description: " + e.getStackTrace());
 		}
 
 	}
-	
+
 	/************************* MouseHover Actions ************/
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
@@ -1070,6 +1083,18 @@ public class CommonFunctions extends StaticVariables {
 		}
 	}
 
+	/***** Tab move *********/
+	public void tabMoveUsingKeys() {
+		try {
+			Actions actions = new Actions(driver);
+			actions.sendKeys(Keys.TAB);
+
+		} catch (Exception e) {
+			System.out.println("Error in description: " + e.getStackTrace());
+		}
+
+	}
+
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
 	 */
@@ -1095,12 +1120,11 @@ public class CommonFunctions extends StaticVariables {
 			//ExtentTestManager.getTest().log(LogStatus.PASS, Description, Actualvalue+ExtentTestManager.getTest().addScreenCapture(ScreenshotsPath+ "Pass_" + TimeStampasString() + ".jpg"));
 			System.out.println(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
 			Reporter.log(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
-			/*try {
-				FileUtils.copyFile(scrFile, new File(ScreenshotsPath + "Pass_" + TimeStampasString() + ".jpg"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
+			/*
+			 * try { FileUtils.copyFile(scrFile, new File(ScreenshotsPath + "Pass_" +
+			 * TimeStampasString() + ".jpg")); } catch (IOException e) { // TODO
+			 * Auto-generated catch block e.printStackTrace(); }
+			 */
 			break;
 		case "Failed":
 		case "Fail":
@@ -1294,70 +1318,69 @@ public class CommonFunctions extends StaticVariables {
 		String Output = inputString.replaceAll("[a-z A-Z]", "");
 		return Output;
 	}
-	
+
 	public void waitForNewWindowAndSwitchToIt(WebDriver driver) throws InterruptedException {
-        String cHandle = driver.getWindowHandle();
-        String newWindowHandle = null;
-        Set<String> allWindowHandles = driver.getWindowHandles();
-        
-        //Wait for 20 seconds for the new window and throw exception if not found
-        for (int i = 0; i < 20; i++) {
-            if (allWindowHandles.size() > 1) {
-                for (String allHandlers : allWindowHandles) {
-                    if (!allHandlers.equals(cHandle))
-                    	newWindowHandle = allHandlers;
-                }
-                driver.switchTo().window(newWindowHandle);
-                break;
-            } else {
-                Thread.sleep(1000);
-            }
-        }
-        if (cHandle == newWindowHandle) {
-            throw new RuntimeException(
-                    "Time out - No window found");
-        }
-    }
-	
+		String cHandle = driver.getWindowHandle();
+		String newWindowHandle = null;
+		Set<String> allWindowHandles = driver.getWindowHandles();
+
+		// Wait for 20 seconds for the new window and throw exception if not found
+		for (int i = 0; i < 20; i++) {
+			if (allWindowHandles.size() > 1) {
+				for (String allHandlers : allWindowHandles) {
+					if (!allHandlers.equals(cHandle))
+						newWindowHandle = allHandlers;
+				}
+				driver.switchTo().window(newWindowHandle);
+				break;
+			} else {
+				Thread.sleep(1000);
+			}
+		}
+		if (cHandle == newWindowHandle) {
+			throw new RuntimeException("Time out - No window found");
+		}
+	}
+
 	public void switchtoDefaultWindow(WebDriver driver) throws InterruptedException {
-        String cHandle = driver.getWindowHandle();
-        String defaultWindowHandle = null;
-        Set<String> allWindowHandles = driver.getWindowHandles();
-        
-        //Wait for 20 seconds for the new window and throw exception if not found
-        for (int i = 0; i < 20; i++) {
-            if (allWindowHandles.size() == 0) {
-                for (String allHandlers : allWindowHandles) {
-                    if (allHandlers.equals(cHandle))
-                    	defaultWindowHandle = allHandlers;
-                }
-                driver.switchTo().window(defaultWindowHandle);
-                break;
-            } else {
-                Thread.sleep(1000);
-            }
-        }
-        if (cHandle != defaultWindowHandle) {
-            throw new RuntimeException(
-                    "Time out - No window found");
-        }
-    }
-	
-	public void switchbacktomainwindow(WebDriver driver){
+		String cHandle = driver.getWindowHandle();
+		String defaultWindowHandle = null;
+		Set<String> allWindowHandles = driver.getWindowHandles();
+
+		// Wait for 20 seconds for the new window and throw exception if not found
+		for (int i = 0; i < 20; i++) {
+			if (allWindowHandles.size() == 0) {
+				for (String allHandlers : allWindowHandles) {
+					if (allHandlers.equals(cHandle))
+						defaultWindowHandle = allHandlers;
+				}
+				driver.switchTo().window(defaultWindowHandle);
+				break;
+			} else {
+				Thread.sleep(1000);
+			}
+		}
+		if (cHandle != defaultWindowHandle) {
+			throw new RuntimeException("Time out - No window found");
+		}
+	}
+
+	public void switchbacktomainwindow(WebDriver driver) {
 		// Store the current window handle
 		String winHandleBefore = driver.getWindowHandle();
 
 		// Perform the click operation that opens new window
 
 		// Switch to new window opened
-		for(String winHandle : driver.getWindowHandles()){
-			//driver.close();
-		}		
+		for (String winHandle : driver.getWindowHandles()) {
+			// driver.close();
+		}
 
 		// Switch back to original browser (first window)
 		driver.switchTo().window(winHandleBefore);
 
 	}
+
 	
 	public void refreshBrowser(WebDriver driver){
 		try{
@@ -1368,13 +1391,14 @@ public class CommonFunctions extends StaticVariables {
 		
 	}
 		
+
 	/************** Display Element Text with value ************/
-	public void displayTextWithValue(WebElement element, WebElement Value)
-	{
-		String elementText= getelementtext(element);
-		 String elementValue= getelementtext(Value);
-		System.out.println(elementText  +  "is "+elementValue+ "displayed");
+	public void displayTextWithValue(WebElement element, WebElement Value) {
+		String elementText = getelementtext(element);
+		String elementValue = getelementtext(Value);
+		System.out.println(elementText + "is " + elementValue + "displayed");
 	}
+
 	/*****************
 	 * * Find total number of TextBoxes on a Webpage
 	 ************************/
@@ -1405,5 +1429,99 @@ public class CommonFunctions extends StaticVariables {
 
 	}
 
+	/****************** FRAMES HANDLE *****************/
+	public void switchToDefaultFrame() {
+		driver.switchTo().defaultContent();
+	}
+
+	public void switchToFrame() {
+		driver.switchTo().defaultContent();
+		WebElement iFramesElement = driver.findElement(By.xpath("//iframe"));
+		driver.switchTo().frame(iFramesElement);
+	}
+
+	public void switchToFrameByInt(int i) {
+		driver.switchTo().defaultContent();
+		driver.switchTo().frame(i);
+	}
+
+	public int IframeCount() {
+		driver.switchTo().defaultContent();
+		JavascriptExecutor exe = (JavascriptExecutor) driver;
+		Integer numberOfFrames = Integer.parseInt(exe.executeScript("return window.length").toString());
+		System.out.println("Number of iframes on the page are: " + numberOfFrames);
+
+		// or
+
+		// List<WebElement> iframeElements =
+		// driver.findElements(By.tagName("iframe"));
+		// System.out.println("The total number of iframes are " +
+		// iframeElements.size());
+
+		return numberOfFrames;
+	}
+
+	public void FrameNamesByTagName() {
+
+		System.out.println(
+				"***FrameNamesByTagName: Move to default Content explicitly. Otherwise it won't work. 'Call switchToDefaultFrame and don't forget to move to your frame.' ***");
+		System.out.println("Iframe Count: " + IframeCount());
+
+		final List<WebElement> iframes = driver.findElements(By.tagName("iframe"));
+		for (WebElement iframe : iframes) {
+			System.out.println("Iframes: " + iframes.toString());
+		}
+		System.out.println(
+				"***FrameNamesByTagName: Don't forget to switch to your frame. 'Call switchToDefaultFrame and don't forget to move to your frame.' ***");
+	}
+
+	public int loopAllframesAndReturnCountofElement(final By locator) throws InterruptedException {
+		// WebElement found = fluentWait(By.xpath(xPathElement));
+		int ElementpresenceCount = 0;
+		int Loop = 0;
+		int maxFramaecount = IframeCount();
+
+		/*
+		 * while (ElementpresenceCount < 1) { try { Thread.sleep(250);
+		 * switchToFrameByInt(Loop); ElementpresenceCount =
+		 * driver.findElements(locator).size();
+		 * System.out.println("Try LoopAllframesAndReturnWebEL: " + Loop +
+		 * "; ElementpresenceCount: " + ElementpresenceCount); Loop++; if
+		 * (ElementpresenceCount > 0 || Loop > maxFramaecount) { break; } } catch
+		 * (Exception ex) { System.out.println("Catch LoopAllframesAndReturnWebEL: " +
+		 * Loop + "; " + ex); }
+		 */
+		while (ElementpresenceCount < 1) {
+			ElementpresenceCount = driver.findElements(locator).size();
+			Thread.sleep(250);
+		}
+		return ElementpresenceCount;
+	}
+
+	public int loopAllframesAndReturnCountofElementOld(final By locator) {
+		// WebElement found = fluentWait(By.xpath(xPathElement));
+		int ElementpresenceCount = 0;
+		int Loop = 0;
+		int maxFramaecount = IframeCount();
+
+		while (ElementpresenceCount < 1) {
+			try {
+				Thread.sleep(250);
+				switchToFrameByInt(Loop);
+				ElementpresenceCount = driver.findElements(locator).size();
+				System.out.println("Try LoopAllframesAndReturnWebEL Old: " + Loop + "; ElementpresenceCount: "
+						+ ElementpresenceCount);
+				Loop++;
+				if (ElementpresenceCount > 0 || Loop > maxFramaecount) {
+					break;
+				}
+			} catch (Exception ex) {
+				System.out.println("Catch LoopAllframesAndReturnWebEL Old: " + Loop + "; " + ex);
+			}
+		}
+		return ElementpresenceCount;
+	}
+
 	
+
 }
