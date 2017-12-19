@@ -1,5 +1,7 @@
 package com.shearcircle.objectrepository;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -107,10 +109,12 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='sub_content']/h1")
 	public WebElement Customer_signin_hyperlynk_header;	
 	
-	
+	@FindBy(xpath="//*[@id='navbar-collapse-1']/span/a[text()='My Account ']")
+	public WebElement Customer_Mydashboard_MyAccount_Button;	
+
 	//div[@class='modal-header']/h3/parent::div/following-sibling::div[@class='modal-footer']/button[text()='Close' and @class='btn btn-primary']
 	@FindBy(xpath="//div/div/h3[contains(text(),'Welcome')]")
-	public WebElement Customer_Mydashboard_fullname;
+	public WebElement Customer_Mydashboard_Welcome_Name_Header;
 	
 	@FindBy(xpath="//div/div/div/div/div/div/p")
 	public WebElement Customer_Mydashboard_LastLoginDatetime;	
@@ -130,24 +134,39 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//div[3]//div/div/button[text()=' Change Profile Picture']")
 	public WebElement Customer_Mydashboard_changeProfilepicture;
 	
+	@FindBy(xpath="//*[@id='profile_image']")
+	public WebElement Customer_Mydashboard_ChooseFile_Button;
+	
 	@FindBy(xpath="//div/div/div/div/div/div/img")
 	public WebElement Customer_Mydashboard_Profilepicture;
+	
+	@FindBy(xpath="//*[@id='sub_content']/h1[contains(text(),'results for')]")	
+    public WebElement Customer_Search_Resultspage_Header;	
+
+	@FindBy(xpath="//*[@id='navbar-collapse-1']/form//button/i[@class='icon-search']")
+	public WebElement Customer_Mydashboard_Search_Button;
 
 
-	@FindBy(xpath="//*[@id='filters_col']//li[@class='active']/a[text()=' My Dashboard']")
-	public WebElement Customer_Mydashboard_myfavourites;
+	@FindBy(xpath="//*[@id='filters_col']//li/a[text()=' My Favorites']")
+	public WebElement Customer_MyFavourites_Button;
 
 	@FindBy(xpath="//*[@id='filters_col']//a[text()=' My Appointments']")
-	public WebElement Customer_Mydashboard_Myappoinments;
+	public WebElement Customer_Myappoinments_Button;
 
-	@FindBy(xpath="/html/body/div/div/div/div/div/div[@class='col-md-12']")
+	@FindBy(xpath="h3[contains(text(),'My App')]")
 	public WebElement Customer_Mydashboard_Myappoinments_header;
 
 	@FindBy(xpath="//table/tbody/tr[2]/td/h3[text()='No Appointments Found']")
-	public WebElement Customer_Mydashboard_Myappoinments_Noappoinments_header;
+	public WebElement Customer_Myappoinments_Noappoinments_Message;
 
-	@FindBy(xpath="/html/body/div/div/div/div/div/div[@class='col-md-12']")
-	public WebElement Customer_Mydashboard_Myappoinments_selectedappoinments_header;
+	@FindBy(xpath="//div/div/table[@class='table styapp']")
+	public WebElement Customer_Myappoinments_Table;
+	
+	@FindBy(xpath="//div/div/table[@class='table styapp']/tbody/tr/td//a[text()=' View']")
+	public List<WebElement> Customer_Myappoinments_View_Buttons;
+
+	@FindBy(xpath="/html/body/div[3]/div/div[2]/div/div/div/div[2]")
+	public WebElement Customer_Myappoinments_pagebookings;
 
 	@FindBy(xpath="//div/table/tbody/tr/th[text()='# ID']")
 	public WebElement Customer_Mydashboard_Myappoinments_ID;
@@ -169,6 +188,12 @@ public class Customer_Module_Page_Objects{
 
 	@FindBy(xpath="//div/table/tbody/tr/th[text()='Business Name']")
 	public WebElement Customer_Mydashboard_Myappoinments_action;
+	
+	@FindBy(xpath="/html/body//tr[2]/td/a[@class='btn btn-xs btn-success']")
+	public WebElement Customer_Mydashboard_Myappoinments_View;
+
+	@FindBy(xpath="/html/body//div/p[@class='text-center ng-binding']")
+	public WebElement Customer_Mydashboard_Myappoinments_arrow_pagenumbers;
 	
 	@FindBy(xpath="//div/div/select/option[text()='Type']")
 	public WebElement Customer_Mydashboard_Myappoinments_type;
@@ -192,9 +217,9 @@ public class Customer_Module_Page_Objects{
 	public WebElement Customer_Mydashboard_Myappoinments_status_cancelled;
 
 	@FindBy(xpath="//*[@id='filters_col']//a[text()=' Settings']")
-	public WebElement Customer_Mydashboard_settings;
+	public WebElement Customer_Mydashboard_Settings_Button;
 
-	@FindBy(xpath="//*[@id='filters_col']//a[@href='https://shearcircle.com/testbed/customer/settings']")
+	@FindBy(xpath="//*[@id='edit_profile']/div/div/div/div/h3[text()='Settings']")
 	public WebElement Customer_Mydashboard_settings_header;
 
 	@FindBy(xpath="//*[@id='navbar-collapse-1']/span/a[text()='Logout']")
@@ -209,23 +234,29 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='sub_content']/h1[text()='My Dashboard']")
 	public WebElement Customer_Mydashboard_header;
 
-	@FindBy(xpath="/html/body/div/div/div/div/div/div[@class='col-md-12']")
-	public WebElement Customer_Mydashboard_myfavourites_header;
+	@FindBy(xpath="//div/h3[text()='Favorites']")
+	public WebElement Customer_Myfavourites_Header;
 
-	@FindBy(xpath="/html/body/div[3]/div/div[2]/div/div/div/div[2]/div[2]")
-	public WebElement Customer_Mydashboard_myfavourites_businesslist;
+	@FindBy(xpath="//nav/div/ul/li/a[text()=' My Favorites']")
+	public WebElement Customer_Myfavourites_Link;
+
+	@FindBy(xpath="//div/div[@class='col-md-12']/div[2]/div[1]")
+	public WebElement Customer_Myfavourites_businesslist;
+	
+	@FindBy(xpath="//div[2]/h4[text()='No Favorites Added Yet']")
+	public WebElement Customer_Myfavourites_NoList_Message;
 	
 	@FindBy(xpath="//div[2]/div/div/div/div[2]/div[1]//a[text()='Book Me']")
-	public WebElement Customer_Mydashboard_myfavourites_businesslist_bookme;
+	public WebElement Customer_myfavourites_Bookme_Button;
 	
 	@FindBy(xpath="//div[1]/div/div/div/a[text()='Remove']")
-	public WebElement Customer_Mydashboard_myfavourites_businesslist_remove;
+	public WebElement Customer_myfavourites_Remove_Button;
 	
 	@FindBy(xpath="/html/body/div[@class='sweet-alert showSweetAlert visible']")
-	public WebElement Customer_Mydashboard_myfavourites_businesslist_remove_header;
+	public WebElement Customer_Myfavourites_Remove_Header;
 	
 	@FindBy(xpath="//div/div/button[@class='confirm']")
-	public WebElement Customer_Mydashboard_myfavourites_businesslist_remove_header_ok;
+	public WebElement Customer_Myfavourites_Remove_Popup_ok;
 	
 	@FindBy(xpath="//*[@id='container_pin']//a[@aria-controls='services']")
 	public WebElement Customer_Mydashboard_myfavourites_bookme_services;
@@ -264,21 +295,27 @@ public class Customer_Module_Page_Objects{
 	public WebElement Customer_Mydashboard_myfavourites_bookme_digitekheader;
 
 	@FindBy(xpath="//*[@id='edit_profile']//input[@name='firstname']")
-	public WebElement Customer_Mydashboard_settings_FirstName;
+	public WebElement Customer_Settings_FirstName;
+	
+	@FindBy(xpath="//ul/li/a[text()=' Settings']")
+	public WebElement Customer_Settings_Link;
+
 
 	@FindBy(xpath="//*[@id='edit_profile']//input[@name='lastname']")
-	public WebElement Customer_Mydashboard_settings_LastName;
+	public WebElement Customer_Settings_LastName;
 
 	@FindBy(xpath="//*[@id='edit_profile']//input[@name='username']")
-	public WebElement Customer_Mydashboard_settings_Email;
+	public WebElement Customer_Settings_Email;
 
 	@FindBy(xpath="//*[@id='edit_profile']//input[@value='Male']")
-	public WebElement Customer_Mydashboard_settings_Gender_Male;
+	public WebElement Customer_Settings_Gender_Male;
 	
 	@FindBy(xpath="//*[@id='edit_profile']//input[@value='Female']")
-	public WebElement Customer_Mydashboard_settings_Gender_Female;
+	public WebElement Customer_Settings_Gender_Female;
 	
-	
+	@FindBy(xpath="//*[@id='edit_profile']//input[@value='Female']")
+	public WebElement Customer_Settings_Header;
+
 	@FindBy(xpath="//*[@id='edit_profile']//input[@name='mobile']")
 	public WebElement Customer_Mydashboard_settings_Phone;
 	
@@ -311,8 +348,184 @@ public class Customer_Module_Page_Objects{
 
 	@FindBy(xpath="//*[@id='edit_profile']//input[@value='UPDATE']")
 	public WebElement Customer_Mydashboard_settings_Update;
-
 	
+	@FindBy(xpath="//h4[text()='Profile Updated Successfully']")
+	public WebElement Customer_ProfileUpdatedSuccessfully_Message;
+	
+	@FindBy(xpath = "//*[text()='Please enter firstname']")
+	public WebElement Customer_PleaseEnterFirstName_ErrorMessage;
+
+	@FindBy(xpath = "//*[text()='Please enter lastname']")
+	public WebElement Customer_PleaseEnterLastName_ErrorMessage;
+	
+	@FindBy(xpath = "//*[text()='Click here to change password']")
+	public WebElement Customer_ChangePassword_Link;
+	
+	@FindBy(xpath="//*[text()='Secure Your Profile by Changing Password']")
+	public WebElement Customer_SecureYourProfileByChangingPassword_Header;
+	
+	@FindBy(xpath="//*[@id='update_profile']//div/input[@type='submit']")
+	public WebElement Customer_Profile_ChangingPassword_Update_Button;
+	
+	@FindBy(xpath = "//*[@name='current_password']")
+	public WebElement Customer_CurrentPassword_TextBox;
+	
+	@FindBy(xpath = "//*[@name='password']")
+	public WebElement Customer_NewPassword_TextBox;
+	
+	@FindBy(xpath = "//*[@id='update_profile']//div/a[text()='CANCEL']")
+	public WebElement Customer_ChangingPassword_Cancel_Button;
+	
+	@FindBy(xpath = "//*[@name='cnf_password']")
+	public WebElement Customer_RetypePassword_TextBox;
+    
+    @FindBy(xpath="//*[text()='Password Updated Successfully']")
+    public WebElement Customer_PasswordUpdatedSuccessfully_Message;
+    
+	
+	@FindBy(xpath="//*[text()='Please enter Current Password']")
+	public WebElement Customer_Oldpassword_Errormessage;
+
+	@FindBy(xpath="//*[text()='Please enter New Password']")
+	public WebElement Customer_Newpassword_Errormessage;
+	
+	@FindBy(xpath = "//*[text()='No white space please']")
+	public WebElement Customer_Pwd_SpacePlease_ErrorMessage;
+	
+	@FindBy(xpath = "//*[text()='Password Lenght should be minimum 6 letters']")
+	public WebElement Customer_Pwd_Minimum6letters_ErrorMessage;
+	
+	
+
+/*********************TC_3_3_03************************/
+    
+    @FindBy(xpath="//a[contains(text(),'My App')]")
+    public WebElement Customer_MyAppoinments_Link;
+    
+    @FindBy(xpath="//h3[contains(text(),'My App')]")
+    public WebElement Customer_MyAppoinments_Header;
+    
+    @FindBy(xpath="//div[2]/select")
+    public WebElement Customer_MyAppoinments_Type_Dropdown;    
+       
+    @FindBy(xpath="//td[contains(text(),'157')]")
+    public WebElement Customer_AppointmentID_Text;
+    
+
+    @FindBy(xpath="//tbody/tr[2]/td/a[text()=' View']")
+    public WebElement Customer_ClicksOnView_Button;
+    
+
+    @FindBy(xpath="//h1[text()='View Booking Summary']")
+    public WebElement Customer_ViewBookingSummary_Text;    
+
+    @FindBy(xpath="//*[contains(text(),'Appointment I')]")
+    public WebElement Customer_AppointmentID_Heading;
+    
+    /***************TC_3_3_04***************/
+    @FindBy(xpath="//*[text()='1']")
+    public WebElement Customer_Page1_Link;
+    
+    @FindBy(xpath="//p/ul[@class='pagination']/li/a[text()='1']/parent::li")
+    public WebElement Customer_FirstPageActive_Link;
+
+    
+    /*@FindBy(xpath="//*[text()='2']")
+    public WebElement Customer_Page2_Link;*/
+    
+    @FindBy(xpath="//*[text()='1']")
+    public WebElement Customer_FirstPageShowing_Link;
+    
+    @FindBy(xpath="//*[@rel='next']")
+    public WebElement Customer_NavigateToNextPage_Link;
+    
+    @FindBy(css=" p > ul > li:nth-child(3)>a")
+    public WebElement Customer_NextPageShowing_Link;
+    
+    @FindBy(xpath="//p/ul[@class='pagination']/li/a[text()='2']/parent::li")
+    public WebElement Customer_NextPageActive_Link;
+
+    @FindBy(xpath="//*[text()='>>']")
+    public WebElement Customer_NavigateToLastPage_Link;
+    
+    @FindBy(css=" p > ul > li:last-child>a")
+    public WebElement Customer_LastPageShowing_Link;
+    
+    @FindBy(xpath="//p/ul[@class='pagination']/li[5]/a/parent::li")
+    public WebElement Customer_LastPageActive_Link;
+    
+   /*******************TC_3_3_05****************/
+    
+    @FindBy(xpath="//*[@rel='prev']")
+    public WebElement Customer_NaviagateToPreviousPage_Link;
+    
+    @FindBy(xpath="//*[text()='19']")
+    public WebElement Customer_Page19_Link;
+    
+    
+    @FindBy(xpath="//*[@rel='start']")
+    public WebElement Customer_NaviagateToFirstPage_Link;
+    
+    /*****************TC_3_3_06***************/
+    
+    @FindBy(xpath="//*[text()='3']")
+    public WebElement Customer_Page3_Link;
+    
+    @FindBy(xpath="//div/div[2]/p/ul/li/a")
+    public List<WebElement> Customer_PageNumber_Links;
+    
+    @FindBy(xpath="//div/div[2]/p/ul/li[5]")
+    public WebElement Customer_Page_Links;
+    
+    /********************TC_3_3_07*********************/
+    
+    @FindBy(xpath="//*[@ng-model='filter']")
+    public WebElement Customer_Dropdown_Type;    
+    
+   /* @FindBy(xpath="//div[2]/select/option")
+   public  List<WebElement> Customer_Displays_Listof_Type;
+    
+    @FindBy(xpath="/html/body/div[3]//div[2]/select/option[contains(text(),'Upc')]")
+    public WebElement Customer_DropdownOption_UpcomingAppointments;
+    
+    @FindBy(xpath="/html/body/div[3]//div[2]/select/option[contains(text(),'Past')]")
+    public WebElement Customer_DropdownOption_PastAppointments; */
+    
+    /**********************TC_3_3_08*****************************/
+    
+    @FindBy(xpath="//*[@ng-model='appointment_status']")
+    public WebElement Customer_MyAppoinments_Dropdown_Status;
+    
+  /*  @FindBy(xpath="html/body//div[1]/div[3]/select/option[contains(text(),'Co')]")
+    public WebElement Customer_DropdownOption_Completed;
+    
+    @FindBy(xpath="html/body//div[1]/div[3]/select/option")
+    public List<WebElement> Customer_Displays_ListOf_Status;
+    
+    @FindBy(xpath="html/body//div[1]/div[3]/select/option[contains(text(),'P')]")
+    public WebElement Customer_DropdownOption_Pending;
+    
+    @FindBy(xpath="html/body//div[1]/div[3]/select/option[contains(text(),'Ca')]")
+    public WebElement  Customer_DropdownOption_Canceled;*/
+    
+    /*************TC_3_3_09***********************************/
+   
+    @FindBy(xpath="//*[contains(text(),'No Appoint')]")
+    public WebElement Customer_UpcomingAppointments_Message ;
+    
+    /*************TC_3_3_10***********************************/
+    
+    @FindBy(xpath="//table[@class='table styapp']")
+    public WebElement Customer_PastAppointments_List;
+    
+    /*************************TC_3_3_11**************/
+   
+    @FindBy(xpath="//table/tbody/tr/td[5]")
+    public List<WebElement> Customer_AppointmentStatus_List;
+    
+    @FindBy(xpath="//table/tbody/tr/td[6]/span")
+    public List<WebElement> Customer_PaymentStatus_List;
+
 	
 
 }

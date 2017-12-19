@@ -48,18 +48,18 @@ public class TS_2_13_CustomerclicksonGetItBacklink extends StaticVariables {
 		driver.quit();
 	}
 	
-	@Test(priority=0, description="TC_001 Customer visits ShearCircle page" )
-	public void TC_001_Customer_visitsShearCircle() throws IOException {			
+	@Test(priority=21301, description="TC_2_13_01 Customer visits ShearCircle page" )
+	public void TC_2_13_01_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=1, description="TC_002 Customer clicks Login on ShearCircle home page " )
-	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {			
+	@Test(priority=21302, description="TC_2_13_02 Customer clicks Login on ShearCircle home page " )
+	public void TC_2_13_02_Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
-	@Test(priority=2, description="TC_003 Customer clicks on Get It Back link." )
-	public void TC_003_Customer_ClickonGetItBacklink() throws IOException {	
+	@Test(priority=21303, description="TC_2_13_03 Customer clicks on Get It Back link." )
+	public void TC_2_13_03_Customer_ClickonGetItBacklink() throws IOException {	
 		CR.ShearCircle_Verify_Customer_forgotPassword("DoNothing", "DoNothing");		
 	}	
 

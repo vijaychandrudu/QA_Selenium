@@ -36,12 +36,17 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.log4testng.Logger;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.relevantcodes.extentreports.LogStatus;
+
 import net.sourceforge.htmlunit.corejs.javascript.ast.WhileLoop;
+import utils.ExtentReports.ExtentTestManager;
+import utils.Listeners.TestListener;
 
 public class CommonFunctions extends StaticVariables {
 
@@ -52,8 +57,7 @@ public class CommonFunctions extends StaticVariables {
 	 */
 
 	public CommonFunctions() {
-		ProjectDir = System.getProperty("user.dir");
-
+		ProjectDir = System.getProperty("user.dir");		
 		File file = new File(ProjectDir + "\\screenshots");
 		boolean a = false;
 		if (!file.exists()) {
@@ -69,12 +73,12 @@ public class CommonFunctions extends StaticVariables {
 		System.out.println("For screenshots path: " + ScreenshotsPath);
 		System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.Jdk14Logger");
 	}
-
+	
 	/********************* Launch Browser *******************************/
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
 	 */
-
+	
 	public void getAndOpenBrowser(String browser) throws IOException {
 		try {
 			if (browser.equalsIgnoreCase("IE")) {
@@ -696,27 +700,29 @@ public class CommonFunctions extends StaticVariables {
 
 	public void Verify_elementisdisplayed_Report(WebElement element, String Reporttext) {
 		try {
+
 			// this.movetoElement(element);
 			// this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 10);
 			if (element.isDisplayed() && element.isEnabled()) {
+				this.highlightElement(element);				
 				this.reportscomtep("Passed", "Verify The Element " + Reporttext + " is displayed",
-						"The Element " + Reporttext + "should be displayed", "The Element " + Reporttext + "displayed");
+						"The Element " + Reporttext + " should be displayed", "The Element " + Reporttext + " displayed");
 
 			} else {
-				this.reportscomtep("Failed", "Verify The Element is " + Reporttext + "displayed",
-						"The Element " + Reporttext + "should be displayed",
-						"The Element " + Reporttext + "Not displayed");
-
+			    
+				this.reportscomtep("Failed", "Verify The Element is " + Reporttext + " displayed",
+						"The Element " + Reporttext + " should be displayed",
+						"The Element " + Reporttext + " Not displayed");
 			}
 
 		} catch (Exception e) {
 			System.out.println("Error in description: " + e.getStackTrace());
 		}
 
-	}
 
-	public boolean verifyElementtext(WebElement element, String text, String textType) {
+	
+	public boolean verifyElementtext(WebElement element, String text,String textType) {
 		String textvalue = "";
 		boolean verificationflag = false;
 		try {
@@ -797,9 +803,14 @@ public class CommonFunctions extends StaticVariables {
 			// this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 10);
 			if (element.isDisplayed() && element.isEnabled()) {
+
 				if (driver instanceof JavascriptExecutor) {
 					((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid red'", element);
 				}
+
+				this.clearText(element);
+				this.highlightElement(element);	
+
 				element.sendKeys(p_in_inputvalue);
 			} else {
 				System.out.println("Element existance and enabled status Failed");
@@ -822,6 +833,7 @@ public class CommonFunctions extends StaticVariables {
 			this.explicitWaitUsingElementToBeClickable(element);
 			// this.scrollintoviewelement(element);
 			if (element.isDisplayed() && element.isEnabled()) {
+				this.highlightElement(element);	
 				if (element.isSelected()) {
 					System.out.println("Check box already selected");
 				} else {
@@ -843,14 +855,12 @@ public class CommonFunctions extends StaticVariables {
 
 	public void click(WebElement element) {
 		try {
-			// this.movetoElement(element);
-			// this.scrollintoviewelement(element);
-			this.explicitWaitUsingElementToBeClickable(element);
-			if (element.isDisplayed() && element.isEnabled()) {
-				if (driver instanceof JavascriptExecutor) {
-					((JavascriptExecutor) driver).executeScript("arguments[0].style.border='2px solid red'", element);
-				}
-				element.click();
+			//this.movetoElement(element);
+			//this.scrollintoviewelement(element);
+			this.explicitWaitUsingElementToBeClickable(element);			
+			if (element.isDisplayed() && element.isEnabled()) {		
+				this.highlightElement(element);	
+				element.click();				
 
 			} else {
 				System.out.println("Element existance and enabled status Failed");
@@ -869,6 +879,7 @@ public class CommonFunctions extends StaticVariables {
 	public void selectByVisibleText(WebElement element, String p_in_inputvalue) {
 		try {
 			if (element.isDisplayed() && element.isEnabled()) {
+				this.highlightElement(element);	
 				Select dropdown = new Select(element);
 				dropdown.selectByVisibleText(p_in_inputvalue);
 			} else {
@@ -888,6 +899,7 @@ public class CommonFunctions extends StaticVariables {
 	public void selectByIndex(WebElement element, int p_in_inputvalue) {
 		try {
 			if (element.isDisplayed() && element.isEnabled()) {
+				this.highlightElement(element);	
 				Select dropdown = new Select(element);
 				dropdown.selectByIndex(p_in_inputvalue);
 			} else {
@@ -907,6 +919,7 @@ public class CommonFunctions extends StaticVariables {
 	public void selectByValue(WebElement element, String p_in_inputvalue) {
 		try {
 			if (element.isDisplayed() && element.isEnabled()) {
+				this.highlightElement(element);	
 				Select dropdown = new Select(element);
 				dropdown.selectByValue(p_in_inputvalue);
 			} else {
@@ -923,20 +936,40 @@ public class CommonFunctions extends StaticVariables {
 	 */
 
 	public List<WebElement> getOptions(WebElement element) {
-		List<WebElement> elementCount = null;
+		List<WebElement> dropdownvalues = null;
 		try {
 			if (element.isDisplayed() && element.isEnabled()) {
 				Select dropdown = new Select(element);
-				elementCount = dropdown.getOptions();
+				dropdownvalues = dropdown.getOptions();
 			} else {
 				System.out.println("Element existance and enabled status Failed");
 			}
 		} catch (Exception e) {
 			System.out.println("Error in description: " + e.getStackTrace());
 		}
-		return elementCount;
+		return dropdownvalues;
 	}
 
+	
+	public String getDropdownSelectedValue(WebElement element){
+		String dropdownvalue = "";
+		  try{		
+			  this.waitforelementtobevisible(element, 20);
+			  if (element.isDisplayed() && element.isEnabled()) {
+					Select dropdown = new Select(element);
+					dropdownvalue = dropdown.getFirstSelectedOption().getText();
+				} else {
+					System.out.println("Element existance and enabled status Failed");
+				}
+			  
+		  }catch(Exception e){
+			  System.out.println("Error in description: " + e.getStackTrace());
+		  }		  
+		  return dropdownvalue;
+		 
+		 
+		
+		 }
 	/************************* MouseHover Actions ************/
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
@@ -944,9 +977,9 @@ public class CommonFunctions extends StaticVariables {
 
 	public void movetoElement(WebElement element) {
 		try {
+			this.highlightElement(element);	
 			Actions actions = new Actions(driver);
-			actions.moveToElement(element);
-
+			actions.moveToElement(element);		
 		} catch (Exception e) {
 			System.out.println("Error in description: " + e.getStackTrace());
 		}
@@ -960,9 +993,10 @@ public class CommonFunctions extends StaticVariables {
 
 	public void mouseHoveronElement(WebElement element) {
 		try {
+			this.highlightElement(element);	
 			Actions actions = new Actions(driver);
 			actions.moveToElement(element);
-			actions.click().build().perform();
+			actions.click().build().perform();			
 
 		} catch (Exception e) {
 			System.out.println("Error in description: " + e.getStackTrace());
@@ -977,6 +1011,7 @@ public class CommonFunctions extends StaticVariables {
 
 	public void mouseHoverClickandHold(WebElement element) {
 		try {
+			this.highlightElement(element);	
 			Actions actions = new Actions(driver);
 			actions.clickAndHold(element);
 			actions.click().build().perform();
@@ -1011,6 +1046,7 @@ public class CommonFunctions extends StaticVariables {
 
 	public void doubleClick(WebElement element) {
 		try {
+			this.highlightElement(element);	
 			Actions actions = new Actions(driver);
 			actions.doubleClick(element);
 			actions.click().build().perform();
@@ -1029,8 +1065,10 @@ public class CommonFunctions extends StaticVariables {
 	public void dragandDrop(WebElement sourceElement, WebElement destinationElement) {
 		try {
 			if (sourceElement.isDisplayed() && destinationElement.isDisplayed()) {
+				this.highlightElement(sourceElement);	
 				Actions action = new Actions(driver);
 				action.dragAndDrop(sourceElement, destinationElement).build().perform();
+				this.highlightElement(destinationElement);
 			} else {
 				System.out.println("Element was not displayed to drag");
 			}
@@ -1074,6 +1112,12 @@ public class CommonFunctions extends StaticVariables {
 		case "pass":
 		case "passed":
 		case "PASSED":
+			
+						
+			String base64Screenshot1 = "data:image/png;base64,"+((TakesScreenshot)driver).
+            getScreenshotAs(OutputType.BASE64);
+			ExtentTestManager.getTest().log(LogStatus.PASS, Description, Actualvalue+ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot1));
+			//ExtentTestManager.getTest().log(LogStatus.PASS, Description, Actualvalue+ExtentTestManager.getTest().addScreenCapture(ScreenshotsPath+ "Pass_" + TimeStampasString() + ".jpg"));
 			System.out.println(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
 			Reporter.log(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
 			/*
@@ -1087,6 +1131,12 @@ public class CommonFunctions extends StaticVariables {
 		case "fail":
 		case "failed":
 		case "FAILED":
+			
+
+	        //Take base64Screenshot screenshot.
+	        String base64Screenshot = "data:image/png;base64,"+((TakesScreenshot)driver).
+	                getScreenshotAs(OutputType.BASE64);
+			ExtentTestManager.getTest().log(LogStatus.FAIL, Description,Actualvalue+ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
 			System.out.println(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
 			Reporter.log(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
 			try {
@@ -1194,10 +1244,22 @@ public class CommonFunctions extends StaticVariables {
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
 	 */
-	public void HighlightElement(WebElement element) throws InterruptedException {
-		((JavascriptExecutor) driver).executeScript("arguments[0].style.border='6px groove green'", element);
-		Thread.sleep(1000);
-		((JavascriptExecutor) driver).executeScript("arguments[0].style.border=''", element);
+	public void highlightElement(WebElement element) throws InterruptedException {
+		
+		try{
+			for(int i = 1; i<4; i++){
+				if (driver instanceof JavascriptExecutor) {
+					((JavascriptExecutor) driver).executeScript("arguments[0].style.border='6px groove green'", element);
+					Thread.sleep(1000);
+					((JavascriptExecutor) driver).executeScript("arguments[0].style.border=''", element);
+			    }
+				
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 	}
 
 	/*********************** String functions **********************************/
@@ -1319,6 +1381,17 @@ public class CommonFunctions extends StaticVariables {
 
 	}
 
+	
+	public void refreshBrowser(WebDriver driver){
+		try{
+			driver.navigate().refresh();
+		}catch(Exception e){
+			 System.out.println("Error in description: " + e.getStackTrace());
+		}
+		
+	}
+		
+
 	/************** Display Element Text with value ************/
 	public void displayTextWithValue(WebElement element, WebElement Value) {
 		String elementText = getelementtext(element);
@@ -1335,12 +1408,12 @@ public class CommonFunctions extends StaticVariables {
 		int textfield3 = driver.findElements(By.xpath("//input[@type='password']")).size();
 		// Number of text boxes present.
 		int textfield = textfield1 + textfield2 + textfield3;
-		System.out.println("Number of text boxes are –  " + textfield);
+		System.out.println("Number of text boxes are Â–  " + textfield);
 	}
 
 	public void FindNumberOfCheckBoxes() {
 		int numberOfBoxes = driver.findElements(By.xpath("//input[@type='checkbox']")).size();
-		System.out.println("Number of text boxes are –  " + numberOfBoxes);
+		System.out.println("Number of text boxes are Â–  " + numberOfBoxes);
 
 	}
 

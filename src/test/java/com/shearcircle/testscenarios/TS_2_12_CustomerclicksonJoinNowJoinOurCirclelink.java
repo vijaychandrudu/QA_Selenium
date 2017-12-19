@@ -48,18 +48,18 @@ public class TS_2_12_CustomerclicksonJoinNowJoinOurCirclelink extends StaticVari
 		driver.quit();
 	}
 	
-	@Test(priority=0, description="TC_001 Customer visits ShearCircle page" )
-	public void TC_001_Customer_visitsShearCircle() throws IOException {			
+	@Test(priority=21201, description="TC_2_12_01 Customer visits ShearCircle page" )
+	public void TC_2_12_01_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=1, description="TC_002 Customer clicks Login on ShearCircle home page " )
-	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {			
+	@Test(priority=21202, description="TC_2_12_02 Customer clicks Login on ShearCircle home page " )
+	public void TC_2_12_02_Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
-	@Test(priority=2, description="TC_003  Customer clicks on Join Now/Join Our Circle link" )
-	public void TC_003_Customer_Click_DoNotHaveAccountjoinourcircle() throws IOException {			
+	@Test(priority=21203, description="TC_2_12_03  Customer clicks on Join Now/Join Our Circle link" )
+	public void TC_2_12_03_Customer_Click_DoNotHaveAccountjoinourcircle() throws IOException {			
 		CR.Click_DoNotHaveAccountjoinourcircle_Loginwith_FaceBook_Google_Bottons("Click_Donthaveaccount_JoinOurCircle");		
 	}	
 

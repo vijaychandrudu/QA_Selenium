@@ -48,18 +48,18 @@ public class TS_2_03_CustomerLoginwithinvalidUsernamevalidPassword extends Stati
 		driver.quit();
 	}
 	
-	@Test(priority=0, description="TC_001 Customer visits ShearCircle page" )
-	public void TC_001_Customer_visitsShearCircle() throws IOException {			
+	@Test(priority=2301, description="TC_2_3_01 Customer visits ShearCircle page" )
+	public void TC_2_3_01_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=1, description="TC_002 Customer clicks Login on ShearCircle home page " )
-	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {			
+	@Test(priority=2302, description="TC_2_3_02 Customer clicks Login on ShearCircle home page " )
+	public void TC_2_3_02_Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
-	@Test(priority=2, description="TC_003 Customer Login with invalid Username(Email id) & valid Password " )
-	public void TC_003_Customer_LoginwithInvalidEmailidandValidPassword() throws IOException {			
+	@Test(priority=2303, description="TC_2_3_03 Customer Login with invalid Username(Email id) & valid Password " )
+	public void TC_2_3_03_Customer_LoginwithInvalidEmailidandValidPassword() throws IOException {			
 		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Invalid_EmailandValidPassword");			
 	}
 	

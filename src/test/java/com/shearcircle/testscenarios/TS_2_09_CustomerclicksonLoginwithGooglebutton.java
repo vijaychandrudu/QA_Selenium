@@ -48,18 +48,18 @@ public class TS_2_09_CustomerclicksonLoginwithGooglebutton extends StaticVariabl
 		driver.quit();
 	}
 	
-	@Test(priority=0, description="TC_001 Customer visits ShearCircle page" )
-	public void TC_001_Customer_visitsShearCircle() throws IOException {			
+	@Test(priority=2901, description="TC_2_9_01 Customer visits ShearCircle page" )
+	public void TC_2_9_01_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=1, description="TC_002 Customer clicks Login on ShearCircle home page " )
-	public void TC_002_Customer_clicks_JoinOurCircleButton() throws IOException {			
+	@Test(priority=2902, description="TC_2_9_02 Customer clicks Login on ShearCircle home page " )
+	public void TC_2_9_02_Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
-	@Test(priority=2, description="TC_003 Customer clicks on Login with Google button" )
-	public void TC_003_CustomerclicksonLoginwithGooglebutton() throws IOException {			
+	@Test(priority=2903, description="TC_2_9_03 Customer clicks on Login with Google button" )
+	public void TC_2_9_03_CustomerclicksonLoginwithGooglebutton() throws IOException {			
 		CR.Click_DoNotHaveAccountjoinourcircle_Loginwith_FaceBook_Google_Bottons("Click_LoginwithGoogle");		
 	}	
 
