@@ -59,10 +59,13 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='collapseFilters']/div/h6[text()='Rating']/parent::div/ul/li//div[@class='icheckbox_square-grey checked']/input")
     public List<WebElement> SR_Ratings_checkedcheckbox_list;
 	
+	@FindBy(xpath="//*[@id='collapseFilters']/div[2]/ul/li[5]/label/div/input")
+    public WebElement customer_1Rating_checkbox;	
+	
 	@FindBy(xpath="//*[@id='searchResultsContainerBox']/p/ul[@class='pagination']")
     public WebElement customer_PageNavigation_Buttons;
 	 
-	@FindBy(xpath="//*[@id='sort_rating']/option")
+	@FindBy(xpath="//*[@id='sort_rating']")
 	public WebElement SR_DropdownOnTopmostPartOf_List;
 	
 	@FindBy(xpath="//*[@id='navbar-collapse-1']//input[@name='q']")
