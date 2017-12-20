@@ -10,6 +10,82 @@ public class Customer_Module_Page_Objects{
 
 //object information
 	
+	@FindBy(xpath="//div/div[1]/a/img")
+    public WebElement Home_ShearCircle_Image;
+	
+	@FindBy(xpath="//*[@id='sub_content']/div/div/h1[text()='Book Appointments with Professionals Near You']")
+    public WebElement Home_H1_Header;
+	
+	@FindBy(xpath="//*[contains(@id,'navbar-collapse')]/span/a[text()='Login']")
+    public WebElement Home_Login_Link;		
+	@FindBy(xpath="//*[@id='navbar-collapse-1']/span/a[contains(text(),'Circle')]")
+    public WebElement Home_JoinOurCircle_Link;
+	@FindBy(xpath="//ul/li/a[text()='About Us']")
+    public WebElement Home_AboutUs_Link;
+	
+	@FindBy(xpath="//*[@id='sub_content']//input[@name='q']")
+    public WebElement home_FindSalon_Spa_Professionals_Textbox;
+	
+	@FindBy(xpath="//*[@id='sub_content']//input[@name='loc']")
+    public WebElement home_Zip_City_State_Textbox;
+	
+	@FindBy(xpath="//*[@id='sub_content']//input[@value='Locate']")
+    public WebElement home_Locate_Button;
+	
+	@FindBy(xpath="//*[@id='sub_content']/h1[contains(text(),'results for your search criteria')]")
+    public WebElement Home_SearchResultsPage_H1_Header;
+	
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div[contains(text(),'results for your search criteria')]")
+    public WebElement home_SearchResults_Message; 
+	
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div[contains(text(),'results for your search criteria')]")
+    public List<WebElement> home_SearchResultssalons_firstpage_list; 
+	
+	@FindBy(xpath="//*[@id='collapseFilters']/div[1]/div[1]/ul/li")
+    public List<WebElement> SR_Filters_checkbox_list;
+	
+	@FindBy(xpath="//*[@id='collapseFilters']/div[1]/div[1]/ul/li/label/div[@class='icheckbox_square-grey checked']/input")
+    public List<WebElement> SR_Filters_checkedcheckbox_list;
+	
+	@FindBy(xpath="//*[@id='niceScroll']/li")
+    public List<WebElement> SR_Servies_checkbox_list;
+	
+	@FindBy(xpath="//*[@id='niceScroll']/li//div[@class='icheckbox_square-grey checked']/input")
+    public List<WebElement> SR_services_checkedcheckbox_list;
+	
+	@FindBy(xpath="//*[@id='collapseFilters']/div/h6[text()='Rating']/parent::div/ul/li//input")
+    public List<WebElement> SR_Ratings_checkbox_list;
+
+	@FindBy(xpath="//*[@id='collapseFilters']/div/h6[text()='Rating']/parent::div/ul/li//div[@class='icheckbox_square-grey checked']/input")
+    public List<WebElement> SR_Ratings_checkedcheckbox_list;
+	
+	@FindBy(xpath="//*[@id='collapseFilters']/div[2]/ul/li[5]/label/div/input")
+    public WebElement customer_1Rating_checkbox;	
+	
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']/p/ul[@class='pagination']")
+    public WebElement customer_PageNavigation_Buttons;
+	 
+	@FindBy(xpath="//*[@id='sort_rating']")
+	public WebElement SR_DropdownOnTopmostPartOf_List;
+	
+	@FindBy(xpath="//*[@id='navbar-collapse-1']//input[@name='q']")
+    public WebElement customer_FindSalon_Spa_Professionals_Textbox;
+	
+	@FindBy(xpath="//*[@id='navbar-collapse-1']//input[@name='loc']")
+    public WebElement customer_Zip_City_State_Textbox;
+	
+	@FindBy(xpath="//*[@id='navbar-collapse-1']//i[@class='icon-search']/parent::button")
+    public WebElement customer_Search_Button;
+	
+	@FindBy(xpath="//*[@id='position']/div/ul/li/a[text()='Home']")
+    public WebElement customer_Home_Link;
+	
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div/a/h3")
+    public List<WebElement> customer_Search_SalonNames;
+	
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div[@class='strip_list ng-scope']//div[@class='location ng-binding']")
+    public List<WebElement> customer_Search_SalonLocatonZipCodes;
+	
 	@FindBy(xpath="//*[@id='sub_content']/h1[text()='Register With ShearCircle']")	
     public WebElement Customer_RegisterWithShearCircle_Header;	
 

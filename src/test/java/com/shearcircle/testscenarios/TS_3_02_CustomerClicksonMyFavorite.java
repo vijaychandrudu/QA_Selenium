@@ -44,22 +44,19 @@ public class TS_3_02_CustomerClicksonMyFavorite extends StaticVariables {
 		Thread.sleep(1000);
 	}
 
-	@AfterTest
-	public void afterTest() {
-		driver.quit();
-	}
-	
+		
 	@AfterClass
 	public void logOut(){
 		CR.Customer_JoinOurCircle_LogOutpage();
+		driver.quit();
 	}
 	
-	@Test(priority=30201, description="Customer visits ShearCircle page" )
+	@Test(priority=30201, description="Customer visits ShearCircle page")
 	public void TC_3_2_1_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=30202, description="Customer clicks Login Button " )
+	@Test(priority=30202, description="Customer clicks Login Button ")
 	public void TC_3_2_2_Customer_clicks_JoinOurCircleButton() throws IOException {			
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}

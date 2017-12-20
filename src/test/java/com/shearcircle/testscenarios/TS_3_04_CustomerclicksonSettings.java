@@ -45,15 +45,11 @@ public class TS_3_04_CustomerclicksonSettings extends StaticVariables {
 		cfn.ScreenshotOnPassFail(testResult);
 		Thread.sleep(1000);
 	}
-
-	@AfterTest
-	public void afterTest() {
-		driver.quit();
-	}
-	
+		
 	@AfterClass
 	public void logOut(){
 		CR.Customer_JoinOurCircle_LogOutpage();
+		driver.quit();
 	}
 	
 	@Test(priority=30401, description="Customer visits ShearCircle page" )

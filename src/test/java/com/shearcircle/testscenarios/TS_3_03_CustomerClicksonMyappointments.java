@@ -44,14 +44,11 @@ public class TS_3_03_CustomerClicksonMyappointments extends StaticVariables {
 		Thread.sleep(1000);
 	}
 
-	@AfterTest
-	public void afterTest() {
-		driver.quit();
-	}
-	
+		
 	@AfterClass
 	public void logOut(){
 		CR.Customer_JoinOurCircle_LogOutpage();
+		driver.quit();
 	}
 	
 	@Test(priority=30301, description="Customer visits ShearCircle page" )

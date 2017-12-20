@@ -8,14 +8,17 @@ public class Login_page_objects {
 	@FindBy(xpath="//div/div[1]/a/img")
     public WebElement Home_ShearCircle_Image;
 	
+	@FindBy(xpath="//*[@id='sub_content']/div/div/h1[text()='Book Appointments with Professionals Near You']")
+    public WebElement Home_H1_Header;
+	
 	@FindBy(xpath="//*[contains(@id,'navbar-collapse')]/span/a[text()='Login']")
     public WebElement Home_Login_Link;		
+	
 	@FindBy(xpath="//*[@id='navbar-collapse-1']/span/a[contains(text(),'Circle')]")
     public WebElement Home_JoinOurCircle_Link;
 	
 	@FindBy(xpath="//*[@id='sub_content']/h1")
     public WebElement Login_Page_Header;	
-	
 	@FindBy(xpath="//div/h5[contains(text(),'have an account yet')]//following-sibling::a/u")
     public WebElement Login_DonthaveaccountJoinOurCircle_Link;
 	

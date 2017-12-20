@@ -46,8 +46,8 @@ public class TS_1_02_CustomerclicksonJoinOurCirclebuttononAreyouaCustomer extend
 		Thread.sleep(11_2_00);
 	}
 
-	@AfterTest
-	public void afterTest() {
+	@AfterClass
+	public void afterClass() {
 		driver.quit();
 	}
 	

@@ -44,8 +44,8 @@ public class TS_3_01_CustomerLogintoDashboard extends StaticVariables {
 		Thread.sleep(1000);
 	}
 
-	@AfterTest
-	public void afterTest() {
+	@AfterClass
+	public void afterClass() {
 		driver.quit();
 	}	
 		
