@@ -57,7 +57,7 @@ public class TS_4_01_Customer_SearchforProfessionals_Servicesusingsearchbox exte
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	/*@Test(priority=40102, description="TC_4_1_01 Verify the search box in Home page")
+	@Test(priority=40102, description="TC_4_1_01 Verify the search box in Home page")
 	public void TC_4_1_01_Customer_VerifysearchboxinHomepage() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Verify the search box in Home page");			
 		CR.verify_SearchBox_inHomePageFieldValidation();
@@ -78,17 +78,17 @@ public class TS_4_01_Customer_SearchforProfessionals_Servicesusingsearchbox exte
 	public void TC_4_1_04_Customer_CheckdetailsinSearchResultspage() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the details in Search Results page");
 		CR.verify_searchItems_in_Search_Results_page();		
-	}*/
+	}
 	
-	/*@Test(priority=40106, description="TC_4_1_05 Check the search result by entering keyword in Salon/Spa/Professional box -(Name)")
+	@Test(priority=40106, description="TC_4_1_05 Check the search result by entering keyword in Salon/Spa/Professional box -(Name)")
 	public void TC_3_4_05_Customer_CheckChangePasswordlinkClickable() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the search result by entering keyword in Salon/Spa/Professional box -(Name)");
 		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_Locate_Button", "Salon");
 		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_Locate_Button", "Spa");
 		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_Locate_Button", "Professional");
-	}*/
+	}
 	
-	/*@Test(priority=40107, description="TC_4_1_06 Check the search result by entering keyword in ZipCode/City,State")
+	@Test(priority=40107, description="TC_4_1_06 Check the search result by entering keyword in ZipCode/City,State")
 	public void TC_3_4_06_Customer_ChecksearchresultbyenteringkeywordinZipCode_City_State() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the search result by entering keyword in ZipCode/City,State");
 		CR.ChecksearchresultbyenteringkeywordinZipCode_City_State("Click_Locate_Button","ZipCode");		
@@ -100,16 +100,8 @@ public class TS_4_01_Customer_SearchforProfessionals_Servicesusingsearchbox exte
 	public void TC_4_1_07_Customer_CheckPasswordwithlessthan6charsorspaces() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the search result by entering keyword in both Name & Location textboxes");
 		CR.checkSearchResult_ByEntering_keyword_InBothNameAndLocation("Click_Locate_Button");		
-	}*/
-	
-	/*@Test(priority=40111, description="TC_3_4_08 Check whether password can be updated by entering valid data")
-	public void TC_3_4_08_Customer_Checkpasswordupdatedwithvaliddata() throws IOException {			
-		ExtentTestManager.getTest().setDescription("Check whether password can be updated by entering valid data");
-		CR.password_CanBeUpdatedBy_Entering_ValidData();		
-	}
-	
-	*/
-	
+	}	
+		
 	@Test(priority=40109, description="TC_3_4_09 Check whether the Cancel button is clickable in Secure password change page")
 	public void TC_4_1_08_Customer_resultsbyselectingsubcategory_Homepage() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the Cancel button is clickable in Secure password change page");
