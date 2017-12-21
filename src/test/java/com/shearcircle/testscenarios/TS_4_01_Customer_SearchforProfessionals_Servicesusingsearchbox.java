@@ -80,15 +80,15 @@ public class TS_4_01_Customer_SearchforProfessionals_Servicesusingsearchbox exte
 		CR.verify_searchItems_in_Search_Results_page();		
 	}*/
 	
-	@Test(priority=40106, description="TC_4_1_05 Check the search result by entering keyword in Salon/Spa/Professional box -(Name)")
+	/*@Test(priority=40106, description="TC_4_1_05 Check the search result by entering keyword in Salon/Spa/Professional box -(Name)")
 	public void TC_3_4_05_Customer_CheckChangePasswordlinkClickable() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the search result by entering keyword in Salon/Spa/Professional box -(Name)");
 		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_Locate_Button", "Salon");
 		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_Locate_Button", "Spa");
 		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_Locate_Button", "Professional");
-	}
+	}*/
 	
-	/*@Test(priority=40109, description="TC_4_1_06 Check the search result by entering keyword in ZipCode/City,State")
+	/*@Test(priority=40107, description="TC_4_1_06 Check the search result by entering keyword in ZipCode/City,State")
 	public void TC_3_4_06_Customer_ChecksearchresultbyenteringkeywordinZipCode_City_State() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the search result by entering keyword in ZipCode/City,State");
 		CR.ChecksearchresultbyenteringkeywordinZipCode_City_State("Click_Locate_Button","ZipCode");		
@@ -108,11 +108,13 @@ public class TS_4_01_Customer_SearchforProfessionals_Servicesusingsearchbox exte
 		CR.password_CanBeUpdatedBy_Entering_ValidData();		
 	}
 	
-	@Test(priority=40112, description="TC_3_4_09 Check whether the Cancel button is clickable in Secure password change page")
-	public void TC_3_4_09_Customer_CheckCancelButtonclickable() throws IOException {			
+	*/
+	
+	@Test(priority=40109, description="TC_3_4_09 Check whether the Cancel button is clickable in Secure password change page")
+	public void TC_4_1_08_Customer_resultsbyselectingsubcategory_Homepage() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the Cancel button is clickable in Secure password change page");
-		CR.verify_Cancel_Button_IsClickable_Changepasswordpage();		
-	}*/
+		CR.click_HomePage_NavigateBar_Menulinks("Click_Beauty");		
+	}
 	
 
 }

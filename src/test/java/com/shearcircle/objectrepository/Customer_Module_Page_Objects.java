@@ -23,6 +23,21 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//ul/li/a[text()='About Us']")
     public WebElement Home_AboutUs_Link;
 	
+	@FindBy(xpath="//*[@id='navbar-collapse-1']/ul/li/a[text()='Beauty ']")
+    public WebElement home_Beauty_Link;
+	
+	@FindBy(xpath="//*[@id='navbar-collapse-1']/ul/li/a[text()='Wellness ']")
+    public WebElement home_Welless_Link;
+	
+	@FindBy(xpath="//*[@id='navbar-collapse-1']/ul/li/a[text()='Fitness ']")
+    public WebElement home_Fitness_Link;
+	
+	@FindBy(xpath="//*[@id='navbar-collapse-1']/ul/li/a[text()='How it works']")
+    public WebElement home_Howitworks_Link;
+	
+	@FindBy(xpath="//*[@id='navbar-collapse-1']/ul/li/a[text()='Pricing']")
+    public WebElement home_Pricing_Link;
+	
 	@FindBy(xpath="//*[@id='sub_content']//input[@name='q']")
     public WebElement home_FindSalon_Spa_Professionals_Textbox;
 	
@@ -30,7 +45,7 @@ public class Customer_Module_Page_Objects{
     public WebElement home_Zip_City_State_Textbox;
 	
 	@FindBy(xpath="//*[@id='sub_content']//input[@value='Locate']")
-    public WebElement home_Locate_Button;
+    public WebElement home_Locate_Button;	
 	
 	@FindBy(xpath="//*[@id='sub_content']/h1[contains(text(),'results for your search criteria')]")
     public WebElement Home_SearchResultsPage_H1_Header;
