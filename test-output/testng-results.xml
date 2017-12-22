@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+<testng-results skipped="0" failed="0" ignored="0" total="14" passed="14">
   <reporter-output>
+    <line>
+      <![CDATA[************Assertion Done**********]]>
+    </line>
+    <line>
+      <![CDATA[************Assertion Done**********]]>
+    </line>
+    <line>
+      <![CDATA[Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on XP (86dad449e0551b27b4b9f9aa800732a4)] -> xpath: html/body/section[2]/div/h2] (tried for 20 second(s) with 500 MILLISECONDS interval)
+Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
+System info: host: 'DESKTOP-L1J67QN', ip: '192.168.0.103', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_151'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=XP, acceptSslCerts=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, platformName=XP, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f), userDataDir=C:\Users\HPPC~1\AppData\Local\Temp\scoped_dir488_3578}, takesHeapSnapshot=true, pageLoadStrategy=normal, unhandledPromptBehavior=, databaseEnabled=false, handlesAlerts=true, version=62.0.3202.94, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 86dad449e0551b27b4b9f9aa800732a4]]>
+    </line>
+    <line>
+      <![CDATA[Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: html/body/section[2]/div/h2' (tried for 20 second(s) with 500 MILLISECONDS interval)]]>
+    </line>
   </reporter-output>
-  <suite name="Default suite" duration-ms="36532" started-at="2017-11-01T03:56:56Z" finished-at="2017-11-01T03:57:33Z">
+  <suite name="Default suite" duration-ms="236847" started-at="2017-11-30T18:27:44Z" finished-at="2017-11-30T18:31:41Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="36532" started-at="2017-11-01T03:56:56Z" finished-at="2017-11-01T03:57:33Z">
-      <class name="com.shearcircle.testscenarios.SubscriberSignup">
-        <test-method status="PASS" signature="beforeclass(java.lang.String)[pri:0, instance:com.shearcircle.testscenarios.SubscriberSignup@1794d431]" name="beforeclass" is-config="true" duration-ms="9140" started-at="2017-11-01T09:26:56Z" finished-at="2017-11-01T09:27:05Z">
+    <test name="Default test" duration-ms="236847" started-at="2017-11-30T18:27:44Z" finished-at="2017-11-30T18:31:41Z">
+      <class name="com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime">
+        <test-method status="PASS" signature="beforeclass(java.lang.String)[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="beforeclass" is-config="true" duration-ms="9148" started-at="2017-11-30T23:57:44Z" finished-at="2017-11-30T23:57:53Z">
           <params>
             <param index="0">
               <value>
@@ -18,41 +35,239 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeclass -->
-        <test-method status="PASS" signature="TS002()[pri:0, instance:com.shearcircle.testscenarios.SubscriberSignup@1794d431]" name="TS002" duration-ms="19490" started-at="2017-11-01T09:27:05Z" description="Subscriber clicks on Start 14 Day Free Trial button " finished-at="2017-11-01T09:27:25Z">
+        <test-method status="PASS" signature="TC_4_001_loginButtonClickable()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="TC_4_001_loginButtonClickable" duration-ms="14675" started-at="2017-11-30T23:57:53Z" description="Valid Login button is clickable and Signin page is displayed" finished-at="2017-11-30T23:58:08Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TS002 -->
-        <test-method status="PASS" signature="StatusScreenShots(org.testng.ITestResult)[pri:0, instance:com.shearcircle.testscenarios.SubscriberSignup@1794d431]" name="StatusScreenShots" is-config="true" duration-ms="2507" started-at="2017-11-01T09:27:25Z" finished-at="2017-11-01T09:27:27Z">
+        </test-method> <!-- TC_4_001_loginButtonClickable -->
+        <test-method status="PASS" signature="StatusScreenShots(org.testng.ITestResult)[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="StatusScreenShots" is-config="true" duration-ms="1972" started-at="2017-11-30T23:58:08Z" finished-at="2017-11-30T23:58:10Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=TS002 status=SUCCESS method=SubscriberSignup.TS002()[pri:0, instance:com.shearcircle.testscenarios.SubscriberSignup@1794d431] output={null}]]]>
+                <![CDATA[[TestResult name=TC_4_001_loginButtonClickable status=SUCCESS method=TS_004_SubscriberLoginforFirstTime.TC_4_001_loginButtonClickable()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- StatusScreenShots -->
-        <test-method status="PASS" signature="visitsJoinOurCirclepage()[pri:0, instance:com.shearcircle.testscenarios.SubscriberSignup@1794d431]" name="visitsJoinOurCirclepage" duration-ms="3017" started-at="2017-11-01T09:27:27Z" description="Subscriber visits Join Our Circle page" finished-at="2017-11-01T09:27:30Z">
+        <test-method status="PASS" signature="TC_4_002_loginUsingInvalidCredentials()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="TC_4_002_loginUsingInvalidCredentials" duration-ms="4495" started-at="2017-11-30T23:58:10Z" description="Checking whether able to login by entering invalid credentials" finished-at="2017-11-30T23:58:14Z">
           <reporter-output>
+            <line>
+              <![CDATA[************Assertion Done**********]]>
+            </line>
           </reporter-output>
-        </test-method> <!-- visitsJoinOurCirclepage -->
-        <test-method status="PASS" signature="StatusScreenShots(org.testng.ITestResult)[pri:0, instance:com.shearcircle.testscenarios.SubscriberSignup@1794d431]" name="StatusScreenShots" is-config="true" duration-ms="1439" started-at="2017-11-01T09:27:30Z" finished-at="2017-11-01T09:27:32Z">
+        </test-method> <!-- TC_4_002_loginUsingInvalidCredentials -->
+        <test-method status="PASS" signature="StatusScreenShots(org.testng.ITestResult)[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="StatusScreenShots" is-config="true" duration-ms="1502" started-at="2017-11-30T23:58:14Z" finished-at="2017-11-30T23:58:16Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=visitsJoinOurCirclepage status=SUCCESS method=SubscriberSignup.visitsJoinOurCirclepage()[pri:0, instance:com.shearcircle.testscenarios.SubscriberSignup@1794d431] output={null}]]]>
+                <![CDATA[[TestResult name=TC_4_002_loginUsingInvalidCredentials status=SUCCESS method=TS_004_SubscriberLoginforFirstTime.TC_4_002_loginUsingInvalidCredentials()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59] output=************Assertion Done**********]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- StatusScreenShots -->
-        <test-method status="PASS" signature="afterClass()[pri:0, instance:com.shearcircle.testscenarios.SubscriberSignup@1794d431]" name="afterClass" is-config="true" duration-ms="910" started-at="2017-11-01T09:27:32Z" finished-at="2017-11-01T09:27:33Z">
+        <test-method status="PASS" signature="TC_4_003_loginUsingValidCredentials()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="TC_4_003_loginUsingValidCredentials" duration-ms="4463" started-at="2017-11-30T23:58:16Z" description="Checking whether able to login by entering Valid credentials" finished-at="2017-11-30T23:58:20Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- afterClass -->
-      </class> <!-- com.shearcircle.testscenarios.SubscriberSignup -->
+        </test-method> <!-- TC_4_003_loginUsingValidCredentials -->
+        <test-method status="PASS" signature="StatusScreenShots(org.testng.ITestResult)[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="StatusScreenShots" is-config="true" duration-ms="1634" started-at="2017-11-30T23:58:20Z" finished-at="2017-11-30T23:58:22Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_4_003_loginUsingValidCredentials status=SUCCESS method=TS_004_SubscriberLoginforFirstTime.TC_4_003_loginUsingValidCredentials()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- StatusScreenShots -->
+        <test-method status="PASS" signature="TC_4_004_loginintoDashboard()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="TC_4_004_loginintoDashboard" duration-ms="5471" started-at="2017-11-30T23:58:22Z" description="Checking whether able to login by entering Valid credentials" finished-at="2017-11-30T23:58:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_4_004_loginintoDashboard -->
+        <test-method status="PASS" signature="StatusScreenShots(org.testng.ITestResult)[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="StatusScreenShots" is-config="true" duration-ms="1505" started-at="2017-11-30T23:58:27Z" finished-at="2017-11-30T23:58:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_4_004_loginintoDashboard status=SUCCESS method=TS_004_SubscriberLoginforFirstTime.TC_4_004_loginintoDashboard()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- StatusScreenShots -->
+        <test-method status="PASS" signature="TC_4_005_signinfromWhatDescribesYouPage()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="TC_4_005_signinfromWhatDescribesYouPage" duration-ms="10941" started-at="2017-11-30T23:58:29Z" description="Checking whether able to login into Dashboard by relogin from What Describes You Page" finished-at="2017-11-30T23:58:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_4_005_signinfromWhatDescribesYouPage -->
+        <test-method status="PASS" signature="StatusScreenShots(org.testng.ITestResult)[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="StatusScreenShots" is-config="true" duration-ms="1488" started-at="2017-11-30T23:58:40Z" finished-at="2017-11-30T23:58:41Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_4_005_signinfromWhatDescribesYouPage status=SUCCESS method=TS_004_SubscriberLoginforFirstTime.TC_4_005_signinfromWhatDescribesYouPage()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- StatusScreenShots -->
+        <test-method status="PASS" signature="TC_4_006_clickonNextStepinWhatDescribesYouPage()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="TC_4_006_clickonNextStepinWhatDescribesYouPage" duration-ms="1872" started-at="2017-11-30T23:58:41Z" description="Checking whether we can navigate to next page by clicking Next Step button without selecting the options" finished-at="2017-11-30T23:58:43Z">
+          <reporter-output>
+            <line>
+              <![CDATA[************Assertion Done**********]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- TC_4_006_clickonNextStepinWhatDescribesYouPage -->
+        <test-method status="PASS" signature="StatusScreenShots(org.testng.ITestResult)[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="StatusScreenShots" is-config="true" duration-ms="1512" started-at="2017-11-30T23:58:43Z" finished-at="2017-11-30T23:58:44Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_4_006_clickonNextStepinWhatDescribesYouPage status=SUCCESS method=TS_004_SubscriberLoginforFirstTime.TC_4_006_clickonNextStepinWhatDescribesYouPage()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59] output=************Assertion Done**********]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- StatusScreenShots -->
+        <test-method status="PASS" signature="TC_4_007_clickonNextStepSelectingOtherService()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="TC_4_007_clickonNextStepSelectingOtherService" duration-ms="5434" started-at="2017-11-30T23:58:44Z" description="Checking whether we can navigate to next page by not adding service in Other Service option " finished-at="2017-11-30T23:58:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_4_007_clickonNextStepSelectingOtherService -->
+        <test-method status="PASS" signature="StatusScreenShots(org.testng.ITestResult)[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="StatusScreenShots" is-config="true" duration-ms="1392" started-at="2017-11-30T23:58:50Z" finished-at="2017-11-30T23:58:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_4_007_clickonNextStepSelectingOtherService status=SUCCESS method=TS_004_SubscriberLoginforFirstTime.TC_4_007_clickonNextStepSelectingOtherService()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- StatusScreenShots -->
+        <test-method status="PASS" signature="TC_4_008_clickonNextStepaddingServiceinOtherService()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="TC_4_008_clickonNextStepaddingServiceinOtherService" duration-ms="24420" started-at="2017-11-30T23:58:51Z" description="Checking whether we can navigate to next page by adding Service in Other Services option" finished-at="2017-11-30T23:59:16Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on XP (86dad449e0551b27b4b9f9aa800732a4)] -> xpath: html/body/section[2]/div/h2] (tried for 20 second(s) with 500 MILLISECONDS interval)
+Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
+System info: host: 'DESKTOP-L1J67QN', ip: '192.168.0.103', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_151'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=XP, acceptSslCerts=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, platformName=XP, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f), userDataDir=C:\Users\HPPC~1\AppData\Local\Temp\scoped_dir488_3578}, takesHeapSnapshot=true, pageLoadStrategy=normal, unhandledPromptBehavior=, databaseEnabled=false, handlesAlerts=true, version=62.0.3202.94, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 86dad449e0551b27b4b9f9aa800732a4]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- TC_4_008_clickonNextStepaddingServiceinOtherService -->
+        <test-method status="PASS" signature="StatusScreenShots(org.testng.ITestResult)[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="StatusScreenShots" is-config="true" duration-ms="1359" started-at="2017-11-30T23:59:16Z" finished-at="2017-11-30T23:59:17Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_4_008_clickonNextStepaddingServiceinOtherService status=SUCCESS method=TS_004_SubscriberLoginforFirstTime.TC_4_008_clickonNextStepaddingServiceinOtherService()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59] output=Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on XP (86dad449e0551b27b4b9f9aa800732a4)] -> xpath: html/body/section[2]/div/h2] (tried for 20 second(s) with 500 MILLISECONDS interval)
+Build info: version: '3.6.0', revision: '6fbf3ec767', time: '2017-09-27T15:28:36.4Z'
+System info: host: 'DESKTOP-L1J67QN', ip: '192.168.0.103', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_151'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{mobileEmulationEnabled=false, hasTouchScreen=false, platform=XP, acceptSslCerts=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, platformName=XP, setWindowRect=true, unexpectedAlertBehaviour=, applicationCacheEnabled=false, rotatable=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.33.506120 (e3e53437346286c0bc2d2dc9aa4915ba81d9023f), userDataDir=C:\Users\HPPC~1\AppData\Local\Temp\scoped_dir488_3578}, takesHeapSnapshot=true, pageLoadStrategy=normal, unhandledPromptBehavior=, databaseEnabled=false, handlesAlerts=true, version=62.0.3202.94, browserConnectionEnabled=false, nativeEvents=true, locationContextEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 86dad449e0551b27b4b9f9aa800732a4]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- StatusScreenShots -->
+        <test-method status="PASS" signature="TC_4_009_clickonNextStepaddingService()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="TC_4_009_clickonNextStepaddingService" duration-ms="3" started-at="2017-11-30T23:59:17Z" description="Check if you can navigate to next page by selecting an option (except Other Services)" finished-at="2017-11-30T23:59:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_4_009_clickonNextStepaddingService -->
+        <test-method status="PASS" signature="StatusScreenShots(org.testng.ITestResult)[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="StatusScreenShots" is-config="true" duration-ms="1411" started-at="2017-11-30T23:59:17Z" finished-at="2017-11-30T23:59:18Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_4_009_clickonNextStepaddingService status=SUCCESS method=TS_004_SubscriberLoginforFirstTime.TC_4_009_clickonNextStepaddingService()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- StatusScreenShots -->
+        <test-method status="PASS" signature="TC_4_010_clickonMyAccountinBusinessDetailspage()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="TC_4_010_clickonMyAccountinBusinessDetailspage" duration-ms="6280" started-at="2017-11-30T23:59:18Z" description="Checking whether we can access Dashboard from Your Business Details page" finished-at="2017-11-30T23:59:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_4_010_clickonMyAccountinBusinessDetailspage -->
+        <test-method status="PASS" signature="StatusScreenShots(org.testng.ITestResult)[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="StatusScreenShots" is-config="true" duration-ms="1476" started-at="2017-11-30T23:59:25Z" finished-at="2017-11-30T23:59:26Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_4_010_clickonMyAccountinBusinessDetailspage status=SUCCESS method=TS_004_SubscriberLoginforFirstTime.TC_4_010_clickonMyAccountinBusinessDetailspage()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- StatusScreenShots -->
+        <test-method status="PASS" signature="TC_4_011_ReloginintoBusinessDetailspage()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="TC_4_011_ReloginintoBusinessDetailspage" duration-ms="102173" started-at="2017-11-30T23:59:26Z" description="Checking whether able to login into Dashboard by relogin from Your Business Details page" finished-at="2017-12-01T00:01:08Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: html/body/section[2]/div/h2' (tried for 20 second(s) with 500 MILLISECONDS interval)]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- TC_4_011_ReloginintoBusinessDetailspage -->
+        <test-method status="PASS" signature="StatusScreenShots(org.testng.ITestResult)[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="StatusScreenShots" is-config="true" duration-ms="1613" started-at="2017-12-01T00:01:08Z" finished-at="2017-12-01T00:01:10Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_4_011_ReloginintoBusinessDetailspage status=SUCCESS method=TS_004_SubscriberLoginforFirstTime.TC_4_011_ReloginintoBusinessDetailspage()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59] output=Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: html/body/section[2]/div/h2' (tried for 20 second(s) with 500 MILLISECONDS interval)]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- StatusScreenShots -->
+        <test-method status="PASS" signature="TC_4_012_clickonNextStepinBusinessDetailspage()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="TC_4_012_clickonNextStepinBusinessDetailspage" duration-ms="4322" started-at="2017-12-01T00:01:10Z" description="Checking whether able to login into Dashboard by relogin from Your Business Details page" finished-at="2017-12-01T00:01:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_4_012_clickonNextStepinBusinessDetailspage -->
+        <test-method status="PASS" signature="StatusScreenShots(org.testng.ITestResult)[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="StatusScreenShots" is-config="true" duration-ms="1391" started-at="2017-12-01T00:01:14Z" finished-at="2017-12-01T00:01:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_4_012_clickonNextStepinBusinessDetailspage status=SUCCESS method=TS_004_SubscriberLoginforFirstTime.TC_4_012_clickonNextStepinBusinessDetailspage()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- StatusScreenShots -->
+        <test-method status="PASS" signature="TC_4_013_clickonNextStepinBusinessDetailspageEnteringdetails()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="TC_4_013_clickonNextStepinBusinessDetailspageEnteringdetails" duration-ms="11491" started-at="2017-12-01T00:01:16Z" description="Checking whether we can navigate to next page after entering valid details in Your Business Details page" finished-at="2017-12-01T00:01:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_4_013_clickonNextStepinBusinessDetailspageEnteringdetails -->
+        <test-method status="PASS" signature="StatusScreenShots(org.testng.ITestResult)[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="StatusScreenShots" is-config="true" duration-ms="1375" started-at="2017-12-01T00:01:27Z" finished-at="2017-12-01T00:01:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_4_013_clickonNextStepinBusinessDetailspageEnteringdetails status=SUCCESS method=TS_004_SubscriberLoginforFirstTime.TC_4_013_clickonNextStepinBusinessDetailspageEnteringdetails()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- StatusScreenShots -->
+        <test-method status="PASS" signature="TC_4_014_loginintoDashboarddirectly()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="TC_4_014_loginintoDashboarddirectly" duration-ms="10564" started-at="2017-12-01T00:01:29Z" description="Checking whether we were able to login directly to Dashboard" finished-at="2017-12-01T00:01:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_4_014_loginintoDashboarddirectly -->
+        <test-method status="PASS" signature="StatusScreenShots(org.testng.ITestResult)[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59]" name="StatusScreenShots" is-config="true" duration-ms="1365" started-at="2017-12-01T00:01:39Z" finished-at="2017-12-01T00:01:41Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_4_014_loginintoDashboarddirectly status=SUCCESS method=TS_004_SubscriberLoginforFirstTime.TC_4_014_loginintoDashboarddirectly()[pri:0, instance:com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime@1a968a59] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- StatusScreenShots -->
+      </class> <!-- com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

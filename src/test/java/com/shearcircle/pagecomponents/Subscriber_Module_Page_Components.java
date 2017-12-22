@@ -90,7 +90,8 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 				browser.sendkeys(SCobjects.Subscriber_LastName_Textbox, LastName);
 				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_Email_Textbox, "Email textbox");
 				browser.sendkeys(SCobjects.Subscriber_Email_Textbox, ProfessionalEmail);
-				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_BusinessName_Textbox, "buisiness textbox");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_BusinessName_Textbox,
+						"buisiness textbox");
 				browser.sendkeys(SCobjects.Subscriber_BusinessName_Textbox, BusinessName);
 				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_Subdomain_textbox, "Subdomain textbox");
 				browser.sendkeys(SCobjects.Subscriber_Subdomain_textbox, Subdomain);
@@ -105,7 +106,8 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_billingAgrement_checkbox,
 						"billingagrement Checkbox");
 				browser.check_Checkbox(SCobjects.Subscriber_billingAgrement_checkbox);
-				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_JoinOurCircle_Button, "JoinCircle Button");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_JoinOurCircle_Button,
+						"JoinCircle Button");
 				browser.click(SCobjects.Subscriber_JoinOurCircle_Button);
 			}
 
@@ -314,6 +316,184 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		// browser.clickUsingJavaScript(SCobjects.Subscriber_StartFreeTrial_button);
 	}
 
+	// TS_3_001
+	public void CheckVerificationLink() throws Exception {
+		driver.get(browser.getdata("Yopmail_URL"));
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		browser.sendkeys(SCobjects.Subscriber_Yopmail_Text, browser.getdata("Email"));
+		browser.click(SCobjects.Subscriber_Yopmail_CheckInbox);
+		Thread.sleep(5000);
+		// browser.iFramesElement(SCobjects.Subscriber_Yopmail_ClickEmail);
+		// browser.waitforelementtobevisible(SCobjects.Subscriber_Yopmail_ClickEmail,20);
+		// browser.click(SCobjects.Subscriber_Yopmail_ClickEmail);
+		// browser.iFramesElement(SCobjects.Subscriber_Yopmail_ClickVerifyEmailAddress);
+		browser.switchToFrameByInt(6);
+		browser.waitforelementtobevisible(SCobjects.Subscriber_Yopmail_ClickVerifyEmailAddress, 20);
+		browser.clickUsingJavaScript(SCobjects.Subscriber_Yopmail_ClickVerifyEmailAddress);
+
+		// TS_3_002
+		driver.navigate().back();
+		browser.waitforelementtobevisible(SCobjects.Subscriber_Yopmail_ClickEmail, 20);
+		browser.click(SCobjects.Subscriber_Yopmail_ClickEmail);
+		browser.getelementtext(SCobjects.Subscriber_Yopmail_GetWelcomeEmailText);
+
+	}
+
+	// TS_4_001
+	public void loginButtonClickable() throws InterruptedException {
+		launchApplication();
+		driver.manage().window().maximize();
+		browser.clickUsingJavaScript(SCobjects.Subscriber_Login_Button);
+		browser.waitforelementtobevisible(SCobjects.Subscriber_SignIn_Text, 5);
+
+	}
+
+	// TS_4_002
+	public void loginUsingInvalidCredentials() throws InterruptedException {
+		browser.sendkeys(SCobjects.Subscriber_UserName_TextBox, browser.getdata("MyAccountIVUserName"));
+		browser.sendkeys(SCobjects.Subscriber_Password_TextBox, browser.getdata("MyAccountIVPassword"));
+		browser.clickUsingJavaScript(SCobjects.Subscriber_SignIn_Button);
+		Thread.sleep(3000);
+		browser.assertionByusingWebElement(SCobjects.Subscriber_InvalidUserErrMsg,
+				browser.getdata("InvalidUserErrMsg"));
+		
+	}
+
+	// TS_4_003 //Before execute this create new credentials and verify from mail also
+	public void loginUsingValidCredentials() throws InterruptedException {
+		browser.clearText(SCobjects.Subscriber_UserName_TextBox);
+		browser.clearText(SCobjects.Subscriber_Password_TextBox);
+		browser.sendkeys(SCobjects.Subscriber_UserName_TextBox, browser.getdata("MyAccountUserName"));
+		browser.sendkeys(SCobjects.Subscriber_Password_TextBox, browser.getdata("MyAccountPassword"));
+		browser.clickUsingJavaScript(SCobjects.Subscriber_SignIn_Button);
+		browser.elementisdisplayed(SCobjects.Subscriber_WhatDescribesYouBest_Text);
+		Thread.sleep(3000);
+	}
+
+	// TS_4_004
+	public void loginintoDashboard() throws InterruptedException {
+		browser.clickUsingJavaScript(SCobjects.Subscriber_MyAccount);
+		browser.elementisdisplayed(SCobjects.Subscriber_WhatDescribesYouBest_Text);
+		Thread.sleep(3000);
+	}
+
+	// TS_4_005
+	public void signinfromWhatDescribesYouPage() throws InterruptedException {
+		browser.clickUsingJavaScript(SCobjects.Subscriber_WhatDescribesYouBest_logout_Text);
+		browser.elementisdisplayed(SCobjects.Subscriber_UserName_TextBox);
+		browser.sendkeys(SCobjects.Subscriber_UserName_TextBox, browser.getdata("MyAccountUserName"));
+		browser.sendkeys(SCobjects.Subscriber_Password_TextBox, browser.getdata("MyAccountPassword"));
+		browser.clickUsingJavaScript(SCobjects.Subscriber_SignIn_Button);
+		Thread.sleep(1500);
+		browser.elementisdisplayed(SCobjects.Subscriber_WhatDescribesYouBest_Text);
+		Thread.sleep(1500);
+	}
+
+	// TS_4_006
+	public void clickonNextStepinWhatDescribesYouPage() throws InterruptedException {
+		browser.clickUsingJavaScript(SCobjects.Subscriber_WhatDescribesYouBest_NextStep);
+		String Message = browser.getelementtext(SCobjects.Subscriber_WhatDescribesYouBest_Pleasechooseservice);
+		System.out.println("***********" + Message + "********");
+		Thread.sleep(1500);
+		browser.assertionByusingWebElement(SCobjects.Subscriber_WhatDescribesYouBest_Pleasechooseservice,
+				browser.getdata("NextStepErrMsg"));		
+	}
+
+	// TS_4_007
+	public void clickonNextStepSelectingOtherService() throws InterruptedException {
+		browser.scrollintoviewelement(SCobjects.Subscriber_WhatDescribesYouBest_OtherService);
+		browser.clickUsingJavaScript(SCobjects.Subscriber_WhatDescribesYouBest_OtherService);
+		browser.clickUsingJavaScript(SCobjects.Subscriber_WhatDescribesYouBest_NextStep);
+		Thread.sleep(1500);
+		browser.elementisdisplayed(SCobjects.Subscriber_WhatDescribesYouBest_OtherService);
+		Thread.sleep(3000);
+	}
+
+	// TS_4_008
+	public void clickonNextStepaddingServiceinOtherService() throws InterruptedException {
+		browser.scrollintoviewelement(SCobjects.Subscriber_WhatDescribesYouBest_OtherService);
+		browser.clickUsingJavaScript(SCobjects.Subscriber_WhatDescribesYouBest_OtherService);
+		browser.sendkeys(SCobjects.Subscriber_WhatDescribesYouBest_AddService_Text, browser.getdata("ServiceAdded"));
+		browser.clickUsingJavaScript(SCobjects.Subscriber_WhatDescribesYouBest_AddService_button);
+		Thread.sleep(3000);
+		//browser.clickUsingJavaScript(SCobjects.Subscriber_WhatDescribesYouBest_NextStep);
+		browser.elementisdisplayed(SCobjects.Subscriber_WhatDescribesYouBest_YourBusinessDetails);
+
+	}
+
+	// TS_4_009
+		public void clickonNextStepaddingService() throws InterruptedException {
+		//unable to come back for other selection like spa....
+		}
+	// TS_4_010
+	public void clickonMyAccountinBusinessDetailspage() throws InterruptedException {
+		browser.clickUsingJavaScript(SCobjects.Subscriber_MyAccount);
+		browser.elementisdisplayed(SCobjects.Subscriber_WhatDescribesYouBest_YourBusinessDetails);
+		Thread.sleep(3000);
+	}
+
+	// TS_4_011
+	public void ReloginintoBusinessDetailspage() throws InterruptedException {
+		browser.clickUsingJavaScript(SCobjects.Subscriber_WhatDescribesYouBest_logout_Text);
+		Thread.sleep(3000);
+		browser.clickUsingJavaScript(SCobjects.Subscriber_Login_Button);
+		browser.elementisdisplayed(SCobjects.Subscriber_WhatDescribesYouBest_YourBusinessDetails);
+		browser.sendkeys(SCobjects.Subscriber_UserName_TextBox, browser.getdata("MyAccountUserName"));
+		browser.sendkeys(SCobjects.Subscriber_Password_TextBox, browser.getdata("MyAccountPassword"));
+		browser.clickUsingJavaScript(SCobjects.Subscriber_SignIn_Button);
+		Thread.sleep(2000);
+		browser.elementisdisplayed(SCobjects.Subscriber_WhatDescribesYouBest_YourBusinessDetails);
+		Thread.sleep(000);
+	}
+
+	// TS_4_012
+	public void clickonNextStepinBusinessDetailspage() throws InterruptedException {
+		browser.scrollintoviewelement(SCobjects.Subscriber_WhatDescribesYouBest_YourBusinessDetails);
+		browser.clickUsingJavaScript(SCobjects.Subscriber_WhatDescribesYouBest_BusinessDetailsNextStep);
+		String Message1 = browser.getelementtext(SCobjects.Subscriber_BusinessDetails_PleaseEnterAddress_Text);
+		System.out.println("***********" + Message1 + "********");
+		String Message2 = browser.getelementtext(SCobjects.Subscriber_BusinessDetails_PleaseEnterCity_Text);
+		System.out.println("***********" + Message2 + "********");
+		//browser.scrollintoviewelement(SCobjects.Subscriber_BusinessDetails_PleaseEnterZipcode_Text);
+		String Message3 = browser.getelementtext(SCobjects.Subscriber_BusinessDetails_PleaseEnterZipcode_Text);
+		System.out.println("***********" + Message3 + "********");
+		Thread.sleep(3000);
+	}
+
+	// TS_4_013
+	public void clickonNextStepinBusinessDetailspageEnteringdetails() throws InterruptedException {
+		
+		browser.scrollintoviewelement(SCobjects.Subscriber_WhatDescribesYouBest_YourBusinessDetails);
+		browser.sendkeys(SCobjects.Subscriber_BusinessDetails_PleaseEnterAddress_Editbox,
+				browser.getdata("BusinessAddress"));
+		browser.sendkeys(SCobjects.Subscriber_BusinessDetails_PleaseEnterCity_Editbox, browser.getdata("BusinessCity"));
+		browser.selectByVisibleText(SCobjects.Subscriber_BusinessDetails_PleaseEnterState_Dropdownbox,browser.getdata("BusinessCountry") );
+		//browser.scrollintoviewelement(SCobjects.Subscriber_BusinessDetails_PleaseEnterZipcode_Editbox);
+		browser.sendkeys(SCobjects.Subscriber_BusinessDetails_PleaseEnterZipcode_Editbox,
+				browser.getdata("BusinessZipcode"));
+		browser.clickUsingJavaScript(SCobjects.Subscriber_WhatDescribesYouBest_BusinessDetailsNextStep);
+		Thread.sleep(1500);
+		browser.elementisdisplayed(SCobjects.Subscriber_WelcomeBusinessName_Text);
+		String businessName = browser.getelementtext(SCobjects.Subscriber_WelcomeBusinessName_Text);
+		System.out.println(businessName);
+		Thread.sleep(3000);
+	}
+
+	// TS_4_014
+	public void loginintoDashboarddirectly() throws InterruptedException {
+		browser.clickUsingJavaScript(SCobjects.Subscriber_HumanIcon);
+		Thread.sleep(500);
+		browser.clickUsingJavaScript(SCobjects.Subscriber_HumanIcon_logout_link);
+		Thread.sleep(1500);
+		browser.sendkeys(SCobjects.Subscriber_UserName_TextBox, browser.getdata("MyAccountUserName"));
+		browser.sendkeys(SCobjects.Subscriber_Password_TextBox, browser.getdata("MyAccountPassword"));
+		browser.clickUsingJavaScript(SCobjects.Subscriber_SignIn_Button);
+		Thread.sleep(1500);
+		browser.elementisdisplayed(SCobjects.Subscriber_WelcomeBusinessName_Text);
+		String businessName = browser.getelementtext(SCobjects.Subscriber_WelcomeBusinessName_Text);
+		System.out.println("****businessName***************:"+businessName);
+	}
+
 	// TS_5_001
 	public void loginToDashboard() throws Exception {
 		launchApplication();
@@ -399,8 +579,8 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		browser.clickUsingJavaScript(SCobjects.Subscriber_SignIn_Button);
 		Thread.sleep(3000);
 		String LastLoginDateAndTime2 = browser.getelementtext(SCobjects.Subscriber_LastLoginDateAndTime);
-		System.out.println("LastLoginDateAndTime1>>>>>"+LastLoginDateAndTime1);
-		System.out.println("LastLoginDateAndTime2>>>>>>>>"+LastLoginDateAndTime2);
+		System.out.println("LastLoginDateAndTime1>>>>>" + LastLoginDateAndTime1);
+		System.out.println("LastLoginDateAndTime2>>>>>>>>" + LastLoginDateAndTime2);
 		if (LastLoginDateAndTime1 != LastLoginDateAndTime2) {
 			System.out.println("***********LastLoginDateAndTime is uptodate.....");
 		} else {
@@ -456,6 +636,124 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		browser.waitforelementtobevisible(SCobjects.Subscriber_Bookingspage, 10);
 		driver.navigate().back();
 		Thread.sleep(2000);
+
+	}
+
+	// TS_8
+	// TC_8_001
+	public void updatePasswordPage() throws Exception {
+		launchApplication();
+		driver.manage().window().maximize();
+		browser.clickUsingJavaScript(SCobjects.Subscriber_Login_Button);
+		browser.sendkeys(SCobjects.Subscriber_UserName_TextBox, browser.getdata("DashboardUserName"));
+		browser.sendkeys(SCobjects.Subscriber_Password_TextBox, browser.getdata("DashboardPassword"));
+		// browser.scrollintoviewelement(SCobjects.Subscriber_SignIn_Button);
+		browser.clickUsingJavaScript(SCobjects.Subscriber_SignIn_Button);
+		Thread.sleep(3000);
+		browser.click(SCobjects.Subscriber_UserIcon);
+		browser.click(SCobjects.Subscriber_ClickOnChangePassword);
+		browser.waitforelementtobevisible(SCobjects.Subscriber_UpdateProfilePassword, 10);
+
+	}
+
+	// TC_8_002
+	public void clickOnUpdateButtonWithoutEnteringData() throws Exception {
+		browser.clickUsingJavaScript(SCobjects.Subscriber_ClickUpdateButton);
+		Thread.sleep(2000);
+		browser.assertionByusingWebElement(SCobjects.Subscriber_GetOldPasswordMessage,
+				browser.getdata("OldPasswordErrMsg"));
+		browser.assertionByusingWebElement(SCobjects.Subscriber_GetNewPasswordMessage,
+				browser.getdata("NewPasswordErrMsg"));
+	}
+
+	// TC_8_003
+	public void enterWrongOldPassword() {
+		browser.sendkeys(SCobjects.Subscriber_EnterOldPasswordText, browser.getdata("InvalidOldPassword"));
+		browser.sendkeys(SCobjects.Subscriber_EnterNewPasswordText, browser.getdata("NewPassword"));
+		browser.sendkeys(SCobjects.Subscriber_EnterRetypePasswordText, browser.getdata("NewPassword"));
+		browser.clickUsingJavaScript(SCobjects.Subscriber_ClickUpdateButton);
+		browser.waitforelementtobevisible(SCobjects.Subscriber_InvalidCurrentPassword, 10);
+		browser.assertionByusingWebElement(SCobjects.Subscriber_InvalidCurrentPassword,
+				browser.getdata("WrongPasswordErrMsg"));
+
+	}
+
+	// TC_8_004
+	public void enterInvalidNewPasswordLength() {
+		browser.sendkeys(SCobjects.Subscriber_EnterOldPasswordText, browser.getdata("OldPassword"));
+		browser.sendkeys(SCobjects.Subscriber_EnterNewPasswordText, browser.getdata("InvalidNewPassword"));
+		browser.tabMoveUsingKeys();
+		browser.tabMoveUsingKeys();
+		// Password must be minimum 6 letters
+		browser.assertionByusingWebElement(SCobjects.Subscriber_GetNewPasswordMessage,
+				browser.getdata("MinimumPasswordErrMsg"));
+		browser.tabMoveUsingKeys();
+		browser.click(SCobjects.Subscriber_ClickUpdateButton);
+		browser.tabMoveUsingKeys();
+		// Please enter the same value again
+		browser.assertionByusingWebElement(SCobjects.Subscriber_RetypePasswordMessage,
+				browser.getdata("RetypePasswordErrMsg"));
+
+	}
+
+	// TC_8_005
+	public void enterInvalidNewPasswordwithSpaces() {
+		browser.sendkeys(SCobjects.Subscriber_EnterOldPasswordText, browser.getdata("OldPassword"));
+		browser.sendkeys(SCobjects.Subscriber_EnterNewPasswordText, browser.getdata("NewPasswordWithSpaces"));
+		browser.sendkeys(SCobjects.Subscriber_EnterRetypePasswordText, browser.getdata("NewPasswordWithSpaces"));
+		browser.tabMoveUsingKeys();
+		// browser.click(SCobjects.Subscriber_ClickUpdateButton);
+		// white space errmsg validation
+		browser.assertionByusingWebElement(SCobjects.Subscriber_GetNewPasswordMessage,
+				browser.getdata("WhiteSpaceErrMsg"));
+
+	}
+
+	// TC_8_006
+	public void checkPasswordIsUpdated() throws Exception {
+		browser.clearText(SCobjects.Subscriber_EnterOldPasswordText);
+		browser.sendkeys(SCobjects.Subscriber_EnterOldPasswordText, browser.getdata("OldPassword"));
+		browser.clearText(SCobjects.Subscriber_EnterNewPasswordText);
+		browser.sendkeys(SCobjects.Subscriber_EnterNewPasswordText, browser.getdata("NewPassword"));
+		browser.clearText(SCobjects.Subscriber_EnterRetypePasswordText);
+		browser.sendkeys(SCobjects.Subscriber_EnterRetypePasswordText, browser.getdata("NewPassword"));
+		browser.click(SCobjects.Subscriber_ClickUpdateButton);
+		Thread.sleep(5000);
+		// Password Updated Succesfully
+		browser.assertionByusingWebElement(SCobjects.Subscriber_PasswordUpdatedSuccessfully,
+				browser.getdata("PasswordSuccessMsg"));
+		Thread.sleep(3000);
+	}
+
+	// TC_8_007
+	public void clickOnCancelButton() {
+		browser.click(SCobjects.Subscriber_ClickCancelButton);
+		browser.waitforelementtobevisible(SCobjects.Subscriber_WelcomeBusinessName_Text, 10);
+
+	}
+
+	// TC_8_008
+	public void validateLoginWithOldPassword() throws Exception {
+		browser.click(SCobjects.Subscriber_UserIcon);
+		browser.click(SCobjects.Subscriber_Logout);
+		Thread.sleep(5000);
+		browser.sendkeys(SCobjects.Subscriber_UserName_TextBox, browser.getdata("DashboardUserName"));
+		browser.sendkeys(SCobjects.Subscriber_Password_TextBox, browser.getdata("OldPassword"));
+		browser.click(SCobjects.Subscriber_SignIn_Button);
+
+		Thread.sleep(5000);
+		// Invalid Credentials error message
+		browser.assertionByusingWebElement(SCobjects.Subscriber_Invalidcredentials,
+				browser.getdata("InvalidCredentialsErrMsg"));
+	}
+
+	// TC_8_009
+	public void validateLoginWithNewPassword() throws Exception {
+		// Change pwd
+		browser.clearText(SCobjects.Subscriber_Password_TextBox);
+		browser.sendkeys(SCobjects.Subscriber_Password_TextBox, browser.getdata("NewPassword"));
+		browser.clickUsingJavaScript(SCobjects.Subscriber_SignIn_Button);
+		Thread.sleep(3000);
 
 	}
 
