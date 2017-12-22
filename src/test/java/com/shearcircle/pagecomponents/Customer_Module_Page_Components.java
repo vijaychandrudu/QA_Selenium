@@ -3092,8 +3092,7 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 							actFilters_name = Checkbox.getText();
 							if (p_in_filters_list.toLowerCase().contains(actFilters_name.trim().toLowerCase())) {
 								filtersAvailability = true;
-								actAllFilters = actAllFilters + ";" + actFilters_name;
-								break;
+								actAllFilters = actAllFilters + ";" + actFilters_name;								
 							}
 						}
 					
@@ -3499,35 +3498,71 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 	
 	public void click_HomePage_NavigateBar_Menulinks(String click_Menulink) {
 		try {	
-			String subCategoryLink = null;
-			subCategoryLink = browser.getdata("subCategoryMenuLink");
+			String searchSalon = "";
+			String searchSpa = "";
+			String searchProfessional = "";
+			String searchResults_Salon_Spa_Prof = "";
+			String enteredSearchString = "";
+			String beautysubCategoryLink = null;
+			String wellnesssubCategoryLink = null;
+			String fitnesssubCategoryLink = null;
+			boolean searchResultsavailablity = false;
+			beautysubCategoryLink = browser.getdata("BeautysubCategoryMenuLink");
+			wellnesssubCategoryLink = browser.getdata("WellnesssubCategoryMenuLink");
+			fitnesssubCategoryLink = browser.getdata("FitnesssubCategoryMenuLink");
 			if (browser.elementisdisplayed(CustomerModule.Home_H1_Header)) {
 				browser.reportscomtep("Passed", "Verify ShearCircle Home page is displayed",
 						"ShearCircle Home page should be displayed", " ShearCircle Home page displayed");
 				switch (click_Menulink) {
 					case "Click_Beauty":						
 						browser.click(CustomerModule.home_Beauty_Link);	
-						browser.getLinkwithLinkText(subCategoryLink);
+						browser.getLinkwithLinkText(beautysubCategoryLink);
+						browser.reportscomtep("Passed", "Click Beauty subcategory link as "+ beautysubCategoryLink +" Link in ShearCircle Home page",
+								"Beauty subcategory link as "+ beautysubCategoryLink +" Link should be clicked in ShearCircle Home page", "Clicked Beauty subcategory link as "+ beautysubCategoryLink +" Link in ShearCircle Home page");
 						break;
 					case "Click_Wellness":
 						browser.click(CustomerModule.home_Welless_Link);
-						browser.getLinkwithLinkText(subCategoryLink);
+						browser.getLinkwithLinkText(wellnesssubCategoryLink);
+						browser.reportscomtep("Passed", "Click Wellness subcategory link as "+ wellnesssubCategoryLink +" Link in ShearCircle Home page",
+								"Wellness subcategory link as "+ wellnesssubCategoryLink +" Link should be clicked in ShearCircle Home page", "Clicked Wellness subcategory link as "+ wellnesssubCategoryLink +" Link in ShearCircle Home page");
 						break;
 					case "Click_Fitness":						
 						browser.click(CustomerModule.home_Fitness_Link);
-						browser.getLinkwithLinkText(subCategoryLink);
+						browser.getLinkwithLinkText(fitnesssubCategoryLink);
+						browser.reportscomtep("Passed", "Click Fitness subcategory link as "+ fitnesssubCategoryLink +" Link in ShearCircle Home page",
+								"Fitness subcategory link as "+ fitnesssubCategoryLink +" Link should be clicked in ShearCircle Home page", "Clicked Fitness subcategory link as "+ fitnesssubCategoryLink +" Link in ShearCircle Home page");
 						break;
-					case "Click_HowItWorks":
-						browser.click(CustomerModule.home_Howitworks_Link);								
+					/*case "Click_HowItWorks":
+						browser.click(CustomerModule.home_Howitworks_Link);	
+						browser.reportscomtep("Passed", click_Menulink+"Link in ShearCircle Home page",
+								"ShearCircle Home page should be displayed", " ShearCircle Home page displayed");
 						break;
 					case "Click_Pricing":
-						browser.click(CustomerModule.home_Pricing_Link);								
-						break;
-				}	
-				
-				browser.reportscomtep("Passed", "Click "+click_Menulink+"ShearCircle Home page is displayed",
-						"ShearCircle Home page should be displayed", " ShearCircle Home page displayed");
-				
+						browser.click(CustomerModule.home_Pricing_Link);		
+						browser.reportscomtep("Passed", "Click "+click_Menulink+"ShearCircle Home page is displayed",
+								"ShearCircle Home page should be displayed", " ShearCircle Home page displayed");
+						break;*/
+				}			
+								
+				browser.waitforelementtobevisible(CustomerModule.home_SearchResults_Message, 20);
+				if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message) && CustomerModule.customer_Search_SalonNames.size()>0) {
+					browser.reportscomtep("Passed",
+							"verify the list of Salons are displayed which provide the selected service/sub category (if available)",
+							"The list of Salons should be displayed which provide the selected service/sub category",
+							"The list of Salons are displayed which provide the selected service/sub category");
+				}else if (browser.elementisdisplayed(CustomerModule.home_NoResultsFound_Message)){	
+					browser.reportscomtep("Passed",
+							"verify the list of Salons are displayed which provide the selected service/sub category (if available)",
+							"The list of Salons should be displayed which provide the selected service/sub category",
+							"The No results found for your search criteria Message displayed as expected if the selected service is not available with any salons");
+					
+				} else {
+					browser.reportscomtep("Failed",
+							"verify the list of Salons are displayed which provide the selected service/sub category (if available)",
+							"The list of Salons should be displayed which provide the selected service/sub category",
+							"The list of Salons are Not displayed which provide the selected service/sub category");
+				}
+				browser.click(CustomerModule.Home_ShearCircle_Image);
 			} else {
 				browser.reportscomtep("Failed", "Verify ShearCircle Home page is displayed",
 						"ShearCircle Home page should be displayed", " ShearCircle Home page not displayed");

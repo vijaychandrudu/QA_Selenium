@@ -53,6 +53,9 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div[contains(text(),'results for your search criteria')]")
     public WebElement home_SearchResults_Message; 
 	
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']/div/h3[text()='No results found for your search criteria']")
+    public WebElement home_NoResultsFound_Message; 
+	
 	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div[contains(text(),'results for your search criteria')]")
     public List<WebElement> home_SearchResultssalons_firstpage_list; 
 	
