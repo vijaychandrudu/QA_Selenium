@@ -1428,6 +1428,27 @@ public class CommonFunctions extends StaticVariables {
 		System.out.println(allText);
 
 	}
+	
+	/*
+	 * Created date:21/12/2017 Description: Parameters: ReturnType:
+	 */
+	public WebElement getLinkwithLinkText(String LinkText){
+		WebElement link = null;
+		try {			
+									
+			if (LinkText!=""){		
+				link = driver.findElement(By.linkText(LinkText));
+				
+			} else {
+				System.out.println("Link text is empty");
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("Error in description: " + e.getStackTrace());
+		}
+		return link;
+	}
 
 	/****************** FRAMES HANDLE *****************/
 	public void switchToDefaultFrame() {
@@ -1520,8 +1541,6 @@ public class CommonFunctions extends StaticVariables {
 			}
 		}
 		return ElementpresenceCount;
-	}
-
-	
+	}	
 
 }

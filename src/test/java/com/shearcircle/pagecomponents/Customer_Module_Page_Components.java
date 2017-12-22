@@ -3494,6 +3494,49 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
 	}
+	
+/***TC_4_1_08 Check the results by selecting a sub category from Home page*****/
+	
+	public void click_HomePage_NavigateBar_Menulinks(String click_Menulink) {
+		try {	
+			String subCategoryLink = null;
+			subCategoryLink = browser.getdata("subCategoryMenuLink");
+			if (browser.elementisdisplayed(CustomerModule.Home_H1_Header)) {
+				browser.reportscomtep("Passed", "Verify ShearCircle Home page is displayed",
+						"ShearCircle Home page should be displayed", " ShearCircle Home page displayed");
+				switch (click_Menulink) {
+					case "Click_Beauty":						
+						browser.click(CustomerModule.home_Beauty_Link);	
+						browser.getLinkwithLinkText(subCategoryLink);
+						break;
+					case "Click_Wellness":
+						browser.click(CustomerModule.home_Welless_Link);
+						browser.getLinkwithLinkText(subCategoryLink);
+						break;
+					case "Click_Fitness":						
+						browser.click(CustomerModule.home_Fitness_Link);
+						browser.getLinkwithLinkText(subCategoryLink);
+						break;
+					case "Click_HowItWorks":
+						browser.click(CustomerModule.home_Howitworks_Link);								
+						break;
+					case "Click_Pricing":
+						browser.click(CustomerModule.home_Pricing_Link);								
+						break;
+				}	
+				
+				browser.reportscomtep("Passed", "Click "+click_Menulink+"ShearCircle Home page is displayed",
+						"ShearCircle Home page should be displayed", " ShearCircle Home page displayed");
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify ShearCircle Home page is displayed",
+						"ShearCircle Home page should be displayed", " ShearCircle Home page not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
 
 
 }
