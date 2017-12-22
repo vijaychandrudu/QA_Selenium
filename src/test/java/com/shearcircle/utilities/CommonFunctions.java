@@ -720,7 +720,7 @@ public class CommonFunctions extends StaticVariables {
 			System.out.println("Error in description: " + e.getStackTrace());
 		}
 
-
+	}
 	
 	public boolean verifyElementtext(WebElement element, String text,String textType) {
 		String textvalue = "";
