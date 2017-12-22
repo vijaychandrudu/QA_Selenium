@@ -3507,6 +3507,7 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 			String wellnesssubCategoryLink = null;
 			String fitnesssubCategoryLink = null;
 			boolean searchResultsavailablity = false;
+			WebElement subcategorylink = null;
 			beautysubCategoryLink = browser.getdata("BeautysubCategoryMenuLink");
 			wellnesssubCategoryLink = browser.getdata("WellnesssubCategoryMenuLink");
 			fitnesssubCategoryLink = browser.getdata("FitnesssubCategoryMenuLink");
@@ -3516,19 +3517,22 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 				switch (click_Menulink) {
 					case "Click_Beauty":						
 						browser.click(CustomerModule.home_Beauty_Link);	
-						browser.getLinkwithLinkText(beautysubCategoryLink);
+						subcategorylink = browser.getLinkwithLinkText(beautysubCategoryLink);
+						browser.click(subcategorylink);	
 						browser.reportscomtep("Passed", "Click Beauty subcategory link as "+ beautysubCategoryLink +" Link in ShearCircle Home page",
 								"Beauty subcategory link as "+ beautysubCategoryLink +" Link should be clicked in ShearCircle Home page", "Clicked Beauty subcategory link as "+ beautysubCategoryLink +" Link in ShearCircle Home page");
 						break;
 					case "Click_Wellness":
 						browser.click(CustomerModule.home_Welless_Link);
-						browser.getLinkwithLinkText(wellnesssubCategoryLink);
+						subcategorylink = browser.getLinkwithLinkText(wellnesssubCategoryLink);
+						browser.click(subcategorylink);	
 						browser.reportscomtep("Passed", "Click Wellness subcategory link as "+ wellnesssubCategoryLink +" Link in ShearCircle Home page",
 								"Wellness subcategory link as "+ wellnesssubCategoryLink +" Link should be clicked in ShearCircle Home page", "Clicked Wellness subcategory link as "+ wellnesssubCategoryLink +" Link in ShearCircle Home page");
 						break;
 					case "Click_Fitness":						
 						browser.click(CustomerModule.home_Fitness_Link);
-						browser.getLinkwithLinkText(fitnesssubCategoryLink);
+						subcategorylink = browser.getLinkwithLinkText(fitnesssubCategoryLink);
+						browser.click(subcategorylink);	
 						browser.reportscomtep("Passed", "Click Fitness subcategory link as "+ fitnesssubCategoryLink +" Link in ShearCircle Home page",
 								"Fitness subcategory link as "+ fitnesssubCategoryLink +" Link should be clicked in ShearCircle Home page", "Clicked Fitness subcategory link as "+ fitnesssubCategoryLink +" Link in ShearCircle Home page");
 						break;
