@@ -31,7 +31,7 @@ public class TS_2_06_CustomerclicksonLoginwithFacebookbutton extends StaticVaria
 	public void beforeclass(@Optional("chrome") String browser) throws IOException, InterruptedException {
 		TestDataPath = cfn.TestDataPathOf("CustomerTestData.properties");
 		Browser = browser;
-		cfn.getAndOpenBrowser(browser);		
+		//cfn.getAndOpenBrowser(browser);		
 		driver = cfn.getDriver();		
 		CR = new Customer_Module_Page_Components(driver);
 		defaultWindowHandle = driver.getWindowHandle();
@@ -43,10 +43,10 @@ public class TS_2_06_CustomerclicksonLoginwithFacebookbutton extends StaticVaria
 		cfn.ScreenshotOnPassFail(testResult);
 		Thread.sleep(1000);
 	}
-	@AfterClass
+	/*@AfterClass
 	public void afterClass() {
 		driver.quit();
-	}
+	}*/
 	
 	@Test(priority=2601, description="TC_2_6_01 Customer visits ShearCircle page" )
 	public void TC_2_6_01_Customer_visitsShearCircle() throws IOException {			

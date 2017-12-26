@@ -34,21 +34,23 @@ public class TS_1_01_CustomerclicksJoinOurCircleButton extends StaticVariables {
 		//cfn.getAndOpenBrowser(browser);		
 		driver = cfn.getDriver();		
 		CR = new Customer_Module_Page_Components(driver);
-		defaultWindowHandle = driver.getWindowHandle();
+		defaultWindowHandle = driver.getWindowHandle();		
 	}
 	
 	
 	@AfterMethod
 	public void StatusScreenShots(ITestResult testResult) throws IOException, InterruptedException {
 		cfn.ScreenshotOnPassFail(testResult);
-		Thread.sleep(11_1_00);
+		Thread.sleep(1000);		
 	}
-
+/*
 	@AfterClass
 	public void afterClass() {
-		driver.quit();
-	}
+		//driver.quit();
+		System.out.println("Test1 After class");
+	}*/
 	
+		
 	@Test(priority=1101, description="TC_1_1_01 Customer visits ShearCircle page")
 	public void TC_1_1_01_Customer_visitsShearCircle() throws IOException {		
 		ExtentTestManager.getTest().setDescription("Customer visits ShearCircle page");
@@ -66,6 +68,6 @@ public class TS_1_01_CustomerclicksJoinOurCircleButton extends StaticVariables {
 		ExtentTestManager.getTest().setDescription("Customer Check Register With ShearCircle page where they can register either as a Customer or as a Professional.");
 		CR.ShearCircle_Click_Customer_OR_Professional_JoinOurCircle("DoNothing");			
 	}
-	
+
 
 }

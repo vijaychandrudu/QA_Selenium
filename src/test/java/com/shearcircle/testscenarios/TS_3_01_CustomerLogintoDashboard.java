@@ -34,21 +34,23 @@ public class TS_3_01_CustomerLogintoDashboard extends StaticVariables {
 		//cfn.getAndOpenBrowser(browser);		
 		driver = cfn.getDriver();		
 		CR = new Customer_Module_Page_Components(driver);
-		defaultWindowHandle = driver.getWindowHandle();
+		defaultWindowHandle = driver.getWindowHandle();		
 	}
 	
 	
 	@AfterMethod
 	public void StatusScreenShots(ITestResult testResult) throws IOException, InterruptedException {
 		cfn.ScreenshotOnPassFail(testResult);
-		Thread.sleep(1000);
+		Thread.sleep(1000);		
 	}
 
-	@AfterClass
+	/*@AfterClass
 	public void afterClass() {
-		driver.quit();
-	}	
+		//driver.quit();
 		
+	}*/
+	
+			
 	@Test(priority=30101, description="Customer visits ShearCircle page" )
 	public void TC_3_1_1_Customer_visitsShearCircle() throws IOException {			
 		CR.ShearCircle_LaunchApplication();			

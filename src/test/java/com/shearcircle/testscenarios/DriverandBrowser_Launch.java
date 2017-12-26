@@ -40,25 +40,25 @@ public class DriverandBrowser_Launch extends StaticVariables {
 		
 	@BeforeTest
 	@Parameters("browser")
-	public void beforeclass(@Optional("chrome") String browser) throws IOException, InterruptedException {
+	public void beforeTest(@Optional("chrome") String browser) throws IOException, InterruptedException {
 		TestDataPath = cfn.TestDataPathOf("CustomerTestData.properties");
 		Browser = browser;
 		cfn.getAndOpenBrowser(browser);		
 		driver = cfn.getDriver();		
 		CR = new Customer_Module_Page_Components(driver);
-		defaultWindowHandle = driver.getWindowHandle();
+		defaultWindowHandle = driver.getWindowHandle();		
 	}
 	
 	
 	@AfterMethod
 	public void StatusScreenShots(ITestResult testResult) throws IOException, InterruptedException {
 		cfn.ScreenshotOnPassFail(testResult);
-		Thread.sleep(1000);
+		Thread.sleep(1000);		
 	}
 
 	@AfterTest
 	public void afterTest() {
-		driver.quit();
+		driver.quit();		
 	}	
 	
 	/*@Test(priority=0, description="ShearCircle Launchbowser Application.")

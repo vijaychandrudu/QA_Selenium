@@ -46,13 +46,13 @@ public class TS_4_01_Customer_SearchforProfessionals_Servicesusingsearchbox exte
 		Thread.sleep(1000);
 	}
 		
-	@AfterClass
+	/*@AfterClass
 	public void CloseDriver(){		
 		driver.quit();
-	}
+	}*/
 	
 	@Test(priority=40101, description="Customer visits ShearCircle page" )
-	public void TC_3_4_1_Customer_visitsShearCircle() throws IOException {	
+	public void TC_4_1_1_Customer_visitsShearCircle() throws IOException {	
 		ExtentTestManager.getTest().setDescription("Customer visits ShearCircle page");
 		CR.ShearCircle_LaunchApplication();			
 	}
@@ -64,7 +64,7 @@ public class TS_4_01_Customer_SearchforProfessionals_Servicesusingsearchbox exte
 	}
 	@Test(priority=40103, description="TC_4_1_02 Verify the search box in inner pages")
 	public void TC_4_1_02_Customer_CheckCancelButtonClickable() throws IOException {			
-		ExtentTestManager.getTest().setDescription("Check the info in Settings page");
+		ExtentTestManager.getTest().setDescription("Verify the search box in inner pages");
 		CR.verify_SearchBoxIn_InnerPage_FieldValidations("Click_Login");			
 	}
 	
@@ -81,7 +81,7 @@ public class TS_4_01_Customer_SearchforProfessionals_Servicesusingsearchbox exte
 	}
 	
 	@Test(priority=40106, description="TC_4_1_05 Check the search result by entering keyword in Salon/Spa/Professional box -(Name)")
-	public void TC_3_4_05_Customer_CheckChangePasswordlinkClickable() throws IOException {			
+	public void TC_4_1_05_Customer_CheckChangePasswordlinkClickable() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the search result by entering keyword in Salon/Spa/Professional box -(Name)");
 		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_Locate_Button", "Salon");
 		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_Locate_Button", "Spa");
@@ -89,7 +89,7 @@ public class TS_4_01_Customer_SearchforProfessionals_Servicesusingsearchbox exte
 	}
 	
 	@Test(priority=40107, description="TC_4_1_06 Check the search result by entering keyword in ZipCode/City,State")
-	public void TC_3_4_06_Customer_ChecksearchresultbyenteringkeywordinZipCode_City_State() throws IOException {			
+	public void TC_4_1_06_Customer_ChecksearchresultbyenteringkeywordinZipCode_City_State() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the search result by entering keyword in ZipCode/City,State");
 		CR.ChecksearchresultbyenteringkeywordinZipCode_City_State("Click_Locate_Button","ZipCode");		
 		CR.ChecksearchresultbyenteringkeywordinZipCode_City_State("Click_Locate_Button","City");		

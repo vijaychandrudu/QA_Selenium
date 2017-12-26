@@ -36,20 +36,22 @@ public class TS_1_02_CustomerclicksonJoinOurCirclebuttononAreyouaCustomer extend
 		//cfn.getAndOpenBrowser(browser);		
 		driver = cfn.getDriver();		
 		CR = new Customer_Module_Page_Components(driver);
-		defaultWindowHandle = driver.getWindowHandle();
+		defaultWindowHandle = driver.getWindowHandle();		
 	}
 	
 	
 	@AfterMethod
 	public void StatusScreenShots(ITestResult testResult) throws IOException, InterruptedException {
 		cfn.ScreenshotOnPassFail(testResult);
-		Thread.sleep(11_2_00);
+		Thread.sleep(1000);		
 	}
 
-	@AfterClass
+	/*@AfterClass
 	public void afterClass() {
-		driver.quit();
-	}
+		//driver.quit();
+		System.out.println("Test2 Afterclass");
+	}*/
+	
 	
 	@Test(priority=1201, description="TC_1_2_01 Customer visits ShearCircle page")
 	
