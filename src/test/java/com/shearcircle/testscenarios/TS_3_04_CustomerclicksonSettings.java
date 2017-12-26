@@ -46,11 +46,11 @@ public class TS_3_04_CustomerclicksonSettings extends StaticVariables {
 		Thread.sleep(1000);
 	}
 		
-	@AfterClass
+	/*@AfterClass
 	public void logOut(){
 		CR.Customer_JoinOurCircle_LogOutpage();
-		driver.quit();
-	}
+		//driver.quit();
+	}*/
 	
 	@Test(priority=30401, description="Customer visits ShearCircle page" )
 	public void TC_3_4_1_Customer_visitsShearCircle() throws IOException {	
@@ -121,6 +121,11 @@ public class TS_3_04_CustomerclicksonSettings extends StaticVariables {
 	public void TC_3_4_09_Customer_CheckCancelButtonclickable() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the Cancel button is clickable in Secure password change page");
 		CR.verify_Cancel_Button_IsClickable_Changepasswordpage();		
+	}
+	@Test(priority=30413)
+	public void logOut(){
+		CR.Customer_JoinOurCircle_LogOutpage();
+		//driver.quit();
 	}
 	
 

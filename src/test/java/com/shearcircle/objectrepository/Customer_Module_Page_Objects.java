@@ -59,8 +59,20 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div[contains(text(),'results for your search criteria')]")
     public List<WebElement> home_SearchResultssalons_firstpage_list; 
 	
+	@FindBy(xpath="//*[@id='filters_col_bt']/i")
+	public WebElement SR_FiltersPlus_Icon;	
+	
+	@FindBy(xpath="//*[@id='filters_col']//div[@class='collapse in']")
+	public WebElement SR_Filters_SectionDispalyed;
+	
+	@FindBy(xpath="//*[@class='collapsed']")
+	public WebElement SR_Filters_SectionDisappear;
+	
 	@FindBy(xpath="//*[@id='collapseFilters']/div[1]/div[1]/ul/li")
-    public List<WebElement> SR_Filters_checkbox_list;
+    public List<WebElement> SR_Filters_checkbox_label_list;
+	
+	@FindBy(xpath="//*[@id='collapseFilters']/div[1]/div[1]/ul/li[1]//ins")
+    public WebElement SR_Filters_checkbox_list;
 	
 	@FindBy(xpath="//*[@id='collapseFilters']/div[1]/div[1]/ul/li/label/div[@class='icheckbox_square-grey checked']/input")
     public List<WebElement> SR_Filters_checkedcheckbox_list;
@@ -115,6 +127,9 @@ public class Customer_Module_Page_Objects{
 	
 	@FindBy(xpath="//div/h2/b[text()='Join Now']")	
     public WebElement Customer_JoinNow_Header;	
+	
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div/ul/li[text()=' Online Payment']")
+    public List<WebElement> customer_OnlinePayment_SearchResults;
 	
 		
 	@FindBy(xpath="//*[@id=\"position\"]/div/ul/li[text()='Customer']")	

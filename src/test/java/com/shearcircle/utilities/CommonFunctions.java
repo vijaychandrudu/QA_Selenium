@@ -69,8 +69,8 @@ public class CommonFunctions extends StaticVariables {
 			System.out.println("screenshots folder already exists.");
 
 		ScreenshotsPath = ProjectDir + "\\screenshots\\";
-		System.out.println("Current Project Physical Location: " + ProjectDir);
-		System.out.println("For screenshots path: " + ScreenshotsPath);
+		//System.out.println("Current Project Physical Location: " + ProjectDir);
+		//System.out.println("For screenshots path: " + ScreenshotsPath);
 		System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.Jdk14Logger");
 	}
 	

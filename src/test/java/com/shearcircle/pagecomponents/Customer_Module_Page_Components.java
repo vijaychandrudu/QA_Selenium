@@ -569,7 +569,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		 try {
 			 browser.ScrollToElementBottom(Login.Login_DonthaveaccountJoinOurCircle_Link);
 		 if(browser.elementisdisplayed(Login.Login_DonthaveaccountJoinOurCircle_Link) && browser.elementisdisplayed(Login.Login_Facebook_Link) && browser.elementisdisplayed(Login.Login_Google_Link)) {
-				browser.reportscomtep("Passed", "Verify Don't have an account yet JoinCircle, Login with FaceBood and Login with Google buttons are displayed", "Don't have an account yet JoinCircle, Login with FaceBood and Login with Google buttons should be displayed", "Don't have an account yet JoinCircle, Login with FaceBood and Login with Google buttons displayed");
+				browser.reportscomtep("Passed", "Verify Don't have an account yet JoinCircle, Login with FaceBook and Login with Google buttons are displayed", "Don't have an account yet JoinCircle, Login with FaceBook and Login with Google buttons should be displayed", "Don't have an account yet JoinCircle, Login with FaceBook and Login with Google buttons displayed");
 				switch (Click_FinalAction){
 					case "Click_Donthaveaccount_JoinOurCircle":
 						//browser.ScrollToElementBottom(Login.Login_DonthaveaccountJoinOurCircle_Link);
@@ -615,7 +615,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				}
 				
 		 }else {
-				browser.reportscomtep("Failed", "Verify Don't have an account yet JoinCircle, Login with FaceBood and Login with Google buttons are displayed", "Don't have an account yet JoinCircle, Login with FaceBood and Login with Google buttons should be displayed", "Don't have an account yet JoinCircle, Login with FaceBood and Login with Google buttons Not displayed");
+				browser.reportscomtep("Failed", "Verify Don't have an account yet JoinCircle, Login with FaceBook and Login with Google buttons are displayed", "Don't have an account yet JoinCircle, Login with FaceBook and Login with Google buttons should be displayed", "Don't have an account yet JoinCircle, Login with FaceBook and Login with Google buttons Not displayed");
 			}
 		 
 		 }catch(Exception e){
@@ -757,6 +757,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				//browser.explicitWaitUsingElementToBeClickable(Login.Facebook_Login_Link);
 				browser.click(Login.Facebook_Login_Link);
 				//String cHandle = driver.getWindowHandle();
+				
 				driver.switchTo().window(defaultWindowHandle);
 				//browser.switchtoDefaultWindow(driver);	
 				if(browser.elementisdisplayed(Login.Customer_MyDashboard_Text))
@@ -3086,9 +3087,9 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 						"Topmost part of List Dropdown displayed options");
 				}	
 							
-				if (CustomerModule.SR_Filters_checkbox_list.size() > 0) {
+				if (CustomerModule.SR_Filters_checkbox_label_list.size() > 0) {
 					
-						for (WebElement Checkbox : CustomerModule.SR_Filters_checkbox_list) {
+						for (WebElement Checkbox : CustomerModule.SR_Filters_checkbox_label_list) {
 							actFilters_name = Checkbox.getText();
 							if (p_in_filters_list.toLowerCase().contains(actFilters_name.trim().toLowerCase())) {
 								filtersAvailability = true;
@@ -3112,8 +3113,8 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 							"Filters section Not displayed with filters");
 				}		
 				
-				if(CustomerModule.SR_Servies_checkbox_list.size()>0){
-					for (WebElement Checkbox : CustomerModule.SR_Servies_checkbox_list) {
+				if(CustomerModule.SR_Filters_checkbox_label_list.size()>0){
+					for (WebElement Checkbox : CustomerModule.SR_Filters_checkbox_label_list) {
 						Service_names = Checkbox.getText();
 						if (Service_names != "") {
 							allServiceNames = allServiceNames + "\n" + Service_names;
@@ -3191,7 +3192,7 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 		}
 	}
 	
-/**************TC_4_1_03	Check the Locate button************/
+/**************TC_4_1_03 Check the Locate button************/
 	
 	public void checkThe_Locate_Button() {
 		try {
@@ -3222,7 +3223,7 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 		}
 	}
 	
-	/**********TC_4_1_05	Check the search result by entering keyword in Salon/Spa/Professional box -(Name)******/
+	/**********TC_4_1_05 Check the search result by entering keyword in Salon/Spa/Professional box -(Name)******/
 
 	public void checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional(String click_Locate_Or_SearchIcon, String SalonOrSpaOrProfessional ) {
 		try {
@@ -3518,23 +3519,29 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 					case "Click_Beauty":						
 						browser.click(CustomerModule.home_Beauty_Link);	
 						subcategorylink = browser.getLinkwithLinkText(beautysubCategoryLink);
+						browser.reportscomtep("Passed", "Click Beauty menulink and verify subcategory "+ beautysubCategoryLink +" Link is displayed",
+								"Subcategory "+ beautysubCategoryLink +" Link should be displayed", "subcategory "+ beautysubCategoryLink +" Link displayed");
 						browser.click(subcategorylink);	
-						browser.reportscomtep("Passed", "Click Beauty subcategory link as "+ beautysubCategoryLink +" Link in ShearCircle Home page",
-								"Beauty subcategory link as "+ beautysubCategoryLink +" Link should be clicked in ShearCircle Home page", "Clicked Beauty subcategory link as "+ beautysubCategoryLink +" Link in ShearCircle Home page");
+						browser.reportscomtep("Passed", "Click Beauty subcategory as "+ beautysubCategoryLink +" Link in ShearCircle Home page",
+								"Beauty subcategory as "+ beautysubCategoryLink +" Link should be clicked in ShearCircle Home page", "Clicked Beauty subcategory as "+ beautysubCategoryLink +" Link in ShearCircle Home page");
 						break;
 					case "Click_Wellness":
 						browser.click(CustomerModule.home_Welless_Link);
 						subcategorylink = browser.getLinkwithLinkText(wellnesssubCategoryLink);
+						browser.reportscomtep("Passed", "Click Wellness menulink and verify subcategory "+ beautysubCategoryLink +" Link is displayed",
+								"Subcategory "+ beautysubCategoryLink +" Link should be displayed", "subcategory "+ beautysubCategoryLink +" Link displayed");
 						browser.click(subcategorylink);	
-						browser.reportscomtep("Passed", "Click Wellness subcategory link as "+ wellnesssubCategoryLink +" Link in ShearCircle Home page",
-								"Wellness subcategory link as "+ wellnesssubCategoryLink +" Link should be clicked in ShearCircle Home page", "Clicked Wellness subcategory link as "+ wellnesssubCategoryLink +" Link in ShearCircle Home page");
+						browser.reportscomtep("Passed", "Click Wellness subcategory as "+ wellnesssubCategoryLink +" Link in ShearCircle Home page",
+								"Wellness subcategory as "+ wellnesssubCategoryLink +" Link should be clicked in ShearCircle Home page", "Clicked Wellness subcategory as "+ wellnesssubCategoryLink +" Link in ShearCircle Home page");
 						break;
 					case "Click_Fitness":						
 						browser.click(CustomerModule.home_Fitness_Link);
 						subcategorylink = browser.getLinkwithLinkText(fitnesssubCategoryLink);
+						browser.reportscomtep("Passed", "Click Fitness menulink and verify subcategory "+ beautysubCategoryLink +" Link is displayed",
+								"Subcategory "+ beautysubCategoryLink +" Link should be displayed", "subcategory "+ beautysubCategoryLink +" Link displayed");
 						browser.click(subcategorylink);	
-						browser.reportscomtep("Passed", "Click Fitness subcategory link as "+ fitnesssubCategoryLink +" Link in ShearCircle Home page",
-								"Fitness subcategory link as "+ fitnesssubCategoryLink +" Link should be clicked in ShearCircle Home page", "Clicked Fitness subcategory link as "+ fitnesssubCategoryLink +" Link in ShearCircle Home page");
+						browser.reportscomtep("Passed", "Click Fitness subcategory as "+ fitnesssubCategoryLink +" Link in ShearCircle Home page",
+								"Fitness subcategory as "+ fitnesssubCategoryLink +" Link should be clicked in ShearCircle Home page", "Clicked Fitness subcategory as "+ fitnesssubCategoryLink +" Link in ShearCircle Home page");
 						break;
 					/*case "Click_HowItWorks":
 						browser.click(CustomerModule.home_Howitworks_Link);	
@@ -3574,6 +3581,214 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+/****TC_4_2_01	Invoke the search results page********/
+	
+	public void invokeTO_SearcResults_Page(){
+		try{
+			browser.click(CustomerModule.Home_ShearCircle_Image);
+			if (browser.elementisdisplayed(CustomerModule.Home_H1_Header)) {
+				browser.reportscomtep("Passed", "Verify ShearCircle Home page is displayed",
+						"ShearCircle Home page should be displayed", " ShearCircle Home page displayed");
+				browser.click(CustomerModule.home_Locate_Button);
+				if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message)) {
+					browser.reportscomtep("Passed",
+							"Click on Locate button without entering any search text and Verify Opens Search Results page is Displayed with all Salons are available",
+							"Search Results page should be Displayed with all Salons are available",
+							"Search Results page Displayed with all Salons are available");
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Locate button without entering any search text and Verify Opens Search Results page is Displayed with all Salons are available",
+							"Search Results page should be Displayed with all Salons are available",
+							"Search Results page Not Displayed with all Salons are available");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Verify ShearCircle Home page is displayed",
+						"ShearCircle Home page should be displayed", " ShearCircle Home page not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/********
+	 * TC_4_2_02 Check whether the filters are hidden by clicking the + sign in
+	 * filter section
+	 ****/
+
+	public void check_FiltersAreHiddenBy_ClickOnPlusSignIn_FilterSection() {
+		try {
+			if (browser.elementisdisplayed(CustomerModule.SR_Filters_SectionDispalyed)) {
+				browser.reportscomtep("Passed", "Verify Filter Section is displayed",
+						"Filter Section should be displayed", "Filter Section displayed");
+				browser.click(CustomerModule.SR_FiltersPlus_Icon);
+				if (browser.elementisdisplayed(CustomerModule.SR_Filters_SectionDisappear)) {
+					browser.reportscomtep("Passed", "click on Plus Icon and Filter Section was disappered ",
+							"Filter Section Should be disappered ", "Filter Section disappered ");
+				} else {
+					browser.reportscomtep("Failed", "click on Plus Icon and Filter Section was disappered ",
+							"Filter Section Should be disappered ", "Filter Section  not disappered ");
+				}
+			} else {
+				browser.reportscomtep("Passed", "Verify Filter Section is displayed",
+						"Filter Section should be displayed", "Filter Section displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	/**************
+	 * TC_4_2_03 Check whether the filters are displayed by clicking the + sign
+	 * in filter section
+	 **********/
+
+	public void check_FiltersAreDisplayedBy_ClickOnPlusSignIn_FilterSection() {
+		try {
+			if (browser.elementisdisplayed(CustomerModule.SR_Filters_SectionDisappear)) {
+				browser.reportscomtep("Passed", "Verify Filter Section is dissppear",
+						"Filter Section Should be dissppear", "Filter Section dissppear");
+				browser.click(CustomerModule.SR_FiltersPlus_Icon);
+				if (browser.elementisdisplayed(CustomerModule.SR_Filters_SectionDispalyed)) {
+					browser.reportscomtep("Passed", "Cliks on Plus icon and Filters section is displayed",
+							"Filters section Should be displayed ", "Filters section displayed ");
+				} else {
+					browser.reportscomtep("Passed", "Cliks on Plus icon and Filters section is displayed",
+							"Filters section Should be displayed ", "Filters section not displayed ");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify Filter Section is dissppear",
+						"Filter Section Should be dissppear", "Filter Section not dissppear");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	
+	/**********TC_4_2_04	Check the dropdown options next to search results count********/
+	
+	public void check_DropdownOptions_NextToSearchResults_Count() {
+		try {
+			int itemCount = 0;
+			String DropdownList = "";
+			String exptDropdownlist = "Most Viewed;Recently Added";
+			if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message)) {
+				browser.reportscomtep("Passed",
+						" Verify Search Results page is Displayed with all Salons are available",
+						"Search Results page should be Displayed with all Salons are available",
+						"Search Results page Displayed with all Salons are available");
+				List<WebElement> Dropdown_Options = browser
+						.getOptions(CustomerModule.SR_DropdownOnTopmostPartOf_List);
+				itemCount = Dropdown_Options.size();
+				if (itemCount > 0) {
+					for (WebElement listvalue : Dropdown_Options) {
+						DropdownList = DropdownList + ";" + listvalue.getText();
+					}
+					DropdownList = DropdownList.substring(2);
+				}
+				if (DropdownList.equalsIgnoreCase(exptDropdownlist)) {
+					DropdownList = DropdownList.replace(";", "\n");
+					browser.reportscomtep("Passed", "Verify Dropdown options are displayed",
+							"Dropdown options should be displayed",
+							"Dropdown options displayed: " + DropdownList);
+				} else {
+					browser.reportscomtep("Failed", "Verify Dropdown options are displayed",
+							"Verify Dropdown options should be displayed",
+							"Dropdown options not displayed");
+				}
+
+			} else {
+				browser.reportscomtep("Failed",
+						" Verify Search Results page is Displayed with all Salons are available",
+						"Search Results page should be Displayed with all Salons are available",
+						"Search Results page Not Displayed with all Salons are available");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	/* TC_4_2_07 Check whether the correct results are displayed for Accept Online Payments*/
+	public void ChecksearchresultforAcceptOnlinePayments(String onlinepayment_filtercheckbox) {
+		try {
+			String searchResults_PaymentType = "";
+			String expct_SearchResults_PaymentType = "Online Payment";
+			boolean searchResultsavailablity = false;	
+			boolean searchResultsnotavailablity = true;		
+				
+				this.Searchresults_select_Filters_checkbox(onlinepayment_filtercheckbox);
+				
+				browser.waitforelementtobevisible(CustomerModule.home_SearchResults_Message, 20);				
+				if(CustomerModule.customer_Search_SalonNames.size()>0 && CustomerModule.customer_OnlinePayment_SearchResults.size()>0){
+					for(WebElement listvalue:CustomerModule.customer_OnlinePayment_SearchResults){	
+						browser.scrollintoviewelement(listvalue);
+						searchResults_PaymentType = listvalue.getText();						
+						if(searchResults_PaymentType.trim().equalsIgnoreCase(expct_SearchResults_PaymentType)){								
+							searchResultsavailablity = true;								
+						}else{
+							searchResultsnotavailablity = false;
+						}				
+					}
+				}				
+				browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
+				if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message) && searchResultsavailablity && searchResultsnotavailablity){
+					browser.reportscomtep("Passed",
+							"Select fileter as "+onlinepayment_filtercheckbox+" and verify Search results page dispalyed list of Salons that accept Cash payment",
+							"Search results page should be dispalyed results with selected filter",
+							"Search results page dispalyed list of Salons that accept Online payment");
+				} else {
+					browser.reportscomtep("Failed",
+							"Select fileter as "+onlinepayment_filtercheckbox+" and verify Search results page dispalyed list of Salons that accept Cash payment",
+							"Search results page should be dispalyed results with selected filter",
+							"Search results page Not dispalyed list of Salons that accept Online payment");
+				}			
+			
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	public void Searchresults_select_Filters_checkbox(String p_in_filters){
+		String filters_name = "";
+		boolean filters_selection = false;
+		int checkbox = 1;		
+		try {
+		
+		if(p_in_filters!="" && CustomerModule.SR_Filters_checkbox_label_list.size()>0) {
+			for(WebElement Checkbox:CustomerModule.SR_Filters_checkbox_label_list){			
+				filters_name = Checkbox.getText();				
+				if(p_in_filters.trim().equalsIgnoreCase(filters_name)) {					
+					//browser.check_Checkbox(CustomerModule.SR_Filters_checkbox_list.get(checkbox));
+					CustomerModule.SR_Filters_checkbox_list.click();
+					filters_selection = true;
+					break;
+				}				
+				checkbox++;
+			}
+		}else{
+			browser.reportscomtep("Failed", "Verify filters "+ p_in_filters +" checkbox is displayed",
+					"filters "+ p_in_filters +" checkbox should be displayed",
+					"filters "+ p_in_filters +" checkbox Not displayed");
+		}
+		
+		if(filters_selection) {
+			browser.reportscomtep("Passed", "Verify filters "+ p_in_filters +" checkbox is selected",
+					"filters "+ p_in_filters +" checkbox should be selected",
+					"filters "+ p_in_filters +" checkbox selected");
+		}else {
+			browser.reportscomtep("Failed", "Verify filters "+ p_in_filters +" checkbox is selected",
+					"filters "+ p_in_filters +" checkbox should be selected",
+					"filters "+ p_in_filters +" checkbox Not selected");
+		}
+					
+		}catch(Exception e) {
+			System.out.println(e.getStackTrace());
 		}
 	}
 

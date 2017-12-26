@@ -48,7 +48,7 @@ public class TS_3_03_CustomerClicksonMyappointments extends StaticVariables {
 	@AfterClass
 	public void logOut(){
 		CR.Customer_JoinOurCircle_LogOutpage();
-		driver.quit();
+		//driver.quit();
 	}
 	
 	@Test(priority=30301, description="Customer visits ShearCircle page" )
@@ -75,7 +75,7 @@ public class TS_3_03_CustomerClicksonMyappointments extends StaticVariables {
 		CR.shearCircle_Verify_Customer_Clickson_MyAppoinmentsforExistingUser();			
 	}
 	
-	/*@Test(priority=30306, description="TC_3_3_03 Check whether the View button is clickable")
+	@Test(priority=30306, description="TC_3_3_03 Check whether the View button is clickable")
 	public void TC_3_3_03_Customer_CheckViewbuttonclickable()throws IOException {			
 		CR.Check_View_Button_Is_clickable();		
 	}
@@ -94,31 +94,31 @@ public class TS_3_03_CustomerClicksonMyappointments extends StaticVariables {
 		CR.checkWhether_TheCorrectPage_IsDIsplayedBy_ClickingoOnPage_Number();		
 	}
 	
-	@Test(priority=303010, description="TC_3_3_07 Check the available filters in Type")
+	@Test(priority=30310, description="TC_3_3_07 Check the available filters in Type")
 	public void TC_3_3_07_Customer_CheckAvailableFiltersType()throws IOException {			
 		CR.checkThe_Available_Filters_InType();		
 	}
 	
-	@Test(priority=303011, description="TC_3_3_08 Check the available filters in Status")
+	@Test(priority=30311, description="TC_3_3_08 Check the available filters in Status")
 	public void TC_3_3_08_Customer_CheckAvailableFiltersStatus()throws IOException {			
 		CR.checkThe_Available_FiltersInStatus();		
 	}
 	
-	@Test(priority=303012, description="TC_3_3_09 Check the upcoming bookings")
+	@Test(priority=30312, description="TC_3_3_09 Check the upcoming bookings")
 	public void TC_3_3_09_Customer_CheckUpcomingBookings()throws IOException {			
 		CR.check_Upcoming_Bookings();		
 	}
-	@Test(priority=303012, description="TC_3_3_010 Check the past bookings")
+	@Test(priority=30313, description="TC_3_3_010 Check the past bookings")
 	public void TC_3_3_010_Customer_CheckPastBookings()throws IOException {			
 		CR.checkThe_Past_Bookings();		
-	}*/
+	}
 	
-	@Test(priority=303013, description="TC_3_3_011 Check the Completed status for the bookings of AppointmentStatus and PamentStatus")
+	@Test(priority=30314, description="TC_3_3_011 Check the Completed status for the bookings of AppointmentStatus and PamentStatus")
 	public void TC_3_3_011_Customer_CheckCompletedStatusBookings()throws IOException {			
 		CR.check_Completed_Status_Bookings_AppointmentStatusandPamentStatus();		
 	}
 	
-	@Test(priority=303014, description="TC_3_3_012 Check the Pending status bookings for the bookings of AppointmentStatus and PamentStatus")
+	@Test(priority=30315, description="TC_3_3_012 Check the Pending status bookings for the bookings of AppointmentStatus and PamentStatus")
 	public void TC_3_3_012_Customer_CheckPendingStatusBookings()throws IOException {			
 		CR.checkThe_Pending_Bookings_AppointmentStatusandPamentStatus();		
 	}
