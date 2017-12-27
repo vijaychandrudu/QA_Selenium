@@ -79,12 +79,36 @@ public class TS_4_02_Customer_appliesfiltersinsearchpage extends StaticVariables
 	public void TC_4_2_04_Customer_Checkdropdownoptionsnexttosearchresultscount() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the dropdown options next to search results count");
 		CR.check_DropdownOptions_NextToSearchResults_Count();		
-	}	
+	}
+	
+	@Test(priority=40206, description="TC_4_2_05 Check the Most viewed option")
+	public void TC_4_2_05_Customer_CheckMostviewedoption() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the Most viewed option");
+		CR.check_MostViewed_dropdownOption();		
+	}
+	
+	@Test(priority=40207, description="TC_4_2_06 Check the Recently Added option")
+	public void TC_4_2_06_Customer_CheckRecentlyAddedoption() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the Recently Added option");
+		CR.check_RecentlyAdded_dropdownOption();		
+	}
 	
 	@Test(priority=40208, description="TC_4_2_07 Check whether the correct results are displayed for Accept Online Payments")
 	public void TC_4_2_07_Customer_CheckOnlinePaymentcheckbox() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for Accept Online Payments");
 		CR.ChecksearchresultforAcceptOnlinePayments("Accept Online Payments");		
+	}
+	
+	@Test(priority=40209, description="TC_4_2_08 Check whether the correct results are displayed for Accept Cash On Service")
+	public void TC_4_2_08_Customer_CheckAcceptCashOnServicecheckbox() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for Accept Cash On Service");
+		CR.ChecksearchresultforAcceptOnlinePayments("Accept Cash On Service");		
+	}
+	
+	@Test(priority=40210, description="TC_4_2_09 Check whether the correct results are displayed for Search Promotions")
+	public void TC_4_2_09_Customer_CheckSearchPromotionscheckbox() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for Search Promotions");
+		CR.checksearchresultsdisplayedforPromotions("Search Promotions");		
 	}
 
 }

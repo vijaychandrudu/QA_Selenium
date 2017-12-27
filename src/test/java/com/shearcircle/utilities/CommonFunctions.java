@@ -581,7 +581,7 @@ public class CommonFunctions extends StaticVariables {
 		try {
 			System.out.println("***ScrollToElementBottom:  ***");
 			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", element);
-			((JavascriptExecutor) driver).executeScript("arguments[0].style.border='6px groove green'", element);
+			this.highlightElement(element);
 		} catch (StaleElementReferenceException e) {
 			System.out.println("Element - " + element + " is not attached to the page document " + e.getStackTrace());
 		} catch (NoSuchElementException e) {
@@ -678,9 +678,7 @@ public class CommonFunctions extends StaticVariables {
 			// this.scrollintoviewelement(element);
 			this.waitforelementtobevisible(element, 20);
 			if (element.isDisplayed() && element.isEnabled()) {
-				if (driver instanceof JavascriptExecutor) {
-					((JavascriptExecutor) driver).executeScript("arguments[0].style.border='4px solid green'", element);
-				}
+				this.highlightElement(element);
 				elementdisplayedflag = true;
 			} else {
 				System.out.println("Element existance and enabled status Failed");
@@ -1237,6 +1235,7 @@ public class CommonFunctions extends StaticVariables {
 				"***ScrollToXY: Move to default Content explicitly. Otherwise it won't work. 'Call switchToDefaultFrame and don't forget to move to your frame.' ***");
 		String script = "window.scrollTo(" + x + "," + y + ");";
 		((JavascriptExecutor) driver).executeScript(script);
+		
 	}
 
 	/*********** HighlightElement ******************/
@@ -1247,7 +1246,7 @@ public class CommonFunctions extends StaticVariables {
 	public void highlightElement(WebElement element) throws InterruptedException {
 		
 		try{
-			for(int i = 1; i<4; i++){
+			for(int i = 1; i<2; i++){
 				if (driver instanceof JavascriptExecutor) {
 					((JavascriptExecutor) driver).executeScript("arguments[0].style.border='6px groove green'", element);
 					Thread.sleep(1000);
