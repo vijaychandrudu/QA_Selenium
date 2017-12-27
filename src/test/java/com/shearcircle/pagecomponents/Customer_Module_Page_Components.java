@@ -420,7 +420,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		String getmessage = null;
 		//browser.loaddata(TestDataPath);		
 		try{
-			CustomerValidEmail = browser.getdata("CustomerValidEmail");
+			CustomerValidEmail = browser.getdata("CustomerForgotPasswordEmail");
 			CustomerInValidEmail = browser.getdata("CustomerInValidEmail");
 			invalid_Message = "No records for the Username";
 			valid_Message = "Password Reset Instructions Sent Successfully";	
@@ -745,8 +745,8 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	public void Customer_LoginwithFacebook(){
 		String CustomerValidEmail = null;			
 		String CustomerValidPassword = null;
-		CustomerValidEmail = browser.getdata("CustomerValidEmail");			
-		CustomerValidPassword = browser.getdata("CustomerValidPassword");
+		CustomerValidEmail = browser.getdata("CustomerSC_FBUsername");			
+		CustomerValidPassword = browser.getdata("CustomerSC_FBPassword");
 		try {						
 			if (browser.elementisdisplayed(Login.Facebook_Account_Header)) {
 				browser.reportscomtep("Passed", "Verify Facebook Login popup is displayed",
@@ -3713,6 +3713,77 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
 	}
+	
+	
+/*************TC_4_2_05	Check the Most viewed option************/
+	
+	public void check_MostViewed_dropdownOption(){
+		try{
+			String selectedType="";			
+							
+			browser.selectByVisibleText(CustomerModule.SR_DropdownOnTopmostPartOf_List, "Most Viewed");
+			
+			selectedType = browser.getDropdownSelectedValue(CustomerModule.SR_DropdownOnTopmostPartOf_List);
+			if(selectedType.equalsIgnoreCase("Most Viewed")){
+				browser.reportscomtep("Passed", "Verify Selected Most Viewed dropdown option",
+						"Most Viewed dropdown option should be selected", "Most Viewed dropdown option selected");
+			} else {
+				browser.reportscomtep("Failed", "Verify Selected Most Viewed dropdown option",
+						"Most Viewed dropdown option should be selected", "Most Viewed dropdown option Not selected");		
+			}
+			
+			browser.waitforelementtobevisible(CustomerModule.home_SearchResults_Message,10);
+			if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message)){
+				browser.reportscomtep("Passed",
+						"Verify Search results page Displays the Search results with-- most viewed Salons first and the least viewed last",
+						"Search results page should be displays the Search results with-- most viewed Salons first and the least viewed last",
+						"Search results page Displays the Search results with-- most viewed Salons first and the least viewed last");
+			} else {
+				browser.reportscomtep("Failed",
+						"Verify Search results page Displays the Search results with-- most viewed Salons first and the least viewed last",
+						"Search results page should be displays the Search results with-- most viewed Salons first and the least viewed last",
+						"Search results page Not Displays the Search results with-- most viewed Salons first and the least viewed last");
+			}	
+				
+			
+		}catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	/*************TC_4_2_06	Check the Newly Added option************/
+	public void check_RecentlyAdded_dropdownOption(){
+		try{
+			String selectedType="";			
+							
+			browser.selectByVisibleText(CustomerModule.SR_DropdownOnTopmostPartOf_List, "Recently Added");
+			
+			selectedType = browser.getDropdownSelectedValue(CustomerModule.SR_DropdownOnTopmostPartOf_List);
+			if(selectedType.equalsIgnoreCase("Recently Added")){
+				browser.reportscomtep("Passed", "Verify Selected Recently Added dropdown option",
+						"Recently Added dropdown option should be selected", "Recently Added dropdown option selected");
+			} else {
+				browser.reportscomtep("Failed", "Verify Selected Recently Added dropdown option",
+						"Recently Added dropdown option should be selected", "Recently Added dropdown option Not selected");		
+			}
+			
+			browser.waitforelementtobevisible(CustomerModule.home_SearchResults_Message,10);
+			if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message)){
+				browser.reportscomtep("Passed",
+						"Verify Search results page Displays the Search results with the Recently added first",
+						"Search results page should be displays the Search results with Recently added first",
+						"Search results page Displays the Search results with Recently added first");
+			} else {
+				browser.reportscomtep("Failed",
+						"Verify Search results page Displays the Search results with the Recently added first",
+						"Search results page should be displays the Search results with Recently added first",
+						"Search results page not Displays the Search results with Recently added first");
+			}	
+				
+			
+		}catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
 	/* TC_4_2_07 Check whether the correct results are displayed for Accept Online Payments*/
 	public void ChecksearchresultforAcceptOnlinePayments(String onlinepayment_filtercheckbox) {
 		try {
@@ -3721,7 +3792,7 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 			boolean searchResultsavailablity = false;	
 			boolean searchResultsnotavailablity = true;		
 				
-				this.Searchresults_select_Filters_checkbox(onlinepayment_filtercheckbox);
+				this.searchResults_select_Filters_checkbox(onlinepayment_filtercheckbox);
 				
 				browser.waitforelementtobevisible(CustomerModule.home_SearchResults_Message, 20);				
 				if(CustomerModule.customer_Search_SalonNames.size()>0 && CustomerModule.customer_OnlinePayment_SearchResults.size()>0){
@@ -3738,15 +3809,17 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 				browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
 				if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message) && searchResultsavailablity && searchResultsnotavailablity){
 					browser.reportscomtep("Passed",
-							"Select fileter as "+onlinepayment_filtercheckbox+" and verify Search results page dispalyed list of Salons that accept Cash payment",
+							"Select fileter as "+onlinepayment_filtercheckbox+" and verify Search results page dispalyed list of Salons that Online payment",
 							"Search results page should be dispalyed results with selected filter",
 							"Search results page dispalyed list of Salons that accept Online payment");
 				} else {
 					browser.reportscomtep("Failed",
-							"Select fileter as "+onlinepayment_filtercheckbox+" and verify Search results page dispalyed list of Salons that accept Cash payment",
+							"Select fileter as "+onlinepayment_filtercheckbox+" and verify Search results page dispalyed list of Salons that Online payment",
 							"Search results page should be dispalyed results with selected filter",
 							"Search results page Not dispalyed list of Salons that accept Online payment");
-				}			
+				}	
+				
+				this.searchResults_select_Filters_checkbox(onlinepayment_filtercheckbox);
 			
 
 		} catch (Exception e) {
@@ -3754,10 +3827,109 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 		}
 	}
 	
-	public void Searchresults_select_Filters_checkbox(String p_in_filters){
+	/* TC_4_2_08 Check whether the correct results are displayed for Accept Cash On Service*/
+	public void ChecksearchresultforAcceptCashOnService(String filterscheckbox) {
+		try {
+			String searchResults_PaymentType = "";
+			String expct_SearchResults_PaymentType = "Accept Cash On Service";
+			boolean searchResultsavailablity = false;	
+			boolean searchResultsnotavailablity = true;		
+				
+				this.searchResults_select_Filters_checkbox(filterscheckbox);
+				
+				browser.waitforelementtobevisible(CustomerModule.home_SearchResults_Message, 20);				
+				if(CustomerModule.customer_Search_SalonNames.size()>0 && CustomerModule.customer_CashOnService_SearchResults.size()>0){
+					for(WebElement listvalue:CustomerModule.customer_CashOnService_SearchResults){	
+						browser.scrollintoviewelement(listvalue);
+						searchResults_PaymentType = listvalue.getText();						
+						if(searchResults_PaymentType.trim().equalsIgnoreCase(expct_SearchResults_PaymentType)){								
+							searchResultsavailablity = true;								
+						}else{
+							searchResultsnotavailablity = false;
+						}				
+					}
+				}				
+				browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
+				if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message) && searchResultsavailablity && searchResultsnotavailablity){
+					browser.reportscomtep("Passed",
+							"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that Cash On Services",
+							"Search results page should be dispalyed results with selected filter",
+							"Search results page dispalyed list of Salons that accept Cash On Services");
+				} else {
+					browser.reportscomtep("Failed",
+							"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that Cash On Services",
+							"Search results page should be dispalyed results with selected filter",
+							"Search results page Not dispalyed list of Salons that accept Cash On Services");
+				}	
+				
+				this.searchResults_select_Filters_checkbox(filterscheckbox);
+			
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/* TC_4_2_09 Check whether the correct results are displayed for Search Promotions*/
+	public void checksearchresultsdisplayedforPromotions(String filterscheckbox) {
+		try {
+			String searchResults_Promotions = "";
+			String searchResults_Bookme = "";
+			String expct_SearchResults_Bookme = "Book Me";
+			boolean searchResultsavailablity = false;	
+			boolean searchResultsnotavailablity = true;		
+				
+				this.searchResults_select_Filters_checkbox(filterscheckbox);
+				
+				browser.waitforelementtobevisible(CustomerModule.home_SearchResults_Message, 20);				
+				if(CustomerModule.customer_Search_SalonNames.size()>0 && CustomerModule.customer_SearchResults_Bookme_Buttons_List.size()>0){
+					for(WebElement listvalue:CustomerModule.customer_SearchResults_Bookme_Buttons_List){	
+						browser.scrollintoviewelement(listvalue);
+						searchResults_Bookme = listvalue.getText();						
+						if(searchResults_Bookme.trim().equalsIgnoreCase(expct_SearchResults_Bookme)){								
+							searchResultsavailablity = true;								
+						}else{
+							searchResultsnotavailablity = false;
+						}				
+					}
+				}				
+				browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
+				if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message) && searchResultsavailablity && searchResultsnotavailablity){
+					browser.reportscomtep("Passed",
+							"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that having Promotions",
+							"Search results page should be dispalyed results with selected filter",
+							"Search results page dispalyed list of Salons that having Promotions");
+				} else {
+					browser.reportscomtep("Failed",
+							"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that having Promotions",
+							"Search results page should be dispalyed results with selected filter",
+							"Search results page Not dispalyed list of Salons that having Promotions");
+				}	
+				
+				CustomerModule.customer_SearchResults_Bookme_Buttons_List.get(0).click();
+				browser.waitforelementtobevisible(CustomerModule.Customer_Promotions_Tab, 20);
+				
+				if (browser.elementisdisplayed(CustomerModule.Customer_Promotions_Tab)){
+					browser.reportscomtep("Passed",
+							"Click on Book Me button and verify the Promotions Tab is displayed in the Business Page",
+							"Promotions Tab should be displayed in the Business Page",
+							"Promotions Tab is displayed in the Business Page");
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Book Me button and verify the Promotions Tab is displayed in the Business Page",
+							"Promotions Tab should be displayed in the Business Page",
+							"Promotions Tab is Not displayed in the Business Page");
+				}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	public void searchResults_select_Filters_checkbox(String p_in_filters){
 		String filters_name = "";
 		boolean filters_selection = false;
-		int checkbox = 1;		
+		int checkbox = 0;		
 		try {
 		
 		if(p_in_filters!="" && CustomerModule.SR_Filters_checkbox_label_list.size()>0) {
@@ -3765,7 +3937,7 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 				filters_name = Checkbox.getText();				
 				if(p_in_filters.trim().equalsIgnoreCase(filters_name)) {					
 					//browser.check_Checkbox(CustomerModule.SR_Filters_checkbox_list.get(checkbox));
-					CustomerModule.SR_Filters_checkbox_list.click();
+					CustomerModule.SR_Filters_checkbox_list.get(checkbox).click();
 					filters_selection = true;
 					break;
 				}				
@@ -3790,7 +3962,37 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 		}catch(Exception e) {
 			System.out.println(e.getStackTrace());
 		}
+	}	
+	
+	public void searchResults_Unselect_Filters_checkbox(String p_in_filters){
+		String filters_name = "";
+		boolean filters_selection = false;
+		int checkbox = 0;		
+		try {
+		
+		if(p_in_filters!="" && CustomerModule.SR_Filters_checkbox_label_list.size()>0) {
+			for(WebElement Checkbox:CustomerModule.SR_Filters_checkbox_label_list){			
+				filters_name = Checkbox.getText();				
+				if(p_in_filters.trim().equalsIgnoreCase(filters_name)) {					
+					//browser.check_Checkbox(CustomerModule.SR_Filters_checkbox_list.get(checkbox));
+					if(CustomerModule.SR_Filters_checkbox_list.get(checkbox).isSelected()){
+						CustomerModule.SR_Filters_checkbox_list.get(checkbox).click();						
+						break;
+					}
+					
+				}				
+				checkbox++;
+			}
+		}else{
+			browser.reportscomtep("Failed", "Verify filters "+ p_in_filters +" checkbox is displayed",
+					"filters "+ p_in_filters +" checkbox should be displayed",
+					"filters "+ p_in_filters +" checkbox Not displayed");
+		}		
+		
+					
+		}catch(Exception e) {
+			System.out.println(e.getStackTrace());
+		}
 	}
-
 
 }

@@ -44,10 +44,10 @@ public class TS_2_07_CustomerLoginwithFacebookuserwhichregisteredShearCircle ext
 		Thread.sleep(1000);
 	}
 
-	/*@AfterClass
+	@AfterClass
 	public void afterClass() {
 		driver.quit();
-	}*/
+	}
 	
 	@Test(priority=2701, description="TC_2_7_01 Customer visits ShearCircle page" )
 	public void TC_2_7_01_Customer_visitsShearCircle() throws IOException {			

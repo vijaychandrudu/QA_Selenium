@@ -71,8 +71,8 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='collapseFilters']/div[1]/div[1]/ul/li")
     public List<WebElement> SR_Filters_checkbox_label_list;
 	
-	@FindBy(xpath="//*[@id='collapseFilters']/div[1]/div[1]/ul/li[1]//ins")
-    public WebElement SR_Filters_checkbox_list;
+	@FindBy(xpath="//*[@id='collapseFilters']/div[1]/div[1]/ul/li//ins")
+    public List<WebElement> SR_Filters_checkbox_list;
 	
 	@FindBy(xpath="//*[@id='collapseFilters']/div[1]/div[1]/ul/li/label/div[@class='icheckbox_square-grey checked']/input")
     public List<WebElement> SR_Filters_checkedcheckbox_list;
@@ -131,6 +131,14 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div/ul/li[text()=' Online Payment']")
     public List<WebElement> customer_OnlinePayment_SearchResults;
 	
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div/ul/li[text()=' Cash On Services']")
+    public List<WebElement> customer_CashOnService_SearchResults;
+	
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div/div/a[text()='Book Me']")
+    public List<WebElement> customer_SearchResults_Bookme_Buttons_List;
+	
+	@FindBy(xpath="//*[@id='container_pin']/div/ul/li/a[text()=' Promotions']")	
+    public WebElement Customer_Promotions_Tab;	
 		
 	@FindBy(xpath="//*[@id=\"position\"]/div/ul/li[text()='Customer']")	
     public WebElement Customer_Joincircle_navigation;	
