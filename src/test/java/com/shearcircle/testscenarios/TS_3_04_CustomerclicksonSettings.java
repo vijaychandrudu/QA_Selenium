@@ -59,13 +59,13 @@ public class TS_3_04_CustomerclicksonSettings extends StaticVariables {
 	}
 	
 	@Test(priority=30402, description="Customer clicks Login Button " )
-	public void TC_3_4_2Customer_clicks_JoinOurCircleButton() throws IOException {	
+	public void TC_3_4_2_Customer_clicks_JoinOurCircleButton() throws IOException {	
 		ExtentTestManager.getTest().setDescription("Customer clicks JoinOurCircle Button.");
 		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
 	}
 	
 	@Test(priority=30403, description="Customer Login with registered Username(Email id) & Password " )
-	public void TC_3_4_3Customer_CheckRegisterWithShearCirclepage()throws IOException {	
+	public void TC_3_4_3_Customer_CheckRegisterWithShearCirclepage()throws IOException {	
 		ExtentTestManager.getTest().setDescription("Customer Login with registered Username(Email id) & Password .");
 		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");			
 	}

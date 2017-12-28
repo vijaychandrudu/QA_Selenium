@@ -748,6 +748,42 @@ public class CommonFunctions extends StaticVariables {
 		}
 		return verificationflag;
 	}
+	
+	public void verifyElementErrorMessage(WebElement element, String text,String textType) {
+		String textvalue = "";
+		boolean verificationflag = false;
+		try {
+			// this.scrollintoviewelement(element);
+			this.waitforelementtobevisible(element, 10);
+			if (element.isDisplayed()) {
+				textvalue = element.getText();
+				switch (textType.toLowerCase()) {
+				case "exact":
+					if (textvalue.equalsIgnoreCase(text)) {
+						verificationflag = true;
+					}
+				case "partial":
+					if (textvalue.contains(text)) {
+						verificationflag = true;
+					}
+				}
+				
+				if(verificationflag){
+					this.reportscomtep("Passed", "Verify The Element error message " + text + " is displayed",
+							"The Element error message " + text + " should be displayed", "The Element error message as: " + textvalue + " displayed");
+				}else{
+					this.reportscomtep("Failed", "Verify The Element error message " + text + " is displayed",
+							"The Element error message " + text + " should be displayed", "The Element error message as: " + text + " Not displayed");
+				}
+			} else {
+				System.out.println("Element existance and enabled status Failed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error in description: " + e.getStackTrace());
+		}
+		
+	}
 
 	/******************* Get webElement attribute value ****************/
 	/*

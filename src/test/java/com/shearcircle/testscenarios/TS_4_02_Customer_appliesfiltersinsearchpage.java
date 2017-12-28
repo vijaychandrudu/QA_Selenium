@@ -96,19 +96,31 @@ public class TS_4_02_Customer_appliesfiltersinsearchpage extends StaticVariables
 	@Test(priority=40208, description="TC_4_2_07 Check whether the correct results are displayed for Accept Online Payments")
 	public void TC_4_2_07_Customer_CheckOnlinePaymentcheckbox() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for Accept Online Payments");
-		CR.ChecksearchresultforAcceptOnlinePayments("Accept Online Payments");		
+		CR.ChecksearchresultforAcceptOnlinePayments();		
 	}
 	
 	@Test(priority=40209, description="TC_4_2_08 Check whether the correct results are displayed for Accept Cash On Service")
 	public void TC_4_2_08_Customer_CheckAcceptCashOnServicecheckbox() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for Accept Cash On Service");
-		CR.ChecksearchresultforAcceptOnlinePayments("Accept Cash On Service");		
+		CR.ChecksearchresultforAcceptOnlinePayments();		
 	}
 	
 	@Test(priority=40210, description="TC_4_2_09 Check whether the correct results are displayed for Search Promotions")
 	public void TC_4_2_09_Customer_CheckSearchPromotionscheckbox() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for Search Promotions");
-		CR.checksearchresultsdisplayedforPromotions("Search Promotions");		
+		CR.checksearchresultsdisplayedforPromotions();		
+	}
+	
+	@Test(priority=40211, description="TC_4_2_10 Check whether the correct results are displayed for Search Jobs")
+	public void TC_4_2_10_Customer_CheckSearchJobscheckbox() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for Search Jobs");
+		CR.checksearchresultsdisplayedforSearchJobs();		
+	}
+	
+	@Test(priority=40211, description="TC_4_2_11 Check whether the correct results are displayed when selecting all 4 filters")
+	public void TC_4_2_11_Customer_CheckAllFilterscheckboxs() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed when selecting all 4 filters");
+		CR.checksearchresultsdisplayed_SellectingAllFilters();		
 	}
 
 }

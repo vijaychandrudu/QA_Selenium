@@ -42,14 +42,8 @@ public class TS_3_03_CustomerClicksonMyappointments extends StaticVariables {
 	public void StatusScreenShots(ITestResult testResult) throws IOException, InterruptedException {
 		cfn.ScreenshotOnPassFail(testResult);
 		Thread.sleep(1000);
-	}
-
-		
-	@AfterClass
-	public void logOut(){
-		CR.Customer_JoinOurCircle_LogOutpage();
-		//driver.quit();
-	}
+	}	
+	
 	
 	@Test(priority=30301, description="Customer visits ShearCircle page" )
 	public void TC_3_3_1_Customer_visitsShearCircle() throws IOException {			
@@ -121,6 +115,11 @@ public class TS_3_03_CustomerClicksonMyappointments extends StaticVariables {
 	@Test(priority=30315, description="TC_3_3_012 Check the Pending status bookings for the bookings of AppointmentStatus and PamentStatus")
 	public void TC_3_3_012_Customer_CheckPendingStatusBookings()throws IOException {			
 		CR.checkThe_Pending_Bookings_AppointmentStatusandPamentStatus();		
+	}
+	@Test(priority=30316)
+	public void logOut(){
+		CR.Customer_JoinOurCircle_LogOutpage();
+		//driver.quit();
 	}
 
 }
