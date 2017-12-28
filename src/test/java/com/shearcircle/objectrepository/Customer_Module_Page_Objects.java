@@ -138,7 +138,10 @@ public class Customer_Module_Page_Objects{
     public List<WebElement> customer_SearchResults_Bookme_Buttons_List;
 	
 	@FindBy(xpath="//*[@id='container_pin']/div/ul/li/a[text()=' Promotions']")	
-    public WebElement Customer_Promotions_Tab;	
+    public WebElement Customer_Promotions_Tab;
+	
+	@FindBy(xpath="//*[@id='container_pin']/div/ul/li/a[text()=' Jobs']")	
+    public WebElement Customer_Jobs_Tab;
 		
 	@FindBy(xpath="//*[@id=\"position\"]/div/ul/li[text()='Customer']")	
     public WebElement Customer_Joincircle_navigation;	
@@ -227,9 +230,11 @@ public class Customer_Module_Page_Objects{
 	public WebElement Customer_signin_hyperlynk_header;	
 	
 	@FindBy(xpath="//*[@id='navbar-collapse-1']/span/a[text()='My Account ']")
-	public WebElement Customer_Mydashboard_MyAccount_Button;	
-
-	//div[@class='modal-header']/h3/parent::div/following-sibling::div[@class='modal-footer']/button[text()='Close' and @class='btn btn-primary']
+	public WebElement Customer_Mydashboard_MyAccount_Button;
+	
+	@FindBy(xpath="//*[@id='filters_col']//div/nav/div/ul/li/a[text()=' My Dashboard']")
+	public WebElement Customer_MyDashboard_Button;
+	
 	@FindBy(xpath="//div/div/h3[contains(text(),'Welcome')]")
 	public WebElement Customer_Mydashboard_Welcome_Name_Header;
 	
@@ -260,7 +265,7 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='sub_content']/h1[contains(text(),'results for')]")	
     public WebElement Customer_Search_Resultspage_Header;	
 
-	@FindBy(xpath="//*[@id='navbar-collapse-1']/form//button/i[@class='icon-search']")
+	@FindBy(xpath="//*[@id='navbar-collapse-1']/form//button/i[@class='icon-search']/parent::button")
 	public WebElement Customer_Mydashboard_Search_Button;
 
 

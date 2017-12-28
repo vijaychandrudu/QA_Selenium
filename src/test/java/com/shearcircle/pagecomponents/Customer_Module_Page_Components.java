@@ -279,12 +279,12 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			String customerEmail = null;
 			String Password = null;
 			String ConfirmPassword = null;
-			String Actual_FirstNameErrorMessage = null;
+			/*String Actual_FirstNameErrorMessage = null;
 			String Actual_LastNameErrorMessage = null;
 			String Actual_invalidEmailErrorMessage=null;
 			String Actual_invalidPasswordErrorMessage=null;
 			String Actual_invalidRePasswordErrorMessage=null;
-			
+			*/
 			String Expct_FirstNameErrorMessage = "Alphabets only";		
 			String Expct_LastNameErrorMessage = "Alphabets only";		
 			String Expct_invalidEmailErrorMessage="Please enter a valid email address";		
@@ -301,46 +301,42 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				browser.reportscomtep("Passed", "Verify Customer Registration form Join Now header is displayed",
 						"Customer Registration form Join Now header should be displayed", "Customer Registration form Join Now header displayed");
 				browser.ScrollToElementBottom(CustomerModule.Customer_joinourcircle_button);
-				browser.sendkeys(CustomerModule.Customer_FirstName_textbox,FirstName);
-				
+				browser.sendkeys(CustomerModule.Customer_FirstName_textbox,FirstName);	
 				browser.sendkeys(CustomerModule.Customer_LastName_textbox,LastName);
-				
-				browser.sendkeys(CustomerModule.Customer_Email_textbox,customerEmail);
-				
-				browser.sendkeys(CustomerModule.Customer_Password_textbox,Password);
-				
-				browser.sendkeys(CustomerModule.Customer_ReEnterPassword_textbox,ConfirmPassword);
-				
-				browser.check_Checkbox(CustomerModule.Customer_Termsofservice_checkbox);
-				
-				browser.check_Checkbox(CustomerModule.Customer_billingagrement_checkbox);
-				
-				browser.click(CustomerModule.Customer_joinourcircle_button);	
-				
+				browser.sendkeys(CustomerModule.Customer_Email_textbox,customerEmail);				
+				browser.sendkeys(CustomerModule.Customer_Password_textbox,Password.trim());
+				browser.sendkeys(CustomerModule.Customer_ReEnterPassword_textbox,ConfirmPassword.trim());
+				browser.ScrollToElementBottom(CustomerModule.Customer_joinourcircle_button);
+				Thread.sleep(3000);
+				browser.check_Checkbox(CustomerModule.Customer_Termsofservice_checkbox);				
+				browser.check_Checkbox(CustomerModule.Customer_billingagrement_checkbox);								
+				browser.click(CustomerModule.Customer_joinourcircle_button);
 				if(browser.elementisdisplayed(CustomerModule.Customer_invalidFirstname_errorMessage)){
-					Actual_FirstNameErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidFirstname_errorMessage);
-					browser.assertEquals(Actual_FirstNameErrorMessage,Expct_FirstNameErrorMessage);
-				}
+					//Actual_FirstNameErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidFirstname_errorMessage);
+					browser.verifyElementErrorMessage(CustomerModule.Customer_invalidFirstname_errorMessage,Expct_FirstNameErrorMessage, "exact");
+				}				
 				
 				if(browser.elementisdisplayed(CustomerModule.Customer_invalidLastname_errorMessage)){
-					Actual_LastNameErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidLastname_errorMessage);
-					browser.assertEquals(Actual_LastNameErrorMessage,Expct_LastNameErrorMessage);
+					//Actual_LastNameErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidLastname_errorMessage);
+					browser.verifyElementErrorMessage(CustomerModule.Customer_invalidLastname_errorMessage,Expct_LastNameErrorMessage,"exact");
 				}
 				
 				if(browser.elementisdisplayed(CustomerModule.Customer_invalidEmail_errorMessage)){
-					Actual_invalidEmailErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidEmail_errorMessage);
-					browser.assertEquals(Actual_invalidEmailErrorMessage,Expct_invalidEmailErrorMessage);
+					//Actual_invalidEmailErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidEmail_errorMessage);
+					browser.verifyElementErrorMessage(CustomerModule.Customer_invalidEmail_errorMessage,Expct_invalidEmailErrorMessage,"exact");
 				}
 				
 				if(browser.elementisdisplayed(CustomerModule.Customer_invalidPassword_errorMessage)){
-					Actual_invalidPasswordErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidPassword_errorMessage);
-					browser.assertEquals(Actual_invalidPasswordErrorMessage,Expct_invalidPasswordErrorMessage);
-				}
+					//Actual_invalidPasswordErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidPassword_errorMessage);
+					browser.verifyElementErrorMessage(CustomerModule.Customer_invalidPassword_errorMessage,Expct_invalidPasswordErrorMessage,"exact");
+				}				
 				
 				if(browser.elementisdisplayed(CustomerModule.Customer_invalidRePassword_errorMessage)){
-					Actual_invalidRePasswordErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidRePassword_errorMessage);
-					browser.assertEquals(Actual_invalidRePasswordErrorMessage,Expct_invalidRePasswordErrorMessage);
-				}						
+					//Actual_invalidRePasswordErrorMessage = browser.getelementtext(CustomerModule.Customer_invalidRePassword_errorMessage);
+					browser.verifyElementErrorMessage(CustomerModule.Customer_invalidRePassword_errorMessage,Expct_invalidRePasswordErrorMessage,"exact");
+				}
+				
+					
 			
 		}else {
 			browser.reportscomtep("Failed", "Verify Customer Registration form Join Now header is displayed",
@@ -522,6 +518,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				
 				if(browser.elementisdisplayed(CustomerModule.Customer_termsofservice_hyperlynk_header)){
 					browser.reportscomtep("Passed", "Verify terms of service header is displayed"  , "terms of service header should be displayed", "terms of service header is displayed");
+					browser.ScrollToElementBottom(CustomerModule.Customer_Termsofservice_Close_Button);
 					browser.click(CustomerModule.Customer_Termsofservice_Close_Button);
 				}else {
 					browser.reportscomtep("Failed", "Verify terms of service header is displayed"  , "terms of service header should be displayed", "terms of service header is not displayed");
@@ -530,6 +527,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 				
 				if(browser.elementisdisplayed(CustomerModule.Customer_privacypolycy_hyperlynk_header)){
 					browser.reportscomtep("Passed", "Verify privacy polycy header is displayed"  , "privacy polycy header should be displayed", "privacy polycy header is displayed");
+					browser.ScrollToElementBottom(CustomerModule.Customer_Privacypolycy_Close_Button);
 					browser.click(CustomerModule.Customer_Privacypolycy_Close_Button);
 				}else {
 					browser.reportscomtep("Failed", "Verify privacy polycy header is displayed"  , "privacy polycy header should be displayed", "privacy polycy header is not displayed");
@@ -1478,7 +1476,8 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	public void shearCircle_Customer_Verify_Change_Profile_Picture_Buttonis_Clickable() {
 		
 	try {
-
+		browser.click(CustomerModule.Customer_MyDashboard_Button);
+		browser.waitforelementtobevisible(CustomerModule.Customer_Mydashboard_changeProfilepicture, 10);
 		if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_changeProfilepicture)) {		
 			browser.reportscomtep("Passed", "Verify Change Profile picture Button is displayed in MyDashboard page",
 					"Change profile picture Button should be displayed in MyDashboard page", "Change profile picture Button isplayed in MyDashboard page");
@@ -3785,8 +3784,9 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 		}
 	}
 	/* TC_4_2_07 Check whether the correct results are displayed for Accept Online Payments*/
-	public void ChecksearchresultforAcceptOnlinePayments(String onlinepayment_filtercheckbox) {
+	public void ChecksearchresultforAcceptOnlinePayments() {
 		try {
+			String onlinepayment_filtercheckbox = "Accept Online Payments";
 			String searchResults_PaymentType = "";
 			String expct_SearchResults_PaymentType = "Online Payment";
 			boolean searchResultsavailablity = false;	
@@ -3828,8 +3828,9 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 	}
 	
 	/* TC_4_2_08 Check whether the correct results are displayed for Accept Cash On Service*/
-	public void ChecksearchresultforAcceptCashOnService(String filterscheckbox) {
+	public void ChecksearchresultforAcceptCashOnService() {
 		try {
+			String filterscheckbox = "Accept Cash On Service";
 			String searchResults_PaymentType = "";
 			String expct_SearchResults_PaymentType = "Accept Cash On Service";
 			boolean searchResultsavailablity = false;	
@@ -3871,9 +3872,9 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 	}
 	
 	/* TC_4_2_09 Check whether the correct results are displayed for Search Promotions*/
-	public void checksearchresultsdisplayedforPromotions(String filterscheckbox) {
+	public void checksearchresultsdisplayedforPromotions() {
 		try {
-			String searchResults_Promotions = "";
+			String filterscheckbox = "Search Promotions";
 			String searchResults_Bookme = "";
 			String expct_SearchResults_Bookme = "Book Me";
 			boolean searchResultsavailablity = false;	
@@ -3920,6 +3921,147 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 							"Promotions Tab should be displayed in the Business Page",
 							"Promotions Tab is Not displayed in the Business Page");
 				}
+				browser.click(CustomerModule.customer_Search_Button);
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	
+	/* TC_4_2_11 Check whether the correct results are displayed when selecting all 4 filters*/
+	public void checksearchresultsdisplayed_SellectingAllFilters() {
+		try {
+			String filtersonlinepaymentcheckbox = "Accept Online Payments";
+			String filtersCashOnServicecheckbox = "Accept Cash On Service";
+			String filtersPromotionscheckbox = "Search Promotions";
+			String filtersJobscheckbox = "Search Jobs";
+			String allFilterOptions = "Accept Online Payments, Accept Cash On Service, Search Promotions, Search Jobs";
+			String expct_SearchResults_OnlinePaymentType = "Online Payment";
+			String expct_SearchResults_CashPaymentType = "Accept Cash On Service";
+			String searchResults_Bookme = "";
+			String searchResults_OLPaymentType = "";
+			String searchResults_COPaymentType = "";
+			String expct_SearchResults_Bookme = "Book Me";
+			boolean sROPavailablity = false;	
+			boolean sROPnotavailablity = true;	
+			
+			boolean sRCPavailablity = false;	
+			boolean sRCPnotavailablity = true;	
+				
+				this.searchResults_select_Filters_checkbox(filtersonlinepaymentcheckbox);
+				this.searchResults_select_Filters_checkbox(filtersCashOnServicecheckbox);
+				this.searchResults_select_Filters_checkbox(filtersPromotionscheckbox);
+				this.searchResults_select_Filters_checkbox(filtersJobscheckbox);
+				
+				browser.waitforelementtobevisible(CustomerModule.home_SearchResults_Message, 20);				
+				if(CustomerModule.customer_OnlinePayment_SearchResults.size()>0){
+					for(WebElement listvalue:CustomerModule.customer_OnlinePayment_SearchResults){	
+						browser.scrollintoviewelement(listvalue);
+						searchResults_OLPaymentType = listvalue.getText();						
+						if(searchResults_OLPaymentType.trim().equalsIgnoreCase(expct_SearchResults_OnlinePaymentType)){								
+							sROPavailablity = true;								
+						}else{
+							sROPnotavailablity = false;
+						}				
+					}
+				}
+				
+				if(CustomerModule.customer_CashOnService_SearchResults.size()>0){
+					for(WebElement listvalue:CustomerModule.customer_CashOnService_SearchResults){	
+						browser.scrollintoviewelement(listvalue);
+						searchResults_COPaymentType = listvalue.getText();						
+						if(searchResults_COPaymentType.trim().equalsIgnoreCase(expct_SearchResults_CashPaymentType)){								
+							sRCPavailablity = true;								
+						}else{
+							sRCPnotavailablity = false;
+						}				
+					}
+				}	
+				if (sROPavailablity && sROPnotavailablity && sRCPavailablity && sRCPnotavailablity){
+					browser.reportscomtep("Passed",
+							"Select All Filters checkboxes and verify the list of Salons displayed that have all the selected options",
+							"The list of Salons should be displayed that have all the selected options",
+							"The list of Salons displayed that have all the selected options as:" + allFilterOptions );
+				} else {
+					browser.reportscomtep("Failed",
+							"Select All Filters checkboxes and verify the list of Salons displayed that have all the selected options",
+							"The list of Salons should be displayed that have all the selected options",
+							"The list of Salons Not displayed that have all the selected options as:" + allFilterOptions);
+				}
+				browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
+				CustomerModule.customer_SearchResults_Bookme_Buttons_List.get(0).click();
+				browser.waitforelementtobevisible(CustomerModule.Customer_Jobs_Tab, 20);
+				
+				if (browser.elementisdisplayed(CustomerModule.Customer_Jobs_Tab) && browser.elementisdisplayed(CustomerModule.Customer_Promotions_Tab) && sROPavailablity && sROPnotavailablity && sRCPavailablity && sRCPnotavailablity){
+					browser.reportscomtep("Passed",
+							"Select All Filters checkboxes and verify the list of Salons displayed that have all the selected options",
+							"The list of Salons should be displayed that have all the selected options",
+							"The list of Salons displayed that have all the selected options as:" + allFilterOptions );
+				} else {
+					browser.reportscomtep("Failed",
+							"Select All Filters checkboxes and verify the list of Salons displayed that have all the selected options",
+							"The list of Salons should be displayed that have all the selected options",
+							"The list of Salons Not displayed that have all the selected options as:" + allFilterOptions);
+				}
+				browser.click(CustomerModule.customer_Search_Button);
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/* TC_4_2_10 Check whether the correct results are displayed for Search Jobs*/
+	public void checksearchresultsdisplayedforSearchJobs() {
+		try {
+			String filterscheckbox = "Search Jobs";
+			String searchResults_Bookme = "";
+			String expct_SearchResults_Bookme = "Book Me";
+			boolean searchResultsavailablity = false;	
+			boolean searchResultsnotavailablity = true;		
+				
+				this.searchResults_select_Filters_checkbox(filterscheckbox);
+				
+				browser.waitforelementtobevisible(CustomerModule.home_SearchResults_Message, 20);				
+				if(CustomerModule.customer_Search_SalonNames.size()>0 && CustomerModule.customer_SearchResults_Bookme_Buttons_List.size()>0){
+					for(WebElement listvalue:CustomerModule.customer_SearchResults_Bookme_Buttons_List){	
+						browser.scrollintoviewelement(listvalue);
+						searchResults_Bookme = listvalue.getText();						
+						if(searchResults_Bookme.trim().equalsIgnoreCase(expct_SearchResults_Bookme)){								
+							searchResultsavailablity = true;								
+						}else{
+							searchResultsnotavailablity = false;
+						}				
+					}
+				}				
+				browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
+				if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message) && searchResultsavailablity && searchResultsnotavailablity){
+					browser.reportscomtep("Passed",
+							"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that having Jobs",
+							"Search results page should be dispalyed results with selected filter",
+							"Search results page dispalyed list of Salons that having Jobs");
+				} else {
+					browser.reportscomtep("Failed",
+							"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that having Jobs",
+							"Search results page should be dispalyed results with selected filter",
+							"Search results page Not dispalyed list of Salons that having Jobs");
+				}	
+				
+				CustomerModule.customer_SearchResults_Bookme_Buttons_List.get(0).click();
+				browser.waitforelementtobevisible(CustomerModule.Customer_Jobs_Tab, 20);
+				
+				if (browser.elementisdisplayed(CustomerModule.Customer_Jobs_Tab)){
+					browser.reportscomtep("Passed",
+							"Click on Book Me button and verify the Jobs Tab is displayed in the Business Page",
+							"Jobs Tab should be displayed in the Business Page",
+							"Jobs Tab is displayed in the Business Page");
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Book Me button and verify the Jobs Tab is displayed in the Business Page",
+							"Jobs Tab should be displayed in the Business Page",
+							"Jobs Tab is Not displayed in the Business Page");
+				}
+				browser.click(CustomerModule.customer_Search_Button);
 
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());

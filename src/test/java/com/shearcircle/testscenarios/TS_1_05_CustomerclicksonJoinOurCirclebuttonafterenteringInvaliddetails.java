@@ -68,7 +68,7 @@ public class TS_1_05_CustomerclicksonJoinOurCirclebuttonafterenteringInvaliddeta
 		CR.ShearCircle_Verify_Customer_Registrationform_Fieldvalidation();			
 	}
 	@Test(priority=1505, description="TC_1_5_05 Customer clicks on Join Our Circle button after entering Invalid details and accepting the terms of service, privacy policy & billing agreement." )
-	public void TC_1_5_05_CustomerclicksonJoinOurCirclebuttonafterenteringvaliddetails() throws IOException {			
+	public void TC_1_5_05_CustomerclicksonJoinOurCirclebuttonafterenteringInvaliddetails() throws IOException {			
 		CR.ShearCircle_Customer_Registrationwithinvaliddata();			
 	}
 
