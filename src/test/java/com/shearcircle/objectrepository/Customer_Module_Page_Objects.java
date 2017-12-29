@@ -77,8 +77,11 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='collapseFilters']/div[1]/div[1]/ul/li/label/div[@class='icheckbox_square-grey checked']/input")
     public List<WebElement> SR_Filters_checkedcheckbox_list;
 	
-	@FindBy(xpath="//*[@id='niceScroll']/li")
+	@FindBy(xpath="//*[@id='niceScroll']/li//ins")
     public List<WebElement> SR_Servies_checkbox_list;
+	
+	@FindBy(xpath="//*[@id='niceScroll']/li")
+    public List<WebElement> SR_Servies_checkbox_label_list;
 	
 	@FindBy(xpath="//*[@id='niceScroll']/li//div[@class='icheckbox_square-grey checked']/input")
     public List<WebElement> SR_services_checkedcheckbox_list;
@@ -142,6 +145,18 @@ public class Customer_Module_Page_Objects{
 	
 	@FindBy(xpath="//*[@id='container_pin']/div/ul/li/a[text()=' Jobs']")	
     public WebElement Customer_Jobs_Tab;
+	
+	@FindBy(xpath="//*[@id='niceScroll']/li[4]/label/div")
+	public WebElement SR_Services_Haircut_CheckBox;
+	
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']/div[2]/div[1]/div[2]/div/div/a")
+	public WebElement SR_Services_BookMe_Button;
+	
+	@FindBy(xpath="//a[@aria-controls='services']")
+	public WebElement SR_Services_Business_Page;
+	
+	@FindBy(xpath="//*[@id='services']//div/label[text()=' Haircut']")
+	public WebElement SR_Services_HairCut_service;
 		
 	@FindBy(xpath="//*[@id=\"position\"]/div/ul/li[text()='Customer']")	
     public WebElement Customer_Joincircle_navigation;	

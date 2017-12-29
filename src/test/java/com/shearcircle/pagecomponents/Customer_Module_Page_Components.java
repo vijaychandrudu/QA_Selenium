@@ -4136,5 +4136,105 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 			System.out.println(e.getStackTrace());
 		}
 	}
+	
+	public void searchResults_select_Services_checkbox(String p_in_filters_Service){
+		String service_name = "";
+		boolean service_selection = false;
+		int checkbox = 0;		
+		try {
+		
+		if(p_in_filters_Service!="" && CustomerModule.SR_Servies_checkbox_list.size()>0) {
+			for(WebElement Checkbox:CustomerModule.SR_Servies_checkbox_label_list){			
+				service_name = Checkbox.getText();				
+				if(p_in_filters_Service.trim().equalsIgnoreCase(service_name)) {					
+					//browser.check_Checkbox(CustomerModule.SR_Filters_checkbox_list.get(checkbox));
+					CustomerModule.SR_Servies_checkbox_list.get(checkbox).click();
+					service_selection = true;
+					break;
+				}				
+				checkbox++;
+			}
+		}else{
+			browser.reportscomtep("Failed", "Verify Service "+ p_in_filters_Service +" checkbox is displayed",
+					"Service "+ p_in_filters_Service +" checkbox should be displayed",
+					"Service "+ p_in_filters_Service +" checkbox Not displayed");
+		}
+		
+		if(service_selection) {
+			browser.reportscomtep("Passed", "Verify Service "+ p_in_filters_Service +" checkbox is selected",
+					"Service "+ p_in_filters_Service +" checkbox should be selected",
+					"Service "+ p_in_filters_Service +" checkbox selected");
+		}else {
+			browser.reportscomtep("Failed", "Verify Service "+ p_in_filters_Service +" checkbox is selected",
+					"Service "+ p_in_filters_Service +" checkbox should be selected",
+					"Service "+ p_in_filters_Service +" checkbox Not selected");
+		}
+					
+		}catch(Exception e) {
+			System.out.println(e.getStackTrace());
+		}
+	}
+	
+	/*****TC_4_2_12 check correct results are displayed for services filters********/
+	public void check_CorrectResults_DisplayedFor_ServicesFilters() {
+		try {
+			int NumberOfHaircut_SalonsList = 0;
+			String SR_Message = "";
+			String serviceName = null;			
+			serviceName = browser.getdata("filter_one_ServieName");
+			if (browser.elementisdisplayed(CustomerModule.SR_Filters_SectionDispalyed)) {
+				browser.reportscomtep("Passed", "Verify the Search Results page of the Filters Section is displayed",
+						"Search Results page of the Filters Section should be displayed",
+						"Search Results page of the Filters text  displayed");
+				//browser.click(CustomerModule.SR_Services_Haircut_CheckBox);
+				this.searchResults_select_Services_checkbox(serviceName);
+				
+				SR_Message = browser.getelementtext(CustomerModule.home_SearchResults_Message);
+				NumberOfHaircut_SalonsList = Integer.parseInt(SR_Message.replaceAll("\\D", ""));
+				if (NumberOfHaircut_SalonsList != 0) {
+					browser.reportscomtep("Passed",
+							"Verify "+serviceName+" salons list is displayed in Search Reasults page",
+							serviceName+" salons list should be displayed in Search Reasults page",
+							serviceName+" salons list "+ NumberOfHaircut_SalonsList +" displayed in Search Reasults page");
+					browser.click(CustomerModule.SR_Services_BookMe_Button);
+					if (browser.elementisdisplayed(CustomerModule.SR_Services_Business_Page)) {
+						browser.reportscomtep("Passed",
+								"click on BookMe button and verify Services tab is displayed in Business page",
+								"Services tab should be displayed in Business page",
+								"Services tab displayed in Business page");
+						browser.getelementwithXpath("//*[@id='services']//div/label[text()=' "+serviceName+"']");
+						if (browser.elementisdisplayed(CustomerModule.SR_Services_HairCut_service)) {
+							browser.reportscomtep("Passed",
+									"Verify "+serviceName+" service is displayed under the services tab",
+									serviceName+" service should be displayed under the services tab",
+									serviceName+" service displayed under the services tab");
+						} else {
+							browser.reportscomtep("Failed",
+									"Verify "+serviceName+" service is displayed under the services tab",
+									serviceName+" service should be displayed under the services tab",
+									serviceName+" service Not displayed under the services tab");
+						}
+					} else {
+						browser.reportscomtep("Failed",
+								"click on BookMe button and verify Services tab is displayed in Business page",
+								"Services tab should be displayed in Business page",
+								"Services tab Not displayed in Business page");
+					}
+				} else {
+					browser.reportscomtep("Passed",
+							"Verify "+serviceName+" salons list is displayed in Search Reasults page",
+							serviceName+" salons list should be displayed in Search Reasults page",
+							serviceName+" salons list Not displayed  in Search Reasults page as expected if the selected service is not available");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify the Search Results page of the Filters Section is displayed",
+						"Search Results page of the Filters Section should be displayed",
+						"Search Results page of the Filters Section not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
 
 }
