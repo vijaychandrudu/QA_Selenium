@@ -1484,6 +1484,27 @@ public class CommonFunctions extends StaticVariables {
 		}
 		return link;
 	}
+	
+	/*
+	 * Created date:21/12/2017 Description: Parameters: ReturnType:
+	 */
+	public WebElement getelementwithXpath(String xpath){
+		WebElement link = null;
+		try {			
+									
+			if (xpath!=""){		
+				link = driver.findElement(By.xpath(xpath));
+				
+			} else {
+				System.out.println("given Xpath is empty");
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("Error in description: " + e.getStackTrace());
+		}
+		return link;
+	}
 
 	/****************** FRAMES HANDLE *****************/
 	public void switchToDefaultFrame() {
