@@ -63,7 +63,7 @@ public class TS_4_02_Customer_appliesfiltersinsearchpage extends StaticVariables
 		//CR.checkThe_Locate_Button();
 		CR.invokeTO_SearcResults_Page();
 	}
-	/*@Test(priority=40203, description="TC_4_2_02 Check whether the filters are hidden by clicking the + sign in filter section")
+	@Test(priority=40203, description="TC_4_2_02 Check whether the filters are hidden by clicking the + sign in filter section")
 	public void TC_4_2_02_Customer_Checkfiltersarehiddenbyclicking_plussign() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the filters are hidden by clicking the + sign in filter section");
 		CR.check_FiltersAreHiddenBy_ClickOnPlusSignIn_FilterSection();			
@@ -115,16 +115,16 @@ public class TS_4_02_Customer_appliesfiltersinsearchpage extends StaticVariables
 	public void TC_4_2_10_Customer_CheckSearchJobscheckbox() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for Search Jobs");
 		CR.checksearchresultsdisplayedforSearchJobs();		
-	}*/
+	}
 	
-	/*@Test(priority=40211, description="TC_4_2_11 Check whether the correct results are displayed when selecting all 4 filters")
+	@Test(priority=40211, description="TC_4_2_11 Check whether the correct results are displayed when selecting all 4 filters")
 	public void TC_4_2_11_Customer_CheckAllFilterscheckboxs() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed when selecting all 4 filters");
 		CR.checksearchresultsdisplayed_SellectingAllFilters();		
-	}*/
+	}
 	
 	@Test(priority=40212, description="TC_4_2_12 Check whether the correct results are displayed for services filter")
-	public void TC_4_2_11_Customer_CheckAnyoneServicescheckboxs() throws IOException {			
+	public void TC_4_2_12_Customer_CheckAnyoneServicescheckboxs() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for services filter");
 		CR.check_CorrectResults_DisplayedFor_ServicesFilters();		
 	}
