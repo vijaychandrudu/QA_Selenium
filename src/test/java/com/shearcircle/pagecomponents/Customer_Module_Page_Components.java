@@ -3792,8 +3792,7 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 			boolean searchResultsavailablity = false;	
 			boolean searchResultsnotavailablity = true;		
 				
-				this.searchResults_select_Filters_checkbox(onlinepayment_filtercheckbox);
-				
+				this.searchResults_select_Filters_checkbox(onlinepayment_filtercheckbox);				
 				browser.waitforelementtobevisible(CustomerModule.home_SearchResults_Message, 20);				
 				if(CustomerModule.customer_Search_SalonNames.size()>0 && CustomerModule.customer_OnlinePayment_SearchResults.size()>0){
 					for(WebElement listvalue:CustomerModule.customer_OnlinePayment_SearchResults){	
@@ -3803,24 +3802,29 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 							searchResultsavailablity = true;								
 						}else{
 							searchResultsnotavailablity = false;
-						}				
-					}
-				}				
-				browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
-				if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message) && searchResultsavailablity && searchResultsnotavailablity){
+						}	
+						browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
+						if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message) && searchResultsavailablity && searchResultsnotavailablity){
+							browser.reportscomtep("Passed",
+									"Select fileter as "+onlinepayment_filtercheckbox+" and verify Search results page dispalyed list of Salons that Online payment",
+									"Search results page should be dispalyed results with selected filter",
+									"Search results page dispalyed list of Salons that accept Online payment");
+						} else {
+							browser.reportscomtep("Failed",
+									"Select fileter as "+onlinepayment_filtercheckbox+" and verify Search results page dispalyed list of Salons that Online payment",
+									"Search results page should be dispalyed results with selected filter",
+									"Search results page Not dispalyed list of Salons that accept Online payment");
+						}	
+						
+					}					
+					
+				}else if (browser.elementisdisplayed(CustomerModule.home_NoResultsFound_Message)){				
 					browser.reportscomtep("Passed",
-							"Select fileter as "+onlinepayment_filtercheckbox+" and verify Search results page dispalyed list of Salons that Online payment",
-							"Search results page should be dispalyed results with selected filter",
-							"Search results page dispalyed list of Salons that accept Online payment");
-				} else {
-					browser.reportscomtep("Failed",
-							"Select fileter as "+onlinepayment_filtercheckbox+" and verify Search results page dispalyed list of Salons that Online payment",
-							"Search results page should be dispalyed results with selected filter",
-							"Search results page Not dispalyed list of Salons that accept Online payment");
-				}	
-				
-				this.searchResults_select_Filters_checkbox(onlinepayment_filtercheckbox);
-			
+							"Select fileters as "+onlinepayment_filtercheckbox+" and verify Search results page dispalyed list of Salons",
+							"Search results page should be dispalyed results with selected filters",
+							onlinepayment_filtercheckbox+" salons list Not displayed in Search Reasults page as expected if the selected service is not available");				
+				}		
+				this.searchResults_Unselect_Filters_checkbox(onlinepayment_filtercheckbox);
 
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
@@ -3832,7 +3836,7 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 		try {
 			String filterscheckbox = "Accept Cash On Service";
 			String searchResults_PaymentType = "";
-			String expct_SearchResults_PaymentType = "Accept Cash On Service";
+			String expct_SearchResults_PaymentType = "Cash On Service";
 			boolean searchResultsavailablity = false;	
 			boolean searchResultsnotavailablity = true;		
 				
@@ -3849,21 +3853,27 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 							searchResultsnotavailablity = false;
 						}				
 					}
-				}				
-				browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
-				if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message) && searchResultsavailablity && searchResultsnotavailablity){
+					
+					browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
+					if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message) && searchResultsavailablity && searchResultsnotavailablity){
+						browser.reportscomtep("Passed",
+								"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that Cash On Services",
+								"Search results page should be dispalyed results with selected filter",
+								"Search results page dispalyed list of Salons that accept Cash On Services");
+					} else {
+						browser.reportscomtep("Failed",
+								"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that Cash On Services",
+								"Search results page should be dispalyed results with selected filter",
+								"Search results page Not dispalyed list of Salons that accept Cash On Services");
+					}	
+				}else if (browser.elementisdisplayed(CustomerModule.home_NoResultsFound_Message)){				
 					browser.reportscomtep("Passed",
-							"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that Cash On Services",
-							"Search results page should be dispalyed results with selected filter",
-							"Search results page dispalyed list of Salons that accept Cash On Services");
-				} else {
-					browser.reportscomtep("Failed",
-							"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that Cash On Services",
-							"Search results page should be dispalyed results with selected filter",
-							"Search results page Not dispalyed list of Salons that accept Cash On Services");
-				}	
+							"Select fileters as "+filterscheckbox+" and verify Search results page dispalyed list of Salons",
+							"Search results page should be dispalyed results with selected filters",
+							filterscheckbox+" salons list Not displayed in Search Reasults page as expected if the selected service is not available");				
+				}			
 				
-				this.searchResults_select_Filters_checkbox(filterscheckbox);
+				this.searchResults_Unselect_Filters_checkbox(filterscheckbox);
 			
 
 		} catch (Exception e) {
@@ -3893,117 +3903,41 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 							searchResultsnotavailablity = false;
 						}				
 					}
-				}				
-				browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
-				if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message) && searchResultsavailablity && searchResultsnotavailablity){
-					browser.reportscomtep("Passed",
-							"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that having Promotions",
-							"Search results page should be dispalyed results with selected filter",
-							"Search results page dispalyed list of Salons that having Promotions");
-				} else {
-					browser.reportscomtep("Failed",
-							"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that having Promotions",
-							"Search results page should be dispalyed results with selected filter",
-							"Search results page Not dispalyed list of Salons that having Promotions");
-				}	
-				
-				CustomerModule.customer_SearchResults_Bookme_Buttons_List.get(0).click();
-				browser.waitforelementtobevisible(CustomerModule.Customer_Promotions_Tab, 20);
-				
-				if (browser.elementisdisplayed(CustomerModule.Customer_Promotions_Tab)){
-					browser.reportscomtep("Passed",
-							"Click on Book Me button and verify the Promotions Tab is displayed in the Business Page",
-							"Promotions Tab should be displayed in the Business Page",
-							"Promotions Tab is displayed in the Business Page");
-				} else {
-					browser.reportscomtep("Failed",
-							"Click on Book Me button and verify the Promotions Tab is displayed in the Business Page",
-							"Promotions Tab should be displayed in the Business Page",
-							"Promotions Tab is Not displayed in the Business Page");
-				}
-				browser.click(CustomerModule.customer_Search_Button);
-
-		} catch (Exception e) {
-			System.out.println("Error description: " + e.getStackTrace());
-		}
-	}
-	
-	
-	/* TC_4_2_11 Check whether the correct results are displayed when selecting all 4 filters*/
-	public void checksearchresultsdisplayed_SellectingAllFilters() {
-		try {
-			String filtersonlinepaymentcheckbox = "Accept Online Payments";
-			String filtersCashOnServicecheckbox = "Accept Cash On Service";
-			String filtersPromotionscheckbox = "Search Promotions";
-			String filtersJobscheckbox = "Search Jobs";
-			String allFilterOptions = "Accept Online Payments, Accept Cash On Service, Search Promotions, Search Jobs";
-			String expct_SearchResults_OnlinePaymentType = "Online Payment";
-			String expct_SearchResults_CashPaymentType = "Accept Cash On Service";
-			String searchResults_Bookme = "";
-			String searchResults_OLPaymentType = "";
-			String searchResults_COPaymentType = "";
-			String expct_SearchResults_Bookme = "Book Me";
-			boolean sROPavailablity = false;	
-			boolean sROPnotavailablity = true;	
-			
-			boolean sRCPavailablity = false;	
-			boolean sRCPnotavailablity = true;	
-				
-				this.searchResults_select_Filters_checkbox(filtersonlinepaymentcheckbox);
-				this.searchResults_select_Filters_checkbox(filtersCashOnServicecheckbox);
-				this.searchResults_select_Filters_checkbox(filtersPromotionscheckbox);
-				this.searchResults_select_Filters_checkbox(filtersJobscheckbox);
-				
-				browser.waitforelementtobevisible(CustomerModule.home_SearchResults_Message, 20);				
-				if(CustomerModule.customer_OnlinePayment_SearchResults.size()>0){
-					for(WebElement listvalue:CustomerModule.customer_OnlinePayment_SearchResults){	
-						browser.scrollintoviewelement(listvalue);
-						searchResults_OLPaymentType = listvalue.getText();						
-						if(searchResults_OLPaymentType.trim().equalsIgnoreCase(expct_SearchResults_OnlinePaymentType)){								
-							sROPavailablity = true;								
-						}else{
-							sROPnotavailablity = false;
-						}				
+					
+					browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
+					if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message) && searchResultsavailablity && searchResultsnotavailablity){
+						browser.reportscomtep("Passed",
+								"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that having Promotions",
+								"Search results page should be dispalyed results with selected filter",
+								"Search results page dispalyed list of Salons that having Promotions");
+					} else {
+						browser.reportscomtep("Failed",
+								"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that having Promotions",
+								"Search results page should be dispalyed results with selected filter",
+								"Search results page Not dispalyed list of Salons that having Promotions");
+					}	
+					
+					CustomerModule.customer_SearchResults_Bookme_Buttons_List.get(0).click();
+					browser.waitforelementtobevisible(CustomerModule.Customer_Promotions_Tab, 20);
+					
+					if (browser.elementisdisplayed(CustomerModule.Customer_Promotions_Tab)){
+						browser.reportscomtep("Passed",
+								"Click on Book Me button and verify the Promotions Tab is displayed in the Business Page",
+								"Promotions Tab should be displayed in the Business Page",
+								"Promotions Tab is displayed in the Business Page");
+					} else {
+						browser.reportscomtep("Failed",
+								"Click on Book Me button and verify the Promotions Tab is displayed in the Business Page",
+								"Promotions Tab should be displayed in the Business Page",
+								"Promotions Tab is Not displayed in the Business Page");
 					}
-				}
-				
-				if(CustomerModule.customer_CashOnService_SearchResults.size()>0){
-					for(WebElement listvalue:CustomerModule.customer_CashOnService_SearchResults){	
-						browser.scrollintoviewelement(listvalue);
-						searchResults_COPaymentType = listvalue.getText();						
-						if(searchResults_COPaymentType.trim().equalsIgnoreCase(expct_SearchResults_CashPaymentType)){								
-							sRCPavailablity = true;								
-						}else{
-							sRCPnotavailablity = false;
-						}				
-					}
-				}	
-				if (sROPavailablity && sROPnotavailablity && sRCPavailablity && sRCPnotavailablity){
+				}else if (browser.elementisdisplayed(CustomerModule.home_NoResultsFound_Message)){				
 					browser.reportscomtep("Passed",
-							"Select All Filters checkboxes and verify the list of Salons displayed that have all the selected options",
-							"The list of Salons should be displayed that have all the selected options",
-							"The list of Salons displayed that have all the selected options as:" + allFilterOptions );
-				} else {
-					browser.reportscomtep("Failed",
-							"Select All Filters checkboxes and verify the list of Salons displayed that have all the selected options",
-							"The list of Salons should be displayed that have all the selected options",
-							"The list of Salons Not displayed that have all the selected options as:" + allFilterOptions);
-				}
-				browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
-				CustomerModule.customer_SearchResults_Bookme_Buttons_List.get(0).click();
-				browser.waitforelementtobevisible(CustomerModule.Customer_Jobs_Tab, 20);
+							"Select fileters as "+filterscheckbox+" and verify Search results page dispalyed list of Salons",
+							"Search results page should be dispalyed results with selected filters",
+							filterscheckbox+" salons list Not displayed in Search Reasults page as expected if the selected service is not available");				
+				}					
 				
-				if (browser.elementisdisplayed(CustomerModule.Customer_Jobs_Tab) && browser.elementisdisplayed(CustomerModule.Customer_Promotions_Tab) && sROPavailablity && sROPnotavailablity && sRCPavailablity && sRCPnotavailablity){
-					browser.reportscomtep("Passed",
-							"Select All Filters checkboxes and verify the list of Salons displayed that have all the selected options",
-							"The list of Salons should be displayed that have all the selected options",
-							"The list of Salons displayed that have all the selected options as:" + allFilterOptions );
-				} else {
-					browser.reportscomtep("Failed",
-							"Select All Filters checkboxes and verify the list of Salons displayed that have all the selected options",
-							"The list of Salons should be displayed that have all the selected options",
-							"The list of Salons Not displayed that have all the selected options as:" + allFilterOptions);
-				}
 				browser.click(CustomerModule.customer_Search_Button);
 
 		} catch (Exception e) {
@@ -4033,35 +3967,290 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 							searchResultsnotavailablity = false;
 						}				
 					}
-				}				
-				browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
-				if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message) && searchResultsavailablity && searchResultsnotavailablity){
+					
+					browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
+					if (browser.elementisdisplayed(CustomerModule.home_SearchResults_Message) && searchResultsavailablity && searchResultsnotavailablity){
+						browser.reportscomtep("Passed",
+								"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that having Jobs",
+								"Search results page should be dispalyed results with selected filter",
+								"Search results page dispalyed list of Salons that having Jobs");
+					} else {
+						browser.reportscomtep("Failed",
+								"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that having Jobs",
+								"Search results page should be dispalyed results with selected filter",
+								"Search results page Not dispalyed list of Salons that having Jobs");
+					}	
+					
+					CustomerModule.customer_SearchResults_Bookme_Buttons_List.get(0).click();
+					browser.waitforelementtobevisible(CustomerModule.Customer_Jobs_Tab, 20);
+					
+					if (browser.elementisdisplayed(CustomerModule.Customer_Jobs_Tab)){
+						browser.reportscomtep("Passed",
+								"Click on Book Me button and verify the Jobs Tab is displayed in the Business Page",
+								"Jobs Tab should be displayed in the Business Page",
+								"Jobs Tab is displayed in the Business Page");
+					} else {
+						browser.reportscomtep("Failed",
+								"Click on Book Me button and verify the Jobs Tab is displayed in the Business Page",
+								"Jobs Tab should be displayed in the Business Page",
+								"Jobs Tab is Not displayed in the Business Page");
+					}
+					
+				}else if (browser.elementisdisplayed(CustomerModule.home_NoResultsFound_Message)){				
 					browser.reportscomtep("Passed",
-							"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that having Jobs",
-							"Search results page should be dispalyed results with selected filter",
-							"Search results page dispalyed list of Salons that having Jobs");
-				} else {
-					browser.reportscomtep("Failed",
-							"Select fileter as "+filterscheckbox+" and verify Search results page dispalyed list of Salons that having Jobs",
-							"Search results page should be dispalyed results with selected filter",
-							"Search results page Not dispalyed list of Salons that having Jobs");
-				}	
-				
-				CustomerModule.customer_SearchResults_Bookme_Buttons_List.get(0).click();
-				browser.waitforelementtobevisible(CustomerModule.Customer_Jobs_Tab, 20);
-				
-				if (browser.elementisdisplayed(CustomerModule.Customer_Jobs_Tab)){
-					browser.reportscomtep("Passed",
-							"Click on Book Me button and verify the Jobs Tab is displayed in the Business Page",
-							"Jobs Tab should be displayed in the Business Page",
-							"Jobs Tab is displayed in the Business Page");
-				} else {
-					browser.reportscomtep("Failed",
-							"Click on Book Me button and verify the Jobs Tab is displayed in the Business Page",
-							"Jobs Tab should be displayed in the Business Page",
-							"Jobs Tab is Not displayed in the Business Page");
+							"Select fileters as "+filterscheckbox+" and verify Search results page dispalyed list of Salons",
+							"Search results page should be dispalyed results with selected filters",
+							filterscheckbox+" salons list Not displayed in Search Reasults page as expected if the selected service is not available");				
 				}
 				browser.click(CustomerModule.customer_Search_Button);
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/* TC_4_2_11 Check whether the correct results are displayed when selecting all 4 filters*/
+	public void checksearchresultsdisplayed_SellectingAllFilters() {
+		try {
+			String filtersonlinepaymentcheckbox = "Accept Online Payments";
+			String filtersCashOnServicecheckbox = "Accept Cash On Service";
+			String filtersPromotionscheckbox = "Search Promotions";
+			String filtersJobscheckbox = "Search Jobs";
+			String allFilterOptions = "Accept Online Payments, Accept Cash On Service, Search Promotions, Search Jobs";
+			String expct_SearchResults_OnlinePaymentType = "Online Payment";
+			String expct_SearchResults_CashPaymentType = "Accept Cash On Service";
+			String searchResults_Bookme = "";
+			String searchResults_OLPaymentType = "";
+			String searchResults_COPaymentType = "";
+			String expct_SearchResults_Bookme = "Book Me";
+			boolean sROPavailablity = false;	
+			boolean sROPnotavailablity = true;	
+			
+			boolean sRCPavailablity = false;	
+			boolean sRCPnotavailablity = true;	
+				
+				this.searchResults_select_Filters_checkbox(filtersonlinepaymentcheckbox);
+				this.searchResults_select_Filters_checkbox(filtersCashOnServicecheckbox);
+				this.searchResults_select_Filters_checkbox(filtersPromotionscheckbox);
+				this.searchResults_select_Filters_checkbox(filtersJobscheckbox);
+				
+				browser.waitforelementtobevisible(CustomerModule.home_SearchResults_Message, 20);				
+				if(CustomerModule.customer_OnlinePayment_SearchResults.size()>0 && CustomerModule.customer_CashOnService_SearchResults.size()>0){
+					for(WebElement listvalue:CustomerModule.customer_OnlinePayment_SearchResults){	
+						browser.scrollintoviewelement(listvalue);
+						searchResults_OLPaymentType = listvalue.getText();						
+						if(searchResults_OLPaymentType.trim().equalsIgnoreCase(expct_SearchResults_OnlinePaymentType)){								
+							sROPavailablity = true;								
+						}else{
+							sROPnotavailablity = false;
+						}				
+					}		
+				
+					for(WebElement listvalue:CustomerModule.customer_CashOnService_SearchResults){	
+						browser.scrollintoviewelement(listvalue);
+						searchResults_COPaymentType = listvalue.getText();						
+						if(searchResults_COPaymentType.trim().equalsIgnoreCase(expct_SearchResults_CashPaymentType)){								
+							sRCPavailablity = true;								
+						}else{
+							sRCPnotavailablity = false;
+						}				
+					}
+					if (sROPavailablity && sROPnotavailablity && sRCPavailablity && sRCPnotavailablity){
+						browser.reportscomtep("Passed",
+								"Select All Filters checkboxes and verify the list of Salons displayed that have all the selected options",
+								"The list of Salons should be displayed that have all the selected options",
+								"The list of Salons displayed that have all the selected options as:" + allFilterOptions );
+					} else {
+						browser.reportscomtep("Failed",
+								"Select All Filters checkboxes and verify the list of Salons displayed that have all the selected options",
+								"The list of Salons should be displayed that have all the selected options",
+								"The list of Salons Not displayed that have all the selected options as:" + allFilterOptions);
+					}
+					browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
+					CustomerModule.customer_SearchResults_Bookme_Buttons_List.get(0).click();
+					browser.waitforelementtobevisible(CustomerModule.Customer_Jobs_Tab, 20);
+					
+					if (browser.elementisdisplayed(CustomerModule.Customer_Jobs_Tab) && browser.elementisdisplayed(CustomerModule.Customer_Promotions_Tab) && sROPavailablity && sROPnotavailablity && sRCPavailablity && sRCPnotavailablity){
+						browser.reportscomtep("Passed",
+								"Select All Filters checkboxes and verify the list of Salons displayed that have all the selected options",
+								"The list of Salons should be displayed that have all the selected options",
+								"The list of Salons displayed that have all the selected options as:" + allFilterOptions );
+					} else {
+						browser.reportscomtep("Failed",
+								"Select All Filters checkboxes and verify the list of Salons displayed that have all the selected options",
+								"The list of Salons should be displayed that have all the selected options",
+								"The list of Salons Not displayed that have all the selected options as:" + allFilterOptions);
+					}
+					
+				}else if (browser.elementisdisplayed(CustomerModule.home_NoResultsFound_Message)){				
+					browser.reportscomtep("Passed",
+							"Select fileters as "+allFilterOptions+" and verify Search results page dispalyed list of Salons",
+							"Search results page should be dispalyed results with selected filters",
+							allFilterOptions+" salons list Not displayed in Search Reasults page as expected if the selected service is not available");				
+				}	
+				
+				browser.click(CustomerModule.customer_Search_Button);
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}	
+	
+	/*****TC_4_2_12 check correct results are displayed for services filters********/
+	public void check_CorrectResults_DisplayedFor_ServicesFilters() {
+		try {
+			int NumberOfHaircut_SalonsList = 0;
+			String SR_Message = "";
+			String serviceName = null;
+			WebElement SR_Services_HairCut_service = null;
+			serviceName = browser.getdata("filter_one_ServieName");
+			if (browser.elementisdisplayed(CustomerModule.SR_Filters_SectionDispalyed)) {
+				browser.reportscomtep("Passed", "Verify the Search Results page of the Filters Section is displayed",
+						"Search Results page of the Filters Section should be displayed",
+						"Search Results page of the Filters text  displayed");
+				//browser.click(CustomerModule.SR_Services_Haircut_CheckBox);
+				this.searchResults_select_Services_checkbox(serviceName);
+				
+				SR_Message = browser.getelementtext(CustomerModule.home_SearchResults_Message);
+				NumberOfHaircut_SalonsList = Integer.parseInt(SR_Message.replaceAll("\\D", ""));
+				if (NumberOfHaircut_SalonsList != 0) {
+					browser.reportscomtep("Passed",
+							"Verify "+serviceName+" salons list is displayed in Search Reasults page",
+							serviceName+" salons list should be displayed in Search Reasults page",
+							serviceName+" salons list "+ NumberOfHaircut_SalonsList +" displayed in Search Reasults page");
+					browser.click(CustomerModule.SR_Services_BookMe_Button);
+					if (browser.elementisdisplayed(CustomerModule.SR_Services_Business_Page)) {
+						browser.reportscomtep("Passed",
+								"click on BookMe button and verify Services tab is displayed in Business page",
+								"Services tab should be displayed in Business page",
+								"Services tab displayed in Business page");
+						SR_Services_HairCut_service = browser.getelementwithXpath("//*[@id='services']//div/label[contains(text(),'"+serviceName.substring(1)+"')]");
+						System.out.println("//*[@id='services']//div/label[contains(text(),'"+serviceName.substring(1)+"')]");
+						if (browser.elementisdisplayed(SR_Services_HairCut_service)) {
+							browser.reportscomtep("Passed",
+									"Verify "+serviceName+" service is displayed under the services tab",
+									serviceName+" service should be displayed under the services tab",
+									serviceName+" service displayed under the services tab");
+						} else {
+							browser.reportscomtep("Failed",
+									"Verify "+serviceName+" service is displayed under the services tab",
+									serviceName+" service should be displayed under the services tab",
+									serviceName+" service Not displayed under the services tab");
+						}
+					} else {
+						browser.reportscomtep("Failed",
+								"click on BookMe button and verify Services tab is displayed in Business page",
+								"Services tab should be displayed in Business page",
+								"Services tab Not displayed in Business page");
+					}
+				} else {
+					browser.reportscomtep("Passed",
+							"Verify "+serviceName+" salons list is displayed in Search Reasults page",
+							serviceName+" salons list should be displayed in Search Reasults page",
+							serviceName+" salons list Not displayed  in Search Reasults page as expected if the selected service is not available");
+				}
+				browser.click(CustomerModule.customer_Search_Button);
+			} else {
+				browser.reportscomtep("Failed", "Verify the Search Results page of the Filters Section is displayed",
+						"Search Results page of the Filters Section should be displayed",
+						"Search Results page of the Filters Section not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*****TC_4_2_16 Check whether the correct results are displayed when a combination of all filters are selected********/
+	public void check_CorrectResults_combinationofallfiltersareselected() {
+		try {					
+			String filtersPromotionscheckbox = "Search Promotions";			
+			String allFilterOptions = "Accept Online Payments, Search Promotions";			
+			String serviceName = null;	
+			String searchResults_CashPaymentType = "";
+			boolean sRCashPavailablity = false;
+			boolean sRCashPnotavailablity = false;			
+			String filter_multiple_Ratings = null;			
+			String filtersCashOnServicecheckbox = "Accept Cash On Service";			
+			String expct_SearchResults_CashPaymentType = "Cash On Service";
+			
+			serviceName = browser.getdata("filter_multiple_ServieNames");
+			filter_multiple_Ratings = browser.getdata("filter_multiple_Ratings");
+			if (browser.elementisdisplayed(CustomerModule.SR_Filters_SectionDispalyed)) {
+				browser.reportscomtep("Passed", "Verify the Search Results page of the Filters Section is displayed",
+						"Search Results page of the Filters Section should be displayed",
+						"Search Results page of the Filters text  displayed");
+								
+				this.searchResults_select_Filters_checkbox(filtersCashOnServicecheckbox);				
+				this.searchResults_select_Filters_checkbox(filtersPromotionscheckbox);
+				this.searchResults_select_Services_checkbox(serviceName);
+				
+				browser.waitforelementtobevisible(CustomerModule.home_SearchResults_Message, 20);
+				browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
+				if(CustomerModule.customer_OnlinePayment_SearchResults.size()>0){
+					for(WebElement listvalue:CustomerModule.customer_OnlinePayment_SearchResults){	
+						browser.scrollintoviewelement(listvalue);
+						searchResults_CashPaymentType = listvalue.getText();						
+						if(searchResults_CashPaymentType.trim().equalsIgnoreCase(expct_SearchResults_CashPaymentType)){								
+							sRCashPavailablity = true;								
+						}else{
+							sRCashPnotavailablity = false;
+						}				
+					}
+				}				
+				
+				if (sRCashPavailablity && sRCashPnotavailablity){					
+					browser.reportscomtep("Passed",
+							"Select fileters as "+allFilterOptions+","+serviceName+", "+ filter_multiple_Ratings+" and verify Search results page dispalyed list of Salons",
+							"Search results page should be dispalyed results with selected filters",
+							"Search results page dispalyed list of Salons that "+allFilterOptions+","+serviceName+", "+ filter_multiple_Ratings);
+					
+					browser.scrollintoviewelement(CustomerModule.home_SearchResults_Message);
+					CustomerModule.customer_SearchResults_Bookme_Buttons_List.get(0).click();
+					browser.waitforelementtobevisible(CustomerModule.Customer_Promotions_Tab, 20);
+					
+					if (browser.elementisdisplayed(CustomerModule.SR_Services_Business_Page)) {
+						browser.reportscomtep("Passed",
+								"click on BookMe button and verify Services tab is displayed in Business page",
+								"Services tab should be displayed in Business page",
+								"Services tab displayed in Business page");					
+						
+						if (browser.elementisdisplayed(CustomerModule.Customer_Promotions_Tab)) {
+							browser.reportscomtep("Passed",
+									"Verify Promotions Tab and "+serviceName+" service are displayed under the services tab",
+									"Promotions Tab and "+serviceName+" service are should be displayed under the services tab",
+									"Promotions Tab and "+serviceName+" service are displayed under the services tab");
+						} else {
+							browser.reportscomtep("Failed",
+									"Verify Promotions Tab and "+serviceName+" service are displayed under the services tab",
+									"Promotions Tab and "+serviceName+" service are should be displayed under the services tab",
+									"Promotions Tab and "+serviceName+" service are Not displayed under the services tab");
+						}
+					} else {
+						browser.reportscomtep("Failed",
+								"click on BookMe button and verify Services tab is displayed in Business page",
+								"Services tab should be displayed in Business page",
+								"Services tab Not displayed in Business page");
+					}
+					
+					browser.click(CustomerModule.customer_Search_Button);
+				} else if (browser.elementisdisplayed(CustomerModule.home_NoResultsFound_Message)){				
+					browser.reportscomtep("Passed",
+							"Select fileters as "+allFilterOptions+","+serviceName+", "+ filter_multiple_Ratings+" and verify Search results page dispalyed list of Salons",
+							"Search results page should be dispalyed results with selected filters",
+							allFilterOptions+","+serviceName+", "+ filter_multiple_Ratings+" salons list Not displayed in Search Reasults page as expected if the selected service is not available");
+				} else {
+					browser.reportscomtep("Failed",
+							"Select fileters as "+allFilterOptions+","+serviceName+", "+ filter_multiple_Ratings+" and verify Search results page dispalyed list of Salons",
+							"Search results page should be dispalyed results with selected filters",
+							"Search results page Not dispalyed list of Salons that "+allFilterOptions+","+serviceName+", "+ filter_multiple_Ratings);
+				}			
+			
+			}else{
+				
+				browser.reportscomtep("Failed", "Verify the Search Results page of the Filters Section is displayed",
+						"Search Results page of the Filters Section should be displayed",
+						"Search Results page of the Filters Section not displayed");
+			}
 
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
@@ -4138,102 +4327,49 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 	}
 	
 	public void searchResults_select_Services_checkbox(String p_in_filters_Service){
-		String service_name = "";
+		String service_name = "";		
 		boolean service_selection = false;
-		int checkbox = 0;		
+		int checkbox = 0;
+		int servicesLength = 0;
+		String[] serviceList ;
+		
+		serviceList = p_in_filters_Service.split(";");
+		servicesLength = serviceList.length;	
+		
 		try {
 		
-		if(p_in_filters_Service!="" && CustomerModule.SR_Servies_checkbox_list.size()>0) {
-			for(WebElement Checkbox:CustomerModule.SR_Servies_checkbox_label_list){			
-				service_name = Checkbox.getText();				
-				if(p_in_filters_Service.trim().equalsIgnoreCase(service_name)) {					
-					//browser.check_Checkbox(CustomerModule.SR_Filters_checkbox_list.get(checkbox));
-					CustomerModule.SR_Servies_checkbox_list.get(checkbox).click();
-					service_selection = true;
-					break;
-				}				
-				checkbox++;
+			if(p_in_filters_Service!="" && CustomerModule.SR_Servies_checkbox_list.size()>0) {
+				for(int loop_i = 0; loop_i<=servicesLength -1; loop_i++){				
+					for(WebElement Checkbox:CustomerModule.SR_Servies_checkbox_label_list){			
+						service_name = Checkbox.getText();				
+						if(service_name.trim().equalsIgnoreCase(serviceList[loop_i])) {					
+							//browser.check_Checkbox(CustomerModule.SR_Filters_checkbox_list.get(checkbox));
+							CustomerModule.SR_Servies_checkbox_list.get(checkbox).click();
+							service_selection = true;
+							break;
+						}				
+						checkbox++;
+					}
+				}
+				
+			}else{
+				browser.reportscomtep("Failed", "Verify Service "+ p_in_filters_Service +" checkbox is displayed",
+						"Service "+ p_in_filters_Service +" checkbox should be displayed",
+						"Service "+ p_in_filters_Service +" checkbox Not displayed");
 			}
-		}else{
-			browser.reportscomtep("Failed", "Verify Service "+ p_in_filters_Service +" checkbox is displayed",
-					"Service "+ p_in_filters_Service +" checkbox should be displayed",
-					"Service "+ p_in_filters_Service +" checkbox Not displayed");
-		}
-		
-		if(service_selection) {
-			browser.reportscomtep("Passed", "Verify Service "+ p_in_filters_Service +" checkbox is selected",
-					"Service "+ p_in_filters_Service +" checkbox should be selected",
-					"Service "+ p_in_filters_Service +" checkbox selected");
-		}else {
-			browser.reportscomtep("Failed", "Verify Service "+ p_in_filters_Service +" checkbox is selected",
-					"Service "+ p_in_filters_Service +" checkbox should be selected",
-					"Service "+ p_in_filters_Service +" checkbox Not selected");
-		}
+			
+			if(service_selection) {
+				browser.reportscomtep("Passed", "Verify Service "+ p_in_filters_Service +" checkbox is selected",
+						"Service "+ p_in_filters_Service +" checkbox should be selected",
+						"Service "+ p_in_filters_Service +" checkbox selected");
+			}else {
+				browser.reportscomtep("Failed", "Verify Service "+ p_in_filters_Service +" checkbox is selected",
+						"Service "+ p_in_filters_Service +" checkbox should be selected",
+						"Service "+ p_in_filters_Service +" checkbox Not selected");
+			}
 					
 		}catch(Exception e) {
 			System.out.println(e.getStackTrace());
-		}
-	}
-	
-	/*****TC_4_2_12 check correct results are displayed for services filters********/
-	public void check_CorrectResults_DisplayedFor_ServicesFilters() {
-		try {
-			int NumberOfHaircut_SalonsList = 0;
-			String SR_Message = "";
-			String serviceName = null;			
-			serviceName = browser.getdata("filter_one_ServieName");
-			if (browser.elementisdisplayed(CustomerModule.SR_Filters_SectionDispalyed)) {
-				browser.reportscomtep("Passed", "Verify the Search Results page of the Filters Section is displayed",
-						"Search Results page of the Filters Section should be displayed",
-						"Search Results page of the Filters text  displayed");
-				//browser.click(CustomerModule.SR_Services_Haircut_CheckBox);
-				this.searchResults_select_Services_checkbox(serviceName);
-				
-				SR_Message = browser.getelementtext(CustomerModule.home_SearchResults_Message);
-				NumberOfHaircut_SalonsList = Integer.parseInt(SR_Message.replaceAll("\\D", ""));
-				if (NumberOfHaircut_SalonsList != 0) {
-					browser.reportscomtep("Passed",
-							"Verify "+serviceName+" salons list is displayed in Search Reasults page",
-							serviceName+" salons list should be displayed in Search Reasults page",
-							serviceName+" salons list "+ NumberOfHaircut_SalonsList +" displayed in Search Reasults page");
-					browser.click(CustomerModule.SR_Services_BookMe_Button);
-					if (browser.elementisdisplayed(CustomerModule.SR_Services_Business_Page)) {
-						browser.reportscomtep("Passed",
-								"click on BookMe button and verify Services tab is displayed in Business page",
-								"Services tab should be displayed in Business page",
-								"Services tab displayed in Business page");
-						browser.getelementwithXpath("//*[@id='services']//div/label[text()=' "+serviceName+"']");
-						if (browser.elementisdisplayed(CustomerModule.SR_Services_HairCut_service)) {
-							browser.reportscomtep("Passed",
-									"Verify "+serviceName+" service is displayed under the services tab",
-									serviceName+" service should be displayed under the services tab",
-									serviceName+" service displayed under the services tab");
-						} else {
-							browser.reportscomtep("Failed",
-									"Verify "+serviceName+" service is displayed under the services tab",
-									serviceName+" service should be displayed under the services tab",
-									serviceName+" service Not displayed under the services tab");
-						}
-					} else {
-						browser.reportscomtep("Failed",
-								"click on BookMe button and verify Services tab is displayed in Business page",
-								"Services tab should be displayed in Business page",
-								"Services tab Not displayed in Business page");
-					}
-				} else {
-					browser.reportscomtep("Passed",
-							"Verify "+serviceName+" salons list is displayed in Search Reasults page",
-							serviceName+" salons list should be displayed in Search Reasults page",
-							serviceName+" salons list Not displayed  in Search Reasults page as expected if the selected service is not available");
-				}
-			} else {
-				browser.reportscomtep("Failed", "Verify the Search Results page of the Filters Section is displayed",
-						"Search Results page of the Filters Section should be displayed",
-						"Search Results page of the Filters Section not displayed");
-			}
-
-		} catch (Exception e) {
-			System.out.println("Error description: " + e.getStackTrace());
 		}
 	}
 
