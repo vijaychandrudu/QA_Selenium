@@ -63,7 +63,7 @@ public class TS_4_02_Customer_appliesfiltersinsearchpage extends StaticVariables
 		//CR.checkThe_Locate_Button();
 		CR.invokeTO_SearcResults_Page();
 	}
-	@Test(priority=40203, description="TC_4_2_02 Check whether the filters are hidden by clicking the + sign in filter section")
+	/*@Test(priority=40203, description="TC_4_2_02 Check whether the filters are hidden by clicking the + sign in filter section")
 	public void TC_4_2_02_Customer_Checkfiltersarehiddenbyclicking_plussign() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the filters are hidden by clicking the + sign in filter section");
 		CR.check_FiltersAreHiddenBy_ClickOnPlusSignIn_FilterSection();			
@@ -127,12 +127,18 @@ public class TS_4_02_Customer_appliesfiltersinsearchpage extends StaticVariables
 	public void TC_4_2_12_Customer_CheckAnyoneServicescheckboxs() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for services filter");
 		CR.check_CorrectResults_DisplayedFor_ServicesFilters();		
+	}*/
+	@Test(priority=40214, description="TC_4_2_14 Check whether the correct results are displayed for multiple services")
+	public void TC_4_2_16_Customer_Checkmultipleservicesfiltersselected() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for multiple services");
+		CR.check_CorrectResultsAre_DisplayedFor_MultipleServicesFilters();		
 	}
-	
-	@Test(priority=40217, description="TC_4_2_16 Check whether the correct results are displayed when a combination of all filters are selected")
+	/*@Test(priority=40217, description="TC_4_2_16 Check whether the correct results are displayed when a combination of all filters are selected")
 	public void TC_4_2_16_Customer_Checkcombinationallfiltersselected() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed when a combination of all filters are selected");
 		CR.check_CorrectResults_combinationofallfiltersareselected();		
-	}
+	}*/
+	
+	
 
 }

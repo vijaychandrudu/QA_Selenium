@@ -1489,11 +1489,11 @@ public class CommonFunctions extends StaticVariables {
 	 * Created date:21/12/2017 Description: Parameters: ReturnType:
 	 */
 	public WebElement getelementwithXpath(String xpath){
-		WebElement link = null;
+		WebElement element = null;
 		try {			
 									
 			if (xpath!=""){		
-				link = driver.findElement(By.xpath(xpath));
+				element = driver.findElement(By.xpath(xpath));
 				
 			} else {
 				System.out.println("given Xpath is empty");
@@ -1503,7 +1503,7 @@ public class CommonFunctions extends StaticVariables {
 		} catch (Exception e) {
 			System.out.println("Error in description: " + e.getStackTrace());
 		}
-		return link;
+		return element;
 	}
 
 	/****************** FRAMES HANDLE *****************/
