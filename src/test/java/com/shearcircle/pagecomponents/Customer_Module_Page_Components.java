@@ -4202,13 +4202,15 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 											"Verify  "+serviceName+" service are displayed under the services tab",
 											serviceName+" service are should be displayed under the services tab",
 											serviceName+" service are Not displayed under the services tab");
-								}
+								}								
+								
 							} else {
 								browser.reportscomtep("Failed",
 										"click on BookMe button and verify Services tab is displayed in Business page",
 										"Services tab should be displayed in Business page",
 										"Services tab Not displayed in Business page");
 							}
+							browser.click(CustomerModule.customer_Search_Button);
 
 				} else if (NumberOfHaircut_SalonsList == 0) {
 					browser.reportscomtep("Passed",
@@ -4216,6 +4218,7 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 							serviceName + " salons list is displayed in Search Reasults page salons list should not be displayed in Search Reasults page",
 							serviceName + " salons " + NumberOfHaircut_SalonsList + " not displayed in Search Reasults page");
 				}
+	
 			} else {
 				browser.reportscomtep("Failed", "Verify the Search Results page of the Filters Section is displayed",
 						"Search Results page of the Filters Section should be displayed",
@@ -4240,6 +4243,9 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 			String expct_SearchResults_CashPaymentType = "Cash On Services";
 			WebElement BP_serviceElement = null;
 			String[] serviceList = null;
+			String searchResults_SalonRating = "";
+			boolean sRRatingavailablity = false;
+			boolean sRRatingNotavailablity = true;
 			
 			serviceName = browser.getdata("filter_tow_ServieNames");
 			filter_multiple_Ratings = browser.getdata("filter_multiple_Ratings");
@@ -4251,6 +4257,7 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 				this.searchResults_select_Filters_checkbox(filtersCashOnServicecheckbox);				
 				this.searchResults_select_Filters_checkbox(filtersPromotionscheckbox);
 				this.searchResults_select_Services_checkbox(serviceName);
+				this.searchResults_select_RatingsFilter(filter_multiple_Ratings);
 				
 				//browser.waitforelementtobevisible(CustomerModule.Home_SearchResultsPage_H1_Header, 20);
 				//browser.scrollintoviewelement(CustomerModule.Home_SearchResultsPage_H1_Header);
@@ -4264,9 +4271,21 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 							sRCashPnotavailablity = false;
 						}				
 					}
-				}				
+				}
 				
-				if (sRCashPavailablity && sRCashPnotavailablity){					
+				if(CustomerModule.SR_Ratings_Salons_list.size()>0){
+					for(WebElement SalonRating:CustomerModule.SR_Ratings_Salons_list){	
+						browser.scrollintoviewelement(SalonRating);
+						searchResults_SalonRating = browser.elementgetAttributevalue(SalonRating, "data-default-rating");						
+						if(filter_multiple_Ratings.trim().contains(searchResults_SalonRating)){								
+							sRRatingavailablity = true;								
+						}else{
+							sRRatingNotavailablity = false;
+						}				
+					}
+				}	
+				
+				if (sRCashPavailablity && sRCashPnotavailablity && sRRatingavailablity && sRRatingNotavailablity){					
 					browser.reportscomtep("Passed",
 							"Selected fileters as "+allFilterOptions+","+serviceName+", "+ filter_multiple_Ratings+" and verify Search results page dispalyed list of Salons",
 							"Search results page should be dispalyed results with selected filters",
@@ -4447,40 +4466,43 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 			System.out.println(e.getStackTrace());
 		}
 	}
+		
 	
-	
-	
-	/*public void searchResults_select_RatingsFilter(String p_in_filters_Ratings){
+	public void searchResults_select_RatingsFilter(String p_in_filters_Ratings){
 		String Rating_Name= "";
 		boolean Rating_selection = false;
 		int loop_i= 0;	
+		String[] ratingList = null;
 		try {
-		if(p_in_filters_Ratings!="" && CustomerModule.SR_Ratings_checkbox_list.size()>0) {
-			for(WebElement Checkbox:CustomerModule.SR_Ratings_checkboxLabel_list){
-				browser.scrollintoviewelement(Checkbox);
-				Rating_Name = Checkbox.getAttribute("value");
-				if(p_in_filters_Ratings.equalsIgnoreCase(Rating_Name)) {					
-					CustomerModule.SR_Ratings_checkbox_list.get(loop_i).click();
-					Rating_selection = true;
-					break;
-				}	
-				loop_i++;
+			if(p_in_filters_Ratings!="" && CustomerModule.SR_Ratings_checkbox_list.size()>0) {
+				ratingList = p_in_filters_Ratings.split(";");
+				for(String rating:ratingList){
+					for(WebElement Checkbox:CustomerModule.SR_Ratings_checkbox_Label_list){
+						browser.scrollintoviewelement(Checkbox);
+						Rating_Name = Checkbox.getAttribute("value");
+						if(Rating_Name.equalsIgnoreCase(rating)) {					
+							CustomerModule.SR_Ratings_checkbox_list.get(loop_i).click();
+							Rating_selection = true;
+							break;
+						}	
+						loop_i++;
+					}
+				}
+			}else{
+				browser.reportscomtep("Failed", "Verify Rating "+ p_in_filters_Ratings +" checkbox is displayed",
+						"Rating "+ p_in_filters_Ratings +" checkbox should be displayed",
+						"Rating "+ p_in_filters_Ratings +" checkbox Not displayed");
 			}
-		}else{
-			browser.reportscomtep("Failed", "Verify Service "+ p_in_filters_Ratings +" checkbox is displayed",
-					"Service "+ p_in_filters_Ratings +" checkbox should be displayed",
-					"Service "+ p_in_filters_Ratings +" checkbox Not displayed");
-		}
 		
-		if(Rating_selection) {
-			browser.reportscomtep("Passed", "Verify Service "+ p_in_filters_Ratings +" checkbox is selected",
-					"Service "+ p_in_filters_Ratings +" checkbox should be selected",
-					"Service "+ p_in_filters_Ratings +" checkbox selected");
-		}else {
-			browser.reportscomtep("Failed", "Verify Service "+ p_in_filters_Ratings +" checkbox is selected",
-					"Service "+ p_in_filters_Ratings +" checkbox should be selected",
-					"Service "+ p_in_filters_Ratings +" checkbox Not selected");
-		}
+			if(Rating_selection) {
+				browser.reportscomtep("Passed", "Verify Rating "+ p_in_filters_Ratings +" checkbox is selected",
+						"Rating "+ p_in_filters_Ratings +" checkbox should be selected",
+						"Rating "+ p_in_filters_Ratings +" checkbox selected");
+			}else {
+				browser.reportscomtep("Failed", "Verify Rating "+ p_in_filters_Ratings +" checkbox is selected",
+						"Rating "+ p_in_filters_Ratings +" checkbox should be selected",
+						"Rating "+ p_in_filters_Ratings +" checkbox Not selected");
+			}
 					
 		}catch(Exception e) {
 			System.out.println(e.getStackTrace());
@@ -4488,9 +4510,9 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 	}
 	
 	
-	*//****TC_4_2_14	Check whether the correct results are displayed for Ratings filter******//*
+	/****TC_4_2_14	Check whether the correct results are displayed for Ratings filter******/
 	
-	public void check_Correct_ResultsAre_DisplayedFor_Ratings_Filter() {
+	/*public void check_Correct_ResultsAre_DisplayedFor_Ratings_Filter() {
 		try {
 			int NumberOfHaircut_SalonsList = 0;
 			String SR_Message = "";

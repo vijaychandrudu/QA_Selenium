@@ -87,13 +87,19 @@ public class Customer_Module_Page_Objects{
     public List<WebElement> SR_services_checkedcheckbox_list;
 	
 	@FindBy(xpath="//*[@id='collapseFilters']/div/h6[text()='Rating']/parent::div/ul/li//input")
+    public List<WebElement> SR_Ratings_checkbox_Label_list;
+	
+	@FindBy(xpath="//*[@id='collapseFilters']/div/h6[text()='Rating']/parent::div/ul/li//ins")
     public List<WebElement> SR_Ratings_checkbox_list;
-
+	
 	@FindBy(xpath="//*[@id='collapseFilters']/div/h6[text()='Rating']/parent::div/ul/li//div[@class='icheckbox_square-grey checked']/input")
     public List<WebElement> SR_Ratings_checkedcheckbox_list;
 	
 	@FindBy(xpath="//*[@id='collapseFilters']/div[2]/ul/li[5]/label/div/input")
     public WebElement customer_1Rating_checkbox;	
+	
+	@FindBy(xpath="//*[contains(@id,'myRating')]")
+    public List<WebElement> SR_Ratings_Salons_list;
 	
 	@FindBy(xpath="//*[@id='searchResultsContainerBox']/p/ul[@class='pagination']")
     public WebElement customer_PageNavigation_Buttons;
