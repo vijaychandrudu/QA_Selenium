@@ -129,15 +129,15 @@ public class TS_4_02_Customer_appliesfiltersinsearchpage extends StaticVariables
 		CR.check_CorrectResults_DisplayedFor_ServicesFilters();		
 	}*/
 	@Test(priority=40214, description="TC_4_2_14 Check whether the correct results are displayed for multiple services")
-	public void TC_4_2_16_Customer_Checkmultipleservicesfiltersselected() throws IOException {			
+	public void TC_4_2_14_Customer_Checkmultipleservicesfiltersselected() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for multiple services");
 		CR.check_CorrectResultsAre_DisplayedFor_MultipleServicesFilters();		
 	}
-	/*@Test(priority=40217, description="TC_4_2_16 Check whether the correct results are displayed when a combination of all filters are selected")
+	@Test(priority=40217, description="TC_4_2_16 Check whether the correct results are displayed when a combination of all filters are selected")
 	public void TC_4_2_16_Customer_Checkcombinationallfiltersselected() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed when a combination of all filters are selected");
 		CR.check_CorrectResults_combinationofallfiltersareselected();		
-	}*/
+	}
 	
 	
 
