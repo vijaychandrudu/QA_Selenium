@@ -63,7 +63,7 @@ public class TS_4_02_Customer_appliesfiltersinsearchpage extends StaticVariables
 		//CR.checkThe_Locate_Button();
 		CR.invokeTO_SearcResults_Page();
 	}
-	/*@Test(priority=40203, description="TC_4_2_02 Check whether the filters are hidden by clicking the + sign in filter section")
+	@Test(priority=40203, description="TC_4_2_02 Check whether the filters are hidden by clicking the + sign in filter section")
 	public void TC_4_2_02_Customer_Checkfiltersarehiddenbyclicking_plussign() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the filters are hidden by clicking the + sign in filter section");
 		CR.check_FiltersAreHiddenBy_ClickOnPlusSignIn_FilterSection();			
@@ -102,7 +102,7 @@ public class TS_4_02_Customer_appliesfiltersinsearchpage extends StaticVariables
 	@Test(priority=40209, description="TC_4_2_08 Check whether the correct results are displayed for Accept Cash On Service")
 	public void TC_4_2_08_Customer_CheckAcceptCashOnServicecheckbox() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for Accept Cash On Service");
-		CR.ChecksearchresultforAcceptOnlinePayments();		
+		CR.ChecksearchresultforAcceptCashOnService();		
 	}
 	
 	@Test(priority=40210, description="TC_4_2_09 Check whether the correct results are displayed for Search Promotions")
@@ -127,12 +127,25 @@ public class TS_4_02_Customer_appliesfiltersinsearchpage extends StaticVariables
 	public void TC_4_2_12_Customer_CheckAnyoneServicescheckboxs() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for services filter");
 		CR.check_CorrectResults_DisplayedFor_ServicesFilters();		
-	}*/
-	@Test(priority=40214, description="TC_4_2_14 Check whether the correct results are displayed for multiple services")
-	public void TC_4_2_14_Customer_Checkmultipleservicesfiltersselected() throws IOException {			
+	}
+	@Test(priority=40214, description="TC_4_2_13 Check whether the correct results are displayed for multiple services")
+	public void TC_4_2_13_Customer_Checkmultipleservicesfiltersselected() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for multiple services");
 		CR.check_CorrectResultsAre_DisplayedFor_MultipleServicesFilters();		
 	}
+	
+	@Test(priority=40215, description="TC_4_2_14 Check whether the correct results are displayed for Ratings filte")
+	public void TC_4_2_14_Customer_CheckSingleRatingfiltersselected() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for Ratings filte");
+		CR.check_SingleRating_Filter();		
+	}
+	
+	@Test(priority=40216, description="TC_4_2_15 Check whether the correct results are displayed for Ratings filte")
+	public void TC_4_2_15_Customer_CheckMultipleRatingfiltersselected() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed for Ratings filte");
+		CR.check_MultipleRatings_Filter();		
+	}
+	
 	@Test(priority=40217, description="TC_4_2_16 Check whether the correct results are displayed when a combination of all filters are selected")
 	public void TC_4_2_16_Customer_Checkcombinationallfiltersselected() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the correct results are displayed when a combination of all filters are selected");

@@ -85,6 +85,12 @@ public class TS_3_02_CustomerClicksonMyFavorite extends StaticVariables {
 		CR.shearCircle_Verify_Customer_Myaccount_Buttonis_Clickable("My Favorites");
 		CR.shearCircle_Verify_Customer_RemoveButton_in_Myfavourites();			
 	}
+	
+	@Test(priority=30208)
+	public void logOut(){
+		CR.Customer_JoinOurCircle_LogOutpage();
+		//driver.quit();
+	}
 
 	
 
