@@ -739,6 +739,50 @@ public class Customer_Module_Page_Components extends StaticVariables {
 			System.out.println("Error description: " + e.getStackTrace() );
 		}	
 	}
+	
+	
+	/*******************Verify forgotPassword Login *******************************/
+	
+	public void restPasswordPassword_Login(){
+		try{
+			String CustomerEmail = null;
+			String CustomerPassword = null;
+			CustomerEmail = browser.getdata("customer_resetPasswordUser");		
+			CustomerPassword = browser.getdata("CustomerOldPassword");
+			this.ShearCircle_Login(CustomerEmail,CustomerPassword);
+		}catch(Exception e){
+			System.out.println("Error description: " + e.getStackTrace() );
+		}
+	}
+	
+	/*******************Verify all Login *******************************/
+	public void ShearCircle_Login(String p_in_UserName, String p_in_Password) {
+		
+		try{
+						
+			if(browser.elementisdisplayed(Login.Login_Page_Header)) {
+				browser.reportscomtep("Passed", "Verify Login page is displayed"  , "Login page should be displayed", "Login page displayed");				
+													
+				browser.sendkeys(Login.Login_UserName_textbox,p_in_UserName);
+				browser.sendkeys(Login.Login_PassWord_textbox,p_in_Password);
+				//browser.movetoElement(Login.Login_signin_button);
+				browser.ScrollToElementBottom(Login.Login_signin_button);
+				browser.click(Login.Login_signin_button);
+				
+				if(browser.elementisdisplayed(Login.Customer_MyDashboard_Text)){
+					browser.reportscomtep("Passed", "Customer enters valid Username and Password and clicks on Sign in button", "Customer should be navigate to the Customer Dashboard page", "Customer navigated to the Customer Dashboard page");
+				}else {
+					browser.reportscomtep("Failed", "Customer enters valid Username and Password and clicks on Sign in button", "Customer should be navigate to the Customer Dashboard page", "Customer Not navigated to the Customer Dashboard page");
+				}							
+						
+			}else{
+				browser.reportscomtep("Failed", "Verify Login page is displayed"  , "Login page should be displayed", "Login page not displayed");
+			}
+			
+		}catch(Exception e){
+			System.out.println("Error description: " + e.getStackTrace() );
+		}	
+	}
 	/****************Customer Login with Facebook Account*********************/
 	public void Customer_LoginwithFacebook(){
 		String CustomerValidEmail = null;			
@@ -2599,7 +2643,8 @@ public void check_MandatoryFieldsinSettingsPage() {
 /*********TC_3_4_05	Check whether Change Password link is clickable********/
 public void checkWhether_ChangePassword_LinkIs_Clickable() {
 	try {
-		if (browser.elementisdisplayed(CustomerModule.Customer_Settings_Header)) {
+		browser.click(CustomerModule.Customer_Mydashboard_Settings_Button);
+		if (browser.elementisdisplayed(CustomerModule.Customer_Settings_Header)) {			
 			browser.reportscomtep("Passed", "Verify Settings header is displayed",
 					"Settings header should be displayed", "Settings header  displayed");
 			browser.ScrollToXY(0, 250);

@@ -92,37 +92,50 @@ public class TS_3_04_CustomerclicksonSettings extends StaticVariables {
 		CR.check_MandatoryFieldsinSettingsPage();		
 	}
 	
-	@Test(priority=30408, description="TC_3_4_05 Check whether Change Password link is clickable")
+	@Test(priority=30408)
+	public void SettingPagelogOut(){
+		CR.Customer_JoinOurCircle_LogOutpage();
+		//driver.quit();
+	}
+	
+	@Test(priority=30409, description="Customer Login with registered Username(Email id) & Password " )
+	public void Customer_LoginwithResetPasswordCredentials()throws IOException {	
+		ExtentTestManager.getTest().setDescription("Customer Login with registered Username(Email id) & Password .");
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");	
+		CR.restPasswordPassword_Login();			
+	}
+	
+	@Test(priority=30410, description="TC_3_4_05 Check whether Change Password link is clickable")
 	public void TC_3_4_05_Customer_CheckChangePasswordlinkClickable() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether Change Password link is clickable");
 		CR.checkWhether_ChangePassword_LinkIs_Clickable();			
 	}
 	
-	@Test(priority=30409, description="TC_3_4_06 Check whether the password can be updated without entering any data")
+	@Test(priority=30411, description="TC_3_4_06 Check whether the password can be updated without entering any data")
 	public void TC_3_4_06_Customer_Checkpasswordupdatedwithoutenteringdata() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the password can be updated without entering any data");
 		CR.check_WhetherThePassword_CanbeUpdated_WithOut_EnteringAnyData();			
 	}
 	
-	@Test(priority=30410, description="TC_3_4_07 Check whether the password can be updated by entering new password less than 6 characters/spaces")
+	@Test(priority=30412, description="TC_3_4_07 Check whether the password can be updated by entering new password less than 6 characters/spaces")
 	public void TC_3_4_07_Customer_CheckPasswordwithlessthan6charsorspaces() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the password can be updated by entering new password less than 6 characters/spaces");
 		CR.enteringNew_PasswordLessThan_SixCharacters_Or_Spaces("Enter_NewPwdLessThan6chars");
 		CR.enteringNew_PasswordLessThan_SixCharacters_Or_Spaces("Enter_NewPwddWithspaces");
 	}
 	
-	@Test(priority=30411, description="TC_3_4_08 Check whether password can be updated by entering valid data")
+	@Test(priority=30413, description="TC_3_4_08 Check whether password can be updated by entering valid data")
 	public void TC_3_4_08_Customer_Checkpasswordupdatedwithvaliddata() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether password can be updated by entering valid data");
 		CR.password_CanBeUpdatedBy_Entering_ValidData();		
 	}
 	
-	@Test(priority=30412, description="TC_3_4_09 Check whether the Cancel button is clickable in Secure password change page")
+	@Test(priority=30414, description="TC_3_4_09 Check whether the Cancel button is clickable in Secure password change page")
 	public void TC_3_4_09_Customer_CheckCancelButtonclickable() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the Cancel button is clickable in Secure password change page");
 		CR.verify_Cancel_Button_IsClickable_Changepasswordpage();		
 	}
-	@Test(priority=30413)
+	@Test(priority=30415)
 	public void logOut(){
 		CR.Customer_JoinOurCircle_LogOutpage();
 		//driver.quit();
