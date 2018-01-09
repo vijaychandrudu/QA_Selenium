@@ -4506,7 +4506,8 @@ public void check_MultipleRatings_Filter() {
 							"Search results page should be dispalyed results with selected filters",
 							"Search results page Not dispalyed list of Salons that "+allFilterOptions+","+serviceName+", "+ filter_multiple_Ratings);
 				}
-				browser.click(CustomerModule.customer_Search_Button);
+				//browser.click(CustomerModule.customer_Search_Button);
+				driver.navigate().back();
 			
 			}else{
 				
@@ -4523,37 +4524,36 @@ public void check_MultipleRatings_Filter() {
 	/*****TC_4_2_17 Check whether the Search Results are refreshed when unchecking a selected filter********/
 	public void check_SearchResultsareRefressed_whenfiltersareUnselected() {
 		try {					
-			String filtersPromotionscheckbox = "Search Promotions";			
-			String allFilterOptions = "Accept Online Payments, Search Promotions";			
-			String serviceName = null;	
-			String searchResults_CashPaymentType = "";
-			boolean sRCashPavailablity = false;
-			boolean sRCashPnotavailablity = true;			
-			String filter_multiple_Ratings = null;			
-			String filtersCashOnServicecheckbox = "Accept Cash On Service";			
-			String expct_SearchResults_CashPaymentType = "Cash On Services";
-			WebElement BP_serviceElement = null;
-			String[] serviceList = null;
-			String searchResults_SalonRating = "";
-			boolean sRRatingavailablity = false;
-			boolean sRRatingNotavailablity = true;
 			
-			serviceName = browser.getdata("filter_tow_ServieNames");
+			String allFilterOptions = "Accept Online Payments, Search Promotions";			
+			String allServiceNames = null ;	
+			String filter_multiple_Ratings = null;	
+			int NumberOfHaircut_SalonsList = 0;
+			String sR_Message = "";
+			
+			allServiceNames = browser.getdata("filter_tow_ServieNames");			
 			filter_multiple_Ratings = browser.getdata("filter_multiple_Ratings");
 			if (browser.elementisdisplayed(CustomerModule.SR_Filters_SectionDispalyed)) {
 				browser.reportscomtep("Passed", "Verify the Search Results page of the Filters Section is displayed",
 						"Search Results page of the Filters Section should be displayed",
 						"Search Results page of the Filters text  displayed");
 								
-				this.searchResults_Unselect_Filters_checkbox(filtersCashOnServicecheckbox);				
-				this.searchResults_Unselect_Filters_checkbox(filtersPromotionscheckbox);
-				this.searchResults_Unselect_Services_checkbox(serviceName);
-				this.searchResults_Unselect_RatingsFilter(filter_multiple_Ratings);
-				
-				
+				this.searchResults_Unselect_Filters_checkbox(allFilterOptions);					
+				this.searchResults_Unselect_Services_checkbox(allServiceNames);
+				//this.searchResults_Unselect_RatingsFilter(filter_multiple_Ratings);	
+				sR_Message = browser.getelementtext(CustomerModule.home_SearchResults_Message);
+				NumberOfHaircut_SalonsList = Integer.parseInt(sR_Message.replaceAll("\\D", ""));
+				if(NumberOfHaircut_SalonsList != 0 ){
+					browser.reportscomtep("Passed", "Verify the Search Results page refreshed and Search Results are displayed",
+							"The Search Results page should be refreshed and Search Results are displayed",
+							"the Search Results page refreshed and Search Results are displayed");
+				}else{
+					browser.reportscomtep("Failed", "Verify the Search Results page refreshed and Search Results are displayed",
+							"The Search Results page should be refreshed and Search Results are displayed",
+							"the Search Results page refreshed and Search Results are not displayed");
+				}
 			
-			}else{
-				
+			}else{				
 				browser.reportscomtep("Failed", "Verify the Search Results page of the Filters Section is displayed",
 						"Search Results page of the Filters Section should be displayed",
 						"Search Results page of the Filters Section not displayed");
@@ -4605,30 +4605,35 @@ public void check_MultipleRatings_Filter() {
 		}
 	}	
 	
-	public void searchResults_Unselect_Filters_checkbox(String p_in_filters){
-		String filters_name = "";
-		boolean filters_selection = false;
-		int checkbox = 0;		
+	public void searchResults_Unselect_Filters_checkbox(String p_in_filters){		
+		boolean filters_unselection = false;
+		int checkedcheckboxcount = 0;
+		int uncheckedcheckboxcount = 0;
 		try {
-		
-		if(p_in_filters!="" && CustomerModule.SR_Filters_checkbox_label_list.size()>0) {
-			for(WebElement Checkbox:CustomerModule.SR_Filters_checkbox_label_list){			
-				filters_name = Checkbox.getText();				
-				if(p_in_filters.trim().equalsIgnoreCase(filters_name)) {					
-					//browser.check_Checkbox(CustomerModule.SR_Filters_checkbox_list.get(checkbox));
-					if(CustomerModule.SR_Filters_checkbox_list.get(checkbox).isSelected()){
-						CustomerModule.SR_Filters_checkbox_list.get(checkbox).click();
-						Thread.sleep(3000);
-						break;
-					}
-					
-				}				
-				checkbox++;
+			checkedcheckboxcount = CustomerModule.SR_Filters_checkedcheckbox_list.size();
+		if(p_in_filters!="" && CustomerModule.SR_Filters_checkedcheckbox_list.size()>0) {
+			for(WebElement Checkbox:CustomerModule.SR_Filters_checkedcheckbox_list){					
+				Checkbox.click();
+				Thread.sleep(3000);
+				uncheckedcheckboxcount = CustomerModule.SR_Filters_checkedcheckbox_list.size();
+				if (checkedcheckboxcount>uncheckedcheckboxcount){
+					filters_unselection = true;
+				}
+				checkedcheckboxcount --;
+			}
+			if(filters_unselection){
+				browser.reportscomtep("Passed", "Verify filters "+ p_in_filters +" checkbox(s) unselected",
+						"filters "+ p_in_filters +" checkbox(s) should be unselected",
+						"filters "+ p_in_filters +" checkbox(s) unselected");
+			}else{
+				browser.reportscomtep("Passed", "Verify filters "+ p_in_filters +" checkbox(s) unselected",
+						"filters "+ p_in_filters +" checkbox(s) should be unselected",
+						"filters "+ p_in_filters +" checkbox (s) not unselected");
 			}
 		}else{
-			browser.reportscomtep("Failed", "Verify filters "+ p_in_filters +" checkbox is displayed",
-					"filters "+ p_in_filters +" checkbox should be displayed",
-					"filters "+ p_in_filters +" checkbox Not displayed");
+			browser.reportscomtep("Failed", "Verify filters "+ p_in_filters +" checkbox(s) is displayed",
+					"filters "+ p_in_filters +" checkbox(s) should be displayed",
+					"filters "+ p_in_filters +" checkbox(s) Not displayed");
 		}		
 		
 					
@@ -4690,36 +4695,34 @@ public void check_MultipleRatings_Filter() {
 	
 	
 	public void searchResults_Unselect_Services_checkbox(String p_in_filters){
-		String filters_name = "";
-		boolean filters_selection = false;
-		int checkbox = 0;
-		int servicesLength = 0;
-		String[] serviceList ;
-		
-		serviceList = p_in_filters.split(";");
-		servicesLength = serviceList.length;	
+		boolean filters_unselection = false;
+		int checkedcheckboxcount = 0;
+		int uncheckedcheckboxcount = 0;
 		try {
-		
-		if(p_in_filters!="" && CustomerModule.SR_Servies_checkbox_list.size()>0) {
-			for(int loop_i = 0; loop_i<=servicesLength-1; loop_i++){	
-				for(WebElement Checkbox:CustomerModule.SR_Servies_checkbox_label_list){			
-					filters_name = Checkbox.getText();				
-					if(p_in_filters.trim().equalsIgnoreCase(filters_name)) {					
-						//browser.check_Checkbox(CustomerModule.SR_Filters_checkbox_list.get(checkbox));
-						if(CustomerModule.SR_Servies_checkbox_list.get(checkbox).isSelected()){
-							CustomerModule.SR_Servies_checkbox_list.get(checkbox).click();
-							Thread.sleep(3000);
-							break;
-						}
-						
-					}				
-					checkbox++;
+			checkedcheckboxcount = CustomerModule.SR_services_checkedcheckbox_list.size();
+		if(p_in_filters!="" && CustomerModule.SR_services_checkedcheckbox_list.size()>0) {
+			for(WebElement Checkbox:CustomerModule.SR_services_checkedcheckbox_list){					
+				Checkbox.click();
+				Thread.sleep(3000);
+				uncheckedcheckboxcount = CustomerModule.SR_services_checkedcheckbox_list.size();
+				if (checkedcheckboxcount>uncheckedcheckboxcount){
+					filters_unselection = true;
 				}
+				checkedcheckboxcount --;
+			}
+			if(filters_unselection){
+				browser.reportscomtep("Passed", "Verify Services "+ p_in_filters +" checkbox(s) unselected",
+						"Services "+ p_in_filters +" checkbox(s) should be unselected",
+						"Services "+ p_in_filters +" checkbox(s) unselected");
+			}else{
+				browser.reportscomtep("Passed", "Verify Services "+ p_in_filters +" checkbox(s) unselected",
+						"Services "+ p_in_filters +" checkbox(s) should be unselected",
+						"Services "+ p_in_filters +" checkbox (s) not unselected");
 			}
 		}else{
-			browser.reportscomtep("Failed", "Verify filters "+ p_in_filters +" checkbox is displayed",
-					"filters "+ p_in_filters +" checkbox should be displayed",
-					"filters "+ p_in_filters +" checkbox Not displayed");
+			browser.reportscomtep("Failed", "Verify Services "+ p_in_filters +" checkbox(s) is displayed",
+					"Services "+ p_in_filters +" checkbox(s) should be displayed",
+					"Services "+ p_in_filters +" checkbox(s) Not displayed");
 		}		
 		
 					
@@ -4770,31 +4773,37 @@ public void check_MultipleRatings_Filter() {
 		}
 	}
 	
-	public void searchResults_Unselect_RatingsFilter(String p_in_filters_Ratings){
-		String Rating_Name= "";
-		boolean Rating_selection = false;
-		int loop_i= 0;	
-		String[] ratingList = null;
+	public void searchResults_Unselect_RatingsFilter(String p_in_filters){
+		boolean filters_unselection = false;
+		int checkedcheckboxcount = 0;
+		int uncheckedcheckboxcount = 0;
 		try {
-			if(p_in_filters_Ratings!="" && CustomerModule.SR_Ratings_checkbox_list.size()>0) {
-				ratingList = p_in_filters_Ratings.split(";");
-				for(String rating:ratingList){
-					for(WebElement Checkbox:CustomerModule.SR_Ratings_checkbox_Label_list){
-						browser.scrollintoviewelement(Checkbox);						
-						if(CustomerModule.SR_Servies_checkbox_list.get(loop_i).isSelected()) {					
-							CustomerModule.SR_Ratings_checkbox_list.get(loop_i).click();
-							Thread.sleep(3000);
-							Rating_selection = true;
-							break;
-						}	
-						loop_i++;
-					}
+			checkedcheckboxcount = CustomerModule.SR_Ratings_checkedcheckbox_list.size();
+		if(p_in_filters!="" && CustomerModule.SR_Ratings_checkedcheckbox_list.size()>0) {
+			for(WebElement Checkbox:CustomerModule.SR_Ratings_checkedcheckbox_list){					
+				Checkbox.click();
+				Thread.sleep(3000);
+				uncheckedcheckboxcount = CustomerModule.SR_Ratings_checkedcheckbox_list.size();
+				if (checkedcheckboxcount>uncheckedcheckboxcount){
+					filters_unselection = true;
 				}
-			}else{
-				browser.reportscomtep("Failed", "Verify Rating "+ p_in_filters_Ratings +" checkbox is displayed",
-						"Rating "+ p_in_filters_Ratings +" checkbox should be displayed",
-						"Rating "+ p_in_filters_Ratings +" checkbox Not displayed");
+				checkedcheckboxcount --;
 			}
+			if(filters_unselection){
+				browser.reportscomtep("Passed", "Verify Ratings "+ p_in_filters +" checkbox(s) unselected",
+						"Ratings "+ p_in_filters +" checkbox(s) should be unselected",
+						"Ratings "+ p_in_filters +" checkbox(s) unselected");
+			}else{
+				browser.reportscomtep("Passed", "Verify Ratings "+ p_in_filters +" checkbox(s) unselected",
+						"Ratings "+ p_in_filters +" checkbox(s) should be unselected",
+						"Ratings "+ p_in_filters +" checkbox (s) not unselected");
+			}
+		}else{
+			browser.reportscomtep("Failed", "Verify Ratings "+ p_in_filters +" checkbox(s) is displayed",
+					"Ratings "+ p_in_filters +" checkbox(s) should be displayed",
+					"Ratings "+ p_in_filters +" checkbox(s) Not displayed");
+		}		
+		
 		
 								
 		}catch(Exception e) {
