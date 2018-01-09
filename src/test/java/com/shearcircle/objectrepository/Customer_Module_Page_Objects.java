@@ -74,7 +74,7 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='collapseFilters']/div[1]/div[1]/ul/li//ins")
     public List<WebElement> SR_Filters_checkbox_list;
 	
-	@FindBy(xpath="//*[@id='collapseFilters']/div[1]/div[1]/ul/li/label/div[@class='icheckbox_square-grey checked']/input")
+	@FindBy(xpath="//*[@id='collapseFilters']/div[1]/div[1]/ul/li/label/div[@class='icheckbox_square-grey checked']/ins")
     public List<WebElement> SR_Filters_checkedcheckbox_list;
 	
 	@FindBy(xpath="//*[@id='niceScroll']/li//ins")
@@ -83,7 +83,7 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='niceScroll']/li")
     public List<WebElement> SR_Servies_checkbox_label_list;
 	
-	@FindBy(xpath="//*[@id='niceScroll']/li//div[@class='icheckbox_square-grey checked']/input")
+	@FindBy(xpath="//*[@id='niceScroll']/li//div[@class='icheckbox_square-grey checked']/ins")
     public List<WebElement> SR_services_checkedcheckbox_list;
 	
 	@FindBy(xpath="//*[@id='collapseFilters']/div/h6[text()='Rating']/parent::div/ul/li//input")
@@ -92,7 +92,7 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='collapseFilters']/div/h6[text()='Rating']/parent::div/ul/li//ins")
     public List<WebElement> SR_Ratings_checkbox_list;
 	
-	@FindBy(xpath="//*[@id='collapseFilters']/div/h6[text()='Rating']/parent::div/ul/li//div[@class='icheckbox_square-grey checked']/input")
+	@FindBy(xpath="//*[@id='collapseFilters']/div/h6[text()='Rating']/parent::div/ul/li//div[@class='icheckbox_square-grey checked']/ins")
     public List<WebElement> SR_Ratings_checkedcheckbox_list;
 	
 	@FindBy(xpath="//*[@id='collapseFilters']/div[2]/ul/li[5]/label/div/input")
