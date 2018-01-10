@@ -668,7 +668,69 @@ public class Customer_Module_Page_Objects{
     
     @FindBy(xpath="//table/tbody/tr/td[6]/span")
     public List<WebElement> Customer_PaymentStatus_List;
-
+    
+    
+    @FindBy(xpath="/html/body/div[@class='sweet-alert showSweetAlert visible']")
+    public WebElement Customer_Popup_Alert_Addtofavourite;
+    @FindBy(xpath="//*[@id='sub_content']/div/div/div/div/div")
+    public WebElement Customer_Salon_Logo_Address;
+    @FindBy(xpath="//*[@class='icon-search']")
+    public WebElement Customer_Search_Button;
+	@FindBy(xpath="//*[@id='sub_content']")
+	public WebElement Customer_ResultsForYourSearchCriteria_Header;
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']/div[2]/div/div/div/div/a[text()='Book Me']")
+	public WebElement Customer_BookMe_Text;
+	@FindBy(xpath="//*[text()='Book Services']")
+	public WebElement Customer_BookService_Heading;
+	@FindBy(xpath="//*[@href='#services']")
+	public WebElement Customer_Services_Tab;
+	@FindBy(xpath="//*[contains(@href, '#overview')]")
+	public WebElement Customer_Overview_Tab;
+	//@FindBy(xpath="//*[@id='overview']")
+	//public WebElement Customer_Business_Overview_Text;
+	@FindBy(xpath="//*[contains(@href, '#reviews')]")
+	public WebElement Customer_Reviews_Tab;
+	@FindBy(xpath="//*[@id='container_pin']/div/div")
+	public WebElement Customer_CustomerReviews_texts;
+	@FindBy(xpath="//*[contains(@href, '#feedbacks')]")
+	public WebElement Customer_Inquiry_Tab;
+	@FindBy(xpath="//*[@id='feedbacks']/div/div")
+	public WebElement Customer_SendInquiryToThe_Professional_Text;	
+    @FindBy(xpath="//*[@id='promotions']/div/div")
+    public WebElement Customer_Available_Coupons;
+	@FindBy(xpath="//*[contains(@href, '#videos')]")
+	public WebElement Customer_Videos_Tab;
+	@FindBy(xpath="//*[@id='videos']")
+	public WebElement Customer_Videos_Available;
+	@FindBy(xpath="//*[contains(@href, '#photos')]")
+	public WebElement Customer_Photos_Tab;
+	@FindBy(xpath="//*[contains(@href, '#contact_info_page')]")
+	public WebElement Customer_ContactUs_Tab;
+	@FindBy(xpath="//*[@id='map_canvas']")
+	public WebElement Customer_Locationon_Map;
+	@FindBy(xpath="//*[@class='lead']/small")
+ /*	public WebElement Customer_Address_Text;
+	@FindBy(xpath="//*[@class='lead ng-binding']")*/
+	public WebElement Customer_Phonenumber_Text;
+	@FindBy(xpath="//*[@class='lead ng-scope']/a")
+	public WebElement Customer_URL_Text;
+	@FindBy(xpath="//*[@class='cp-social-list']")
+	public WebElement Customer_Social_Links;
+	@FindBy(xpath="//*[@class='table table-bordered']")
+	public WebElement Customer_WorkingHours_Table;	
+	@FindBy(xpath="//*[@class='col-md-6']/button")
+	public WebElement Customer_AddtoFavorite_button;
+	@FindBy(xpath="//*[@class='a2a_dd']")
+	public WebElement Customer_Share_Button;
+	@FindBy(xpath="//*[@class='media-object img-thumbnail']")
+	public WebElement Customer_Business_Logo;
+	@FindBy(xpath="//*[@id='sub_content']/div/div/div[@class='col-md-6']/div/div")
+	public WebElement Customer_BusinessName_Address_Text;
 	
+	@FindBy(xpath="/html/body/div[@class='sweet-alert showSweetAlert visible']")
+    public WebElement Customer_Popup_Alert_Addtofavourite_withLogin;
+ 
+    @FindBy(xpath="//*[@id='sub_content']/div//button")
+    public WebElement Customer_Markedas_Addtofavourite_Button;
 
 }
