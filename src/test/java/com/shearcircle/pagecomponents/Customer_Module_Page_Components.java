@@ -4810,5 +4810,162 @@ public void check_MultipleRatings_Filter() {
 			System.out.println(e.getStackTrace());
 		}
 	}
+	
+	/***************
+	Scenario: 5 Customer visits a Business/Professional's Business page by clicking on Book Me button in Search Results page
+	 ********/
+
+	public void Verify_business_Page_Field_Validation() {
+		try {
+			//browser.click(CustomerModule.Customer_Search_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_BookMe_Text)) {
+				browser.reportscomtep("Passed", "Verify Book Me Text is  displayed",
+						"Book Me button  should be displayed", "Book Me button   displayed");
+				browser.click(CustomerModule.Customer_BookMe_Text);
+				
+				if (browser.elementisdisplayed(CustomerModule.Customer_Services_Tab)) {
+					browser.reportscomtep("passed", "Click on Bookme button and Verify Business page is displayed", "Business page  should be displayed",
+							"Businesspage is displayed");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Home_ShearCircle_Image, "SC Image");	
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Salon_Logo_Address, "Salon Logo");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_AddtoFavorite_button, "Add favorite");				
+			
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Services_Tab, "SERVICES Tab");
+					// browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Overview_Tab,
+					// "OVERVIEW Tab");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Reviews_Tab, "REVIEWS  Tab");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Inquiry_Tab, "INQUIRY  Tab");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Promotions_Tab, "PROMOTIONS  Tab");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Videos_Tab, " VIDEOS  Tab");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Photos_Tab, " PHOTOS  Tab");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ContactUs_Tab, "CONTACT US Tab");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Tab, "JOBS  Tab");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_AddtoFavorite_button,
+							"ADD TO FAVORITE");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Share_Button, "SHARE");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Business_Logo, "BUSINESS LOGO");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_BusinessName_Address_Text,
+							"Business NAME ADDRESS");
+				
+				}else{
+					browser.reportscomtep("Failed", "Click on Bookme button and Verify Business page is displayed", "Business page  should be displayed",
+							"Businesspage is not displayed");
+				
+				}
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify Book Me Text is  displayed", "Book Me Tex  should be displayed",
+						"Book Me Tex  not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("unnable to book me: " + e.getStackTrace());
+		}
+	}
+	
+	/*******************TC_5_1_02	******************/
+
+	public void Verify_AddtoFavourite_Button_without_Login_Customer() {
+		try {
+			//browser.click(CustomerModule.Customer_Search_Button);
+			/*if (browser.elementisdisplayed(CustomerModule.Customer_BookMe_Text)) {
+				browser.reportscomtep("Passed", "Verify Book Me Text is  displayed",
+						"Book Me button  should be displayed", "Book Me button   displayed");
+				browser.click(CustomerModule.Customer_BookMe_Text);*/
+				
+				if (browser.elementisdisplayed(CustomerModule.Customer_AddtoFavorite_button)) {
+					browser.reportscomtep("passed", " Verify AddtoFavourite Button is displayed", "AddtoFavourite Button   should be displayed",
+							"AddtoFavourite Button is displayed");
+					browser.click(CustomerModule.Customer_AddtoFavorite_button);
+					if (browser.elementisdisplayed(CustomerModule.Customer_Popup_Alert_Addtofavourite)) {	
+						browser.reportscomtep("passed", " Verify login required PopupAlert is displayed", "login required PopupAlert should be displayed",
+								"login required PopupAlert is displayed");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Popup_Alert_Addtofavourite, "Popup Alert");	
+					}else{
+						browser.reportscomtep("Failed", " Verify login required PopupAlert is displayed", "login required PopupAlert should be displayed",
+								"login required PopupAlert is not displayed");
+					}
+						
+				}else{
+					browser.reportscomtep("Failed", " Verify AddtoFavourite Button is displayed", "AddtoFavourite Button   should be displayed",
+							"AddtoFavourite Button is not displayed");
+								}
+				
+			/*} else {
+				browser.reportscomtep("Failed", "Verify Book Me Text is  displayed", "Book Me Text  should be displayed",
+						"Book Me Text  not displayed");
+			}*/
+		} catch (Exception e) {
+			System.out.println("unnable to book me: " + e.getStackTrace());
+		}
+	}
+	
+	/*******************TC_5_1_03	******************/
+
+	public void Verify_AddtoFavourite_Button_with_Login_Customer() {
+		try {
+			browser.click(CustomerModule.Customer_Search_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_BookMe_Text)) {
+				browser.reportscomtep("Passed", "Verify Book Me Text is  displayed",
+						"Book Me button  should be displayed", "Book Me button   displayed");
+				browser.click(CustomerModule.Customer_BookMe_Text);
+				
+				if (browser.elementisdisplayed(CustomerModule.Customer_AddtoFavorite_button)) {
+					browser.reportscomtep("passed", " Verify AddtoFavourite Button is displayed", "AddtoFavourite Button   should be displayed",
+							"AddtoFavourite Button is displayed");
+					browser.click(CustomerModule.Customer_AddtoFavorite_button);
+					if (browser.elementisdisplayed(CustomerModule.Customer_Popup_Alert_Addtofavourite_withLogin)) {	
+						browser.reportscomtep("passed", " Verify Added to your favourites PopupAlert is displayed", "Added to your favourites PopupAlert should be displayed",
+								"Added to your favourites PopupAlert is displayed");
+					
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Popup_Alert_Addtofavourite_withLogin, "Popup Alert");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Markedas_Addtofavourite_Button, "Markedas");
+
+					}else{
+						browser.reportscomtep("Failed", " Verify Added to your favourites PopupAlert is displayed", "Added to your favourites PopupAlert should be displayed",
+								"Added to your favourites PopupAlert is not displayed");
+					}
+						
+				}else{
+					browser.reportscomtep("Failed", " Verify AddtoFavourite Button is displayed", "AddtoFavourite Button   should be displayed",
+							"AddtoFavourite Button is not displayed");
+								}
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify Book Me Text is  displayed", "Book Me Tex  should be displayed",
+						"Book Me Tex  not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("unnable to book me: " + e.getStackTrace());
+		}
+	}
+	
+	/*******************TC_5_1_04	******************/
+	public void Verify_AddtoFavourite_Button_after_Logout() {
+		try {
+			browser.click(CustomerModule.Customer_Search_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_BookMe_Text)) {
+				browser.reportscomtep("Passed", "Verify Book Me Text is  displayed",
+						"Book Me button  should be displayed", "Book Me button   displayed");
+				browser.click(CustomerModule.Customer_BookMe_Text);
+				
+				if (browser.elementisdisplayed(CustomerModule.Customer_AddtoFavorite_button)) {
+					browser.reportscomtep("passed", " Verify Marked as Favourite Button is displayed after logout", "Marked as Favourite Button should be displayed after logout",
+							"Marked as Favourite Button is not displayed");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_AddtoFavorite_button,
+							"ADD TO FAVORITE");
+						
+				}else{
+					browser.reportscomtep("Failed", " Verify Marked as Favourite Button is displayed after logout", "Marked as Favourite Button should be displayed after logout",
+							"Marked as Favourite Button is displayed after logout");
+								}
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify Book Me Text is  displayed", "Book Me Text  should be displayed",
+						"Book Me Text  not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("unnable to book me: " + e.getStackTrace());
+		}
+	}
 
 }
