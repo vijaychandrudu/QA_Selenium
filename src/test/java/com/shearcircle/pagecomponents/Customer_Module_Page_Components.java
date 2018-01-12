@@ -4879,7 +4879,8 @@ public void check_MultipleRatings_Filter() {
 					if (browser.elementisdisplayed(CustomerModule.Customer_Popup_Alert_Addtofavourite)) {	
 						browser.reportscomtep("passed", " Verify login required PopupAlert is displayed", "login required PopupAlert should be displayed",
 								"login required PopupAlert is displayed");
-						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Popup_Alert_Addtofavourite, "Popup Alert");	
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Popup_Alert_Addtofavourite, "Popup Alert");
+						browser.click(CustomerModule.Customer_Popup_Alert_OK_Button);
 					}else{
 						browser.reportscomtep("Failed", " Verify login required PopupAlert is displayed", "login required PopupAlert should be displayed",
 								"login required PopupAlert is not displayed");
@@ -4912,12 +4913,17 @@ public void check_MultipleRatings_Filter() {
 				if (browser.elementisdisplayed(CustomerModule.Customer_AddtoFavorite_button)) {
 					browser.reportscomtep("passed", " Verify AddtoFavourite Button is displayed", "AddtoFavourite Button   should be displayed",
 							"AddtoFavourite Button is displayed");
+					if(browser.elementisdisplayed(CustomerModule.Customer_Markedas_Addtofavourite_Button)){
+						browser.click(CustomerModule.Customer_Markedas_Addtofavourite_Button);
+						browser.click(CustomerModule.Customer_Popup_Alert_OK_Button);
+					}
 					browser.click(CustomerModule.Customer_AddtoFavorite_button);
 					if (browser.elementisdisplayed(CustomerModule.Customer_Popup_Alert_Addtofavourite_withLogin)) {	
 						browser.reportscomtep("passed", " Verify Added to your favourites PopupAlert is displayed", "Added to your favourites PopupAlert should be displayed",
 								"Added to your favourites PopupAlert is displayed");
 					
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Popup_Alert_Addtofavourite_withLogin, "Popup Alert");
+					browser.click(CustomerModule.Customer_Popup_Alert_OK_Button);
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Markedas_Addtofavourite_Button, "Markedas");
 
 					}else{
@@ -4953,6 +4959,7 @@ public void check_MultipleRatings_Filter() {
 							"Marked as Favourite Button is not displayed");
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_AddtoFavorite_button,
 							"ADD TO FAVORITE");
+					
 						
 				}else{
 					browser.reportscomtep("Failed", " Verify Marked as Favourite Button is displayed after logout", "Marked as Favourite Button should be displayed after logout",
@@ -4967,5 +4974,44 @@ public void check_MultipleRatings_Filter() {
 			System.out.println("unnable to book me: " + e.getStackTrace());
 		}
 	}
+		
+		/*******************TC_5_1_05	******************/
+
+		public void Verify_Salon_Removed_From_Favourites() {
+			try {
+				browser.click(CustomerModule.Customer_Search_Button);
+				if (browser.elementisdisplayed(CustomerModule.Customer_BookMe_Text)) {
+					browser.reportscomtep("Passed", "Verify Book Me Text is  displayed",
+							"Book Me button  should be displayed", "Book Me button   displayed");
+					browser.click(CustomerModule.Customer_BookMe_Text);
+					
+					if (browser.elementisdisplayed(CustomerModule.Customer_Markedas_Addtofavourite_Button)) {
+						browser.reportscomtep("passed", " Verify Marked as Favourite Button is displayed ", "Marked as Favourite Button should be displayed",
+								"Marked as Favourite Button is displayed");
+						browser.click(CustomerModule.Customer_Markedas_Addtofavourite_Button);	
+						if (browser.elementisdisplayed(CustomerModule.Customer_Popup_Alert_Addtofavourite_withLogin)) {
+							browser.reportscomtep("passed", " Verify Salon Removed from the favourites ", "Salon should be Removed from the favourites",
+									"Salon is Removed from the favourites");
+							browser.click(CustomerModule.Customer_Popup_Alert_OK_Button);
+							browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_AddtoFavorite_button,
+									"ADD TO FAVORITE");
+						}else{
+							browser.reportscomtep("Failed", " Verify Salon Removed from the favourites ", "Salon should be Removed from the favourites",
+									"Salon is not Removed from the favourites");
+						}
+					}else{
+						browser.reportscomtep("Failed", " Verify Marked as Favourite Button is displayed", "Marked as Favourite Button should be displayed",
+								"Marked as Favourite Button is not displayed");
+									}
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify Book Me Text is  displayed", "Book Me Text  should be displayed",
+							"Book Me Text  not displayed");
+				}
+			} catch (Exception e) {
+				System.out.println("unnable to book me: " + e.getStackTrace());
+			}
+		}
+	
 
 }
