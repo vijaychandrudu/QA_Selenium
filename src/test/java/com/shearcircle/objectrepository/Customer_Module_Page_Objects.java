@@ -729,8 +729,13 @@ public class Customer_Module_Page_Objects{
 	
 	@FindBy(xpath="/html/body/div[@class='sweet-alert showSweetAlert visible']")
     public WebElement Customer_Popup_Alert_Addtofavourite_withLogin;
+	
+	@FindBy(xpath="//button[text()='OK']")
+    public WebElement Customer_Popup_Alert_OK_Button;
  
     @FindBy(xpath="//*[@id='sub_content']/div//button")
     public WebElement Customer_Markedas_Addtofavourite_Button;
+    
+    
 
 }
