@@ -5012,6 +5012,153 @@ public void check_MultipleRatings_Filter() {
 				System.out.println("unnable to book me: " + e.getStackTrace());
 			}
 		}
-	
+		
+		/*********TC_5_01_06**********Customer clicks on the Services tab in the Business page***/
+
+		public void Customer_Check_Services_Tab_subServirce_Category() {
+			String subServicePrice = "";
+			String subServiceTimeSlot = "";
+			String serviceGroupName = "";
+			String subServiceName = "";
+			String[] subServiceGender = null;
+			String subServiceGendervalue = "";
+			int loop_i = 0;
+			try {
+				if (browser.elementisdisplayed(CustomerModule.Customer_Services_Tab)) {
+					browser.reportscomtep("Passed", " Verify Service Tab is by default opened",
+							"Service Tab by default should be opened", "Service tab by default opened");
+					
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_BookService_Heading,
+							"Book Services Header");
+					if(browser.elementisdisplayed(CustomerModule.Service_GroupName)){
+						serviceGroupName = browser.getelementtext(CustomerModule.Service_GroupName);
+						browser.reportscomtep("Passed", " Verify Service groupname is displayed",
+								"Service groupname should be displayed", "Service groupname displayed as:" + serviceGroupName);	
+						
+						List<WebElement> genderList = CustomerModule.Customer_SubService_GenderList;
+						List<WebElement> CheckboxlabelsList = CustomerModule.Customer_SubService_CheckBoxLabels;
+						List<WebElement> TimeSlotlist = CustomerModule.Customer_SubService_TimeSlotList;
+						List<WebElement> Pricelist = CustomerModule.Customer_SubService_PriceList;
+											
+						for(WebElement subservice:CheckboxlabelsList){	
+							browser.ScrollToElementBottom(subservice);
+							subServiceGendervalue = browser.elementgetAttributevalue(genderList.get(loop_i), "ng-if");
+							subServiceGender = subServiceGendervalue.split("sub_service_item.available_for === ");
+							subServiceName = browser.getelementtext(subservice);
+							subServiceTimeSlot = browser.getelementtext(TimeSlotlist.get(loop_i));
+							subServicePrice = browser.getelementtext(Pricelist.get(loop_i));
+							if(subServiceName!="" && subServiceTimeSlot!="" && subServicePrice!=""){
+								browser.reportscomtep("Passed", " Verify subService Gender Icons, Service Name, Duration and Price is displayed",
+										"subService Gender Icons, Service Name, Duration and Price should be displayed", "subService Gender Icons: "+subServiceGender[1]+", Service Name: "+subServiceName+", Duration: "+subServiceTimeSlot+" and Price: "+subServicePrice+" displayed");
+							}else{
+								browser.reportscomtep("Failed", " Verify subService Gender Icons, Service Name, Duration and Price is displayed",
+										"subService Gender Icons, Service Name, Duration and Price should be displayed", "subService Gender Icons: "+subServiceGender[1]+", Service Name: "+subServiceName+", Duration: "+subServiceTimeSlot+" and Price: "+subServicePrice+" Not displayed");
+							
+							}							
+							loop_i++;
+						}					
+					}else{
+						browser.reportscomtep("Failed", " Verify Service groupname is displayed",
+								"Service groupname should be displayed", "Service groupname Not displayed");
+					}				
+				} else {
+					browser.reportscomtep("Failed", " Verify Service Tab is by default opened",
+							"Service Tab by default should be opened", "Service tab by default not opened");
+				}
+			} catch (Exception e) {
+				System.out.println("Exception: " + e);
+			}
+		}
+		/*******************TC_5_1_07	******************/
+
+		public void Verify_information_in_Overview_tab() {
+			try {				
+				String salonName = "";	
+				String salonDescription = "";
+				int OverviewX = 0;
+				int overviewY = 0;
+				/*OverviewX = browser.GetXLocationOfElement(CustomerModule.Customer_Overview_Tab);
+				overviewY = browser.GetYLocationOfElement(CustomerModule.Customer_Overview_Tab);	
+				browser.ScrollToXY(OverviewX, overviewY);*/
+				browser.click(CustomerModule.Customer_Search_Button);
+				browser.click(CustomerModule.Customer_BookMe_Text);
+				if (browser.elementisdisplayed(CustomerModule.Customer_Overview_Tab)) {
+					browser.reportscomtep("passed", "Verify Overview Tab is displayed in Business page", "Overview Tab should be displayed in Business page",
+							"Overview Tab displayed in Business page");
+					browser.click(CustomerModule.Customer_Overview_Tab);
+					salonName = browser.getelementtext(CustomerModule.Customer_OverviewTab_Selon_name); 
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_OverviewTab_Selon_name, "Salon Name: "+ salonName );	
+					
+					salonDescription = browser.getelementtext(CustomerModule.Customer_OverviewTab_Selon_description); 
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_OverviewTab_Selon_description, "Salon Description: "+ salonDescription );	
+					
+				}else{
+					browser.reportscomtep("Failed", "Verify Overview Tab is displayed in Business page", "Overview Tab should be displayed in Business page",
+							"Overview Tab not displayed in Business page");
+				}					
+				
+			} catch (Exception e) {
+				System.out.println("unnable to book me: " + e.getStackTrace());
+			}
+		}
+		
+		/*******************TC_5_1_08	******************/
+
+		public void Verify_information_in_Review_tab() {
+			try {				
+				String customerName = "";	
+				String customerRatings = "";
+				String reviewText = "";
+				if (browser.elementisdisplayed(CustomerModule.Customer_Reviews_Tab)) {
+					browser.reportscomtep("passed", "Verify Review Tab is displayed in Business page", "Review Tab should be displayed in Business page",
+							"Review Tab displayed in Business page");
+					browser.click(CustomerModule.Customer_Reviews_Tab);
+					customerName = browser.getelementtext(CustomerModule.Customer_ReviewTab_Customer_name); 
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ReviewTab_Customer_name, "Customer Name: "+ customerName );	
+					
+					customerRatings = browser.getelementtext(CustomerModule.Customer_ReviewTab_Customer_StarRating); 
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ReviewTab_Customer_StarRating, "Customer Star Rating: "+ customerRatings);	
+					
+					reviewText = browser.getelementtext(CustomerModule.Customer_ReviewTab_Customer_ReviewText); 
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ReviewTab_Customer_ReviewText, "Customer review text: "+ reviewText);	
+					
+				}else{
+					browser.reportscomtep("Failed", "Verify Review Tab is displayed in Business page", "Review Tab should be displayed in Business page",
+							"Review Tab not displayed in Business page");
+				}					
+				
+			} catch (Exception e) {
+				System.out.println("unnable to book me: " + e.getStackTrace());
+			}
+		}
+		/*/*******************TC_5_1_11	******************/
+
+		public void Verify_inquiry_Sent_Valid_Details() {
+			try {				
+				String customerName = "";	
+				String customerRatings = "";
+				String reviewText = "";
+				if (browser.elementisdisplayed(CustomerModule.Customer_Reviews_Tab)) {
+					browser.reportscomtep("passed", "Verify Review Tab is displayed in Business page", "Review Tab should be displayed in Business page",
+							"Review Tab displayed in Business page");
+					browser.click(CustomerModule.Customer_Reviews_Tab);
+					customerName = browser.getelementtext(CustomerModule.Customer_ReviewTab_Customer_name); 
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ReviewTab_Customer_name, "Customer Name: "+ customerName );	
+					
+					customerRatings = browser.getelementtext(CustomerModule.Customer_ReviewTab_Customer_StarRating); 
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ReviewTab_Customer_StarRating, "Customer Star Rating: "+ customerRatings);	
+					
+					reviewText = browser.getelementtext(CustomerModule.Customer_ReviewTab_Customer_ReviewText); 
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ReviewTab_Customer_ReviewText, "Customer review text: "+ reviewText);	
+					
+				}else{
+					browser.reportscomtep("Failed", "Verify Review Tab is displayed in Business page", "Review Tab should be displayed in Business page",
+							"Review Tab not displayed in Business page");
+				}					
+				
+			} catch (Exception e) {
+				System.out.println("unnable to book me: " + e.getStackTrace());
+			}
+		}
 
 }

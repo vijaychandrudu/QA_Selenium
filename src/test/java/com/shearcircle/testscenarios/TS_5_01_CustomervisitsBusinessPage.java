@@ -81,7 +81,7 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 	}
 	
 	@Test(priority=50106, description="Customer Login with registered Username(Email id) & Password " )
-	public void Customer_CheckRegisterWithShearCirclepage() throws IOException {			
+	public void Customer_LoginwithCustomer() throws IOException {			
 		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");			
 	}
 	
@@ -100,13 +100,29 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 		ExtentTestManager.getTest().setDescription("Check whether Marked as Favorite button is displayed after logout");		
 		CR.Verify_AddtoFavourite_Button_after_Logout();			
 	}
-	@Test(priority=50110, description="TC_5_1_05 Check whether the salon can be removed from Favorites")
+	
+	@Test(priority=50110, description="Customer Login with registered Username(Email id) & Password " )
+	public void Customer_LoginwithCustomer1() throws IOException {
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");	
+		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");			
+	}
+	
+	@Test(priority=50111, description="TC_5_1_05 Check whether the salon can be removed from Favorites")
 	public void TC_5_1_05_Customer_Checksalon_removedfromFavorites() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the salon can be removed from Favorites");		
 		CR.Verify_Salon_Removed_From_Favourites();			
 	}
 	
+	@Test(priority=50112, description="TC_5_1_06 Check the details in Services Tab")
+	public void TC_5_1_06_Customer_Check_subServicesinServicesTab() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the details in Services Tab");		
+		CR.Customer_Check_Services_Tab_subServirce_Category();			
+	}
 	
-	
+	@Test(priority=50113, description="TC_5_1_07 Check the info in Overview tab")
+	public void TC_5_1_07_Customer_Check_detailsinOverviewTab() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the info in Overview tab");		
+		CR.Verify_information_in_Overview_tab();			
+	}	
 
 }
