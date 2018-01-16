@@ -736,6 +736,35 @@ public class Customer_Module_Page_Objects{
     @FindBy(xpath="//*[@id='sub_content']/div//button")
     public WebElement Customer_Markedas_Addtofavourite_Button;
     
+    @FindBy(xpath="//*[@id='overview']/h3")
+    public WebElement Customer_OverviewTab_Selon_name;
+    
+    @FindBy(xpath="//*[@id='overview']/h3//following-sibling::div")
+    public WebElement Customer_OverviewTab_Selon_description;
+    
+    @FindBy(xpath="//*[@id='reviews']/div[1]/div/div/h4")
+    public WebElement Customer_ReviewTab_Customer_name;
+    
+    @FindBy(xpath="//*[@id='myRating2']")
+    public WebElement Customer_ReviewTab_Customer_StarRating;    
+       
+    @FindBy(xpath="//*[@id='reviews']/div[1]/div/div/h4//following-sibling::p")
+    public WebElement Customer_ReviewTab_Customer_ReviewText;
+    
+    @FindBy(xpath="//*[@id='services']//h4[1]")
+	public WebElement Service_GroupName;
+    
+    @FindBy(xpath="//*[@id='services']//i[contains(@class,'fa fa')]")
+	public List<WebElement> Customer_SubService_GenderList;
+
+    @FindBy(xpath="//*[@id='services']/div/div/div/div/div[2]/div//div[@class='row ng-scope']/div[2]/span")
+	public List<WebElement> Customer_SubService_TimeSlotList;
+	    
+    @FindBy(xpath="//*[@id='services']/div/div/div/div//div[@class='row ng-scope']/div[3]/strong") 
+	public List<WebElement> Customer_SubService_PriceList;
+
+    @FindBy(xpath="//*[@id='services']//label[@class='ng-binding']")
+	public List<WebElement> Customer_SubService_CheckBoxLabels;
     
 
 }
