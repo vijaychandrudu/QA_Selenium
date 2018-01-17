@@ -766,5 +766,34 @@ public class Customer_Module_Page_Objects{
     @FindBy(xpath="//*[@id='services']//label[@class='ng-binding']")
 	public List<WebElement> Customer_SubService_CheckBoxLabels;
     
+    @FindBy(xpath="//*[@id='inquiryForm']/div/em[text()='Please enter email address']")
+	public WebElement Customer_Inquiry_Email_ErrorMessage;
+    
+    @FindBy(xpath="//*[@id='inquiryForm']/div/em[text()='Please enter mobile number']")
+	public WebElement Customer_Inquiry_mobileNo_ErrorMessage;
+    
+    @FindBy(xpath="//*[@id='feedbacks']/div/div/h3")
+	public WebElement Customer_Feedback_Header;
+	
+	@FindBy(xpath="//*[@id='inquiryForm']//input[@name='name']")
+	public WebElement Customer_Feedback_Name_Textbox;
+	
+	@FindBy(xpath="//*[@id='inquiryForm']//input[@name='email']")
+	public WebElement Customer_Feedback_Email_Textbox;
+	
+	@FindBy(xpath="//*[@id='inquiryForm']//input[@name='mobile']")
+	public WebElement Customer_Feedback_Mobileno_Textbox;
+	
+	@FindBy(xpath="//*[@id='inquiryForm']/div/textarea")
+	public WebElement Customer_Feedback_Message_Text;
+	
+	@FindBy(xpath="//*[@id='uploadPhotos']")
+	public WebElement Customer_Feedback_UloadPhoto_Button;
+	
+	@FindBy(xpath="//*[@id='inquiryForm']/div/button")
+	public WebElement Customer_Feedback_Submit_Button;
+	
+	
+    
 
 }

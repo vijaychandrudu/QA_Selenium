@@ -72,15 +72,14 @@ public class Customer_Module_Page_Components extends StaticVariables {
 	
 	public void ShearCircle_Click_Login_OR_JoinOurCircle(String Login_JoinOurCircleflag) {
 		try {
-			
+						
 			if (browser.elementisdisplayed(Login.Home_Login_Link) && browser.elementisdisplayed(Login.Home_JoinOurCircle_Link)) {
 				browser.reportscomtep("Passed", "Verify Login and Join Our Circle buttons are displayed",
 						"Login and Join Our Circle buttons should be displayed", "Login and Join Our Circle buttons displayed");
 				
 				switch (Login_JoinOurCircleflag) {
 				case "Click_Login":
-					browser.click(Login.Home_Login_Link);
-					
+					browser.click(Login.Home_Login_Link);					
 					if (browser.elementisdisplayed(Login.Login_Page_Header)) {
 						browser.reportscomtep("Passed", "Verify Login page is displayed",
 								"Login page should be displayed",
@@ -5131,34 +5130,82 @@ public void check_MultipleRatings_Filter() {
 				System.out.println("unnable to book me: " + e.getStackTrace());
 			}
 		}
-		/*/*******************TC_5_1_11	******************/
+		
+		/*************************** TC_5_01_09 ************************/
+		public void Customer_Check_Inqueary_Tab_Fieldvalidation() {
+			try {
+				browser.click(CustomerModule.Customer_Search_Button);
+				if (browser.elementisdisplayed(CustomerModule.Customer_BookMe_Text)) {
+					browser.reportscomtep("Passed", "Verify Book Me Text is  displayed",
+							"Book Me button  should be displayed", "Book Me button   displayed");
+					browser.click(CustomerModule.Customer_BookMe_Text);
+					
+					if (browser.elementisdisplayed(CustomerModule.Customer_Inquiry_Tab)) {
+						browser.reportscomtep("passed", "Click on Bookme button and Verify Inqueary Tab is displayed", "Inqueary Tab  should be displayed",
+								"Inqueary Tab is displayed");
+						browser.click(CustomerModule.Customer_Inquiry_Tab);
+						if (browser.elementisdisplayed(CustomerModule.Customer_Feedback_Header)) {
+							browser.reportscomtep("Passed", "Verify Send Us Your Inquiry Header is displayed",
+									"Send Us Your Inquiry Header should be displayed",
+									"Send Us Your Inquiry Header  displayed");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Feedback_Name_Textbox, "Inqueary Name");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Feedback_Email_Textbox, "Inqueary Email");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Feedback_Mobileno_Textbox, "Inqueary Mobileno");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Feedback_UloadPhoto_Button, "Inqueary Upload");
+						browser.ScrollToElementBottom(CustomerModule.Customer_Feedback_Submit_Button);
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Feedback_Submit_Button,"Inqueary Submit");
+						
+						
+					} else {
+						browser.reportscomtep("Failed", "Verify Send Us Your Inquiry Header is displayed",
+								"Send Us Your Inquiry Header should be displayed",
+								"Send Us Your Inquiry Header is not  displayed");
+					}
 
-		public void Verify_inquiry_Sent_Valid_Details() {
-			try {				
-				String customerName = "";	
-				String customerRatings = "";
-				String reviewText = "";
-				if (browser.elementisdisplayed(CustomerModule.Customer_Reviews_Tab)) {
-					browser.reportscomtep("passed", "Verify Review Tab is displayed in Business page", "Review Tab should be displayed in Business page",
-							"Review Tab displayed in Business page");
-					browser.click(CustomerModule.Customer_Reviews_Tab);
-					customerName = browser.getelementtext(CustomerModule.Customer_ReviewTab_Customer_name); 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ReviewTab_Customer_name, "Customer Name: "+ customerName );	
-					
-					customerRatings = browser.getelementtext(CustomerModule.Customer_ReviewTab_Customer_StarRating); 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ReviewTab_Customer_StarRating, "Customer Star Rating: "+ customerRatings);	
-					
-					reviewText = browser.getelementtext(CustomerModule.Customer_ReviewTab_Customer_ReviewText); 
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ReviewTab_Customer_ReviewText, "Customer review text: "+ reviewText);	
-					
-				}else{
-					browser.reportscomtep("Failed", "Verify Review Tab is displayed in Business page", "Review Tab should be displayed in Business page",
-							"Review Tab not displayed in Business page");
-				}					
-				
+						}else{
+							browser.reportscomtep("Failed", "Click on Bookme button and Verify Inqueary Tab is displayed", "Inqueary Tab  should be displayed",
+									"Inqueary Tab is not displayed");
+						}
+								
+				} else {
+					browser.reportscomtep("Failed", "Verify Book Me Text is  displayed", "Book Me Text  should be displayed",
+							"Book Me Text  not displayed");
+				}
 			} catch (Exception e) {
 				System.out.println("unnable to book me: " + e.getStackTrace());
 			}
 		}
+		
+		
+		/*************************** TC_5_01_10 ************************/
+		public void Customer_Check_Inqueary_Tab_Field_Validation() {
+			String Expect_FirstNameErrorMessage = "Please enter firstname";	
+			String Expect_EmailErrorMessage = "Please enter email address";
+			String Expect_MobileNoErrorMessage = "Please enter mobile number";
+			try {									
+					
+				browser.click(CustomerModule.Customer_Feedback_Submit_Button);
+				if (browser.elementisdisplayed(CustomerModule.Customer_PleaseEnterFirstName_ErrorMessage)) {
+					browser.reportscomtep("Passed", "Click on Submit button without enter any value and Verify ErrorMessages are displayed in inquiry page ",
+							"ErrorMessages should be displayed in inquiry page ",
+							"ErrorMessages are displayed in inquiry page ");
+				
+				browser.verifyElementErrorMessage(CustomerModule.Customer_PleaseEnterFirstName_ErrorMessage,Expect_FirstNameErrorMessage, "exact");
+				browser.verifyElementErrorMessage(CustomerModule.Customer_Inquiry_Email_ErrorMessage,Expect_EmailErrorMessage, "exact");
+				browser.verifyElementErrorMessage(CustomerModule.Customer_Inquiry_mobileNo_ErrorMessage,Expect_MobileNoErrorMessage, "exact");
+				} else {
+					browser.reportscomtep("Failed", "Click on Submit button without enter any value and Verify ErrorMessages are displayed in inquiry page ",
+							"ErrorMessages should be displayed in inquiry page ",
+							"ErrorMessages are not displayed in inquiry page ");
+				
+				}
+					
+						
+			} catch (Exception e) {
+				System.out.println("unnable to book me: " + e.getStackTrace());
+			}
+		}
+		}
 
-}
+
