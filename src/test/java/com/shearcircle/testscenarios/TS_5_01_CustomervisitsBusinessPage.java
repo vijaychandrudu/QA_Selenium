@@ -123,6 +123,18 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 	public void TC_5_1_07_Customer_Check_detailsinOverviewTab() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the info in Overview tab");		
 		CR.Verify_information_in_Overview_tab();			
-	}	
+	}
+	
+	@Test(priority=50114, description="TC_5_1_08 Check the info in Reviews tab")
+	public void TC_5_1_08_Customer_Check_detailsinReviewTab() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the info in Reviews tab");		
+		CR.Verify_information_in_Review_tab();			
+	}
+	
+	@Test(priority=50115, description="TC_5_1_09 Check the info in Inquiry tab")
+	public void TC_5_1_09_Customer_Check_InquearyTab_Fieldvalidation() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the info in Inquiry tab");		
+		CR.Customer_Check_Inqueary_Tab_Fieldvalidation();		
+	}
 
 }
