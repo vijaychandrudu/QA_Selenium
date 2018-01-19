@@ -792,8 +792,14 @@ public class Customer_Module_Page_Objects{
 	
 	@FindBy(xpath="//*[@id='inquiryForm']/div/button")
 	public WebElement Customer_Feedback_Submit_Button;
+	@FindBy(xpath="//div[@class='sweet-alert showSweetAlert visible']")
+	public WebElement Customer_Inquiry_Success_Popup;
+	 
+	@FindBy(xpath="//div/div/div/button[text()='OK']")
+	public WebElement Customer_Inquiry_Success_Popup_OK_Button;
 	
-	
+	@FindBy(xpath="//*[@id='inquiryForm']/div/textarea[@name='feedback']")
+	public WebElement Customer_Inquiry_YourMessage_textarea;
     
 
 }

@@ -5179,7 +5179,7 @@ public void check_MultipleRatings_Filter() {
 		
 		
 		/*************************** TC_5_01_10 ************************/
-		public void Customer_Check_Inqueary_Tab_Field_Validation() {
+		public void Customer_Check_InquearyTab_Field_Validation_errormessages() {
 			String Expect_FirstNameErrorMessage = "Please enter firstname";	
 			String Expect_EmailErrorMessage = "Please enter email address";
 			String Expect_MobileNoErrorMessage = "Please enter mobile number";
@@ -5201,6 +5201,64 @@ public void check_MultipleRatings_Filter() {
 				
 				}
 					
+						
+			} catch (Exception e) {
+				System.out.println("unnable to book me: " + e.getStackTrace());
+			}
+		}
+		
+		public void Verify_InquirySentSuccess_After_Enter_Validinfn() {
+			try {
+				
+				String InquearyName = null;
+				String InquearyEmail = null;
+				String InquearyMobileNo = null;
+				String YourMessage = null;
+				
+					InquearyName = browser.getdata("InquearyName");
+					InquearyEmail = browser.getdata("InquearyEmail");
+					InquearyMobileNo = browser.getdata("InquearyMobileNo");
+					YourMessage = browser.getdata("YourMessage");
+											
+					browser.click(CustomerModule.Customer_Inquiry_Tab);
+					if (browser.elementisdisplayed(CustomerModule.Customer_Feedback_Header)) {
+						browser.reportscomtep("Passed", "Verify Send Us Your Inquiry Header is displayed",
+								"Send Us Your Inquiry Header should be displayed",
+								"Send Us Your Inquiry Header  displayed");
+					
+						browser.sendkeys(CustomerModule.Customer_Feedback_Name_Textbox, InquearyName);
+						browser.sendkeys(CustomerModule.Customer_Feedback_Email_Textbox, InquearyEmail);
+						browser.sendkeys(CustomerModule.Customer_Feedback_Mobileno_Textbox, InquearyMobileNo);
+						browser.sendkeys(CustomerModule.Customer_Inquiry_YourMessage_textarea, YourMessage);					
+						browser.click(CustomerModule.Customer_Feedback_Submit_Button);
+						
+						if (browser.elementisdisplayed(CustomerModule.Customer_Inquiry_Success_Popup)) {
+							browser.reportscomtep("Passed", "Enter inquiry form details and click on Submint and Verify Inquiry Success Popup Alert is displayed",
+									"Inquiry Success Popup Alert should be displayed",
+									"Inquiry Success Popup Alert is  displayed");
+							browser.click(CustomerModule.Customer_Inquiry_Success_Popup_OK_Button);
+							
+							if (browser.elementisdisplayed(CustomerModule.Customer_Feedback_Header)) {
+								browser.reportscomtep("Passed","Verify Inquiry Form is Cleared",
+										"Inquiry Form should be Cleared",
+										"Inquiry Form is Cleared");
+							
+							} else {
+								browser.reportscomtep("Failed","Verify Inquiry Form is Cleared",
+										"Inquiry Form should be Cleared",
+										"Inquiry Form is not Cleared");
+							
+							}
+						} else {
+							browser.reportscomtep("Failed", "Enter inquiry form details and click on Submint and Verify Inquiry Success Popup Alert is displayed",
+									"Inquiry Success Popup Alert should be displayed",
+									"Inquiry Success Popup Alert is not displayed");
+						}
+					} else {
+						browser.reportscomtep("Failed", "Verify Send Us Your Inquiry Header is displayed",
+								"Send Us Your Inquiry Header should be displayed",
+								"Send Us Your Inquiry Header not  displayed");
+					}
 						
 			} catch (Exception e) {
 				System.out.println("unnable to book me: " + e.getStackTrace());
