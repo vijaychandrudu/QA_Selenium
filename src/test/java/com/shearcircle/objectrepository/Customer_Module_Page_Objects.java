@@ -801,5 +801,28 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='inquiryForm']/div/textarea[@name='feedback']")
 	public WebElement Customer_Inquiry_YourMessage_textarea;
     
+	@FindBy(xpath="//*[@id='promotions']/div/div/h3")
+	public WebElement Customer_Promotions_Header;
+	
+	@FindBy(xpath="//*[@id='promotions']//div[@class='row promotionwrapper']/div")
+	public List<WebElement> Customer_Promotions_List;
+	
+	/*@FindBy(xpath="//*[@id='videos']/div/div/div/div[contains(@ng-repeat,'video_item in profile')]")
+	public List<WebElement> Customer_Videos_List;*/
+	
+	@FindBy(xpath="//*[contains(@id,'player_uid_')]/div[1]/video")
+	public List<WebElement> Customer_Videos_List;
+	
+	
+	@FindBy(xpath="//*[@id='videos']/h3[contains(text(),'Video')]")
+	public WebElement Customer_Videos_Header;
+	
+	@FindBy(xpath="//*[contains(@id,'player_uid')]/div/button[@class='ytp-large-play-button ytp-button']")
+	public List<WebElement> Customer_Videos_Center_PlayButtons_List;
+	
+	@FindBy(xpath="//*[contains(@id,'player_uid')]/div/div[2]/div/button[@class='ytp-play-button ytp-button']")
+	public List<WebElement> Customer_Videos_buttom_PlayButtons_List;
+    
+	
 
 }

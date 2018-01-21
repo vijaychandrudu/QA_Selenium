@@ -5136,8 +5136,8 @@ public void check_MultipleRatings_Filter() {
 			try {
 				browser.click(CustomerModule.Customer_Search_Button);
 				if (browser.elementisdisplayed(CustomerModule.Customer_BookMe_Text)) {
-					browser.reportscomtep("Passed", "Verify Book Me Text is  displayed",
-							"Book Me button  should be displayed", "Book Me button   displayed");
+					browser.reportscomtep("Passed", "Verify Book Me Text is displayed",
+							"Book Me button should be displayed", "Book Me button displayed");
 					browser.click(CustomerModule.Customer_BookMe_Text);
 					
 					if (browser.elementisdisplayed(CustomerModule.Customer_Inquiry_Tab)) {
@@ -5147,7 +5147,7 @@ public void check_MultipleRatings_Filter() {
 						if (browser.elementisdisplayed(CustomerModule.Customer_Feedback_Header)) {
 							browser.reportscomtep("Passed", "Verify Send Us Your Inquiry Header is displayed",
 									"Send Us Your Inquiry Header should be displayed",
-									"Send Us Your Inquiry Header  displayed");
+									"Send Us Your Inquiry Header displayed");
 						
 						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Feedback_Name_Textbox, "Inqueary Name");
 						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Feedback_Email_Textbox, "Inqueary Email");
@@ -5160,7 +5160,7 @@ public void check_MultipleRatings_Filter() {
 					} else {
 						browser.reportscomtep("Failed", "Verify Send Us Your Inquiry Header is displayed",
 								"Send Us Your Inquiry Header should be displayed",
-								"Send Us Your Inquiry Header is not  displayed");
+								"Send Us Your Inquiry Header is not displayed");
 					}
 
 						}else{
@@ -5169,7 +5169,7 @@ public void check_MultipleRatings_Filter() {
 						}
 								
 				} else {
-					browser.reportscomtep("Failed", "Verify Book Me Text is  displayed", "Book Me Text  should be displayed",
+					browser.reportscomtep("Failed", "Verify Book Me Text is  displayed", "Book Me Text should be displayed",
 							"Book Me Text  not displayed");
 				}
 			} catch (Exception e) {
@@ -5219,7 +5219,7 @@ public void check_MultipleRatings_Filter() {
 					InquearyEmail = browser.getdata("InquearyEmail");
 					InquearyMobileNo = browser.getdata("InquearyMobileNo");
 					YourMessage = browser.getdata("YourMessage");
-											
+					browser.scrollintoviewelement(CustomerModule.Customer_Inquiry_Tab);						
 					browser.click(CustomerModule.Customer_Inquiry_Tab);
 					if (browser.elementisdisplayed(CustomerModule.Customer_Feedback_Header)) {
 						browser.reportscomtep("Passed", "Verify Send Us Your Inquiry Header is displayed",
@@ -5264,6 +5264,81 @@ public void check_MultipleRatings_Filter() {
 				System.out.println("unnable to book me: " + e.getStackTrace());
 			}
 		}
+		
+		/*************************** TC_5_01_12 ************************/
+		public void Customer_Check_Promotions_Tab() {
+			try {
+				browser.scrollintoviewelement(CustomerModule.Customer_Markedas_Addtofavourite_Button);
+				browser.click(CustomerModule.Customer_Promotions_Tab);
+				if (browser.elementisdisplayed(CustomerModule.Customer_Promotions_Header)) {
+					browser.reportscomtep("Passed", "Click on Promotions Tab and Verify Promotions Header is displayed",
+							"Promotions Header should be displayed", "Promotions Header displayed");
+										
+					if (CustomerModule.Customer_Promotions_List.size()>0) {
+						browser.reportscomtep("passed", "Verify Promotions list is displayed", "Promotions list should be displayed",
+								"Promotions list displayed");									
+						
+					} else if(CustomerModule.Customer_Promotions_List.size()==0) {
+						browser.reportscomtep("Failed", "Verify Promotions list is displayed", "Promotions list should be displayed",
+								"No Promotions displayed if not Available");
+					}						
+								
+				} else {
+					browser.reportscomtep("Failed", "Click on Promotions Tab and Verify Promotions Header is displayed",
+							"Promotions Header should be displayed", "Promotions Header not displayed");
+				}
+			} catch (Exception e) {
+				System.out.println("unnable to book me: " + e.getStackTrace());
+			}
+		}
+		
+		/*************************** TC_5_01_13 ************************/
+		public void Customer_Check_Videos_Tab() {
+			try {
+				String play_pause = "";
+				browser.scrollUp(250);
+				browser.click(CustomerModule.Customer_Videos_Tab);
+				if (browser.elementisdisplayed(CustomerModule.Customer_Videos_Header)) {
+					browser.reportscomtep("Passed", "Click on Videos Tab and Verify Video Gallery Header is displayed",
+							"Video Gallery Header should be displayed", "Video Gallery Header displayed");
+					browser.switchToFrame();				
+					if (CustomerModule.Customer_Videos_List.size()>0) {
+						browser.reportscomtep("passed", "Verify Videos list is displayed", "Videos list should be displayed",
+								"Videos list displayed");						
+						browser.click(CustomerModule.Customer_Videos_Center_PlayButtons_List.get(0));
+						Thread.sleep(10000);
+						browser.movetoElement(CustomerModule.Customer_Videos_List.get(0));
+						browser.ScrollToElementBottom(CustomerModule.Customer_Videos_buttom_PlayButtons_List.get(0));
+						play_pause = browser.elementgetAttributevalue(CustomerModule.Customer_Videos_buttom_PlayButtons_List.get(0),"aria-label");
+						if(play_pause.equalsIgnoreCase("pause")){
+							browser.reportscomtep("passed", "click on Video play button and Verify Video is play or not", "Video should be play",
+									"Video playing");
+							Thread.sleep(10000);
+							browser.movetoElement(CustomerModule.Customer_Videos_List.get(0));
+							browser.mouseHoveronElement(CustomerModule.Customer_Videos_List.get(0));
+							//browser.click(CustomerModule.Customer_Videos_buttom_PlayButtons_List.get(0));
+						}else{
+							browser.reportscomtep("Failed", "click on Video play button and Verify Video is play or not", "Video should be play",
+									"Video Not playing");
+						}
+						
+						
+					} else if(CustomerModule.Customer_Promotions_List.size()==0) {
+						browser.reportscomtep("Failed", "Verify Videos list is displayed", "Videos list should be displayed",
+								"No Videos displayed if not Available");
+					}	
+					browser.switchtoDefaultWindow(driver);
+								
+				} else {
+					browser.reportscomtep("Failed", "Click on Videos Tab and Verify Video Gallery Header is displayed",
+							"Video Gallery Header should be displayed", "Video Gallery Header Not displayed");
+				}
+			} catch (Exception e) {
+				System.out.println("unnable to book me: " + e.getStackTrace());
+			}
+		}
+		
+		
 		}
 
 

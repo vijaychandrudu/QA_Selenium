@@ -148,5 +148,17 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 		ExtentTestManager.getTest().setDescription("Check whether the Inquiry is sent after entering valid info");		
 		CR.Verify_InquirySentSuccess_After_Enter_Validinfn();		
 	}
+	
+	@Test(priority=50118, description="TC_5_1_12 Check the Promotions tab")
+	public void TC_5_1_12_Customer_Check_PromotionsTab() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the Promotions tab");		
+		CR.Customer_Check_Promotions_Tab();		
+	}
+	
+	@Test(priority=50118, description="TC_5_1_13 Check the Videos tab")
+	public void TC_5_1_13_Customer_Check_VideosTab() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the Videos tab");		
+		CR.Customer_Check_Videos_Tab();		
+	}
 
 }
