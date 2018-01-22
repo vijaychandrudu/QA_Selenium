@@ -132,9 +132,33 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 	}
 	
 	@Test(priority=50115, description="TC_5_1_09 Check the info in Inquiry tab")
-	public void TC_5_1_09_Customer_Check_InquearyTab_Fieldvalidation() throws IOException {			
+	public void TC_5_1_09_Customer_Check_InquearyTab_infodetails() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the info in Inquiry tab");		
 		CR.Customer_Check_Inqueary_Tab_Fieldvalidation();		
+	}
+	
+	@Test(priority=50116, description="TC_5_1_10 Check the field validations in Inquiry form")
+	public void TC_5_1_10_Customer_Check_InquearyTab_Fieldvalidation() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the field validations in Inquiry form");		
+		CR.Customer_Check_InquearyTab_Field_Validation_errormessages();		
+	}
+	
+	@Test(priority=50117, description="TC_5_1_11 Check whether the Inquiry is sent after entering valid info")
+	public void TC_5_1_11_Customer_Check_InquearySenAfter_Enter_Validinfn() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check whether the Inquiry is sent after entering valid info");		
+		CR.Verify_InquirySentSuccess_After_Enter_Validinfn();		
+	}
+	
+	@Test(priority=50118, description="TC_5_1_12 Check the Promotions tab")
+	public void TC_5_1_12_Customer_Check_PromotionsTab() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the Promotions tab");		
+		CR.Customer_Check_Promotions_Tab();		
+	}
+	
+	@Test(priority=50118, description="TC_5_1_13 Check the Videos tab")
+	public void TC_5_1_13_Customer_Check_VideosTab() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the Videos tab");		
+		CR.Customer_Check_Videos_Tab();		
 	}
 
 }

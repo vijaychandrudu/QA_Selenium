@@ -1013,7 +1013,7 @@ public class CommonFunctions extends StaticVariables {
 		try {
 			this.highlightElement(element);	
 			Actions actions = new Actions(driver);
-			actions.moveToElement(element);		
+			actions.moveToElement(element).build().perform();		
 		} catch (Exception e) {
 			System.out.println("Error in description: " + e.getStackTrace());
 		}
