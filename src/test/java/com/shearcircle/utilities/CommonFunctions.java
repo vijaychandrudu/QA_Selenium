@@ -1507,8 +1507,19 @@ public class CommonFunctions extends StaticVariables {
 	}
 
 	/****************** FRAMES HANDLE *****************/
-	public void switchToDefaultFrame() {
+	/*public void switchToDefaultFrame() {
 		driver.switchTo().defaultContent();
+	}*/
+	
+	public void switchToDefaultFrame() {
+		try {
+			driver.switchTo().defaultContent();
+			System.out.println("Navigated back to webpage from frame");
+		} catch (Exception e) {
+			System.out
+					.println("unable to navigate back to main webpage from frame"
+							+ e.getStackTrace());
+		}
 	}
 
 	public void switchToFrame() {

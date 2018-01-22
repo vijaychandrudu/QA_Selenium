@@ -4857,7 +4857,7 @@ public void check_MultipleRatings_Filter() {
 						"Book Me Tex  not displayed");
 			}
 		} catch (Exception e) {
-			System.out.println("unnable to book me: " + e.getStackTrace());
+			System.out.println("Exception: " + e);
 		}
 	}
 	
@@ -4895,7 +4895,7 @@ public void check_MultipleRatings_Filter() {
 						"Book Me Text  not displayed");
 			}*/
 		} catch (Exception e) {
-			System.out.println("unnable to book me: " + e.getStackTrace());
+			System.out.println("Exception: " + e);
 		}
 	}
 	
@@ -4940,7 +4940,7 @@ public void check_MultipleRatings_Filter() {
 						"Book Me Tex  not displayed");
 			}
 		} catch (Exception e) {
-			System.out.println("unnable to book me: " + e.getStackTrace());
+			System.out.println("Exception: " + e);
 		}
 	}
 	
@@ -4970,7 +4970,7 @@ public void check_MultipleRatings_Filter() {
 						"Book Me Text  not displayed");
 			}
 		} catch (Exception e) {
-			System.out.println("unnable to book me: " + e.getStackTrace());
+			System.out.println("Exception: " + e);
 		}
 	}
 		
@@ -5008,7 +5008,7 @@ public void check_MultipleRatings_Filter() {
 							"Book Me Text  not displayed");
 				}
 			} catch (Exception e) {
-				System.out.println("unnable to book me: " + e.getStackTrace());
+				System.out.println("Exception: " + e);
 			}
 		}
 		
@@ -5097,7 +5097,7 @@ public void check_MultipleRatings_Filter() {
 				}					
 				
 			} catch (Exception e) {
-				System.out.println("unnable to book me: " + e.getStackTrace());
+				System.out.println("Exception: " + e);
 			}
 		}
 		
@@ -5127,7 +5127,7 @@ public void check_MultipleRatings_Filter() {
 				}					
 				
 			} catch (Exception e) {
-				System.out.println("unnable to book me: " + e.getStackTrace());
+				System.out.println("Exception: " + e);
 			}
 		}
 		
@@ -5173,7 +5173,7 @@ public void check_MultipleRatings_Filter() {
 							"Book Me Text  not displayed");
 				}
 			} catch (Exception e) {
-				System.out.println("unnable to book me: " + e.getStackTrace());
+				System.out.println("Exception: " + e);
 			}
 		}
 		
@@ -5203,7 +5203,7 @@ public void check_MultipleRatings_Filter() {
 					
 						
 			} catch (Exception e) {
-				System.out.println("unnable to book me: " + e.getStackTrace());
+				System.out.println("Exception: " + e);
 			}
 		}
 		
@@ -5261,7 +5261,7 @@ public void check_MultipleRatings_Filter() {
 					}
 						
 			} catch (Exception e) {
-				System.out.println("unnable to book me: " + e.getStackTrace());
+				System.out.println("Exception: " + e);
 			}
 		}
 		
@@ -5288,7 +5288,7 @@ public void check_MultipleRatings_Filter() {
 							"Promotions Header should be displayed", "Promotions Header not displayed");
 				}
 			} catch (Exception e) {
-				System.out.println("unnable to book me: " + e.getStackTrace());
+				System.out.println("Exception: " + e);
 			}
 		}
 		
@@ -5327,14 +5327,92 @@ public void check_MultipleRatings_Filter() {
 						browser.reportscomtep("Failed", "Verify Videos list is displayed", "Videos list should be displayed",
 								"No Videos displayed if not Available");
 					}	
-					browser.switchtoDefaultWindow(driver);
+					browser.switchToDefaultFrame();
 								
 				} else {
 					browser.reportscomtep("Failed", "Click on Videos Tab and Verify Video Gallery Header is displayed",
 							"Video Gallery Header should be displayed", "Video Gallery Header Not displayed");
 				}
 			} catch (Exception e) {
-				System.out.println("unnable to book me: " + e.getStackTrace());
+				System.out.println("Exception: " + e);
+			}
+		}
+		
+		/*************************** TC_5_01_14 ************************/
+		public void Customer_Check_Photos_Tab() {
+			try {
+				String photoTilte = "";
+				String photoTiltes = "";
+				browser.scrollintoviewelement(CustomerModule.Customer_Markedas_Addtofavourite_Button);
+				browser.click(CustomerModule.Customer_Photos_Tab);
+				if (browser.elementisdisplayed(CustomerModule.Customer_PhotoGallery_Header)) {
+					browser.reportscomtep("Passed", "Click on Photos Tab and Verify Photo Gallery Header is displayed",
+							"Photo Gallery Header should be displayed", "Photo Gallery Header displayed");
+										
+					if (CustomerModule.Customer_Photos_Titles_List.size()>0) {
+						for(WebElement titles:CustomerModule.Customer_Photos_Titles_List){
+							photoTilte = titles.getText();
+							photoTiltes = photoTiltes +", " + photoTilte;
+						}
+						
+						browser.reportscomtep("passed", "Verify Photos with Titles are displayed", "Photos with Titles should be displayed",
+								"Photos with Titles displayed as: "+photoTiltes.substring(1));									
+						
+					} else if(CustomerModule.Customer_Promotions_List.size()==0) {
+						browser.reportscomtep("Failed", "Verify Photos with Titles is displayed", "Photos with Titles should be displayed",
+								"No Photos displayed if not Available");
+					}						
+								
+				} else {
+					browser.reportscomtep("Failed", "Click on Photos Tab and Verify Photo Gallery Header is displayed",
+							"Photo Gallery Header should be displayed", "Photo Gallery Header not displayed");
+				}
+			} catch (Exception e) {
+				System.out.println("Exception: " + e);
+			}
+		}
+		
+		/*******************TC_5_1_15	******************/
+
+		public void Verify_information_in_ContactUs_tab() {
+			try {				
+				String address = "";	
+				String Phoneno = "";
+				String Website = "";
+				String SocialLinks = "";
+				String BusinessHours = "";
+				String Map = "";	
+				
+				
+					browser.click(CustomerModule.Customer_Mydashboard_myfavourites_bookme_contactus);
+					if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_bookme_contactus)) {
+						browser.reportscomtep("passed", "Click on Contact Us Tab and Verify ContactUS Tab is selected in Business page", "ContactUS Tab should be selected in Business page",
+								"ContactUS Tab selected in Business page");
+					address = browser.getelementtext(CustomerModule.Customer_ContactTab_Address); 
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ContactTab_Address, "Address: "+ address );	
+					
+					Phoneno = browser.getelementtext(CustomerModule.Customer_ContactTab_Phoneno); 
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ContactTab_Phoneno, "Phone Number: "+ Phoneno );	
+					
+					Website = browser.getelementtext(CustomerModule.Customer_ContactTab_Website); 
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ContactTab_Website, "Website: "+ Website );	
+					
+					SocialLinks = browser.getelementtext(CustomerModule.Customer_ContactTab_SocialLinks); 
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ContactTab_SocialLinks, "SocialLinks: "+ SocialLinks );	
+					
+					BusinessHours = browser.getelementtext(CustomerModule.Customer_ContactTab_BusinessHours); 
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ContactTab_BusinessHours, "BusinessHours: "+ BusinessHours );	
+					
+					Map = browser.getelementtext(CustomerModule.Customer_ContactTab_Map); 
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ContactTab_Map, "Map: "+ Map );	
+					
+				}else{
+					browser.reportscomtep("Failed", "Click on Contact Us Tab and Verify ContactUS Tab is selected in Business page", "ContactUS Tab should be selected in Business page",
+							"ContactUS Tab Not selected in Business page");
+				}					
+				
+			} catch (Exception e) {
+				System.out.println("Exception: " + e);
 			}
 		}
 		

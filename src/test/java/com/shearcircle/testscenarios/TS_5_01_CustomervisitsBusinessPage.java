@@ -155,10 +155,22 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 		CR.Customer_Check_Promotions_Tab();		
 	}
 	
-	@Test(priority=50118, description="TC_5_1_13 Check the Videos tab")
+	@Test(priority=50119, description="TC_5_1_13 Check the Videos tab")
 	public void TC_5_1_13_Customer_Check_VideosTab() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the Videos tab");		
 		CR.Customer_Check_Videos_Tab();		
+	}
+	
+	@Test(priority=50120, description="TC_5_1_14 Check the Photos tab")
+	public void TC_5_1_14_Customer_Check_PhotosTab() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the Photos tab");		
+		CR.Customer_Check_Photos_Tab();		
+	}
+	
+	@Test(priority=50121, description="TC_5_1_15 Check the Contact Us tab")
+	public void TC_5_1_15_Customer_Check_ContactUSTab() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the Contact Us tab");		
+		CR.Verify_information_in_ContactUs_tab();		
 	}
 
 }

@@ -822,6 +822,30 @@ public class Customer_Module_Page_Objects{
 	
 	@FindBy(xpath="//*[contains(@id,'player_uid')]/div/div[2]/div/button[@class='ytp-play-button ytp-button']")
 	public List<WebElement> Customer_Videos_buttom_PlayButtons_List;
+	
+	@FindBy(xpath="//*[@id='photos']/h3[contains(text(),'Photo')]")
+	public WebElement Customer_PhotoGallery_Header;
+	
+	@FindBy(xpath="//*[@id='photos']/div/div/a/strong")
+	public List<WebElement> Customer_Photos_Titles_List;
+	
+	@FindBy(xpath="//*[@id='contact_info_page']/div/div/p/small")
+    public WebElement Customer_ContactTab_Address;
+ 
+    @FindBy(xpath="//div/div/p[@class='lead ng-binding']")
+    public WebElement Customer_ContactTab_Phoneno;
+ 
+    @FindBy(xpath="//*[@id='contact_info_page']/div/div/p/a")
+    public WebElement Customer_ContactTab_Website;
+ 
+    @FindBy(xpath="//*[@id='contact_info_page']/div/div/ul")
+    public WebElement Customer_ContactTab_SocialLinks;
+ 
+    @FindBy(xpath="//div/div/table/tbody/tr/td[@class='ng-binding']")
+    public WebElement Customer_ContactTab_BusinessHours;
+    
+    @FindBy(xpath="//*[@id='map_canvas']/div/div/div[1]/div[3]/div")
+    public WebElement Customer_ContactTab_Map;
     
 	
 
