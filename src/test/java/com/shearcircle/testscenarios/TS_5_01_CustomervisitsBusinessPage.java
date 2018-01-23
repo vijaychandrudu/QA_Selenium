@@ -69,7 +69,7 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 		CR.Verify_business_Page_Field_Validation();			
 	}
 	
-	@Test(priority=50104, description="TC_5_1_02 Check Add to Favorite button without login as Customer")
+	/*@Test(priority=50104, description="TC_5_1_02 Check Add to Favorite button without login as Customer")
 	public void TC_5_1_02_Customer_CheckAddtoFavoritbuttonwithoutloginasCustomer() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check Add to Favorite button without login as Customer");		
 		CR.Verify_AddtoFavourite_Button_without_Login_Customer();			
@@ -171,6 +171,12 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 	public void TC_5_1_15_Customer_Check_ContactUSTab() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the Contact Us tab");		
 		CR.Verify_information_in_ContactUs_tab();		
+	}*/
+	
+	@Test(priority=50121, description="TC_5_1_16 Check the Facebook icon in Contact Us")
+	public void TC_5_1_16_Customer_Check_FacebookIcon_ContactUSpage() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the Facebook icon in Contact Us");		
+		CR.Verify_Facebookicon_ContactUs_tab();		
 	}
 
 }
