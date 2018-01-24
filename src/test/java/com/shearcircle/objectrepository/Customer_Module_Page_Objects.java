@@ -847,6 +847,12 @@ public class Customer_Module_Page_Objects{
     @FindBy(xpath="//*[@id='map_canvas']/div/div/div[1]/div[3]/div")
     public WebElement Customer_ContactTab_Map;
     
-	
+    @FindBy(xpath="//div/div/ul//i[@class='social_facebook']")
+    public WebElement Customer_ContactTab_Facebook;
+    
+    @FindBy(xpath="//div/div/div[@class='clearfix loggedout_menubar']")
+    public WebElement Customer_ContactTab_Facebook_Header;   
+    
+    
 
 }

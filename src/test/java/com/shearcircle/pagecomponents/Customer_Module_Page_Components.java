@@ -5384,8 +5384,8 @@ public void check_MultipleRatings_Filter() {
 				String Map = "";	
 				
 				
-					browser.click(CustomerModule.Customer_Mydashboard_myfavourites_bookme_contactus);
-					if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_myfavourites_bookme_contactus)) {
+					browser.click(CustomerModule.Customer_ContactUs_Tab);
+					if (browser.elementisdisplayed(CustomerModule.Customer_ContactUs_Tab)) {
 						browser.reportscomtep("passed", "Click on Contact Us Tab and Verify ContactUS Tab is selected in Business page", "ContactUS Tab should be selected in Business page",
 								"ContactUS Tab selected in Business page");
 					address = browser.getelementtext(CustomerModule.Customer_ContactTab_Address); 
@@ -5413,6 +5413,39 @@ public void check_MultipleRatings_Filter() {
 				
 			} catch (Exception e) {
 				System.out.println("Exception: " + e);
+			}
+		}
+		
+		/*******************TC_5_1_16	******************/
+
+		public void Verify_Facebookicon_ContactUs_tab() {
+			try {				
+				
+				//browser.click(CustomerModule.Customer_Search_Button);
+				//browser.click(CustomerModule.Customer_BookMe_Text);
+				browser.click(CustomerModule.Customer_ContactUs_Tab);
+				if (browser.elementisdisplayed(CustomerModule.Customer_ContactUs_Tab)) {
+					browser.reportscomtep("passed", "Click on ContactUs tab and Verify ContactUS Tab is Selected in Business page", "ContactUS Tab should be Selected in Business page",
+							"ContactUS Tab Selected in Business page");					
+					
+					browser.click(CustomerModule.Customer_ContactTab_Facebook);
+					browser.waitForNewWindowAndSwitchToIt(driver);
+					if (browser.elementisdisplayed(CustomerModule.Customer_ContactTab_Facebook_Header)) {
+						browser.reportscomtep("passed", "Click on Facebook link in ContactUS page and Verify Facebook page is displayed ", "Facebook page should be displayed",
+								"Facebook page is not displayed");
+						//driver.close();
+					}else{				
+						browser.reportscomtep("Failed", "Click on Facebook link in ContactUS page and Verify Facebook page is displayed ", "Facebook page should be displayed",
+								"Facebook page is not displayed");
+					}
+					browser.switchbacktomainwindow(driver);
+				}else{
+					browser.reportscomtep("Failed", "Click on ContactUs tab and Verify ContactUS Tab is Selected in Business page", "ContactUS Tab should be Selected in Business page",
+							"ContactUS Tab Not Selected in Business page");
+				}					
+				
+			} catch (Exception e) {
+				System.out.println("Exception " + e.getStackTrace());
 			}
 		}
 		

@@ -1402,17 +1402,21 @@ public class CommonFunctions extends StaticVariables {
 
 	public void switchbacktomainwindow(WebDriver driver) {
 		// Store the current window handle
-		String winHandleBefore = driver.getWindowHandle();
+		//String winHandleBefore = driver.getWindowHandle();
 
 		// Perform the click operation that opens new window
-
+		int tabscount = 0;
+		tabscount = driver.getWindowHandles().size();
 		// Switch to new window opened
-		for (String winHandle : driver.getWindowHandles()) {
-			// driver.close();
-		}
+		if(tabscount>1){
+			for (String winHandle : driver.getWindowHandles()) {
+				if(!winHandle.contentEquals(defaultWindowHandle))
+				driver.close();
+			}
+		}	
 
 		// Switch back to original browser (first window)
-		driver.switchTo().window(winHandleBefore);
+		driver.switchTo().window(defaultWindowHandle);
 
 	}
 
