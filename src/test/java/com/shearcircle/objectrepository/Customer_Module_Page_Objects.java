@@ -847,12 +847,85 @@ public class Customer_Module_Page_Objects{
     @FindBy(xpath="//*[@id='map_canvas']/div/div/div[1]/div[3]/div")
     public WebElement Customer_ContactTab_Map;
     
-    @FindBy(xpath="//div/div/ul//i[@class='social_facebook']")
+    @FindBy(xpath="//div/div/ul/li/a/i[@class='social_facebook']")
     public WebElement Customer_ContactTab_Facebook;
     
     @FindBy(xpath="//div/div/div[@class='clearfix loggedout_menubar']")
     public WebElement Customer_ContactTab_Facebook_Header;   
     
+    @FindBy(xpath="//ul/li/a/i[@class='social_googleplus']/parent::a")
+    public WebElement Customer_ContactTab_Google;
+   
+    @FindBy(xpath="//div/div/div[@class='E5Wbl']")
+    public WebElement Customer_ContactTab_Googleheader;
     
+    @FindBy(xpath="//*[@id='jobs']/h3")
+    public WebElement Customer_Jobs_Header;
+    
+    @FindBy(xpath="//*[@id='tab-jobs-first']/div/div/div/h4")
+	public List<WebElement> Customer_ViewJobs_Titles_List;
+    
+    @FindBy(xpath="//*[@id='tab-jobs-first']/div/div//a")
+	public List<WebElement> Customer_ViewJob_buttons_List;
+    
+    @FindBy(xpath="//*[@id='main_menu']//div[contains(@ng-bind-html,'show_description')]/h2[1]")
+    public WebElement Customer_Jobs_Descreption_Header;
+   
+    @FindBy(xpath="//div/div/a[text()='APPLY FOR JOB']")
+    public WebElement Customer_Jobs_ApplyforJob_Button;
+   
+    @FindBy(xpath="//*[@id='main_menu']/h2[contains(text(),'Job')]")
+    public WebElement Customer_JobRequirement_Header;
+    
+    @FindBy(xpath="//*[@id='main_menu']/h2[contains(text(),'Apply')]")
+    public WebElement Customer_Jobs_ApplyJob_Header;
+   
+    @FindBy(xpath="//*@id='jobApplyForm']/div/div/div/input[@name='resume']")
+    public WebElement Customer_Jobs_UPloadButton;
+   
+    @FindBy(xpath="//*[@id='jobApplyForm']/input[@type='submit']")
+    public WebElement Customer_Jobs_ApplyButton;
+    
+    @FindBy(xpath="//*[@id='jobApplyForm']//input[@name='firstname']")
+	public WebElement Customer_Jobs_Firstname;
+    
+    @FindBy(xpath="//*[@id='jobApplyForm']//input[@name='lastname']")
+	public WebElement Customer_Jobs_Lastname;
+    
+    @FindBy(xpath="//*[@id='jobApplyForm']//input[@name='email']")
+	public WebElement Customer_Jobs_Email;
+    
+    @FindBy(xpath="//*[@id='jobApplyForm']//input[@name='address']")
+	public WebElement Customer_Jobs_Address;
+    
+    @FindBy(xpath="//*[@id='jobApplyForm']//input[@name='city']")
+	public WebElement Customer_Jobs_City;
+    
+    @FindBy(xpath="//*[@id='jobApplyForm']//select[@name='state']")
+	public WebElement Customer_Jobs_State;
+    
+    @FindBy(xpath="//*[@id='jobApplyForm']//input[@name='postal_code']")
+	public WebElement Customer_Jobs_Postalcode;
+    
+    @FindBy(xpath="//*[@id='jobApplyForm']//input[@name='current_salary']")
+	public WebElement Customer_Jobs_Currentsalary;
+    
+    @FindBy(xpath="//*[@id='jobApplyForm']//input[@name='expected_salary']")
+	public WebElement Customer_Jobs_Expectsalary;
+    
+    @FindBy(xpath="//*[@id='jobApplyForm']//select[@name='iam']")
+	public WebElement Customer_Jobs_Iam;
+    
+    @FindBy(xpath="//*[@id='jobApplyForm']//select[@name='license_type']")
+	public WebElement Customer_Jobs_Licencetype;
+    
+    @FindBy(xpath="//*[@id='jobApplyForm']//select[@name='license_state']")
+	public WebElement Customer_Jobs_Licencestate;
+    		    
+    @FindBy(xpath="//*[@id='jobApplyForm']//select[@name='experience']")
+	public WebElement Customer_Jobs_Experience;
+    
+    @FindBy(xpath="//*[@id='jobApplyForm']//select[@name='hours_available']")
+	public WebElement Customer_Jobs_Hours;
 
 }

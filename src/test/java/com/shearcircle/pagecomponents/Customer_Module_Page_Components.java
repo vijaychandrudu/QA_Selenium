@@ -5432,7 +5432,7 @@ public void check_MultipleRatings_Filter() {
 					browser.waitForNewWindowAndSwitchToIt(driver);
 					if (browser.elementisdisplayed(CustomerModule.Customer_ContactTab_Facebook_Header)) {
 						browser.reportscomtep("passed", "Click on Facebook link in ContactUS page and Verify Facebook page is displayed ", "Facebook page should be displayed",
-								"Facebook page is not displayed");
+								"Facebook page is displayed");
 						//driver.close();
 					}else{				
 						browser.reportscomtep("Failed", "Click on Facebook link in ContactUS page and Verify Facebook page is displayed ", "Facebook page should be displayed",
@@ -5443,6 +5443,247 @@ public void check_MultipleRatings_Filter() {
 					browser.reportscomtep("Failed", "Click on ContactUs tab and Verify ContactUS Tab is Selected in Business page", "ContactUS Tab should be Selected in Business page",
 							"ContactUS Tab Not Selected in Business page");
 				}					
+				
+			} catch (Exception e) {
+				System.out.println("Exception " + e.getStackTrace());
+			}
+		}
+		
+		/*******************TC_5_1_17	******************/
+
+		public void Verify_Googleicon_ContactUs_tab() {
+			try {				
+				
+				browser.click(CustomerModule.Customer_ContactUs_Tab);
+				if (browser.elementisdisplayed(CustomerModule.Customer_ContactUs_Tab)) {
+					browser.reportscomtep("passed", "Click on ContactUs tab and Verify ContactUS Tab is Selected in Business page", "ContactUS Tab should be Selected in Business page",
+							"ContactUS Tab Selected in Business page");	
+				
+					browser.click(CustomerModule.Customer_ContactTab_Google);
+					browser.waitForNewWindowAndSwitchToIt(driver);
+					if (browser.elementisdisplayed(CustomerModule.Customer_ContactTab_Googleheader)) {
+						browser.reportscomtep("passed", "Verify Google+ page is displayed ", "Google+ page should be displayed",
+								"Google+ page is displayed");
+					}else{
+				
+						browser.reportscomtep("Failed", "Verify Google+ page is displayed ", "Google+ page should be displayed",
+								"Google+ page is not displayed");
+					}
+					browser.switchbacktomainwindow(driver);
+				}else{
+					browser.reportscomtep("Failed", "Click on ContactUs tab and Verify ContactUS Tab is Selected in Business page", "ContactUS Tab should be Selected in Business page",
+							"ContactUS Tab Not Selected in Business page");
+				}			
+				
+			} catch (Exception e) {
+				System.out.println("unnable to book me: " + e.getStackTrace());
+			}
+		}
+		
+		/*******************TC_5_1_20	******************/
+
+		public void Verify_Jobs_tab() {
+			try {				
+				int jobsTitlesCount = 0;
+				int viewJobscount = 0;
+				String jobTilte= "";
+				String jobTitles = "";
+				browser.click(CustomerModule.Customer_Jobs_Tab);
+				if (browser.elementisdisplayed(CustomerModule.Customer_Jobs_Header)) {				
+					browser.reportscomtep("passed", "Click on Jobs tab and Verify Jobs header is displayed", "Jobs header Should be displayed",
+							"Jobs header displayed");				
+					jobsTitlesCount = CustomerModule.Customer_ViewJobs_Titles_List.size();
+					viewJobscount = CustomerModule.Customer_ViewJob_buttons_List.size();
+					if(jobsTitlesCount==viewJobscount){
+						for(WebElement jobTitle:CustomerModule.Customer_ViewJobs_Titles_List){
+							jobTilte = jobTitle.getText();
+							jobTitles = jobTitles+","+ jobTilte;
+						}
+						browser.reportscomtep("passed", "Verify  list of Jobs with a View button is displayed", "list of Jobs with a View button Should be displayed",
+								"list of Jobs with a View button is displayed as: "+jobTitles.substring(1));
+						
+					}else{
+						browser.reportscomtep("Failed", "Verify  list of Jobs with a View button is displayed", "list of Jobs with a View button Should be displayed",
+								"list of Jobs with a View button not displayed");
+						
+					}				
+					
+				}else{
+					browser.reportscomtep("Failed", "Click on Jobs tabad Verify Jobs header is displayed", "Jobs header Should be displayed",
+							"Jobs header displayed");
+				}								
+				
+			} catch (Exception e) {
+				System.out.println("Exception " + e.getStackTrace());
+			}
+		}
+		
+		/*******************TC_5_1_21	******************/
+
+		public void Verify_Viewbutton_Jobs_tab() {
+			try {				
+				
+				/*browser.click(CustomerModule.Customer_Search_Button);
+				browser.click(CustomerModule.Customer_BookMe_Text);
+				if (browser.elementisdisplayed(CustomerModule.Customer_Jobs_Tab)) {
+					browser.reportscomtep("passed", "Verify Jobs Tab is displayed in Business page", "Jobs Tab should be displayed in Business page",
+							"Jobs Tab is displayed in Business page");
+					browser.click(CustomerModule.Customer_Jobs_Tab);*/
+				
+					browser.click(CustomerModule.Customer_ViewJob_buttons_List.get(0));
+					if (browser.elementisdisplayed(CustomerModule.Customer_JobRequirement_Header)) {
+						browser.reportscomtep("passed", "Click on View Jobs button and Verify Job Requirement Header is displayed in Job Requirement page", "Job Requirement Header should be displayed in Job Requirement page",
+								"Job Requirement Header is displayed in Job Requirement page");
+						/*String jobDescriptionHeader = browser.getelementtext(CustomerModule.Customer_Jobs_Descreption_Header);
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Descreption_Header,
+								"Jobs Descreption Header: "+jobDescriptionHeader);*/
+						browser.ScrollToElementBottom(CustomerModule.Customer_Jobs_ApplyforJob_Button);
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_ApplyforJob_Button,
+								"Apply for Job Button");
+						
+					}else{
+						browser.reportscomtep("Failed", "Click on View Jobs button and Verify Job Requirement Header is displayed in Job Requirement page", "Job Requirement Header should be displayed in Job Requirement page",
+								"Job Requirement Header not displayed in Job Requirement page");
+					}
+					
+					
+				/*}else{
+					browser.reportscomtep("Failed",  "Verify Jobs Tab is displayed in Business page", "Jobs Tab should be displayed in Business page",
+							"Jobs Tab is not displayed in Business page");
+				}*/					
+				
+			} catch (Exception e) {
+				System.out.println("Exeception " + e.getStackTrace());
+			}
+		}
+		
+		/*******************TC_5_1_22	******************/
+
+		public void Verify_Applyjob_Button_Jobs_Requirementpage() {
+			try {				
+				browser.ScrollToElementBottom(CustomerModule.Customer_Jobs_ApplyforJob_Button);
+				if (browser.elementisdisplayed(CustomerModule.Customer_JobRequirement_Header)) {
+					browser.reportscomtep("passed", "Verify Job Requirement Header is displayed in Job Requirement page", "Job Requirement Header should be displayed in Job Requirement page",
+							"Job Requirement Header is displayed in Job Requirement page");
+					browser.click(CustomerModule.Customer_Jobs_ApplyforJob_Button);
+					if (browser.elementisdisplayed(CustomerModule.Customer_Jobs_ApplyJob_Header)) {
+						browser.reportscomtep("passed", "Click on Appy for Job button and Verify Apply Job page is displayed", "Apply Job page Should be displayed",
+								"Apply Job page is displayed");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_ApplyJob_Header,
+								"Jobs ApplyJob Header");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Firstname,
+								"Jobs Upload Button");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Lastname,
+								"First Name");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Email,
+								"Jobs Upload Button");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Address,
+								"Jobs Upload Button");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_City,
+								"Jobs Upload Button");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_State,
+								"Jobs Upload Button");
+						browser.ScrollToElementBottom(CustomerModule.Customer_Jobs_ApplyButton);
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Postalcode,
+								"Jobs Upload Button");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Currentsalary,
+								"Jobs Upload Button");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Expectsalary,
+								"Jobs Upload Button");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Iam,
+								"Jobs Upload Button");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Licencetype,
+								"Jobs Upload Button");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Licencestate,
+								"Jobs Upload Button");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Experience,
+								"Jobs Upload Button");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Hours,
+								"Jobs Upload Button");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_ApplyButton,
+								"Apply Button");
+					}else{
+						browser.reportscomtep("Failed", "Verify Job Requirement Header is displayed in Job Requirement page", "Job Requirement Header should be displayed in Job Requirement page",
+								"Job Requirement Header Not displayed in Job Requirement page");
+					}
+				}else{
+					browser.reportscomtep("Failed", "Verify Jobs Descreption is displayed in Job Requirement page", "Jobs Descreption should be displayed in Job Requirement page",
+							"Jobs Descreption is not displayed in Job Requirement page");
+				}		
+								
+				
+			} catch (Exception e) {
+				System.out.println("Exception " + e.getStackTrace());
+			}
+		}
+		
+		/*******************TC_5_1_23	******************/
+
+		public void Verify_application_Issubmitted_After_Validdata() {
+				
+				String Firstname = null;	
+				String Lastname = null;
+				String Email = null;
+				String Address = null;
+				String City = null;
+				String State = null;
+				String Postalcode = null;
+				String Currentsalary = null;
+				String Expectsalary = null;
+				String Iam = null;
+				String Licencetype = null;
+				String Licencestate = null;
+				String Experience = null;
+				String Hours = null;	
+				try {
+					Firstname = browser.getdata("Applyjob_FirstName");
+					Lastname = browser.getdata("Applyjob_LastName");
+					Email = browser.getdata("Applyjob_Email");
+					Address = browser.getdata("Applyjob_Address");
+					City = browser.getdata("Applyjob_City");
+					State = browser.getdata("Applyjob_State");
+					Postalcode = browser.getdata("Applyjob_Postalcode");
+					Currentsalary = browser.getdata("Applyjob_Currentsalary");
+					Expectsalary = browser.getdata("Applyjob_Expectsalary");
+					Iam = browser.getdata("Applyjob_Iam");
+					Licencetype = browser.getdata("Applyjob_Licencetype");
+					Licencestate = browser.getdata("Applyjob_Licencestate");
+					Experience = browser.getdata("Applyjob_Experience");
+					Hours = browser.getdata("Applyjob_Hours");					
+					browser.ScrollToElementBottom(CustomerModule.Customer_Jobs_ApplyJob_Header);			
+					if (browser.elementisdisplayed(CustomerModule.Customer_Jobs_ApplyJob_Header)) {
+						browser.reportscomtep("passed", "Verify ApplyJob page is displayed after click on applyfor job button", "ApplyJob page Should be displayed after click on applyfor job button ",
+								"ApplyJob page is displayed after click on applyfor job button");													
+						browser.sendkeys(CustomerModule.Customer_Jobs_Firstname, Firstname);
+						browser.sendkeys(CustomerModule.Customer_Jobs_Lastname, Lastname);
+						browser.sendkeys(CustomerModule.Customer_Jobs_Email, Email);
+						browser.sendkeys(CustomerModule.Customer_Jobs_Address, Address);
+						browser.sendkeys(CustomerModule.Customer_Jobs_City, City);
+						browser.selectByVisibleText(CustomerModule.Customer_Jobs_State, State);
+						browser.ScrollToElementBottom(CustomerModule.Customer_Jobs_ApplyButton);
+						browser.sendkeys(CustomerModule.Customer_Jobs_Postalcode, Postalcode);
+						browser.sendkeys(CustomerModule.Customer_Jobs_Currentsalary, Currentsalary);
+						browser.sendkeys(CustomerModule.Customer_Jobs_Expectsalary, Expectsalary);
+						browser.sendkeys(CustomerModule.Customer_Jobs_Iam, Iam);
+						browser.selectByVisibleText(CustomerModule.Customer_Jobs_Licencetype, Licencetype);
+						browser.selectByVisibleText(CustomerModule.Customer_Jobs_Licencestate, Licencestate);
+						browser.sendkeys(CustomerModule.Customer_Jobs_Experience, Experience);
+						browser.selectByVisibleText(CustomerModule.Customer_Jobs_Hours, Hours);
+						browser.click(CustomerModule.Customer_Jobs_ApplyButton);
+						if (browser.elementisdisplayed(CustomerModule.Customer_Services_Tab)) {
+							browser.reportscomtep("Passed", "Verify Popup is displayed and redirects Services tab page after click on apply button ", "Popup should be displayed and redirects Services tab page after click on apply button ",
+									"Popup is displayed and redirects Services tab page after click on apply button");
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Services_Tab, "SERVICES Tab");
+						browser.reportscomtep("Failed", "Verify Popup is displayed and redirects Services tab page after click on apply button ", "Popup should be displayed and redirects Services tab page after click on apply button ",
+								"Popup is not displayed and redirects Services tab page after click on apply button");
+						}
+						
+					}else{
+						browser.reportscomtep("Failed", "Verify ApplyJob page is displayed after click on applyfor job button", "ApplyJob page Should be displayed after click on applyfor job button ",
+								"ApplyJob page is not displayed after click on applyfor job button");
+					}
+								
 				
 			} catch (Exception e) {
 				System.out.println("Exception " + e.getStackTrace());
