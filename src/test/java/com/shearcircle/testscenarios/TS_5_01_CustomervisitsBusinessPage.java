@@ -178,5 +178,35 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 		ExtentTestManager.getTest().setDescription("Check the Facebook icon in Contact Us");		
 		CR.Verify_Facebookicon_ContactUs_tab();		
 	}
+	
+	@Test(priority=50122, description="TC_5_1_17 Check the Instagram icon in Contact Us tab")
+	public void TC_5_1_17_Customer_Check_GoogleIcon_ContactUSpage() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the Instagram icon in Contact Us tab");		
+		CR.Verify_Googleicon_ContactUs_tab();		
+	}
+	
+	@Test(priority=50123, description="TC_5_1_20 Check the Jobs tab")
+	public void TC_5_1_20_Customer_Check_JobsTab() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the Jobs tab");		
+		CR.Verify_Jobs_tab();		
+	}
+	
+	@Test(priority=50124, description="TC_5_1_21 Check the View button in Jobs tab")
+	public void TC_5_1_21_Customer_Check_Viewbutton() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the View button in Jobs tab");		
+		CR.Verify_Viewbutton_Jobs_tab();		
+	}
+	
+	@Test(priority=50125, description="TC_5_1_22 Check the Apply for Job button in Job requirement page")
+	public void TC_5_1_22_Customer_Check_ApplyforJobbutton_Jobrequirementpage() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the Apply for Job button in Job requirement page");		
+		CR.Verify_Applyjob_Button_Jobs_Requirementpage();		
+	}
+	
+	@Test(priority=50126, description="TC_5_1_23 Check the mandatory fields in Apply Job page")
+	public void TC_5_1_23_Customer_Check_mandatoryfields_ApplyJobpage() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the mandatory fields in Apply Job page");		
+		CR.Verify_application_Issubmitted_After_Validdata();		
+	}
 
 }
