@@ -5462,11 +5462,11 @@ public void check_MultipleRatings_Filter() {
 					browser.click(CustomerModule.Customer_ContactTab_Google);
 					browser.waitForNewWindowAndSwitchToIt(driver);
 					if (browser.elementisdisplayed(CustomerModule.Customer_ContactTab_Googleheader)) {
-						browser.reportscomtep("passed", "Verify Google+ page is displayed ", "Google+ page should be displayed",
+						browser.reportscomtep("passed", "Click on Google+ Link in Contactus page and Verify Google+ page is displayed ", "Google+ page should be displayed",
 								"Google+ page is displayed");
 					}else{
 				
-						browser.reportscomtep("Failed", "Verify Google+ page is displayed ", "Google+ page should be displayed",
+						browser.reportscomtep("Failed", "Click on Google+ Link in Contactus page and Verify Google+ page is displayed  ", "Google+ page should be displayed",
 								"Google+ page is not displayed");
 					}
 					browser.switchbacktomainwindow(driver);
@@ -5476,7 +5476,70 @@ public void check_MultipleRatings_Filter() {
 				}			
 				
 			} catch (Exception e) {
-				System.out.println("unnable to book me: " + e.getStackTrace());
+				System.out.println("Exception: " + e.getStackTrace());
+			}
+		}
+		
+		/*******************TC_5_1_18	******************/
+
+		public void Verify_Instagramicon_ContactUstab() {
+			try {				
+				
+				browser.click(CustomerModule.Customer_ContactUs_Tab);
+				if (browser.elementisdisplayed(CustomerModule.Customer_ContactUs_Tab)) {
+					browser.reportscomtep("passed", "Click on ContactUs tab and Verify ContactUS Tab is Selected in Business page", "ContactUS Tab should be Selected in Business page",
+							"ContactUS Tab Selected in Business page");	
+				
+					browser.click(CustomerModule.Customer_ContactTab_Instagram);
+					browser.waitForNewWindowAndSwitchToIt(driver);
+					if (browser.elementisdisplayed(CustomerModule.Customer_ContactTab_Instagram_Header)) {
+						browser.reportscomtep("passed", "Click on Instagram Link in Contactus page and Verify Instagram page is displayed  ", "Instagram page should be displayed",
+								"Instagram page is displayed");
+					}else{
+				
+						browser.reportscomtep("Failed", "Click on Instagram Link in Contactus page and Verify Instagram page is displayed ", "Instagram page should be displayed",
+								"Instagram page is Not displayed");
+					}
+					browser.switchbacktomainwindow(driver);
+				}else{
+					browser.reportscomtep("Failed", "Click on ContactUs tab and Verify ContactUS Tab is Selected in Business page", "ContactUS Tab should be Selected in Business page",
+							"ContactUS Tab Not Selected in Business page");
+				}			
+				
+			} catch (Exception e) {
+				System.out.println("Exception: " + e.getStackTrace());
+			}
+		}
+		
+		/*******************TC_5_1_19	******************/
+
+		public void Verify_WebsiteLink_ContactUstab() {
+			try {				
+				String newBrowser_Title = "";
+				browser.click(CustomerModule.Customer_ContactUs_Tab);
+				if (browser.elementisdisplayed(CustomerModule.Customer_ContactUs_Tab)) {
+					browser.reportscomtep("passed", "Click on ContactUs tab and Verify ContactUS Tab is Selected in Business page", "ContactUS Tab should be Selected in Business page",
+							"ContactUS Tab Selected in Business page");	
+				
+					browser.click(CustomerModule.Customer_ContactTab_Website);
+					browser.waitForNewWindowAndSwitchToIt(driver);
+					newBrowser_Title = driver.getTitle();
+					if (newBrowser_Title!="") {
+						browser.reportscomtep("passed", "click on website link in contact us page and Verify website opened in new tab", "Website page should be displayed in new tab",
+								"Website page is displayed in new tab");
+					}else{
+				
+						browser.reportscomtep("Failed", "click on website link in contact us page and Verify website opened in new tab", "Website page should be displayed in new tab",
+								"Website page is not displayed in new tab");
+					}
+					browser.switchbacktomainwindow(driver);
+				}else{
+					browser.reportscomtep("Failed", "Click on ContactUs tab and Verify ContactUS Tab is Selected in Business page", "ContactUS Tab should be Selected in Business page",
+							"ContactUS Tab Not Selected in Business page");
+				}			
+				
+			} catch (Exception e) {
+				System.out.println("Exception: " + e.getStackTrace());
 			}
 		}
 		
@@ -5617,7 +5680,7 @@ public void check_MultipleRatings_Filter() {
 			}
 		}
 		
-		/*******************TC_5_1_23	******************/
+		/*******************TC_5_1_24	******************/
 
 		public void Verify_application_Issubmitted_After_Validdata() {
 				
@@ -5658,23 +5721,27 @@ public void check_MultipleRatings_Filter() {
 						browser.sendkeys(CustomerModule.Customer_Jobs_Lastname, Lastname);
 						browser.sendkeys(CustomerModule.Customer_Jobs_Email, Email);
 						browser.sendkeys(CustomerModule.Customer_Jobs_Address, Address);
-						browser.sendkeys(CustomerModule.Customer_Jobs_City, City);
+						browser.sendkeys(CustomerModule.Customer_Jobs_City,City);
 						browser.selectByVisibleText(CustomerModule.Customer_Jobs_State, State);
+						browser.reportscomtep("Passed", "Enter mandatory fields", "Mandatory fields should be enter ",
+								"Mandatory fields entered");
 						browser.ScrollToElementBottom(CustomerModule.Customer_Jobs_ApplyButton);
 						browser.sendkeys(CustomerModule.Customer_Jobs_Postalcode, Postalcode);
 						browser.sendkeys(CustomerModule.Customer_Jobs_Currentsalary, Currentsalary);
 						browser.sendkeys(CustomerModule.Customer_Jobs_Expectsalary, Expectsalary);
-						browser.sendkeys(CustomerModule.Customer_Jobs_Iam, Iam);
-						browser.selectByVisibleText(CustomerModule.Customer_Jobs_Licencetype, Licencetype);
-						browser.selectByVisibleText(CustomerModule.Customer_Jobs_Licencestate, Licencestate);
-						browser.sendkeys(CustomerModule.Customer_Jobs_Experience, Experience);
+						browser.selectByVisibleText(CustomerModule.Customer_Jobs_Iam, Iam);
+						browser.selectByVisibleText(CustomerModule.Customer_Jobs_Licencetype, "Cosmetology");
+						browser.selectByVisibleText(CustomerModule.Customer_Jobs_Licencestate, State);
+						browser.selectByVisibleText(CustomerModule.Customer_Jobs_Experience, Experience);
 						browser.selectByVisibleText(CustomerModule.Customer_Jobs_Hours, Hours);
+						browser.reportscomtep("Passed", "Enter mandatory fields", "Mandatory fields should be enter ",
+								"Mandatory fields entered");
 						browser.click(CustomerModule.Customer_Jobs_ApplyButton);
 						if (browser.elementisdisplayed(CustomerModule.Customer_Services_Tab)) {
 							browser.reportscomtep("Passed", "Verify Popup is displayed and redirects Services tab page after click on apply button ", "Popup should be displayed and redirects Services tab page after click on apply button ",
-									"Popup is displayed and redirects Services tab page after click on apply button");
-						
-						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Services_Tab, "SERVICES Tab");
+									"Popup is displayed and redirects Services tab page after click on apply button");						
+						//browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Services_Tab, "SERVICES Tab");
+						}else{
 						browser.reportscomtep("Failed", "Verify Popup is displayed and redirects Services tab page after click on apply button ", "Popup should be displayed and redirects Services tab page after click on apply button ",
 								"Popup is not displayed and redirects Services tab page after click on apply button");
 						}
@@ -5690,7 +5757,555 @@ public void check_MultipleRatings_Filter() {
 			}
 		}
 		
-		
+		/*******************TC_5_1_23	******************/
+
+		public void Verify_Mandatory_Fieldsin_Applyjob_Page() {
+			try {	
+				String Firstname = "";	
+				String Lastname = "";
+				String Email = "";
+				String Address = "";
+				String City = "";
+				String State = "";
+				String Postalcode = "";
+				String Currentsalary = "";
+				String Expectsalary = "";
+				String Iam = "";
+				String Licencetype = "";
+				String Licencestate = "";
+				String Experience = "";
+				String Hours = "";					
+				browser.ScrollToElementBottom(CustomerModule.Customer_Jobs_ApplyJob_Header);				
+				if (browser.elementisdisplayed(CustomerModule.Customer_Jobs_ApplyJob_Header)) {
+					browser.reportscomtep("passed", "Verify ApplyJob page is displayed after click on applyfor job button", "ApplyJob page Should be displayed after click on applyfor job button ",
+							"ApplyJob page is displayed after click on applyfor job button");
+					browser.ScrollToElementBottom(CustomerModule.Customer_Jobs_ApplyButton);
+					browser.click(CustomerModule.Customer_Jobs_ApplyButton);
+					if (browser.elementisdisplayed(CustomerModule.Customer_Jobs_Firstname_ErrorMessage)) {
+						browser.reportscomtep("passed", "Verify All Mandatory Error Messages are displayed Except Resume and Phonenumber", "All Mandatory Error Messages should be displayed Except Resume and Phonenumber",	
+					"All Mandatory Error Messages is displayed Except Resume and Phonenumber");
+						Firstname = browser.getelementtext(CustomerModule.Customer_Jobs_Firstname_ErrorMessage); 
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Firstname_ErrorMessage, "Firstname: "+ Firstname );	
+						
+						Lastname = browser.getelementtext(CustomerModule.Customer_Jobs_Lastname_ErrorMessage); 
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Lastname_ErrorMessage, "Lastname: "+ Lastname );	
+						
+						Email = browser.getelementtext(CustomerModule.Customer_Jobs_Email_ErrorMessage); 
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Email_ErrorMessage, "Email: "+Email );	
+						
+						Address = browser.getelementtext(CustomerModule.Customer_Jobs_Address_ErrorMessage); 
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Address_ErrorMessage, "Address: "+ Address );	
+						
+						City = browser.getelementtext(CustomerModule.Customer_Jobs_City_ErrorMessage); 
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_City_ErrorMessage, "City: "+ City );	
+						
+						browser.ScrollToElementBottom(CustomerModule.Customer_Jobs_ApplyButton);
+						
+						State = browser.getelementtext(CustomerModule.Customer_Jobs_State_ErrorMessage); 
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_State_ErrorMessage, "State: "+ State );	
+					
+						Postalcode = browser.getelementtext(CustomerModule.Customer_Jobs_Postalcode_ErrorMessage); 
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Postalcode_ErrorMessage, "Postalcode: "+Postalcode );	
+						
+						Currentsalary = browser.getelementtext(CustomerModule.Customer_Jobs_Currentsalary_ErrorMessage); 
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Currentsalary_ErrorMessage, "Currentsalary: "+ Currentsalary );	
+						
+						Expectsalary = browser.getelementtext(CustomerModule.Customer_Jobs_Expectsalary_ErrorMessage); 
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Expectsalary_ErrorMessage, "Expectsalary: "+ Expectsalary );	
+						
+						Iam = browser.getelementtext(CustomerModule.Customer_Jobs_Iam_ErrorMessage); 
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Iam_ErrorMessage, "Iam: "+ Iam );
+					
+						Licencetype = browser.getelementtext(CustomerModule.Customer_Jobs_LicenceType_ErrorMessage); 
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_LicenceType_ErrorMessage, "Licencetype: "+ Licencetype );
+					
+						Licencestate = browser.getelementtext(CustomerModule.Customer_Jobs_Licencestate_ErrorMessage); 
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Licencestate_ErrorMessage, "Licencestate: "+ Licencestate );
+					
+						Experience = browser.getelementtext(CustomerModule.Customer_Jobs_Experience_ErrorMessage); 
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Experience_ErrorMessage, "Experience: "+ Experience );
+					
+						Hours = browser.getelementtext(CustomerModule.Customer_Jobs_Hours_ErrorMessage); 
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Hours_ErrorMessage, "Hours: "+ Hours );
+					
+					}else{
+						browser.reportscomtep("Failed", "Verify All Mandatory Error Messages are displayed Except Resume and Phonenumber", "All Mandatory Error Messages should be displayed Except Resume and Phonenumber",	
+								"All Mandatory Error Messages is not displayed Except Resume and Phonenumber");
+					}
+				}else{
+					browser.reportscomtep("Failed", "Verify ApplyJob page is displayed after click on applyfor job button", "ApplyJob page Should be displayed after click on applyfor job button ",
+							"ApplyJob page is not displayed after click on applyfor job button");
+				}
+						
+				
+			} catch (Exception e) {
+				System.out.println("unnable to book me: " + e.getStackTrace());
+			}
 		}
+
+
+		
+		/*****TC_6_1_02	Check the Cart popup for single service***/
+		
+		public void check_CartPopup_ForSingleService() {
+			try {
+				String Number_OfItemsSelectedAnd_Price = "";				
+				String subServicePrice = "";
+				String[] price = null;
+				String expected_Price = "";
+				String[] itemscount_Price = null;
+				String ActualSelecteditems = "";
+				String ActualPrice = "";
+				if (browser.elementisdisplayed(CustomerModule.SR_Services_Business_Page)) {
+					browser.reportscomtep("Passed", " Verify Service Tab is default opened",
+							"Service Tab default should be opened", "Service tab default opened");					
+					
+					List<WebElement> CheckboxlabelsList = CustomerModule.Services_CheckBox_List;					
+					List<WebElement> Pricelist = CustomerModule.Customer_SubService_PriceList;
+										
+					if(CheckboxlabelsList.size()>0 && Pricelist.size()>0){
+						browser.click(CheckboxlabelsList.get(0));						
+						subServicePrice = browser.getelementtext(Pricelist.get(0));						
+						price = subServicePrice.replace("$", "D").split("D");						
+						if(price.length>1){
+							expected_Price = price[2];							
+						}
+						
+						if (browser.elementisdisplayed(CustomerModule.Services_PopUp)) {
+							browser.reportscomtep("Passed", "Select one service and Verify Cart popup is displayed at bottom ",
+									"Cart popup should displayed at bottom", "Cart popup is displayed at bottom");
+							Number_OfItemsSelectedAnd_Price = browser
+									.getelementtext(CustomerModule.Services_Numberof_SelectServicesAndPrice_Message);
+							
+							itemscount_Price = Number_OfItemsSelectedAnd_Price.replace("$", "D").split("items, D");
+							if(itemscount_Price.length>1){
+								ActualSelecteditems = itemscount_Price[0];								
+								ActualPrice = itemscount_Price[1].replace(".00", "");								
+							}
+							
+							if(ActualSelecteditems.trim().equalsIgnoreCase("1")){
+								browser.reportscomtep("Passed", "Verify the displayed in cart popup slected services count is equal as per Number of services selected in Services section",
+										"The displayed in ActualSelecteditemscart popup slected services count should be equal as per Number of services selected in Services section", "The displayed in cart popup slected services count: "+ ActualSelecteditems+ " is equal as per Number of services selected in Services section");
+							}else{
+								browser.reportscomtep("Failed", "Verify the displayed in cart popup slected services count  is equal as per Number of services selected in Services section",
+										"The displayed in ActualSelecteditemscart popup slected services count should be equal as per Number of services selected in Services section", "The displayed in cart popup slected services count: "+ ActualSelecteditems+ " is not equal as per Number of services selected in Services section");
+							}
+							
+							if(ActualPrice.trim().equalsIgnoreCase(expected_Price.trim())){
+								browser.reportscomtep("Passed", "Verify the displayed in cart popup slected services Price is equal as per Number of selected services price in Services section",
+										"The displayed in cart popup slected services Price should be equal as per Number of selected services price in Services section", "The displayed in cart popup slected services Price: $"+ ActualPrice+ " is equal as per Number of selected services in Services section");
+							}else{
+								browser.reportscomtep("Failed", "Verify the displayed in cart popup slected services Price is equal as per Number of selected services price in Services section",
+										"The displayed in cart popup slected services Price should be equal as per Number of selected services price in Services section", "The displayed in cart popup slected services Price: $"+ ActualPrice+ " is not equal as per Number of selected services in Services section");
+							}					
+							
+							browser.Verify_elementisdisplayed_Report(CustomerModule.Services_BookNow_Button, "BOOK NOW");
+					}else{
+						browser.reportscomtep("Passed", "Select one service and Verify Cart popup is displayed at bottom ",
+								"Cart popup should displayed at bottom", "Cart popup is not displayed at bottom");
+					}
+														
+					
+					} else {
+						browser.reportscomtep("Failed", "Select one service and Verify Cart popup is displayed at bottom ",
+								"Cart popup should displayed at bottom",  "No Services are available to select");
+					}
+				} else {
+					browser.reportscomtep("Failed", " Verify Service Tab is default opened",
+							"Service Tab default should be opened", "Service tab default not opened");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+		}
+		
+		/******TC_6_1_03	Check the Cart popup for multiple services***/
+		public void check_CartPopup_ForMultiple_Services() {
+			String SubServicePrice = "";
+			String SubServicePrice1 = "";
+			String[] Price = null;
+			String[] Price1 = null;
+			String Expected_Price = "";
+			String Expected_Price1 = "";
+			int Total_Expected_Price = 0;
+			String Number_OfItemsSelectedAnd_Price = "";
+			String[] Itemscount_Price = null;
+			String ActualSelectedItems = "";
+			int Total_ActualPrise = 0;
+
+			try {
+				if (browser.elementisdisplayed(CustomerModule.SR_Services_Business_Page)) {
+					browser.reportscomtep("Passed", " Verify Service Tab is opened by default",
+							"Service Tab should be opened by default", "Service is Tab opened by default");
+					List<WebElement> CheckboxlabelsList = CustomerModule.Services_CheckBox_List;
+					List<WebElement> Pricelist = CustomerModule.Customer_SubService_PriceList;
+					
+					if (browser.elementisdisplayed(CustomerModule.Services_BookNow_Button)){						
+						browser.click(CheckboxlabelsList.get(1));
+					}else{
+						browser.click(CheckboxlabelsList.get(0));
+						browser.click(CheckboxlabelsList.get(1));
+					}	
+						
+					SubServicePrice = browser.getelementtext(Pricelist.get(0));
+					SubServicePrice1 = browser.getelementtext(Pricelist.get(1));
+					Price = SubServicePrice.replace("$", "D").split("D");
+					Price1 = SubServicePrice1.replace("$", "D").split("D");
+					if (Price.length > 1 && Price1.length > 1) {
+						Expected_Price = Price[2];
+						Expected_Price1 = Price1[2];
+						Total_Expected_Price = Integer.parseInt(Expected_Price) + Integer.parseInt(Expected_Price1);
+						if (browser.elementisdisplayed(CustomerModule.Services_PopUp)) {
+							browser.reportscomtep("Passed",
+									"Select multiple services and Verify Cart popup is displayed at bottom ",
+									"Cart popup should be displayed at bottom", "Cart popup is displayed at bottom");
+							Number_OfItemsSelectedAnd_Price = browser
+									.getelementtext(CustomerModule.Services_Numberof_SelectServicesAndPrice_Message);
+							Itemscount_Price = Number_OfItemsSelectedAnd_Price.replace("$", "D").split("items, D");
+							
+							if (Itemscount_Price.length > 1) {
+								ActualSelectedItems = Itemscount_Price[0];
+								Total_ActualPrise = Integer.parseInt(Itemscount_Price[1].replace(".00", ""));
+							}
+							
+							if (ActualSelectedItems.trim().equalsIgnoreCase("2")) {
+								browser.reportscomtep("Passed",
+										"Verify the displayed in cart popup slected services count is equal as per Number of services selected in Services section",
+										"The displayed in ActualSelecteditemscart popup slected services count should be equal as per Number of services selected in Services section",
+										"The displayed in cart popup slected services count: " + ActualSelectedItems
+												+ " is equal as per Number of services selected in Services section");
+							} else {
+								browser.reportscomtep("Failed",
+										"Verify the displayed in cart popup slected services count  is equal as per Number of services selected in Services section",
+										"The displayed in ActualSelecteditemscart popup slected services count should be equal as per Number of services selected in Services section",
+										"The displayed in cart popup slected services count: " + ActualSelectedItems
+												+ " is not equal as per Number of services selected in Services section");
+							}
+							
+							if (Total_ActualPrise==Total_Expected_Price) {
+								browser.reportscomtep("Passed",
+										"Verify the displayed in cart popup slected services Price is equal as per Number of selected services price in Services section",
+										"The displayed in cart popup slected services Price should be equal as per Number of selected services price in Services section",
+										"The displayed in cart popup slected services Price: $" + Total_ActualPrise
+												+ " is equal as per Number of selected services in Services section");
+								browser.click(CustomerModule.Services_BookNow_Button);
+							} else {
+								browser.reportscomtep("Failed",
+										"Verify the displayed in cart popup slected services Price is equal as per Number of selected services price in Services section",
+										"The displayed in cart popup slected services Price should be equal as per Number of selected services price in Services section",
+										"The displayed in cart popup slected services Price: $" + Total_ActualPrise
+												+ " is not equal as per Number of selected services in Services section");
+							}
+
+						}else {
+							browser.reportscomtep("Failed", "Select multiple services and Verify Cart popup is displayed at bottom ",
+										"Cart popup should be displayed at bottom", "No Services are available to select");
+						}
+
+					} else {
+						browser.reportscomtep("Failed", "Select multiple services and Verify Cart popup is displayed at bottom ",
+								"Cart popup should be displayed at bottom", "Cart popup is Not displayed at bottom");
+					}					
+
+				} else {
+					browser.reportscomtep("Failed", " Verify Service Tab is default opened",
+							"Service Tab default should be opened", "Service tab default not opened");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+
+		}
+		
+		/******TC_6_1_04	Check the Book Now button	*********/
+		
+		public void check_BookNow_Button(){
+			
+			try{
+				List<WebElement> CheckboxlabelsList = CustomerModule.Services_CheckBox_List;			
+				
+				if (!browser.elementisdisplayed(CustomerModule.Services_BookNow_Button)){						
+					browser.click(CheckboxlabelsList.get(1));
+				}	
+				browser.click(CustomerModule.Services_BookNow_Button);
+				if (browser.elementisdisplayed(CustomerModule.ProfessionalPage_ChooseProfessional_Text)) {
+					browser.reportscomtep("Passed",
+							"Click on Book Now button and Verify Navigates to Choose Professional page",
+							"Choose Professional page should be dispalyed",
+							"Choose Professional page dispalyed");
+				}else{
+					browser.reportscomtep("Failed",
+							"Verify Click on Book Now button and Navigates to Choose Professional page",
+							"Choose Professional page should be dispalyed",
+							"Choose Professional page not dispalyed");
+				}
+			}catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+				
+			}
+			
+		}
+		
+		/******TC_6_1_05	Check the details in Choose Professional Page********/
+		
+		public void check_DetailsInChoose_ProfessionalPage() {
+			try {
+				if (browser.elementisdisplayed(CustomerModule.ProfessionalPage_ChooseProfessional_Text)) {
+					browser.reportscomtep("Passed", "Verify Choose Professional Page is dispalyed",
+							"Choose Professional Page should be dispalyed", "Choose Professional Page dispalyed");
+					if (CustomerModule.ProfessionalPage_StylistsOrProfessionalsList.size()>0) {
+						browser.reportscomtep("Passed", "Verify Stylists Or Professionals are dispalyed",
+								"Stylists Or Professionals are should be dispalyed", "Stylists Or Professionals dispalyed");
+
+						browser.Verify_elementisdisplayed_Report(CustomerModule.ProfessionalPage_StylistsOrProfessional_Image_list.get(0), "Professional Image");
+						browser.Verify_elementisdisplayed_Report(
+								CustomerModule.ProfessionalPage_Professional_Name_list.get(0), "Professional Name");
+
+						if (browser.elementisdisplayed(CustomerModule.ProfessionalPage_ServiceDetails_Header)) {
+							browser.reportscomtep("Passed", "Verify the Service details is dispalyed Header",
+									"Service details Header shoud be dispalyed", "Service details Header dispalyed");
+							
+
+							browser.Verify_elementisdisplayed_Report(CustomerModule.Services_ProfessionalPage_BackButton,"Back Button");
+						} else {
+							browser.reportscomtep("Failed", "Verify the Service details is dispalyed Header",
+									"Service details Header shoud be dispalyed", "Service details Header Not dispalyed");
+						}
+
+					} else {
+						browser.reportscomtep("Failed", "Verify Stylists Or Professionals are dispalyed",
+								"Stylists Or Professionals are should be dispalyed",
+								"Stylists Or Professionals not dispalyed");
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify Choose Professional Page is dispalyed",
+							"Choose Professional Page should be dispalyed", "Choose Professional Page not dispalyed");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+		}
+		
+		/****************TC_6_1_06	Check whether the cart popup & service page displays the selected items when the back button is clicked***/
+		
+		public void check_CartPopup_SelectedItems_When_BackButton_Click() {
+			try {
+				browser.click(CustomerModule.Services_ProfessionalPage_BackButton);
+				if (browser.elementisdisplayed(CustomerModule.SR_Services_Business_Page)
+						&& browser.elementisdisplayed(CustomerModule.Services_PopUp)) {
+					browser.reportscomtep("Passed",
+							"click Back Button and Verify Navigates back to Services tab and previously selected services items and chart popup is dispalyed ",
+							"Navigates back to Services tab and previously selected services items and chart popup should be dispalyed",
+							"Navigates back to Services tab and previously selected services items and chart popup is dispalyed");
+				} else {
+					browser.reportscomtep("Failed",
+							"click Back Button and Verify Navigates back to Services tab and previously selected services items and chart popup is dispalyed ",
+							"Navigates back to Services tab and previously selected services items and chart popup should be dispalyed",
+							"Navigates back to Services tab and previously selected services items and chart popup not dispalyed");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+
+		}
+		
+		/*******TC_6_1_09	Check the details in Choose Date and Time page****/
+		
+		public void check_DetailsIn_ChooseDateAndTime_Page_Fieldvalidation(){
+			try{
+				if(browser.elementisdisplayed(CustomerModule.Professional_ChooseDateAndTime_Page)){
+					browser.reportscomtep("Passed", "Verify Choose Date and Time Page is displayed ",
+							"Choose Date and Time Page should be displayed", "Choose Date and Time Page displayed");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.ChooseCalendeandTime_Calendar, "Calendar");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.ChooseCalendeandTime_AvailableTimesSlots_text, "Available Time Slots header");
+					
+					if(CustomerModule.ChooseCalendeandTime_AvailableTimeslots_list.size()>0){
+							browser.reportscomtep("Passed", "Verify Available Timeslots are displayed",
+									"Available Times Slots should be displayed", "Available Times Slots displayed");							
+					}else if(browser.elementisdisplayed(CustomerModule.ChooseCalendeandTime_AvailableNoTimesSlots)) {
+						browser.reportscomtep("Passed", "Verify Available Times Slots are displayed",
+								"Available Times Slots should be displayed", "Available No Times Slots message displayed as expected If for the given date, there are no availability");
+						}
+					browser.Verify_elementisdisplayed_Report(CustomerModule.ChooseCalendeandTime_SelectedProfessional_image, "Selected staff image");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.ChooseDateAndTime_ServiceDetails_Table, "Service Details");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.ChooseDateAndTime_Back_Button, "Back Button");
+				}else{
+					browser.reportscomtep("Failed", "Verify Choose Date and Time Page is displayed ",
+							"Choose Date and Time Page should be displayed", "Choose Date and Time Page not displayed");
+				}
+			}catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+		}
+		
+		/*****TC_6_1_10	Check whether the Back button navigates to Choose Professional page*****/
+		
+		public void check_BackButton_NavigatesTo_Choose_Professional_Page() {
+			try {
+				browser.click(CustomerModule.ChooseDateAndTime_Back_Button);
+				if (browser.elementisdisplayed(CustomerModule.SR_Services_Business_Page)) {
+					browser.reportscomtep("Passed",
+							"Cliks on Back button and Verify Navigated to professional page is dipalyed",
+							"Navigated to professional page should be dipalyed", "Navigated to professional page dipalyed");
+					if (browser.elementisdisplayed(CustomerModule.ChooseProfessionalPage_ServiceDetails_Table)) {
+						browser.reportscomtep("Paased", "Verify selected service details are not affected",
+								"Selected service details should be not affected", "Selected service detail not affected");
+					} else {
+						browser.reportscomtep("Failled", "Verify selected service details are affected",
+								"Selected service details should be affected", "Selected service detail  affected");
+					}
+				} else {
+					browser.reportscomtep("Passed",
+							"Cliks on Back button and Verify Navigated to professional page is dipalyed",
+							"Navigated to professional page should be dipalyed",
+							"Navigated to professional page not dipalyed");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+		}
+		/******TC_6_1_11	Check whether the timeslots are clickable*****/
+		
+		public void check_TheTimeslotsAre_Clickable() {
+			try {
+				/****
+				 * 
+				 */
+				browser.click(CustomerModule.ChooseCalendeandTime_AvailableTimeslots_list.get(0));
+				if (browser.elementisdisplayed(CustomerModule.ChooseDateAndTime_SelectedDateTime)) {
+					browser.reportscomtep("Passed",
+							"Click on any available timeslot and Verify confiramtion popup is displayed whether to proceed with the selected date and time",
+							"confiramtion popup should be displayed whether to proceed with the selected date and time",
+							"confiramtion popup displayed whether to proceed with the selected date and time");
+					String selected_datetime = browser.getelementtext(CustomerModule.ChooseDateAndTime_SelectedDateTime);
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.ChooseDateAndTime_SelectedDateTime, selected_datetime);
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.ChooseDateAndTime_Popup_CancelButton, "CancelButton");
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.ChooseDateAndTime_Popup_ProceedToBookButton,
+							"Yes,Proceed to BookButton");
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on any available timeslot and Verify confiramtion popup is displayed whether to proceed with the selected date and time",
+							"confiramtion popup should be displayed whether to proceed with the selected date and time",
+							"confiramtion popup not displayed whether to proceed with the selected date and time");
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+		}
+		/*****TC_6_1_12	Check whether clicking the Cancel button in popup returns to Timeslots page****/
+		
+		public void check_Click_CancelButton_InPopup() {
+			try {
+				browser.click(CustomerModule.ChooseDateAndTime_Popup_CancelButton);
+				if (browser.elementisdisplayed(CustomerModule.Professional_ChooseDateAndTime_Page)) {
+					browser.reportscomtep("Passed",
+							"click on Cancel button In the Popup and verify Popup close and returns to timeslot page",
+							"Popup closed and should be returns to timeslot page",
+							"Popup closed and returns to timeslot page");
+				} else {
+					browser.reportscomtep("Failed",
+							"click on Cancel button In the Popup and verify Popup close and returns to timeslot page",
+							"Popup close and should be returns to timeslot page",
+							"Popup not closed and not returns to timeslot page");
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+		}
+		
+		/**********TC_6_1_13	Check whether clicking on Yes, Proceed to Book button navigates to next page*********/
+		
+		public void check_clic_OnYes_ProceedTo_BookButton_Navigate_ToNextPage() {
+			try {
+				/*
+				 * fallow Follow TC_6_1_11
+				*/
+				//this.check_TheTimeslotsAre_Clickable();
+				browser.click(CustomerModule.ChooseDateAndTime_Popup_ProceedToBookButton);
+				if (browser.elementisdisplayed(CustomerModule.Professional_BookingSummary_Page)) {
+					browser.reportscomtep("Passed",
+							"Cliks on Yes,Proceed to book button and verify Booking summary page is displayed",
+							"Booking summary page should be displayed",
+							"Booking summary page is displayed");
+				} else {
+					browser.reportscomtep("Failed",
+							"Cliks on Yes,Proceed to book button and verify Booking summary page is displayed",
+							"Booking summary page should be displayed",
+							"Booking summary page Not displayed");
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+		}
+		
+		/*****TC_6_1_15	Check whether the booking can be done without sign in****/
+		public void check_BookingCanBe_DoneWithout_SignIn() {
+			try {
+				browser.ScrollToElementBottom(CustomerModule.BookingSummary_PayByCash_radiobutton);
+				browser.click(CustomerModule.BookingSummary_PayByCash_radiobutton);				
+				browser.click(CustomerModule.BookingSummary_ConfirmBooking_button);
+				if (browser.elementisdisplayed(CustomerModule.BookingSummary_Login_Text)) {
+					browser.reportscomtep("Paased", "Click on Confirm Booking button and verify Login popup is displayed ",
+							"Login popup should be displayed ", "Login popup displayed ");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_ForgotPassword_Link,
+							"Forgot Password Link");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_RegisterNow_Link,
+							"Register Now Link");
+					browser.click(CustomerModule.BookingSummary_LoginPopup_Close);
+
+				} else {
+					browser.reportscomtep("Failed", "Click on Confirm Booking button and verify Login popup is displayed ",
+							"Login popup should be displayed ", "Login popup not displayed ");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+		}
+		
+		/*****TC_6_1_16	Check whether Click to Sign In link is clickable*****/
+		
+		public void check_ClickTo_SignIn_Link_IsClickable() {
+			try {
+				browser.scrollintoviewelement(CustomerModule.BookingSummary_ClickTo_SignIn_Link);
+				browser.click(CustomerModule.BookingSummary_ClickTo_SignIn_Link);
+				
+				if (browser.elementisdisplayed(CustomerModule.BookingSummary_ForgotPassword_Link)
+						&& browser.elementisdisplayed(CustomerModule.BookingSummary_RegisterNow_Link)) {
+					browser.reportscomtep("Passed",
+							"Click on sign In link and verify Login popup contains Forgot Password & Register Now Links are displayed ",
+							"Login popup contains Forgot Password & Register Now Links should be displayed",
+							"Login popup contains Forgot Password & Register Now Links displayed");
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on sign In  button link and verify Login popup contains Forgot Password & Register Now Links are displayed ",
+							"Login popup contains Forgot Password & Register Now Links should be displayed",
+							"Login popup contains Forgot Password & Register Now Links not displayed");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+		}
+					
+}
 
 
