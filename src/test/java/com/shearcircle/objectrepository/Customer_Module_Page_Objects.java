@@ -996,7 +996,7 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[text()='Choose Professional']")
 	public WebElement ProfessionalPage_ChooseProfessional_Text;
 	
-	@FindBy(xpath="//div[@class='row imageCheck center flag']//div[contains(@ng-repeat,'ap in availableStaff')]")
+	@FindBy(xpath="//div[@class='row imageCheck center flag']//div[contains(@ng-repeat,'ap in availableStaff')]/label/img")
 	public List<WebElement> ProfessionalPage_StylistsOrProfessionalsList;
 	
 	@FindBy(xpath="//div[contains(@ng-repeat,'ap in availableStaff')]//img[@class='img-thumbnail']")
@@ -1081,6 +1081,15 @@ public class Customer_Module_Page_Objects{
 	 
 	@FindBy(xpath="//*[text()='Booking Details']")
 	public WebElement BookingSummary_BookingDetails;
+	
+	@FindBy(xpath="//*[@id='container_pin']//h4/following-sibling::table/thead/tr/th")
+	public List<WebElement> BookingSummry_Bdetails_TableHeaders;
+	
+	@FindBy(xpath="//*[@id='container_pin']//h4/following-sibling::table/tbody/tr[@class='ng-scope']/td")
+	public List<WebElement> BookingSummry_Bdetails_Tabledata;
+	
+	@FindBy(xpath="//*[@id='container_pin']//h4/following-sibling::table/tfoot/tr/th")
+	public List<WebElement> BookingSummry_Bdetails_TablefootersHeaders;
 	
 	@FindBy(xpath="//table/thead/tr/th[1]/text()")
 	public WebElement BookingSummry_SerialNumber;
@@ -1219,5 +1228,76 @@ public class Customer_Module_Page_Objects{
 
 	@FindBy(xpath="//*[@id='plugin']")
 	public WebElement ViewBookingSummary_Printable_PDF ;
+	
+    @FindBy(xpath="//label/input[@value='paypal']")
+	public WebElement Customer_Paypal_Radiobutton;
+		    
+		    @FindBy(xpath="//*[@id='showConfirmButton']/button")
+			public WebElement Customer_Confirmbooking_Button;
+		    
+		    @FindBy(xpath="//*[@id='paypalLogo']")
+			public WebElement Customer_Paypal_Header;
+		    
+		    @FindBy(xpath="//*[@id='transactionCart']/span[@class='arrow ng-scope']")
+			public WebElement Customer_Paypal_Amount_Arrow;
+		    @FindBy(xpath="//*[@id='navbar-collapse-1']/span/a[text()='Login']")
+			public WebElement Customer_Login_Button;
+		    
+		    @FindBy(xpath="//*[@id='username']")
+			public WebElement Customer_Login_Username_Textbox;
+		    
+		    @FindBy(xpath="//*[@id='password']")
+			public WebElement Customer_Login_Password_Textbox;
+		    
+		    @FindBy(xpath="//div/center/button[text()='Sign in']")
+			public WebElement Customer_Signin_Button;
+		    
+		    @FindBy(xpath="//*[@id='sub_content']/h1")
+			public WebElement Customer_Mydashboard_Header;
+		    
+		    @FindBy(xpath="//h2[text()='Booking Summary']")
+			public WebElement Customer_Bookingsummery_Header;
+
+		    @FindBy(xpath="//*[@id='myModalLabel']")
+			public WebElement Customer_Promocode_Page_Header;
+			
+			
+					    
+			 @FindBy(xpath="//*[@id='promocode']")
+				public WebElement Customer_Promocode_Textbox;
+				    
+			@FindBy(xpath="//*[@id='promotionsModal']//div/form/div/button")
+			public WebElement Customer_Promocode_Apply_Button;
+			
+			@FindBy(xpath="//*[@id='container_pin']//tr/th/a[text()='Have a promocode?']")
+			public WebElement Customer_Promocode_Link;
+			
+			@FindBy(xpath="//*[@id='promotionsModal']//div/span")
+			public WebElement Customer_Promocode_Errormessage;
+			
+					   
+		   @FindBy(xpath="//*[@id='cancelLink']/span")
+		   public WebElement Customer_Paypal_Cancelandreturn_Link;
+		    
+		   @FindBy(xpath="//a[text()='Go To Home']")
+			public WebElement Customer_Paypal_Gotohome_Link;
+		    
+		  
+		   
+		   @FindBy(xpath="//*[@id='sub_content']/div/div/h1")
+		   public WebElement Customer_Bookappoinments_Withprofessionals_Header;
+	
+	
+		   @FindBy(xpath="//tr/td[6]/span[text()=' Canceled']")
+		   public WebElement Customer_Myappoinments_Payment_Status_Cancelled;
+		   
+		   @FindBy(xpath="//*[text()='Invalid credentials']")
+			public WebElement BookingSummary_LPopup_Invalidcredentials_Message;
+	
+		   @FindBy(xpath="//div/label[2]/span")
+			public WebElement BookingSummary_PayByCash;
+		   @FindBy(xpath="//*[text()='Confirm Booking']")
+			public WebElement BookingSummary_ConfirmBooking_Link;
+
 
 }

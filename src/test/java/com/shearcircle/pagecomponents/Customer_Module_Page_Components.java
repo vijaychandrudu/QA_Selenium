@@ -3280,10 +3280,10 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 			searchSpa = browser.getdata("search_Spa");
 			searchProfessional = browser.getdata("search_Professional");
 			
-			browser.click(CustomerModule.Home_ShearCircle_Image);
-			if (browser.elementisdisplayed(CustomerModule.Home_H1_Header)) {
+			//browser.click(CustomerModule.Home_ShearCircle_Image);
+			/*if (browser.elementisdisplayed(CustomerModule.home_Locate_Button)) {
 				browser.reportscomtep("Passed", "Verify ShearCircle Home page is displayed",
-						"ShearCircle Home page should be displayed", " ShearCircle Home page displayed");
+						"ShearCircle Home page should be displayed", " ShearCircle Home page displayed");*/
 				switch (click_Locate_Or_SearchIcon) {
 					case "Click_Locate_Button":											
 							switch (SalonOrSpaOrProfessional){
@@ -3300,7 +3300,7 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 						browser.click(CustomerModule.home_Locate_Button);						
 						break;
 					case "Click_SearchIcon":
-						browser.click(CustomerModule.Home_Login_Link);
+						//browser.click(CustomerModule.Home_Login_Link);
 						switch (SalonOrSpaOrProfessional){
 							case "Salon":
 								browser.sendkeys(CustomerModule.customer_FindSalon_Spa_Professionals_Textbox, searchSalon);
@@ -3357,12 +3357,12 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 							"Search results page should be dispalyed results with given keyword",
 							"Search results page Not dispalyed results with given keyword "+ enteredSearchString);
 				}
-				browser.click(CustomerModule.Home_ShearCircle_Image);
-			} else {
+				//browser.click(CustomerModule.Home_ShearCircle_Image);
+			/*} else {
 				browser.reportscomtep("Failed", "Verify ShearCircle Home page is displayed",
 						"ShearCircle Home page should be displayed", " ShearCircle Home page not displayed");
 			}
-
+*/
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
@@ -4903,10 +4903,10 @@ public void check_MultipleRatings_Filter() {
 
 	public void Verify_AddtoFavourite_Button_with_Login_Customer() {
 		try {
-			browser.click(CustomerModule.Customer_Search_Button);
-			if (browser.elementisdisplayed(CustomerModule.Customer_BookMe_Text)) {
+			//browser.click(CustomerModule.Customer_Search_Button);
+			/*if (browser.elementisdisplayed(CustomerModule.Customer_BookMe_Text)) {
 				browser.reportscomtep("Passed", "Verify Book Me Text is  displayed",
-						"Book Me button  should be displayed", "Book Me button   displayed");
+						"Book Me button  should be displayed", "Book Me button   displayed");*/
 				browser.click(CustomerModule.Customer_BookMe_Text);
 				
 				if (browser.elementisdisplayed(CustomerModule.Customer_AddtoFavorite_button)) {
@@ -4935,10 +4935,10 @@ public void check_MultipleRatings_Filter() {
 							"AddtoFavourite Button is not displayed");
 								}
 				
-			} else {
+			/*} else {
 				browser.reportscomtep("Failed", "Verify Book Me Text is  displayed", "Book Me Tex  should be displayed",
 						"Book Me Tex  not displayed");
-			}
+			}*/
 		} catch (Exception e) {
 			System.out.println("Exception: " + e);
 		}
@@ -4947,7 +4947,7 @@ public void check_MultipleRatings_Filter() {
 	/*******************TC_5_1_04	******************/
 	public void Verify_AddtoFavourite_Button_after_Logout() {
 		try {
-			browser.click(CustomerModule.Customer_Search_Button);
+			//browser.click(CustomerModule.Customer_Search_Button);
 			if (browser.elementisdisplayed(CustomerModule.Customer_BookMe_Text)) {
 				browser.reportscomtep("Passed", "Verify Book Me Text is  displayed",
 						"Book Me button  should be displayed", "Book Me button   displayed");
@@ -4978,10 +4978,10 @@ public void check_MultipleRatings_Filter() {
 
 		public void Verify_Salon_Removed_From_Favourites() {
 			try {
-				browser.click(CustomerModule.Customer_Search_Button);
-				if (browser.elementisdisplayed(CustomerModule.Customer_BookMe_Text)) {
+				//browser.click(CustomerModule.Customer_Search_Button);
+				/*if (browser.elementisdisplayed(CustomerModule.Customer_BookMe_Text)) {
 					browser.reportscomtep("Passed", "Verify Book Me Text is  displayed",
-							"Book Me button  should be displayed", "Book Me button   displayed");
+							"Book Me button  should be displayed", "Book Me button   displayed");*/
 					browser.click(CustomerModule.Customer_BookMe_Text);
 					
 					if (browser.elementisdisplayed(CustomerModule.Customer_Markedas_Addtofavourite_Button)) {
@@ -5003,10 +5003,10 @@ public void check_MultipleRatings_Filter() {
 								"Marked as Favourite Button is not displayed");
 									}
 					
-				} else {
+				/*} else {
 					browser.reportscomtep("Failed", "Verify Book Me Text is  displayed", "Book Me Text  should be displayed",
 							"Book Me Text  not displayed");
-				}
+				}*/
 			} catch (Exception e) {
 				System.out.println("Exception: " + e);
 			}
@@ -5079,8 +5079,8 @@ public void check_MultipleRatings_Filter() {
 				/*OverviewX = browser.GetXLocationOfElement(CustomerModule.Customer_Overview_Tab);
 				overviewY = browser.GetYLocationOfElement(CustomerModule.Customer_Overview_Tab);	
 				browser.ScrollToXY(OverviewX, overviewY);*/
-				browser.click(CustomerModule.Customer_Search_Button);
-				browser.click(CustomerModule.Customer_BookMe_Text);
+				//browser.click(CustomerModule.Customer_Search_Button);
+				//browser.click(CustomerModule.Customer_BookMe_Text);
 				if (browser.elementisdisplayed(CustomerModule.Customer_Overview_Tab)) {
 					browser.reportscomtep("passed", "Verify Overview Tab is displayed in Business page", "Overview Tab should be displayed in Business page",
 							"Overview Tab displayed in Business page");
@@ -5134,11 +5134,11 @@ public void check_MultipleRatings_Filter() {
 		/*************************** TC_5_01_09 ************************/
 		public void Customer_Check_Inqueary_Tab_Fieldvalidation() {
 			try {
-				browser.click(CustomerModule.Customer_Search_Button);
-				if (browser.elementisdisplayed(CustomerModule.Customer_BookMe_Text)) {
+				//browser.click(CustomerModule.Customer_Search_Button);
+				/*if (browser.elementisdisplayed(CustomerModule.Customer_BookMe_Text)) {
 					browser.reportscomtep("Passed", "Verify Book Me Text is displayed",
 							"Book Me button should be displayed", "Book Me button displayed");
-					browser.click(CustomerModule.Customer_BookMe_Text);
+					browser.click(CustomerModule.Customer_BookMe_Text);*/
 					
 					if (browser.elementisdisplayed(CustomerModule.Customer_Inquiry_Tab)) {
 						browser.reportscomtep("passed", "Click on Bookme button and Verify Inqueary Tab is displayed", "Inqueary Tab  should be displayed",
@@ -5168,10 +5168,10 @@ public void check_MultipleRatings_Filter() {
 									"Inqueary Tab is not displayed");
 						}
 								
-				} else {
+				/*} else {
 					browser.reportscomtep("Failed", "Verify Book Me Text is  displayed", "Book Me Text should be displayed",
 							"Book Me Text  not displayed");
-				}
+				}*/
 			} catch (Exception e) {
 				System.out.println("Exception: " + e);
 			}
@@ -5920,7 +5920,7 @@ public void check_MultipleRatings_Filter() {
 			}
 		}
 		
-		/******TC_6_1_03	Check the Cart popup for multiple services***/
+		/******TC_6_1_03 Check the Cart popup for multiple services***/
 		public void check_CartPopup_ForMultiple_Services() {
 			String SubServicePrice = "";
 			String SubServicePrice1 = "";
@@ -6115,6 +6115,118 @@ public void check_MultipleRatings_Filter() {
 
 		}
 		
+/****************TC_6_1_07	Check whether the cart popup updates when the services are added/removed***/
+		
+		public void Check_cartpopupupdates_when_services_added_or_removed() {
+			
+			String Number_OfItemsSelectedAnd_Price = "";
+			String Updated_ItemsSelected_Price = "";
+			String[] Itemscount_Price = null;
+			String[] updated_Itemscount_Price = null;			
+			int Total_ActualPrise = 0;
+			int updatedTotal_ActualPrise = 0;
+			try {
+				List<WebElement> CheckboxlabelsList = CustomerModule.Services_CheckBox_List;	
+				if (browser.elementisdisplayed(CustomerModule.Services_BookNow_Button)){
+					Number_OfItemsSelectedAnd_Price = browser
+							.getelementtext(CustomerModule.Services_Numberof_SelectServicesAndPrice_Message);
+					Itemscount_Price = Number_OfItemsSelectedAnd_Price.replace("$", "D").split("items, D");
+					
+					if (Itemscount_Price.length > 1) {						
+						Total_ActualPrise = Integer.parseInt(Itemscount_Price[1].replace(".00", ""));
+					}
+					browser.click(CheckboxlabelsList.get(2));
+					
+					Updated_ItemsSelected_Price = browser
+							.getelementtext(CustomerModule.Services_Numberof_SelectServicesAndPrice_Message);
+					updated_Itemscount_Price = Updated_ItemsSelected_Price.replace("$", "D").split("items, D");
+					if (updated_Itemscount_Price.length > 1) {						
+						updatedTotal_ActualPrise = Integer.parseInt(updated_Itemscount_Price[1].replace(".00", ""));
+					}
+				}
+				
+				if (Total_ActualPrise<=updatedTotal_ActualPrise){						
+					browser.reportscomtep("Passed",
+							"Add Services for previously selected services and Verify the updated price details in Cart popup ",
+							"price details should be update in Cart popup ",
+							"price details updated in Cart popup as per selected service price");
+				} else {
+					browser.reportscomtep("Failed",
+							"Add Services for previously selected services and Verify the updated price details in Cart popup ",
+							"price details should be update in Cart popup ",
+							"price details not updated in Cart popup as per selected service price");
+				}
+				
+					
+				if (browser.elementisdisplayed(CustomerModule.Services_BookNow_Button)){
+					Number_OfItemsSelectedAnd_Price = browser
+							.getelementtext(CustomerModule.Services_Numberof_SelectServicesAndPrice_Message);
+					Itemscount_Price = Number_OfItemsSelectedAnd_Price.replace("$", "D").split("items, D");
+					
+					if (Itemscount_Price.length > 1) {						
+						Total_ActualPrise = Integer.parseInt(Itemscount_Price[1].replace(".00", ""));
+					}
+					browser.click(CheckboxlabelsList.get(2));
+					
+					Updated_ItemsSelected_Price = browser
+							.getelementtext(CustomerModule.Services_Numberof_SelectServicesAndPrice_Message);
+					updated_Itemscount_Price = Updated_ItemsSelected_Price.replace("$", "D").split("items, D");
+					if (updated_Itemscount_Price.length > 1) {						
+						updatedTotal_ActualPrise = Integer.parseInt(updated_Itemscount_Price[1].replace(".00", ""));
+					}
+				}
+				
+				if (Total_ActualPrise>=updatedTotal_ActualPrise){						
+					browser.reportscomtep("Passed",
+							"Unselect one Service which are previously selected services and Verify the updated price details in Cart popup ",
+							"price details should be update in Cart popup ",
+							"price details updated in Cart popup as per selected service price");
+				} else {
+					browser.reportscomtep("Failed",
+							"Unselect one Service which are previously selected services and Verify the updated price details in Cart popup ",
+							"price details should be update in Cart popup ",
+							"price details not updated in Cart popup as per selected service price");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+
+		}
+		
+/******TC_6_1_08	Check whether the Staff image is clickable********/
+		
+		public void Check_Staffimage_clickable() {
+			try {
+				browser.click(CustomerModule.Services_BookNow_Button);
+				if (browser.elementisdisplayed(CustomerModule.ProfessionalPage_ChooseProfessional_Text)) {
+					browser.reportscomtep("Passed", "Verify Choose Professional Page is dispalyed",
+							"Choose Professional Page should be dispalyed", "Choose Professional Page dispalyed");
+					if (CustomerModule.ProfessionalPage_StylistsOrProfessionalsList.size()>0) {
+						browser.reportscomtep("Passed", "Verify Stylists Or Professionals are dispalyed",
+								"Stylists Or Professionals are should be dispalyed", "Stylists Or Professionals dispalyed");
+
+						browser.click(CustomerModule.ProfessionalPage_StylistsOrProfessionalsList.get(0));
+						
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Professional_ChooseDateAndTime_Page, "Choose Date and Time page");
+						
+					} else {
+						browser.reportscomtep("Failed", "Verify Stylists Or Professionals are dispalyed",
+								"Stylists Or Professionals are should be dispalyed",
+								"Stylists Or Professionals not dispalyed");
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify Choose Professional Page is dispalyed",
+							"Choose Professional Page should be dispalyed", "Choose Professional Page not dispalyed");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+		}
+		
 		/*******TC_6_1_09	Check the details in Choose Date and Time page****/
 		
 		public void check_DetailsIn_ChooseDateAndTime_Page_Fieldvalidation(){
@@ -6177,9 +6289,7 @@ public void check_MultipleRatings_Filter() {
 		
 		public void check_TheTimeslotsAre_Clickable() {
 			try {
-				/****
-				 * 
-				 */
+				
 				browser.click(CustomerModule.ChooseCalendeandTime_AvailableTimeslots_list.get(0));
 				if (browser.elementisdisplayed(CustomerModule.ChooseDateAndTime_SelectedDateTime)) {
 					browser.reportscomtep("Passed",
@@ -6229,7 +6339,7 @@ public void check_MultipleRatings_Filter() {
 		
 		/**********TC_6_1_13	Check whether clicking on Yes, Proceed to Book button navigates to next page*********/
 		
-		public void check_clic_OnYes_ProceedTo_BookButton_Navigate_ToNextPage() {
+		public void check_click_OnYes_ProceedTo_BookButton_Navigate_ToNextPage() {
 			try {
 				/*
 				 * fallow Follow TC_6_1_11
@@ -6252,7 +6362,99 @@ public void check_MultipleRatings_Filter() {
 
 			}
 		}
+		/******TC_6_1_14	Check the details in Booking Summary page*****/
 		
+		public void check_Details_InBooking_SummaryPage_FieldValidation() {
+			try {
+				String tableHeadername = "";
+				String tableDatavalue = "";
+				if (browser.elementisdisplayed(CustomerModule.BookingSummary_BookingDetails)) {
+					browser.reportscomtep("Passed", "Verify Booking Details are Displayed",
+							"Booking Details should be Displayed", "Booking Details Displayed");
+					String[] headernames = new String[6];
+					headernames[0] = "Serial Number";
+					headernames[1] = "Service Or Product Name";
+					headernames[2] = "Duration";
+					headernames[3] = "Price";
+					headernames[4] = "Quantity";
+					headernames[5] = "Total Price";
+					
+					
+					int i = 0 ;
+					for(WebElement theader:CustomerModule.BookingSummry_Bdetails_TableHeaders){	
+						tableHeadername = browser.getelementtext(theader);
+						tableDatavalue = browser.getelementtext(CustomerModule.BookingSummry_Bdetails_TableHeaders.get(i));
+						if(tableHeadername.equalsIgnoreCase(headernames[i]) && !tableDatavalue.isEmpty() ){
+							browser.reportscomtep("Passed", "Verify Booking Details "+tableHeadername+" is Displayed",
+									"Booking Details should be Displayed", "Booking Details "+tableHeadername+":Displayed");
+						}
+						
+						i++;
+					}
+					
+					String[] footerheadernames = new String[4];
+					footerheadernames[0] = "Total Duration : ";
+					footerheadernames[1] = "Sub Total :";
+					footerheadernames[2] = "Have a promocode?";
+					footerheadernames[3] = "Grand Total :";
+								
+					
+					int j = 0 ;
+					for(WebElement tfooterheader:CustomerModule.BookingSummry_Bdetails_TablefootersHeaders){						
+						browser.Verify_elementisdisplayed_Report(tfooterheader, footerheadernames[j]);
+						j++;
+					}
+					
+									
+					browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_Selected_Professional_Image,
+							"Selected Professional Image");
+					if (browser.elementisdisplayed(CustomerModule.BookingSummary_AppointmentScheduledTime)) {
+						browser.reportscomtep("Passed", "Verify Appointment Scheduled Time is Displayed",
+								" Appointment Scheduled Time should be Displayed", " Appointment Scheduled Time Displayed");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_DateAndTime,
+								"Date and Time");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_ShopName, "Shop Name");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_ContactNumber,
+								"Contact Number");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_Email, "Email");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_Address, "Address");
+
+						if (browser.elementisdisplayed(CustomerModule.BookingSummary_PleaseSelect_PaymentMethod)) {
+							browser.reportscomtep("Passed", "Verify Please Select Payment Method is Displayed",
+									"Please Select Payment Method should be Displayed",
+									"Please Select Payment Method Displayed");
+							browser.scrollintoviewelement(CustomerModule.BookingSummary_PayPal);
+							browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_PayPal, "Pay Pal");
+							browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_PayByCash,
+									"Pay by cash");
+							browser.scrollintoviewelement(CustomerModule.BookingSummary_BackButton);
+							browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_BackButton,
+									"Back Button");
+							browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_ClickTo_SignIn_Link,
+									"Click to Sign in link");
+						} else {
+							browser.reportscomtep("Failed", "Verify Please Select Payment Method is Displayed",
+									"Please Select Payment Method should be Displayed",
+									"Please Select Payment Method not Displayed");
+						}
+
+					} else {
+						browser.reportscomtep("Failed", "Verify Appointment Scheduled Time is Displayed",
+								" Appointment Scheduled Time should be Displayed",
+								" Appointment Scheduled Time not Displayed");
+					}
+
+				} else {
+					browser.reportscomtep("Failed", "Verify Booking Details are Displayed",
+							"Booking Details should be Displayed", "Booking Details not Displayed");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+
+		}
 		/*****TC_6_1_15	Check whether the booking can be done without sign in****/
 		public void check_BookingCanBe_DoneWithout_SignIn() {
 			try {
@@ -6305,7 +6507,533 @@ public void check_MultipleRatings_Filter() {
 
 			}
 		}
+		
+		/*****TC_6_1_17	Check whether Get It Back link in Login popup is working*****/
+		
+		public void check_GetItBack_Link_InLoginPopup_IsWorking() {
+			try {
+				browser.click(CustomerModule.BookingSummary_ForgotPassword_Link);
+				browser.waitForNewWindowAndSwitchToIt(driver);
+				if (browser.elementisdisplayed(CustomerModule.BookingSummary_ResetPassword_Page)) {
+					browser.reportscomtep("Passed",
+							"Click on Get It Back link and verify Reset Password page is Opened in new tab",
+							"Reset Password page should be Opened in new tab", "Reset Password page is Opened in new tab");
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Get It Back link and verify Reset Password page is Opened in new tab",
+							"Reset Password page should be Opened in new tab",
+							"Reset Password page is not Opened in new tab");
+				}
+				driver.switchTo().window(defaultWindowHandle);
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+		}
+		
+		/*****TC_6_1_18	Check whether Register Now link in Login popup is working****/
+		
+		
+		public void check_RegisterNow_Link_InLoginPopup_IsWorking() {
+			try {
+				browser.click(CustomerModule.BookingSummary_RegisterNow_Link);
+				browser.waitForNewWindowAndSwitchToIt(driver);
+				if (browser.elementisdisplayed(CustomerModule.BookingSummary_Registration_Page)) {
+					browser.reportscomtep("Passed",
+							"Click on Register Now link and verify Customer Registration page is opend in new tab",
+							"Customer Registration page should be opend in new tab",
+							"Customer Registration page opend in new tab");
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Register Now link and verify Customer Registration page is opend in new tab",
+							"Customer Registration page should be opend in new tab",
+							"Customer Registration page not opend in new tab");
+				}
+				driver.switchTo().window(defaultWindowHandle);
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+		}
+		
+		/*********TC_6_1_19	Check whether Sign in is possible with Subscriber credentials****/
+		
+		public void check_SignIn_Posiisble_WithSubscriberCredentials() {
+			String Subscriber_UserName = "";
+			String Subscriber_Password = "";
+			try {
+				Subscriber_UserName = browser.getdata("Subscriber_UserName");
+				Subscriber_Password = browser.getdata("Subscriber_Password");
+				browser.sendkeys(CustomerModule.BookingSummary_LoginPopup_Username_TextBox, Subscriber_UserName);
+				browser.sendkeys(CustomerModule.BookingSummary_LoginPopup_Password_TextBox, Subscriber_Password);
+				browser.click(CustomerModule.BookingSummary_LoginPopup_SignIn_Link);
+				if (browser.elementisdisplayed(CustomerModule.BookingSummary_LPopup_Invalidcredentials_Message)) {
+					browser.reportscomtep("Passed",
+							"Enter Subscriber Credentials and Click on Sign In Link button,verify login fail redirects to the Booking Summary page is diaplayed",
+							"login fail,redirects to the Booking Summary page should be diaplayed",
+							"login fail,redirects to the Booking Summary page diaplayed");
+				} else {
+					browser.reportscomtep("Failed",
+							"Enter Subscriber Credentials and Click on Sign In Link button, verify login fail redirects to the Booking Summary page is diaplayed",
+							"login fail,redirects to the Booking Summary page should be diaplayed",
+							"login fail,redirects to the Booking Summary page not diaplayed");
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+		}
+		 
+		/********TC_6_1_20	Check whether Sign In is possible with unregistered user credentials****/
+		
+		public void check_SignIn_PosiisbleWith_Unregistered_UserCredentials() {
+			String Unregistered_UserName = "";
+			String Unregistered_Password = "";
+			try {
+				Unregistered_UserName = browser.getdata("Unregistered_UserName");
+				Unregistered_Password = browser.getdata("Unregistered_Password");
+				browser.sendkeys(CustomerModule.BookingSummary_LoginPopup_Username_TextBox, Unregistered_UserName);
+				browser.sendkeys(CustomerModule.BookingSummary_LoginPopup_Password_TextBox, Unregistered_Password);
+				browser.click(CustomerModule.BookingSummary_LoginPopup_SignIn_Link);
+				if (browser.elementisdisplayed(CustomerModule.BookingSummary_LoginPopup_UserDetailsNotFound_Message)) {
+					browser.reportscomtep("Passed",
+							"Enter unregistered user login credential and Click on Sign In button and verify User Details Not Found Error Message is displayed ",
+							"User Details Not Found Error Message should be displayed",
+							"User Details Not Found Error Message is displayed");
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Enter unregistered user login credential, Click on Sign In button and verify User Details Not Found Error Message is displayed ",
+							"User Details Not Found Error Message should be displayed",
+							"User Details Not Found Error Message is not displayed");
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+		}
+		/***TC_6_1_21	Check whether Sign In is possible with valid Customer credentials****/
+		public void check_SignIn_IsPossibleWith_ValidCustomercredentials() {
+			String CustomerValidEmail = "";
+			String CustomerValidPassword = "";
+			try {
+				CustomerValidEmail = browser.getdata("CustomerValidEmail");
+				CustomerValidPassword = browser.getdata("CustomerValidPassword");
+				browser.sendkeys(CustomerModule.BookingSummary_LoginPopup_Username_TextBox, CustomerValidEmail);
+				browser.sendkeys(CustomerModule.BookingSummary_LoginPopup_Password_TextBox, CustomerValidPassword);
+				browser.click(CustomerModule.BookingSummary_LoginPopup_SignIn_Link);
+				if (browser.elementisdisplayed(CustomerModule.Professional_BookingSummary_Page)) {
+					browser.reportscomtep("Passed",
+							"Enter valid Customer login credential,Click on Sign In button and verify Sign in successful, Booking Summary page is displayed ",
+							"Sign in successful and Booking Summary page should be displayed",
+							"Sign in successful and Booking Summary page displayed");
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Enter valid Customer login credential,Click on Sign In button and verify Sign in successful, Booking Summary page is displayed ",
+							"Sign in successful and Booking Summary page should be displayed",
+							"Sign in successful and Booking Summary page not displayed");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+
+		}
+		 
+		/*************TC_6_1_22	Check whether the booking can be confirmed after sign in with Pay by Cash option********/
+		
+		public void check_Booking_Confirmed_AfterSignIn_WithPayByCashOption() {
+			try {
+				browser.ScrollToXY(0, 250);
+				browser.click(CustomerModule.BookingSummary_PayByCash);
+				browser.scrollintoviewelement(CustomerModule.BookingSummary_ConfirmBooking_Link);
+				browser.click(CustomerModule.BookingSummary_ConfirmBooking_Link);
+				if (browser.elementisdisplayed(CustomerModule.BookingSummary_ViewBookingSummary_Page)) {
+					browser.reportscomtep("Passed",
+							"Select payment option Pay By Cash is selected and Click on Confirm button and verify Popup is displayed with a Success message and also Opens View Booking Summary page is diaplayed",
+							"Popup is displayed with a Success message and also Opens View Booking Summary page should be diaplayed",
+							"Popup is displayed with a Success message and also Opens View Booking Summary page is  diaplayed");
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Select payment option Pay By Cash is selected, Click on Confirm button and verify Popup is displayed with a Success message and also Opens View Booking Summary page is diaplayed",
+							"Popup is displayed with a Success message and also Opens View Booking Summary page should be diaplayed",
+							"Popup is displayed with a Success message and also Opens View Booking Summary page is  not diaplayed");
+
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+		}
+		
+		/*****TC_6_1_23	Verify the details in View Booking Summary page*****/
+		
+		public void verify_DetailsIn_ViewBooking_SummaryPage_Fieldvalidations() {
+			int AppointmentID =0;
+			try {
+				if (browser.elementisdisplayed(CustomerModule.BookingSummary_ViewBookingSummary_Page)) {
+					browser.reportscomtep("Passed", "Verify ViewBooking Summary Page is displayed",
+							"ViewBooking Summary Page should be displayed", "ViewBooking Summary Page displayed ");
+					String ID = browser.getelementtext(CustomerModule.ViewBookingSummary_AppointmentID);
+					AppointmentID = Integer.parseInt(ID.replaceAll("\\D", ""));
+					browser.Verify_elementisdisplayed_Report(CustomerModule.ViewBookingSummary_AppointmentID,
+							"Appointment ID is:"+ AppointmentID);
+					browser.Verify_elementisdisplayed_Report(CustomerModule.ViewBookingSummary_ServiceProviderDetails,
+							"Service Provider details");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.ViewBookingSummary_CustomerDetails,
+							"Customer Details");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.ViewBookingSummary_Appointment_DateAndTime,
+							"Appointment Date & Time");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.ViewBookingSummary_PaymentStatus,
+							"Payment status");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.ViewBookingSummary_AppointmentStatus,
+							"Appointment Status");
+					browser.ScrollToXY(0, 250);
+					browser.Verify_elementisdisplayed_Report(CustomerModule.ViewBookingSummary_ServiceDetails,
+							"Service details");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.ViewBookingSummary_Print_Button,
+							"Print button");
+				} else {
+					browser.reportscomtep("Failed", "Verify ViewBooking Summary Page is displayed",
+							"ViewBooking Summary Page should be displayed", "ViewBooking Summary Page not displayed ");
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+
+		}
+		
+		/*****TC_6_1_24	Check whether the print button is functioning****/
+		
+		public void check_PrintButton_IsFunctioning() {
+			try {
+				browser.scrollintoviewelement(CustomerModule.ViewBookingSummary_Print_Button);
+				browser.click(CustomerModule.ViewBookingSummary_Print_Button);
+				browser.waitForNewWindowAndSwitchToIt(driver);
+				browser.wait(2000);
+				if (browser.elementisdisplayed(CustomerModule.ViewBookingSummary_Printable_PDF)) {
+					browser.reportscomtep("Passed",
+							"Click on Print button and verify Opens printable PDF viewer in new tab is displayed",
+							"Opens printable PDF viewer in new tab should be displayed",
+							"Opens printable PDF viewer in new tab displayed");
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Print button and verify Opens printable PDF viewer in new tab is displayed",
+							"Opens printable PDF viewer in new tab should be displayed",
+							"Opens printable PDF viewer in new tab not displayed");
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+
+			}
+		}
+		/********************TC_6_02_01******************/
+		
+		public void ShearCircle_Loginas_Customer() {
+			String Username = null;
+			String Password = null;
+			
+
+			try {
+				Username = browser.getdata("login_Username");
+				Password = browser.getdata("Login_Password");
+				browser.click(CustomerModule.Customer_Login_Button);
+				
+				if (browser.elementisdisplayed(CustomerModule.Customer_signin_hyperlynk_header)) {
+					browser.reportscomtep("Passed", "Verify Login page is displayed after click on Login Button",
+							"Loginpage should be displayed after click on Login Button", "Loginpage is displayed after click on Login Button");
 					
+					browser.sendkeys(CustomerModule.Customer_Login_Username_Textbox, Username);
+					browser.sendkeys(CustomerModule.Customer_Login_Password_Textbox, Password);				
+					browser.click(CustomerModule.Customer_Signin_Button);
+					if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_Header)){
+						browser.reportscomtep("Passed", "Verify Customer Dashboard page is displayed after click on signin button","Customer Dashboard page should be displayed after click on signin button","Customer Dashboard page is displayed after click on signin button");
+						
+					} else {
+						browser.reportscomtep("Failed","Verify Customer Dashboard page is displayed after click on signin button","Customer Dashboard page should be displayed after click on signin button","Customer Dashboard page is not displayed after click on signin button");
+					}
+
+				} else {
+					browser.reportscomtep("Failed", "Verify Login page is displayed after click on Login Button",
+							"Loginpage should be displayed after click on Login Button", "Loginpage is not displayed after click on Login Button");
+					
+				}
+
+			} catch (Exception e) {
+				System.out.println("Exception: " + e.getStackTrace());
+			}
+		}
+		/*******************TC_6_02_03	******************/
+		public void Verify_Paypal_Page_Isdisplayed() {
+			try {
+				
+				if (browser.elementisdisplayed(CustomerModule.Customer_Bookingsummery_Header)) {
+					browser.reportscomtep("Passed", "Verify Booking summary page is  displayed",
+							"Booking summary page  should be displayed", "Booking summary page is displayed");
+		
+					browser.click(CustomerModule.Customer_Paypal_Radiobutton);
+					browser.click(CustomerModule.Customer_Confirmbooking_Button);					
+					if (browser.elementisdisplayed(CustomerModule.Customer_Paypal_Header)) {
+						browser.reportscomtep("Passed", "Verify Paypal page is  displayed after click on confirmbooking button",
+												"Paypal page should be displayed after click on confirmbooking button", "Paypal page is  displayed after click on confirmbooking button");
+						
+					} else {
+						browser.reportscomtep("Failed", "Verify Paypal page is  displayed after click on confirmbooking button",
+								"Paypal page should be displayed after click on confirmbooking button", "Paypal page is not displayed after click on confirmbooking button");
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify Booking summary page is  displayed",
+							"Booking summary page  should be displayed", "Booking summary page is not displayed");		
+					}
+			} catch (Exception e) {
+				System.out.println("Exception: " + e.getStackTrace());
+			}
+		}
+		/*******************TC_6_02-04	******************/
+		public void Verify_CartDetails_Paypal_Page() {
+			try {
+		
+		if (browser.elementisdisplayed(CustomerModule.Customer_Paypal_Header)) {
+			browser.reportscomtep("Passed", "Verify Paypal page is  displayed after click on confirmbooking button",
+									"Paypal page should be displayed after click on confirmbooking button", "Paypal page is  displayed after click on confirmbooking button");
+			browser.click(CustomerModule.Customer_Paypal_Amount_Arrow);
+		       } else {
+			          browser.reportscomtep("Failed", "Verify Paypal page is  displayed after click on confirmbooking button",
+					      "Paypal page should be displayed after click on confirmbooking button", "Paypal page is not displayed after click on confirmbooking button");
+		           }
+			
+	           } catch (Exception e) {
+	        	   System.out.println("Exception: " + e.getStackTrace());
+	                    }
+	               }
+		
+		/*******************TC_6_02-05	******************/
+		public void Verify_Cancel_Paypal_checkout() {
+			try {
+		
+		if (browser.elementisdisplayed(CustomerModule.Customer_Paypal_Cancelandreturn_Link)) {
+			browser.reportscomtep("Passed", "Verify Cancelandreturn link is  displayed on Paypal checkout page",
+									"Cancelandreturn link should be  displayed on Paypal checkout page", "Cancelandreturn link is  displayed on Paypal checkout page");
+			browser.click(CustomerModule.Customer_Paypal_Cancelandreturn_Link);
+			
+			if (browser.elementisdisplayed(CustomerModule.Customer_Paypal_Gotohome_Link)) {
+				browser.reportscomtep("Passed", "Verify Gotohome Link is  displayed after click on Cancel and return link",
+										"Gotohome Link should be  displayed after click on Cancel and return link", "Gotohome Link is  displayed after click on Cancel and return link");
+			
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Paypal_Gotohome_Link,
+						"Gotohome Link");
+			                           } else {
+				                      browser.reportscomtep("Failed", "Verify Gotohome Link is  displayed after click on Cancel and return link",
+						                 "Gotohome Link should be  displayed after click on Cancel and return link", "Gotohome Link is not  displayed after click on Cancel and return link");
+			                        }	
+			
+		                      } else {
+			                    browser.reportscomtep("Failed", "Verify Cancelandreturn link is  displayed on Paypal checkout page",
+					                  "Cancelandreturn link should be  displayed on Paypal checkout page", "Cancelandreturn link is not displayed on Paypal checkout page");
+		                    }
+			
+	                  } catch (Exception e) {
+	                         System.out.println("Error descreption : " + e.getStackTrace());
+	                }
+	           }	
+		/*******************TC_6_02-06	******************/
+		public void Verify_Gotohome_Link() {
+			try {
+		
+			
+			if (browser.elementisdisplayed(CustomerModule.Customer_Paypal_Gotohome_Link)) {
+				browser.reportscomtep("Passed", "Verify Gotohome Link is  displayed after click on Cancel and return link",
+										"Gotohome Link should be  displayed after click on Cancel and return link", "Gotohome Link is  displayed after click on Cancel and return link");
+			
+				browser.click(CustomerModule.Customer_Paypal_Gotohome_Link);
+				if (browser.elementisdisplayed(CustomerModule.Customer_Bookappoinments_Withprofessionals_Header)) {
+					browser.reportscomtep("Passed", "Verify Bookappoinments Withprofessionals page is displayed after click on Gotohome link",
+											"Bookappoinments Withprofessionals page should be displayed after click on Gotohome link", "Bookappoinments Withprofessionals page is displayed after click on Gotohome link");
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify Bookappoinments Withprofessionals page is displayed after click on Gotohome link",
+						"Bookappoinments Withprofessionals page should be displayed after click on Gotohome link", "Bookappoinments Withprofessionals page is not displayed after click on Gotohome link");
+			}	
+			
+		} else {
+			browser.reportscomtep("Failed", "Verify Cancelandreturn link is  displayed on Paypal checkout page",
+					"Cancelandreturn link should be  displayed on Paypal checkout page", "Cancelandreturn link is not displayed on Paypal checkout page");
+		}
+			
+	  } catch (Exception e) {
+	System.out.println("Error descreption : " + e.getStackTrace());
+	       }
+	     }
+		/*******************TC_6_02_07	******************/
+		public void Verify_Appoinment_Status_After_Cancellation() {
+			try {
+		
+				browser.click(CustomerModule.Customer_Mydashboard_MyAccount_Button);
+				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
+					
+					browser.reportscomtep("Passed", "Verify Customer Dashboard header is displayed after click on Myaccount button",
+							"Customer Dashboard header should be displayed after click on Myaccount button", "Customer Dashboard header is displayed after click on Myaccount button");
+					
+					browser.click(CustomerModule.Customer_MyAppoinments_Link);
+					if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+						
+						browser.reportscomtep("Passed", "Verify My Appoinment header is displayed after click on MyAppoinment button",
+								"My Appoinment header should be displayed after click on MyAppoinment button", "My Appoinment header is displayed after click on MyAppoinment button");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_status_cancelled,
+								"Appoinment Status Cancelled");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Myappoinments_Payment_Status_Cancelled,
+								"Payment status Cancelled");
+			} else {
+				browser.reportscomtep("Failed", "Verify My Appoinment header is displayed after click on MyAppoinment button",
+						"My Appoinment header should be displayed after click on MyAppoinment button", "My Appoinment header is not displayed after click on MyAppoinment button");
+			}	
+			
+		} else {
+			browser.reportscomtep("Failed",  "Verify Customer Dashboard header is displayed after click on Myaccount button",
+					"Customer Dashboard header should be displayed after click on Myaccount button", "Customer Dashboard header isnot displayed after click on Myaccount button");
+
+		}
+			
+	  } catch (Exception e) {
+		  System.out.println("Exception: " + e.getStackTrace());
+	       }
+	     }
+
+		/*******************TC_6_03_02	******************/ 
+
+		public void Verify_Promocode_Linkis_Clickable() {
+			try {
+		
+				  if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Link)) {
+					
+					browser.reportscomtep("Passed", "Verify Haveapromocode? Link  is displayed in booking Summary page",
+							"Haveapromocode? Link Should be displayed in booking Summary page", "Haveapromocode? Link is displayed in booking Summary page");
+					
+					browser.click(CustomerModule.Customer_Promocode_Link);
+					if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Page_Header)) {
+						
+						browser.reportscomtep("Passed", "Verify Enter Promocode page is displayed after click on Haveapromocode? Link ",
+								"Enter Promocode page Should be displayed after click on Haveapromocode? Link", "Enter Promocode page is displayed after click on Haveapromocode? Link");
+						
+			} else {
+				browser.reportscomtep("Failed", "Verify Enter Promocode page is displayed after click on Haveapromocode? Link ",
+						"Enter Promocode page Should be displayed after click on Haveapromocode? Link", "Enter Promocode page is not displayed after click on Haveapromocode? Link");
+			}	
+			
+		} else {
+			browser.reportscomtep("Failed",  "Verify Haveapromocode? Link  is displayed in booking Summary page",
+					"Haveapromocode? Link Should be displayed in booking Summary page", "Haveapromocode? Link is not displayed in booking Summary page");
+
+		}
+			
+	  } catch (Exception e) {
+		  System.out.println("Exception: " + e.getStackTrace());
+	       }
+	     }
+
+		/*******************TC_6_03_03	******************/
+		public void Verify_Detailsin_Promocode_Popup() {
+			try {
+		
+				  		if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Page_Header)) {
+						
+						browser.reportscomtep("Passed", "Verify Enter Promocode page is displayed after click on Haveapromocode? Link ",
+								"Enter Promocode page Should be displayed after click on Haveapromocode? Link", "Enter Promocode page is displayed after click on Haveapromocode? Link");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Promocode_Textbox,
+								"Promocode Textbox");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Promocode_Apply_Button,
+								"Promocode Applybutton");
+			} else {
+				browser.reportscomtep("Failed", "Verify Enter Promocode page is displayed after click on Haveapromocode? Link ",
+						"Enter Promocode page Should be displayed after click on Haveapromocode? Link", "Enter Promocode page is not displayed after click on Haveapromocode? Link");
+			}	
+					
+	  } catch (Exception e) {
+		  System.out.println("Exception: " + e.getStackTrace());
+	       }
+	     }
+
+		/*******************TC_6_03_04	******************/
+		public void Verify_Applybutton_Without_Entering_Promocode() {
+		
+			try {
+				 String Expct_PromocodeErrorMessage = "Please enter promocode";
+						
+				browser.click(CustomerModule.Customer_Promocode_Apply_Button);
+				if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Errormessage)) {
+				browser.reportscomtep("Passed", "Verify Promocode Errormessage is displayed after click on Apply button ",
+						" Promocode Errormessage Should be displayed after click on Apply button", " Promocode Errormessage is displayed after click on Apply button");
+				
+				browser.verifyElementErrorMessage(CustomerModule.Customer_Promocode_Errormessage,Expct_PromocodeErrorMessage, "exact");
+				
+			}else {
+				browser.reportscomtep("Failed", "Verify Promocode Errormessage is displayed after click on Apply button ",
+						" Promocode Errormessage Should be displayed after click on Apply button", " Promocode Errormessage is displayed after click on Apply button");
+			
+			}
+	  } catch (Exception e) {
+		  System.out.println("Exception: " + e.getStackTrace());
+	       }
+	     }
+		/*******************TC_6_03_05	******************/
+		public void Verify_Applybutton__Entering_Invalid_Promocode() {
+		
+			String InvalidPromocode = null;
+			
+			try {
+				InvalidPromocode = browser.getdata("InvalidPromocode");
+				
+				browser.sendkeys(CustomerModule.Customer_Promocode_Textbox, InvalidPromocode);	
+				browser.click(CustomerModule.Customer_Promocode_Apply_Button);
+				if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Errormessage)) {
+				browser.reportscomtep("Passed", "Verify Promocode Errormessage is displayed after click on Apply button ",
+						" Promocode Errormessage Should be displayed after click on Apply button", " Promocode Errormessage is displayed after click on Apply button");
+				
+				
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify Promocode Errormessage is displayed after click on Apply button ",
+						" Promocode Errormessage Should be displayed after click on Apply button", " Promocode Errormessage is displayed after click on Apply button");
+			
+			}
+	  } catch (Exception e) {
+		  System.out.println("Exception: " + e.getStackTrace());
+	       }
+	     }
+		/*******************TC_6_03_06	******************/
+		public void Verify_Applybutton_Entering_Valid_Promocode() {
+		
+	String ValidPromocode = null;
+			
+			try {
+				ValidPromocode = browser.getdata("ValidPromocode");
+				
+				browser.sendkeys(CustomerModule.Customer_Promocode_Textbox, ValidPromocode);	
+				browser.click(CustomerModule.Customer_Promocode_Apply_Button);
+				if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Errormessage)) {
+				browser.reportscomtep("Passed", "Verify Promocode Errormessage is displayed after click on Apply button ",
+						" Promocode Errormessage Should be displayed after click on Apply button", " Promocode Errormessage is displayed after click on Apply button");
+				
+				
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify Promocode Errormessage is displayed after click on Apply button ",
+						" Promocode Errormessage Should be displayed after click on Apply button", " Promocode Errormessage is displayed after click on Apply button");
+			
+			}
+	  } catch (Exception e) {
+		  System.out.println("Exception: " + e.getStackTrace());
+	   }
+	}
+
+		
+				
 }
 
 
