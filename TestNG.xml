@@ -15,7 +15,7 @@
     <test name="Shearcircle_Testscenarios">
         <classes>
         	<class name="com.shearcircle.testscenarios.DriverandBrowser_Launch" />
-			<class name="com.shearcircle.testscenarios.TS_1_01_CustomerclicksJoinOurCircleButton" />
+			<!-- <class name="com.shearcircle.testscenarios.TS_1_01_CustomerclicksJoinOurCircleButton" />
 			<class name="com.shearcircle.testscenarios.TS_1_02_CustomerclicksonJoinOurCirclebuttononAreyouaCustomer" />
 			<class name="com.shearcircle.testscenarios.TS_1_03_CustomerclicksonJoinOurCirclebuttonafterenteringvaliddetails" />
 			<class name="com.shearcircle.testscenarios.TS_1_05_CustomerclicksonJoinOurCirclebuttonafterenteringInvaliddetails" />
@@ -27,11 +27,11 @@
 			<class name="com.shearcircle.testscenarios.TS_2_04_CustomerLoginwithvalidUsernameinvalidPassword" />
 			<class name="com.shearcircle.testscenarios.TS_2_05_CustomerclicksonSigninwithoutenteringUsernamePassword" />
 			<class name="com.shearcircle.testscenarios.TS_2_06_CustomerclicksonLoginwithFacebookbutton" />
-			<!-- <class name="com.shearcircle.testscenarios.TS_2_07_CustomerLoginwithFacebookuserwhichregisteredShearCircle" />
+			<class name="com.shearcircle.testscenarios.TS_2_07_CustomerLoginwithFacebookuserwhichregisteredShearCircle" />
 			<class name="com.shearcircle.testscenarios.TS_2_08_CustomerLoginwithFacebookuserwhichnotregisteredShearCircle" />
 			<class name="com.shearcircle.testscenarios.TS_2_09_CustomerclicksonLoginwithGooglebutton" />
 			<class name="com.shearcircle.testscenarios.TS_2_10_CustomerLoginwithGoogleuserwithregisteredShearCircle" />
-			<class name="com.shearcircle.testscenarios.TS_2_11_CustomerLoginwithGoogleuserwithnotregisteredShearCircle" /> -->
+			<class name="com.shearcircle.testscenarios.TS_2_11_CustomerLoginwithGoogleuserwithnotregisteredShearCircle" />
 			<class name="com.shearcircle.testscenarios.TS_2_12_CustomerclicksonJoinNowJoinOurCirclelink" />
 			<class name="com.shearcircle.testscenarios.TS_2_13_CustomerclicksonGetItBacklink" />
 			<class name="com.shearcircle.testscenarios.TS_2_14_CustomerResetspasswordwithvalidUsername" />
@@ -40,8 +40,46 @@
 			<class name="com.shearcircle.testscenarios.TS_3_02_CustomerClicksonMyFavorite" />
 			<class name="com.shearcircle.testscenarios.TS_3_03_CustomerClicksonMyappointments" />
 			<class name="com.shearcircle.testscenarios.TS_3_04_CustomerclicksonSettings" />
-			<class name="com.shearcircle.testscenarios.TS_4_01_Customer_SearchforProfessionals_Servicesusingsearchbox" />
-			<class name="com.shearcircle.testscenarios.TS_4_02_Customer_appliesfiltersinsearchpage"/> 
+			<class name="com.shearcircle.testscenarios.TS_4_01_Customer_SearchforProfessionals_Servicesusingsearchbox" /> 
+			<class name="com.shearcircle.testscenarios.TS_4_02_Customer_appliesfiltersinsearchpage"/>
+			<class name="com.shearcircle.testscenarios.TS_5_01_CustomervisitsBusinessPage"/> -->
+			<class name="com.shearcircle.testscenarios.TS_6_01_BookingAppoinment_WithoutSignin"/>
+			<!-- <class name="com.shearcircle.testscenarios.TS_001_SubscriberVisitsJoinOurcirclePage"/>	 -->		
 		</classes>
     </test>
+    <!-- <test name="Shearcircle_Prod_Testscenarios">
+        <classes>
+        	<class name="com.shearcircle.prod_testscenarios.DriverandBrowser_Launch" />
+			<class name="com.shearcircle.prod_testscenarios.TS_1_01_CustomerclicksJoinOurCircleButton" />
+			<class name="com.shearcircle.prod_testscenarios.TS_1_02_CustomerclicksonJoinOurCirclebuttononAreyouaCustomer" />
+			<class name="com.shearcircle.prod_testscenarios.TS_1_03_CustomerclicksonJoinOurCirclebuttonafterenteringvaliddetails" />
+			<class name="com.shearcircle.prod_testscenarios.TS_1_05_CustomerclicksonJoinOurCirclebuttonafterenteringInvaliddetails" />
+			<class name="com.shearcircle.prod_testscenarios.TS_1_06_CustomerclicksonJoinOurCircleawithvaliddetailsandwithoutterms" />
+			<class name="com.shearcircle.prod_testscenarios.TS_1_07_CustomerclicksonthehyperlinksinCustomerRegistrationpage" />
+			<class name="com.shearcircle.prod_testscenarios.TS_2_01_CustomerclicksLoginonShearCirclehomepage" />
+			<class name="com.shearcircle.prod_testscenarios.TS_2_02_CustomerLoginwithregisteredUsername_Password" />
+			<class name="com.shearcircle.prod_testscenarios.TS_2_03_CustomerLoginwithinvalidUsernamevalidPassword" />
+			<class name="com.shearcircle.prod_testscenarios.TS_2_04_CustomerLoginwithvalidUsernameinvalidPassword" />
+			<class name="com.shearcircle.prod_testscenarios.TS_2_05_CustomerclicksonSigninwithoutenteringUsernamePassword" />
+			<class name="com.shearcircle.prod_testscenarios.TS_2_06_CustomerclicksonLoginwithFacebookbutton" />
+			<class name="com.shearcircle.prod_testscenarios.TS_2_07_CustomerLoginwithFacebookuserwhichregisteredShearCircle" />
+			<class name="com.shearcircle.prod_testscenarios.TS_2_08_CustomerLoginwithFacebookuserwhichnotregisteredShearCircle" />
+			<class name="com.shearcircle.prod_testscenarios.TS_2_09_CustomerclicksonLoginwithGooglebutton" />
+			<class name="com.shearcircle.prod_testscenarios.TS_2_10_CustomerLoginwithGoogleuserwithregisteredShearCircle" />
+			<class name="com.shearcircle.prod_testscenarios.TS_2_11_CustomerLoginwithGoogleuserwithnotregisteredShearCircle" />
+			<class name="com.shearcircle.prod_testscenarios.TS_2_12_CustomerclicksonJoinNowJoinOurCirclelink" />
+			<class name="com.shearcircle.prod_testscenarios.TS_2_13_CustomerclicksonGetItBacklink" />
+			<class name="com.shearcircle.prod_testscenarios.TS_2_14_CustomerResetspasswordwithvalidUsername" />
+			<class name="com.shearcircle.prod_testscenarios.TS_2_17_CustomerclicksCancelinResetPasswordpage" />
+			<class name="com.shearcircle.prod_testscenarios.TS_3_01_CustomerLogintoDashboard" />
+			<class name="com.shearcircle.prod_testscenarios.TS_3_02_CustomerClicksonMyFavorite" />
+			<class name="com.shearcircle.prod_testscenarios.TS_3_03_CustomerClicksonMyappointments" />
+			<class name="com.shearcircle.prod_testscenarios.TS_3_04_CustomerclicksonSettings" />
+			<class name="com.shearcircle.prod_testscenarios.TS_4_01_Customer_SearchforProfessionals_Servicesusingsearchbox" /> 
+			<class name="com.shearcircle.prod_testscenarios.TS_4_02_Customer_appliesfiltersinsearchpage"/>
+			<class name="com.shearcircle.prod_testscenarios.TS_5_01_CustomervisitsBusinessPage"/> 
+			<class name="com.shearcircle.prod_testscenarios.TS_6_01_BookingAppoinment_WithoutSignin"/>
+			<class name="com.shearcircle.prod_testscenarios.TS_001_SubscriberVisitsJoinOurcirclePage"/>			
+		</classes>
+    </test> -->
 </suite>
