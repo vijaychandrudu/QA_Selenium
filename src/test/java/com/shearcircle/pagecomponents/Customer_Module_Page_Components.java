@@ -3213,6 +3213,11 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 								"Verify Page navigation buttons at the bottom of the page is dispalyed",
 								"Page navigation buttons at the bottom of the page should be dispalyed",
 								"Page navigation buttons at the bottom of the page dispalyed");
+					}else if(CustomerModule.home_SearchResultssalons_firstpage_list.size()< 10){
+						browser.reportscomtep("Passed",
+								"Verify Page navigation buttons at the bottom of the page is dispalyed",
+								"Page navigation buttons at the bottom of the page should be dispalyed",
+								"Page navigation buttons at the bottom of the page Not dispalyed as expected if search results are less than 10 salons");
 					}else{
 						browser.reportscomtep("Failed",
 							"Verify Page navigation buttons at the bottom of the page is dispalyed",
@@ -3322,21 +3327,21 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 						searchResults_Salon_Spa_Prof = listvalue.getText();					
 						switch(SalonOrSpaOrProfessional){
 							case "Salon":
-								if(searchResults_Salon_Spa_Prof.contains(searchSalon)){
+								if(searchResults_Salon_Spa_Prof.toLowerCase().contains(searchSalon.toLowerCase())){
 									enteredSearchString = "Salon: "+searchSalon;
 									searchResultsavailablity = true;
 									break;
 								}
 								break;
 							case "Spa":
-								if(searchResults_Salon_Spa_Prof.contains(searchSpa)){
+								if(searchResults_Salon_Spa_Prof.toLowerCase().contains(searchSpa.toLowerCase())){
 									searchResultsavailablity = true;
 									enteredSearchString = "Spa: "+searchSpa; 
 									break;
 								}
 								break;
 							case "Professional":
-								if(searchResults_Salon_Spa_Prof.contains(searchProfessional)|| searchResults_Salon_Spa_Prof!=""){
+								if(searchResults_Salon_Spa_Prof.toLowerCase().contains(searchProfessional.toLowerCase())|| searchResults_Salon_Spa_Prof!=""){
 									searchResultsavailablity = true;
 									enteredSearchString = "Professional: "+searchProfessional;
 									break;
@@ -6237,13 +6242,23 @@ public void check_MultipleRatings_Filter() {
 					browser.Verify_elementisdisplayed_Report(CustomerModule.ChooseCalendeandTime_Calendar, "Calendar");
 					browser.Verify_elementisdisplayed_Report(CustomerModule.ChooseCalendeandTime_AvailableTimesSlots_text, "Available Time Slots header");
 					
+					if(browser.elementisdisplayed(CustomerModule.ChooseCalendeandTime_AvailableNoTimesSlots)){
+						for(WebElement dayelement:CustomerModule.ChooseCalendeandTime_CalendarDates_List){
+							dayelement.click();
+							Thread.sleep(5000);
+							if(CustomerModule.ChooseCalendeandTime_AvailableTimeslots_list.size()>0){
+								break;
+							}
+						}
+					}
+					
 					if(CustomerModule.ChooseCalendeandTime_AvailableTimeslots_list.size()>0){
 							browser.reportscomtep("Passed", "Verify Available Timeslots are displayed",
 									"Available Times Slots should be displayed", "Available Times Slots displayed");							
 					}else if(browser.elementisdisplayed(CustomerModule.ChooseCalendeandTime_AvailableNoTimesSlots)) {
 						browser.reportscomtep("Passed", "Verify Available Times Slots are displayed",
 								"Available Times Slots should be displayed", "Available No Times Slots message displayed as expected If for the given date, there are no availability");
-						}
+					}
 					browser.Verify_elementisdisplayed_Report(CustomerModule.ChooseCalendeandTime_SelectedProfessional_image, "Selected staff image");
 					browser.Verify_elementisdisplayed_Report(CustomerModule.ChooseDateAndTime_ServiceDetails_Table, "Service Details");
 					browser.Verify_elementisdisplayed_Report(CustomerModule.ChooseDateAndTime_Back_Button, "Back Button");
@@ -6345,6 +6360,7 @@ public void check_MultipleRatings_Filter() {
 				 * fallow Follow TC_6_1_11
 				*/
 				//this.check_TheTimeslotsAre_Clickable();
+				
 				browser.click(CustomerModule.ChooseDateAndTime_Popup_ProceedToBookButton);
 				if (browser.elementisdisplayed(CustomerModule.Professional_BookingSummary_Page)) {
 					browser.reportscomtep("Passed",
@@ -6367,7 +6383,9 @@ public void check_MultipleRatings_Filter() {
 		public void check_Details_InBooking_SummaryPage_FieldValidation() {
 			try {
 				String tableHeadername = "";
-				String tableDatavalue = "";
+				String tableDatavalue = "";				
+				String tablefooterHeadername = "";
+				String tablefooterDatavalue = "";
 				if (browser.elementisdisplayed(CustomerModule.BookingSummary_BookingDetails)) {
 					browser.reportscomtep("Passed", "Verify Booking Details are Displayed",
 							"Booking Details should be Displayed", "Booking Details Displayed");
@@ -6383,10 +6401,13 @@ public void check_MultipleRatings_Filter() {
 					int i = 0 ;
 					for(WebElement theader:CustomerModule.BookingSummry_Bdetails_TableHeaders){	
 						tableHeadername = browser.getelementtext(theader);
-						tableDatavalue = browser.getelementtext(CustomerModule.BookingSummry_Bdetails_TableHeaders.get(i));
+						tableDatavalue = browser.getelementtext(CustomerModule.BookingSummry_Bdetails_Tabledata.get(i));
 						if(tableHeadername.equalsIgnoreCase(headernames[i]) && !tableDatavalue.isEmpty() ){
 							browser.reportscomtep("Passed", "Verify Booking Details "+tableHeadername+" is Displayed",
-									"Booking Details should be Displayed", "Booking Details "+tableHeadername+":Displayed");
+									"Booking Details should be Displayed", "Booking Details displayed as "+tableHeadername+": "+tableDatavalue);
+						}else{
+							browser.reportscomtep("Failed", "Verify Booking Details "+headernames[i]+" is Displayed",
+									"Booking Details should be Displayed", "Booking Details "+headernames[i]+" Not displayed");
 						}
 						
 						i++;
@@ -6401,42 +6422,72 @@ public void check_MultipleRatings_Filter() {
 					
 					int j = 0 ;
 					for(WebElement tfooterheader:CustomerModule.BookingSummry_Bdetails_TablefootersHeaders){						
-						browser.Verify_elementisdisplayed_Report(tfooterheader, footerheadernames[j]);
+						tablefooterHeadername = browser.getelementtext(tfooterheader);
+						tablefooterDatavalue = browser.getelementtext(CustomerModule.BookingSummry_Bdetails_footerTabledata.get(j));
+						if(tablefooterHeadername.equalsIgnoreCase(footerheadernames[j]) && !tablefooterDatavalue.isEmpty() ){
+							browser.reportscomtep("Passed", "Verify Booking Details "+tablefooterHeadername+" is Displayed",
+									"Booking Details should be Displayed", "Booking Details displayed as "+tablefooterHeadername+": "+tablefooterDatavalue);
+						}else{
+							browser.reportscomtep("Failed", "Verify Booking Details "+footerheadernames[j]+" is Displayed",
+									"Booking Details should be Displayed", "Booking Details "+footerheadernames[j]+" Not displayed");
+						}
 						j++;
 					}
 					
 									
 					browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_Selected_Professional_Image,
 							"Selected Professional Image");
-					if (browser.elementisdisplayed(CustomerModule.BookingSummary_AppointmentScheduledTime)) {
+					
+					if (browser.elementisdisplayed(CustomerModule.BookingSummary_AppointmentScheduledTime_Header)) {
 						browser.reportscomtep("Passed", "Verify Appointment Scheduled Time is Displayed",
 								" Appointment Scheduled Time should be Displayed", " Appointment Scheduled Time Displayed");
 						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_DateAndTime,
 								"Date and Time");
-						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_ShopName, "Shop Name");
-						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_ContactNumber,
-								"Contact Number");
-						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_Email, "Email");
-						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_Address, "Address");
-
-						if (browser.elementisdisplayed(CustomerModule.BookingSummary_PleaseSelect_PaymentMethod)) {
-							browser.reportscomtep("Passed", "Verify Please Select Payment Method is Displayed",
-									"Please Select Payment Method should be Displayed",
-									"Please Select Payment Method Displayed");
-							browser.scrollintoviewelement(CustomerModule.BookingSummary_PayPal);
-							browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_PayPal, "Pay Pal");
-							browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_PayByCash,
-									"Pay by cash");
-							browser.scrollintoviewelement(CustomerModule.BookingSummary_BackButton);
-							browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_BackButton,
-									"Back Button");
-							browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_ClickTo_SignIn_Link,
-									"Click to Sign in link");
-						} else {
-							browser.reportscomtep("Failed", "Verify Please Select Payment Method is Displayed",
-									"Please Select Payment Method should be Displayed",
-									"Please Select Payment Method not Displayed");
+						
+					} else {
+						browser.reportscomtep("Failed", "Verify Please Select Payment Method is Displayed",
+								"Please Select Payment Method should be Displayed",
+								"Please Select Payment Method not Displayed");
+					}
+					browser.scrollintoviewelement(CustomerModule.BookingSummary_PayByCash);
+					String[] salonheadernames = new String[4];
+					salonheadernames[0] = "Shop Name";
+					salonheadernames[1] = "Contact Number";
+					salonheadernames[2] = "Email";
+					salonheadernames[3] = "Address";
+					
+					int k = 0 ;
+					String salonHeadername = "";
+					String salonDatavalue = "";
+					for(WebElement salonheader:CustomerModule.BookingSummary_salondetails_Headers){						
+						salonHeadername = browser.getelementtext(salonheader);
+						salonDatavalue = browser.getelementtext(CustomerModule.BookingSummary_salondetails_values.get(i));
+						if(salonHeadername.equalsIgnoreCase(salonheadernames[k])){
+							browser.reportscomtep("Passed", "Verify Salon Details "+tablefooterHeadername+" is Displayed",
+									"Salon Details should be Displayed", "Salon Details displayed as "+salonHeadername+": "+salonDatavalue);
+						}else{
+							browser.reportscomtep("Failed", "Verify Salon Details "+salonheadernames[k]+" is Displayed",
+									"Salon Details should be Displayed", "Salon Details "+salonheadernames[k]+" Not displayed");
 						}
+						k++;
+					}
+					
+
+					if (browser.elementisdisplayed(CustomerModule.BookingSummary_PleaseSelect_PaymentMethod)) {
+						browser.reportscomtep("Passed", "Verify Please Select Payment Method is Displayed",
+								"Please Select Payment Method should be Displayed",
+								"Please Select Payment Method Displayed");
+						browser.ScrollToElementBottom(CustomerModule.BookingSummary_PayByCash);
+						
+						//browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_PayPal, "Pay Pal");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_PayByCash,
+								"Pay by cash");
+						browser.ScrollToElementBottom(CustomerModule.BookingSummary_BackButton);
+						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_BackButton,
+								"Back Button");
+						browser.scrollintoviewelement(CustomerModule.BookingSummary_ClickTo_SignIn_Link);
+						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_ClickTo_SignIn_Link,
+								"Click to Sign in link");				
 
 					} else {
 						browser.reportscomtep("Failed", "Verify Appointment Scheduled Time is Displayed",
@@ -6458,7 +6509,7 @@ public void check_MultipleRatings_Filter() {
 		/*****TC_6_1_15	Check whether the booking can be done without sign in****/
 		public void check_BookingCanBe_DoneWithout_SignIn() {
 			try {
-				browser.ScrollToElementBottom(CustomerModule.BookingSummary_PayByCash_radiobutton);
+				browser.ScrollToElementBottom(CustomerModule.BookingSummary_ConfirmBooking_button);
 				browser.click(CustomerModule.BookingSummary_PayByCash_radiobutton);				
 				browser.click(CustomerModule.BookingSummary_ConfirmBooking_button);
 				if (browser.elementisdisplayed(CustomerModule.BookingSummary_Login_Text)) {
@@ -6518,6 +6569,7 @@ public void check_MultipleRatings_Filter() {
 					browser.reportscomtep("Passed",
 							"Click on Get It Back link and verify Reset Password page is Opened in new tab",
 							"Reset Password page should be Opened in new tab", "Reset Password page is Opened in new tab");
+					driver.close();
 				} else {
 					browser.reportscomtep("Failed",
 							"Click on Get It Back link and verify Reset Password page is Opened in new tab",
@@ -6544,6 +6596,7 @@ public void check_MultipleRatings_Filter() {
 							"Click on Register Now link and verify Customer Registration page is opend in new tab",
 							"Customer Registration page should be opend in new tab",
 							"Customer Registration page opend in new tab");
+					driver.close();
 				} else {
 					browser.reportscomtep("Failed",
 							"Click on Register Now link and verify Customer Registration page is opend in new tab",

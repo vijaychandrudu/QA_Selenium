@@ -84,23 +84,23 @@ public class TS_4_01_Customer_SearchforProfessionals_Servicesusingsearchbox exte
 	public void TC_4_1_05_Customer_CheckChangePasswordlinkClickable() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the search result by entering keyword in Salon/Spa/Professional box -(Name)");
 		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_Locate_Button", "Salon");
-		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_Locate_Button", "Spa");
-		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_Locate_Button", "Professional");
+		//CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_Locate_Button", "Spa");
+		//CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_Locate_Button", "Professional");
 	}
 	
-	@Test(priority=40107, description="TC_4_1_06 Check the search result by entering keyword in ZipCode/City,State")
+	/*@Test(priority=40107, description="TC_4_1_06 Check the search result by entering keyword in ZipCode/City,State")
 	public void TC_4_1_06_Customer_ChecksearchresultbyenteringkeywordinZipCode_City_State() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the search result by entering keyword in ZipCode/City,State");
 		CR.ChecksearchresultbyenteringkeywordinZipCode_City_State("Click_Locate_Button","ZipCode");		
 		CR.ChecksearchresultbyenteringkeywordinZipCode_City_State("Click_Locate_Button","City");		
 		CR.ChecksearchresultbyenteringkeywordinZipCode_City_State("Click_Locate_Button","State");		
-	}
+	}*/
 	
-	@Test(priority=40108, description="TC_4_1_07 Check the search result by entering keyword in both Name & Location textboxes")
+	/*@Test(priority=40108, description="TC_4_1_07 Check the search result by entering keyword in both Name & Location textboxes")
 	public void TC_4_1_07_Customer_CheckPasswordwithlessthan6charsorspaces() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the search result by entering keyword in both Name & Location textboxes");
 		CR.checkSearchResult_ByEntering_keyword_InBothNameAndLocation("Click_Locate_Button");		
-	}	
+	}*/	
 		
 	@Test(priority=40109, description="TC_3_4_09 Check whether the Cancel button is clickable in Secure password change page")
 	public void TC_4_1_08_Customer_resultsbyselectingsubcategory_Homepage() throws IOException {			

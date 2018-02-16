@@ -72,8 +72,7 @@ public class TS_6_01_BookingAppoinment_WithoutSignin extends StaticVariables {
 	@Test(priority=60104, description="TC_6_1_02 Check the Cart popup for single service")
 	public void TC_6_1_02_Customer_CartPopup_ForSingleService() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the Cart popup for single service");
-		CR.check_CartPopup_ForSingleService();		
-			
+		CR.check_CartPopup_ForSingleService();			
 	}
 	
 	@Test(priority=60105, description="TC_6_1_03 Check the Cart popup for multiple services	")
@@ -97,6 +96,19 @@ public class TS_6_01_BookingAppoinment_WithoutSignin extends StaticVariables {
 		ExtentTestManager.getTest().setDescription("Check whether the cart popup & service page displays the selected items when the back button is clicked");
 		CR.check_CartPopup_SelectedItems_When_BackButton_Click();			
 	}
+	
+	@Test(priority=60109, description="TC_6_1_07 Check whether the cart popup updates when the services are added/removed")
+	public void TC_6_1_07_check_CartPopup_updates_services_added_removed() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check whether the cart popup updates when the services are added/removed");
+		CR.Check_cartpopupupdates_when_services_added_or_removed();			
+	}
+	
+	@Test(priority=60110, description="TC_6_1_08 Check whether the Staff image is clickable")
+	public void TC_6_1_08_check_Staffimage_clickable() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check whether the Staff image is clickable");
+		CR.Check_Staffimage_clickable();			
+	}
+	
 	@Test(priority=60111, description="TC_6_1_09 Check the details in Choose Date and Time page")
 	public void TC_6_1_09_check_DetailsIn_ChooseDateAndTime_Page_Fieldvalidation() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the details in Choose Date and Time page");
@@ -110,6 +122,7 @@ public class TS_6_01_BookingAppoinment_WithoutSignin extends StaticVariables {
 	@Test(priority=60113, description="TC_6_1_11 Check whether the timeslots are clickable")
 	public void TC_6_1_11_check_TheTimeslotsAre_Clickable() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the timeslots are clickable");
+		CR.check_DetailsIn_ChooseDateAndTime_Page_Fieldvalidation();
 		CR.check_TheTimeslotsAre_Clickable();			
 	}
 	@Test(priority=60114, description="TC_6_1_12 Check whether clicking the Cancel button in popup returns to Timeslots page")
@@ -120,7 +133,14 @@ public class TS_6_01_BookingAppoinment_WithoutSignin extends StaticVariables {
 	@Test(priority=60115, description="TC_6_1_13 Check whether clicking on Yes, Proceed to Book button navigates to next page")
 	public void TC_6_1_13_check_click_OnYes_ProceedTo_BookButton_Navigate_ToNextPage() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether clicking on Yes, Proceed to Book button navigates to next page");
+		CR.check_TheTimeslotsAre_Clickable();
 		CR.check_click_OnYes_ProceedTo_BookButton_Navigate_ToNextPage();			
+	}
+	
+	@Test(priority=60116, description="TC_6_1_14 Check the details in Booking Summary page")
+	public void TC_6_1_14_check_Booking_Summary_page_FieldValidation() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Check the details in Booking Summary page");
+		CR.check_Details_InBooking_SummaryPage_FieldValidation();			
 	}
 	
 	@Test(priority=60117, description="TC_6_1_15 Check whether the booking can be done without sign in ")
