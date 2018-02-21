@@ -3301,6 +3301,8 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 								case "Professional":
 									browser.sendkeys(CustomerModule.home_FindSalon_Spa_Professionals_Textbox, searchProfessional);
 									break;
+								case "":
+									break;	
 							}						
 						browser.click(CustomerModule.home_Locate_Button);						
 						break;
@@ -3316,6 +3318,8 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 							case "Professional":
 							browser.sendkeys(CustomerModule.customer_FindSalon_Spa_Professionals_Textbox, searchProfessional);
 							break;
+							case "":
+								break;
 						}
 						
 						browser.click(CustomerModule.customer_Search_Button);					
@@ -3346,7 +3350,10 @@ public void checkWhether_ChangePassword_LinkIs_Clickable() {
 									enteredSearchString = "Professional: "+searchProfessional;
 									break;
 								}
-							break;
+							case "":
+								searchResultsavailablity = true;
+								break;							
+							
 						}					
 					}	
 				}
@@ -5086,6 +5093,7 @@ public void check_MultipleRatings_Filter() {
 				browser.ScrollToXY(OverviewX, overviewY);*/
 				//browser.click(CustomerModule.Customer_Search_Button);
 				//browser.click(CustomerModule.Customer_BookMe_Text);
+				browser.scrollintoviewelement(CustomerModule.Customer_AddtoFavorite_button);
 				if (browser.elementisdisplayed(CustomerModule.Customer_Overview_Tab)) {
 					browser.reportscomtep("passed", "Verify Overview Tab is displayed in Business page", "Overview Tab should be displayed in Business page",
 							"Overview Tab displayed in Business page");
@@ -5113,6 +5121,7 @@ public void check_MultipleRatings_Filter() {
 				String customerName = "";	
 				String customerRatings = "";
 				String reviewText = "";
+				browser.scrollintoviewelement(CustomerModule.Customer_AddtoFavorite_button);
 				if (browser.elementisdisplayed(CustomerModule.Customer_Reviews_Tab)) {
 					browser.reportscomtep("passed", "Verify Review Tab is displayed in Business page", "Review Tab should be displayed in Business page",
 							"Review Tab displayed in Business page");
@@ -5144,7 +5153,7 @@ public void check_MultipleRatings_Filter() {
 					browser.reportscomtep("Passed", "Verify Book Me Text is displayed",
 							"Book Me button should be displayed", "Book Me button displayed");
 					browser.click(CustomerModule.Customer_BookMe_Text);*/
-					
+					browser.scrollintoviewelement(CustomerModule.Customer_AddtoFavorite_button);
 					if (browser.elementisdisplayed(CustomerModule.Customer_Inquiry_Tab)) {
 						browser.reportscomtep("passed", "Click on Bookme button and Verify Inqueary Tab is displayed", "Inqueary Tab  should be displayed",
 								"Inqueary Tab is displayed");
@@ -6204,7 +6213,7 @@ public void check_MultipleRatings_Filter() {
 		
 		public void Check_Staffimage_clickable() {
 			try {
-				browser.click(CustomerModule.Services_BookNow_Button);
+				//browser.click(CustomerModule.Services_BookNow_Button);
 				if (browser.elementisdisplayed(CustomerModule.ProfessionalPage_ChooseProfessional_Text)) {
 					browser.reportscomtep("Passed", "Verify Choose Professional Page is dispalyed",
 							"Choose Professional Page should be dispalyed", "Choose Professional Page dispalyed");
@@ -6277,7 +6286,7 @@ public void check_MultipleRatings_Filter() {
 		public void check_BackButton_NavigatesTo_Choose_Professional_Page() {
 			try {
 				browser.click(CustomerModule.ChooseDateAndTime_Back_Button);
-				if (browser.elementisdisplayed(CustomerModule.SR_Services_Business_Page)) {
+				if (browser.elementisdisplayed(CustomerModule.ProfessionalPage_ChooseProfessional_Text)) {
 					browser.reportscomtep("Passed",
 							"Cliks on Back button and Verify Navigated to professional page is dipalyed",
 							"Navigated to professional page should be dipalyed", "Navigated to professional page dipalyed");
@@ -6829,8 +6838,9 @@ public void check_MultipleRatings_Filter() {
 				if (browser.elementisdisplayed(CustomerModule.Customer_Bookingsummery_Header)) {
 					browser.reportscomtep("Passed", "Verify Booking summary page is  displayed",
 							"Booking summary page  should be displayed", "Booking summary page is displayed");
-		
+					browser.ScrollToElementBottom(CustomerModule.Customer_Paypal_Radiobutton);					
 					browser.click(CustomerModule.Customer_Paypal_Radiobutton);
+					browser.ScrollToElementBottom(CustomerModule.Customer_Confirmbooking_Button);
 					browser.click(CustomerModule.Customer_Confirmbooking_Button);					
 					if (browser.elementisdisplayed(CustomerModule.Customer_Paypal_Header)) {
 						browser.reportscomtep("Passed", "Verify Paypal page is  displayed after click on confirmbooking button",
@@ -6852,14 +6862,14 @@ public void check_MultipleRatings_Filter() {
 		public void Verify_CartDetails_Paypal_Page() {
 			try {
 		
-		if (browser.elementisdisplayed(CustomerModule.Customer_Paypal_Header)) {
-			browser.reportscomtep("Passed", "Verify Paypal page is  displayed after click on confirmbooking button",
-									"Paypal page should be displayed after click on confirmbooking button", "Paypal page is  displayed after click on confirmbooking button");
-			browser.click(CustomerModule.Customer_Paypal_Amount_Arrow);
-		       } else {
+				if (browser.elementisdisplayed(CustomerModule.Customer_Paypal_Header)) {
+					browser.reportscomtep("Passed", "Verify Paypal page is  displayed after click on confirmbooking button",
+											"Paypal page should be displayed after click on confirmbooking button", "Paypal page is  displayed after click on confirmbooking button");
+					browser.click(CustomerModule.Customer_Paypal_Amount_Arrow);
+				 } else {
 			          browser.reportscomtep("Failed", "Verify Paypal page is  displayed after click on confirmbooking button",
 					      "Paypal page should be displayed after click on confirmbooking button", "Paypal page is not displayed after click on confirmbooking button");
-		           }
+		          }
 			
 	           } catch (Exception e) {
 	        	   System.out.println("Exception: " + e.getStackTrace());
@@ -6994,13 +7004,23 @@ public void check_MultipleRatings_Filter() {
 		public void Verify_Detailsin_Promocode_Popup() {
 			try {
 		
-				  		if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Page_Header)) {
-						
-						browser.reportscomtep("Passed", "Verify Enter Promocode page is displayed after click on Haveapromocode? Link ",
-								"Enter Promocode page Should be displayed after click on Haveapromocode? Link", "Enter Promocode page is displayed after click on Haveapromocode? Link");
-						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Promocode_Textbox,
-								"Promocode Textbox");
-						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Promocode_Apply_Button,
+		  		if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Page_Header)) {
+				
+				browser.reportscomtep("Passed", "Verify Enter Promocode page is displayed after click on Haveapromocode? Link ",
+						"Enter Promocode page Should be displayed after click on Haveapromocode? Link", "Enter Promocode page is displayed after click on Haveapromocode? Link");
+				if(CustomerModule.Customer_Promocodes_List.size()>0){
+					browser.reportscomtep("Passed", "Verify list of promocodes are displayed along with its description and % discount if any promocodes available",
+							"list of promocodes are should be displayed if any promocodes available", "list of promocodes are displayed along with its description and % discoun");
+				}
+				
+				if(CustomerModule.Customer_Promocode_Select_Button_list.size()>0){
+					browser.reportscomtep("Passed", "Verify Select button displayed next to individual promocode",
+							"Select button should be displayed next to individual promocode", "Select button displayed next to individual promocode");
+				}
+					
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Promocode_Textbox,
+						"Promocode Textbox");
+				browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Promocode_Apply_Button,
 								"Promocode Applybutton");
 			} else {
 				browser.reportscomtep("Failed", "Verify Enter Promocode page is displayed after click on Haveapromocode? Link ",
@@ -7013,78 +7033,113 @@ public void check_MultipleRatings_Filter() {
 	     }
 
 		/*******************TC_6_03_04	******************/
-		public void Verify_Applybutton_Without_Entering_Promocode() {
-		
-			try {
-				 String Expct_PromocodeErrorMessage = "Please enter promocode";
-						
-				browser.click(CustomerModule.Customer_Promocode_Apply_Button);
-				if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Errormessage)) {
-				browser.reportscomtep("Passed", "Verify Promocode Errormessage is displayed after click on Apply button ",
-						" Promocode Errormessage Should be displayed after click on Apply button", " Promocode Errormessage is displayed after click on Apply button");
-				
-				browser.verifyElementErrorMessage(CustomerModule.Customer_Promocode_Errormessage,Expct_PromocodeErrorMessage, "exact");
-				
-			}else {
-				browser.reportscomtep("Failed", "Verify Promocode Errormessage is displayed after click on Apply button ",
-						" Promocode Errormessage Should be displayed after click on Apply button", " Promocode Errormessage is displayed after click on Apply button");
-			
-			}
-	  } catch (Exception e) {
-		  System.out.println("Exception: " + e.getStackTrace());
-	       }
-	     }
-		/*******************TC_6_03_05	******************/
-		public void Verify_Applybutton__Entering_Invalid_Promocode() {
-		
-			String InvalidPromocode = null;
-			
-			try {
-				InvalidPromocode = browser.getdata("InvalidPromocode");
-				
-				browser.sendkeys(CustomerModule.Customer_Promocode_Textbox, InvalidPromocode);	
-				browser.click(CustomerModule.Customer_Promocode_Apply_Button);
-				if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Errormessage)) {
-				browser.reportscomtep("Passed", "Verify Promocode Errormessage is displayed after click on Apply button ",
-						" Promocode Errormessage Should be displayed after click on Apply button", " Promocode Errormessage is displayed after click on Apply button");
-				
-				
-				
+	public void Verify_Applybutton_Without_Entering_Promocode() {
+
+		try {
+			String Expct_PromocodeErrorMessage = "Please enter promocode";
+
+			browser.click(CustomerModule.Customer_Promocode_Apply_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Errormessage)) {
+				browser.reportscomtep("Passed",
+						"Click on Apply button witout entering pomocode and Verify Promocode Errormessage is displayed",
+						"Promocode Errormessage Should be displayed", " Promocode Errormessage displayed");
 			} else {
-				browser.reportscomtep("Failed", "Verify Promocode Errormessage is displayed after click on Apply button ",
-						" Promocode Errormessage Should be displayed after click on Apply button", " Promocode Errormessage is displayed after click on Apply button");
-			
+				browser.reportscomtep("Failed",
+						"Click on Apply button witout entering pomocode and Verify Promocode Errormessage is displayed",
+						"Promocode Errormessage Should be displayed", " Promocode Errormessage not displayed");
+
 			}
-	  } catch (Exception e) {
-		  System.out.println("Exception: " + e.getStackTrace());
-	       }
-	     }
-		/*******************TC_6_03_06	******************/
-		public void Verify_Applybutton_Entering_Valid_Promocode() {
-		
-	String ValidPromocode = null;
-			
-			try {
-				ValidPromocode = browser.getdata("ValidPromocode");
-				
-				browser.sendkeys(CustomerModule.Customer_Promocode_Textbox, ValidPromocode);	
-				browser.click(CustomerModule.Customer_Promocode_Apply_Button);
-				if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Errormessage)) {
-				browser.reportscomtep("Passed", "Verify Promocode Errormessage is displayed after click on Apply button ",
-						" Promocode Errormessage Should be displayed after click on Apply button", " Promocode Errormessage is displayed after click on Apply button");
-				
-				
-				
-			} else {
-				browser.reportscomtep("Failed", "Verify Promocode Errormessage is displayed after click on Apply button ",
-						" Promocode Errormessage Should be displayed after click on Apply button", " Promocode Errormessage is displayed after click on Apply button");
-			
-			}
-	  } catch (Exception e) {
-		  System.out.println("Exception: " + e.getStackTrace());
-	   }
+		} catch (Exception e) {
+			System.out.println("Exception: " + e.getStackTrace());
+		}
 	}
 
+	/******************* TC_6_03_05 ******************/
+	public void Verify_Applybutton__Entering_Invalid_Promocode() {
+
+		String InvalidPromocode = null;
+
+		try {
+			InvalidPromocode = browser.getdata("InvalidPromocode");
+
+			browser.sendkeys(CustomerModule.Customer_Promocode_Textbox, InvalidPromocode);
+			browser.click(CustomerModule.Customer_Promocode_Apply_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Errormessage)) {
+				browser.reportscomtep("Passed",
+						"Enter invalid promocode and click on apply button and Verify Promocode Errormessage is displayed",
+						" Promocode Errormessage Should be displayed",
+						" Promocode Errormessage displayed");
+
+			} else {
+				browser.reportscomtep("Failed",
+						"Enter invalid promocode and click on apply button and Verify Promocode Errormessage is displayed",
+						" Promocode Errormessage Should be displayed",
+						" Promocode Errormessage displayed");
+
+			}
+		} catch (Exception e) {
+			System.out.println("Exception: " + e.getStackTrace());
+		}
+	}
+
+	/******************* TC_6_03_06 ******************/
+	public void Verify_Applybutton_Entering_Valid_Promocode() {
+
+		String ValidPromocode = null;
+
+		try {
+			ValidPromocode = browser.getdata("ValidPromocode");
+
+			browser.sendkeys(CustomerModule.Customer_Promocode_Textbox, ValidPromocode);
+			browser.click(CustomerModule.Customer_Promocode_Apply_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Errormessage)) {
+				browser.reportscomtep("Passed",
+						"Verify Promocode Errormessage is displayed",
+						" Promocode Errormessage Should be displayed after click on Apply button",
+						" Promocode Errormessage is displayed after click on Apply button");
+
+			} else {
+				browser.reportscomtep("Failed",
+						"Verify Promocode Errormessage is displayed after click on Apply button ",
+						" Promocode Errormessage Should be displayed after click on Apply button",
+						" Promocode Errormessage is displayed after click on Apply button");
+
+			}
+		} catch (Exception e) {
+			System.out.println("Exception: " + e.getStackTrace());
+		}
+	}
+
+		/***************
+		Scenario: Customer visits a Business/Professional's Business page by clicking on Book Me button in Search Results page
+		 ********/
+
+		public void ClickBookMeButton_Verify_business_Page() {
+			try {
+				//browser.click(CustomerModule.Customer_Search_Button);
+				if (browser.elementisdisplayed(CustomerModule.Customer_BookMe_Text)) {
+					browser.reportscomtep("Passed", "Verify Book Me Text is  displayed",
+							"Book Me button  should be displayed", "Book Me button   displayed");
+					browser.click(CustomerModule.Customer_BookMe_Text);
+					
+					if (browser.elementisdisplayed(CustomerModule.Customer_Services_Tab)) {
+						browser.reportscomtep("passed", "Click on Bookme button and Verify Business page is displayed", "Business page  should be displayed",
+								"Businesspage is displayed");	
+					
+					}else{
+						browser.reportscomtep("Failed", "Click on Bookme button and Verify Business page is displayed", "Business page  should be displayed",
+								"Businesspage is not displayed");
+					
+					}
+					
+				} else {
+					browser.reportscomtep("Failed", "Verify Book Me Text is  displayed", "Book Me Tex  should be displayed",
+							"Book Me Tex  not displayed");
+				}
+			} catch (Exception e) {
+				System.out.println("Exception: " + e);
+			}
+		}
 		
 				
 }

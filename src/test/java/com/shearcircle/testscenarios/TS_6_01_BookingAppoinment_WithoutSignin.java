@@ -100,7 +100,8 @@ public class TS_6_01_BookingAppoinment_WithoutSignin extends StaticVariables {
 	@Test(priority=60109, description="TC_6_1_07 Check whether the cart popup updates when the services are added/removed")
 	public void TC_6_1_07_check_CartPopup_updates_services_added_removed() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the cart popup updates when the services are added/removed");
-		CR.Check_cartpopupupdates_when_services_added_or_removed();			
+		CR.Check_cartpopupupdates_when_services_added_or_removed();	
+		CR.check_BookNow_Button();
 	}
 	
 	@Test(priority=60110, description="TC_6_1_08 Check whether the Staff image is clickable")
@@ -122,6 +123,7 @@ public class TS_6_01_BookingAppoinment_WithoutSignin extends StaticVariables {
 	@Test(priority=60113, description="TC_6_1_11 Check whether the timeslots are clickable")
 	public void TC_6_1_11_check_TheTimeslotsAre_Clickable() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the timeslots are clickable");
+		CR.Check_Staffimage_clickable();
 		CR.check_DetailsIn_ChooseDateAndTime_Page_Fieldvalidation();
 		CR.check_TheTimeslotsAre_Clickable();			
 	}

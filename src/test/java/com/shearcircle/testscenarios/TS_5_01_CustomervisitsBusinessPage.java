@@ -67,13 +67,8 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 	public void TC_5_1_01_Customer_InvokeBusinesspage() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Invoke the Business Page and verify Business page elements");
 		CR.Verify_business_Page_Field_Validation();			
-	}
+	}	
 	
-	/*@Test(priority=50104, description="TC_6_1_02 Check the Cart popup for single service")
-	public void TC_5_1_01_Customer_CartPopup_ForSingleService() throws IOException {			
-		ExtentTestManager.getTest().setDescription("Check the Cart popup for single service");
-		CR.check_CartPopup_ForSingleService();			
-	}*/
 	
 	@Test(priority=50104, description="TC_5_1_02 Check Add to Favorite button without login as Customer")
 	public void TC_5_1_02_Customer_CheckAddtoFavoritbuttonwithoutloginasCustomer() throws IOException {			
@@ -93,7 +88,8 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 	
 	@Test(priority=50107, description="TC_5_1_03 Check Add to Favorite button after login as Customer")
 	public void TC_5_1_03_Customer_CheckAddtoFavoritbuttonAfterloginasCustomer() throws IOException {			
-		ExtentTestManager.getTest().setDescription("Check Add to Favorite button without login as Customer");		
+		ExtentTestManager.getTest().setDescription("Check Add to Favorite button without login as Customer");
+		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_SearchIcon","");
 		CR.Verify_AddtoFavourite_Button_with_Login_Customer();			
 	}
 	
@@ -103,7 +99,8 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 	}
 	@Test(priority=50109, description="TC_5_1_04 Check whether Marked as Favorite button is displayed after logout")
 	public void TC_5_1_04_Customer_CheckMarkedasFavoritebutton_displayedafterlogout() throws IOException {			
-		ExtentTestManager.getTest().setDescription("Check whether Marked as Favorite button is displayed after logout");		
+		ExtentTestManager.getTest().setDescription("Check whether Marked as Favorite button is displayed after logout");
+		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_SearchIcon","");
 		CR.Verify_AddtoFavourite_Button_after_Logout();			
 	}
 	
@@ -115,7 +112,8 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 	
 	@Test(priority=50111, description="TC_5_1_05 Check whether the salon can be removed from Favorites")
 	public void TC_5_1_05_Customer_Checksalon_removedfromFavorites() throws IOException {			
-		ExtentTestManager.getTest().setDescription("Check whether the salon can be removed from Favorites");		
+		ExtentTestManager.getTest().setDescription("Check whether the salon can be removed from Favorites");	
+		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_SearchIcon","");
 		CR.Verify_Salon_Removed_From_Favourites();			
 	}
 	

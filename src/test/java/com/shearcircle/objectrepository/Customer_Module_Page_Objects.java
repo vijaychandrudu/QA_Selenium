@@ -1230,7 +1230,7 @@ public class Customer_Module_Page_Objects{
     @FindBy(xpath="//h2[text()='Booking Summary']")
 	public WebElement Customer_Bookingsummery_Header;
 
-    @FindBy(xpath="//*[@id='myModalLabel']")
+    @FindBy(xpath="//div[@id='promotionsModal']//*[@id='myModalLabel']")
 	public WebElement Customer_Promocode_Page_Header;			
 			    
 	@FindBy(xpath="//*[@id='promocode']")
@@ -1238,6 +1238,12 @@ public class Customer_Module_Page_Objects{
 		    
 	@FindBy(xpath="//*[@id='promotionsModal']//div/form/div/button")
 	public WebElement Customer_Promocode_Apply_Button;
+	
+	@FindBy(xpath="//*[@id='scrollRequired']/div[@ng-repeat='code in cart.promotions']")
+	public List<WebElement> Customer_Promocodes_List;
+	
+	@FindBy(xpath="//*[@id='scrollRequired']//button/span[text()='Select']")
+	public List<WebElement> Customer_Promocode_Select_Button_list;
 	
 	@FindBy(xpath="//*[@id='container_pin']//tr/th/a[text()='Have a promocode?']")
 	public WebElement Customer_Promocode_Link;

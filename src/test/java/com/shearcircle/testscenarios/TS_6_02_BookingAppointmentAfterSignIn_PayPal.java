@@ -57,16 +57,22 @@ public class TS_6_02_BookingAppointmentAfterSignIn_PayPal extends StaticVariable
 		CR.ShearCircle_LaunchApplication();			
 	}
 	
-	@Test(priority=60202, description="Customer clicks Login Button " )
-	public void TC_3_4_2_Customer_clicks_JoinOurCircleButton() throws IOException {	
-		ExtentTestManager.getTest().setDescription("Customer clicks JoinOurCircle Button.");
-		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");			
+	@Test(priority=60202, description="Customer clicks Login Button and Login with registered Username(Email id) & Password . " )
+	public void TC_6_2_01_Customer_clicks_JoinOurCircleButton() throws IOException {	
+		ExtentTestManager.getTest().setDescription("Customer clicks Login Button and Login with registered Username(Email id) & Password . ");
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_Login");	
+		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");
 	}
 	
-	@Test(priority=60203, description="Customer Login with registered Username(Email id) & Password " )
-	public void TC_3_4_3_Customer_CheckRegisterWithShearCirclepage()throws IOException {	
-		ExtentTestManager.getTest().setDescription("Customer Login with registered Username(Email id) & Password .");
-		CR.ShearCircle_Customer_Login_valid_invalid_combination("Enter_Valid_EmailandPassword");			
+	@Test(priority=60203, description="TC_6_1_01, TC_6_04, TC_6_08, TC_6_13 Follow the booking process up to the Booking Summary page")
+	public void TC_6_2_02_Customer_check_BookNow_Button() throws IOException {			
+		ExtentTestManager.getTest().setDescription("Follow the booking process up to the Booking Summary page");
+		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_SearchIcon","");
+		CR.ClickBookMeButton_Verify_business_Page();
+		CR.check_BookNow_Button();
+		CR.Check_Staffimage_clickable();
+		CR.check_TheTimeslotsAre_Clickable();
+		CR.check_click_OnYes_ProceedTo_BookButton_Navigate_ToNextPage();
 	}
 	
 	@Test(priority=60208, description="Check whether you are redirected to PayPal page when you click confirm after selecting PayPal option " )
