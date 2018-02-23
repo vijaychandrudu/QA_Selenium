@@ -4847,8 +4847,8 @@ public void check_MultipleRatings_Filter() {
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Reviews_Tab, "REVIEWS  Tab");
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Inquiry_Tab, "INQUIRY  Tab");
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Promotions_Tab, "PROMOTIONS  Tab");
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Videos_Tab, " VIDEOS  Tab");
-					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Photos_Tab, " PHOTOS  Tab");
+					//browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Videos_Tab, " VIDEOS  Tab");
+					//browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Photos_Tab, " PHOTOS  Tab");
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_ContactUs_Tab, "CONTACT US Tab");
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Jobs_Tab, "JOBS  Tab");
 					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_AddtoFavorite_button,
@@ -6245,23 +6245,27 @@ public void check_MultipleRatings_Filter() {
 		
 		public void check_DetailsIn_ChooseDateAndTime_Page_Fieldvalidation(){
 			try{
+				boolean timeslotsavailability = false;
 				if(browser.elementisdisplayed(CustomerModule.Professional_ChooseDateAndTime_Page)){
 					browser.reportscomtep("Passed", "Verify Choose Date and Time Page is displayed ",
 							"Choose Date and Time Page should be displayed", "Choose Date and Time Page displayed");
 					browser.Verify_elementisdisplayed_Report(CustomerModule.ChooseCalendeandTime_Calendar, "Calendar");
 					browser.Verify_elementisdisplayed_Report(CustomerModule.ChooseCalendeandTime_AvailableTimesSlots_text, "Available Time Slots header");
 					
-					if(browser.elementisdisplayed(CustomerModule.ChooseCalendeandTime_AvailableNoTimesSlots)){
-						for(WebElement dayelement:CustomerModule.ChooseCalendeandTime_CalendarDates_List){
-							dayelement.click();
-							Thread.sleep(5000);
-							if(CustomerModule.ChooseCalendeandTime_AvailableTimeslots_list.size()>0){
-								break;
+					if(CustomerModule.ChooseCalendeandTime_AvailableTimeslots_list.size()>0){
+						timeslotsavailability = true;
+					}else if(browser.elementisdisplayed(CustomerModule.ChooseCalendeandTime_AvailableNoTimesSlots)){
+							for(WebElement dayelement:CustomerModule.ChooseCalendeandTime_CalendarDates_List){
+								dayelement.click();
+								Thread.sleep(5000);
+								if(CustomerModule.ChooseCalendeandTime_AvailableTimeslots_list.size()>0){
+									timeslotsavailability = true;
+									break;
+								}
 							}
-						}
 					}
 					
-					if(CustomerModule.ChooseCalendeandTime_AvailableTimeslots_list.size()>0){
+					if(timeslotsavailability){
 							browser.reportscomtep("Passed", "Verify Available Timeslots are displayed",
 									"Available Times Slots should be displayed", "Available Times Slots displayed");							
 					}else if(browser.elementisdisplayed(CustomerModule.ChooseCalendeandTime_AvailableNoTimesSlots)) {
@@ -6313,27 +6317,49 @@ public void check_MultipleRatings_Filter() {
 		
 		public void check_TheTimeslotsAre_Clickable() {
 			try {
-				
-				browser.click(CustomerModule.ChooseCalendeandTime_AvailableTimeslots_list.get(0));
-				if (browser.elementisdisplayed(CustomerModule.ChooseDateAndTime_SelectedDateTime)) {
-					browser.reportscomtep("Passed",
-							"Click on any available timeslot and Verify confiramtion popup is displayed whether to proceed with the selected date and time",
-							"confiramtion popup should be displayed whether to proceed with the selected date and time",
-							"confiramtion popup displayed whether to proceed with the selected date and time");
-					String selected_datetime = browser.getelementtext(CustomerModule.ChooseDateAndTime_SelectedDateTime);
-					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.ChooseDateAndTime_SelectedDateTime, selected_datetime);
-					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.ChooseDateAndTime_Popup_CancelButton, "CancelButton");
-					browser.Verify_elementisdisplayed_Report(
-							CustomerModule.ChooseDateAndTime_Popup_ProceedToBookButton,
-							"Yes,Proceed to BookButton");
-				} else {
-					browser.reportscomtep("Failed",
-							"Click on any available timeslot and Verify confiramtion popup is displayed whether to proceed with the selected date and time",
-							"confiramtion popup should be displayed whether to proceed with the selected date and time",
-							"confiramtion popup not displayed whether to proceed with the selected date and time");
+				boolean timeslotsavailability = false;
+				if(CustomerModule.ChooseCalendeandTime_AvailableTimeslots_list.size()>0){
+					timeslotsavailability = true;
+				}else if(browser.elementisdisplayed(CustomerModule.ChooseCalendeandTime_AvailableNoTimesSlots)){
+					for(WebElement dayelement:CustomerModule.ChooseCalendeandTime_CalendarDates_List){
+						dayelement.click();
+						Thread.sleep(5000);
+						if(CustomerModule.ChooseCalendeandTime_AvailableTimeslots_list.size()>0){
+							timeslotsavailability = true;
+							break;
+						}
+					}
 				}
+				
+				if(timeslotsavailability){
+					browser.reportscomtep("Passed", "Verify Available Timeslots are displayed",
+							"Available Times Slots should be displayed", "Available Times Slots displayed");	
+					browser.click(CustomerModule.ChooseCalendeandTime_AvailableTimeslots_list.get(0));
+					if (browser.elementisdisplayed(CustomerModule.ChooseDateAndTime_SelectedDateTime)) {
+						browser.reportscomtep("Passed",
+								"Click on any available timeslot and Verify confiramtion popup is displayed whether to proceed with the selected date and time",
+								"confiramtion popup should be displayed whether to proceed with the selected date and time",
+								"confiramtion popup displayed whether to proceed with the selected date and time");
+						String selected_datetime = browser.getelementtext(CustomerModule.ChooseDateAndTime_SelectedDateTime);
+						browser.Verify_elementisdisplayed_Report(
+								CustomerModule.ChooseDateAndTime_SelectedDateTime, selected_datetime);
+						browser.Verify_elementisdisplayed_Report(
+								CustomerModule.ChooseDateAndTime_Popup_CancelButton, "CancelButton");
+						browser.Verify_elementisdisplayed_Report(
+								CustomerModule.ChooseDateAndTime_Popup_ProceedToBookButton,
+								"Yes,Proceed to BookButton");
+					} else {
+						browser.reportscomtep("Failed",
+								"Click on any available timeslot and Verify confiramtion popup is displayed whether to proceed with the selected date and time",
+								"confiramtion popup should be displayed whether to proceed with the selected date and time",
+								"confiramtion popup not displayed whether to proceed with the selected date and time");
+					}
+				}else if(browser.elementisdisplayed(CustomerModule.ChooseCalendeandTime_AvailableNoTimesSlots)) {
+					browser.reportscomtep("Passed", "Verify Available Times Slots are displayed",
+							"Available Times Slots should be displayed", "Available No Times Slots message displayed as expected If for the given date, there are no availability");
+				}
+				
+				
 			} catch (Exception e) {
 				System.out.println("Error description: " + e.getStackTrace());
 
@@ -6399,11 +6425,11 @@ public void check_MultipleRatings_Filter() {
 					browser.reportscomtep("Passed", "Verify Booking Details are Displayed",
 							"Booking Details should be Displayed", "Booking Details Displayed");
 					String[] headernames = new String[6];
-					headernames[0] = "Serial Number";
-					headernames[1] = "Service Or Product Name";
+					headernames[0] = "S.No";
+					headernames[1] = "Service/Product Name";
 					headernames[2] = "Duration";
 					headernames[3] = "Price";
-					headernames[4] = "Quantity";
+					headernames[4] = "Qty";
 					headernames[5] = "Total Price";
 					
 					
@@ -6432,14 +6458,22 @@ public void check_MultipleRatings_Filter() {
 					int j = 0 ;
 					for(WebElement tfooterheader:CustomerModule.BookingSummry_Bdetails_TablefootersHeaders){						
 						tablefooterHeadername = browser.getelementtext(tfooterheader);
-						tablefooterDatavalue = browser.getelementtext(CustomerModule.BookingSummry_Bdetails_footerTabledata.get(j));
-						if(tablefooterHeadername.equalsIgnoreCase(footerheadernames[j]) && !tablefooterDatavalue.isEmpty() ){
-							browser.reportscomtep("Passed", "Verify Booking Details "+tablefooterHeadername+" is Displayed",
-									"Booking Details should be Displayed", "Booking Details displayed as "+tablefooterHeadername+": "+tablefooterDatavalue);
-						}else{
-							browser.reportscomtep("Failed", "Verify Booking Details "+footerheadernames[j]+" is Displayed",
-									"Booking Details should be Displayed", "Booking Details "+footerheadernames[j]+" Not displayed");
+						System.out.println(tablefooterHeadername);
+						if(!tablefooterHeadername.equalsIgnoreCase(footerheadernames[2])){
+							tablefooterDatavalue = browser.getelementtext(CustomerModule.BookingSummry_Bdetails_footerTabledata.get(j));
+							if(tablefooterHeadername.equalsIgnoreCase(footerheadernames[j]) && !tablefooterDatavalue.isEmpty() ){
+								browser.reportscomtep("Passed", "Verify Booking Details "+tablefooterHeadername+" is Displayed",
+										"Booking Details should be Displayed", "Booking Details displayed as "+tablefooterHeadername+": "+tablefooterDatavalue);
+							}else{
+								browser.reportscomtep("Failed", "Verify Booking Details "+footerheadernames[j]+" is Displayed",
+										"Booking Details should be Displayed", "Booking Details "+footerheadernames[j]+" Not displayed");
+							}
+						}else if(tablefooterHeadername.equalsIgnoreCase(footerheadernames[2])){
+							browser.reportscomtep("Passed", "Verify Booking Details "+footerheadernames[2]+" Link is Displayed",
+									"Booking Details "+footerheadernames[2]+" Link should be Displayed", "Booking Details "+footerheadernames[2]+" Link displayed");
+							
 						}
+						
 						j++;
 					}
 					
@@ -6454,11 +6488,10 @@ public void check_MultipleRatings_Filter() {
 								"Date and Time");
 						
 					} else {
-						browser.reportscomtep("Failed", "Verify Please Select Payment Method is Displayed",
-								"Please Select Payment Method should be Displayed",
-								"Please Select Payment Method not Displayed");
+						browser.reportscomtep("Failed", "Verify Appointment Scheduled Time is Displayed",
+								" Appointment Scheduled Time should be Displayed", " Appointment Scheduled Time Not Displayed");
 					}
-					browser.scrollintoviewelement(CustomerModule.BookingSummary_PayByCash);
+					browser.ScrollToElementBottom(CustomerModule.BookingSummary_PayByCash);
 					String[] salonheadernames = new String[4];
 					salonheadernames[0] = "Shop Name";
 					salonheadernames[1] = "Contact Number";
@@ -6470,7 +6503,7 @@ public void check_MultipleRatings_Filter() {
 					String salonDatavalue = "";
 					for(WebElement salonheader:CustomerModule.BookingSummary_salondetails_Headers){						
 						salonHeadername = browser.getelementtext(salonheader);
-						salonDatavalue = browser.getelementtext(CustomerModule.BookingSummary_salondetails_values.get(i));
+						salonDatavalue = browser.getelementtext(CustomerModule.BookingSummary_salondetails_values.get(k));
 						if(salonHeadername.equalsIgnoreCase(salonheadernames[k])){
 							browser.reportscomtep("Passed", "Verify Salon Details "+tablefooterHeadername+" is Displayed",
 									"Salon Details should be Displayed", "Salon Details displayed as "+salonHeadername+": "+salonDatavalue);
@@ -6486,23 +6519,25 @@ public void check_MultipleRatings_Filter() {
 						browser.reportscomtep("Passed", "Verify Please Select Payment Method is Displayed",
 								"Please Select Payment Method should be Displayed",
 								"Please Select Payment Method Displayed");
-						browser.ScrollToElementBottom(CustomerModule.BookingSummary_PayByCash);
+						browser.ScrollToElementBottom(CustomerModule.BookingSummary_About_Header);
 						
-						//browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_PayPal, "Pay Pal");
+						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_PayPal, "Pay Pal");
 						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_PayByCash,
-								"Pay by cash");
-						browser.ScrollToElementBottom(CustomerModule.BookingSummary_BackButton);
-						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_BackButton,
-								"Back Button");
-						browser.scrollintoviewelement(CustomerModule.BookingSummary_ClickTo_SignIn_Link);
-						browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_ClickTo_SignIn_Link,
-								"Click to Sign in link");				
+								"Pay by cash");									
 
 					} else {
-						browser.reportscomtep("Failed", "Verify Appointment Scheduled Time is Displayed",
-								" Appointment Scheduled Time should be Displayed",
-								" Appointment Scheduled Time not Displayed");
+						browser.reportscomtep("Failed", "Verify Please Select Payment Method is Displayed",
+								"Please Select Payment Method should be Displayed",
+								"Please Select Payment Method Not Displayed");
 					}
+					
+					//browser.scrollUp(250);
+					browser.ScrollToElementBottom(CustomerModule.BookingSummary_BackButton);
+					browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_BackButton,
+							"Back Button");
+					//browser.scrollintoviewelement(CustomerModule.BookingSummary_ClickTo_SignIn_Link);
+					browser.Verify_elementisdisplayed_Report(CustomerModule.BookingSummary_ClickTo_SignIn_Link,
+							"Click to Sign in link");	
 
 				} else {
 					browser.reportscomtep("Failed", "Verify Booking Details are Displayed",
@@ -6518,7 +6553,7 @@ public void check_MultipleRatings_Filter() {
 		/*****TC_6_1_15	Check whether the booking can be done without sign in****/
 		public void check_BookingCanBe_DoneWithout_SignIn() {
 			try {
-				browser.ScrollToElementBottom(CustomerModule.BookingSummary_ConfirmBooking_button);
+				browser.ScrollToElementBottom(CustomerModule.BookingSummary_About_Header);
 				browser.click(CustomerModule.BookingSummary_PayByCash_radiobutton);				
 				browser.click(CustomerModule.BookingSummary_ConfirmBooking_button);
 				if (browser.elementisdisplayed(CustomerModule.BookingSummary_Login_Text)) {
@@ -6545,7 +6580,8 @@ public void check_MultipleRatings_Filter() {
 		
 		public void check_ClickTo_SignIn_Link_IsClickable() {
 			try {
-				browser.scrollintoviewelement(CustomerModule.BookingSummary_ClickTo_SignIn_Link);
+				browser.ScrollToElementBottom(CustomerModule.BookingSummary_ClickTo_SignIn_Link);
+				//browser.scrollUp(250);
 				browser.click(CustomerModule.BookingSummary_ClickTo_SignIn_Link);
 				
 				if (browser.elementisdisplayed(CustomerModule.BookingSummary_ForgotPassword_Link)
@@ -6631,7 +6667,7 @@ public void check_MultipleRatings_Filter() {
 				browser.sendkeys(CustomerModule.BookingSummary_LoginPopup_Username_TextBox, Subscriber_UserName);
 				browser.sendkeys(CustomerModule.BookingSummary_LoginPopup_Password_TextBox, Subscriber_Password);
 				browser.click(CustomerModule.BookingSummary_LoginPopup_SignIn_Link);
-				if (browser.elementisdisplayed(CustomerModule.BookingSummary_LPopup_Invalidcredentials_Message)) {
+				if (browser.elementisdisplayed(CustomerModule.Professional_BookingSummary_Page)) {
 					browser.reportscomtep("Passed",
 							"Enter Subscriber Credentials and Click on Sign In Link button,verify login fail redirects to the Booking Summary page is diaplayed",
 							"login fail,redirects to the Booking Summary page should be diaplayed",
@@ -6654,6 +6690,9 @@ public void check_MultipleRatings_Filter() {
 			String Unregistered_UserName = "";
 			String Unregistered_Password = "";
 			try {
+				browser.ScrollToElementBottom(CustomerModule.BookingSummary_ClickTo_SignIn_Link);
+				//browser.scrollUp(250);
+				browser.click(CustomerModule.BookingSummary_ClickTo_SignIn_Link);
 				Unregistered_UserName = browser.getdata("Unregistered_UserName");
 				Unregistered_Password = browser.getdata("Unregistered_Password");
 				browser.sendkeys(CustomerModule.BookingSummary_LoginPopup_Username_TextBox, Unregistered_UserName);
@@ -6710,7 +6749,8 @@ public void check_MultipleRatings_Filter() {
 		
 		public void check_Booking_Confirmed_AfterSignIn_WithPayByCashOption() {
 			try {
-				browser.ScrollToXY(0, 250);
+				//browser.ScrollToXY(0, 250);
+				browser.ScrollToElementBottom(CustomerModule.BookingSummary_About_Header);
 				browser.click(CustomerModule.BookingSummary_PayByCash);
 				browser.scrollintoviewelement(CustomerModule.BookingSummary_ConfirmBooking_Link);
 				browser.click(CustomerModule.BookingSummary_ConfirmBooking_Link);
@@ -6775,10 +6815,11 @@ public void check_MultipleRatings_Filter() {
 		
 		public void check_PrintButton_IsFunctioning() {
 			try {
-				browser.scrollintoviewelement(CustomerModule.ViewBookingSummary_Print_Button);
+				browser.ScrollToElementBottom(CustomerModule.ViewBookingSummary_Print_Button);
 				browser.click(CustomerModule.ViewBookingSummary_Print_Button);
 				browser.waitForNewWindowAndSwitchToIt(driver);
-				browser.wait(2000);
+				Thread.sleep(4000);
+				//browser.wait(2000);
 				if (browser.elementisdisplayed(CustomerModule.ViewBookingSummary_Printable_PDF)) {
 					browser.reportscomtep("Passed",
 							"Click on Print button and verify Opens printable PDF viewer in new tab is displayed",
@@ -6790,6 +6831,7 @@ public void check_MultipleRatings_Filter() {
 							"Opens printable PDF viewer in new tab should be displayed",
 							"Opens printable PDF viewer in new tab not displayed");
 				}
+				driver.switchTo().window(defaultWindowHandle);
 			} catch (Exception e) {
 				System.out.println("Error description: " + e.getStackTrace());
 
@@ -6866,6 +6908,14 @@ public void check_MultipleRatings_Filter() {
 					browser.reportscomtep("Passed", "Verify Paypal page is  displayed after click on confirmbooking button",
 											"Paypal page should be displayed after click on confirmbooking button", "Paypal page is  displayed after click on confirmbooking button");
 					browser.click(CustomerModule.Customer_Paypal_Amount_Arrow);
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Paypal_individualitemname_list.get(0), "Individual item name");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Paypal_individualitemprice_list.get(0), "Individual item price");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Paypal_Discount_title, "Discount title");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Paypal_Discount_price, "Discount price");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Paypal_ItemTotal_title, "ItemTotal title");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Paypal_ItemTotal_price, "ItemTotal price");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Paypal_Subtotal_title, "Subtotal title");
+					browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Paypal_Subtotal_price, "Subtotal price");
 				 } else {
 			          browser.reportscomtep("Failed", "Verify Paypal page is  displayed after click on confirmbooking button",
 					      "Paypal page should be displayed after click on confirmbooking button", "Paypal page is not displayed after click on confirmbooking button");
@@ -6907,97 +6957,118 @@ public void check_MultipleRatings_Filter() {
 	           }	
 		/*******************TC_6_02-06	******************/
 		public void Verify_Gotohome_Link() {
-			try {
-		
-			
+		try {
+
 			if (browser.elementisdisplayed(CustomerModule.Customer_Paypal_Gotohome_Link)) {
-				browser.reportscomtep("Passed", "Verify Gotohome Link is  displayed after click on Cancel and return link",
-										"Gotohome Link should be  displayed after click on Cancel and return link", "Gotohome Link is  displayed after click on Cancel and return link");
-			
+				browser.reportscomtep("Passed",
+						"Verify Gotohome Link is  displayed after click on Cancel and return link",
+						"Gotohome Link should be  displayed after click on Cancel and return link",
+						"Gotohome Link is  displayed after click on Cancel and return link");
+
 				browser.click(CustomerModule.Customer_Paypal_Gotohome_Link);
-				if (browser.elementisdisplayed(CustomerModule.Customer_Bookappoinments_Withprofessionals_Header)) {
-					browser.reportscomtep("Passed", "Verify Bookappoinments Withprofessionals page is displayed after click on Gotohome link",
-											"Bookappoinments Withprofessionals page should be displayed after click on Gotohome link", "Bookappoinments Withprofessionals page is displayed after click on Gotohome link");
-				
+				if (browser.elementisdisplayed(CustomerModule.Home_H1_Header)) {
+					browser.reportscomtep("Passed",
+							"Verify Bookappoinments Withprofessionals page is displayed after click on Gotohome link",
+							"Bookappoinments Withprofessionals page should be displayed after click on Gotohome link",
+							"Bookappoinments Withprofessionals page is displayed after click on Gotohome link");
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Verify Bookappoinments Withprofessionals page is displayed after click on Gotohome link",
+							"Bookappoinments Withprofessionals page should be displayed after click on Gotohome link",
+							"Bookappoinments Withprofessionals page is not displayed after click on Gotohome link");
+				}
+
 			} else {
-				browser.reportscomtep("Failed", "Verify Bookappoinments Withprofessionals page is displayed after click on Gotohome link",
-						"Bookappoinments Withprofessionals page should be displayed after click on Gotohome link", "Bookappoinments Withprofessionals page is not displayed after click on Gotohome link");
-			}	
-			
-		} else {
-			browser.reportscomtep("Failed", "Verify Cancelandreturn link is  displayed on Paypal checkout page",
-					"Cancelandreturn link should be  displayed on Paypal checkout page", "Cancelandreturn link is not displayed on Paypal checkout page");
+				browser.reportscomtep("Failed", "Verify Cancelandreturn link is  displayed on Paypal checkout page",
+						"Cancelandreturn link should be  displayed on Paypal checkout page",
+						"Cancelandreturn link is not displayed on Paypal checkout page");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error descreption : " + e.getStackTrace());
 		}
-			
-	  } catch (Exception e) {
-	System.out.println("Error descreption : " + e.getStackTrace());
-	       }
 	     }
 		/*******************TC_6_02_07	******************/
 		public void Verify_Appoinment_Status_After_Cancellation() {
-			try {
-		
-				browser.click(CustomerModule.Customer_Mydashboard_MyAccount_Button);
-				if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
-					
-					browser.reportscomtep("Passed", "Verify Customer Dashboard header is displayed after click on Myaccount button",
-							"Customer Dashboard header should be displayed after click on Myaccount button", "Customer Dashboard header is displayed after click on Myaccount button");
-					
-					browser.click(CustomerModule.Customer_MyAppoinments_Link);
-					if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
-						
-						browser.reportscomtep("Passed", "Verify My Appoinment header is displayed after click on MyAppoinment button",
-								"My Appoinment header should be displayed after click on MyAppoinment button", "My Appoinment header is displayed after click on MyAppoinment button");
-						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Mydashboard_Myappoinments_status_cancelled,
-								"Appoinment Status Cancelled");
-						browser.Verify_elementisdisplayed_Report(CustomerModule.Customer_Myappoinments_Payment_Status_Cancelled,
-								"Payment status Cancelled");
-			} else {
-				browser.reportscomtep("Failed", "Verify My Appoinment header is displayed after click on MyAppoinment button",
-						"My Appoinment header should be displayed after click on MyAppoinment button", "My Appoinment header is not displayed after click on MyAppoinment button");
-			}	
-			
-		} else {
-			browser.reportscomtep("Failed",  "Verify Customer Dashboard header is displayed after click on Myaccount button",
-					"Customer Dashboard header should be displayed after click on Myaccount button", "Customer Dashboard header isnot displayed after click on Myaccount button");
+		try {
 
+			browser.click(CustomerModule.Customer_Mydashboard_MyAccount_Button);
+			if (browser.elementisdisplayed(CustomerModule.Customer_Mydashboard_header)) {
+
+				browser.reportscomtep("Passed",
+						"Verify Customer Dashboard header is displayed after click on Myaccount button",
+						"Customer Dashboard header should be displayed after click on Myaccount button",
+						"Customer Dashboard header is displayed after click on Myaccount button");
+
+				browser.click(CustomerModule.Customer_MyAppoinments_Link);
+				if (browser.elementisdisplayed(CustomerModule.Customer_MyAppoinments_Header)) {
+
+					browser.reportscomtep("Passed",
+							"Verify My Appoinment header is displayed after click on MyAppoinment button",
+							"My Appoinment header should be displayed after click on MyAppoinment button",
+							"My Appoinment header is displayed after click on MyAppoinment button");
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Mydashboard_Myappoinments_status_cancelled,
+							"Appoinment Status Cancelled");
+					browser.Verify_elementisdisplayed_Report(
+							CustomerModule.Customer_Myappoinments_Payment_Status_Cancelled, "Payment status Cancelled");
+				} else {
+					browser.reportscomtep("Failed",
+							"Verify My Appoinment header is displayed after click on MyAppoinment button",
+							"My Appoinment header should be displayed after click on MyAppoinment button",
+							"My Appoinment header is not displayed after click on MyAppoinment button");
+				}
+
+			} else {
+				browser.reportscomtep("Failed",
+						"Verify Customer Dashboard header is displayed after click on Myaccount button",
+						"Customer Dashboard header should be displayed after click on Myaccount button",
+						"Customer Dashboard header isnot displayed after click on Myaccount button");
+
+			}
+
+		} catch (Exception e) {
+			System.out.println("Exception: " + e.getStackTrace());
 		}
-			
-	  } catch (Exception e) {
-		  System.out.println("Exception: " + e.getStackTrace());
-	       }
 	     }
 
 		/*******************TC_6_03_02	******************/ 
 
 		public void Verify_Promocode_Linkis_Clickable() {
-			try {
-		
-				  if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Link)) {
-					
-					browser.reportscomtep("Passed", "Verify Haveapromocode? Link  is displayed in booking Summary page",
-							"Haveapromocode? Link Should be displayed in booking Summary page", "Haveapromocode? Link is displayed in booking Summary page");
-					
-					browser.click(CustomerModule.Customer_Promocode_Link);
-					if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Page_Header)) {
-						
-						browser.reportscomtep("Passed", "Verify Enter Promocode page is displayed after click on Haveapromocode? Link ",
-								"Enter Promocode page Should be displayed after click on Haveapromocode? Link", "Enter Promocode page is displayed after click on Haveapromocode? Link");
-						
-			} else {
-				browser.reportscomtep("Failed", "Verify Enter Promocode page is displayed after click on Haveapromocode? Link ",
-						"Enter Promocode page Should be displayed after click on Haveapromocode? Link", "Enter Promocode page is not displayed after click on Haveapromocode? Link");
-			}	
-			
-		} else {
-			browser.reportscomtep("Failed",  "Verify Haveapromocode? Link  is displayed in booking Summary page",
-					"Haveapromocode? Link Should be displayed in booking Summary page", "Haveapromocode? Link is not displayed in booking Summary page");
+		try {
 
+			if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Link)) {
+
+				browser.reportscomtep("Passed", "Verify Haveapromocode? Link  is displayed in booking Summary page",
+						"Haveapromocode? Link Should be displayed in booking Summary page",
+						"Haveapromocode? Link is displayed in booking Summary page");
+
+				browser.click(CustomerModule.Customer_Promocode_Link);
+				if (browser.elementisdisplayed(CustomerModule.Customer_Promocode_Page_Header)) {
+
+					browser.reportscomtep("Passed",
+							"Verify Enter Promocode page is displayed after click on Haveapromocode? Link ",
+							"Enter Promocode page Should be displayed after click on Haveapromocode? Link",
+							"Enter Promocode page is displayed after click on Haveapromocode? Link");
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Verify Enter Promocode page is displayed after click on Haveapromocode? Link ",
+							"Enter Promocode page Should be displayed after click on Haveapromocode? Link",
+							"Enter Promocode page is not displayed after click on Haveapromocode? Link");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Verify Haveapromocode? Link  is displayed in booking Summary page",
+						"Haveapromocode? Link Should be displayed in booking Summary page",
+						"Haveapromocode? Link is not displayed in booking Summary page");
+
+			}
+
+		} catch (Exception e) {
+			System.out.println("Exception: " + e.getStackTrace());
 		}
-			
-	  } catch (Exception e) {
-		  System.out.println("Exception: " + e.getStackTrace());
-	       }
 	     }
 
 		/*******************TC_6_03_03	******************/

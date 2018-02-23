@@ -95,7 +95,14 @@ public class TS_6_03_ApplyPromocode extends StaticVariables {
 	@Test(priority=60307, description="Check when Apply button is clicked after entering valid promocode" )
 	public void TC_6_03_06_Verify_Applybutton_Entering_Valid_Promocode()throws IOException {	
 		ExtentTestManager.getTest().setDescription("Check when Apply button is clicked after entering valid promocode");
+		CR.Verify_Promocode_Linkis_Clickable();	
 		CR.Verify_Applybutton_Entering_Valid_Promocode();			
+	}
+	
+	@Test(priority=60308)
+	public void logOut(){
+		CR.Customer_JoinOurCircle_LogOutpage();
+		//driver.quit();
 	}
 	
 	}

@@ -200,7 +200,13 @@ public class TS_6_01_BookingAppoinment_WithoutSignin extends StaticVariables {
 	@Test(priority=60126, description="TC_6_1_24_click on print button")
 	public void TC_6_1_24_Customer_verify_DetailsInViewBooking_SummaryPage_Fieldvalidations() throws IOException {			
 		ExtentTestManager.getTest().setDescription("click on print button");
-		CR.check_PrintButton_IsFunctioning();	
+		CR.check_PrintButton_IsFunctioning();
 		
+	}
+	
+	@Test(priority=60127)
+	public void logOut(){
+		CR.Customer_JoinOurCircle_LogOutpage();
+		//driver.quit();
 	}
 }

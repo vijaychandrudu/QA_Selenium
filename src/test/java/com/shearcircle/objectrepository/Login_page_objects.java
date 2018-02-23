@@ -8,7 +8,8 @@ public class Login_page_objects {
 	@FindBy(xpath="//div/div[1]/a/img")
     public WebElement Home_ShearCircle_Image;
 	
-	@FindBy(xpath="//*[@id='sub_content']/div/div/h1[text()='Book Appointments with Professionals Near You']")
+	//@FindBy(xpath="//*[@id='sub_content']/div/div/h1[text()='Book Appointments with Professionals Near You']")
+	@FindBy(xpath="//h2[text()='Book ']/span/parent::h2")
     public WebElement Home_H1_Header;
 	
 	@FindBy(xpath="//*[contains(@id,'navbar-collapse')]/span/a[text()='Login']")

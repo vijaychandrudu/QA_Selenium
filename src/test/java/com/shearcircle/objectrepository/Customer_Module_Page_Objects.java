@@ -13,7 +13,8 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//div/div[1]/a/img")
     public WebElement Home_ShearCircle_Image;
 	
-	@FindBy(xpath="//*[@id='sub_content']/div/div/h1[text()='Book Appointments with Professionals Near You']")
+	//@FindBy(xpath="//*[@id='sub_content']/div/div/h1[text()='Book Appointments with Professionals Near You']")
+	@FindBy(xpath="//h2[text()='Book ']/span/parent::h2")
     public WebElement Home_H1_Header;
 	
 	@FindBy(xpath="//*[contains(@id,'navbar-collapse')]/span/a[text()='Login']")
@@ -38,13 +39,16 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[@id='navbar-collapse-1']/ul/li/a[text()='Pricing']")
     public WebElement home_Pricing_Link;
 	
-	@FindBy(xpath="//*[@id='sub_content']//input[@name='q']")
+	//@FindBy(xpath="//*[@id='sub_content']//input[@name='q']")
+	@FindBy(xpath="//*[@id='findsalonspaprofessional']")
     public WebElement home_FindSalon_Spa_Professionals_Textbox;
 	
-	@FindBy(xpath="//*[@id='sub_content']//input[@name='loc']")
+	//@FindBy(xpath="//*[@id='sub_content']//input[@name='loc']")
+	@FindBy(xpath="//*[@id='findzipcodecitystate']")
     public WebElement home_Zip_City_State_Textbox;
 	
-	@FindBy(xpath="//*[@id='sub_content']//input[@value='Locate']")
+	//@FindBy(xpath="//*[@id='sub_content']//input[@value='Locate']")
+	@FindBy(xpath="//button[text()='Locate']")
     public WebElement home_Locate_Button;	
 	
 	@FindBy(xpath="//*[@id='sub_content']/h1[contains(text(),'results for your search criteria')]")
@@ -1133,6 +1137,11 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//*[text()='Confirm Booking']")
 	public WebElement BookingSummary_ConfirmBooking_button;	
 	
+	@FindBy(xpath="//h3[text()='About']")
+	public WebElement BookingSummary_About_Header;	
+	
+	
+	
 	/***TC_6_1_15*/
 	
 	@FindBy(xpath="//*[@id='myModal']//*[@id='myModalLabel']")
@@ -1212,6 +1221,31 @@ public class Customer_Module_Page_Objects{
     
     @FindBy(xpath="//*[@id='transactionCart']/span[@class='arrow ng-scope']")
 	public WebElement Customer_Paypal_Amount_Arrow;
+    
+    @FindBy(xpath="//*[@id='transctionCartDetails']//ul[@class='detail-items ng-scope']/li/div/span[contains(@class,'itemName')]")
+	public List<WebElement> Customer_Paypal_individualitemname_list;
+    
+    @FindBy(xpath="//*[@id='transctionCartDetails']//ul[@class='detail-items ng-scope']/li/span[@class='itemPrice']")
+   	public List<WebElement> Customer_Paypal_individualitemprice_list;
+    
+    @FindBy(xpath="//*[@id='transctionCartDetails']//ul[@class='detail-items ng-scope']/li//span[@title='Discount ( )']")
+   	public WebElement Customer_Paypal_Discount_title;
+    
+    @FindBy(xpath="//li//span[@title='Discount ( )']/parent::div/following-sibling::span[@class='itemPrice']")
+   	public WebElement Customer_Paypal_Discount_price; 
+    
+    @FindBy(xpath="//*[@id='transctionCartDetails']//div/span[text()='Subtotal']")
+   	public WebElement Customer_Paypal_Subtotal_title;
+    
+    @FindBy(xpath="//*[@id='transctionCartDetails']//div/span[text()='Subtotal']/following-sibling::span[@class='itemPrice']")
+   	public WebElement Customer_Paypal_Subtotal_price; 
+    
+    @FindBy(xpath="//*[@id='transctionCartDetails']//span[text()='Item total']")
+   	public WebElement Customer_Paypal_ItemTotal_title;
+    
+    @FindBy(xpath="//*[@id='transctionCartDetails']//span[text()='Item total']/following-sibling::span[@class='itemPrice']")
+   	public WebElement Customer_Paypal_ItemTotal_price;
+    
     @FindBy(xpath="//*[@id='navbar-collapse-1']/span/a[text()='Login']")
 	public WebElement Customer_Login_Button;
     

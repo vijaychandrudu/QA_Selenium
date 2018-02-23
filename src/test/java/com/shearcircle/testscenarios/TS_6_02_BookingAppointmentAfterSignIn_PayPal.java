@@ -102,6 +102,11 @@ public class TS_6_02_BookingAppointmentAfterSignIn_PayPal extends StaticVariable
 		ExtentTestManager.getTest().setDescription("Check the appointment status after Cancelling PayPal transaction");
 		CR.Verify_Appoinment_Status_After_Cancellation();			
 	}
+	@Test(priority=60213)
+	public void logOut(){
+		CR.Customer_JoinOurCircle_LogOutpage();
+		//driver.quit();
+	}
 	
 	}
 
