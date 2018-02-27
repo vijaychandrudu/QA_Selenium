@@ -46,10 +46,7 @@ public class TS_6_03_ApplyPromocode extends StaticVariables {
 		Thread.sleep(1000);
 	}
 		
-	/*@AfterClass
-	public void CloseDriver(){		
-		driver.quit();
-	}*/
+	
 	
 	@Test(priority=60301, description="Customer visits ShearCircle page" )
 	public void Customer_visitsShearCircle() throws IOException {	
