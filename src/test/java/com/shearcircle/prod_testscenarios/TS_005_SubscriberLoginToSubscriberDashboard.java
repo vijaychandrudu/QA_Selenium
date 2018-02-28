@@ -2,6 +2,7 @@ package com.shearcircle.prod_testscenarios;
 
 import java.io.IOException;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -17,14 +18,14 @@ import com.shearcircle.utilities.StaticVariables;
 public class TS_005_SubscriberLoginToSubscriberDashboard extends StaticVariables {
 	CommonFunctions cfn = new CommonFunctions();
 	Subscriber_Module_Page_Components SR;
-
+	public static WebDriver driver;
 	@BeforeClass
 	@Parameters("browser")
 	public void beforeclass(@Optional("chrome") String browser) throws IOException, InterruptedException {
 		TestDataPath = cfn.TestDataPathOf("SubscriberTestData.properties");
 		Browser = browser;
 		cfn.getAndOpenBrowser(browser);
-		SR = new Subscriber_Module_Page_Components();
+		SR = new Subscriber_Module_Page_Components(driver);
 		System.out.println("test");
 	}
 
@@ -47,9 +48,9 @@ public class TS_005_SubscriberLoginToSubscriberDashboard extends StaticVariables
 
 	@Test(priority=0,description = "Check whether you are able to login to Dashboard by entering valid credentials")
 	public void  TC_5_001_loginToDashboard() throws Exception {
-		SR.loginToDashboard();		
+		SR.logIn_ToDashboard();		
 	}
-	@Test(priority=0,description = "Check the information on Welcome page for First time login")
+	/*@Test(priority=0,description = "Check the information on Welcome page for First time login")
 	public void  TC_5_002_validateDashboardElements() throws Exception {
 		SR.validateDashboardElementsFirstTimeLogin();
 	}
@@ -60,7 +61,7 @@ public class TS_005_SubscriberLoginToSubscriberDashboard extends StaticVariables
 	@Test(priority=0,description = "Check whether All links is clickable")
 	public void  TC_5_004_To_011_validateAllLinksClickble() throws Exception {
 		SR.validateAllLinksClickble();
-	}
+	}*/
 	
 	
 

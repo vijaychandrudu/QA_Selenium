@@ -23,7 +23,7 @@ public class TS_004_SubscriberLoginforFirstTime extends StaticVariables {
 		TestDataPath = cfn.TestDataPathOf("SubscriberTestData.properties");
 		Browser = browser;
 		cfn.getAndOpenBrowser(browser);
-		SR = new Subscriber_Module_Page_Components();
+		SR = new Subscriber_Module_Page_Components(driver);
 
 	}
 
@@ -33,7 +33,7 @@ public class TS_004_SubscriberLoginforFirstTime extends StaticVariables {
 		Thread.sleep(1000);
 	}
 
-	@Test(priority = 0, description = "Valid Login button is clickable and Signin page is displayed")
+	/*@Test(priority = 0, description = "Valid Login button is clickable and Signin page is displayed")
 	public void TC_4_001_loginButtonClickable() throws Exception {
 		SR.loginButtonClickable();
 	}
@@ -102,5 +102,5 @@ public class TS_004_SubscriberLoginforFirstTime extends StaticVariables {
 	public void TC_4_014_loginintoDashboarddirectly() throws Exception {
 		SR.loginintoDashboarddirectly();
 	}
-
+*/
 }

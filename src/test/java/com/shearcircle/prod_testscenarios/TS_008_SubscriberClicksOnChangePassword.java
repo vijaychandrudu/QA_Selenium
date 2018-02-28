@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.server.handler.FindElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestResult;
@@ -30,6 +31,7 @@ public class TS_008_SubscriberClicksOnChangePassword {
 
 	CommonFunctions cfn = new CommonFunctions();
 	Subscriber_Module_Page_Components SR;
+	public static WebDriver driver;
 
 	@BeforeClass
 	@Parameters("browser")
@@ -37,7 +39,7 @@ public class TS_008_SubscriberClicksOnChangePassword {
 		String TestDataPath = cfn.TestDataPathOf("SubscriberTestData.properties");
 		String Browser = browser;
 		cfn.getAndOpenBrowser(browser);
-		SR = new Subscriber_Module_Page_Components();
+		SR = new Subscriber_Module_Page_Components(driver);
 		System.out.println("test");
 	}
 
@@ -57,7 +59,7 @@ public class TS_008_SubscriberClicksOnChangePassword {
 	 * @AfterMethod public void afterMethod() { driver.quit(); }
 	 */
 
-	@Test(priority = 0, description = "Open Update Password page")
+	/*@Test(priority = 0, description = "Open Update Password page")
 	public void TC_8_001_OpenUpdatePasswordpage() throws Exception {
 		SR.updatePasswordPage();
 
@@ -109,6 +111,6 @@ public class TS_008_SubscriberClicksOnChangePassword {
 	public void TC_8_009_validateLoginWithNewPassword() throws Exception {
 		SR.validateLoginWithNewPassword();
 
-	}
+	}*/
 
 }

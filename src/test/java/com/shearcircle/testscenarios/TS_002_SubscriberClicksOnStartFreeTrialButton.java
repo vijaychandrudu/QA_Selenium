@@ -24,7 +24,7 @@ public class TS_002_SubscriberClicksOnStartFreeTrialButton extends StaticVariabl
 			TestDataPath = cfn.TestDataPathOf("SubscriberTestData.properties");
 			Browser = browser;
 			cfn.getAndOpenBrowser(browser);
-			SR = new Subscriber_Module_Page_Components();
+			SR = new Subscriber_Module_Page_Components(driver);
 			System.out.println("test");
 		}
 

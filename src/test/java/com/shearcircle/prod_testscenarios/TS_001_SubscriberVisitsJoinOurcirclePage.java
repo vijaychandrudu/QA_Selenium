@@ -34,7 +34,7 @@ public class TS_001_SubscriberVisitsJoinOurcirclePage extends StaticVariables {
 		TestDataPath = cfn.TestDataPathOf("SubscriberTestData.properties");
 		Browser = browser;
 		cfn.getAndOpenBrowser(browser);
-		SR = new Subscriber_Module_Page_Components();
+		SR = new Subscriber_Module_Page_Components(driver);
 		System.out.println("test");
 	}
 
@@ -55,7 +55,7 @@ public class TS_001_SubscriberVisitsJoinOurcirclePage extends StaticVariables {
 		driver.quit();
 	}*/
 
-	@Test(priority=0,description = "Subscriber visits Join Our Circle page")
+	/*@Test(priority=0,description = "Subscriber visits Join Our Circle page")
 	public void TC_1_001_visitsJoinOurCirclepage() throws Exception {
 		SR.launchApplication();
 		SR.visitsJoinOurCirclepage();
@@ -114,5 +114,5 @@ public class TS_001_SubscriberVisitsJoinOurcirclePage extends StaticVariables {
 		SR.existingEmailValidation();
 	}	
 	
-	
+	*/
 }

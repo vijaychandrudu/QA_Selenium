@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.server.handler.FindElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestResult;
@@ -32,14 +33,15 @@ public class TS_003_SubscriberClicksOnVerificationLinkSentToEmail {
 
 	CommonFunctions cfn = new CommonFunctions();
 	Subscriber_Module_Page_Components SR;
-
+	public String TestDataPath;
+	public static WebDriver driver;
 	@BeforeClass
 	@Parameters("browser")
 	public void beforeclass(@Optional("chrome") String browser) throws IOException, InterruptedException {
 		String TestDataPath = cfn.TestDataPathOf("SubscriberTestData.properties");
 		String Browser = browser;
 		cfn.getAndOpenBrowser(browser);
-		SR = new Subscriber_Module_Page_Components();
+		SR = new Subscriber_Module_Page_Components(driver);
 		System.out.println("test");
 	}
 
