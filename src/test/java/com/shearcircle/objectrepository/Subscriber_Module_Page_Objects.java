@@ -29,7 +29,7 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Subscriber_Password_textbox;
 	@FindBy(xpath = "//input[@name='cnf_password']")
 	public WebElement Subscriber_ReEnterPassword_textbox;
-	@FindBy(xpath = " .//*[@id='register_form']/div[8]/div/label/input")
+	@FindBy(xpath = ".//*[@id='register_form']/div[8]/div/label/input")
 	public WebElement Subscriber_Termsofservice_checkbox;
 
 	@FindBy(xpath = "//input[@name='accepted_billing_agreement']")
@@ -45,8 +45,7 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Subscriber_LastnameErrMsg;
 	@FindBy(xpath = ".//*[@id='register_form']/div[3]/em")
 	public WebElement Subscriber_EmailaddressErrMsg;
-	@FindBy(xpath = ".//*[@id='register_form']/div[5]/em")
-	public WebElement Subscriber_SubDomainErrMsg;
+
 	@FindBy(xpath = ".//*[@id='register_form']/div[6]/em")
 	public WebElement Subscriber_PasswordErrMsg;
 	@FindBy(xpath = ".//*[@id='register_form']/div[7]/em")
@@ -157,7 +156,7 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath = "")
 	public WebElement Subscriber_;
 
-	// TS_003
+	// TS_003 
 
 	// YopMail Locaters
 	@FindBy(xpath = "//*[@id='login']")
@@ -355,5 +354,89 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Subscriber_InvalidUserErrMsg;
 	
 	
-
+/****added***/
+	@FindBy(xpath="//div/h3[text()='Privacy Policy']")
+	public WebElement Subscriber_PrivacyPolicy_Alert;
+	
+	@FindBy(xpath="//*[@id='register_form']")
+	public WebElement Subscriber_JCP_Registration_Form;
+	
+	@FindBy(xpath="//*[@id='sub_content']/h1")
+	public WebElement Subscriber_JC_Page;
+	
+	@FindBy(xpath = ".//*[@id='sub_content']/h1")
+	public WebElement Subscriber_SigIn_Page;
+	
+	@FindBy(xpath="//div/h2/b[text()='Join Now']")
+	public WebElement Subscriber_JCP_JoinNow_Header;
+	
+	@FindBy(xpath="//*[@id='register_form']//u[text()='Terms of Service']")
+	public WebElement Subscriber_JCP_TermsOfService_Link;
+	
+	@FindBy(xpath="//*[@id='register_form']//u[text()='Privacy Policy']")
+	public WebElement Subscriber_JCP_PrivacyPolicye_Link;
+	
+	@FindBy(xpath="//*[@id='register_form']//u[text()='Billing Agreement']")
+	public WebElement Subscriber_JCP_BillingAgreement_Link;
+	
+	@FindBy(xpath=".//*[@id='register_form']/div[4]/em")
+	public WebElement Subscriber_BusinessNameErrMsg;
+	
+	@FindBy(xpath = "//*[@id='register_form']/div[5]/div/em")
+	public WebElement Subscriber_SubDomainErrMsg;
+	
+	@FindBy(xpath="//div/h1/b[text()='Customer?']//parent::h1/following-sibling::a[text()='Join Our Circle']")
+	public WebElement Subscriber_AreYouCustomer_JoinOurCircle_Button;
+	
+	@FindBy(xpath="/html/body/section[2]")
+	public WebElement Subscriber_DashBoard_Page;
+	
+	@FindBy(xpath="//*[@id='step3Form']/div[3]/div[2]/input")
+	public WebElement Subscriber_BusinessDetails_PleaseEnterPhoneNo_Editbox;
+	
+	@FindBy(xpath="//*[text()='Service Menu']")
+	public WebElement Subscriber_ServiceMenu_Page; 
+	
+	@FindBy(xpath = "//h3[text()='Staff']")
+	public WebElement Subscriber_StaffPage;
+	
+	
+	@FindBy(xpath="//*[text()='No appointments found']")
+	public WebElement Subscriber_NoAppointmentsFound_Popup;
+	
+	
+	@FindBy(xpath="//button[text()='OK']")
+	public WebElement Subscriber_NoAppointmentsFound_Popup_OKButton;
+	
+	/*******0006****************/
+	
+	@FindBy(xpath = "//*[@id='editProfile']/div[1]/div[1]/input")
+	public WebElement Subscriber_UP_FNTextBox;
+	
+	@FindBy(xpath = "//*[@id='editProfile']/div[1]/div[2]/input")
+	public WebElement Subscriber_UP_LNTextBox;
+	
+	@FindBy(xpath = "//*[@id='editProfile']/div[2]/div[1]/input")
+	public WebElement Subscriber_UP_Email_TextBox;
+	
+	@FindBy(xpath="//*[@id='editProfile']/div[2]/div[2]/div/label[2]/input")
+	public WebElement  Subscriber_UP_Male_SelectonButton;
+	
+	@FindBy(xpath="//*[@id='editProfile']/div[2]/div[2]/div/label[3]/input")
+	public WebElement  Subscriber_UP_Female_SelectonButton;
+	
+	@FindBy(xpath="//div/div[2]/div/img")
+	public WebElement Subscriber_UP_Logo;
+	
+	@FindBy(xpath="//*[@id='profile_view_header_background_image']/div/span[1]/center/button")
+	public WebElement Subscriber_UP_Cover_Image;
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
