@@ -1,4 +1,4 @@
-package com.shearcircle.testscenarios;
+package com.shearcircle.prod_testscenarios;
 
 import java.io.IOException;
 
@@ -61,7 +61,7 @@ public class TS_6_01_BookingAppoinment_WithoutSignin extends StaticVariables {
 	public void Customer_Invokesearchresultspage() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Invoke the search results page");	
 		//CR.checkThe_Locate_Button();
-		CR.invokeTO_SearcResults_Page();
+		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_Locate_Button","Salon");
 	}
 	@Test(priority=60103, description="TC_5_1_01 Invoke the Business Page and verify Business page elements")
 	public void TC_5_1_01_Customer_InvokeBusinesspage() throws IOException {			
@@ -72,7 +72,8 @@ public class TS_6_01_BookingAppoinment_WithoutSignin extends StaticVariables {
 	@Test(priority=60104, description="TC_6_1_02 Check the Cart popup for single service")
 	public void TC_6_1_02_Customer_CartPopup_ForSingleService() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the Cart popup for single service");
-		CR.check_CartPopup_ForSingleService();			
+		CR.check_CartPopup_ForSingleService();		
+			
 	}
 	
 	@Test(priority=60105, description="TC_6_1_03 Check the Cart popup for multiple services	")
@@ -109,7 +110,6 @@ public class TS_6_01_BookingAppoinment_WithoutSignin extends StaticVariables {
 		ExtentTestManager.getTest().setDescription("Check whether the Staff image is clickable");
 		CR.Check_Staffimage_clickable();			
 	}
-	
 	@Test(priority=60111, description="TC_6_1_09 Check the details in Choose Date and Time page")
 	public void TC_6_1_09_check_DetailsIn_ChooseDateAndTime_Page_Fieldvalidation() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check the details in Choose Date and Time page");
@@ -209,4 +209,5 @@ public class TS_6_01_BookingAppoinment_WithoutSignin extends StaticVariables {
 		CR.Customer_JoinOurCircle_LogOutpage();
 		//driver.quit();
 	}
+	
 }

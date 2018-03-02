@@ -1,4 +1,4 @@
-package com.shearcircle.testscenarios;
+package com.shearcircle.prod_testscenarios;
 
 import java.io.IOException;
 
@@ -61,14 +61,13 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 	public void Customer_Invokesearchresultspage() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Invoke the search results page");	
 		//CR.checkThe_Locate_Button();
-		CR.invokeTO_SearcResults_Page();
+		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_Locate_Button","Salon");
 	}
 	@Test(priority=50103, description="TC_5_1_01 Invoke the Business Page and verify Business page elements")
 	public void TC_5_1_01_Customer_InvokeBusinesspage() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Invoke the Business Page and verify Business page elements");
 		CR.Verify_business_Page_Field_Validation();			
 	}	
-	
 	
 	@Test(priority=50104, description="TC_5_1_02 Check Add to Favorite button without login as Customer")
 	public void TC_5_1_02_Customer_CheckAddtoFavoritbuttonwithoutloginasCustomer() throws IOException {			
@@ -89,18 +88,18 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 	@Test(priority=50107, description="TC_5_1_03 Check Add to Favorite button after login as Customer")
 	public void TC_5_1_03_Customer_CheckAddtoFavoritbuttonAfterloginasCustomer() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check Add to Favorite button without login as Customer");
-		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_SearchIcon","");
+		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_SearchIcon","Salon");
 		CR.Verify_AddtoFavourite_Button_with_Login_Customer();			
 	}
 	
 	@Test(priority=50108, description="Check whether the Logout button is clickable")
-	public void CheckLogoutbuttonclickable()throws IOException {			
+	public void CheckLogoutbuttonclickable()throws IOException {		
 		CR.Customer_JoinOurCircle_LogOutpage();
 	}
 	@Test(priority=50109, description="TC_5_1_04 Check whether Marked as Favorite button is displayed after logout")
 	public void TC_5_1_04_Customer_CheckMarkedasFavoritebutton_displayedafterlogout() throws IOException {			
-		ExtentTestManager.getTest().setDescription("Check whether Marked as Favorite button is displayed after logout");
-		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_SearchIcon","");
+		ExtentTestManager.getTest().setDescription("Check whether Marked as Favorite button is displayed after logout");		
+		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_SearchIcon","Salon");
 		CR.Verify_AddtoFavourite_Button_after_Logout();			
 	}
 	
@@ -113,7 +112,7 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 	@Test(priority=50111, description="TC_5_1_05 Check whether the salon can be removed from Favorites")
 	public void TC_5_1_05_Customer_Checksalon_removedfromFavorites() throws IOException {			
 		ExtentTestManager.getTest().setDescription("Check whether the salon can be removed from Favorites");	
-		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_SearchIcon","");
+		CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_SearchIcon","Salon");
 		CR.Verify_Salon_Removed_From_Favourites();			
 	}
 	
@@ -125,7 +124,8 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 	
 	@Test(priority=50113, description="TC_5_1_07 Check the info in Overview tab")
 	public void TC_5_1_07_Customer_Check_detailsinOverviewTab() throws IOException {			
-		ExtentTestManager.getTest().setDescription("Check the info in Overview tab");		
+		ExtentTestManager.getTest().setDescription("Check the info in Overview tab");
+		//CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_SearchIcon","Salon");
 		CR.Verify_information_in_Overview_tab();			
 	}
 	
@@ -137,7 +137,8 @@ public class TS_5_01_CustomervisitsBusinessPage extends StaticVariables {
 	
 	@Test(priority=50115, description="TC_5_1_09 Check the info in Inquiry tab")
 	public void TC_5_1_09_Customer_Check_InquearyTab_infodetails() throws IOException {			
-		ExtentTestManager.getTest().setDescription("Check the info in Inquiry tab");		
+		ExtentTestManager.getTest().setDescription("Check the info in Inquiry tab");
+		//CR.checkSearchResult_ByEntering_keyword_SalonOrSpaOrProfessional("Click_SearchIcon","Salon");
 		CR.Customer_Check_Inqueary_Tab_Fieldvalidation();		
 	}
 	

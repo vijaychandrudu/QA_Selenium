@@ -46,7 +46,7 @@ public class SubscriberSignup extends StaticVariables  {
 		driver.quit();
 	}
 
-	@Test(description = "Subscriber visits Join Our Circle page")
+	/*@Test(description = "Subscriber visits Join Our Circle page")
 	public void visitsJoinOurCirclepage() throws Exception {
 		SR =new Subscriber_Module_Page_Components() ;
 		SR.visitsJoinOurCirclepage();
@@ -59,6 +59,6 @@ public class SubscriberSignup extends StaticVariables  {
 	public void TS002() throws Exception {
 		SR =new Subscriber_Module_Page_Components() ;
 		//SR.TS02();
-	}
+	}*/
 
 }

@@ -1,7 +1,8 @@
-package com.shearcircle.testscenarios;
+package com.shearcircle.prod_testscenarios;
 
 
 import java.io.IOException;
+import java.sql.Driver;
 
 import org.testng.annotations.Test;
 
@@ -33,8 +34,8 @@ public class TS_003_SubscriberClicksOnVerificationLinkSentToEmail {
 
 	CommonFunctions cfn = new CommonFunctions();
 	Subscriber_Module_Page_Components SR;
-	public String TestDataPath;
 	public static WebDriver driver;
+
 	@BeforeClass
 	@Parameters("browser")
 	public void beforeclass(@Optional("chrome") String browser) throws IOException, InterruptedException {
@@ -62,7 +63,7 @@ public class TS_003_SubscriberClicksOnVerificationLinkSentToEmail {
 		driver.quit();
 	}*/
 
-	@Test(priority=3001,description = "Subscriber Checks Verification Link")
+	@Test(priority=0,description = "Subscriber Checks Verification Link")
 	public void TC_3_001_ClickOnVerificationLinkEmail() throws Exception {
 		SR.CheckVerificationLink();
 		
