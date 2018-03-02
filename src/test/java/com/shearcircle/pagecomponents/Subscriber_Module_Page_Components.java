@@ -1059,8 +1059,8 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		String DB_Password = "";
 		String BusinessName[]=null;
 		try {
-			DB_Username = browser.getdata("VC_LogIN_UserName");
-			DB_Password = browser.getdata("VC_LogIN_Passworrd");
+			DB_Username = browser.getdata("temp_LogIN_UserName");
+			DB_Password = browser.getdata("temp_LogIN_Passworrd");
 			browser.click(SCobjects.Subscriber_Login_Button);
 			browser.sendkeys(SCobjects.Subscriber_UserName_TextBox, DB_Username);
 			browser.sendkeys(SCobjects.Subscriber_Password_TextBox, DB_Password);
@@ -1219,8 +1219,8 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			browser.click(SCobjects.Subscriber_UserIcon);
 			browser.click(SCobjects.Subscriber_Logout);
 			Thread.sleep(10000);
-			browser.sendkeys(SCobjects.Subscriber_UserName_TextBox, browser.getdata("VC_LogIN_UserName"));
-			browser.sendkeys(SCobjects.Subscriber_Password_TextBox, browser.getdata("VC_LogIN_Passworrd"));
+			browser.sendkeys(SCobjects.Subscriber_UserName_TextBox, browser.getdata("temp_LogIN_UserName"));
+			browser.sendkeys(SCobjects.Subscriber_Password_TextBox, browser.getdata("temp_LogIN_Passworrd"));
 			browser.click(SCobjects.Subscriber_SignIn_Button);
 			CuttentLoginDateAndTime = browser.getelementtext(SCobjects.Subscriber_LastLoginDateAndTime);
 			if (LastLoginDateAndTime != CuttentLoginDateAndTime) {
@@ -1651,7 +1651,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		String PasswordLengthEM = "";
 		String ReTypePasswordLengthEM = "";
 		try {
-			ValidOldPassword = browser.getdata("VC_LogIN_Passworrd");
+			ValidOldPassword = browser.getdata("temp_LogIN_Passworrd");
 			NewPasswordLength = browser.getdata("InvalidNewPassword");
 			ReTypePasswordLength = browser.getdata("InvalidNewPassword");
 			ReTypePasswordLengthNotsame = browser.getdata("IVReTypePDLengthNotsame");
@@ -1701,7 +1701,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		String NewReTypePasswordWithSpace = "";
 		String PasswordWithSapcehEM = "";
 		try {
-			ValidOldPassword = browser.getdata("VC_LogIN_Passworrd");
+			ValidOldPassword = browser.getdata("temp_LogIN_Passworrd");
 			NewPasswordWithSpace = browser.getdata("InvalidNewPassword");
 			NewReTypePasswordWithSpace = browser.getdata("InvalidNewPassword");
 			browser.refreshBrowser(driver);
@@ -1730,7 +1730,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		String NewReTypePassword = "";
 		String PasswordUpdateMessage = "";
 		try {
-			ValidOldPassword = browser.getdata("VC_LogIN_Passworrd");
+			ValidOldPassword = browser.getdata("temp_LogIN_Passworrd");
 			NewPassword = browser.getdata("UpdateNewPassword");
 			NewReTypePassword = browser.getdata("UpdateNewPassword");
 			browser.refreshBrowser(driver);
@@ -1783,8 +1783,8 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		String DB_Password = "";
 		String LogInErrorMessage = "";
 		try {
-			DB_Username = browser.getdata("VC_LogIN_UserName");
-			DB_Password = browser.getdata("VC_LogIN_Passworrd");
+			DB_Username = browser.getdata("temp_LogIN_UserName");
+			DB_Password = browser.getdata("temp_LogIN_Passworrd");
 			browser.click(SCobjects.Subscriber_UserIcon);
 			browser.click(SCobjects.Subscriber_Logout);
 			if (browser.elementisdisplayed(SCobjects.Subscriber_SigIn_Page)) {
@@ -1819,7 +1819,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		String DB_Username = "";
 		String DB_UpdatePassword = "";
 		try {
-			DB_Username = browser.getdata("VC_LogIN_UserName");
+			DB_Username = browser.getdata("temp_LogIN_UserName");
 			DB_UpdatePassword = browser.getdata("UpdateNewPassword");
 			browser.sendkeys(SCobjects.Subscriber_UserName_TextBox, DB_Username);
 			browser.sendkeys(SCobjects.Subscriber_Password_TextBox, DB_UpdatePassword);
