@@ -52,10 +52,10 @@ public class TS_001_SubscriberVisitsJoinOurcirclePage extends StaticVariables {
 
 	}
 
-	@AfterClass
+	/*@AfterClass
 	public void afterClass() {
 		driver.quit();
-	}
+	}*/
 
 	@Test(priority = 1001, description = "Subscriber visits Join Our Circle page")
 	public void TC_1_001_Subscriber_visitsJoinOurCirclepage() throws Exception {

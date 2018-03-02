@@ -45,11 +45,11 @@ public class TS_002_SubscriberClicksOnStartFreeTrialButton extends StaticVariabl
 			driver.quit();
 		}*/
 
-		@Test(priority=0,description = "Subscriber visits Join Our Circle page")
+		@Test(priority=2001,description = "Subscriber visits Join Our Circle page")
 		public void TC_2_001_visitsJoinOurCirclepage() throws Exception {
 			SR.createAccountStartFreeTrialbutton();			
 		}
-		@Test(priority=0,description = "Subscriber visits Join Our Circle page")
+		@Test(priority=2002,description = "Subscriber visits Join Our Circle page")
 		public void TC_2_002_visitsJoinOurCirclepage() throws Exception {
 			SR.createAccountStartFreeTrialbutton();			
 		}

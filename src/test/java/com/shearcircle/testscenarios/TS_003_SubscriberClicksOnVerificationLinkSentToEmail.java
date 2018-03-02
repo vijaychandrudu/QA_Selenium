@@ -62,7 +62,7 @@ public class TS_003_SubscriberClicksOnVerificationLinkSentToEmail {
 		driver.quit();
 	}*/
 
-	@Test(priority=0,description = "Subscriber Checks Verification Link")
+	@Test(priority=3001,description = "Subscriber Checks Verification Link")
 	public void TC_3_001_ClickOnVerificationLinkEmail() throws Exception {
 		SR.CheckVerificationLink();
 		
