@@ -44,10 +44,10 @@ public class TS_005_SubscriberLoginToSubscriberDashboard extends StaticVariables
 
 	}
 
-	@AfterClass
+	/*@AfterClass
 	public void afterClass() {
 		driver.quit();
-	}
+	}*/
 
 	@Test(priority = 5000, description = "Subscriber visits Join Our Circle page")
 	public void TC_5_000_Subscriber_visitsJoinOurCirclepage() throws Exception {

@@ -1839,5 +1839,586 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
 	}
+	
+	//TC_9_001
+    public void openbusinesssettingspage() throws Exception {
+    	browser.click(SCobjects.Subscriber_HumanIcon);
+    	browser.click(SCobjects.Subscriber_Business_Settings_link);
+    	if (browser.elementisdisplayed(SCobjects.Settings_page_tabs_Business_Details)) {
+			browser.reportscomtep("Passed", "Click on Human Icon and Business Settings link and Verify Business Details page displayed",
+					"Business Details page should be displayed", "Business Details page displayed");	
+    	}
+    	else {
+			browser.reportscomtep("Failed", "Click on Human Icon and Business Settings link and Verify Business Details page displayed",
+					"Business Details page should be displayed", "Business Details page not displayed");
+    	}
+    }
+
+
+	// TC_9_002
+	public void businesspagetabsvalidation() throws Exception {
+						try {
+
+				if (browser.elementisdisplayed(SCobjects.Settings_page_tabs_Business_Details)) {
+					browser.reportscomtep("Passed", "Verify Default Business Setting page is displayed",
+							"Default Business Details page should be displayed", "Default Business Details page displayed");			
+					
+					browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_tabs_Business_Details, "Business Details tab");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_tabs_Online_Bookings,"Online Bookings tab");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_tabs_Calender,"Calender Tab");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_tabs_Staff_Notifications,"Staff Notification tab");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_tabs_Payment_Settings,"Payment Settings tab");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_Manage_Menu,"Manage Menu tab");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_tabs_Business_Hours,"Business Hours tab");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_tabs_Social_Links,"Social links tab" );
+				}
+				else {
+					browser.reportscomtep("Failed", "Verify Default Business Setting page is displayed",
+							"Default Business Details page should be displayed", "Default Business Details page not displayed");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+
+	}
+	
+	//TC_9_003
+	
+	public void checkinfoinbusinessdetailstab() throws Exception {
+		try {
+			
+		if (browser.elementisdisplayed(SCobjects.Settings_page_tabs_Business_Details)) {
+			browser.reportscomtep("Passed", "Verify Business Setting page is displayed",
+					"Business Details page should be displayed", "Business Details page displayed");			
+								
+			browser.Verify_elementprepopulatedvalue_Report(SCobjects.Settings_page_input_Business_Name, "Business Name");
+			browser.Verify_elementprepopulatedvalue_Report(SCobjects.Settings_page_input_Subdomain, "Subdomain");
+			browser.Verify_elementprepopulatedvalue_Report(SCobjects.Settings_page_input_Address, "Address");
+			browser.Verify_elementprepopulatedvalue_Report(SCobjects.Settings_page_input_ContactNum, "Contact_Number");
+			browser.Verify_elementprepopulatedvalue_Report(SCobjects.Settings_page_input_Business_Type, "Business_Type");
+			browser.Verify_elementprepopulatedvalue_Report(SCobjects.Settings_page_input_State, "State");
+			//check for state again since its a scrolldown option field
+			browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_label_Overview,"Overview");
+			browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_input_Website,"Website" );
+			browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_input_Time_Zone,"Time_Zone" );
+		}
+		else {
+			browser.reportscomtep("Failed", "Verify Business Setting page is displayed",
+					"Business Details page should be displayed", "Business Details page not displayed");
+		}
+
+	} catch (Exception e) {
+		System.out.println("Error description: " + e.getStackTrace());
+	}
+		
+	}
+	
+	//TC_9_004
+	
+	//****************have to get TC sorted with Sunil. Only one error msg is displayed**********************************//
+	
+	public void savechangeswithoutaddinganydata() throws Exception {
+		
+		if (browser.elementisdisplayed(SCobjects.Settings_page_tabs_Business_Details)) {
+			browser.reportscomtep("Passed", "Verify Business Setting page is displayed",
+					"Business Details page should be displayed", "Business Details page displayed");	
+		
+				browser.clearText(SCobjects.Settings_page_input_Business_Name);
+				browser.clearText(SCobjects.Settings_page_input_Subdomain);
+				browser.clearText(SCobjects.Settings_page_input_Address);
+				browser.clearText(SCobjects.Settings_page_input_ContactNum);
+				browser.clearText(SCobjects.Settings_page_input_Business_Type);
+				browser.click(SCobjects.Settings_Save_Change_Button);
+				
+				if (browser.elementisdisplayed(SCobjects.Settings_error_msg_save_with_invalid_entries)){
+					browser.reportscomtep("Passed", "Error message is displayed when page saved with invalid entries",
+							"Error message should be displayed", "Error Message is displayed");
+				}
+				
+				else {
+					
+					browser.reportscomtep("Failed", "Error message is displayed when page saved with invalid entries",
+							"Error message should be displayed", "Error Message not displayed");
+			
+				
+				}
+		}
+		else {
+			browser.reportscomtep("Failed", "Verify Business Setting page is displayed",
+					"Business Details page should be displayed", "Business Details page not displayed");
+		}
+				
+	
+              }
+	
+	
+	
+	//TC_9_005
+	
+	public void checkpopupmessgaeonsavingvaliddata() throws Exception {
+		browser.sendkeys(SCobjects.Settings_page_input_Business_Name, browser.getdata("DashboardBusinessName"));
+		browser.sendkeys(SCobjects.Settings_page_input_Subdomain, browser.getdata("Subdomain"));
+		browser.sendkeys(SCobjects.Settings_page_input_Address, browser.getdata("DigitekAddr"));
+		browser.click(SCobjects.Settings_Save_Change_Button);
+		if (browser.elementisdisplayed(SCobjects.Subscriber_updatedsuccessfullymsg)) {
+			
+			browser.reportscomtep("Passed", "Updated Sucessfully message should appear",
+					"Updated Sucessfully message should be displayed", "Updated Sucessfully message is displayed");
+	    
+		} else {
+			
+			browser.reportscomtep("Failed", "Updated Sucessfully message should appear",
+					"Updated Sucessfully message should be displayed", "Updated Sucessfully message not displayed");
+		}
+		
+		browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+		
+}
+	
+	//TC_9_007
+	
+	public void checkbusinessnamecanbemodified() throws Exception {
+		browser.clearText(SCobjects.Settings_page_input_Business_Name);
+		browser.sendkeys(SCobjects.Settings_page_input_Business_Name, browser.getdata("changedbusinessname"));
+		browser.click(SCobjects.Settings_Save_Change_Button);
+        if (browser.elementisdisplayed(SCobjects.Subscriber_updatedsuccessfullymsg)) {
+			
+			browser.reportscomtep("Passed", "Updated Sucessfully message should appear",
+					"Updated Sucessfully message should be displayed", "Updated Sucessfully message is displayed");
+	    
+		} else {
+			
+			browser.reportscomtep("Failed", "Updated Sucessfully message should appear",
+					"Updated Sucessfully message should be displayed", "Updated Sucessfully message not displayed");
+		}
+		
+	}
+	
+	
+	//TC_9_009
+	
+		public void checkexistsubdomainnamecanbemodified() throws Exception {
+			browser.clearText(SCobjects.Settings_page_input_Subdomain);
+			browser.sendkeys(SCobjects.Settings_page_input_Subdomain, browser.getdata("existingsubdomain"));
+			browser.click(SCobjects.Settings_Save_Change_Button);
+			if (browser.elementisdisplayed(SCobjects.subdomainalreadyregisteredmsg)) {
+				
+				browser.reportscomtep("Passed", "The entered subdomain is already registered message should appear",
+						"The entered subdomain is already registered message should be displayed", "The entered subdomain is already registered message is displayed");
+			    
+				}
+				else
+					
+				browser.reportscomtep("Failed", "The entered subdomain is already registered message should appear",
+						"The entered subdomain is already registered message should be displayed", "The entered subdomain is already registered message not displayed");
+			
+			
+		}
+		
+	//TC_9_0010
+		
+		public void checknonexistsubdomainnamecanbemodified() throws Exception {
+				browser.clearText(SCobjects.Settings_page_input_Subdomain);
+				browser.sendkeys(SCobjects.Settings_page_input_Subdomain, browser.getdata("nonexistingsubdomain"));
+				browser.click(SCobjects.Settings_Save_Change_Button);
+				if (browser.elementisdisplayed(SCobjects.Subscriber_updatedsuccessfullymsg)) {
+					
+					browser.reportscomtep("Passed", "Updated Sucessfully message should appear",
+							"Updated Sucessfully message should be displayed", "Updated Sucessfully message is displayed");
+			    
+				} else {
+					
+					browser.reportscomtep("Failed", "Updated Sucessfully message should appear",
+							"Updated Sucessfully message should be displayed", "Updated Sucessfully message not displayed");
+				}
+				
+				browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+		}
+			
+	//TC_9_011
+			
+		public void validateinfoinonlinebookingtab() throws Exception {	
+			
+			browser.click(SCobjects.Online_Booking_tab);
+			if (browser.elementisdisplayed(SCobjects.Online_Bookings_Settings_Header)) {
+				browser.reportscomtep("Passed", "Verify Subscriber Online Booking Settings header is displayed",
+						"Subscriber Online Booking Settings header should be displayed", "Subscriber Online Booking Settings header displayed");
+			
+			browser.check_Checkbox(SCobjects.Online_Booking_Enable_checkbox_clicked);
+			browser.Verify_elementisdisplayed_Report(SCobjects.Online_Booking_Booking_Policy_Header, "Booking Policy Header");
+			browser.Verify_elementisdisplayed_Report(SCobjects.Online_Booking_Client_appointment_upto, "Client_can_book_appointment_upto");
+			browser.Verify_elementisdisplayed_Report(SCobjects.Online_Booking_Client_appointment_nomorethan, "Client_can_book_appointment_nomorethan");
+			browser.Verify_elementisdisplayed_Report(SCobjects.Online_Booking_Cancellation_Notice_Header, "Cancellation Notice Header");
+			browser.Verify_elementisdisplayed_Report(SCobjects.Online_Booking_Cancellation_in_advance, "Cancellation in advance");
+			browser.Verify_elementisdisplayed_Report(SCobjects.Online_Booking_Cancellation_Policy_Header, "Cancellation Policy Header");
+			browser.Verify_elementisdisplayed_Report(SCobjects.Online_Booking_Checkbox_Staff_Member_Selection, "Checkbox Staff Member Selection");
+			
+			
+		}  else {
+			browser.reportscomtep("Failed", "Verify Subscriber Online Booking Settings header is displayed",
+					"Subscriber Online Booking Settings header should be displayed", "Subscriber Online Booking Settings header not displayed");
+		}
+		}
+		
+		//TC_9_012 
+		
+			public void verifyonlineinfofields() throws Exception {
+			
+			if (browser.elementisdisplayed(SCobjects.Online_Bookings_Settings_Header)) {
+					browser.reportscomtep("Passed", "Verify Subscriber Online Booking Settings header is displayed",
+							"Subscriber Online Booking Settings header should be displayed", "Subscriber Online Booking Settings header displayed");
+				
+			browser.click(SCobjects.Save_Button_Online_Booking_Page);
+			
+			if (browser.elementisdisplayed(SCobjects.Updates_successfully_msg_popup)) {
+				browser.reportscomtep("Passed", "Verify Updated Successfully Message is displayed",
+						"Updated Successfully Message should be displayed",
+						"Updated Successfully Message displayed");
+			} else {
+				browser.reportscomtep("Failed", "Verify Updated Successfully Message is displayed",
+						"Updated Successfully Message should be displayed",
+						"Updated Successfully Message not displayed");
+			
+		}
+			} else {
+				browser.reportscomtep("Failed", "Verify Subscriber Online Booking Settings header is displayed",
+						"Subscriber Online Booking Settings header should be displayed", "Subscriber Online Booking Settings header not displayed");
+			}
+			
+			browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+			
+			}
+		
+		//TC_9_013
+		
+		public void checkbookingpolicyisapplied() throws Exception {
+			
+		browser.click(SCobjects.Online_Booking_tab);
+		if (browser.elementisdisplayed(SCobjects.Online_Bookings_Settings_Header)) {
+			browser.reportscomtep("Passed", "Verify Subscriber Online Booking Settings header is displayed",
+					"Subscriber Online Booking Settings header should be displayed", "Subscriber Online Booking Settings header displayed");
+		
+		browser.click(SCobjects.Online_Booking_in_advance_dropdown_list);
+		browser.selectByVisibleText(SCobjects.Online_Booking_in_advance_dropdown_list, "1 Hour");
+		browser.click(SCobjects.Online_Booking_in_advance_dropdown_list);
+		browser.selectByVisibleText(SCobjects.Online_Booking_till_future_dropdown_list, "1 Month");
+	
+		browser.click(SCobjects.Save_Button_Online_Booking_Page);
+		
+		if (browser.elementisdisplayed(SCobjects.Updates_successfully_msg_popup)) {
+			browser.reportscomtep("Passed", "Verify Updated Successfully Message is displayed",
+					"Updated Successfully Message should be displayed",
+					"Updated Successfully Message displayed");
+		} else {
+			browser.reportscomtep("Failed", "Verify Updated Successfully Message is displayed",
+					"Updated Successfully Message should be displayed",
+					"Updated Successfully Message not displayed");
+		
+	}
+		} else {
+			browser.reportscomtep("Failed", "Verify Subscriber Online Booking Settings header is displayed",
+					"Subscriber Online Booking Settings header should be displayed", "Subscriber Online Booking Settings header not displayed");
+		}
+		
+		browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+		
+} 
+		
+		//TC_9_016
+		
+		
+		public void checkinfoincalendartab() throws Exception {
+	    
+			
+		browser.click(SCobjects.Calender_Settings_tab);
+		
+		if (browser.elementisdisplayed(SCobjects.Calender_Settings_Header)){
+			browser.reportscomtep("Passed", "Verify Calendar Settings page is displayed",
+					"Calendar Settings page should be displayed", " Calendar Settings page displayed");
+		
+		//browser.Verify_elementisdisplayed_Report(SCobjects.Calender_Settings_error_msg, "Error Message Displayed");
+		browser.Verify_elementisdisplayed_Report(SCobjects.Calender_Settings_Time_Interval_Dropdown, "Time Slot Interval Dropdown");
+		browser.Verify_elementisdisplayed_Report(SCobjects.Calender_Settings_Default_View_Dropdown, "Default View");
+		browser.Verify_elementisdisplayed_Report(SCobjects.Calender_Settings_week_start_day_Dropdown, "Week Start Day");
+		
+		} else {
+			browser.reportscomtep("Failed", "Verify Calendar Settings page is displayed",
+					"Calendar Settings page should be displayed", " Calendar Settings page not displayed");
+		}
+		}
+		
+		
+		//TC_9_017
+		
+		public void checkcalendersettingscanbesaved() throws Exception {
+			
+			browser.click(SCobjects.Calender_Settings_tab);
+			
+			if (browser.elementisdisplayed(SCobjects.Calender_Settings_Header)){
+				browser.reportscomtep("Passed", "Verify Calendar Settings page is displayed",
+						"Calendar Settings page should be displayed", " Calendar Settings page displayed");
+			
+			browser.click(SCobjects.Calender_Settings_Time_Interval_Dropdown);
+			browser.selectByVisibleText(SCobjects.Calender_Settings_Time_Interval_Dropdown, "30 Minutes");
+			browser.click(SCobjects.Calender_Settings_Default_View_Dropdown);
+			browser.selectByVisibleText(SCobjects.Calender_Settings_Default_View_Dropdown, "Week");
+			browser.click(SCobjects.Calender_Settings_week_start_day_Dropdown);
+			browser.selectByVisibleText(SCobjects.Calender_Settings_week_start_day_Dropdown, "Monday");
+			browser.click(SCobjects.Calender_Settings_Save_Button);
+			
+			if (browser.elementisdisplayed(SCobjects.Updates_successfully_msg_popup)) {
+							browser.reportscomtep("Passed", "Verify Updated Successfully Message is displayed",
+							"Updated Successfully Message should be displayed",
+							"Updated Successfully Message displayed");
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify Updated Successfully Message is displayed",
+						"Updated Successfully Message should be displayed",
+						"Updated Successfully Message not displayed");
+			}
+			
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify Calendar Settings page is displayed",
+						"Calendar Settings page should be displayed", " Calendar Settings page not displayed");
+			}
+			
+			browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+			
+		}
+ 
+		//TC_9_019
+		
+				public void verifytabsinstaffnotificationpage() throws Exception {
+					
+					browser.click(SCobjects.Staff_Notification_tab);
+					
+					if (browser.elementisdisplayed(SCobjects.Staff_Notification_Header)){
+						browser.reportscomtep("Passed", "Verify Staff Notification page is displayed",
+								"Staff Notification page should be displayed", " Staff Notification page displayed");
+						
+						browser.Verify_elementisdisplayed_Report(SCobjects.Staff_Notification_Enble_checkbox, "Enable Checkbox");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Staff_Notification_send_to_staff_members_checkbox, "SEND TO STAFF MEMBER check box");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Staff_Notification_send_to_email_address,"SEND TO EMAIL ADDRESS check box");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Staff_Notification_save_changes_button, "SAVE CHANGES BUTTON");
+						
+						
+					}else {
+						browser.reportscomtep("Failed", "Verify Staff Notification page is displayed",
+								"Staff Notification page should be displayed", " Staff Notification page not displayed");
+						
+					}
+					
+					
+					
+				}
+				
+				//TC_9_020
+				
+				public void checkvalidationinstaffnotificationpage() throws Exception {
+					
+					browser.click(SCobjects.Staff_Notification_tab);
+					
+					if (browser.elementisdisplayed(SCobjects.Staff_Notification_Header)){
+						browser.reportscomtep("Passed", "Verify Staff Notification page is displayed",
+								"Staff Notification page should be displayed", " Staff Notification page displayed");
+						
+						browser.click(SCobjects.Staff_Notification_send_to_staff_members_checkbox);
+						browser.click(SCobjects.Staff_Notification_save_changes_button);
+						if (browser.elementisdisplayed(SCobjects.Updates_msg_popup_successful)) {
+							browser.reportscomtep("Passed", "Verify Updated Successfully Message is displayed",
+							"Updated Successfully Message should be displayed",
+							"Updated Successfully Message displayed");
+				
+			} else {
+				browser.reportscomtep("Failed", "Verify Updated Successfully Message is displayed",
+						"Updated Successfully Message should be displayed",
+						"Updated Successfully Message not displayed");
+			}
+						
+}
+		
+				else {
+					browser.reportscomtep("Failed", "Verify Staff Notification page is displayed",
+							"Staff Notification page should be displayed", " Staff Notification page not displayed");
+					
+				}
+					browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+
+				}
+				
+//TC_9_025
+				
+				public void checkinfoinpaymentsettings() throws Exception {
+					
+					browser.click(SCobjects.Settings_page_tabs_Payment_Settings);
+					
+					if (browser.elementisdisplayed(SCobjects.Payment_Settings_Header)){
+						browser.reportscomtep("Passed", "Verify Payment Settings page is displayed",
+								"Payment Settings page should be displayed", "Payment Settings page displayed");
+					
+					browser.elementisdisplayed(SCobjects.Payment_Settings_Paypal_Yes_radio_button);
+					browser.elementisdisplayed(SCobjects.Payment_Settings_Paypal_No_radio_button);
+					browser.elementisdisplayed(SCobjects.Payment_Settings_Cash_on_service_Yes_radio_button);
+					browser.elementisdisplayed(SCobjects.Payment_Settings_Cash_on_service_No_radio_button);
+					
+				}
+					
+				else {
+					browser.reportscomtep("Failed", "Verify Payment Settings page is displayed",
+							"Payment Settings page should be displayed", "Payment Settings page not displayed");
+					
+				}
+}
+				
+//TC_9_029
+				
+				public void checkinfoinmanagemenu() throws Exception {
+					
+					browser.click(SCobjects.Settings_page_Manage_Menu);
+					
+					if (browser.elementisdisplayed(SCobjects.Manage_Menu_Header)){
+						browser.reportscomtep("Passed", "Verify Manage Menu page is displayed",
+								"Manage Menu page should be displayed", "Manage Menu page displayed");
+					
+					
+					browser.check_Checkbox(SCobjects.Manage_Menu_services_yes_radio_button);
+					browser.check_Checkbox(SCobjects.Manage_Menu_overview_yes_radio_button);
+					browser.check_Checkbox(SCobjects.Manage_Menu_review_yes_radio_button);
+					browser.check_Checkbox(SCobjects.Manage_Menu_inquiry_yes_radio_button);
+					browser.check_Checkbox(SCobjects.Manage_Menu_promotions_yes_radio_button);
+					browser.check_Checkbox(SCobjects.Manage_Menu_videos_yes_radio_button);
+					browser.check_Checkbox(SCobjects.Manage_Menu_photos_yes_radio_button);
+					browser.check_Checkbox(SCobjects.Manage_Menu_contact_us_yes_radio_button);
+					browser.check_Checkbox(SCobjects.Manage_Menu_jobs_yes_radio_button);
+					}
+					
+					else {
+						browser.reportscomtep("Failed", "Verify Manage Menu page is displayed",
+								"Manage Menu page should be displayed", "Manage Menu page not displayed");
+
+					}
+					}
+				
+//TC_9_030
+				
+				public void verifychangesinmanagemenu() throws Exception {
+					
+					if (browser.elementisdisplayed(SCobjects.Manage_Menu_Header)){
+						browser.reportscomtep("Passed", "Verify Manage Menu page is displayed",
+								"Manage Menu page should be displayed", "Manage Menu page displayed");
+						
+						browser.click(SCobjects.Manage_Menu_videos_no_radio_button);
+						browser.click(SCobjects.Manage_Menu_photos_no_radio_button);
+						browser.click(SCobjects.Manage_Menu_save_button);
+						browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+						browser.click(SCobjects.Subscriber_HumanIcon);
+						browser.click(SCobjects.Subscriber_HumanIcon_logout_link);
+						browser.sendkeys(SCobjects.Professional_search_box, browser.getdata("changedbusinessname"));
+						browser.click(SCobjects.Professional_search_icon);
+						browser.click(SCobjects.Professional_search_result);
+						if (browser.elementisdisplayed(SCobjects.Business_page_videos_tab) & browser.elementisdisplayed(SCobjects.Business_page_photos_tab)) {
+							browser.reportscomtep("Failed", "Verify Photos and Videos tab is not displayed",
+									"Photos and Videos tab should not be displayed", "Photos and Videos tab displayed");
+						}
+						else {
+							
+							browser.reportscomtep("Passed", "Verify Photos and Videos tab is not displayed",
+									"Photos and Videos tab should not be displayed", "Photos and Videos tab not displayed");
+						}
+}
+					
+					else {
+						browser.reportscomtep("Failed", "Verify Manage Menu page is displayed",
+								"Manage Menu page should be displayed", "Manage Menu page not displayed");
+
+					}
+				}
+				
+//TC_9_031
+				
+				public void checkinfoonsociallinkstab() throws Exception {
+					
+					browser.click(SCobjects.Settings_page_tabs_Social_Links);
+
+					
+					if (browser.elementisdisplayed(SCobjects.Social_Links_Header)){
+						browser.reportscomtep("Passed", "Verify Social Links page is displayed",
+								"Social Links page should be displayed", "Social Links page displayed");
+					
+					browser.elementisdisplayed(SCobjects.Social_links_Facebook_field);
+					browser.clearText(SCobjects.Social_links_Facebook_field);
+					browser.elementisdisplayed(SCobjects.Social_links_Instagram_field);
+					browser.clearText(SCobjects.Social_links_Instagram_field);
+					browser.elementisdisplayed(SCobjects.Social_links_google_plus_field);
+					browser.clearText(SCobjects.Social_links_google_plus_field);
+					
+				 if (browser.elementisdisplayed(SCobjects.Social_Links_Save_button)){
+					 browser.reportscomtep("Failed", "Verify Save button is disabled",
+								"Save button should be disabled", "Save button not disabled");
+				 }
+				 else {
+					 browser.reportscomtep("Passed", "Verify Save button is disabled",
+								"Save button should be disabled", "Save button disabled");			
+				}
+					
+					}else {
+					browser.reportscomtep("Failed", "Verify Social Links page is displayed",
+							"Social Links page should be displayed", "Social Links page not displayed");
+					
+				}
+}
+				
+//TC_9_032
+				
+				public void dataentryfieldvalidity() throws Exception {
+					
+					browser.click(SCobjects.Settings_page_tabs_Social_Links);
+					
+					if (browser.elementisdisplayed(SCobjects.Social_Links_Header)){
+						browser.reportscomtep("Passed", "Verify Social Links page is displayed",
+								"Social Links page should be displayed", "Social Links page displayed");
+						
+					browser.sendkeys(SCobjects.Social_links_Facebook_field, browser.getdata("facebookentry"));
+					browser.click(SCobjects.Social_Links_Save_button_after_text_entry);
+					
+					 if (browser.elementisdisplayed(SCobjects.success_pop_up)){
+						 browser.reportscomtep("Passed", "Verify Save button is enabled",
+									"Save button should be enabled", "Save button is enabled"); 
+					 }
+					 
+					 else {
+						 browser.reportscomtep("Failed", "Verify Save button is enabled",
+									"Save button should be enabled", "Save button not enabled"); 
+					 }
+					
+					}else {
+						browser.reportscomtep("Failed", "Verify Social Links page is displayed",
+								"Social Links page should be displayed", "Social Links page not displayed");
+						
+					}	
+					
+					browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+}
+				
+//TC_9_033
+				
+				public void checkinfoinbusinessinfopage() throws Exception {
+					
+					browser.click(SCobjects.Settings_page_tabs_Business_Hours);	
+					
+					if (browser.elementisdisplayed(SCobjects.Business_hours_header)){
+						browser.reportscomtep("Passed", "Verify Business Hours page is displayed",
+								"Business Hours page should be displayed", "Business Hours page displayed");
+					
+					browser.elementisdisplayed(SCobjects.add_holiday_button);
+					browser.elementisdisplayed(SCobjects.Update_button);
+					
+					}else {
+						browser.reportscomtep("Failed", "Verify Business Hours page is displayed",
+								"Business Hours page should be displayed", "Business Hours page not displayed");
+					}
+}
 
 }
