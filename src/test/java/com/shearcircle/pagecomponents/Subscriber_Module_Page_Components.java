@@ -3302,7 +3302,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 						if (browser.elementisdisplayed(SCobjects.Staff_Search_NameOrMobile_Box)) {
 							browser.reportscomtep("Passed", "Verify Search Name or Mobile box is displayed",
 									"Search Name or Mobile box should be displayed", "Search Name or Mobile box is displayed");
-							Name = browser.getdata("Firstname");
+							Name = browser.getdata("Staf_Firstname");
 							PhoneNo = browser.getdata("Staff_PHNo");
 							Email = browser.getdata("Staff_Mail");
 							List<WebElement> Staff_FilterList = SCobjects.Staff_SearchFilter_List;

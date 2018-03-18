@@ -18,13 +18,13 @@ import com.shearcircle.utilities.StaticVariables;
 
 import utils.ExtentReports.ExtentTestManager;
 
-public class TS011_SubscriberClicksOnServicesInManageCircleMenu extends StaticVariables {
+public class TS_011_SubscriberClicksOnServicesInManageCircleMenu extends StaticVariables {
 	public String TestDataPath;
 	public Subscriber_Module_Page_Components SR;
 	public CommonFunctions cfn;
 	public static WebDriver driver;
 
-	public TS011_SubscriberClicksOnServicesInManageCircleMenu() throws IOException, InterruptedException {
+	public TS_011_SubscriberClicksOnServicesInManageCircleMenu() throws IOException, InterruptedException {
 		cfn = new CommonFunctions();
 	}
 

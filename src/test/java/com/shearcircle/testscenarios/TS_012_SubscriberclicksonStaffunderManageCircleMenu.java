@@ -115,7 +115,7 @@ public class TS_012_SubscriberclicksonStaffunderManageCircleMenu extends StaticV
 	@Test(priority = 12011, description = "TC_12_009 Check the Search box")
 	public void TC_1_2_009_Subscriber_Check_Search_box() throws IOException {
 		ExtentTestManager.getTest().setDescription("TC_12_009 Check the Search box");
-		SR.check_SearchBox("Enter_Name");
+		SR.check_SearchBox("Enter_MobileNo");
 	}
 
 }
