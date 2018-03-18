@@ -1628,13 +1628,12 @@ public class CommonFunctions extends StaticVariables {
 				
                 if (text!="") {
 					
-            	this.reportscomtep("Passed", "Element Field should be prepopulated",
-						"Element Field should be prepoluated", "The Element field is prepoluated");
-            }
+            	this.reportscomtep("Passed", "Element Field " + Reporttext + " prepopulated",
+						"Element Field " + Reporttext + " should be prepoluated", "The Element field " + Reporttext + " prepoluated");
+                }else {   	
             	
-            	else {
-            		this.reportscomtep("Failed", "Element Field should be prepopulated",
-    						"Element Field should be prepoluated", "The Element no prepopulated");
+            		this.reportscomtep("Failed", "Element Field " + Reporttext + " prepopulated",
+    						"Element Field " + Reporttext + " should be prepoluated", "The Element " + Reporttext + " no prepopulated");
             	}
             
             }

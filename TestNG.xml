@@ -90,8 +90,10 @@
 			<class name="com.shearcircle.testscenarios.TS_003_SubscriberClicksOnVerificationLinkSentToEmail" /> 
 			<class name="com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime" />
 			<class name="com.shearcircle.testscenarios.TS_005_SubscriberLoginToSubscriberDashboard" />
-			<class name="com.shearcircle.testscenarios.TS_008_SubscriberClicksOnChangePassword" />	 -->
-			<class name="com.shearcircle.testscenarios.TS_009_SubscriberClicksOnBusinessSettingsPage" />				
+			<class name="com.shearcircle.testscenarios.TS_008_SubscriberClicksOnChangePassword" />	
+			<class name="com.shearcircle.testscenarios.TS_009_SubscriberClicksOnBusinessSettingsPage" /> -->
+			<class name="com.shearcircle.testscenarios.TS011_SubscriberClicksOnServicesInManageCircleMenu" />	
+			<!-- <class name="com.shearcircle.testscenarios.TS_012_SubscriberclicksonStaffunderManageCircleMenu" />	 -->			
 		</classes>
     </test>
 </suite>

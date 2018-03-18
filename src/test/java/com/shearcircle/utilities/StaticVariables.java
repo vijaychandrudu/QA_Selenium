@@ -3,9 +3,7 @@ package com.shearcircle.utilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class StaticVariables {
-	
-	
+public class StaticVariables {	
 	//public RemoteWebDriver driver;
 	public static String Browser = "";
 	public static String appUrl = "https://shearcircle.com/testbed/home";

@@ -1,5 +1,7 @@
 package com.shearcircle.objectrepository;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -629,7 +631,336 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy (xpath = "//button[text()='Update']")
 	public WebElement Update_button;
 	
+	@FindBy(xpath ="//*[text()='Manage Circle ']")
+	public WebElement Subscriber_ManageCircle_Dropdown_Link;
 	
+	@FindBy(xpath="//div/div[2]/ul[1]/li[8]/ul/li/a")
+	public WebElement Subscriber_ManageCircle_Dropdown_List;
+	
+	@FindBy(xpath="//a[text()='Staff']")
+	public WebElement Subscriber_ManageCircle_Staff_DDvalue;
+	
+	
+	
+/*********TS011_Subscriber clicks on Services in Manage Circle Menu**************/
+	
+	/**********TC_11_001 Open the Service page*******/
+	
+	@FindBy(xpath="//a[text()='Jobs Postings']")
+	public WebElement JobsPosting_DropdownValue_Link;
+	
+	@FindBy(xpath="//a[text()='Services']")
+	public WebElement ManageCircle_Services_Dropdown_Link;
+	
+	@FindBy(xpath="//*[text()='Service Menu']")
+	public WebElement SreviceMenu_PageHeader;
+	
+	@FindBy(xpath="//div[@class='dashboar_content']//button[text()=' New Group']")
+	public WebElement SreviceMenu_AddNewGroupAtLoginFirstTime_Button;
+	
+	@FindBy(xpath="//div[2]/span/button[text()=' New Group']")
+	public WebElement SreviceMenu_AddNewGroup_Button;
+	
+	@FindBy(xpath="//div/div/div/div/div/span/a")
+	public List<WebElement>ServiceMenu_AddNewService_Buttons_List;
+	  
+	@FindBy(xpath="//div[2]/div/div/div/div/div/h3")
+	public List<WebElement> SreviceMenu_SericeAddAlready_NameList;
+	
+	@FindBy(xpath="//div/div/div/div[2]/div[2]/table/tbody/tr/th")
+	public List<WebElement> SericeMenu_ServicesUnderIndividualGroup_List;
+	
+	/***TC_11_002 Check the details under individual Group******/
+	
+	@FindBy(xpath="//div[2]/div/div/div/div/div/h3/i")
+	public List<WebElement>ServiceMenu_GroupNameWithEdit_ButtonList;
+	
+	@FindBy(xpath="//div[@class='panel-body']/table")
+	public WebElement SM_Tabularform;
+	
+	@FindBy(xpath="//div[1]/div[2]/table/thead/tr/th[text()='Service Name']")
+	public WebElement ServiceMenu_ServiceName_TableHeader;
+	
+	@FindBy(xpath="//div[1]/div[2]/table/thead/tr/th[text()='For']")
+	public WebElement ServiceMenu_For_TableHeader;
+	
+	@FindBy(xpath="//div[@class='panel-body']/table/tbody/tr/td[text()='everyone' or text()='Male' or text()='Female']")
+	public WebElement ServiceMenu_For_MenOrWomwnOrEveryOne_Details;
+	
+	@FindBy(xpath="//div[1]/div[2]/table/thead/tr/th[text()='Duration']")
+	public WebElement ServiceMenu_Duration_TableHeader;
+	
+	@FindBy(xpath="//div[1]/div[2]/table/thead/tr/th[text()='Actual Price']")
+	public WebElement ServiceMenu_ActualPrice_TableHeader;
+	
+	@FindBy(xpath="//div[1]/div[2]/table/thead/tr/th[text()='Sale Price']")
+	public WebElement ServiceMenu_SalePrice_TableHeader;
+	
+	@FindBy(xpath="//div[1]/div[2]/table/thead/tr/th[text()='Online Booking']")
+	public WebElement ServiceMenu_OnlineBooking_TableHeader;
+	
+	@FindBy(xpath="//div[1]/div[2]/table/tbody/tr[1]/td[text()='No' or text()='Yes']")
+	public WebElement Service_OnlineBooking_YesOrNo_Details;
+	
+	@FindBy(xpath="//div[1]/div[2]/table/thead/tr/th[text()='Action']")
+	public WebElement ServiceMenu_Action_TableHeader;
+	
+	@FindBy(xpath="//div[1]/div[2]/table/tbody/tr/td[6]/button[text()=' Edit']")
+	public WebElement ServiceMenu_Action_UnedrServiceEditButton;
+	
+	/****TC_11_003 Check whether a New Group can be added****/
+	
+	@FindBy(xpath="//*[@id='serviceAddUpdateForm']/div/div[1]/h4[text()='New Service Group ']")
+	public WebElement ServiceMenu_NewServiceGroup_Popup_Header;
+	
+	@FindBy(xpath="//*[@name='group_name']")
+	public WebElement ServiceMenu_NewServiceGroupPopup_GroupName_TextBox;
+	
+	@FindBy(xpath="//*[@id='serviceAddUpdateForm']//button[text()='Add']")
+	public WebElement ServiceMenu_NewServiceGroupPopup_AddButton;
+	
+	@FindBy(xpath="//*[@id='serviceAddUpdateForm']//button[text()='Close']")
+	public WebElement ServiceMenu_NewServiceGroupPopup_CloseButton;
+	
+	@FindBy(xpath="//button[text()='OK']")
+	public WebElement ServiceMenu_Popup_OK_Button;
+	
+	/*****TC_11_004 Check whether New Group can be added without tying group name***/
+	
+	@FindBy(xpath="//*[text()='This field is required']")
+	public WebElement ServiceMenu_NewServiceGroupPopup_EM;
+	
+	/*****TC_11_005 Check whether the Group name can be edited*****/
+	
+	@FindBy(xpath="//*[@id='serviceAddUpdateForm']/div/div[3]/button[text()='Save changes']")
+	public WebElement ServiceMenu_NewServiceGroupPopup_SavechangesButton;
+	
+	/****TC_11_006 Check whether a group can be deleted*****/
+	
+	@FindBy(xpath="//*[@id='serviceAddUpdateForm']/div/div[3]/button[text()='Delete']")
+	public WebElement ServiceMenu_NewServiceGroupPopup_DeleteButton;
+	
+	@FindBy(xpath="//button[text()='Yes, delete it!']")
+	public WebElement ServiceMenu_NewServiceGroupPopup_YesDeleteItButton;
+	
+	
+	/*****TC_11_007 Check the action & details when +New Service button is clicked****/
+	
+	@FindBy(xpath="//*[@id='saveServiceForm']/div/h4[text()='Add New Service']")
+	public WebElement ServiceMenu_AddNewServicePopup_Header;
+	
+	@FindBy(xpath="//*[@id='saveServiceForm']/div/div[1]/div/ul/li[1]/a[text()='Details']")
+	public WebElement ServiceMenu_AddNewServicePopup_DetailsTab;
+	
+	@FindBy(xpath="//*[@id='saveServiceForm']/div/div[1]/div/ul/li[2]/a[text()='Staff']")
+	public WebElement ServiceMenu_AddNewServicePopup_StaffTab;
+	
+	@FindBy(xpath="//*[@id='editServiceForm']/div/div[1]/div/ul/li[1]/a[text()='Details']")
+	public WebElement ServiceMenu_editNewServicePopup_DetailsTab;
+	
+	@FindBy(xpath="//*[@id='editServiceForm']/div/div/div/ul/li/a[text()='Staff']")
+	public WebElement ServiceMenu_editNewServicePopup_StaffTab;
+	
+	@FindBy(xpath="//*[@id='details']/div/div[1]/div[1]/input")
+	public WebElement SM_AddNewServicePopup_ServiceName_TextBox;
+	
+	@FindBy(xpath="//div[@id='add_new_service']//*[@id='treatment_type']")
+	public WebElement SM_AddNewServicePopup_Treatment_Typedropdown;
+	
+	@FindBy(xpath="//div[@id='add_new_service']//*[@id='available_for']")
+	public WebElement SM_AddNewServicePopup_AvailableFor_DropdownList;
+	
+	@FindBy(xpath="//*[@id='details']/div/div[2]/div[2]/div[@class='checkbox']/label")
+	public WebElement SM_AddNewServicePopup_EnableOnlineBookings_CheckBox;
+	
+	@FindBy(xpath="//*[@id='details']/div/div[3]/div/div[1]/div/select[@name='duration']")
+	public WebElement SM_AddNewServicePopup_DurationDropdown_List;
+	
+	@FindBy(xpath="//*[@id='details']/div/div[3]/div/div/input[@name='full_price']")
+	public WebElement SM_AddNewServicePopup_FullPriceField_TextBox;
+	
+	@FindBy(xpath="//*[@id='details']/div/div[3]/div/div/input[@name='special_price']")
+	public WebElement SM_AddNewServicePopup_SpecialPriceField_TextBox;
+	
+	@FindBy(xpath="//*[@id='saveServiceForm']/div/div[2]/button[text()='Close']")
+	public WebElement SM_AddNewServicePopup_Close_Button;
+	
+	@FindBy(xpath="//*[@id='saveServiceForm']/div/div[2]/button[text()='Save changes']")
+	public WebElement SM_AddNewServicePopup_SaveChanges_Button;
+	
+	@FindBy(xpath="//div/div/div/label/input[@id='selectAllStaff']")
+	public WebElement SM_AddNewServicePopup_Staff_SelectAll_CheckBox;
+	
+	@FindBy(xpath="//div/div/div/label/input[@class='select_staff']")
+	public List<WebElement> SM_ANSP_Staff_Individual_CheckBox_List;
+	
+	/*********TC_11_008 Check the mandatory fields in Add new service popup***********/
+	
+	@FindBy(xpath="//*[@id='details']/div/div[1]/div[1]/em")
+	public WebElement SM_AddNewServicePopup_ServiceName_EM;
+	
+	@FindBy(xpath="//*[@id='details']/div/div[1]/div[2]/div/em")
+	public WebElement SM_AddNewServicePopup_TreatmentType_EM;
+	
+	@FindBy(xpath="//*[@id='details']/div/div[3]/div/div[1]/div/em")
+	public WebElement SM_AddNewServicePopup_Duration_EM;
+	
+	@FindBy(xpath="//*[@id='details']/div/div[3]/div/div[2]/em")
+	public WebElement SM_AddNewServicePopup_FullPrice_EM;
+	
+	@FindBy(xpath="//h3[text()='Staff']")
+	public WebElement Subscriber_Staff_Page;
+	
+	@FindBy(xpath="//div/input[@placeholder='Search Name or Mobile ']")
+	public WebElement Subscriber_Staff_SearchNameorMobile_Textbox;
+	 
+	@FindBy(xpath="//*[text()='New Staff']")
+	public WebElement Subscriber_Staff_NewStaff_Button;
+	
+	@FindBy(xpath="//div[@class='container-fluid']/table/tbody/tr/td")
+	public List<WebElement> Subscriber_Staff_DetailsList;
+	
+	
+	
+	/********TC_12_002	Check the details in staff page******/	
+	
+	@FindBy(xpath="//table/thead/tr/th[text()='Name']")
+	public WebElement Staff_Name_Text;
+	
+	@FindBy(xpath="//table/thead/tr/th[text()='Mobile Number']")
+	public WebElement Staff_MobileNumber_Text;
+	
+	@FindBy(xpath="//table/thead/tr/th[text()='Email']")
+	public WebElement Staff_Email_Text;
+	
+	@FindBy(xpath="//table/thead/tr/th[text()='Appointments']")
+	public WebElement Staff_AppointmentsStaff_Text;
+	
+	@FindBy(xpath="//table/tbody/tr/td[contains(text(),'Calendar bookings')]")
+	public WebElement Staff_ApmntCalenderDetails;
+	
+	@FindBy(xpath="//table/thead/tr/th[text()='Created at']")
+	public WebElement Staff_CreatedatText;
+	
+	@FindBy(xpath="//table/thead/tr/th[text()='Profile image']")
+	public WebElement Staff_ProfileImage_Text;
+	
+	@FindBy(xpath="//table/tbody/tr[1]/td[6]/button")
+	public WebElement Staff_EditButton;
+	
+	
+	
+	/*********TC_12_003	Check the New Staff button****/
+	
+	@FindBy(xpath="//*[text()='Add New Staff']")
+	public WebElement Staff_AddNewStaff_Header;
+	
+	@FindBy(xpath="//*[text()='Details']")
+	public WebElement Staff_DetailsTab;
+	
+	@FindBy(xpath="//*[@name='firstname']")
+	public WebElement Staff_FirstName_TextBox;	
+
+	@FindBy(xpath="//*[@name='lastname']")
+	public WebElement Staff_LastName_TextBox;	
+
+	@FindBy(xpath="//*[@name='mobile']")
+	public WebElement Staff_MobileNumber_TextBox;	
+
+	@FindBy(xpath="//*[@name='email']")
+	public WebElement Staff_Email_TextBox;	
+
+	@FindBy(xpath="//div[@class='checkbox']/label/input[@name='is_appointment_booking_enabled']")
+	public WebElement Staff_EnableApnmtBkngs_Checkbox;	
+
+	@FindBy(xpath="//*[text()='Work schedule ']")
+	public WebElement Staff_Workschedule;
+	
+	@FindBy(xpath="//*[text()=' Day']")
+	public WebElement Staff_Day_Text;
+	
+	@FindBy(xpath="//*[text()='Opening Hours ']")
+	public WebElement Staff_OpeningHours;
+	
+	@FindBy(xpath="//*[text()=' Closing Hours ']")
+	public WebElement Staff_ClosingHours;
+	
+	@FindBy(xpath="//*[@href='#services']")
+	public WebElement Staff_Services_Tab;
+	
+	@FindBy(xpath="//*[@id='services']/div[2]/div/div/div/label/input")
+	public List<WebElement> Staff_Services_SelectServices_CheckboxList;
+	
+	
+	@FindBy(xpath="//input[@id='selectAllServices']")
+	public WebElement Staff_Services_SelectAllService_Checkbox;
+	
+	@FindBy(xpath="//*[text()='Close']")
+	public WebElement Staff_Close_Button;
+	
+	@FindBy(xpath="//*[text()='Add Staff']")
+	public WebElement Staff_AddStaff_Button;
+
+	/*****TC_12_004	Check the Mandatory fields in Add new staff popup*****/
+	
+	@FindBy(xpath="//em[text()='Please enter firstname']")
+	public WebElement Staff_PleaseEnterFirstname_ErrorMessage;
+	
+	@FindBy(xpath="//em[text()='Please enter lastname']")
+	public WebElement Staff_PleaseEnterlastname_ErrorMessag;
+	
+	/************TC_12_005	Check if a Staff can be added******/
+	
+	@FindBy(xpath="//*[@id='details']/div/div[3]//input[@type='checkbox']")
+	public List<WebElement> Staff_DateAndSelect_OpeningAndClosing_Hours_list;
+
+	
+	@FindBy(xpath="//*[@class='confirm']")
+	public WebElement Staff_Popup_ClickLink;
+	
+	
+	/***TC_12_006	Check if a Staff details can be modified***/
+	
+	@FindBy(xpath="//table/tbody/tr/td[1]")
+	public List <WebElement> Staff_Name_List;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']/div[1]/h4")
+	public WebElement Staff_EditStaff_Popup;
+	
+	
+	@FindBy(xpath="//*[text()='Update changes']")
+	public WebElement Staff_UpdateChanges_Button;
+	
+	/****TC_12_007	Check whether a Staff can be deleted****/
+	
+	@FindBy(xpath="//*[text()='Delete']")
+	public WebElement Staff_Delete_Button;
+	
+	@FindBy(xpath="//*[text()='Yes, delete it!']")
+	public WebElement Staff_YesDeleteIt_Button;
+	
+	/********TC_12_008	Check whether a profile image can be added for Staff****/
+	
+	@FindBy(xpath="//*[text()='Upload Profile Picture']")
+	public WebElement Staff_UploadProfilePicture_Header;
+	 
+	@FindBy(xpath="//*[@class='profile-image']")
+	public WebElement Staff_Profile_Image;
+	
+	
+	/**************TC_12_009 Check the Search box******/
+	
+	@FindBy(xpath="//*[@placeholder='Search Name or Mobile ']")
+	public WebElement Staff_Search_NameOrMobile_Box;
+	
+	@FindBy(xpath="//div[@class='input-group-btn']/button")
+	public WebElement Staff_Search_Button;
+	
+	@FindBy(xpath="//div[@class='container-fluid']/table/tbody/tr")
+	public List<WebElement> Staff_SearchFilter_List;
+	
+	@FindBy(xpath="//section/div/div[2]/div")
+	public WebElement Staff_SearchFilter_Table;
 	
 	
 	

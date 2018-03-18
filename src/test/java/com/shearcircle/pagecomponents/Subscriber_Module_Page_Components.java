@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -11,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.ClickAction;
 import org.openqa.selenium.remote.server.handler.GetElementEnabled;
@@ -1919,39 +1921,33 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 	//****************have to get TC sorted with Sunil. Only one error msg is displayed**********************************//
 	
 	public void savechangeswithoutaddinganydata() throws Exception {
-		
+
 		if (browser.elementisdisplayed(SCobjects.Settings_page_tabs_Business_Details)) {
 			browser.reportscomtep("Passed", "Verify Business Setting page is displayed",
-					"Business Details page should be displayed", "Business Details page displayed");	
-		
-				browser.clearText(SCobjects.Settings_page_input_Business_Name);
-				browser.clearText(SCobjects.Settings_page_input_Subdomain);
-				browser.clearText(SCobjects.Settings_page_input_Address);
-				browser.clearText(SCobjects.Settings_page_input_ContactNum);
-				browser.clearText(SCobjects.Settings_page_input_Business_Type);
-				browser.click(SCobjects.Settings_Save_Change_Button);
-				
-				if (browser.elementisdisplayed(SCobjects.Settings_error_msg_save_with_invalid_entries)){
-					browser.reportscomtep("Passed", "Error message is displayed when page saved with invalid entries",
-							"Error message should be displayed", "Error Message is displayed");
-				}
-				
-				else {
-					
-					browser.reportscomtep("Failed", "Error message is displayed when page saved with invalid entries",
-							"Error message should be displayed", "Error Message not displayed");
-			
-				
-				}
-		}
-		else {
+					"Business Details page should be displayed", "Business Details page displayed");
+
+			browser.clearText(SCobjects.Settings_page_input_Business_Name);
+			browser.clearText(SCobjects.Settings_page_input_Subdomain);
+			browser.clearText(SCobjects.Settings_page_input_Address);
+			browser.clearText(SCobjects.Settings_page_input_ContactNum);
+			browser.clearText(SCobjects.Settings_page_input_Business_Type);
+			browser.click(SCobjects.Settings_Save_Change_Button);
+
+			if (browser.elementisdisplayed(SCobjects.Settings_error_msg_save_with_invalid_entries)) {
+				browser.reportscomtep("Passed", "Error message is displayed when page saved with invalid entries",
+						"Error message should be displayed", "Error Message is displayed");
+			} else {
+
+				browser.reportscomtep("Failed", "Error message is displayed when page saved with invalid entries",
+						"Error message should be displayed", "Error Message not displayed");
+
+			}
+		} else {
 			browser.reportscomtep("Failed", "Verify Business Setting page is displayed",
 					"Business Details page should be displayed", "Business Details page not displayed");
 		}
-				
-	
-              }
-	
+
+	}
 	
 	
 	//TC_9_005
@@ -2420,5 +2416,931 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 								"Business Hours page should be displayed", "Business Hours page not displayed");
 					}
 }
+				
+				/*********TS011_Subscriber clicks on Services in Manage Circle Menu**************/
+				
+				/**********TC_11_001 Open the Service page*******/
+				
+	public void open_Service_Page(String LoginFirstTime_ServiceAlreadyAdded) {
+		String SelectedType = "";
+		String ServiceHeader = "";
+		String ServicesAddedNames = "";
+		String ServicesUnderGroupListNames = "";
+		try {
+			if (browser.elementisdisplayed(SCobjects.Subscriber_ManageCircle_Dropdown_Link)) {
+				browser.reportscomtep("Passed", "Verify Manage Circle dropdown link is displayed in Dashboard page",
+						"Manage Circle dropdown link should be displayed", "Manage Circle dropdown link is displayed");
+				browser.click(SCobjects.Subscriber_ManageCircle_Dropdown_Link);
+
+				SelectedType = browser.getelementtext(SCobjects.ManageCircle_Services_Dropdown_Link);
+
+				browser.click(SCobjects.ManageCircle_Services_Dropdown_Link);
+				ServiceHeader = browser.getelementtext(SCobjects.SreviceMenu_PageHeader);
+
+				if (ServiceHeader.equalsIgnoreCase("Service Menu")) {
+					browser.reportscomtep("Passed", "Verify ManageCircle dropdown Services value is slected",
+							"ManageCircle dropdown Services value should be slected",
+							"ManageCircle dropdown value selected as:" + SelectedType);
+					if (browser.elementisdisplayed(SCobjects.SreviceMenu_PageHeader)) {
+						browser.reportscomtep("Passed", "Verify Service Menu Page is displayed",
+								"Service Menu Page should be displayed", "Service Menu Page is displayed");
+
+						if (SCobjects.SreviceMenu_SericeAddAlready_NameList.size() > 0) {
+
+							List<WebElement> ServiceList = SCobjects.SreviceMenu_SericeAddAlready_NameList;
+							for (WebElement ServiceNames : ServiceList) {
+								ServicesAddedNames = ServicesAddedNames + "\n" + ServiceNames.getText();
+							}
+
+							if (ServicesAddedNames!="") {
+								browser.reportscomtep("Passed", "Verify Services are already added",
+										"Services should be already added",
+										"Services are already added as:" + ServicesAddedNames);							
+								
+								List<WebElement> ServiceUIGL = SCobjects.SericeMenu_ServicesUnderIndividualGroup_List;
+								for (WebElement ServiceUnderGropuList : ServiceUIGL) {
+									ServicesUnderGroupListNames = ServicesUnderGroupListNames + "\n"
+											+ ServiceUnderGropuList.getText();									
+								}
+								if (ServiceUIGL.size() > 0 && browser.elementisdisplayed(ServiceUIGL.get(0))) {
+									browser.reportscomtep("Passed",
+											"Verify Services under individual Group are displayed",
+											"Services under individual Group shpuld be displayed",
+											"Services under individual Group are displayed as:"
+													+ ServicesUnderGroupListNames);
+
+								} else {
+									browser.reportscomtep("Failed",
+											"Verify Services under individual Group are displayed",
+											"Services under individual Group shpuld be displayed",
+											"Services under individual Group are not displayed ");
+								}
+							} else {
+								browser.reportscomtep("Failed", "Verify Services are already added",
+										"Services should be already added", "Services are not added");
+							}
+							
+							browser.Verify_elementisdisplayed_Report(SCobjects.SreviceMenu_AddNewGroup_Button,"+New Group button");
+							browser.Verify_elementisdisplayed_Report(SCobjects.ServiceMenu_AddNewService_Buttons_List.get(1), "+New Service button");
+
+						}else if (browser.elementisdisplayed(SCobjects.SreviceMenu_AddNewGroupAtLoginFirstTime_Button)) {
+							browser.reportscomtep("Passed", "Verify +New Group button is displayed",
+									"+New Group button should be displayed", "+New Group button is displayed");
+
+						} 
+
+					} else {
+						browser.reportscomtep("Failed", "Verify Service Menu Page is displayed",
+								"Service Menu Page should be displayed", "Service Menu page is not displayed");
+					}
+
+				} else {
+					browser.reportscomtep("Failed", "Verify ManageCircle dropdown Services value is slected",
+							"ManageCircle dropdown Services value should be slected",
+							"ManageCircle dropdown value Services value is not selected");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify Manage Circle dropdown link is displayed in Dashboard page",
+						"Manage Circle dropdown link should be displayed",
+						"Manage Circle dropdown link is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+				
+	/****** TC_11_002 Check the details under individual Group ******/
+
+	public void checkDetails_UnderIndividualGroup() {
+		String GroupName = "";
+		String ForGenderDetails = "";
+		String OBDetails = "";
+		try {
+			List<WebElement> GroupList = SCobjects.SreviceMenu_SericeAddAlready_NameList;
+			List<WebElement> GroupEditButton = SCobjects.ServiceMenu_GroupNameWithEdit_ButtonList;
+			if (GroupList.size() > 0 && GroupEditButton.size() > 0) {
+				if (browser.elementisdisplayed(GroupList.get(0)) && browser.elementisdisplayed(GroupList.get(0))) {
+					GroupName = GroupList.get(0).getText();
+					browser.reportscomtep("Passed", "Verify Group name with edit button is displayed",
+							"Group name with edit button should be displayed",
+							"Group name with edit button is displayed as:" + GroupName);
+					browser.Verify_elementisdisplayed_Report(SCobjects.ServiceMenu_AddNewService_Buttons_List.get(0),
+							"+New Service button");
+					if (browser.elementisdisplayed(SCobjects.SM_Tabularform)) {
+						browser.reportscomtep("Passed", "Verify Service group Tabular form is displayed",
+								"Service group Tabular form should be displayed",
+								"Service group Tabular form is displayed");
+						browser.Verify_elementisdisplayed_Report(SCobjects.ServiceMenu_ServiceName_TableHeader,
+								"SerVice Name Table Header");
+						browser.Verify_elementisdisplayed_Report(SCobjects.ServiceMenu_For_TableHeader,
+								"For Table Header");
+						if (browser.elementisdisplayed(SCobjects.ServiceMenu_For_MenOrWomwnOrEveryOne_Details)) {
+							ForGenderDetails = browser
+									.getelementtext(SCobjects.ServiceMenu_For_MenOrWomwnOrEveryOne_Details);
+							if (ForGenderDetails.trim().equalsIgnoreCase("male")
+									|| ForGenderDetails.trim().equalsIgnoreCase("female")
+									|| ForGenderDetails.trim().equalsIgnoreCase("everyone")) {
+								browser.reportscomtep("Passed",
+										"Verify Service provide For Male/Female/Everyone are dispalyed",
+										"Service provide For Male/Female/Everyone shpould be dispalyed",
+										"Service provide for Male/Female/Everyone are dispalyed as:"
+												+ ForGenderDetails);
+							}
+
+						}
+
+						browser.Verify_elementisdisplayed_Report(SCobjects.ServiceMenu_Duration_TableHeader,
+								"Duration Table Header");
+						browser.Verify_elementisdisplayed_Report(SCobjects.ServiceMenu_ActualPrice_TableHeader,
+								"Actual Price Table Header");
+						browser.Verify_elementisdisplayed_Report(SCobjects.ServiceMenu_SalePrice_TableHeader,
+								"Sale Price Table Header");
+						browser.Verify_elementisdisplayed_Report(SCobjects.ServiceMenu_OnlineBooking_TableHeader,
+								"Online Booking Table Header");
+						if (browser.elementisdisplayed(SCobjects.Service_OnlineBooking_YesOrNo_Details)) {
+
+							OBDetails = browser.getelementtext(SCobjects.Service_OnlineBooking_YesOrNo_Details);
+							if (OBDetails.trim().equalsIgnoreCase("Yes") || OBDetails.trim().equalsIgnoreCase("No")) {
+								browser.reportscomtep("Passed",
+										"Verify Service provide Online Booking YES/NO are dispalyed",
+										"Service provide Online Booking YES/NO should be dispalyed",
+										"Service provide Online Booking YES/NO are dispalyed as:" + OBDetails);
+							}
+
+						}
+
+						if (browser.elementisdisplayed(SCobjects.ServiceMenu_Action_TableHeader)
+								&& browser.elementisdisplayed(SCobjects.ServiceMenu_Action_UnedrServiceEditButton)) {
+							browser.reportscomtep("Passed",
+									"Verify Action Table header and Service Edit button are displayed",
+									"Action Table header and Service Edit button should be displayed",
+									"Action Table header and Service Edit button are displayed");
+						} else {
+							browser.reportscomtep("failed",
+									"Verify Action Table header and Service Edit button are displayed",
+									"Action Table header and Service Edit button should be displayed",
+									"Action Table header and Service Edit button are not displayed");
+						}
+
+					} else {
+						browser.reportscomtep("Failed", "Verify Service group Tabular form is displayed",
+								"Service group Tabular form should be displayed",
+								"Service group Tabular form is displayed");
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify Group name with edit button is displayed",
+							"Group name with edit button should be displayed",
+							"Group name with edit button is not displayed");
+
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+				/*****TC_11_003 Check whether a New Group can be added*****/
+				
+				public void check_NewGroup_Added() {
+					String AddedGroupName = "";
+					int GroupNmaesListSize = 0;
+					String AddedGroupNameText = "";
+
+					try {
+						AddedGroupName = browser.getdata("GroupName");
+						browser.click(SCobjects.SreviceMenu_AddNewGroup_Button);
+						if (browser.elementisdisplayed(SCobjects.ServiceMenu_NewServiceGroup_Popup_Header)) {
+							browser.reportscomtep("Passed",
+									"Clicks on Add New Group button And verify New Service Group Popup is displayed",
+									"New Service Group Popup should be displayed", "New Service Group Popup is displayed");
+							browser.sendkeys(SCobjects.ServiceMenu_NewServiceGroupPopup_GroupName_TextBox, AddedGroupName);
+							browser.click(SCobjects.ServiceMenu_NewServiceGroupPopup_AddButton);
+							browser.click(SCobjects.ServiceMenu_Popup_OK_Button);
+							List<WebElement> GroupNmaesList = SCobjects.SreviceMenu_SericeAddAlready_NameList;
+							GroupNmaesListSize = GroupNmaesList.size()-1;
+							browser.scrollintoviewelement(GroupNmaesList.get(GroupNmaesListSize));
+							AddedGroupNameText = GroupNmaesList.get(GroupNmaesListSize).getText();
+							if (AddedGroupName.equalsIgnoreCase(AddedGroupNameText) && browser.elementisdisplayed(
+									SCobjects.ServiceMenu_AddNewService_Buttons_List.get(GroupNmaesListSize))) {
+								
+									browser.reportscomtep("Passed",
+											"Verify Added New Group name and New Service button is displayed",
+											"Added New Group name and New Service button should be displayed",
+											"New Service button and Added New Group Name displayed as:" + AddedGroupNameText);
+
+								} else {
+									browser.reportscomtep("Failed",
+											"Verify Added New Group name and New Service button is displayed",
+											"Added New Group name and New Service button should be displayed",
+											"New Service button and Added New Group Name is not displayed");
+								
+							}
+
+						} else {
+							browser.reportscomtep("Failed",
+									"Clicks on Add New Group button And verify New Service Group Popup is displayed",
+									"New Service Group Popup should be displayed", "New Service Group Popup is not displayed");
+
+						}
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+
+				/****TC_11_004 Check whether New Group can be added without tying group name*****/
+				
+				public void check_NewGroupAdded_WithoutTyping_GroupName() {
+					String NewServiceGroupPopup_EM = "";
+					try {
+						browser.click(SCobjects.SreviceMenu_AddNewGroup_Button);
+						if (browser.elementisdisplayed(SCobjects.ServiceMenu_NewServiceGroup_Popup_Header)) {
+							browser.reportscomtep("Passed",
+									"Clicks on Add New Group button And verify New Service Group Popup is displayed",
+									"New Service Group Popup should be displayed", "New Service Group Popup is displayed");
+							browser.scrollintoviewelement(SCobjects.ServiceMenu_NewServiceGroupPopup_AddButton);
+							browser.click(SCobjects.ServiceMenu_NewServiceGroupPopup_AddButton);
+							if (browser.elementisdisplayed(SCobjects.ServiceMenu_NewServiceGroupPopup_EM)) {
+								NewServiceGroupPopup_EM = SCobjects.ServiceMenu_NewServiceGroupPopup_EM.getText();
+								browser.reportscomtep("Passed",
+										"In New Service Group popup Click on Add button without entering a name  and Verify  validation message is displayed ",
+										"validation message should be displayed",
+										"validation message is displayed as:" + NewServiceGroupPopup_EM);
+							} else {
+								browser.reportscomtep("failed",
+										"In New Service Group popup Click on Add button without entering a name  and Verify  validation message is displayed ",
+										"validation message should be displayed", "validation message is not  displayed");
+							}
+
+							browser.click(SCobjects.ServiceMenu_NewServiceGroupPopup_CloseButton);
+						} else {
+							browser.reportscomtep("Failed",
+									"Clicks on Add New Group button And verify New Service Group Popup is displayed",
+									"New Service Group Popup should be displayed", "New Service Group Popup is not displayed");
+
+						}
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				
+				/****TC_11_005 Check whether the Group name can be edited****/
+				
+				public void check_GroupName_Edited() {
+					String AfterEdit_GroupName = "";
+					String BeforeEdit_GroupName = "";
+					try {
+						AfterEdit_GroupName = browser.getdata("GroupNameEdit");
+						List<WebElement> Groupsnames = SCobjects.SreviceMenu_SericeAddAlready_NameList;
+						List<WebElement> EdtiButtons = SCobjects.ServiceMenu_GroupNameWithEdit_ButtonList;
+						if (Groupsnames.size() > 0) {
+						BeforeEdit_GroupName = Groupsnames.get(1).getText();
+						browser.click(EdtiButtons.get(1));
+							if (browser.elementisdisplayed(SCobjects.ServiceMenu_NewServiceGroup_Popup_Header)) {
+								browser.reportscomtep("Passed",
+										"Clicks on Group name of the Edit button And verify New Service Group Popup is displayed",
+										"New Service Group Popup should be displayed", "New Service Group Popup is displayed");
+								browser.clearText(SCobjects.ServiceMenu_NewServiceGroupPopup_GroupName_TextBox);
+								browser.sendkeys(SCobjects.ServiceMenu_NewServiceGroupPopup_GroupName_TextBox, AfterEdit_GroupName);
+								browser.click(SCobjects.ServiceMenu_NewServiceGroupPopup_SavechangesButton);
+								browser.click(SCobjects.ServiceMenu_Popup_OK_Button);
+								if (AfterEdit_GroupName != BeforeEdit_GroupName && browser.elementisdisplayed(Groupsnames.get(1))) {
+									browser.reportscomtep("Passed",
+											"Enter the Group Name, click on Save Chamges button and Conformation Ok button and verify The group name is changed",
+											"The group name should be changed", "The group name is changed");
+								} else {
+									browser.reportscomtep("Failed",
+											"Enter the Group Name, click on Save Chamges button and Conformation Ok button and verify The group name is changed",
+											"The group name should be changed", "The group name is not changed");
+								}
+							} else {
+								browser.reportscomtep("Failed",
+										"Clicks on Group name of the Edit button And verify New Service Group Popup is displayed",
+										"New Service Group Popup should be displayed", "New Service Group Popup is not displayed");
+							}
+						}
+
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				
+				
+				/*****TC_11_006 Check whether a group can be deleted*********/
+				public void check_Group_Deleted() {
+					String BeforeDelete_GN = "";
+					String GroupName = "";
+					try {
+						List<WebElement> Groupsnames = SCobjects.SreviceMenu_SericeAddAlready_NameList;
+						List<WebElement> EdtiButtons = SCobjects.ServiceMenu_GroupNameWithEdit_ButtonList;
+						if (Groupsnames.size() > 0) {
+							BeforeDelete_GN = Groupsnames.get(1).getText();
+							browser.click(EdtiButtons.get(1));
+							if (browser.elementisdisplayed(SCobjects.ServiceMenu_NewServiceGroup_Popup_Header)) {
+								browser.reportscomtep("Passed",
+										"Clicks on Group name of the Edit button And verify New Service Group Popup is displayed",
+										"New Service Group Popup should be displayed", "New Service Group Popup is displayed");
+								browser.click(SCobjects.ServiceMenu_NewServiceGroupPopup_DeleteButton);
+								browser.click(SCobjects.ServiceMenu_NewServiceGroupPopup_YesDeleteItButton);
+								browser.click(SCobjects.ServiceMenu_Popup_OK_Button);
+								for (WebElement DeleteGN : Groupsnames) {
+									GroupName = DeleteGN.getText();
+									if (GroupName != BeforeDelete_GN && browser.elementisdisplayed(Groupsnames.get(0))) {
+										browser.reportscomtep("Passed",
+												"Clicks on delete button, continue clicks on Yesdeleteit and OK Conformation buttons and verify The Group and the services within the group is deleted ",
+												"The Group and the services within the group should be deleted ",
+												"The Group and the services within the group is deleted ");
+									} else {
+										browser.reportscomtep("Failed",
+												"Clicks on delete button, continue clicks on Yesdeleteit and OK Conformation buttons and verify The Group and the services within the group is deleted ",
+												"The Group and the services within the group should be deleted ",
+												"The Group and the services within the group is not deleted ");
+									}
+								}
+
+							} else {
+								browser.reportscomtep("Failed",
+										"Clicks on Group name of the Edit button And verify New Service Group Popup is displayed",
+										"New Service Group Popup should be displayed", "New Service Group Popup is not displayed");
+							}
+						}
+
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				
+				/**********TC_11_007 Check the action & details when +New Service button is clicked**********/
+				
+				public void Check_ActionAndDetails_AddNewServiceButton_Click() {
+					try {
+						List<WebElement> AddNewService = SCobjects.ServiceMenu_AddNewService_Buttons_List;
+						if (AddNewService.size() > 0) {
+							browser.click(AddNewService.get(1));
+							if (browser.elementisdisplayed(SCobjects.ServiceMenu_AddNewServicePopup_Header)) {
+								browser.reportscomtep("Passed",
+										"Clicks on +New Service button and verify Add New Service Popup is displayed",
+										"Add New Service Popup should be displayed", "Add New Service Popup is displayed");
+								if (browser.elementisdisplayed(SCobjects.ServiceMenu_AddNewServicePopup_DetailsTab)) {
+									browser.reportscomtep("Passed", "Verify Details tab is displayed",
+											"Details tab should be displayed", "Details tab is displayed");
+									browser.Verify_elementisdisplayed_Report(SCobjects.SM_AddNewServicePopup_ServiceName_TextBox,
+											"Service Name field");
+									browser.Verify_elementisdisplayed_Report(SCobjects.SM_AddNewServicePopup_Treatment_Typedropdown,
+											"Treatment Type dropdown list");
+									browser.Verify_elementisdisplayed_Report(
+											SCobjects.SM_AddNewServicePopup_AvailableFor_DropdownList,
+											"Available for dropdown list");
+									browser.Verify_elementisdisplayed_Report(
+											SCobjects.SM_AddNewServicePopup_EnableOnlineBookings_CheckBox,
+											"Enable online bookings");
+									browser.Verify_elementisdisplayed_Report(SCobjects.SM_AddNewServicePopup_DurationDropdown_List,
+											"Duration dropdown list");
+									browser.Verify_elementisdisplayed_Report(SCobjects.SM_AddNewServicePopup_FullPriceField_TextBox,
+											"Full price field");
+									browser.Verify_elementisdisplayed_Report(
+											SCobjects.SM_AddNewServicePopup_SpecialPriceField_TextBox, "Special Price Field");
+									browser.Verify_elementisdisplayed_Report(SCobjects.SM_AddNewServicePopup_Close_Button,
+											"Close button");
+									browser.Verify_elementisdisplayed_Report(SCobjects.SM_AddNewServicePopup_SaveChanges_Button,
+											"Save Changes button");
+
+								} else {
+									browser.reportscomtep("Failed", "Verify Details tab is displayed",
+											"Details tab should be displayed", "Details tab is not displayed");
+								}
+								if(browser.elementisdisplayed(SCobjects.ServiceMenu_AddNewServicePopup_StaffTab)){
+									browser.reportscomtep("Passed", "Verify Staff Tab is displayed ",
+											"Staff Tab should be displayed", "Staff Tab is displayed");
+									browser.click(SCobjects.ServiceMenu_AddNewServicePopup_StaffTab);
+									///************////
+									browser.Verify_elementisdisplayed_Report(SCobjects.SM_AddNewServicePopup_Staff_SelectAll_CheckBox, "Select all staff CheckBoxs");
+									browser.Verify_elementisdisplayed_Report(SCobjects.SM_ANSP_Staff_Individual_CheckBox_List.get(0), "select individual/multiple staff CheckBoxs");
+									
+									browser.Verify_elementisdisplayed_Report(SCobjects.SM_AddNewServicePopup_Close_Button,
+											"Close button");
+									browser.Verify_elementisdisplayed_Report(SCobjects.SM_AddNewServicePopup_SaveChanges_Button,
+											"Save Changes button");
+								}else{
+									browser.reportscomtep("Failed", "Verify Staff Tab is displayed ",
+											"Staff Tab should be displayed", "Staff Tab is not displayed");
+								}
+
+							} else {
+								browser.reportscomtep("Failed",
+										"Clicks on +New Service button and verify Add New Service Popup is displayed",
+										"Add New Service Popup should be displayed", "Add New Service Popup is not displayed");
+							}
+						}
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				
+				/**TC_11_008 Check the mandatory  fields in Add new service popup *******/
+				
+				public void check_MandatoryFields_InAddNewService_Popup() {
+					String ServiceName_EM = "";
+					String TreatmentType_EM = "";
+					String Duration_EM = "";
+					String FullPrice_EM = "";
+					try {
+						browser.scrollintoviewelement(SCobjects.ServiceMenu_AddNewServicePopup_DetailsTab);
+						browser.click(SCobjects.ServiceMenu_AddNewServicePopup_DetailsTab);
+						browser.click(SCobjects.SM_AddNewServicePopup_SaveChanges_Button);
+						if (browser.elementisdisplayed(SCobjects.SM_AddNewServicePopup_ServiceName_EM)
+								&& browser.elementisdisplayed(SCobjects.SM_AddNewServicePopup_TreatmentType_EM)
+								&& browser.elementisdisplayed(SCobjects.SM_AddNewServicePopup_Duration_EM)
+								&& browser.elementisdisplayed(SCobjects.SM_AddNewServicePopup_Duration_EM)) {
+							ServiceName_EM = browser.getelementtext(SCobjects.SM_AddNewServicePopup_ServiceName_EM);
+							TreatmentType_EM = browser.getelementtext(SCobjects.SM_AddNewServicePopup_TreatmentType_EM);
+							Duration_EM = browser.getelementtext(SCobjects.SM_AddNewServicePopup_Duration_EM);
+							FullPrice_EM = browser.getelementtext(SCobjects.SM_AddNewServicePopup_Duration_EM);
+							browser.reportscomtep("Passed",
+									"In The details tab, click on Save Changes button without adding any details And Verify Manmandatory fields Error Messgaes are displayed",
+									" Manmandatory fields Error Messgaes should be displayed",
+									" Manmandatory fields Error Messgaes are displayed as:" + ServiceName_EM + "/n"
+											+ TreatmentType_EM + "/n" + Duration_EM + "/n" + FullPrice_EM);
+						}
+
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				
+				
+				/****TC_11_009 Check whether new service can be added*********/
+				
+				public void check_NewService_Added() {
+					String NewServiceName = "";
+					String FullPrice = "";
+					String SpecialPrice = "";
+					int ServiceNameLength = 0;
+					String Expected_NewServiceName = "";
+
+					try {
+						NewServiceName = browser.getdata("ServiceName");
+						FullPrice = browser.getdata("ServiceFullPrice");
+						SpecialPrice = browser.getdata("ServiceSpecialPrice");
+						browser.sendkeys(SCobjects.SM_AddNewServicePopup_ServiceName_TextBox, NewServiceName);
+						browser.selectByVisibleText(SCobjects.SM_AddNewServicePopup_Treatment_Typedropdown, "Braids");
+						browser.selectByVisibleText(SCobjects.SM_AddNewServicePopup_AvailableFor_DropdownList, "Males Only");
+						browser.click(SCobjects.SM_AddNewServicePopup_EnableOnlineBookings_CheckBox);
+						browser.selectByVisibleText(SCobjects.SM_AddNewServicePopup_DurationDropdown_List, "25min");
+						browser.sendkeys(SCobjects.SM_AddNewServicePopup_FullPriceField_TextBox, FullPrice);
+						browser.sendkeys(SCobjects.SM_AddNewServicePopup_SpecialPriceField_TextBox, SpecialPrice);
+						browser.click(SCobjects.ServiceMenu_AddNewServicePopup_StaffTab);
+						browser.click(SCobjects.SM_AddNewServicePopup_Staff_SelectAll_CheckBox);
+						browser.click(SCobjects.SM_AddNewServicePopup_SaveChanges_Button);
+						browser.click(SCobjects.ServiceMenu_Popup_OK_Button);
+						List<WebElement> NewServiecesNamesList = SCobjects.SericeMenu_ServicesUnderIndividualGroup_List;
+						ServiceNameLength = NewServiecesNamesList.size();
+						if (ServiceNameLength > 0) {
+							ServiceNameLength = NewServiecesNamesList.size()-1;
+							browser.scrollintoviewelement(NewServiecesNamesList.get(ServiceNameLength));
+							Expected_NewServiceName = NewServiecesNamesList.get(ServiceNameLength).getText();
+							if (browser.elementisdisplayed(NewServiecesNamesList.get(ServiceNameLength))
+									&& Expected_NewServiceName.equalsIgnoreCase(NewServiceName)) {
+								browser.reportscomtep("Passed",
+										"In the details tab added the mandatory info and click on Staff Tab , and continue clicks on Staff all checkbox, SaveChanges button,OK button and verify The service is added and the details in relevant column are displayed ",
+										"The service is added and the details in relevant column should be displayed",
+										"The service is added and the details in relevant column are displayed");
+
+							} else {
+								browser.reportscomtep("Failed",
+										"In the details tab added the mandatory info and click on Staff Tab , and continue clicks on Staff all checkbox, SaveChanges button,OK button and verify The service is added and the details in relevant column are displayed ",
+										"The service is added and the details in relevant column should be displayed",
+										"The service is added and the details in relevant column are not displayed");
+							}
+						}
+
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}		
+				
+				/******TC_12_001	Open Staff page*****/
+				 
+				public void open_StaffPage() {
+					String SelectedType = "";
+					try {
+						if (browser.elementisdisplayed(SCobjects.Subscriber_ManageCircle_Dropdown_Link)) {
+							browser.reportscomtep("Passed", "Verify Manage Circle dropdown link is displayed in Dashboard page",
+									"Manage Circle dropdown link should be displayed", "Manage Circle dropdown link is displayed");
+							browser.click(SCobjects.Subscriber_ManageCircle_Dropdown_Link);
+							SelectedType = browser.getelementtext(SCobjects.Subscriber_ManageCircle_Staff_DDvalue);
+							if (SelectedType.equalsIgnoreCase("Staff")) {
+								browser.click(SCobjects.Subscriber_ManageCircle_Staff_DDvalue);
+								browser.reportscomtep("Passed", "Verify ManageCircle dropdown value is slected",
+										"ManageCircle dropdown value should be slected",
+										"ManageCircle dropdown value selected as: " + SelectedType);
+								if (browser.elementisdisplayed(SCobjects.Subscriber_Staff_Page)) {
+									browser.reportscomtep("Passed", "Verify Staff page is displayed",
+											"Staff page should be displayed", "Staff page is displayed");
+									browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_Staff_SearchNameorMobile_Textbox,
+											"Search Name or Mobile Textbox");
+									browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_Staff_NewStaff_Button,
+											"New Staff Button");
+									if (SCobjects.Subscriber_Staff_DetailsList.size() > 0) {
+										browser.reportscomtep("Passed",
+												"Verify Staff Staff details are displayed",
+												"Staff details should be displayed", "Staff details are displayed");
+									} else if(browser.elementisdisplayed(SCobjects.Staff_SearchFilter_Table)){
+										browser.reportscomtep("Passed",
+												"Verify Staff Staff details are displayed",
+												"Staff details should be displayed", "Staff details are not displayed as expected staff not added");
+									} else {
+										browser.reportscomtep("Passed",
+												"Verify Staff Staff details are displayed",
+												"Staff details should be displayed", "Staff details table also not displayed");
+									}
+									
+								} else {
+									browser.reportscomtep("Failed", "Verify Staff page is displayed",
+											"Staff page should be displayed", "Staff page is not displayed");
+								}
+							} else {
+								browser.reportscomtep("Failed", "Verify ManageCircle dropdown value is slected",
+										"ManageCircle dropdown value should be slected",
+										"ManageCircle dropdown value is not selected");
+							}
+						} else {
+							browser.reportscomtep("Failed", "Verify Manage Circle dropdown link is displayed in Dashboard page",
+									"Manage Circle dropdown link should be displayed",
+									"Manage Circle dropdown link is not displayed");
+
+						}
+
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				/*****TC_12_002	Check the details in staff page***/
+				public void check_Details_InStaffPage() {
+					String CalenderDetails = "";
+					try {
+						browser.Verify_elementisdisplayed_Report(SCobjects.Staff_Name_Text, "Name");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Staff_MobileNumber_Text, "Mobile Number");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Staff_Email_Text, "Email");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Staff_AppointmentsStaff_Text, "Appointments");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Staff_CreatedatText, "Created at");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Staff_ProfileImage_Text, "Profile image");				
+						
+						if (browser.elementisdisplayed(SCobjects.Staff_ApmntCalenderDetails)) {
+							
+							if (CalenderDetails.trim().equalsIgnoreCase("Calendar bookings enabled")
+									|| CalenderDetails.trim().equalsIgnoreCase("Calendar bookings disabled")) {
+								browser.reportscomtep("Passed",
+										"Verify Appointments details are Calendar bookings enabled/disabled is dispalyed",
+										"Appointments details are Calendar bookings enabled/disabled details should be dispalyed",
+										"Appointments details are Calendar bookings enabled/disabled details dispalyed as :"
+												+ CalenderDetails);
+							}
+						}else{
+							browser.reportscomtep("Failed",
+									"Verify Appointments details are Calendar bookings enabled/disabled is dispalyed",
+									"Appointments details are Calendar bookings enabled/disabled details should be dispalyed",
+									"Appointments details are Calendar bookings enabled/disabled details not dispalyed");
+						}					
+						
+						browser.Verify_elementisdisplayed_Report(SCobjects.Staff_EditButton, "Edit Button");
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				
+				/********TC_12_003	Check the New Staff button*****/
+				
+				public void click_NewStaff_Button() {
+					try {
+						browser.click(SCobjects.Subscriber_Staff_NewStaff_Button);
+						if (browser.elementisdisplayed(SCobjects.Staff_AddNewStaff_Header)) {
+							browser.reportscomtep("Passed", "Click on New Staff Button and verify Add New Staff popup is dispalyed",
+									"Add New Staff popup should be dispalyed", "Add New Staff popup is dispalyed");
+							if (browser.elementisdisplayed(SCobjects.Staff_DetailsTab)) {
+								browser.reportscomtep("Passed", "Verify Staff Details tab is dispalyed",
+										"Staff Details tab should be dispalyed", "Staff Details tab is dispalyed");
+								browser.Verify_elementisdisplayed_Report(SCobjects.Staff_FirstName_TextBox, "First Name Textbox");
+								browser.Verify_elementisdisplayed_Report(SCobjects.Staff_LastName_TextBox, "Last Name TextBox");
+								browser.Verify_elementisdisplayed_Report(SCobjects.Staff_MobileNumber_TextBox,
+										"Mobile Number TextBox");
+								browser.Verify_elementisdisplayed_Report(SCobjects.Staff_Email_TextBox, "Email TextBox");
+								browser.Verify_elementisdisplayed_Report(SCobjects.Staff_EnableApnmtBkngs_Checkbox,
+										" Enable appointment bookings CheckBox");
+								if (browser.elementisdisplayed(SCobjects.Staff_Workschedule)
+										&& browser.elementisdisplayed(SCobjects.Staff_Day_Text)
+										&& browser.elementisdisplayed(SCobjects.Staff_OpeningHours)
+										&& browser.elementisdisplayed(SCobjects.Staff_ClosingHours)) {
+									browser.reportscomtep("Passed",
+											"Verify Work Schedule Calendar i.e Day, Opening & Closing Hours are displayed",
+											"Work Schedule Calendar i.e Day, Opening & Closing Hours should be displayed",
+											"Work Schedule Calendar i.e Day, Opening & Closing Hours are displayed)");
+								} else {
+									browser.reportscomtep("Failed",
+											"Verify Work Schedule Calendar i.e Day, Opening & Closing Hours are displayed",
+											"Work Schedule Calendar i.e Day, Opening & Closing Hours should be displayed",
+											"Work Schedule Calendar i.e Day, Opening & Closing Hours are not displayed)");
+								}
+								browser.Verify_elementisdisplayed_Report(SCobjects.Staff_Services_Tab, "Services Tab");
+								browser.click(SCobjects.Staff_Services_Tab);
+								if (SCobjects.Staff_Services_SelectServices_CheckboxList.size() > 0
+										&& browser.elementisdisplayed(SCobjects.Staff_Services_SelectAllService_Checkbox)) {
+									browser.reportscomtep("Passed",
+											"Verify Select individual/Multiple service CheckBoxs are dispalyed",
+											"Select individual/Multiple service CheckBoxs should be dispalyed",
+											"Select individual/Multiple service CheckBoxs are dispalyed");
+								} else {
+									browser.reportscomtep("Failed",
+											"Verify Select individual/Multiple service CheckBoxs are dispalyed",
+											"Select individual/Multiple service CheckBoxs should be dispalyed",
+											"Select individual/Multiple service CheckBoxs are not dispalyed");
+								}
+								browser.click(SCobjects.Staff_DetailsTab);
+								browser.scrollintoviewelement(SCobjects.Staff_AddStaff_Button);
+								browser.Verify_elementisdisplayed_Report(SCobjects.Staff_AddStaff_Button, "Add Staff Button");
+								browser.Verify_elementisdisplayed_Report(SCobjects.Staff_Close_Button, "Close Button");
+							} else {
+								browser.reportscomtep("Failed", "Verify Staff Details tab is dispalyed",
+										"Staff Details tab should be dispalyed", "Staff Details tab is not dispalyed");
+							}
+						} else {
+							browser.reportscomtep("Failed", "Click on New Staff Button and verify Add New Staff popup is dispalyed",
+									"Add New Staff popup should be dispalyed", "Add New Staff popup is not dispalyed");
+						}
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				
+				/*****TC_12_004	Check the Mandatory fields in Add new staff Popup *****/
+				
+				public void check_AddNewStaff_Popup_InMandatoryFieldsValidations() {
+					String Actual_FirstNameEM = null;
+					String Actual_LastNameEM = null;
+					String Expect_FirstNameEM = "Please enter firstname";
+					String Expect_LastNameEM = "Please enter lastname";
+					try {
+						browser.click(SCobjects.Staff_AddStaff_Button);
+						if (browser.elementisdisplayed(SCobjects.Staff_PleaseEnterFirstname_ErrorMessage)) {
+							Actual_FirstNameEM = browser.getelementtext(SCobjects.Staff_PleaseEnterFirstname_ErrorMessage);
+							//browser.assertEquals(Actual_FirstNameEM, Expect_FirstNameEM);
+							browser.reportscomtep("Passed",
+									"Click on Add Staff button with out entering Mandatory fields and verify Please enter First name Error messgae is displayed ",
+									"Please enter First name Error messgae should be displayed",
+									"Error message is displayed as:" + Actual_FirstNameEM);
+						}
+						if (browser.elementisdisplayed(SCobjects.Staff_PleaseEnterlastname_ErrorMessag)) {
+							Actual_LastNameEM = browser.getelementtext(SCobjects.Staff_PleaseEnterlastname_ErrorMessag);
+							//browser.assertEquals(Actual_LastNameEM, Expect_LastNameEM);
+							browser.reportscomtep("Passed",
+									"Click on Add Staff button with out entering Mandatory fields and verify Please enter Last name Error messgae is displayed ",
+									"Please enter Last name Error messgae should be displayed",
+									"Error message is displayed as:" + Actual_LastNameEM);
+						}
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				
+				/************TC_12_005	Check if a Staff can be added*************/
+				
+				public void check_StaffAdded_Details(String emailentry, String Click_ServicesTab) {
+					String Staff_FirstName = "";
+					String Staff_LastName = "";
+					String Staff_Phno = "";
+					String Staff_EmailId = "";
+					String Staff_Name = "";
+					int Staff_length = 0;
+					String Staff_addedName = "";
+					try {
+						Staff_FirstName = browser.getdata("Staf_Firstname");
+						Staff_LastName = browser.getdata("Staf_Lastname");
+						Staff_Phno = browser.getdata("Staff_PHNo");
+						Staff_EmailId = browser.getdata("Staff_Mail");
+						browser.sendkeys(SCobjects.Staff_FirstName_TextBox, Staff_FirstName);
+						browser.sendkeys(SCobjects.Staff_LastName_TextBox, Staff_LastName);
+						browser.sendkeys(SCobjects.Staff_MobileNumber_TextBox, Staff_Phno);
+						switch (emailentry) {
+							case "Enter_Email":
+								browser.sendkeys(SCobjects.Staff_Email_TextBox, Staff_EmailId);
+								break;								
+							case "DoNothing":			
+								break;
+						}
+						browser.click(SCobjects.Staff_EnableApnmtBkngs_Checkbox);
+						if (SCobjects.Staff_DateAndSelect_OpeningAndClosing_Hours_list.size() > 1) {
+							for (WebElement List : SCobjects.Staff_DateAndSelect_OpeningAndClosing_Hours_list) {
+								if (!List.isSelected()) {
+									List.click();
+								}
+							}
+						}
+						switch (Click_ServicesTab) {
+							case "Click_ServicesTab":
+								browser.click(SCobjects.Staff_Services_Tab);
+								break;
+							case "DoNothing":
+								break;
+						}
+						browser.ScrollToElementBottom(SCobjects.Staff_AddStaff_Button);
+						browser.click(SCobjects.Staff_AddStaff_Button);
+						browser.click(SCobjects.Staff_Popup_ClickLink);
+						Staff_Name = Staff_FirstName + " " + Staff_LastName;
+						List<WebElement> StaffNameList = SCobjects.Staff_Name_List;
+						Staff_length = StaffNameList.size();
+						if (Staff_length > 1) {
+								browser.scrollDown(600);
+								if (browser.elementisdisplayed(StaffNameList.get(Staff_length))) {
+									Staff_addedName = StaffNameList.get(Staff_length).getText(); /////*****Skip d code 
+									browser.reportscomtep("Passed", "Verify Staff is added and details are displayed in the table",
+											"Staff is added and details should be displayed in the table",
+											"Staff is added and details are displayed in the table");
+								} else {
+									browser.reportscomtep("Failed", "Verify Staff is added and details are displayed in the table",
+											"Staff is added and details should be displayed in the table",
+											"Staff is added and details are not displayed in the table");
+								}
+						}
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				
+				/*****TC_12_006	Check if a Staff details can be modified*****/
+				
+				public void check_StaffDetails_Modify() {
+
+					String BeforeModify_StaffName = "";
+					String Modify_Name = "";
+					String Modify_StaffFirstName = "";
+					String Modify_StaffLastName = "";
+					String Modify_StaffPHno = "";
+					String Modify_StaffEmail = "";
+					try {
+						Modify_StaffFirstName = browser.getdata("Satff_ModifyFN");
+						Modify_StaffLastName = browser.getdata("Staff_ModifyLN");
+						Modify_StaffPHno = browser.getdata("Staff_ModifyPHno");
+						Modify_StaffEmail = browser.getdata("Staff_ModifyEmail");
+						List<WebElement> StaffNameList = SCobjects.Staff_Name_List;
+						if (StaffNameList.size() > 1) {
+							BeforeModify_StaffName = StaffNameList.get(0).getText();
+							for (WebElement q : StaffNameList) {
+								browser.click(q);
+								break;
+							}
+							if (browser.elementisdisplayed(SCobjects.Staff_EditStaff_Popup)) {
+								browser.reportscomtep("Passed", "Click on Staff Name and verify Edit Popup is displayed",
+										"Edit Popup should be displayed", "Edit Popup is displayed");
+								browser.sendkeys(SCobjects.Staff_FirstName_TextBox, Modify_StaffFirstName);
+								browser.sendkeys(SCobjects.Staff_LastName_TextBox, Modify_StaffLastName);
+								browser.sendkeys(SCobjects.Staff_MobileNumber_TextBox, Modify_StaffPHno);
+								browser.sendkeys(SCobjects.Staff_Email_TextBox, Modify_StaffEmail);
+								browser.scrollintoviewelement(SCobjects.Staff_UpdateChanges_Button);
+								browser.click(SCobjects.Staff_UpdateChanges_Button);
+								browser.click(SCobjects.Staff_Popup_ClickLink); 
+								if (StaffNameList.size() > 1) {
+									if (!Modify_Name.equals(BeforeModify_StaffName)) {
+										Modify_Name = StaffNameList.get(0).getText();
+										browser.Verify_elementisdisplayed_Report(StaffNameList.get(0), Modify_Name);
+										browser.reportscomtep("Passed",
+												"Modified the staff details and click on Upadetbutton and click on next button ,verify Staff Details are modified",
+												"Staff Details should be modified", "Staff Details are modified");
+									} else {
+										browser.reportscomtep("Failed",
+												"Modified the staff details and click on Upadetbutton and click on next button ,verify Staff Details are modified",
+												"Staff Details should be modified", "Staff Details are not modified");
+									}
+								}
+							} else {
+								browser.reportscomtep("Failed", "Click on Staff Name and verify Edit Popup is displayed",
+										"Edit Popup should be displayed", "Edit Popup is not displayed");
+							}
+						}
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				
+				/****TC_12_007 Check whether a Staff can be deleted*******/
+				public void check_Staff_Details_Deleted() {
+					String Staff_NameBefore_Deleted = "";
+					String Staff_NameAfter_Deleted = "";
+					try {
+						List<WebElement> StaffNameList = SCobjects.Staff_Name_List;
+						if (StaffNameList.size() > 1) {
+							Staff_NameBefore_Deleted = StaffNameList.get(0).getText();
+							browser.Verify_elementisdisplayed_Report(StaffNameList.get(0),
+									"Before delete First row Staff name as:" + Staff_NameBefore_Deleted);
+							for (WebElement q : StaffNameList) {
+								browser.click(q);
+								break;
+							}
+							if (browser.elementisdisplayed(SCobjects.Staff_EditStaff_Popup)) {
+								browser.reportscomtep("Passed", "Click on Staff Name and verify Edit Popup is displayed",
+										"Edit Popup should be displayed", "Edit Popup is displayed");
+								browser.scrollintoviewelement(SCobjects.Staff_Delete_Button);
+								browser.click(SCobjects.Staff_Delete_Button);
+								browser.click(SCobjects.Staff_YesDeleteIt_Button);
+								browser.click(SCobjects.Staff_Popup_ClickLink);
+								Staff_NameAfter_Deleted = StaffNameList.get(0).getText();
+								browser.Verify_elementisdisplayed_Report(StaffNameList.get(0),
+										"Afeter delete First row Staff name as:" + Staff_NameAfter_Deleted);
+								if (!Staff_NameBefore_Deleted.equals(Staff_NameAfter_Deleted)) {
+									browser.reportscomtep("Passed",
+											"Click on Detelet botton, Yes,Delete it & Ok popup buttons are cliked and verify Staff detail is deleted",
+											"Staff detail should be deleted", "Staff detail is deleted");
+								} else {
+									browser.reportscomtep("Failed",
+											"Click on Detelet botton, Yes,Delete it & Ok popup buttons are cliked and verify Staff detail is deleted",
+											"Staff detail should be deleted", "Staff detail is not deleted");
+								}
+							} else {
+								browser.reportscomtep("Failed", "Click on Staff Name and verify Edit Popup is displayed",
+										"Edit Popup should be displayed", "Edit Popup is not displayed");
+							}
+						}
+
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				
+				/*****TC_12_008 Check whether a profile image can be added for Staff******/
+				  
+				public void check_Staff_ProfileImage_Added(){
+					try{
+						browser.click(SCobjects.Staff_EditButton);
+						if(browser.elementisdisplayed(SCobjects.Staff_UploadProfilePicture_Header)){
+							browser.reportscomtep("Passed",
+									"Click on EditButton and verify Upload Profile Picture popup is displayed ",
+									" Upload Profile Picture popup should be displayed",
+									" Upload Profile Picture popup is displayed");
+							WebElement element= SCobjects.Staff_Profile_Image;
+							//element.sendKeys("C:\Users\sree\Downloads\");				
+							
+							
+						}else{
+							browser.reportscomtep("Failed",
+									"Click on EditButton and verify Upload Profile Picture popup is displayed ",
+									" Upload Profile Picture popup should be displayed",
+									" Upload Profile Picture popup is not displayed");
+						}
+					}catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				
+				/****TC_12_009 Check the Search box******/
+				
+				public void check_SearchBox(String Enter_NameOrPhoneNoOrEmail) {
+					String Name = "";
+					String PhoneNo = "";
+					String Email = "";
+					int Staff_FilterList_Length = 0;
+					try {
+						if (browser.elementisdisplayed(SCobjects.Staff_Search_NameOrMobile_Box)) {
+							browser.reportscomtep("Passed", "Verify Search Name or Mobile box is displayed",
+									"Search Name or Mobile box should be displayed", "Search Name or Mobile box is displayed");
+							Name = browser.getdata("Firstname");
+							PhoneNo = browser.getdata("Staff_PHNo");
+							Email = browser.getdata("Staff_Mail");
+							List<WebElement> Staff_FilterList = SCobjects.Staff_SearchFilter_List;
+							Staff_FilterList_Length = Staff_FilterList.size();
+							
+							switch (Enter_NameOrPhoneNoOrEmail) {
+								case "Enter_Name":
+									browser.sendkeys(SCobjects.Staff_Search_NameOrMobile_Box, Name);									
+									break;
+								case "Enter_MobileNo":
+									browser.sendkeys(SCobjects.Staff_Search_NameOrMobile_Box, PhoneNo);									
+									break;
+								case "Enter_Email":
+									browser.sendkeys(SCobjects.Staff_Search_NameOrMobile_Box, Email);																		
+									break;
+								case "Donothing":
+									break;
+								}
+							browser.click(SCobjects.Staff_Search_Button);
+							if (Staff_FilterList_Length > 0 && browser.elementisdisplayed(SCobjects.Staff_SearchFilter_Table)) {
+								browser.reportscomtep("Passed",
+										"Enter "+Enter_NameOrPhoneNoOrEmail+" In Search Box and verify search details are displayed",
+										"search details shoud be displayed",
+										"search details are displayed");
+							} else {
+								browser.reportscomtep("Failed",
+										"Enter "+Enter_NameOrPhoneNoOrEmail+" In Search Box and verify search details are displayed",
+										"search details shoud be displayed",
+										"search details not displayed");
+							}
+							
+						} else {
+							browser.reportscomtep("Failed", "Verify Search Name or Mobile box is displayed",
+									"Search Name or Mobile box should be displayed", "Search Name or Mobile box is not displayed");
+						}
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
 
 }
