@@ -92,8 +92,8 @@
 			<class name="com.shearcircle.testscenarios.TS_005_SubscriberLoginToSubscriberDashboard" />
 			<class name="com.shearcircle.testscenarios.TS_008_SubscriberClicksOnChangePassword" />	
 			<class name="com.shearcircle.testscenarios.TS_009_SubscriberClicksOnBusinessSettingsPage" /> -->
-			<class name="com.shearcircle.testscenarios.TS011_SubscriberClicksOnServicesInManageCircleMenu" />	
-			<!-- <class name="com.shearcircle.testscenarios.TS_012_SubscriberclicksonStaffunderManageCircleMenu" />	 -->			
+			<class name="com.shearcircle.testscenarios.TS_011_SubscriberClicksOnServicesInManageCircleMenu" />	
+			<class name="com.shearcircle.testscenarios.TS_012_SubscriberclicksonStaffunderManageCircleMenu" />				
 		</classes>
     </test>
 </suite>
