@@ -667,7 +667,7 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//div[2]/div/div/div/div/div/h3")
 	public List<WebElement> SreviceMenu_SericeAddAlready_NameList;
 	
-	@FindBy(xpath="//div/div/div/div[2]/div[2]/table/tbody/tr/th")
+	@FindBy(xpath="//div/div/div/div[1]/div[2]/table/tbody/tr/th")
 	public List<WebElement> SericeMenu_ServicesUnderIndividualGroup_List;
 	
 	/***TC_11_002 Check the details under individual Group******/
@@ -707,6 +707,11 @@ public class Subscriber_Module_Page_Objects {
 	
 	@FindBy(xpath="//div[1]/div[2]/table/tbody/tr/td[6]/button[text()=' Edit']")
 	public WebElement ServiceMenu_Action_UnedrServiceEditButton;
+	
+	@FindBy(xpath="//table/tbody/tr/td/button[text()=' Edit']")
+	public List<WebElement>ServiceMenu_servicenameEdit_ButtonList;
+	
+	
 	
 	/****TC_11_003 Check whether a New Group can be added****/
 	
@@ -755,12 +760,6 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//*[@id='saveServiceForm']/div/div[1]/div/ul/li[2]/a[text()='Staff']")
 	public WebElement ServiceMenu_AddNewServicePopup_StaffTab;
 	
-	@FindBy(xpath="//*[@id='editServiceForm']/div/div[1]/div/ul/li[1]/a[text()='Details']")
-	public WebElement ServiceMenu_editNewServicePopup_DetailsTab;
-	
-	@FindBy(xpath="//*[@id='editServiceForm']/div/div/div/ul/li/a[text()='Staff']")
-	public WebElement ServiceMenu_editNewServicePopup_StaffTab;
-	
 	@FindBy(xpath="//*[@id='details']/div/div[1]/div[1]/input")
 	public WebElement SM_AddNewServicePopup_ServiceName_TextBox;
 	
@@ -794,6 +793,45 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//div/div/div/label/input[@class='select_staff']")
 	public List<WebElement> SM_ANSP_Staff_Individual_CheckBox_List;
 	
+	@FindBy(xpath="//*[@id='editServiceForm']/div/div[1]/div/ul/li[1]/a[text()='Details']")
+	public WebElement ServiceMenu_editNewServicePopup_DetailsTab;
+	
+	@FindBy(xpath="//*[@id='editServiceForm']/div/div/div/ul/li/a[text()='Staff']")
+	public WebElement ServiceMenu_editServicePopup_StaffTab;
+	
+	@FindBy(xpath="//*[@id='editServiceForm']//input[@id='service_name']")
+	public WebElement SM_editServicePopup_ServiceName_TextBox;
+	
+	@FindBy(xpath="//div[@id='edit_service_form']//*[@id='treatment_type']")
+	public WebElement SM_editServicePopup_Treatment_Typedropdown;
+	
+	@FindBy(xpath="//div[@id='edit_service_form']//*[@id='available_for']")
+	public WebElement SM_editServicePopup_AvailableFor_DropdownList;
+	
+	@FindBy(xpath="//*[@id='edit_service_form']//div[@class='checkbox']/label/input[@name='is_booking_enabled']")
+	public WebElement SM_editServicePopup_EnableOnlineBookings_CheckBox;
+	
+	@FindBy(xpath="//*[@id='edit_service_form']//div/select[@name='duration']")
+	public WebElement SM_editServicePopup_DurationDropdown_List;
+	
+	@FindBy(xpath="//*[@id='edit_service_form']//input[@name='full_price']")
+	public WebElement SM_editServicePopup_FullPriceField_TextBox;
+	
+	@FindBy(xpath="//*[@id='edit_service_form']//input[@name='special_price']")
+	public WebElement SM_editServicePopup_SpecialPriceField_TextBox;
+	
+	@FindBy(xpath="//*[@id='edit_service_form']//button[text()='Close']")
+	public WebElement SM_editServicePopup_Close_Button;
+	
+	@FindBy(xpath="//*[@id='edit_service_form']//button[text()='Save changes']")
+	public WebElement SM_editServicePopup_SaveChanges_Button;
+	
+	@FindBy(xpath="//div[@id='edit_service_form']//label/input[@id='selectAllStaff2']")
+	public WebElement SM_editServicePopup_Staff_SelectAll_CheckBox;
+	
+	@FindBy(xpath="//div[@id='edit_service_form']//label/input[@class='select_staff2']")
+	public List<WebElement> SM_editSP_Staff_Individual_CheckBox_List;
+	
 	/*********TC_11_008 Check the mandatory fields in Add new service popup***********/
 	
 	@FindBy(xpath="//*[@id='details']/div/div[1]/div[1]/em")
@@ -820,6 +858,8 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//div[@class='container-fluid']/table/tbody/tr/td")
 	public List<WebElement> Subscriber_Staff_DetailsList;
 	
+	@FindBy(xpath="//div/div/div/div[2]/div[2]/table/tbody/tr/th")
+	public List<WebElement> SericeMenu_ServicesUndersecondGroup_List;
 	
 	
 	/********TC_12_002	Check the details in staff page******/	
@@ -848,8 +888,7 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//table/tbody/tr[1]/td[6]/button")
 	public WebElement Staff_EditButton;
 	
-	
-	
+		
 	/*********TC_12_003	Check the New Staff button****/
 	
 	@FindBy(xpath="//*[text()='Add New Staff']")

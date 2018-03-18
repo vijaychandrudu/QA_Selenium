@@ -2481,7 +2481,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 							}
 							
 							browser.Verify_elementisdisplayed_Report(SCobjects.SreviceMenu_AddNewGroup_Button,"+New Group button");
-							browser.Verify_elementisdisplayed_Report(SCobjects.ServiceMenu_AddNewService_Buttons_List.get(1), "+New Service button");
+							browser.Verify_elementisdisplayed_Report(SCobjects.ServiceMenu_AddNewService_Buttons_List.get(0), "+New Service button");
 
 						}else if (browser.elementisdisplayed(SCobjects.SreviceMenu_AddNewGroupAtLoginFirstTime_Button)) {
 							browser.reportscomtep("Passed", "Verify +New Group button is displayed",
@@ -2852,16 +2852,16 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 						if (browser.elementisdisplayed(SCobjects.SM_AddNewServicePopup_ServiceName_EM)
 								&& browser.elementisdisplayed(SCobjects.SM_AddNewServicePopup_TreatmentType_EM)
 								&& browser.elementisdisplayed(SCobjects.SM_AddNewServicePopup_Duration_EM)
-								&& browser.elementisdisplayed(SCobjects.SM_AddNewServicePopup_Duration_EM)) {
+								&& browser.elementisdisplayed(SCobjects.SM_AddNewServicePopup_FullPrice_EM)) {
 							ServiceName_EM = browser.getelementtext(SCobjects.SM_AddNewServicePopup_ServiceName_EM);
 							TreatmentType_EM = browser.getelementtext(SCobjects.SM_AddNewServicePopup_TreatmentType_EM);
 							Duration_EM = browser.getelementtext(SCobjects.SM_AddNewServicePopup_Duration_EM);
-							FullPrice_EM = browser.getelementtext(SCobjects.SM_AddNewServicePopup_Duration_EM);
+							FullPrice_EM = browser.getelementtext(SCobjects.SM_AddNewServicePopup_FullPrice_EM);
 							browser.reportscomtep("Passed",
 									"In The details tab, click on Save Changes button without adding any details And Verify Manmandatory fields Error Messgaes are displayed",
 									" Manmandatory fields Error Messgaes should be displayed",
-									" Manmandatory fields Error Messgaes are displayed as:" + ServiceName_EM + "/n"
-											+ TreatmentType_EM + "/n" + Duration_EM + "/n" + FullPrice_EM);
+									" Manmandatory fields Error Messgaes are displayed as:" + ServiceName_EM + "\n"
+											+ TreatmentType_EM + "\n" + Duration_EM + "\n" + FullPrice_EM);
 						}
 
 					} catch (Exception e) {
@@ -2894,7 +2894,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 						browser.click(SCobjects.SM_AddNewServicePopup_Staff_SelectAll_CheckBox);
 						browser.click(SCobjects.SM_AddNewServicePopup_SaveChanges_Button);
 						browser.click(SCobjects.ServiceMenu_Popup_OK_Button);
-						List<WebElement> NewServiecesNamesList = SCobjects.SericeMenu_ServicesUnderIndividualGroup_List;
+						List<WebElement> NewServiecesNamesList = SCobjects.SericeMenu_ServicesUndersecondGroup_List;
 						ServiceNameLength = NewServiecesNamesList.size();
 						if (ServiceNameLength > 0) {
 							ServiceNameLength = NewServiecesNamesList.size()-1;
@@ -2903,22 +2903,74 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 							if (browser.elementisdisplayed(NewServiecesNamesList.get(ServiceNameLength))
 									&& Expected_NewServiceName.equalsIgnoreCase(NewServiceName)) {
 								browser.reportscomtep("Passed",
-										"In the details tab added the mandatory info and click on Staff Tab , and continue clicks on Staff all checkbox, SaveChanges button,OK button and verify The service is added and the details in relevant column are displayed ",
-										"The service is added and the details in relevant column should be displayed",
-										"The service is added and the details in relevant column are displayed");
+										"Enter the mandatory info in details tab and click on Staff Tab and select Staff all checkbox and click SaveChanges button and OK button and verify The service is added in the specified group with given details in relevant columns",
+										"The service should be added in the specified group with given details in relevant columns",
+										"The service is added in the specified group with given details in relevant columns");
 
 							} else {
 								browser.reportscomtep("Failed",
-										"In the details tab added the mandatory info and click on Staff Tab , and continue clicks on Staff all checkbox, SaveChanges button,OK button and verify The service is added and the details in relevant column are displayed ",
-										"The service is added and the details in relevant column should be displayed",
-										"The service is added and the details in relevant column are not displayed");
+										"Enter the mandatory info in details tab and click on Staff Tab and select Staff all checkbox and click SaveChanges button and OK button and verify The service is added in the specified group with given details in relevant columns",
+										"The service should be added in the specified group with given details in relevant columns",
+										"The service is not added in the specified group with given details in relevant columns");
 							}
 						}
 
 					} catch (Exception e) {
 						System.out.println("Error description: " + e.getStackTrace());
 					}
-				}		
+				}	
+				
+	/****TC_11_010 Check whether the service can be edited*********/
+				
+				public void Checkwhether_service_edited() {
+					String NewServiceName = "";
+					String FullPrice = "";
+					String SpecialPrice = "";
+					int ServiceNameLength = 0;
+					String Expected_NewServiceName = "";
+					
+					try {
+						List<WebElement> EdtiButtons = SCobjects.ServiceMenu_servicenameEdit_ButtonList;
+						NewServiceName = browser.getdata("edit_ServiceName");
+						FullPrice = browser.getdata("edit_ServiceFullPrice");
+						SpecialPrice = browser.getdata("edit_ServiceSpecialPrice");
+						browser.click(EdtiButtons.get(1));
+						browser.sendkeys(SCobjects.SM_editServicePopup_ServiceName_TextBox, NewServiceName);
+						browser.selectByVisibleText(SCobjects.SM_editServicePopup_Treatment_Typedropdown, "Braids");
+						browser.selectByVisibleText(SCobjects.SM_editServicePopup_AvailableFor_DropdownList, "Males Only");
+						browser.click(SCobjects.SM_editServicePopup_EnableOnlineBookings_CheckBox);
+						browser.selectByVisibleText(SCobjects.SM_editServicePopup_DurationDropdown_List, "25min");
+						browser.sendkeys(SCobjects.SM_editServicePopup_FullPriceField_TextBox, FullPrice);
+						browser.sendkeys(SCobjects.SM_editServicePopup_SpecialPriceField_TextBox, SpecialPrice);
+						browser.click(SCobjects.ServiceMenu_editServicePopup_StaffTab);
+						browser.click(SCobjects.SM_editServicePopup_Staff_SelectAll_CheckBox);
+						browser.click(SCobjects.SM_editServicePopup_SaveChanges_Button);
+						browser.click(SCobjects.ServiceMenu_Popup_OK_Button);
+						List<WebElement> NewServiecesNamesList = SCobjects.SericeMenu_ServicesUndersecondGroup_List;
+						ServiceNameLength = NewServiecesNamesList.size();
+						if (ServiceNameLength > 0) {
+							ServiceNameLength = NewServiecesNamesList.size()-1;
+							browser.scrollintoviewelement(NewServiecesNamesList.get(ServiceNameLength));
+							Expected_NewServiceName = NewServiecesNamesList.get(ServiceNameLength).getText();
+							if (browser.elementisdisplayed(NewServiecesNamesList.get(ServiceNameLength))
+									&& Expected_NewServiceName.equalsIgnoreCase(NewServiceName)) {
+								browser.reportscomtep("Passed",
+										"Edit serviece details in the details tab and verify the edited serviece details are displayed ",
+										"The edited service detailes in relevant column should be displayed",
+										"The edited service detailes in relevant column displayed");
+
+							} else {
+								browser.reportscomtep("Failed",
+										"Edit serviece details in the details tab and verify the edited serviece details are displayed ",
+										"The edited service detailes in relevant column should be displayed",
+										"The edited service detailes in relevant column not displayed");
+							}
+						}
+
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}	
 				
 				/******TC_12_001	Open Staff page*****/
 				 

@@ -119,5 +119,11 @@ public class TS_011_SubscriberClicksOnServicesInManageCircleMenu extends StaticV
 		ExtentTestManager.getTest().setDescription("TC_11_009 SubScriber Check whether new service can be added");
 		SR.check_NewService_Added();
 	}
+	
+	@Test(priority = 11012, description = "TC_11_010 Check whether the service can be edited")
+	public void TC_11_010_Check_service_edited() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_11_010 Check whether the service can be edited");
+		SR.Checkwhether_service_edited();
+	}
 
 }
