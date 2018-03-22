@@ -125,5 +125,23 @@ public class TS_011_SubscriberClicksOnServicesInManageCircleMenu extends StaticV
 		ExtentTestManager.getTest().setDescription("TC_11_010 Check whether the service can be edited");
 		SR.Checkwhether_service_edited();
 	}
+	
+	@Test(priority = 11013, description = "TC_11_011 Check whether a service can be disabled")
+	public void TC_11_011_checkWhether_Service_Disabled() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_11_011 Check whether a service can be disabled");
+		SR.checkWhether_Service_Disabled();
+	}
+
+	@Test(priority = 11014, description = "TC_11_012 Check whether a service can be enabled")
+	public void TC_11_012_checkWhether_Service_Enabled() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_11_012 Check whether a service can be enabled");
+		SR.checkWhether_Service_Enabled();
+	}
+
+	@Test(priority = 11015, description = "TC_11_013 Check whether a service can be deleted")
+	public void TC_11_013_checkWhether_Service_Enabled() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_11_013 Check whether a service can be deleted");
+		SR.checkWhether_Service_Deleted();
+	}
 
 }

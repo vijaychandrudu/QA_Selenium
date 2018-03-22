@@ -862,6 +862,22 @@ public class Subscriber_Module_Page_Objects {
 	public List<WebElement> SericeMenu_ServicesUndersecondGroup_List;
 	
 	
+	@FindBy(xpath="//*[@id='editServiceForm']/div/h4[text()='Add New Service']")
+	public WebElement ServiceMenu_editNewServicePopup_Header;
+	
+	@FindBy(xpath="//*[@id='editServiceForm']//button[text()='Disable']")
+	public WebElement SM_EditNewServicePopup_DisableButton;
+	
+	@FindBy(xpath="//*[@id='editServiceForm']//button[text()='Enable']")
+	public WebElement SM_EditNewServicePopup_EnableButton;
+	
+	@FindBy(xpath="//*[@id='editServiceForm']//button[text()='Delete']")
+	public WebElement SM_EditNewServicePopup_DeleteButton;
+	
+	@FindBy(xpath="//button[text()='Yes, Disable it!']")
+	public WebElement SM_EditNewServicePopup_YesDisableIt_Button;
+	
+	
 	/********TC_12_002	Check the details in staff page******/	
 	
 	@FindBy(xpath="//table/thead/tr/th[text()='Name']")
@@ -1001,7 +1017,117 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//section/div/div[2]/div")
 	public WebElement Staff_SearchFilter_Table;
 	
+/******TC_19_001 Open Clients page***********/
 	
+	@FindBy(xpath="//a[text()='Clients']")
+	public WebElement Clients_MenuLink;
+	
+	@FindBy(xpath="//h3[text()='Clients']")
+	public WebElement Clients_PageHeader;
+	
+	@FindBy(xpath="//*[@placeholder='Search Name or Mobile ']")
+	public WebElement Clients_SearchBox;
+	
+	@FindBy(xpath="//*[text()='New Client']")
+	public WebElement Clients_NewClients_Button;
+	
+	@FindBy(xpath="//section/div/div[@class='dashboar_content datatable_section']")
+	public WebElement Clients_Table_Form;
+	
+	@FindBy(xpath="//section/div/div[2]//table/thead/tr/th[text()='Name']")
+	public WebElement Clients_Name_TableHeader;
+	
+	@FindBy(xpath="//section/div/div[2]//table/thead/tr/th[text()='Mobile Number']")
+	public WebElement Clients_Mobile_TableHeader;
+	
+	@FindBy(xpath="//section/div/div[2]//table/thead/tr/th[text()='Email']")
+	public WebElement Clients_Email_TableHeader;
+	
+	@FindBy(xpath="//section/div/div[2]//table/thead/tr/th[text()='Gender']")
+	public WebElement Clients_Gender_TableHeader;
+	
+	/****TC_19_002 Check the New Client button****/
+	
+	@FindBy(xpath="//*[@id='addClientForm']/div[1]/h4")
+	public WebElement Clients_AddNewClient_Popup_Header;
+	
+	@FindBy(xpath="//*[@type='email']")
+	public WebElement Clients_Email_TextBox;
+	
+	@FindBy(xpath="//*[@name='mobile']")
+	public WebElement Clients_MobileNumber_TextBox;
+	
+	@FindBy(xpath="//*[@name='mobile']")
+	public WebElement Clients_Name_TextBox;
+	
+	@FindBy(xpath="//*[@name='firstname']")
+	public WebElement Clients_FirstName_TextBox;
+	
+	@FindBy(xpath="//*[@name='lastname']")
+	public WebElement Clients_LastName_TextBox;
+	
+	@FindBy(xpath="//*[@name='address']")
+	public WebElement Clients_Address_TextBox;
+	
+	@FindBy(xpath="//*[@name='city']")
+	public WebElement Clients_City_TextBox;
+	
+	@FindBy(xpath="//*[@name='state']")
+	public WebElement Clients_State_TextBox;
+	
+	@FindBy(xpath="//*[@name='zipcode']")
+	public WebElement Clients_ZipCode_TextBox;
+	
+	@FindBy(xpath="//*[@id='addClientForm']//textarea")
+	public WebElement Clients_Notes_TextBox;
+	
+	@FindBy(xpath="//select[@ng-model='client.notification_setting']")
+	public WebElement Clients_SendNotificationsBy_DropDown;
+	
+	@FindBy(xpath="//select[@name='referal_source_id']")
+	public WebElement Clients_ReferralSource_DropDown;
+	
+	@FindBy(xpath="//select[@name='country']")
+	public WebElement Clients_Country_DropDown;
+	
+	@FindBy(xpath="//div/label/input[@type='radio']")
+	public List<WebElement> Clients_Gender_List;
+	
+	@FindBy(xpath="//button[text()='Close']")
+	public WebElement Clients_Close_Button;
+	
+	@FindBy(xpath="//button[text()='Add Client']")
+	public WebElement Clients_AddClients_Button;
+	
+	/****TC_19_003 Check the mandatory fields in Add New Client popup*****/
+	@FindBy(xpath="//em[text()='Enter email']")
+	public WebElement Clients_Email_Em;
+	
+	@FindBy(xpath="//em[text()='Enter firstname']")
+	public WebElement Clients_FirstName_Em;
+	
+	@FindBy(xpath="//em[text()='Enter lastname']")
+	public WebElement Clients_LastName_Em;
+	
+	@FindBy(xpath="//button[text()='OK']")
+	public WebElement Confirmatio_OK_Button;
+	
+	/*************TC_19_004 Check whether a new client can be added*/
+	
+	@FindBy(xpath="//table/tbody/tr/td[1]")
+	public List<WebElement> Clients_Names_List;
+	
+	@FindBy(xpath="//button[@ng-click='updateClient()']")
+	public WebElement Clients_UpadateChanges_Button;
+	
+	@FindBy(xpath="//button[text()='Delete']")
+	public WebElement Client_Delete_Button;
+
+	@FindBy(xpath="//button[text()='Yes, delete it!']")
+	public WebElement Client_YesDeleteIt_Button;
+	
+	@FindBy(xpath="//*[@class='tab-content p-t-2']")
+	public WebElement Client_xpath;
 	
 	
 	

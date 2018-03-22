@@ -1063,7 +1063,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		try {
 			DB_Username = browser.getdata("temp_LogIN_UserName");
 			DB_Password = browser.getdata("temp_LogIN_Passworrd");
-			browser.click(SCobjects.Subscriber_Login_Button);
+			browser.click(SCobjects.Subscriber_Login_Button);			 
 			browser.sendkeys(SCobjects.Subscriber_UserName_TextBox, DB_Username);
 			browser.sendkeys(SCobjects.Subscriber_Password_TextBox, DB_Password);
 			browser.click(SCobjects.Subscriber_SignIn_Button);
@@ -2970,7 +2970,159 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 					} catch (Exception e) {
 						System.out.println("Error description: " + e.getStackTrace());
 					}
-				}	
+				}
+				
+				
+				/******** TC_11_011 Check whether a service can be disabled ************/
+				
+				public void checkWhether_Service_Disabled() {
+					String BeforeDisableService = "";
+					String AfterDisableService = "";
+
+					try {
+						List<WebElement> EdtiButtons = SCobjects.ServiceMenu_servicenameEdit_ButtonList;
+						List<WebElement> NewServiecesNamesList = SCobjects.SericeMenu_ServicesUndersecondGroup_List;
+						BeforeDisableService = NewServiecesNamesList.get(0).getText();
+						browser.click(EdtiButtons.get(1));
+						if (browser.elementisdisplayed(SCobjects.ServiceMenu_editNewServicePopup_Header)) {
+							browser.reportscomtep("Passed",
+									"Clicks on edit button in the service and verify Edit Add New Service Popup header is displayed",
+									"Edit Add New Service Popup header should be displayed",
+									"Edit Add New Service Popup header is displayed");
+							browser.click(SCobjects.SM_EditNewServicePopup_DisableButton);
+							browser.click(SCobjects.SM_EditNewServicePopup_YesDisableIt_Button);
+							browser.click(SCobjects.ServiceMenu_Popup_OK_Button);
+							if (browser.elementisdisplayed(SCobjects.SM_EditNewServicePopup_EnableButton)) {
+								browser.reportscomtep("Passed",
+										"Clicks on continue Disable, YesDisable and OK buttons and verify Service Disable & Enable Button is displayed",
+										"Service Disable & Enable Button should be displayed", " Service Disable & Enable Button is displayed");
+								browser.click(SCobjects.SM_editServicePopup_Close_Button);
+								AfterDisableService = NewServiecesNamesList.get(0).getText();
+								if (AfterDisableService.equalsIgnoreCase(BeforeDisableService)
+										&& browser.elementisdisplayed(NewServiecesNamesList.get(0))) {
+									browser.reportscomtep("Passed",
+											"Verify Service is not be removed from group but it will be removed from the Business page",
+											"Service should not be removed from group but it will be removed from the Business page",
+											"Service is not removed from group but it will be removed from the Business page");
+								} else {
+									browser.reportscomtep("Failed",
+											"Verify Service is not be removed from group but it will be removed from the Business page",
+											"Service should not be removed from group but it will be removed from the Business page",
+											"Service is removed from group but it will not be removed from the Business page");
+								}
+
+							} else {
+								browser.reportscomtep("Failed",
+										"Clicks on continue Disable, YesDisable and OK buttons and verify Service Disable & Enable Button is displayed",
+										"Service Disable & Enable Button should be displayed", "Service Disable & Enable Button is not sdisplayed");
+							}
+						} else {
+							browser.reportscomtep("Failed",
+									"Clicks on edit button in the service and verify Edit Add New Service Popup header is displayed",
+									"Edit Add New Service Popup header should be displayed",
+									"Edit Add New Service Popup header is not displayed");
+						}
+
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				/***TC_11_012 Check whether a service can be enabled****/
+				
+				public void checkWhether_Service_Enabled() {
+					String BeforeEnabledService = "";
+					String AfterEnabledService = "";
+
+					try {
+						List<WebElement> EdtiButtons = SCobjects.ServiceMenu_servicenameEdit_ButtonList;
+						List<WebElement> NewServiecesNamesList = SCobjects.SericeMenu_ServicesUndersecondGroup_List;
+						BeforeEnabledService = NewServiecesNamesList.get(0).getText();
+						browser.click(EdtiButtons.get(1));
+						if (browser.elementisdisplayed(SCobjects.ServiceMenu_editNewServicePopup_Header)) {
+							browser.reportscomtep("Passed",
+									"Clicks on edit button in the service and verify Edit Add New Service Popup header is displayed",
+									"Edit Add New Service Popup header should be displayed",
+									"Edit Add New Service Popup header is displayed");
+							browser.click(SCobjects.SM_EditNewServicePopup_EnableButton);
+							browser.click(SCobjects.ServiceMenu_Popup_OK_Button);
+							if (browser.elementisdisplayed(SCobjects.SM_EditNewServicePopup_DisableButton)) {
+								browser.reportscomtep("Passed",
+										"Clicks on continue Enable,and OK buttons and verify Service Enable & disable Button is displayed",
+										"Service Enable & Disable Button should be displayed",
+										"Service Enable & Disable Button is displayed");
+								browser.click(SCobjects.SM_editServicePopup_Close_Button);
+								AfterEnabledService = NewServiecesNamesList.get(0).getText();
+								if (AfterEnabledService.equalsIgnoreCase(BeforeEnabledService)
+										&& browser.elementisdisplayed(NewServiecesNamesList.get(0))) {
+									browser.reportscomtep("Passed", "Verify The service is displayed in the business page",
+											"The service should be displayed in the business page",
+											"The service is displayed in the business page");
+								} else {
+									browser.reportscomtep("Failed", "Verify The service is displayed in the business page",
+											"The service should be displayed in the business page",
+											"The service is not displayed in the business page");
+								}
+
+							} else {
+								browser.reportscomtep("Failed",
+										"Clicks on continue Disable, YesDisable and OK buttons and verify Service Enable & Disable Button is displayed",
+										"Service Enable & Disable Button should be displayed",
+										"Service Enable & Disable Button is not sdisplayed");
+							}
+						} else {
+							browser.reportscomtep("Failed",
+									"Clicks on edit button in the service and verify Edit Add New Service Popup header is displayed",
+									"Edit Add New Service Popup header should be displayed",
+									"Edit Add New Service Popup header is not displayed");
+						}
+
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+
+				/****** TC_11_013 Check whether a service can be deleted****/
+				
+				public void checkWhether_Service_Deleted() {
+					String BeforeDeleteService = "";
+					String AfterDeletedService = "";
+
+					try {
+						List<WebElement> EdtiButtons = SCobjects.ServiceMenu_servicenameEdit_ButtonList;
+						List<WebElement> NewServiecesNamesList = SCobjects.SericeMenu_ServicesUndersecondGroup_List;
+						BeforeDeleteService = NewServiecesNamesList.get(0).getText();
+						browser.click(EdtiButtons.get(1));
+						if (browser.elementisdisplayed(SCobjects.ServiceMenu_editNewServicePopup_Header)) {
+							browser.reportscomtep("Passed",
+									"Clicks on edit button in the service and verify Edit Add New Service Popup header is displayed",
+									"Edit Add New Service Popup header should be displayed",
+									"Edit Add New Service Popup header is displayed");
+							browser.click(SCobjects.SM_EditNewServicePopup_DeleteButton);
+							browser.click(SCobjects.ServiceMenu_NewServiceGroupPopup_YesDeleteItButton);
+							browser.click(SCobjects.ServiceMenu_Popup_OK_Button);
+							AfterDeletedService = NewServiecesNamesList.get(0).getText();
+							if (AfterDeletedService != BeforeDeleteService
+									&& browser.elementisdisplayed(NewServiecesNamesList.get(0))) {
+								browser.reportscomtep("Passed",
+										"Clicks on continue Delete,YesDelete and OK buttons Verify The service is deleted from the Group",
+										"The service should be deleted from the Group", "The service is deleted from the Group");
+							} else {
+								browser.reportscomtep("Failed",
+										"Clicks on continue Delete,YesDelete and OK buttons Verify The service is deleted from the Group",
+										"The service should be deleted from the Group",
+										"The service is not deleted from the Group");
+							}
+						} else {
+							browser.reportscomtep("Failed",
+									"Clicks on continue Disable, YesDisable and OK buttons and verify Service Enable & Disable Button is displayed",
+									"Service Enable & Disable Button should be displayed",
+									"Service Enable & Disable Button is not sdisplayed");
+						}
+
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
 				
 				/******TC_12_001	Open Staff page*****/
 				 
@@ -3394,5 +3546,454 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 						System.out.println("Error description: " + e.getStackTrace());
 					}
 				}
+				
+				/********* TS019_Subscriber clicks on Clients menu **********/
+
+				/********** TC_19_001 Open Clients page ********/
+
+				public void open_Clients_Page() {
+					try {
+						if (browser.elementisdisplayed(SCobjects.Clients_MenuLink)) {
+							browser.reportscomtep("Passed", "Verify Clients Menu is displayed", "Clients Menu should be displayed",
+									"Clients Menu is displayed");
+							browser.click(SCobjects.Clients_MenuLink);
+							if (browser.elementisdisplayed(SCobjects.Clients_PageHeader)) {
+								browser.reportscomtep("Passed", "Clicks on Clients menu and verify Clients Page is displayed",
+										"Clients Page should be displayed", "Clients Page is displayed");
+								browser.Verify_elementisdisplayed_Report(SCobjects.Clients_NewClients_Button, "Bew Clients Button");
+								browser.Verify_elementisdisplayed_Report(SCobjects.Clients_SearchBox, "Search Box");
+								if (browser.elementisdisplayed(SCobjects.Clients_Table_Form)) {
+									browser.reportscomtep("Passed", "Verify Clients tablular form is dispalyed",
+											"Clients tablular form should be dispalyed", "Clients tablular form is dispalyed");
+									browser.Verify_elementisdisplayed_Report(SCobjects.Clients_Name_TableHeader,
+											"Name Table Header");
+									browser.Verify_elementisdisplayed_Report(SCobjects.Clients_Mobile_TableHeader,
+											"Mobile Table Header");
+									browser.Verify_elementisdisplayed_Report(SCobjects.Clients_Email_TableHeader,
+											"Email Table Header");
+									browser.Verify_elementisdisplayed_Report(SCobjects.Clients_Gender_TableHeader,
+											"Gender Table Heade");
+								} else {
+									browser.reportscomtep("Failed", "Verify Clients tablular form is dispalyed",
+											"Clients tablular form should be dispalyed", "Clients tablular form is not dispalyed");
+								}
+							} else {
+								browser.reportscomtep("Failed", "Clicks on Clients menu and verify Clients Page is displayed",
+										"Clients Page should be displayed", "Clients Page is notdisplayed");
+							}
+
+						} else {
+							browser.reportscomtep("Failed", "Verify Clients Menu is displayed", "Clients Menu should be displayed",
+									"Clients Menu is not displayed");
+						}
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+
+				/************ TC_19_002 Check the New Client button ***********/
+				public void check_NewClient_Button() {
+					String ExpectedSNDropdownvlaues = "Don't Send Notifications;Send By Email ";
+					String SNDropdownvlaues = "";
+					String ExpectedRSDropdownvlaues = "Referral Source;Walk-in";
+					String RSDropdownvlaues = "";
+					String Countryropdownvlaue = "";
+					String ExpectedCountryDopdownvlaues = "Choose Country;USA";
+					try {
+						browser.click(SCobjects.Clients_NewClients_Button);
+						if (browser.elementisdisplayed(SCobjects.Clients_AddNewClient_Popup_Header)) {
+							browser.reportscomtep("Passed",
+									"Clicks on New Clients Button and Verify Add New Clients Popup Is displayed",
+									"Add New Clients Popup should be displayed", "Add New Clients Popup Is displaye");
+							browser.Verify_elementisdisplayed_Report(SCobjects.Clients_Email_TextBox, "Email TextBox");
+							browser.Verify_elementisdisplayed_Report(SCobjects.Clients_MobileNumber_TextBox,
+									"Mobile NUmber TextBox");
+							browser.Verify_elementisdisplayed_Report(SCobjects.Clients_FirstName_TextBox, "First Name TextBox");
+							browser.Verify_elementisdisplayed_Report(SCobjects.Clients_LastName_TextBox, "Last Name TextBox");
+							browser.Verify_elementisdisplayed_Report(SCobjects.Clients_Address_TextBox, "Adress TextBox");
+							browser.Verify_elementisdisplayed_Report(SCobjects.Clients_City_TextBox, "City TextBox");
+							browser.Verify_elementisdisplayed_Report(SCobjects.Clients_State_TextBox, "State TextBox");
+							browser.Verify_elementisdisplayed_Report(SCobjects.Clients_ZipCode_TextBox, "ZipCode TextBox");
+							browser.Verify_elementisdisplayed_Report(SCobjects.Clients_Notes_TextBox, "Clients Notes TextBox");
+							List<WebElement> SendNotificationByDDvalues = browser
+									.getOptions(SCobjects.Clients_SendNotificationsBy_DropDown);
+							if (SendNotificationByDDvalues.size() > 0) {
+								for (WebElement listvalue : SendNotificationByDDvalues) {
+									SNDropdownvlaues = SNDropdownvlaues + ";" + listvalue.getText();
+								}
+								if (ExpectedSNDropdownvlaues.equalsIgnoreCase(SNDropdownvlaues.substring(1))
+										&& browser.elementisdisplayed(SCobjects.Clients_SendNotificationsBy_DropDown)) {
+									browser.reportscomtep("Passed", "Verify Send Notification By Dropdown values are dispalyed",
+											"Send Notification By Dropdown values should be dispalyed",
+											"Send Notification By Dropdown values are dispalyed as:" + SNDropdownvlaues);
+								} else {
+									browser.reportscomtep("Failed", "Verify Send Notification By Dropdown values are dispalyed",
+											"Send Notification By Dropdown values should be dispalyed",
+											"Send Notification By Dropdown values are not dispalyed");
+								}
+							}
+							List<WebElement> ReferralSourcDDvaluese = browser.getOptions(SCobjects.Clients_ReferralSource_DropDown);
+							if (ReferralSourcDDvaluese.size() > 0) {
+								for (WebElement listvalue : ReferralSourcDDvaluese) {
+									RSDropdownvlaues = RSDropdownvlaues + ";" + listvalue.getText();
+								}
+								if (ExpectedRSDropdownvlaues.equalsIgnoreCase(RSDropdownvlaues.substring(1))
+										&& browser.elementisdisplayed(SCobjects.Clients_ReferralSource_DropDown)) {
+									browser.reportscomtep("Passed", "Verify Referral Source Dropdown values are dispalyed",
+											"Referral Source Dropdown values should be dispalyed",
+											"Referral Source Dropdown values are dispalyed as:" + RSDropdownvlaues);
+								} else {
+									browser.reportscomtep("Failed", "Verify Referral Source Dropdown values are dispalyed",
+											"Referral Source Dropdown values should be dispalyed",
+											"Referral Source Dropdown values are not dispalyed");
+								}
+							}
+							List<WebElement> CountryDDvaluese = browser.getOptions(SCobjects.Clients_Country_DropDown);
+							if (CountryDDvaluese.size() > 0) {
+								for (WebElement listvalue : CountryDDvaluese) {
+									Countryropdownvlaue = Countryropdownvlaue + ";" + listvalue.getText();
+								}
+								if (ExpectedCountryDopdownvlaues.equalsIgnoreCase(Countryropdownvlaue.substring(1))
+										&& browser.elementisdisplayed(SCobjects.Clients_Country_DropDown)) {
+									browser.reportscomtep("Passed", "Verify Country Dropdown values are dispalyed",
+											"Country Dropdown values should be dispalyed",
+											"Country Dropdown values are dispalyed as:" + Countryropdownvlaue);
+								} else {
+									browser.reportscomtep("Failed", "Verify Country Dropdown values are dispalyed",
+											"Country Dropdown values should be dispalyed",
+											"Country Dropdown values are not dispalyed");
+								}
+							}
+
+							List<WebElement> GenderRadioButtons = SCobjects.Clients_Gender_List;
+							if (browser.elementisdisplayed(GenderRadioButtons.get(0))
+									|| browser.elementisdisplayed(GenderRadioButtons.get(1))) {
+								browser.reportscomtep("Passed", "Verify Gender Radio buttons Male/Female are dispalyed",
+										"Gender Radio buttons Male/Female should be dispalyed",
+										" Gender Radio buttons Male/Female are dispalyed");
+							} else {
+								browser.reportscomtep("Failed", "Verify Gender Radio buttons Male/Female are dispalyed",
+										"Gender Radio buttons Male/Female should be dispalyed",
+										" Gender Radio buttons Male/Female are not dispalyed");
+							}
+							browser.Verify_elementisdisplayed_Report(SCobjects.Clients_Close_Button, "Close Button");
+							browser.Verify_elementisdisplayed_Report(SCobjects.Clients_AddClients_Button, "Add Client Button");
+							browser.click(SCobjects.Clients_Close_Button);
+						} else {
+							browser.reportscomtep("Failed",
+									"Clicks on New Clients Button and Verify Add New Clients Popup Is displayed",
+									"Add New Clients Popup should be displayed", "Add New Clients Popup Is not displaye");
+						}
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+
+				/*** TC_19_003 Check the mandatory fields in Add New Client popup ******/
+
+				public void check_MandatoryFields_InAddNewClientPopup() {
+					String Client_EmailEM = "";
+					String Client_FirstNameNEM = "";
+					String Client_LastNameNEM = "";
+					try {
+						browser.click(SCobjects.Clients_NewClients_Button);
+						if (browser.elementisdisplayed(SCobjects.Clients_AddNewClient_Popup_Header)) {
+							browser.reportscomtep("Passed",
+									"Clicks on New Clients Button and Verify Add New Clients Popup Is displayed",
+									"Add New Clients Popup should be displayed", "Add New Clients Popup Is displayed");
+							browser.click(SCobjects.Clients_AddClients_Button);
+							if (browser.elementisdisplayed(SCobjects.Clients_Email_Em)) {
+								Client_EmailEM = browser.getelementtext(SCobjects.Clients_Email_Em);
+								browser.verifyElementErrorMessage(SCobjects.Clients_Email_Em, Client_EmailEM, "exact");
+							}
+							if (browser.elementisdisplayed(SCobjects.Clients_FirstName_Em)) {
+								Client_FirstNameNEM = browser.getelementtext(SCobjects.Clients_FirstName_Em);
+								browser.verifyElementErrorMessage(SCobjects.Clients_FirstName_Em, Client_FirstNameNEM, "exact");
+							}
+							if (browser.elementisdisplayed(SCobjects.Clients_LastName_Em)) {
+								Client_LastNameNEM = browser.getelementtext(SCobjects.Clients_LastName_Em);
+								browser.verifyElementErrorMessage(SCobjects.Clients_LastName_Em, Client_LastNameNEM, "exact");
+							}
+							browser.click(SCobjects.Clients_Close_Button);
+						} else {
+							browser.reportscomtep("Failed",
+									"Clicks on New Clients Button and Verify Add New Clients Popup Is displayed",
+									"Add New Clients Popup should be displayed", "Add New Clients Popup Is not displaye");
+						}
+
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+
+				/************* TC_19_004 Check whether a new client can be added ******/
+
+				public void checkwhether_NewClient_Added() {
+					String Client_Email = "";
+					String Client_FirstName = "";
+					String Client_LastName = "";
+					String Client_MobileNo = "";
+					int ClintsnameLength = 0;
+					String Client_Name = "";
+
+					try {
+						Client_Email = browser.getdata("ClientEmail");
+						Client_FirstName = browser.getdata("ClientFirstName");
+						Client_LastName = browser.getdata("ClientLastName");
+						Client_MobileNo = browser.getdata("ClientPhNo");
+						browser.click(SCobjects.Clients_NewClients_Button);
+						if (browser.elementisdisplayed(SCobjects.Clients_AddNewClient_Popup_Header)) {
+							browser.reportscomtep("Passed",
+									"Clicks on New Clients Button and Verify Add New Clients Popup Is displayed",
+									"Add New Clients Popup should be displayed", "Add New Clients Popup Is displaye");
+							browser.sendkeys(SCobjects.Clients_Email_TextBox, Client_Email);
+							browser.sendkeys(SCobjects.Clients_MobileNumber_TextBox, Client_MobileNo);
+							browser.sendkeys(SCobjects.Clients_FirstName_TextBox, Client_FirstName);
+							browser.sendkeys(SCobjects.Clients_LastName_TextBox, Client_LastName);
+							browser.selectByVisibleText(SCobjects.Clients_SendNotificationsBy_DropDown, "Don't Send Notifications");
+							browser.click(SCobjects.Clients_Gender_List.get(0));
+							browser.click(SCobjects.Clients_AddClients_Button);
+							browser.click(SCobjects.Confirmatio_OK_Button);
+							List<WebElement> Clients_name = SCobjects.Clients_Names_List;
+							ClintsnameLength = Clients_name.size() - 1;
+							Client_Name = Client_FirstName + " " + Client_LastName;
+							String Clients_AddedName = browser.getelementtext(Clients_name.get(ClintsnameLength));
+							if (Clients_AddedName.equalsIgnoreCase(Client_Name)
+									&& browser.elementisdisplayed(Clients_name.get(ClintsnameLength))) {
+								browser.reportscomtep("Passed",
+										"Enter mandatory fields,Select option from Notification dropdown and Clicks on continue Add client, Ok Button and Verify Client is added and displayed in Table",
+										"Client should be added and displayed in Table",
+										"Client is Added & displayed in Table as:" + Clients_AddedName);
+
+							} else {
+								browser.reportscomtep("Failed",
+										"Enter mandatory fields,Select option from Notification dropdown and Clicks on continue Add client, Ok Button and Verify Client is added and displayed in Table",
+										"Client should be added and displayed in Table",
+										"Client is not Added & displayed in Table");
+							}
+						} else {
+							browser.reportscomtep("Failed",
+									"Clicks on New Clients Button and Verify Add New Clients Popup Is displayed",
+									"Add New Clients Popup should be displayed", "Add New Clients Popup Is not displaye");
+						}
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+
+				/************
+				 * TC_19_005 Check whether a new client receives email notification with SC
+				 * account credentials when added by subscriber to the client list
+				 *****/
+
+				public void xyz() {
+					String ExpectedSelectSendNotificationsByOption = "Send By Email ";
+					String SelectSendNotificationsByOption = "";
+					try {
+						List<WebElement> Clients_name = SCobjects.Clients_Names_List;
+						browser.click(Clients_name.get(0));
+						if (browser.elementisdisplayed(SCobjects.Clients_AddNewClient_Popup_Header)) {
+							browser.reportscomtep("Passed", "Clicks on Client Name and Verify Add New Clients Popup Is displayed",
+									"Add New Clients Popup should be displayed", "Add New Clients Popup Is displaye");
+							browser.selectByVisibleText(SCobjects.Clients_SendNotificationsBy_DropDown, "Send By Email ");
+							SelectSendNotificationsByOption = browser.getelementtext(SCobjects.Clients_SendNotificationsBy_DropDown)
+									.replaceAll("Don't Send Notifications", "").trim();
+							if (ExpectedSelectSendNotificationsByOption.trim().equalsIgnoreCase(SelectSendNotificationsByOption)
+									&& browser.elementisdisplayed(SCobjects.Clients_SendNotificationsBy_DropDown)) {
+								browser.reportscomtep("Passed", "Verify Send Notification by email is selected",
+										"Send Notification by email should be selected",
+										"Send Notification by  selected as:" + SelectSendNotificationsByOption);
+								browser.click(SCobjects.Clients_UpadateChanges_Button);
+								browser.click(SCobjects.Confirmatio_OK_Button);
+								if (browser.elementisdisplayed(Clients_name.get(0))) {
+									browser.reportscomtep("Passed",
+											"Clicks on Upadate Changes Button,OK button and Verify Client is added",
+											"Client should be added", "Client is added");
+								} else {
+									browser.reportscomtep("Failed",
+											"Clicks on Upadate Changes Button, OK Button andVerify Client is added",
+											"Client should be added", "Client is not added");
+
+								}
+
+							} else {
+								browser.reportscomtep("Failed", "Verify Send Notification by email is selected",
+										"Send Notification by email should be selected",
+										"Send Notification by Email is not selected");
+
+							}
+
+						} else {
+							browser.reportscomtep("Failed", "Clicks on Client Name and Verify Add New Clients Popup Is displayed",
+									"Add New Clients Popup should be displayed", "Add New Clients Popup Is not displaye");
+						}
+
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+
+				/************
+				 * TC_19_006 Check whether client details can be edited
+				 ***********/
+
+				public void check_Client_Details_Edited() {
+
+					String SelectSendNotificationsByOption = "";
+					String ExpectedSelectSendNotificationsByOption = "Send By Email ";
+					String SelectReferralSourceOption = "";
+					String ExpectedSelectReferralSourceOption = "Referral Source";
+					String Notes = "";
+					try {
+						Notes = browser.getdata("ClientsNotes");
+						List<WebElement> Clients_name = SCobjects.Clients_Names_List;
+						browser.click(Clients_name.get(0));
+						if (browser.elementisdisplayed(SCobjects.Clients_AddNewClient_Popup_Header)) {
+							browser.reportscomtep("Passed", "Clicks on Client Name and Verify Add New Clients Popup Is displayed",
+									"Add New Clients Popup should be displayed", "Add New Clients Popup Is displaye");
+							browser.selectByVisibleText(SCobjects.Clients_SendNotificationsBy_DropDown, "Send By Email ");
+							SelectSendNotificationsByOption = browser.getelementtext(SCobjects.Clients_SendNotificationsBy_DropDown)
+									.replaceAll("Don't Send Notifications", "").trim();
+							if (ExpectedSelectSendNotificationsByOption.trim().equalsIgnoreCase(SelectSendNotificationsByOption)
+									&& browser.elementisdisplayed(SCobjects.Clients_SendNotificationsBy_DropDown)) {
+								browser.reportscomtep("Passed", "Verify Send Notification by email is selected",
+										"Send Notification by email should be selected",
+										"Send Notification by selected as:" + SelectSendNotificationsByOption);
+							} else {
+								browser.reportscomtep("Failed", "Verify Send Notification by email is selected",
+										"Send Notification by email should be selected",
+										"Send Notification by Email is not selected");
+
+							}
+							browser.selectByVisibleText(SCobjects.Clients_ReferralSource_DropDown, "Referral Source");
+							SelectReferralSourceOption = browser.getelementtext(SCobjects.Clients_ReferralSource_DropDown)
+									.replaceAll("Walk-in", "").trim();
+							if (ExpectedSelectReferralSourceOption.trim().equalsIgnoreCase(SelectReferralSourceOption)
+									&& browser.elementisdisplayed(SCobjects.Clients_ReferralSource_DropDown)) {
+								browser.reportscomtep("Passed", "Verify Refferal source in Referral Source is selected",
+										"Refferal source in Referral Source is selected",
+										"Refferal source in selected as:" + SelectReferralSourceOption);
+							} else {
+								browser.reportscomtep("Failed", "Verify Refferal source in Referral Source is selected",
+										"Refferal source in Referral Source is selected",
+										"Refferal source in Referral Source is not selected");
+
+							}
+							browser.sendkeys(SCobjects.Clients_Notes_TextBox, Notes);
+							browser.click(SCobjects.Clients_UpadateChanges_Button);
+							browser.click(SCobjects.Confirmatio_OK_Button);
+							if (browser.elementisdisplayed(Clients_name.get(0))) {
+								browser.reportscomtep("Passed",
+										"Modified Send Notification & Referral Source options and clicks on Upadate Changes Button,OKbutton and Verify Client is added",
+										"Client should be added", "Client is added");
+							} else {
+								browser.reportscomtep("Failed",
+										"Modified Send Notification & Referral Source options and clicks on Upadate Changes Button,OKbutton and Verify Client is added",
+										"Client should be added", "Client is not added");
+
+							}
+
+						} else {
+							browser.reportscomtep("Failed", "Clicks on Client Name and Verify Add New Clients Popup Is displayed",
+									"Add New Clients Popup should be displayed", "Add New Clients Popup Is not displaye");
+						}
+
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+
+				/**
+				 * TC_19_007 Check whether an existing SC customer can be added as Client
+				 *****/
+
+				public void checkwhether_AnExisting_SCcustomer_AddedAsClient() {
+					String AnExisting_SCcustomerEmail = "";
+					String AnExisting_SCcustomerFN = "Sun";
+					String AnExisting_SCcustomerLN = "G";
+					String AnExisting_SCcustomerName = "";
+
+					try {
+						AnExisting_SCcustomerEmail = browser.getdata("Existing_SCcustomer");
+						browser.click(SCobjects.Clients_NewClients_Button);
+						if (browser.elementisdisplayed(SCobjects.Clients_AddNewClient_Popup_Header)) {
+							browser.reportscomtep("Passed",
+									"Clicks on New Clients Button and Verify Add New Clients Popup Is displayed",
+									"Add New Clients Popup should be displayed", "Add New Clients Popup Is displaye");
+							browser.sendkeys(SCobjects.Clients_Email_TextBox, AnExisting_SCcustomerEmail);
+							browser.click(SCobjects.Client_xpath);
+							/*
+							 * AnExisting_SCcustomerFN =
+							 * browser.getelementtext(SCobjects.Clients_FirstName_TextBox);
+							 * AnExisting_SCcustomerLN =
+							 * browser.getelementtext(SCobjects.Clients_LastName_TextBox);
+							 */
+							browser.click(SCobjects.Clients_AddClients_Button);
+							browser.click(SCobjects.Confirmatio_OK_Button);
+							AnExisting_SCcustomerName = AnExisting_SCcustomerFN + " " + AnExisting_SCcustomerLN;
+							List<WebElement> Clients_name = SCobjects.Clients_Names_List;
+							String Clients_AnExisting_AddedSCcustomerName = browser.getelementtext(Clients_name.get(0));
+							if (Clients_AnExisting_AddedSCcustomerName.equalsIgnoreCase(AnExisting_SCcustomerName)
+									&& browser.elementisdisplayed(Clients_name.get(0))) {
+								browser.reportscomtep("Passed",
+										"Enter An Existing SCcustomer Email id Clicks on continue Add client, Ok Button and Verify The existing SC customer is added as client in Table",
+										"The existing SC customer should be added as clientin Table",
+										"The existing SC customer is Added & displayed in Table as:" + AnExisting_SCcustomerName);
+
+							} else {
+
+								browser.reportscomtep("Failed",
+										"Enter An Existing SCcustomer Email id Clicks on continue Add client, Ok Button and Verify The existing SC customer is added as client in Table",
+										"The existing SC customer should be added as clientin Table",
+										"The existing SC customer is not Added & displayed in Table");
+
+							}
+
+						} else {
+							browser.reportscomtep("Failed",
+									"Clicks on New Clients Button and Verify Add New Clients Popup Is displayed",
+									"Add New Clients Popup should be displayed", "Add New Clients Popup Is not displaye");
+						}
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+
+				/*** TC_19_008 Check whether a client can be deleted ****/
+				public void Check_Client_Deleted() {
+					String BeforeDeleteClientName = "";
+					String AfterDeleteClientName = "";
+					try {
+						List<WebElement> Clients_name = SCobjects.Clients_Names_List;
+						BeforeDeleteClientName = browser.getelementtext(Clients_name.get(0));
+						browser.click(Clients_name.get(0));
+						if (browser.elementisdisplayed(SCobjects.Clients_AddNewClient_Popup_Header)) {
+							browser.reportscomtep("Passed", "Clicks on Client Name and Verify Add New Clients Popup Is displayed",
+									"Add New Clients Popup should be displayed", "Add New Clients Popup Is displaye");
+							browser.click(SCobjects.Client_Delete_Button);
+							browser.click(SCobjects.Client_YesDeleteIt_Button);
+							browser.click(SCobjects.Confirmatio_OK_Button);
+							AfterDeleteClientName = browser.getelementtext(Clients_name.get(0));
+							if (AfterDeleteClientName != BeforeDeleteClientName
+									&& browser.elementisdisplayed((Clients_name.get(0)))) {
+								browser.reportscomtep("Passed",
+										"Clicks on Continue Delete, YesDeleteIt and OK buttons and verify Client is deleted in table ",
+										"Client should be deleted in table", "Client is deleted in table");
+
+							} else {
+								browser.reportscomtep("Failed",
+										"Clicks on Continue Delete, YesDeleteIt and OK buttons and verify Client is deleted in table ",
+										"Client should be deleted in table", "Client is not deleted in table");
+							}
+						} else {
+							browser.reportscomtep("Failed", "Clicks on Client Name and Verify Add New Clients Popup Is displayed",
+									"Add New Clients Popup should be displayed", "Add New Clients Popup Is not displaye");
+						}
+
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				
 
 }
