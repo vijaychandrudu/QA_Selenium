@@ -88,7 +88,7 @@ public class TS_019_SubscriberClicks_ClientsMenu extends StaticVariables {
 	@Test(priority = 19007, description = "TC_19_005 Check whether a new client can be added")
 	public void TC_19_005_SubScriberr_xyz() throws IOException {
 		ExtentTestManager.getTest().setDescription("TC_19_005 Check whether a new client can be added");
-		SR.xyz();
+		SR.Check_newclientreceives_emailnotification_withSCcredentials();
 	}
 
 	@Test(priority = 19008, description = "TC_19_006 Check whether client details can be edited")
