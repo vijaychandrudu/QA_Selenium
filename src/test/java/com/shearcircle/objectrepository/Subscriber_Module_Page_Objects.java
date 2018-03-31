@@ -1129,6 +1129,172 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//*[@class='tab-content p-t-2']")
 	public WebElement Client_xpath;
 	
+/*********TS020_Subscriber clicks POS menu******/
 	
+	/****TC_20_001 Open POS page****/
 	
+	@FindBy(xpath="//a[text()='POS ']")
+	public WebElement POS_MenuLink;
+	
+	@FindBy(xpath="//h3[text()='Bookings']")
+	public WebElement Pos_BookingsPage_Header;
+	
+	@FindBy(xpath="//*[text()='Create Sale Order']")
+	public WebElement Pos_BP_CreateSaleOrder_button;
+	
+	@FindBy(xpath="//table/thead/tr/th")
+	public List<WebElement> POS_BP_Table_HeaderDetails_List;
+	
+	@FindBy(xpath="//*[@placeholder='Search Name or Mobile ']")
+	public WebElement POS_BP_SearchBox;
+	
+	@FindBy(xpath="//table/tbody/tr/td/h4[text()='No data found']")
+	public WebElement POS_BP_NoDataFound_Text;
+	
+	@FindBy(xpath="//section[2]/div[1]/div[2]//table/tbody/tr")
+	public List<WebElement> POS_BP_Details_List;
+	
+	@FindBy(xpath="//table/tbody/tr/td[5]/a[text()=' View']")
+	public List<WebElement> POS_BP_View_ButtonList;
+	
+	@FindBy(xpath="//table/tbody/tr/td[5]/button[text()=' Delete']")
+	public List<WebElement> POS_BP_Delete_ButtonList;
+	
+	/******TC_20_002 Check the Create Sale Order button**********/
+	
+	@FindBy(xpath="//*[text()='Add New Sale']")
+	public WebElement POS_AddNewSale_PopupHeader;
+	
+	@FindBy(xpath="//*[@ng-click='addProducts()']")
+	public WebElement POS_AddProduct_Button;
+	
+	@FindBy(xpath="//*[@ng-click='addServices()']")
+	public WebElement POS_AddService_Button;
+	
+	@FindBy(xpath="//*[text()='Order Services/Products']")
+	public WebElement POS_OrderTemplate_Header;
+	
+	@FindBy(xpath="//*[text()='Service Name']")
+	public WebElement POS_ServiceName;
+	
+	@FindBy(xpath="//*[text()='Product Name']")
+	public WebElement POS_ProductName;
+	
+	@FindBy(xpath="//div[2]/table/tbody/tr[2]/th[text()='Qty']")
+	public WebElement POS_Service_QuantityHeader;
+	
+	@FindBy(xpath="//div[2]/table/tbody/tr[4]/th[text()='Qty']")
+	public WebElement POS_Product_QuantityHeader;
+	
+	@FindBy(xpath="//div[2]/table/tbody/tr[2]/th[text()='Price']")
+	public WebElement POS_Service_PriceHeader;
+	
+	@FindBy(xpath="//div[2]/table/tbody/tr[4]/th[text()='Price']")
+	public WebElement POS_Product_PriceHeader;
+	
+	@FindBy(xpath="//div[2]/table/tbody/tr[2]/th[text()='Discount ']")
+	public WebElement POS_Service_DiscountHeader;
+	
+	@FindBy(xpath="//div[2]/table/tbody/tr[4]/th[text()='Discount ']")
+	public WebElement POS_Product_DiscountHeader;
+
+	@FindBy(xpath="//div[2]/table/tbody/tr[2]/th[text()='Staff ']")
+	public WebElement POS_Service_StaffHeader;
+	
+	@FindBy(xpath="//div[2]/table/tbody/tr[4]/th[text()='Staff ']")
+	public WebElement POS_Product_StaffHeader;
+	
+	@FindBy(xpath="//div[2]/table/tbody/tr[2]/th[text()='Total Price']")
+	public WebElement POS_Service_TotalPriceHeader;
+	
+	@FindBy(xpath="//div[2]/table/tbody/tr[4]/th[text()='Total Price']")
+	public WebElement POS_Product_TotalPriceHeader;
+	
+	@FindBy(xpath="//div[2]/table/tbody/tr[2]/th[text()='Action']")
+	public WebElement POS_Service_ActionHeader;
+	
+	@FindBy(xpath="//div[2]/table/tbody/tr[4]/th[text()='Action']")
+	public WebElement POS_Product_ActionHeader;
+	
+	@FindBy(xpath="//*[text()='Close']")
+	public WebElement POS_Close_button;
+	
+	@FindBy(xpath="//*[text()='Create']")
+	public WebElement POS_Create_Button;
+	
+	/********TC_20_003 Check the +Products button in Add New Sale popup********/
+	
+	@FindBy(xpath="//div[1]/div/ul/li/strong")
+	public List<WebElement> POS_ANSP_ProductNameList;
+	
+	@FindBy(xpath="//ul/li/i[@class='fa fa-plus']")
+	public List<WebElement> POS_ANSP_PlusSignprefixed_List;
+	
+	@FindBy(xpath="//div[1]/div/ul/li/span")
+	public List<WebElement> POS_ANSP_ProductPriceList;
+	
+	@FindBy(xpath="//div[@ng-if='productsOpen']")
+	public WebElement POS_ANSP_ProductOpenTable;
+	
+	/****TC_20_004 Check whether product(s) can be added******/
+	
+	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr/td[@class='ng-binding']")
+	public WebElement POS_ANSP_ProductAddedName_List;
+
+	/**********TS021_Subscriber clicks on Appointments menu**********/
+	/*****TC_21_001 Open Appointments page*****/
+	
+	@FindBy(xpath="//a[text()='Appointments']")
+	public WebElement Appointments_Menu_Link;
+	
+	@FindBy(xpath="//h3[text()='Appointments']")
+	public WebElement Appointments_AppointmentsPage_Header;
+	
+	@FindBy(xpath="//*[text()='No Appointments found']")
+	public WebElement Appointments_NoAppointmentsFound_Text;
+	
+	@FindBy(xpath="//h4[text()='All Appointments']")
+	public WebElement Appointments_AllAppointments_Text;
+	
+	@FindBy(xpath="//table/tbody/tr/td[@data-label='Booking Id']")
+	public List<WebElement> Appointments_AllAppointments_BookingID_List;
+
+	@FindBy(xpath="//table[@class='table styapp']/thead//th")
+	public List<WebElement> Appointments_AllAppointments_TableHeaders_List;
+	
+	@FindBy(xpath="//select[@name='date_range']")
+	public WebElement Appointments_AllAppointments_FilterByDate;
+	
+	@FindBy(xpath="//select[@ng-model='selectedStaff']")
+	public WebElement Appointments_AllAppointments_FilterByStaff;
+	
+	@FindBy(xpath="//select[@ng-model='appointment_status']")
+	public WebElement Appointments_AllAppointments_FilterByAppointmentStatus;
+	
+	@FindBy(xpath="//button[@ng-click='trackByTransactionAction()']")
+	public WebElement Appointments_AllAppointments_TrackTransactionStatus_Button;
+	
+	@FindBy(xpath="//*[@ng-click='addNewAppointment()']")
+	public WebElement Appointments_AllAppointments_AddNewAppointment_Button;
+	
+	@FindBy(xpath="//*[@ng-model='searchAppointmentById']")
+	public WebElement Appointments_AllAppointments_SearchBox;
+	
+	@FindBy(xpath="//table[@class='table styapp']/tbody/tr/td[1]")
+	public List<WebElement> Appointments_AllAppointments_BookingId_List;
+	
+	/***TC_21_002******/
+	
+	@FindBy(xpath="//*[@id='addStaffForm']/div[1]/h4")
+	public WebElement Appointments_BookingSummaryPopupAnd_Id;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//strong[2]")
+	public WebElement Appointments_BSP_StaffBooked_Name;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//strong[3]")
+	public WebElement Appointments_BSP_AppointmentDateAndTime;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//div[@class='col-md-8 detser']")
+	public WebElement Appointments_BSP_ServiceDetails_Table;
+
 }
