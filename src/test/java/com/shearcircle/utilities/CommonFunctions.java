@@ -1613,5 +1613,41 @@ public class CommonFunctions extends StaticVariables {
 		}
 		return ElementpresenceCount;
 	}	
+	
+	public void Verify_elementprepopulatedvalue_Report(WebElement element, String Reporttext) {
+		try {
+         String text="";
+			// this.movetoElement(element);
+			// this.scrollintoviewelement(element);
+			this.waitforelementtobevisible(element, 10);
+			if (element.isDisplayed() && element.isEnabled()) {
+				this.highlightElement(element);				
+				this.reportscomtep("Passed", "Verify The Element " + Reporttext + " is displayed",
+						"The Element " + Reporttext + " should be displayed", "The Element " + Reporttext + " displayed");
+                text=this.elementgetAttributevalue(element, "value");
+				
+                if (text!="") {
+					
+            	this.reportscomtep("Passed", "Element Field " + Reporttext + " prepopulated",
+						"Element Field " + Reporttext + " should be prepoluated", "The Element field " + Reporttext + " prepoluated");
+                }else {   	
+            	
+            		this.reportscomtep("Failed", "Element Field " + Reporttext + " prepopulated",
+    						"Element Field " + Reporttext + " should be prepoluated", "The Element " + Reporttext + " no prepopulated");
+            	}
+            
+            }
+			 else {
+			    
+				this.reportscomtep("Failed", "Verify The Element is " + Reporttext + " displayed",
+						"The Element " + Reporttext + " should be displayed",
+						"The Element " + Reporttext + " Not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error in description: " + e.getStackTrace());
+		}
+
+	}
 
 }

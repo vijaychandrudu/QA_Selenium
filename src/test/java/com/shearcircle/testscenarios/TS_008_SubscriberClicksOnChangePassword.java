@@ -55,10 +55,10 @@ public class TS_008_SubscriberClicksOnChangePassword extends StaticVariables {
 		Thread.sleep(1000);
 	}
 
-	@AfterClass
+	/*@AfterClass
 	public void afterClass() {
 		driver.quit();
-	}
+	}*/
 
 	@Test(priority = 8000, description = "Subscriber visits Join Our Circle page")
 	public void TC_8_000_Subscriber_visitsJoinOurCirclepage() throws Exception {

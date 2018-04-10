@@ -34,8 +34,7 @@ public class Customer_Module_Page_Components extends StaticVariables {
 		browser.loaddata(TestDataPath);		
 		CustomerModule = PageFactory.initElements(driver, Customer_Module_Page_Objects.class);
 		Login = PageFactory.initElements(driver, Login_page_objects.class);				
-	}
-	
+	}	
 	
 	//Application launch
 	public void ShearCircle_LaunchApplication(){
