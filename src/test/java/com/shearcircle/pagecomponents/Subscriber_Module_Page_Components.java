@@ -3547,6 +3547,111 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 					}
 				}
 				
+				
+				
+				/*****TS013_Subscriber clicks on Payment Processing under Manage Circle Menu*******/
+				/**TC_13_001 Open Payment Processing page****/
+				public void openPaymentProcessing_Page() {
+					String SelectedType = "";
+					try {
+						if (browser.elementisdisplayed(SCobjects.Subscriber_ManageCircle_Dropdown_Link)) {
+							browser.reportscomtep("Passed", "Verify Manage Circle dropdown link is displayed in Dashboard page",
+									"Manage Circle dropdown link should be displayed", "Manage Circle dropdown link is displayed");
+							browser.click(SCobjects.Subscriber_ManageCircle_Dropdown_Link);
+							SelectedType = browser.getelementtext(SCobjects.PaymentProcessing_DropdownValue);
+										if (SelectedType.equalsIgnoreCase("Payment Processing")) {
+								browser.click(SCobjects.PaymentProcessing_DropdownValue);
+								browser.reportscomtep("Passed",
+										"Verify ManageCircle dropdown value " + SelectedType + " is slected",
+										"ManageCircle dropdown value should be slected",
+										"ManageCircle dropdown value selected as: " + SelectedType);
+								if (browser.elementisdisplayed(SCobjects.PaymentProcessing_Page_Header)) {
+									browser.reportscomtep("Passed", "Verify Payment Processing page is displayed",
+											"Payment Processing page should be displayed",
+											"Payment Processing page is displayed");
+
+								} else {
+									browser.reportscomtep("Failed", "Verify Payment Processing page is displayed",
+											"Payment Processing page should be displayed",
+											"Payment Processing page is not displayed");
+								}
+							} else {
+								browser.reportscomtep("Failed", "Verify ManageCircle dropdown value is slected",
+										"ManageCircle dropdown value should be slected",
+										"ManageCircle dropdown value is not selected");
+							}
+						} else {
+							browser.reportscomtep("Failed", "Verify Manage Circle dropdown link is displayed in Dashboard page",
+									"Manage Circle dropdown link should be displayed",
+									"Manage Circle dropdown link is not displayed");
+
+						}
+
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				
+				/**TC_13_002 Check the details in Payment Processing page**********/
+				
+				public void check_Details_PaymentProcessing_Page() {
+					try {
+						if (browser.elementisdisplayed(SCobjects.PaymentProcessing_ContentOnSC_PaymentProcessingetc_TextData)) {
+							browser.reportscomtep("Passed", "Verify SC Payment processing of content, etc is displayed",
+									"SC Payment processing of content, etc should be displayed",
+									"SC Payment processing of content, etc is displayed");
+							browser.scrollintoviewelement(SCobjects.PaymentProcessing_BYPSC_Button);
+							if (browser.elementisdisplayed(SCobjects.PaymentProcessing_BYPSC_Button)) {
+								browser.reportscomtep("Passed", "Verify Bring Your PayPal to ShearCircle button is displayed",
+										"Bring Your PayPal to ShearCircle button should be displayed",
+										"Bring Your PayPal to ShearCircle button is displayed");
+
+							} else {
+								browser.reportscomtep("Passed",
+										" Verify BYPSC button is not displayed, Account has already linked by PayPal with SC",
+										"BYPSC button should not be displayed, Account has already linked by PayPal with SC",
+										"BYPSC button not displayed, Account has already linked by PayPal with SC");
+							}
+						} else {
+							browser.reportscomtep("Failed", "Verify SC Payment processing of content, etc is displayed",
+									"SC Payment processing of content, etc should be displayed",
+									"SC Payment processing of content, etc is not displayed");
+						}
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+				
+				/*****TC_13_003 Check the button – BYPSC********/
+				public void check_Button_BYPSC() {
+					try {
+						if (browser.elementisdisplayed(SCobjects.PaymentProcessing_BYPSC_Button)) {
+							browser.reportscomtep("Passed", "Verify Bring Your PayPal to ShearCircle button is displayed",
+									"Bring Your PayPal to ShearCircle button should be displayed",
+									"Bring Your PayPal to ShearCircle button is displayed");
+							browser.click(SCobjects.PaymentProcessing_BYPSC_Button);
+							browser.waitForNewWindowAndSwitchToIt(driver);
+							if (browser.elementisdisplayed(SCobjects.PaymentProcessing_PayPalMerchantSignu_Popup)) {
+								browser.reportscomtep("Passed", "Verify PayPal Merchant signup popup is displayed",
+										"PayPal Merchant signup popup should be displayed",
+										"PayPal Merchant signup popup is displayed");
+							} else {
+								browser.reportscomtep("Failed", "Verify PayPal Merchant signup popup is displayed",
+										"PayPal Merchant signup popup should be displayed",
+										"PayPal Merchant signup popup is not displayed");
+							}
+
+						} else {
+							browser.reportscomtep("Passed",
+									" Verify BYPSC button is not displayed, Account has already linked by PayPal with SC",
+									"BYPSC button should not be displayed, Account has already linked by PayPal with SC",
+									"BYPSC button not displayed, Account has already linked by PayPal with SC");
+						}
+					} catch (Exception e) {
+						System.out.println("Error description: " + e.getStackTrace());
+					}
+				}
+
 				/********* TS019_Subscriber clicks on Clients menu **********/
 
 				/********** TC_19_001 Open Clients page ********/
@@ -4064,15 +4169,15 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 					List<WebElement> View_Buttons = SCobjects.POS_BP_View_ButtonList;
 					List<WebElement> Delete_Buttons = SCobjects.POS_BP_Delete_ButtonList;
 					int BPDetilals_Length = BookingDetails_List.size();
-					if (BPDetilals_Length > 1 && browser.elementisdisplayed(SCobjects.POS_BP_NoDataFound_Text)) {
-						browser.reportscomtep("Passed", "Verify First login no data is added)",
-								"First login no data should be added", "First login no data is added");
-					} else if (BPDetilals_Length > 1 && browser.elementisdisplayed(View_Buttons.get(0))
+					if (BPDetilals_Length > 1 && browser.elementisdisplayed(View_Buttons.get(0))
 							&& browser.elementisdisplayed(Delete_Buttons.get(0))) {
 						browser.reportscomtep("Passed", "Verify View button & Delete buttons are displayed",
 								"View button & Delete buttons should be displayed",
 								"View button & Delete buttons are displayed");
 
+					}else if (BPDetilals_Length > 1 && browser.elementisdisplayed(SCobjects.POS_BP_NoDataFound_Text)) {
+						browser.reportscomtep("Passed", "Verify First login no data is added)",
+								"First login no data should be added", "First login no data is added");
 					}
 				} else {
 					browser.reportscomtep("Failed",
@@ -4187,6 +4292,463 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 	}
 	
 	/****TC_20_004 Check whether product(s) can be added******/
+	
+	public void Check_whether_products_can_added() {
+		try {			
+			List<WebElement> ProductNameList = SCobjects.POS_ANSP_ProductNameList;
+			List<WebElement> PlusSignList = SCobjects.POS_ANSP_PlusSignprefixed_List;
+			List<WebElement> ProductPriceList = SCobjects.POS_ANSP_ProductPriceList;
+			if (browser.elementisdisplayed(ProductNameList.get(0)) && browser.elementisdisplayed(PlusSignList.get(0))
+					&& browser.elementisdisplayed(ProductPriceList.get(0))
+					&& browser.elementisdisplayed(SCobjects.POS_ANSP_ProductOpenTable)) {
+				browser.reportscomtep("Passed",
+						"Verify List of products with +sign prefixed along with its price is displayed",
+						"List of products with +sign prefixed along with its price should be displayed",
+						"List of products with +sign prefixed along with its price is displayed");
+				browser.click(PlusSignList.get(0));
+				browser.elementgetAttributevalue(SCobjects.POS_ANSP_AddedProduct_Name, "value");
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_ANSP_AddedProduct_Name, "ProductName");
+				String Prod_Qty = browser.elementgetAttributevalue(SCobjects.POS_ANSP_AddedProduct_Qty, "value");
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_ANSP_AddedProduct_Qty, "Qty: "+Prod_Qty);
+				String Prod_Price= browser.elementgetAttributevalue(SCobjects.POS_ANSP_AddedProduct_Price, "value");
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_ANSP_AddedProduct_Price, "Price: "+Prod_Price);
+				String Prod_Discount = browser.elementgetAttributevalue(SCobjects.POS_ANSP_AddedProduct_Discount, "value");
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_ANSP_AddedProduct_Discount, "Discount: "+Prod_Discount);
+				
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_ANSP_AddedProduct_Staff, "Staff");
+				String Prod_TotalPrice = browser.elementgetAttributevalue(SCobjects.POS_ANSP_AddedProduct_TotalPrice, "value");
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_ANSP_AddedProduct_TotalPrice, "Total Price:"+Prod_TotalPrice);
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_ANSP_AddedProduct_CloseButton, "Action CloseButton");
+				
+			} else {
+				browser.reportscomtep("Failed",
+						"Verify List of products with +sign prefixed along with its price is displayed",
+						"List of products with +sign prefixed along with its price should be displayed",
+						"List of products with +sign prefixed along with its price is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+/****TC_20_005 Check whether product(s) can be added******/
+	
+	public void Check_multiplequantity_product_can_added() {
+		try {			
+			
+			List<WebElement> PlusSignList = SCobjects.POS_ANSP_PlusSignprefixed_List;
+			
+			if (browser.elementisdisplayed(PlusSignList.get(0))) {
+				browser.reportscomtep("Passed",
+						"Verify product with +sign prefixed along with its price is displayed",
+						"Product with +sign prefixed along with its price should be displayed",
+						"Product with +sign prefixed along with its price is displayed");
+				String Prod_beforeupdatedTotalPrice = browser.getelementtext(SCobjects.POS_ANSP_AddedProduct_TotalPrice);
+				for(int i = 1; i<=3; i++){
+					browser.click(PlusSignList.get(0));					
+				}					
+				
+				String Prod_Qty = browser.elementgetAttributevalue(SCobjects.POS_ANSP_AddedProduct_Qty, "value");
+				String Prod_afterupdatedTotalPrice = browser.getelementtext(SCobjects.POS_ANSP_AddedProduct_TotalPrice);
+				//String[] splitUpdatedTotalPrice = Prod_beforeupdatedTotalPrice.split(".");
+				double int_beforeupdatedTotalPrice = Double.parseDouble(Prod_beforeupdatedTotalPrice.substring(1));
+				double multiflyedprice = int_beforeupdatedTotalPrice*4;
+				//String[] splitafterupdatedtotalprice = Prod_afterupdatedTotalPrice.split(".");
+				double int_afterupdatedTotalPrice = Double.parseDouble(Prod_afterupdatedTotalPrice.substring(1));
+				
+				if(Prod_Qty.equals("4") && multiflyedprice == int_afterupdatedTotalPrice){
+					browser.reportscomtep("Passed",
+							"Click on Product Name multiple times in product list and Verify updated quatity and Total Price in the Order template table",
+							"Quatity and Total Price should be updated in the Order template table",
+							"Quatity and Total Price updated in the Order template table as Quatity: "+ Prod_Qty +" and Total Price: "+Prod_afterupdatedTotalPrice);
+				}else{
+					browser.reportscomtep("Failed",
+							"Click on Product Name multiple times in product list and Verify updated quatity and Total Price in the Order template table",
+							"Quatity and Toatal Price should be updated in the Order template table",
+							"Quatity and Total Price not updated in the Order template table");
+				}				
+				
+			} else {
+				browser.reportscomtep("Failed",
+						"Verify product with +sign prefixed along with its price is displayed",
+						"Product with +sign prefixed along with its price should be displayed",
+						"Product with +sign prefixed along with its price is displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+/****TC_20_006 Check whether product(s) can be added******/
+	
+	public void Check_productquantity_decreased_increased_in_orderstemplat() {
+		try {			
+			
+			List<WebElement> ProductsTemplateHeaders = SCobjects.POS_ANSP_AddedProductHeader_th_list;
+			
+			if (ProductsTemplateHeaders.size()>0) {
+				browser.reportscomtep("Passed",
+						"Verify products orders template is displayed",
+						"products orders template should be displayed",
+						"products orders template displayed");
+				browser.sendkeys(SCobjects.POS_ANSP_AddedProduct_Qty, "1");
+				String Prod_beforeupdatedTotalPrice = browser.getelementtext(SCobjects.POS_ANSP_AddedProduct_TotalPrice);
+				browser.sendkeys(SCobjects.POS_ANSP_AddedProduct_Qty, "3");
+				String Prod_Qty = browser.elementgetAttributevalue(SCobjects.POS_ANSP_AddedProduct_Qty, "value");
+				
+				String Prod_afterupdatedTotalPrice = browser.getelementtext(SCobjects.POS_ANSP_AddedProduct_TotalPrice);
+				double int_beforeupdatedTotalPrice = Double.parseDouble(Prod_beforeupdatedTotalPrice.substring(1));
+				int qty = Integer.parseInt(Prod_Qty);
+				double multiflyedprice = int_beforeupdatedTotalPrice*qty;
+				double int_afterupdatedTotalPrice = Double.parseDouble(Prod_afterupdatedTotalPrice.substring(1));
+				
+				if(Prod_Qty.equals("3") && multiflyedprice == int_afterupdatedTotalPrice){
+					browser.reportscomtep("Passed",
+							"Product quantity can be decreased/increased in the orders template and Verify updated Total Price in the Order template table",
+							"Total Price should be updated in the Order template table",
+							"Total Price updated in the Order template table as Total Price: "+Prod_afterupdatedTotalPrice);
+				}else{
+					browser.reportscomtep("Failed",
+							"Product quantity can be decreased/increased in the orders template and Verify updated Total Price in the Order template table",
+							"Total Price should be updated in the Order template table",
+							"Total Price updated in the Order template table as Total Price: "+Prod_afterupdatedTotalPrice);
+				}				
+				
+			} else {
+				browser.reportscomtep("Failed",
+						"Verify products orders template is displayed",
+						"products orders template should be displayed",
+						"products orders template not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+/****TC_20_007 Check whether discount can be applied to the product ******/
+	
+	public void Check_discount_applied_to_product() {
+		try {			
+			
+			List<WebElement> ProductsTemplateHeaders = SCobjects.POS_ANSP_AddedProductHeader_th_list;
+			
+			if (ProductsTemplateHeaders.size()>0) {
+				browser.reportscomtep("Passed",
+						"Verify products orders template is displayed",
+						"products orders template should be displayed",
+						"products orders template displayed");				
+				String Prod_beforeupdatedTotalPrice = browser.getelementtext(SCobjects.POS_ANSP_AddedProduct_TotalPrice);
+				browser.sendkeys(SCobjects.POS_ANSP_AddedProduct_Discount, "10");
+				String Prod_discount = browser.elementgetAttributevalue(SCobjects.POS_ANSP_AddedProduct_Discount, "value");
+				
+				String Prod_afterupdatedTotalPrice = browser.getelementtext(SCobjects.POS_ANSP_AddedProduct_TotalPrice);
+				double int_beforeupdatedTotalPrice = Float.parseFloat(Prod_beforeupdatedTotalPrice.substring(1));
+				int discount = Integer.parseInt(Prod_discount);
+				double discountprice = (int_beforeupdatedTotalPrice/discount);
+				double int_afterupdatedTotalPrice = Double.parseDouble(Prod_afterupdatedTotalPrice.substring(1));
+				double int_afterdiscountTotalPrice = int_beforeupdatedTotalPrice-discountprice;
+				if(int_afterdiscountTotalPrice == int_afterupdatedTotalPrice){
+					browser.reportscomtep("Passed",
+							"Apply discount to the product and Verify updated Total Price in the Order template table",
+							"Total Price should be updated in the Order template table",
+							"Total Price updated in the Order template table as Total Price: "+Prod_afterupdatedTotalPrice);
+				}else{
+					browser.reportscomtep("Failed",
+							"Apply discount to the product and Verify updated Total Price in the Order template table",
+							"Total Price should be updated in the Order template table",
+							"Total Price not updated in the Order template table as Total Price: "+Prod_afterupdatedTotalPrice);
+				}				
+				
+			} else {
+				browser.reportscomtep("Failed",
+						"Verify products orders template is displayed",
+						"products orders template should be displayed",
+						"products orders template not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+/****TC_20_008 Check whether a product can be deleted from the orders ******/
+	
+	public void Check_product_deleted_from_orders() {
+		try {			
+					
+			if (browser.elementisdisplayed(SCobjects.POS_ANSP_AddedProduct_CloseButton)) {
+				browser.reportscomtep("Passed",
+						"Verify close button is displayed in products orders",
+						"close button should be displayed in products orders template",
+						"close button displayed in products orders template");				
+				int beforedeletetablerows = SCobjects.POS_ANSP_AddedProduct_tr_list.size();
+				browser.click(SCobjects.POS_ANSP_AddedProduct_CloseButton);
+				int afterdeletetablerows = SCobjects.POS_ANSP_AddedProduct_tr_list.size();
+				if(beforedeletetablerows == afterdeletetablerows-1){
+					browser.reportscomtep("Passed",
+							"click on close button in the order product table and Verify the product delete in Order product table",
+							"The product should be delete in Order product table",
+							"The product deleted in Order product table");
+				}else{
+					browser.reportscomtep("Failed",
+							"click on close button in the order product table and Verify the product delete in Order product table",
+							"The product should be delete in Order product table",
+							"The product not deleted in Order product table");
+				}				
+				
+			} else {
+				browser.reportscomtep("Failed",
+						"Verify close button is displayed in products orders",
+						"close button should be displayed in products orders template",
+						"close button not displayed in products orders template");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+/****TC_20_009 Check the +Services button in Add New Sale popup ******/
+	
+	public void Check_ServicesbuttoninAddNewSalepopup() {
+		try {	
+			if (browser.elementisdisplayed(SCobjects.POS_AddService_Button)) {
+				browser.reportscomtep("Passed",
+						"Verify Add services button is displayed",
+						"Add services button should be displayed",
+						"Add services button is displayed");			
+				browser.click(SCobjects.POS_AddService_Button);	
+			if (SCobjects.POS_asb_serviceswithplus_list.size()>0 && SCobjects.POS_asb_serviceswithplus_list.size() > 0 ) {
+				browser.reportscomtep("Passed",
+						"Click on add services button and Verify services with + sign prefixed along with price is displayed",
+						"services with + sign prefixed along with price should be displayed",
+						"services with + sign prefixed along with price displayed");				
+				
+					
+				}else{
+					browser.reportscomtep("Failed",
+							"Click on add services button and Verify services with + sign prefixed along with price is displayed",
+							"services with + sign prefixed along with price should be displayed",
+							"services with + sign prefixed along with price not displayed");
+				}				
+				
+			
+			}else{
+				browser.reportscomtep("Failed",
+						"Verify Add services button is displayed",
+						"Add services button should be displayed",
+						"Add services button not displayed");
+			}
+			
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+/****TC_20_010 Check whether service(s) can be added ******/
+	
+	public void Check_servicecanbeadded() {
+		try {	
+			browser.click(SCobjects.POS_asb_serviceswithplus_list.get(0));
+			if (browser.elementisdisplayed(SCobjects.POS_asb_addedservices_tr)) {
+				
+				String servicename = browser.getelementtext(SCobjects.POS_asb_addedservicesname_text);
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_asb_addedservicesname_text, "Service Name: "+servicename);
+				String Service_Qty = browser.elementgetAttributevalue(SCobjects.POS_asb_addedservicesqty_text, "value");
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_asb_addedservicesqty_text, "Qty: "+Service_Qty);
+				String Service_Price= browser.elementgetAttributevalue(SCobjects.POS_asb_addedservicesprice_text, "value");
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_asb_addedservicesprice_text, "Price: "+Service_Price);
+				String Service_Discount = browser.elementgetAttributevalue(SCobjects.POS_asb_addedservicesdiscount_textbox, "value");
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_asb_addedservicesdiscount_textbox, "Discount: "+Service_Discount);				
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_asb_addedserviceschoosestaff_dropsown, "Staff");
+				String Service_TotalPrice = browser.getelementtext(SCobjects.POS_asb_addedservicestotalprice_text);
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_asb_addedservicestotalprice_text, "Total Price:"+Service_TotalPrice);
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_asb_addedservicesclose_button, "Action CloseButton");				
+					
+			}else{
+				browser.reportscomtep("Failed",
+							"Click on add services button and Verify services with + sign prefixed along with price is displayed",
+							"services with + sign prefixed along with price should be displayed",
+							"services with + sign prefixed along with price not displayed");
+				}		
+			
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+/****TC_20_011 Check whether multiple quantity of a service can be added******/
+	
+	public void Check_multiplequantityofservice_can_added() {
+		try {			
+					
+			if (browser.elementisdisplayed(SCobjects.POS_asb_serviceswithplus_list.get(0))) {
+				browser.reportscomtep("Passed",
+						"Verify service with +sign prefixed along with its price is displayed",
+						"Service with +sign prefixed along with its price should be displayed",
+						"Service with +sign prefixed along with its price is displayed");
+				String Service_beforeupdatedTotalPrice = browser.getelementtext(SCobjects.POS_asb_addedservicestotalprice_text);
+				for(int i = 1; i<=3; i++){
+					browser.click(SCobjects.POS_asb_serviceswithplus_list.get(0));					
+				}					
+				
+				String service_Qty = browser.elementgetAttributevalue(SCobjects.POS_asb_addedservicesqty_text, "value");
+				String service_afterupdatedTotalPrice = browser.getelementtext(SCobjects.POS_asb_addedservicestotalprice_text);				
+				double int_beforeupdatedTotalPrice = Double.parseDouble(Service_beforeupdatedTotalPrice.substring(1));
+				double multiflyedprice = int_beforeupdatedTotalPrice*4;			
+				double int_afterupdatedTotalPrice = Double.parseDouble(service_afterupdatedTotalPrice.substring(1));
+				
+				if(service_Qty.equals("4") && multiflyedprice == int_afterupdatedTotalPrice){
+					browser.reportscomtep("Passed",
+							"Click on Service Name multiple times in Service list and Verify updated quatity and Total Price in the Order template table",
+							"Quatity and Total Price should be updated in the Order template table",
+							"Quatity and Total Price updated in the Order template table as Quatity: "+ service_Qty +" and Total Price: "+service_afterupdatedTotalPrice);
+				}else{
+					browser.reportscomtep("Failed",
+							"Click on Service Name multiple times in Service list and Verify updated quatity and Total Price in the Order template table",
+							"Quatity and Toatal Price should be updated in the Order template table",
+							"Quatity and Total Price not updated in the Order template table");
+				}				
+				
+			} else {
+				browser.reportscomtep("Failed",
+						"Verify Service with +sign prefixed along with its price is displayed",
+						"Service with +sign prefixed along with its price should be displayed",
+						"Service with +sign prefixed along with its price is displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+/****TC_20_013 Check whether a discount can be applied to the service in the order******/
+	
+	public void Check_discountapplied_in_serviceorderstemplat() {
+		try {			
+			
+			List<WebElement> serviceTemplateHeaders = SCobjects.POS_ANSP_AddedservicetHeader_th_list;
+			
+			if (serviceTemplateHeaders.size()>0) {
+				browser.reportscomtep("Passed",
+						"Verify service orders template is displayed",
+						"service orders template should be displayed",
+						"service orders template displayed");
+				String service_beforeupdatedTotalPrice = browser.getelementtext(SCobjects.POS_asb_addedservicestotalprice_text);
+				browser.sendkeys(SCobjects.POS_asb_addedservicesdiscount_textbox, "10");
+				String service_discount = browser.elementgetAttributevalue(SCobjects.POS_asb_addedservicesdiscount_textbox, "value");
+				
+				String service_afterupdatedTotalPrice = browser.getelementtext(SCobjects.POS_asb_addedservicestotalprice_text);
+				double int_beforeupdatedTotalPrice = Float.parseFloat(service_beforeupdatedTotalPrice.substring(1));
+				int discount = Integer.parseInt(service_discount);
+				double discountprice = (int_beforeupdatedTotalPrice/discount);
+				double int_afterupdatedTotalPrice = Double.parseDouble(service_afterupdatedTotalPrice.substring(1));
+				double int_afterdiscountTotalPrice = int_beforeupdatedTotalPrice-discountprice;
+				if(int_afterdiscountTotalPrice == int_afterupdatedTotalPrice){
+					browser.reportscomtep("Passed",
+							"Apply discount to the service and Verify updated Total Price in the Order template table",
+							"Total Price should be updated in the Order template table",
+							"Total Price updated in the Order template table as Total Price: "+service_afterupdatedTotalPrice);
+				}else{
+					browser.reportscomtep("Failed",
+							"Apply discount to the product and Verify updated Total Price in the Order template table",
+							"Total Price should be updated in the Order template table",
+							"Total Price not updated in the Order template table as Total Price: "+service_afterupdatedTotalPrice);
+				}			
+				
+			} else {
+				browser.reportscomtep("Failed",
+						"Verify service orders template is displayed",
+						"service orders template should be displayed",
+						"service orders template not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	
+/****TC_20_014 Check whether a staff can be assigned to a service******/
+	
+	public void Check_staffcanbeassignedtoservice() {
+		try {			
+			
+			List<WebElement> serviceTemplateHeaders = SCobjects.POS_ANSP_AddedservicetHeader_th_list;
+			String servicestaff = browser.getdata("service_staff");
+			if (serviceTemplateHeaders.size()>0) {
+				browser.reportscomtep("Passed",
+						"Verify service orders template is displayed",
+						"service orders template should be displayed",
+						"service orders template displayed");
+				
+				browser.selectByVisibleText(SCobjects.POS_asb_addedserviceschoosestaff_dropsown, servicestaff);
+				String selectedstaff = browser.getDropdownSelectedValue(SCobjects.POS_asb_addedserviceschoosestaff_dropsown);
+				if(selectedstaff.equalsIgnoreCase(servicestaff)){
+					browser.reportscomtep("Passed",
+							"Select staff to the service in the Order template table",
+							"staff should be selected to the service in the Order template table",
+							"Selected staff to the service in the Order template table as :"+selectedstaff);
+				}else{
+					browser.reportscomtep("Failed",
+							"Select staff to the service in the Order template table",
+							"staff should be selected to the service in the Order template table",
+							"staff not selected to the service in the Order template table");
+				}			
+				
+			} else {
+				browser.reportscomtep("Failed",
+						"Verify service orders template is displayed",
+						"service orders template should be displayed",
+						"service orders template not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+/****TC_20_015 Check whether a service can be deleted ******/
+	
+	public void Check_service_deleted_from_orders() {
+		try {			
+					
+			if (browser.elementisdisplayed(SCobjects.POS_asb_addedservicesclose_button)) {
+				browser.reportscomtep("Passed",
+						"Verify close button is displayed in Services orders",
+						"close button should be displayed in Services orders template",
+						"close button displayed in Services orders template");				
+				int beforedeletetablerows = SCobjects.POS_ANSP_AddedProduct_tr_list.size();
+				browser.click(SCobjects.POS_asb_addedservicesclose_button);
+				int afterdeletetablerows = SCobjects.POS_ANSP_AddedProduct_tr_list.size();
+				if(beforedeletetablerows == afterdeletetablerows-1){
+					browser.reportscomtep("Passed",
+							"click on close button in the order Services table and Verify the Service delete in Order Services table",
+							"The Service should be delete in Order Services table",
+							"The Service deleted in Order Services table");
+				}else{
+					browser.reportscomtep("Failed",
+							"click on close button in the order Services table and Verify the Service delete in Order Services table",
+							"The Service should be delete in Order Services table",
+							"The Service not deleted in Order Services table");
+				}				
+				
+			} else {
+				browser.reportscomtep("Failed",
+						"Verify close button is displayed in Services orders",
+						"close button should be displayed in Services orders template",
+						"close button not displayed in Services orders template");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
 	
 	/**********TS021_Subscriber clicks on Appointments menu**********/
 	/*****TC_21_001 Open Appointments page*****/

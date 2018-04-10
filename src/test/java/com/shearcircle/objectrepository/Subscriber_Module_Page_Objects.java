@@ -1017,6 +1017,23 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//section/div/div[2]/div")
 	public WebElement Staff_SearchFilter_Table;
 	
+/**TC_13_001 Open Payment Processing page***/
+	
+	@FindBy(xpath="//a[text()='Payment Processing']")
+	public WebElement PaymentProcessing_DropdownValue;
+	
+	@FindBy(xpath="//h3[text()='Payment Processing ']")
+	public WebElement PaymentProcessing_Page_Header;
+	
+	@FindBy(xpath="//div[@ng-bind-html='show_description(cmsContent.description)']")
+	public WebElement PaymentProcessing_ContentOnSC_PaymentProcessingetc_TextData;
+	
+	@FindBy(xpath="//a[text()='Bring your PayPal to ShearCircle ']")
+	public WebElement PaymentProcessing_BYPSC_Button;
+	
+	@FindBy(xpath="//img[contains(@src,'logo_paypal_')]")
+	public WebElement PaymentProcessing_PayPalMerchantSignu_Popup;
+
 /******TC_19_001 Open Clients page***********/
 	
 	@FindBy(xpath="//a[text()='Clients']")
@@ -1136,7 +1153,7 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//a[text()='POS ']")
 	public WebElement POS_MenuLink;
 	
-	@FindBy(xpath="//h3[text()='Bookings']")
+	@FindBy(xpath="//h3[contains(text(),'Bookings')]")
 	public WebElement Pos_BookingsPage_Header;
 	
 	@FindBy(xpath="//*[text()='Create Sale Order']")
@@ -1145,7 +1162,7 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//table/thead/tr/th")
 	public List<WebElement> POS_BP_Table_HeaderDetails_List;
 	
-	@FindBy(xpath="//*[@placeholder='Search Name or Mobile ']")
+	@FindBy(xpath="//*[@placeholder='Search Booking ID ']")
 	public WebElement POS_BP_SearchBox;
 	
 	@FindBy(xpath="//table/tbody/tr/td/h4[text()='No data found']")
@@ -1224,13 +1241,13 @@ public class Subscriber_Module_Page_Objects {
 	
 	/********TC_20_003 Check the +Products button in Add New Sale popup********/
 	
-	@FindBy(xpath="//div[1]/div/ul/li/strong")
+	@FindBy(xpath="//div[@ng-if='productsOpen']/ul/li/strong")
 	public List<WebElement> POS_ANSP_ProductNameList;
 	
 	@FindBy(xpath="//ul/li/i[@class='fa fa-plus']")
 	public List<WebElement> POS_ANSP_PlusSignprefixed_List;
 	
-	@FindBy(xpath="//div[1]/div/ul/li/span")
+	@FindBy(xpath="//div[@ng-if='productsOpen']/ul/li/span")
 	public List<WebElement> POS_ANSP_ProductPriceList;
 	
 	@FindBy(xpath="//div[@ng-if='productsOpen']")
@@ -1238,8 +1255,68 @@ public class Subscriber_Module_Page_Objects {
 	
 	/****TC_20_004 Check whether product(s) can be added******/
 	
-	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr/td[@class='ng-binding']")
-	public WebElement POS_ANSP_ProductAddedName_List;
+	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[4]/th")
+	public List<WebElement> POS_ANSP_AddedProductHeader_th_list;
+	
+	@FindBy(xpath="//table/tbody/tr[contains(@ng-if,'Product')]/td[1]")
+	public WebElement POS_ANSP_AddedProduct_Name;
+	
+	@FindBy(xpath="//table/tbody/tr[contains(@ng-if,'Product')]/td/input[@ng-model='bd.qty']")
+	public WebElement POS_ANSP_AddedProduct_Qty;
+	
+	@FindBy(xpath="//table/tbody/tr[contains(@ng-if,'Product')]/td/input[@ng-model='bd.applied_price']")
+	public WebElement POS_ANSP_AddedProduct_Price;
+	
+	@FindBy(xpath="//table/tbody/tr[contains(@ng-if,'Product')]/td/input[contains(@ng-model,'bd.discount_in_percentage')]")
+	public WebElement POS_ANSP_AddedProduct_Discount;
+	
+	@FindBy(xpath="//table/tbody/tr[contains(@ng-if,'Product')]/td/div/select[@ng-model='bd.staff_id']")
+	public WebElement POS_ANSP_AddedProduct_Staff;
+	
+	@FindBy(xpath="//table/tbody/tr[contains(@ng-if,'Product')]/td[6]")
+	public WebElement POS_ANSP_AddedProduct_TotalPrice;
+	
+	@FindBy(xpath="//table/tbody/tr[contains(@ng-if,'Product')]/td/button")
+	public WebElement POS_ANSP_AddedProduct_CloseButton;
+
+	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr")
+	public List<WebElement> POS_ANSP_AddedProduct_tr_list;
+	
+	@FindBy(xpath="//*[@id='add_new_offline_booking']//div/label/i[@class='fa fa-plus']")
+	public List<WebElement> POS_asb_serviceswithplus_list;
+	
+	@FindBy(xpath="//*[@id='add_new_offline_booking']//div//strong[contains(@ng-if,'special_price')]")
+	public List<WebElement> POS_asb_servicesprice_list;
+	
+	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[2]/th")
+	public List<WebElement> POS_ANSP_AddedservicetHeader_th_list;
+	
+	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[contains(@ng-if,'Service')]")
+	public WebElement POS_asb_addedservices_tr;
+	
+	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[contains(@ng-if,'Service')]/td[1]")
+	public WebElement POS_asb_addedservicesname_text;
+	
+	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[contains(@ng-if,'Service')]/td/input[contains(@ng-model,'qty')]")
+	public WebElement POS_asb_addedservicesqty_text;
+	
+	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[contains(@ng-if,'Service')]/td/input[contains(@ng-model,'price')]")
+	public WebElement POS_asb_addedservicesprice_text;
+	
+	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[contains(@ng-if,'Service')]/td/input[contains(@ng-model,'discount_in_percentage')]")
+	public WebElement POS_asb_addedservicesdiscount_textbox;
+	
+	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[contains(@ng-if,'Service')]/td//select[contains(@ng-model,'staff')]")
+	public WebElement POS_asb_addedserviceschoosestaff_dropsown;
+	
+	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[contains(@ng-if,'Service')]/td[@class='text-left ng-binding']")
+	public WebElement POS_asb_addedservicestotalprice_text;
+	
+	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[contains(@ng-if,'Service')]/td/button")
+	public WebElement POS_asb_addedservicesclose_button;
+	
+	
+
 
 	/**********TS021_Subscriber clicks on Appointments menu**********/
 	/*****TC_21_001 Open Appointments page*****/

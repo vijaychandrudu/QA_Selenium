@@ -76,5 +76,35 @@ public class TS_020_SubscriberClicks_POSMenu extends StaticVariables {
 		ExtentTestManager.getTest().setDescription("TC_20_003 Check the +Products button in Add New Sale popup");
 		SR.check_AddProductsButton_InAddNewSalePopup();
 	}
+	
+	@Test(priority = 20006, description = "TC_20_004 Check whether product(s) can be added")
+	public void TC_20_004_SubScriberr_Check_whether_products_can_added() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_004 Check whether product(s) can be added");
+		SR.Check_whether_products_can_added();
+	}
+	
+	@Test(priority = 20007, description = "TC_20_005  Check whether multiple quantity of a product can be added")
+	public void TC_20_005_SubScriberr_Check_multiplequantity_product_can_added() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_005  Check whether multiple quantity of a product can be added");
+		SR.Check_multiplequantity_product_can_added();
+	}
+	
+	@Test(priority = 20008, description = "TC_20_006  Check whether a product quantity can be decreased/increased in the orders template")
+	public void TC_20_006_SubScriberr_Check_productquantity_decreased_increased_in_orderstemplat() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_006  Check whether a product quantity can be decreased/increased in the orders template");
+		SR.Check_productquantity_decreased_increased_in_orderstemplat();
+	}
+	
+	@Test(priority = 20009, description = "TC_20_007  Check whether discount can be applied to the product")
+	public void TC_20_007_SubScriberr_Check_discount_applied_to_product() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_007  Check whether discount can be applied to the product");
+		SR.Check_discount_applied_to_product();
+	}
+	
+	@Test(priority = 20010, description = "TC_20_008 Check whether a product can be deleted from the orders")
+	public void TC_20_008_SubScriberr_Check_product_deleted_from_orders() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_008 Check whether a product can be deleted from the orders");
+		SR.Check_product_deleted_from_orders();
+	}
 
 }

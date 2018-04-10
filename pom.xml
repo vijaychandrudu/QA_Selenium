@@ -19,37 +19,40 @@
 	          <groupId>org.apache.maven.plugins</groupId>
 	          <artifactId>maven-surefire-plugin</artifactId>
 	          <version>2.20.1</version>
+	          <configuration>
+           <suiteXmlFiles>
+           <suiteXmlFile>TestNG.xml</suiteXmlFile>
+           <!-- <suiteXmlFile>src/main/resources/testng.xml</suiteXmlFile> -->
+           </suiteXmlFiles>
+           </configuration>  
 	        </plugin>
 	      </plugins>
 	    </pluginManagement>
   </build>
 	
 	<dependencies>
-	
-	
-	
 
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
-			<version>3.6.0</version>
+			<version>3.11.0</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>3.6.0</version>
+			<version>3.11.0</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
-		<!-- <dependency>
+		 <dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>6.11</version>
+			<version>6.13</version>
 			<scope>test</scope>
-		</dependency> -->
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<dependency>

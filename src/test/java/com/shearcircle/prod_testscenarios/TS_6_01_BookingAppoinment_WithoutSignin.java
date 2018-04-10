@@ -1,7 +1,6 @@
 package com.shearcircle.prod_testscenarios;
 
 import java.io.IOException;
-
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -15,8 +14,9 @@ import org.testng.annotations.Test;
 import com.shearcircle.pagecomponents.Customer_Module_Page_Components;
 import com.shearcircle.utilities.CommonFunctions;
 import com.shearcircle.utilities.StaticVariables;
-
 import utils.ExtentReports.ExtentTestManager;
+
+
 
 public class TS_6_01_BookingAppoinment_WithoutSignin extends StaticVariables {
 	public String TestDataPath;
@@ -182,24 +182,24 @@ public class TS_6_01_BookingAppoinment_WithoutSignin extends StaticVariables {
 	
 	@Test(priority=60123, description="TC_6_1_21_Enter Valid Customer credentials click SignIn butoon")
 	public void TC_6_1_21_Customer_check_SignIn_PossibleWith_ValidCustomercredentials() throws IOException {			
-		ExtentTestManager.getTest().setDescription("Enter Valid Customer credentials click SignIn butoon");
+		//ExtentTestManager.getTest().setDescription("Enter Valid Customer credentials click SignIn butoon");
 		CR.check_SignIn_IsPossibleWith_ValidCustomercredentials();	
 	}
 	
 	@Test(priority=60124, description="TC_6_1_22_check booking can be confirmed after sign in with Pay by Cash option")
 	public void TC_6_1_22_Customer_check_Booking_Confirmed_AfterSignIn_With_PayByCashOption() throws IOException {			
-		ExtentTestManager.getTest().setDescription("Enter Valid Customer credentials click SignIn butoon");
+		//ExtentTestManager.getTest().setDescription("Enter Valid Customer credentials click SignIn butoon");
 		CR.check_Booking_Confirmed_AfterSignIn_WithPayByCashOption();	
 	}
 	@Test(priority=60125, description="TC_6_1_23_verify details in View Booking Summary page")
 	public void TC_6_1_23_Customer_verify_DetailsInViewBooking_SummaryPage_Fieldvalidations() throws IOException {			
-		ExtentTestManager.getTest().setDescription("verify details in View Booking Summary page");
+		//ExtentTestManager.getTest().setDescription("verify details in View Booking Summary page");
 		CR.verify_DetailsIn_ViewBooking_SummaryPage_Fieldvalidations();	
 		
 	}
 	@Test(priority=60126, description="TC_6_1_24_click on print button")
 	public void TC_6_1_24_Customer_verify_DetailsInViewBooking_SummaryPage_Fieldvalidations() throws IOException {			
-		ExtentTestManager.getTest().setDescription("click on print button");
+		//ExtentTestManager.getTest().setDescription("click on print button");
 		CR.check_PrintButton_IsFunctioning();
 		
 	}
