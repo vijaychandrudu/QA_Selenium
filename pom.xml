@@ -23,7 +23,7 @@
 	          <configuration>
            <suiteXmlFiles>
            <!-- <suiteXmlFile>TestNG.xml</suiteXmlFile> -->
-           <suiteXmlFile>src/main/resources/TestNG.xml</suiteXmlFile>
+           <suiteXmlFile>F:\Selenium_Workspace_Git\sc-qa-web-selenium\TestNG.xml</suiteXmlFile>
            </suiteXmlFiles>
            </configuration>  
 	        </plugin>

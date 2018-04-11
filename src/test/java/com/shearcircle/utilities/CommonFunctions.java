@@ -377,7 +377,7 @@ public class CommonFunctions extends StaticVariables {
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
 	 */
 
-	public void Fluent_Wait(WebElement El) {
+	/*public void Fluent_Wait(WebElement El) {
 		try {
 
 			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(30, TimeUnit.SECONDS)
@@ -394,7 +394,7 @@ public class CommonFunctions extends StaticVariables {
 			Reporter.log(e.getMessage());
 		}
 	}
-
+*/
 	/**
 	 * instead of fluent wait use customized While loop statement
 	 * 
