@@ -21,8 +21,8 @@
 	          <version>2.20.1</version>
 	          <configuration>
            <suiteXmlFiles>
-           <suiteXmlFile>TestNG.xml</suiteXmlFile>
-           <!-- <suiteXmlFile>src/main/resources/testng.xml</suiteXmlFile> -->
+           <!-- <suiteXmlFile>TestNG.xml</suiteXmlFile> -->
+           <suiteXmlFile>src/main/resources/TestNG.xml</suiteXmlFile>
            </suiteXmlFiles>
            </configuration>  
 	        </plugin>
