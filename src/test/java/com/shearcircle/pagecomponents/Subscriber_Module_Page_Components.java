@@ -4923,6 +4923,1432 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
 	}
+	
+	
+/**TS014_Subscriber clicks on Manage Products under Manage Circle Menu*********/
+	
+	/*****TC_14_001 Open Manage Products page**/
+	public void openManageProducts_Page() {
+		String SelectedType = "";
+		try {
+			if (browser.elementisdisplayed(SCobjects.Subscriber_ManageCircle_Dropdown_Link)) {
+				browser.reportscomtep("Passed", "Verify Manage Circle dropdown link is displayed in Dashboard page",
+						"Manage Circle dropdown link should be displayed", "Manage Circle dropdown link is displayed");
+				browser.click(SCobjects.Subscriber_ManageCircle_Dropdown_Link);
+				SelectedType = browser.getelementtext(SCobjects.ManageProducts_DropDown_Value);
+				if (SelectedType.equalsIgnoreCase("Manage Products")) {
+					browser.click(SCobjects.ManageProducts_DropDown_Value);
+					if (browser.elementisdisplayed(SCobjects.ManageProducts_Products_Page)) {
+						browser.reportscomtep("Passed",
+								"Clicks on " + SelectedType + " and Verify Products Page is Opened",
+								"Product  page should be Opened", "Product page is Opened");
+						String AllProductsActvieStatus = browser
+								.elementgetAttributevalue(SCobjects.ManageProducts_AllProducts_Tab, "class");
+						if (AllProductsActvieStatus.equalsIgnoreCase("active")
+								&& browser.elementisdisplayed((SCobjects.ManageProducts_AllProducts_Tab))) {
+							browser.reportscomtep("Passed", "verify All Products Default tab is selected",
+									" All Products Default tab should be selected",
+									" All Products Default tab is selected");
+							if (browser.elementisdisplayed(SCobjects.ManageProducts_Products_NoDatafound)) {
+								browser.reportscomtep("Passed", "Verify For 1st time login No data is founded in Products",
+										"For 1st time login No data should be founded in Products",
+										"For 1st time login No data is founded in Products");
+							} else if (SCobjects.ManageProducts_Produts_List.size() > 0
+									&& browser.elementisdisplayed(SCobjects.ManageProducts_Produts_List.get(0))
+									&& browser.elementisdisplayed(
+											SCobjects.ManageProducts_RelaventAction_Buttons_List.get(0))) {
+								browser.reportscomtep("Passed",
+										"Verify List of products with relevant action buttons are dispalyed",
+										"List of products with relevant action buttons should be dispalyed",
+										"List of products with relevant action buttons are dispalyed");
+							}
+							browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_Categories_Tab,
+									"CategoriesTab");
+							browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_Brands_Tab, "Brands Tab");
+							browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_Suppliers_Tab,
+									"SuppliersTab");
+							browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_AddNewProduct_Tab,
+									"Add New Product Tab");
+						} else {
+							browser.reportscomtep("Failed", "verify All Products Default tab is selected",
+									" All Products Default tab should be selected",
+									" All Products Default tab is not selected");
+						}
+					} else {
+						browser.reportscomtep("Failed", "Verify Products page is Opened",
+								"Products page should be Opened", "Products page is not Opened");
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify ManageCircle dropdown value is slected",
+							"ManageCircle dropdown value should be slected",
+							"ManageCircle dropdown value is not selected");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify Manage Circle dropdown link is displayed in Dashboard page",
+						"Manage Circle dropdown link should be displayed",
+						"Manage Circle dropdown link is not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}
+	
+	/******
+	 * TC_14_002 Check the details & action buttons in All Products tab (when products are added)
+	 *************/
+	
+	public void check_DetailsAndactionButtons_InAllProductsTab() {
+		String TableHeadername = "";
+		try {
+			List<WebElement> ProductData = SCobjects.ManageProducts_Produts_List;
+			List<WebElement> ProductTableheaders = SCobjects.ManageProduct_Product_Table_headersList;
+			String ProductDataTableValue = browser.getelementtext(ProductData.get(0));
+			if (ProductData.size() > 0 && !ProductDataTableValue.isEmpty()) {
+				String[] AllProductheader = new String[5];
+				AllProductheader[0] = "Product Name";
+				AllProductheader[1] = "Retail Price";
+				AllProductheader[2] = "Stock On Hand";
+				AllProductheader[3] = "Updated At";
+				AllProductheader[4] = "Action";
+				int i = 0;
+				for (WebElement theader : ProductTableheaders) {
+					TableHeadername = browser.getelementtext(theader);
+					if (TableHeadername.equalsIgnoreCase(AllProductheader[i])
+							&& browser.elementisdisplayed(ProductTableheaders.get(i))) {
+						browser.reportscomtep("Passed",
+								"Verify All Product Table header " + TableHeadername + " is Displayed",
+								"All Product Table header should be Displayed",
+								"All Product Table header displayed as " + TableHeadername);
+					} else {
+						browser.reportscomtep("Failed",
+								"Verify All Product Table header " + AllProductheader[i] + " is Displayed",
+								"All Product Table header should be Displayed",
+								"All Product Table header " + AllProductheader[i] + " Not displayed");
+					}
+
+					i++;
+				}
+				List<WebElement> ActionsButtons = SCobjects.ManageProducts_Action_Buttons_List;
+				int j = 0;
+				for (WebElement ActionList : ActionsButtons) {
+					String ActionButtonsName = browser.elementgetAttributevalue(ActionsButtons.get(j), "ng-click");
+					if (browser.elementisdisplayed(ActionsButtons.get(j))) {
+						browser.reportscomtep("Passed", "Verify " + ActionButtonsName + " button is Displayed",
+								"Edit button should be Displayed",
+								"Action Button displayed Name as " + ActionButtonsName);
+					} else {
+						browser.reportscomtep("Failed", "Verify Action Button is dispalyed",
+								"Action Button should be Displayed", "Action Button is not dispalyed ");
+					}
+					j++;
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/********TC_14_003 Check the Categories tab*******/
+	
+	public void check_CategoriesTab() {
+		String TableHeadername = "";
+		try {
+			browser.click(SCobjects.ManageProduct_Categories_Tab);
+			if (browser.elementisdisplayed(SCobjects.ManageProduct_CategoriesPage_Header)) {
+				browser.reportscomtep("Passed", "Clicks on Categories tab and verify Categories Page is opened",
+						"Categories Page should be opened", "Categories Page is opened");
+				browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_CP_NewCategory_Button,
+						"New Category Button");
+				if (browser.elementisdisplayed(SCobjects.ManageProducts_CP_NoDatafound)) {
+					browser.reportscomtep("Passed", "Verify For 1st time login No data is founded in Categories",
+							"For 1st time login No data should be founded in Categories",
+							"For 1st time login No data is founded in Categories");
+				} else if (SCobjects.ManageProducts_CP_Categories_List.size() > 0
+						&& browser.elementisdisplayed(SCobjects.ManageProducts_CP_Categories_List.get(0))) {
+					browser.reportscomtep("Passed", "Verify List of Categories are dispalyed",
+							"List of Categories should be dispalyed", "List of Categories are dispalyed");
+				}
+				String[] Categoriestheader = new String[2];
+				Categoriestheader[0] = "Category Name";
+				Categoriestheader[1] = "Products Assigned";
+				int i = 0;
+				List<WebElement> CategoryHeaders = SCobjects.ManageProduct_CP_TableHeadersList;
+				for (WebElement theader : CategoryHeaders) {
+					TableHeadername = browser.getelementtext(theader);
+					if (TableHeadername.equalsIgnoreCase(Categoriestheader[i])
+							&& browser.elementisdisplayed(CategoryHeaders.get(i))) {
+						browser.reportscomtep("Passed",
+								"Verify Category table header " + TableHeadername + " is Displayed",
+								"Category table header should be Displayed",
+								"Category table header displayed as :" + TableHeadername);
+					} else {
+						browser.reportscomtep("Failed",
+								"Verify Category table header" + Categoriestheader[i] + " is Displayed",
+								"Category table header should be Displayed",
+								"Category table header is " + Categoriestheader[i] + " Not displayed");
+					}
+
+					i++;
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Clicks on Categories tab and verify Categories Page is opened",
+						"Categories Page should be opened", "Categories Page is not opened");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*****TC_14_004 Check whether new category can be added**********/
+	
+	public void checkWhether_NewCategory_Added() {
+		String NewCategorynames = "";
+		try {
+			NewCategorynames = browser.getdata("CategoryName");
+			browser.click(SCobjects.ManageProduct_CP_NewCategory_Button);
+			if (browser.elementisdisplayed(SCobjects.ManageProduct_CP_AddCategory_PopupHeader)) {
+				browser.reportscomtep("Passed",
+						"Clicks on New Category button and verify Add Category Popup is displayed",
+						"Add Category Popup should be displayed", "Add Category Popup is displayed");
+				browser.sendkeys(SCobjects.ManageProduct_CP_ACP_CategoryTextBox, NewCategorynames);
+				browser.click(SCobjects.ManageProduct_CP_ACP_SaveButton);
+				List<WebElement> categoryNameList = SCobjects.ManageProduct_CP_categoryName_List;
+				int categoryNameListLength = categoryNameList.size() -1;
+				browser.scrollintoviewelement(categoryNameList.get(categoryNameListLength));
+				String AfterAddedCategoryname = browser.getelementtext(categoryNameList.get(categoryNameListLength));
+				if (AfterAddedCategoryname.equalsIgnoreCase(NewCategorynames)
+						&& browser.elementisdisplayed(categoryNameList.get(categoryNameListLength))) {
+					browser.reportscomtep("Passed",
+							"Enter Category name & Clicks on save button and Verify " + NewCategorynames
+									+ " Category is added",
+							"Category should be added", " " + NewCategorynames + " Category is added");
+					List<WebElement> ProductAssigned_List = SCobjects.ManageProduct_CP_ProductAssigned_List;
+					String ProductAssigned = browser.getelementtext(ProductAssigned_List.get(categoryNameListLength));
+					if (ProductAssigned.equals("0")
+							&& browser.elementisdisplayed(ProductAssigned_List.get(categoryNameListLength))) {
+						browser.reportscomtep("Passed",
+								"Verify Number of Products is assigned: " + ProductAssigned + " until assigned",
+								"Number of Products should be assigned 0 until assigned",
+								"Number of Products is assigned as: " + ProductAssigned + " until assigned");
+					} else {
+						browser.reportscomtep("Failed",
+								"Verify Number of Products is assigned: " + ProductAssigned + " until assigned",
+								"Number of Products should be assigned 0 until assigned",
+								"Number of Products is not assigned ");
+					}
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Enter Category name & Clicks on save button and Verify category is added ",
+							"Category should be added", "Category is not added");
+				}
+
+			} else {
+				browser.reportscomtep("Failed",
+						"Clicks on New Category button and verify Add Category Popup is displayed",
+						"Add Category Popup should be displayed", "Add Category Popup is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*****TC_14_005 Check whether a Category name can be modified****/
+	
+	public void checkWhether_CategoryName_Modified() {
+		String BeforeModifiedCategoryName = "";
+		String ModifiedCN = "";
+		String AfterModifiedCategoryName = "";
+		try {
+			ModifiedCN = browser.getdata("ModifiedCategoryName");
+			List<WebElement> CategorieNameList = SCobjects.ManageProduct_CP_categoryName_List;
+			browser.scrollintoviewelement(CategorieNameList.get(0));
+			BeforeModifiedCategoryName = browser.getelementtext(CategorieNameList.get(0));
+			browser.click(CategorieNameList.get(0));
+			if (browser.elementisdisplayed(SCobjects.ManageProduct_CP_ECP_Header)) {
+				browser.reportscomtep("Passed", "Clicks on Category name and verify Edit Category popup is opened",
+						"Edit Category popup should be opened", "Edit Category popup is opened");
+				browser.sendkeys(SCobjects.ManageProduct_CP_ACP_CategoryTextBox, ModifiedCN);
+				browser.click(SCobjects.ManageProduct_CP_ACP_SaveButton);
+				AfterModifiedCategoryName = browser.getelementtext(CategorieNameList.get(0));
+				if (!AfterModifiedCategoryName.equalsIgnoreCase(BeforeModifiedCategoryName)
+						&& browser.elementisdisplayed((CategorieNameList.get(0)))) {
+					browser.reportscomtep("Passed",
+							"Enter Modify Category name and clicks on save button and verify Category name is modified",
+							"Category name should be modified",
+							"Category name is modified as:" + AfterModifiedCategoryName);
+				} else {
+					browser.reportscomtep("Failed",
+							"Enter Modify Category name and clicks on save button and verify Category name is modified",
+							"Category name should be modified",
+							"Category name is not modified as:" + BeforeModifiedCategoryName);
+				}
+
+			} else {
+				browser.reportscomtep("failed", "Clicks on Category name and verify Edit Category popup is opened",
+						"Edit Category popup should be opened", "Edit Category popup is not opened");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*******TC_14_006 Check whether a category can be deleted**********/
+	
+	public void checkWhether_CategoryName_Deleted() {
+		String BeforeDeletedCategoryName = "";
+		String AfterDeletedCategoryName = "";
+		try {
+			List<WebElement> CategorieNameList = SCobjects.ManageProduct_CP_categoryName_List;
+			BeforeDeletedCategoryName = browser.getelementtext(CategorieNameList.get(0));
+			browser.click(CategorieNameList.get(0));
+			if (browser.elementisdisplayed(SCobjects.ManageProduct_CP_ECP_Header)) {
+				browser.reportscomtep("Passed", "Clicks on Category name and verify Edit Category popup is opened",
+						"Edit Category popup should be opened", "Edit Category popup is opened");
+				browser.click(SCobjects.ManageProduct_CP_ACP_DeleteButton);
+				browser.click(SCobjects.ManageProduct_CP_ACP_YesConformationPopup_Button);
+				browser.click(SCobjects.Confirmatio_OK_Button);
+				AfterDeletedCategoryName = browser.getelementtext(CategorieNameList.get(0));
+				if (!AfterDeletedCategoryName.equalsIgnoreCase(BeforeDeletedCategoryName)
+						&& browser.elementisdisplayed((CategorieNameList.get(0)))) {
+					browser.reportscomtep("Passed",
+							"Clicks on continue Delete, Yes & OK buutons and verify Category name is Deleted",
+							"Category name should be Deleted",
+							"Category name is Deleted as:" + BeforeDeletedCategoryName);
+				} else {
+					browser.reportscomtep("Failed",
+							"Clicks on continue Delete, Yes & OK buutons and verify Category name is Deleted",
+							"Category name should be Deleted", "Category name is not Deleted");
+				}
+
+			} else {
+				browser.reportscomtep("failed", "Clicks on Category name and verify Edit Category popup is opened",
+						"Edit Category popup should be opened", "Edit Category popup is not opened");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/***TC_14_007 Check the Brands tab***/
+	public void check_BrandsTab() {
+		String TableHeadername = "";
+		try {
+			browser.click(SCobjects.ManageProduct_Brands_Tab);
+			if (browser.elementisdisplayed(SCobjects.ManageProduct_CP_BrandsPage_Header)) {
+				browser.reportscomtep("Passed", "Clicks on Brands tab and verify Brands Page is opened",
+						"Brands Page should be opened", "Brands Page is opened");
+				browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_BP_NewBrand_Button,
+						"New Brands Button");
+				if (browser.elementisdisplayed(SCobjects.ManageProducts_Brands_NoDatafound)) {
+					browser.reportscomtep("Passed", "Verify For 1st time login No data is founded in Brands",
+							"For 1st time login No data should be founded in Brands",
+							"For 1st time login No data is founded in Brands");
+				} else if (SCobjects.ManageProduct_BP_Brand_List.size() > 0
+						&& browser.elementisdisplayed(SCobjects.ManageProduct_BP_Brand_List.get(0))) {
+					browser.reportscomtep("Passed", "Verify List of Brands are dispalyed",
+							"List of Brands should be dispalyed", "List of Brands are dispalyed");
+				}
+				String[] Brandstheader = new String[2];
+				Brandstheader[0] = "Brand Name";
+				Brandstheader[1] = "Products Assigned";
+				int i = 0;
+				List<WebElement> BrandtHeaders = SCobjects.ManageProduct_BP_TableHeadersList;
+				for (WebElement theader : BrandtHeaders) {
+					TableHeadername = theader.getText();
+					if (TableHeadername.equalsIgnoreCase(Brandstheader[i])
+							&& browser.elementisdisplayed(BrandtHeaders.get(i))) {
+						browser.reportscomtep("Passed",
+								"Verify Brand table header " + TableHeadername + " is Displayed",
+								"Brand table header should be Displayed",
+								"Brand table header displayed as :" + TableHeadername);
+					} else {
+						browser.reportscomtep("Failed",
+								"Verify Category table header" + Brandstheader[i] + " is Displayed",
+								"Brand table header should be Displayed",
+								"Brand table header is " + Brandstheader[i] + " Not displayed");
+					}
+
+					i++;
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Clicks on Brands tab and verify Brands Page is opened",
+						"Brands Page should be opened", "Brands Page is not opened");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/****TC_14_008 Check whether a New Brand can be added***********/
+	
+	public void checkWhether_NewBrand_Added() {
+		String NewBrandname = "";
+		try {
+			NewBrandname = browser.getdata("Brandname");
+			browser.click(SCobjects.ManageProduct_BP_NewBrand_Button);
+			if (browser.elementisdisplayed(SCobjects.ManageProduct_BP_AddBrand_PopupHeader)) {
+				browser.reportscomtep("Passed", "Clicks on New Brand button and verify Add Brand Popup is displayed",
+						"Add Brand Popup should be displayed", "Add Brand Popup is displayed");
+				browser.sendkeys(SCobjects.ManageProduct_BP_ABP_BrandTextBox, NewBrandname);
+				browser.click(SCobjects.ManageProduct_BP_ABP_SaveButton);
+				List<WebElement> BrandNameList = SCobjects.ManageProduct_BP_BrandName_List;
+				int BrandNameListLength = BrandNameList.size() - 1;
+				browser.scrollintoviewelement(BrandNameList.get(BrandNameListLength));
+				String AfterAddedBrandname = browser.getelementtext(BrandNameList.get(BrandNameListLength));
+				if (AfterAddedBrandname.equalsIgnoreCase(NewBrandname)
+						&& browser.elementisdisplayed(BrandNameList.get(BrandNameListLength))) {
+					browser.reportscomtep("Passed",
+							"Enter Brand name & Clicks on save button and Verify " + NewBrandname
+									+ " Brands name is added",
+							"Brands name should be added", " " + NewBrandname + " Brands name is added");
+					List<WebElement> ProductAssigned_List = SCobjects.ManageProduct_BP_ProductsAssigned_List;
+					String ProductAssigned = browser.getelementtext(ProductAssigned_List.get(BrandNameListLength));
+					if (ProductAssigned.equals("0")
+							&& browser.elementisdisplayed(ProductAssigned_List.get(BrandNameListLength))) {
+						browser.reportscomtep("Passed",
+								"Verify Number of Products is assigned: " + ProductAssigned + " until assigned",
+								"Number of Products should be assigned 0 until assigned",
+								"Number of Products is assigned as: " + ProductAssigned + " until assigned");
+					} else {
+						browser.reportscomtep("Failed",
+								"Verify Number of Products is assigned: " + ProductAssigned + " until assigned",
+								"Number of Products should be assigned 0 until assigned",
+								"Number of Products is not assigned ");
+					}
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Enter Brands name name & Clicks on save button and Verify category is added ",
+							"Brands name should be added", "Brands name is not added");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Clicks on New Brand button and verify Add Brand Popup is displayed",
+						"Add Brand Popup should be displayed", "Add Brand Popup is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*****TC_14_009 Check whether a Brand Name can be modified*****/
+	
+	public void checkWhether_BrandName_Modified() {
+		String BeforeModifiedBrandName = "";
+		String ModifiedBN = "";
+		String AfterModifiedBrandName = "";
+		try {
+			ModifiedBN = browser.getdata("ModifiedBrandName");
+			List<WebElement> BrandNameList = SCobjects.ManageProduct_BP_BrandName_List;
+			browser.scrollintoviewelement(BrandNameList.get(0));
+			BeforeModifiedBrandName = browser.getelementtext(BrandNameList.get(0));
+			browser.click(BrandNameList.get(0));
+			if (browser.elementisdisplayed(SCobjects.ManageProduct_BP_EBP_Header)) {
+				browser.reportscomtep("Passed", "Clicks on Brand name and verify Edit Brand popup is opened",
+						"Edit Brand popup should be opened", "Edit Brand popup is opened");
+				browser.sendkeys(SCobjects.ManageProduct_BP_ABP_BrandTextBox, ModifiedBN);
+				browser.click(SCobjects.ManageProduct_BP_ABP_SaveButton);
+				AfterModifiedBrandName = browser.getelementtext(BrandNameList.get(0));
+				if (!AfterModifiedBrandName.equalsIgnoreCase(BeforeModifiedBrandName)
+						&& browser.elementisdisplayed((BrandNameList.get(0)))) {
+					browser.reportscomtep("Passed",
+							"Enter Modify Brand name and clicks on save button and verify Brand name is modified",
+							"Brand name should be modified", "Brand name is modified as:" + AfterModifiedBrandName);
+				} else {
+					browser.reportscomtep("Failed",
+							"Enter Modify Brand name and clicks on save button and verify Brand name is modified",
+							"Brand name should be modified",
+							"Brand name is not modified as:" + BeforeModifiedBrandName);
+				}
+
+			} else {
+				browser.reportscomtep("failed", "Clicks on Brand name and verify Edit Brand popup is opened",
+						"Edit Brand popup should be opened", "Edit Brand popup is not opened");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*********TC_14_010 Check whether a brand can be deleted********/
+	
+	public void checkWhether_BrandName_Deleted() {
+		String BeforeDeletedBrandName = "";
+		String AfterDeletedBrandName = "";
+		try {
+			List<WebElement> BrnadNameList = SCobjects.ManageProduct_BP_BrandName_List;
+			BeforeDeletedBrandName = browser.getelementtext(BrnadNameList.get(0));
+			browser.click(BrnadNameList.get(0));
+			if (browser.elementisdisplayed(SCobjects.ManageProduct_BP_EBP_Header)) {
+				browser.reportscomtep("Passed", "Clicks on Brand name and verify Edit Brand popup is opened",
+						"Edit Brand popup should be opened", "Edit Brand popup is opened");
+				browser.click(SCobjects.ManageProduct_BP_ACP_DeleteButton);
+				browser.click(SCobjects.ManageProduct_BP_ACP_YesConformationPopup_Button);
+				browser.click(SCobjects.Confirmatio_OK_Button);
+				AfterDeletedBrandName = browser.getelementtext(BrnadNameList.get(0));
+				if (!AfterDeletedBrandName.equalsIgnoreCase(BeforeDeletedBrandName)
+						&& browser.elementisdisplayed((BrnadNameList.get(0)))) {
+					browser.reportscomtep("Passed",
+							"Clicks on continue Delete, Yes & OK buutons and verify Brand name is Deleted",
+							"Brand name should be Deleted",
+							"Brand name is Deleted as:" + BeforeDeletedBrandName);
+				} else {
+					browser.reportscomtep("Failed",
+							"Clicks on continue Delete, Yes & OK buutons and verify Brand name is Deleted",
+							"Brand name should be Deleted", "Brand name is not Deleted");
+				}
+
+			} else {
+				browser.reportscomtep("failed", "Clicks on Brand name and verify Edit Brand popup is opened",
+						"Edit Brand popup should be opened", "Edit Brand popup is not opened");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	
+	/**TC_14_011 Check the Suppliers tab**********/
+	
+	public void check_SuppliersTab() {
+		String TableHeadername = "";
+		try {
+			browser.click(SCobjects.ManageProduct_Suppliers_Tab);
+			if (browser.elementisdisplayed(SCobjects.ManageProduct_SuppliersPage_Header)) {
+				browser.reportscomtep("Passed", "Clicks on Suppliers tab and verify Suppliers Page is opened",
+						"Suppliers Page should be opened", "Suppliers Page is opened");
+				browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_SP_NewSupplier_Button,
+						"New Suppliers Button");
+				if (browser.elementisdisplayed(SCobjects.ManageProducts_Suppliers_NoDatafound)) {
+					browser.reportscomtep("Passed", "Verify For 1st time login No data is founded in Suppliers",
+							"For 1st time login No data should be founded in Suppliers",
+							"For 1st time login No data is founded in Suppliers");
+				} else {
+					browser.reportscomtep("Passed", "Verify List of Suppliers are dispalyed",
+							"List of Suppliers should be dispalyed", "List of Suppliers are dispalyed");
+				}
+				String[] Supplierstheader = new String[4];
+				Supplierstheader[0] = "Supplier Name";
+				Supplierstheader[1] = "Phone";
+				Supplierstheader[2] = "Email";
+				Supplierstheader[3] = "Products Assigned";
+
+				int i = 0;
+				List<WebElement> SupplierstHeaders = SCobjects.ManageProduct_SP_TableHeadersList;
+				for (WebElement theader : SupplierstHeaders) {
+					TableHeadername = browser.getelementtext(theader);
+					if (TableHeadername.equalsIgnoreCase(Supplierstheader[i])
+							&& browser.elementisdisplayed(SupplierstHeaders.get(i))) {
+						browser.reportscomtep("Passed",
+								"Verify Suppliers table header " + TableHeadername + " is Displayed",
+								"Suppliers table header should be Displayed",
+								"Suppliers table header displayed as :" + TableHeadername);
+					} else {
+						browser.reportscomtep("Failed",
+								"Verify Category table header" + Supplierstheader[i] + " is Displayed",
+								"Suppliers table header should be Displayed",
+								"Suppliers table header is " + Supplierstheader[i] + " Not displayed");
+					}
+
+					i++;
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Clicks on Suppliers tab and verify Suppliers Page is opened",
+						"Suppliers Page should be opened", "Suppliers Page is not opened");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*******TC_14_012 Check whether a new supplier can be added***********/
+	
+	public void checkWhether_NewSupplier_Added() {
+		String NewSuppliersname = "";
+		String SupplierPhNo = "";
+		String SuppilerEmail ="";
+		try {
+			NewSuppliersname = browser.getdata("Suppliersname");
+			SupplierPhNo = browser.getdata("SupplierMNO");
+			SuppilerEmail = browser.getdata("SupplierCemail");
+			browser.click(SCobjects.ManageProduct_SP_NewSupplier_Button);
+			if (browser.elementisdisplayed(SCobjects.ManageProduct_SP_AddSupplierPopup_Header)) {
+				browser.reportscomtep("Passed", "Clicks on New Suppliers button and verify Add Suppliers Popup is displayed",
+						"Add Suppliers Popup should be displayed", "Add Suppliers Popup is displayed");
+				browser.sendkeys(SCobjects.ManageProduct_Suppliers_ASP_SupplierName_TextBox, NewSuppliersname);
+				browser.sendkeys(SCobjects.ManageProduct_Suppliers_ASP_SupplierMobile_TextBox, SupplierPhNo);
+				browser.sendkeys(SCobjects.ManageProduct_Suppliers_ASP_ContactPersonEmail_TextBox, SuppilerEmail);
+				browser.click(SCobjects.ManageProduct_Suppliers_ASP_SaveButton);
+				List<WebElement> SuppliersNameList = SCobjects.ManageProduct_SP_SuppliersName_List;
+				int SuppliersNameListLength = SuppliersNameList.size() - 1;
+				browser.scrollintoviewelement(SuppliersNameList.get(SuppliersNameListLength));
+				String AfterAddedSuppliersname = browser.getelementtext(SuppliersNameList.get(SuppliersNameListLength));
+				if (AfterAddedSuppliersname.equalsIgnoreCase(NewSuppliersname)
+						&& browser.elementisdisplayed(SuppliersNameList.get(SuppliersNameListLength))) {
+					browser.reportscomtep("Passed",
+							"Enter Suppliers Mandatory,optional fields & Clicks on save button and Verify " + NewSuppliersname
+									+ " Supplierss name is added",
+							"Supplierss name should be added", " " + NewSuppliersname + " Supplierss name is added");
+					List<WebElement> ProductAssigned_List = SCobjects.ManageProduct_BP_ProductsAssigned_List;
+					String ProductAssigned = browser.getelementtext(ProductAssigned_List.get(SuppliersNameListLength));
+					if (ProductAssigned.equals("0")
+							&& browser.elementisdisplayed(ProductAssigned_List.get(SuppliersNameListLength))) {
+						browser.reportscomtep("Passed",
+								"Verify Number of Products is assigned: " + ProductAssigned + " until assigned",
+								"Number of Products should be assigned 0 until assigned",
+								"Number of Products is assigned as: " + ProductAssigned + " until assigned");
+					} else {
+						browser.reportscomtep("Failed",
+								"Verify Number of Products is assigned: " + ProductAssigned + " until assigned",
+								"Number of Products should be assigned 0 until assigned",
+								"Number of Products is not assigned ");
+					}
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Enter Supplierss name name & Clicks on save button and Verify category is added ",
+							"Supplierss name should be added", "Supplierss name is not added");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Clicks on New Suppliers button and verify Add Suppliers Popup is displayed",
+						"Add Suppliers Popup should be displayed", "Add Suppliers Popup is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/***TC_14_013 Check whether Supplier name/details can be edited*********/
+	
+	public void checkWhether_SupplierName_Modified() {
+		String BeforeModifiedSuppliersName = "";
+		String ModifiedSN = "";
+		String AfterModifiedSuppliersName = "";
+		try {
+			ModifiedSN = browser.getdata("ModifiedSuppliersName");
+			List<WebElement> SuppliersNameList = SCobjects.ManageProduct_SP_SuppliersName_List;
+			browser.scrollintoviewelement(SuppliersNameList.get(0));
+			BeforeModifiedSuppliersName = browser.getelementtext(SuppliersNameList.get(0));
+			browser.click(SuppliersNameList.get(0));
+			if (browser.elementisdisplayed(SCobjects.ManageProduct_Suppliers_ESP_Header)) {
+				browser.reportscomtep("Passed", "Clicks on Suppliers name and verify Edit Suppliers popup is opened",
+						"Edit Suppliers popup should be opened", "Edit Suppliers popup is opened");
+				browser.sendkeys(SCobjects.ManageProduct_Suppliers_ASP_SupplierName_TextBox, ModifiedSN);
+				browser.click(SCobjects.ManageProduct_Suppliers_ASP_SaveButton);
+				AfterModifiedSuppliersName = browser.getelementtext(SuppliersNameList.get(0));
+				if (!AfterModifiedSuppliersName.equalsIgnoreCase(BeforeModifiedSuppliersName)
+						&& browser.elementisdisplayed((SuppliersNameList.get(0)))) {
+					browser.reportscomtep("Passed",
+							"Enter Modify Suppliers name and clicks on save button and verify Suppliers name is modified",
+							"Suppliers name should be modified",
+							"Suppliers name is modified as:" + AfterModifiedSuppliersName);
+				} else {
+					browser.reportscomtep("Failed",
+							"Enter Modify Suppliers name and clicks on save button and verify Suppliers name is modified",
+							"Suppliers name should be modified",
+							"Suppliers name is not modified as:" + BeforeModifiedSuppliersName);
+				}
+
+			} else {
+				browser.reportscomtep("failed", "Clicks on Suppliers name and verify Edit Suppliers popup is opened",
+						"Edit Suppliers popup should be opened", "Edit Suppliers popup is not opened");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*****TC_14_014 Check whether Supplier can be deleted****/
+	
+	public void checkWhether_SuppliersName_Deleted() {
+		String BeforeDeletedSuppliersName = "";
+		String AfterDeletedSuppliersName = "";
+		try {
+			List<WebElement> BrnadNameList = SCobjects.ManageProduct_SP_SuppliersName_List;
+			BeforeDeletedSuppliersName = browser.getelementtext(BrnadNameList.get(0));
+			browser.click(BrnadNameList.get(0));
+			if (browser.elementisdisplayed(SCobjects.ManageProduct_Suppliers_ESP_Header)) {
+				browser.reportscomtep("Passed", "Clicks on Suppliers name and verify Edit Suppliers popup is opened",
+						"Edit Suppliers popup should be opened", "Edit Suppliers popup is opened");
+				browser.click(SCobjects.ManageProduct_Suppliers_ASP_DeleteButton);
+				browser.click(SCobjects.ManageProduct_Suppliers_ASP_YesConformationPopup_Button);
+				browser.click(SCobjects.Confirmatio_OK_Button);
+				AfterDeletedSuppliersName = browser.getelementtext(BrnadNameList.get(0));
+				if (!AfterDeletedSuppliersName.equalsIgnoreCase(BeforeDeletedSuppliersName)
+						&& browser.elementisdisplayed((BrnadNameList.get(0)))) {
+					browser.reportscomtep("Passed",
+							"Clicks on continue Delete, Yes & OK buutons and verify Suppliers name is Deleted",
+							"Suppliers name should be Deleted",
+							"Suppliers name is Deleted as:" + BeforeDeletedSuppliersName);
+				} else {
+					browser.reportscomtep("Failed",
+							"Clicks on continue Delete, Yes & OK buutons and verify Suppliers name is Deleted",
+							"Suppliers name should be Deleted", "Suppliers name is not Deleted");
+				}
+
+			} else {
+				browser.reportscomtep("failed", "Clicks on Suppliers name and verify Edit Suppliers popup is opened",
+						"Edit Suppliers popup should be opened", "Edit Suppliers popup is not opened");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/********TC_14_015 Check Add New Product tab*********/
+	
+	public void check_AddNewProductTab() {
+		try {
+			browser.click(SCobjects.ManageProduct_AddNewProduct_Tab);
+			if (browser.elementisdisplayed(SCobjects.ManageProduct_AddNewProduct_PageHeader)) {
+				browser.reportscomtep("Passed",
+						"Clicks on Add New Product Tab and verify Add New Product Page Header is diaplayed",
+						"Add New Product Page Header should be diaplayed", "Add New Product Page Header is diaplayed");
+				browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_AddNewProduct_ProductName_Textbox,
+						"Product Name Mandatory Field");
+				browser.Verify_elementisdisplayed_Report(
+						SCobjects.ManageProduct_AddNewProduct_ProductDescription_Textbox,
+						"Product Description Mandatory Field");
+				browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_AddNewProduct_SupplyPrice_Textbox,
+						"Supply Price Mandatory Field");
+				browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_AddNewProduct_RetailPrice_Textbox,
+						"Retail Price Mandatory Field");
+				browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_AddNewProduct_SpecialPrice_Textbox,
+						"Special Price Mandatory Field");
+				browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_AddNewProduct_Brand_DropdownValues,
+						"Brand dropdown Mandatory Field");
+				browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_AddNewProduct_Category_DropdownValues,
+						"Category dropdown Mandatory Field");
+				browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_AddNewProduct_Supplier_DropdownValues,
+						"Supplier dropdown optional Field");
+				browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_AddNewProduct_AddNewBrand_Button,
+						"Add New Brand Button");
+				browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_AddNewProduct_AddNewCategory_Button,
+						"Add New Category Button");
+				browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_AddNewProduct_AddNewSupplier_Button,
+						"Add New Supplier Button");
+				browser.Verify_elementisdisplayed_Report(SCobjects.ManageProduct_AddNewProduct_Save_Button,
+						"Save Button");
+
+			} else {
+				browser.reportscomtep("Failed",
+						"Clicks on Add New Product Tab and verify Add New Product Page Header is diaplayed",
+						"Add New Product Page Header should be diaplayed",
+						"Add New Product Page Header is not diaplayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/******TC_14_016 Check whether a Product can be added******/
+	public void checkWhether_Product_Added() {
+		String ProductName = "";
+		String ProductDescription = "";
+		String SupplyPrice = "";
+		String RetailPrice = "";
+		String SpecialPrice = "";
+		try {
+			ProductName = browser.getdata("ProductName");
+			ProductDescription = browser.getdata("ProductDescription");
+			SupplyPrice = browser.getdata("SupplyPrice");
+			RetailPrice = browser.getdata("RetailPrice");
+			SpecialPrice = browser.getdata("SpecialPrice");
+			browser.sendkeys(SCobjects.ManageProduct_AddNewProduct_ProductName_Textbox, ProductName);
+			browser.sendkeys(SCobjects.ManageProduct_AddNewProduct_ProductDescription_Textbox, ProductDescription);
+			browser.sendkeys(SCobjects.ManageProduct_AddNewProduct_SupplyPrice_Textbox, SupplyPrice);
+			browser.sendkeys(SCobjects.ManageProduct_AddNewProduct_RetailPrice_Textbox, RetailPrice);
+			browser.sendkeys(SCobjects.ManageProduct_AddNewProduct_SpecialPrice_Textbox, SpecialPrice);
+			String BrandName = browser.getdata("Brandname");
+			browser.selectByVisibleText(SCobjects.ManageProduct_AddNewProduct_Brand_DropdownValues, BrandName);
+			String selectedBrandName = browser
+					.getDropdownSelectedValue(SCobjects.ManageProduct_AddNewProduct_Brand_DropdownValues);
+			if (BrandName.equalsIgnoreCase(selectedBrandName)
+					&& browser.elementisdisplayed(SCobjects.ManageProduct_AddNewProduct_Brand_DropdownValues)) {
+				browser.reportscomtep("Passed", "Verify Select " + selectedBrandName + " brandname is dispalyed",
+						"Select Brnad Name should be displayed",
+						"Select Brnad Name is displayed as:" + selectedBrandName);
+			} else {
+				browser.reportscomtep("Failed", "Verify Select brandname is dispalyed",
+						"Select Brnad Name should be displayed", "Select Brnad Name is not displayed");
+			}
+			String CategoryName = browser.getdata("CategoryName");
+			browser.selectByVisibleText(SCobjects.ManageProduct_AddNewProduct_Category_DropdownValues, CategoryName);
+			String selectedCategoryName = browser
+					.getDropdownSelectedValue(SCobjects.ManageProduct_AddNewProduct_Category_DropdownValues);
+			if (CategoryName.equalsIgnoreCase(selectedCategoryName)
+					&& browser.elementisdisplayed(SCobjects.ManageProduct_AddNewProduct_Category_DropdownValues)) {
+				browser.reportscomtep("Passed", "Verify Select " + selectedCategoryName + " Category name is dispalyed",
+						"Select Category Name should be displayed",
+						"Select Category Name is displayed as:" + selectedCategoryName);
+			} else {
+				browser.reportscomtep("Failed", "Verify Select Category name is dispalyed",
+						"Select Category Name should be displayed", "Select Category Name is not displayed");
+			}
+			String SupplierName = browser.getdata("Suppliersname");
+			browser.selectByVisibleText(SCobjects.ManageProduct_AddNewProduct_Supplier_DropdownValues, SupplierName);
+			String selectedSupplierName = browser
+					.getDropdownSelectedValue(SCobjects.ManageProduct_AddNewProduct_Supplier_DropdownValues);
+			if (SupplierName.equalsIgnoreCase(selectedSupplierName)
+					&& browser.elementisdisplayed(SCobjects.ManageProduct_AddNewProduct_Supplier_DropdownValues)) {
+				browser.reportscomtep("Passed", "Verify Select " + selectedSupplierName + " Supplie name is dispalyed",
+						"Select Supplie Name should be displayed",
+						"Select Supplie Name is displayed as:" + selectedSupplierName);
+			} else {
+				browser.reportscomtep("Failed", "Verify Select Supplie name is dispalyed",
+						"Select Supplie Name should be displayed", "Select Supplie Name is not displayed");
+			}
+			browser.click(SCobjects.ManageProduct_AddNewProduct_Save_Button);
+			
+			browser.refreshBrowser(driver);
+			List<WebElement> InputList = SCobjects.ManageProduct_AddNewProduct_Input_TextBox_List;
+			int i = 0;
+			for (WebElement list : InputList) {
+				String InputValue = list.getText();
+				if (InputValue.equals("") && browser.elementisdisplayed(InputList.get(i))) {
+					browser.reportscomtep("Passed", "Verefy The page refreshes and the fields are cleared",
+							"The page refreshes and the field should be cleared",
+							"The page refreshes and the field are cleared");
+				}
+				i++;
+			}
+			browser.click(SCobjects.ManageProducts_AllProducts_Tab);
+			List<WebElement> ProdutsList = SCobjects.ManageProducts_Produts_List;
+			List<WebElement> ProduNameList = SCobjects.ManageProduct_ProductName_List;
+			int ProductsLength = ProdutsList.size() - 1;
+			browser.scrollintoviewelement(ProduNameList.get(ProductsLength));
+			String AfterAddingProductName = browser.getelementtext(ProduNameList.get(ProductsLength));
+			if (AfterAddingProductName.equalsIgnoreCase(ProductName)
+					&& browser.elementisdisplayed(ProduNameList.get(ProductsLength))) {
+				browser.reportscomtep("Passed",
+						"Clicks on all products tab and verify " + ProductName + " is added in product list",
+						"Product should be added in product list",
+						"Prduct name as :" + ProductName + " is added in product list");
+			} else {
+				browser.reportscomtep("Failed",
+						"Clicks on all products tab and verify Product is added in product list",
+						"Product should be added in product list", "Product is not added in product list");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*****TC_14_017 Check whether a new brand can be added in Add New Product page****/
+	
+	public void checkWhether_NewBrandAdded_InAddNewProductPage() {
+		String AddNewBrandName = "";
+
+		try {
+			AddNewBrandName = browser.getdata("AddNewBrandName");
+			browser.click(SCobjects.ManageProduct_AddNewProduct_Tab);
+			if (browser.elementisdisplayed(SCobjects.ManageProduct_AddNewProduct_PageHeader)) {
+				browser.reportscomtep("Passed",
+						"Clicks on Add New Product Tab and verify Add New Product Page Header is diaplayed",
+						"Add New Product Page Header should be diaplayed", "Add New Product Page Header is diaplayed");
+				browser.click(SCobjects.ManageProduct_AddNewProduct_AddNewBrand_Button);
+				if (browser.elementisdisplayed(SCobjects.ManageProduct_AddNewProduct_AddBrand_PopupHeader)) {
+					browser.reportscomtep("Passed",
+							"Clicks on Brand field + button and verify Add Brand Popup is displayed",
+							"Add Brand Popup should be displayed", "Add Brand Popup is displayed");
+					browser.sendkeys(SCobjects.ManageProduct_AddNewProduct_ABP_BrandTextBox, AddNewBrandName);
+					browser.click(SCobjects.ManageProduct_AddNewProduct_ABP_SaveButton);
+					browser.selectByVisibleText(SCobjects.ManageProduct_AddNewProduct_Brand_DropdownValues,
+							AddNewBrandName);
+					browser.reportscomtep("Passed",
+							"Verify Check the Brand name is" + AddNewBrandName + " dispalyed in the dropdown list",
+							"Check the Brand name should be dispalyed in the dropdown list ",
+							"Check the Brand name is displaye as:" + AddNewBrandName + " in the dropdown list ");
+					browser.refreshBrowser(driver);
+				} else {
+					browser.reportscomtep("Failed",
+							"Clicks on Brand field + button and verify Add Brand Popup is displayed",
+							"Add Brand Popup should be displayed", "Add Brand Popup is not displayed");
+				}
+
+			} else {
+				browser.reportscomtep("Failed",
+						"Clicks on Add New Product Tab and verify Add New Product Page Header is diaplayed",
+						"Add New Product Page Header should be diaplayed",
+						"Add New Product Page Header is not diaplayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/************TC_14_018 Check whether a new Category can be added in Add New Product page******/
+	
+	public void checkWhether_NewCategoryAdded_InAddNewProductPage() {
+		String AddNewCategoryName ="";
+		try {
+			AddNewCategoryName = browser.getdata("AddnewCategoryName");
+			browser.click(SCobjects.ManageProduct_AddNewProduct_Tab);
+			if (browser.elementisdisplayed(SCobjects.ManageProduct_AddNewProduct_PageHeader)) {
+				browser.reportscomtep("Passed",
+						"Clicks on Add New Product Tab and verify Add New Product Page Header is diaplayed",
+						"Add New Product Page Header should be diaplayed", "Add New Product Page Header is diaplayed");
+				browser.click(SCobjects.ManageProduct_AddNewProduct_AddNewCategory_Button);
+				if (browser.elementisdisplayed(SCobjects.ManageProduct_AddNewProduct_AddCategory_PopupHeader)) {
+					browser.reportscomtep("Passed",
+							"Clicks on Category field + button and verify Add Category Popup is displayed",
+							"Add Category Popup should be displayed", "Add Category Popup is displayed");
+					browser.sendkeys(SCobjects.ManageProduct_AddNewProduct_AddCategory_CategoryTextBox, AddNewCategoryName);
+					browser.click(SCobjects.ManageProduct_AddNewProduct_AddCategory_SaveButton);
+					browser.selectByVisibleText(SCobjects.ManageProduct_AddNewProduct_Category_DropdownValues,
+							AddNewCategoryName);
+					browser.reportscomtep("Passed",
+							"Verify Check the Category name is" + AddNewCategoryName + " dispalyed in the dropdown list",
+							"Check the Category name should be dispalyed in the dropdown list ",
+							"Check the Category name is displaye as:" + AddNewCategoryName + " in the dropdown list ");
+					browser.refreshBrowser(driver);
+				} else {
+					browser.reportscomtep("Failed",
+							"Clicks on Category field + button and verify Add Category Popup is displayed",
+							"Add Category Popup should be displayed", "Add Category Popup is not displayed");
+				}
+			} else {
+				browser.reportscomtep("Failed",
+						"Clicks on Add New Product Tab and verify Add New Product Page Header is diaplayed",
+						"Add New Product Page Header should be diaplayed",
+						"Add New Product Page Header is not diaplayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/***TC_14_019 Check whether a new Supplier can be added in Add New Product page***/
+	
+	public void checkWhether_NewSupplierAdded_InAddNewProductPage() {
+		String AddNewSupplierName = "";
+		String AddNewSupplierPhNo = "";
+		String AddNewSuppilerEmail = "";
+		try {
+			AddNewSupplierName = browser.getdata("AddNewSuppliersname");
+			AddNewSupplierPhNo = browser.getdata("AddNewSupplierMNO");
+			AddNewSuppilerEmail = browser.getdata("AddNewSupplierCemail");
+			browser.click(SCobjects.ManageProduct_AddNewProduct_Tab);
+			if (browser.elementisdisplayed(SCobjects.ManageProduct_AddNewProduct_PageHeader)) {
+				browser.reportscomtep("Passed",
+						"Clicks on Add New Product Tab and verify Add New Product Page Header is diaplayed",
+						"Add New Product Page Header should be diaplayed", "Add New Product Page Header is diaplayed");
+				browser.click(SCobjects.ManageProduct_AddNewProduct_AddNewSupplier_Button);
+				if (browser.elementisdisplayed(SCobjects.ManageProduct_AddNewProduct_AddSupplierPopup_Header)) {
+					browser.reportscomtep("Passed",
+							"Clicks on Supplier field + button and verify Add Supplier Popup is displayed",
+							"Add Supplier Popup should be displayed", "Add Supplier Popup is displayed");
+					browser.sendkeys(SCobjects.ManageProduct_AddNewProduct_ASP_SupplierName_TextBox,
+							AddNewSupplierName);
+					browser.sendkeys(SCobjects.ManageProduct_AddNewProduct_ASP_SupplierMobile_TextBox,
+							AddNewSupplierPhNo);
+					browser.sendkeys(SCobjects.ManageProduct_AddNewProduct_ASP_ContactPersonEmail_TextBox,
+							AddNewSuppilerEmail);
+					browser.click(SCobjects.ManageProduct_AddNewProduct_ASP_SaveButton);
+					browser.selectByVisibleText(SCobjects.ManageProduct_AddNewProduct_Supplier_DropdownValues,
+							AddNewSupplierName);
+					browser.reportscomtep("Passed",
+							"Verify Check the Supplier name is" + AddNewSupplierName
+									+ " dispalyed in the dropdown list",
+							"Check the Supplier name should be dispalyed in the dropdown list ",
+							"Check the Supplier name is displaye as:" + AddNewSupplierName + " in the dropdown list ");
+				} else {
+					browser.reportscomtep("Failed",
+							"Clicks on Supplier field + button and verify Add Supplier Popup is displayed",
+							"Add Supplier Popup should be displayed", "Add Supplier Popup is not displayed");
+				}
+			} else {
+				browser.reportscomtep("Failed",
+						"Clicks on Add New Product Tab and verify Add New Product Page Header is diaplayed",
+						"Add New Product Page Header should be diaplayed",
+						"Add New Product Page Header is not diaplayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*****TC_14_020 Check whether a product detail/price can be changed*********/
+	
+	public void checkWhether_ProductDetailOrPricr_change(String ProductCahnge_DetailsOrPrice) {
+		String BeforeChangeProductName = "";
+		String ModifiedProductName = "";
+		String ModifiedProductPrice = "";
+		String AfterChangeProductName = "";
+		String BeforeModifiedProductPrice = "";
+		String AfterModifiedProductPrice = "";
+		try {
+			ModifiedProductName = browser.getdata("ModifiedproductName");
+			ModifiedProductPrice = browser.getdata("ModifiedProductPrice");
+			browser.click(SCobjects.ManageProducts_AllProducts_Tab);
+			if (browser.elementisdisplayed(SCobjects.ManageProducts_Products_Page)) {
+				browser.reportscomtep("Passed", "Clicks on All Product Tab and verify Product header is displayed",
+						"Product header should be displayed", "Product header is displayed");
+				List<WebElement> ProductNameList = SCobjects.ManageProduct_ProductName_List;
+				List<WebElement> ActionButtonsList = SCobjects.ManageProducts_Action_Buttons_List;
+				List<WebElement> RetailPriceList = SCobjects.ManageProduct_AllProduct_RetailPrice_List;
+				BeforeChangeProductName = browser.getelementtext(ProductNameList.get(0));
+				BeforeModifiedProductPrice = browser.getelementtext(RetailPriceList.get(0));
+				browser.click(ActionButtonsList.get(0));
+				if (browser.elementisdisplayed(SCobjects.ManageProduct_AllProduct_EditProductPopup_Header)) {
+					browser.reportscomtep("Passed",
+							"Click on the edit button and Verify Edit Product Popup header is displayed",
+							" Edit Product Popup header should be displayed",
+							" Edit Product Popup header is displayed");
+					switch (ProductCahnge_DetailsOrPrice) {
+					case "ProductCahnge_Details":
+						browser.sendkeys(SCobjects.ManageProduct_AllProduct_EPP_ProductName_TextBox,
+								ModifiedProductName);
+						browser.click(SCobjects.ManageProduct_AllProduct_EPP_Save_Button);
+						AfterChangeProductName = browser.getelementtext(ProductNameList.get(0));
+						if (!AfterChangeProductName.equalsIgnoreCase(BeforeChangeProductName)
+								&& browser.elementisdisplayed(ProductNameList.get(0))) {
+							browser.reportscomtep("Passed",
+									"Enter Modified Product Name,click on save button and verify The Product details are updated",
+									"The Product details should be updated", "The Product details are updated");
+						} else {
+							browser.reportscomtep("Failed",
+									"Enter Modified Product Name,click on save button and verify The Product details are updated",
+									"The Product details should be updated", "The Product details are not updated");
+						}
+						break;
+					case "ProductCahnge_Price":
+						browser.sendkeys(SCobjects.ManageProduct_AllProduct_EPP_ProductRetailPrice_TextBox,
+								ModifiedProductPrice);
+						browser.click(SCobjects.ManageProduct_AllProduct_EPP_Save_Button);
+						AfterModifiedProductPrice = browser.getelementtext(RetailPriceList.get(0));
+						if (!AfterModifiedProductPrice.equalsIgnoreCase(BeforeModifiedProductPrice)
+								&& browser.elementisdisplayed(RetailPriceList.get(0))) {
+							browser.reportscomtep("Passed",
+									"Enter Modified Product Price, click on save button and verify The Product details are updated",
+									"The Product details should be updated", "The Product details are updated");
+						} else {
+							browser.reportscomtep("Failed",
+									"Enter Modified Product Price, click on save button and verify The Product details are updated",
+									"The Product details should be updated", "The Product details are not updated");
+						}
+						break;
+					case "Donothing":
+						break;
+					}
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on the edit button and Verify Edit Product Popup header is displayed",
+							" Edit Product Popup header should be displayed",
+							" Edit Product Popup header is not displayed");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Clicks on All Product Tab and verify Product header is displayed",
+						"Product header should be displayed", "Product header is not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*****TC_14_021 Check whether a product can be deleted********/
+	public void checkWhethe_Product_Deleted() {
+		String BeforeDeleteProductName = "";
+		String AfterDeleteProductName = "";
+		try {
+			browser.click(SCobjects.ManageProducts_AllProducts_Tab);
+			if (browser.elementisdisplayed(SCobjects.ManageProducts_Products_Page)) {
+				browser.reportscomtep("Passed", "Clicks on All Product Tab and verify Product header is displayed",
+						"Product header should be displayed", "Product header is displayed");
+				List<WebElement> ProductNameList = SCobjects.ManageProduct_ProductName_List;
+				List<WebElement> ActionButtonsList = SCobjects.ManageProducts_Action_Buttons_List;
+				BeforeDeleteProductName = browser.getelementtext(ProductNameList.get(0));
+				browser.click(ActionButtonsList.get(0));
+				if (browser.elementisdisplayed(SCobjects.ManageProduct_AllProduct_EditProductPopup_Header)) {
+					browser.reportscomtep("Passed",
+							"Click on the Add stock and Verify Edit Product Popup header is displayed",
+							"Edit Product Popup header should be displayed", "Edit Product Popup header is displayed");
+					browser.click(SCobjects.ManageProduct_AllProduct_EPP_Delete_Button);
+					browser.click(SCobjects.ManageProduct_AllProduct_EPP_Yes_Button);
+					browser.click(SCobjects.Confirmatio_OK_Button);
+					Thread.sleep(1000);
+					browser.refreshBrowser(driver);
+					AfterDeleteProductName = browser.getelementtext(ProductNameList.get(0));
+					if (!AfterDeleteProductName.equalsIgnoreCase(BeforeDeleteProductName)
+							&& browser.elementisdisplayed(ProductNameList.get(0))) {
+						browser.reportscomtep("Passed",
+								"Clicks on continue Delete,Yes & OK buttons and verify The Product details are Deleted",
+								"The Product details should be Deleted", "The Product details are Deleted");
+					} else {
+						browser.reportscomtep("Failed",
+								"Clicks on continue Delete,Yes & OK buttons and verify The Product details are Deleted",
+								"The Product details should be Deleted", "The Product details are not Deleted");
+					}
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on the Add stock button and Verify Edit Product Popup header is displayed",
+							" Edit Product Popup header should be displayed",
+							" Edit Product Popup header is not displayed");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Clicks on All Product Tab and verify Product header is displayed",
+						"Product header should be displayed", "Product header is not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/******TC_14_022 Check the Decrease stock (+) button*******/
+	
+	public void check_AddStock_Button() {
+		try {
+			browser.click(SCobjects.ManageProducts_AllProducts_Tab);
+			if (browser.elementisdisplayed(SCobjects.ManageProducts_Products_Page)) {
+				browser.reportscomtep("Passed", "Clicks on All Product Tab and verify Product header is displayed",
+						"Product header should be displayed", "Product header is displayed");
+				List<WebElement> IncreaseButtons=SCobjects.ManageProduct_AllProduct_IncreaseStockAction_ButtonList;
+				List<WebElement> ProductNameList = SCobjects.ManageProduct_ProductName_List;
+				int Length= ProductNameList.size()-1;
+				browser.scrollintoviewelement(IncreaseButtons.get(Length));
+				browser.click(IncreaseButtons.get(Length));
+				if (browser
+						.elementisdisplayed(SCobjects.ManageProduct_AllProduct_AddStockForTheHealthTips_PopupHeader)) {
+					browser.reportscomtep("Passed",
+							"Click on add stock button and Verify Decrease stock for the Health Tips Popup header is displayed",
+							"Decrease stock for the Health Tips Popup header should be displayed",
+							"Decrease stock for the Health Tips Popup header is displayed");
+					browser.Verify_elementisdisplayed_Report(
+							SCobjects.ManageProduct_AllProduct_AddStockForTheHealthTips_Quality_Textbox,
+							"Quantity TextBox");
+					String PresentSupplyPrice = browser.elementgetAttributevalue(
+							SCobjects.ManageProduct_AllProduct_AddStockForTheHealthTips_SupplyPrice_TextBox, "value");
+					String SupplyPrice = browser.getdata("SupplyPrice");
+					if (SupplyPrice.equals(PresentSupplyPrice)) {
+						browser.Verify_elementisdisplayed_Report(
+								SCobjects.ManageProduct_AllProduct_AddStockForTheHealthTips_SupplyPrice_TextBox,
+								"Supply Price Present as:" + PresentSupplyPrice + "");
+					} else {
+						browser.reportscomtep("Failed", "Verify Supply Price present is displayed",
+								"Supply Price present should be displayed", "Supply Price present is not displayed");
+					}
+					browser.Verify_elementisdisplayed_Report(
+							SCobjects.ManageProduct_AllProduct_AddStockForTheHealthTips_AdjustmentReason_SelectionValues,
+							"Adjustment Reason dropdown Box");
+					browser.Verify_elementisdisplayed_Report(
+							SCobjects.ManageProduct_AllProduct_AddStockForTheHealthTips_SavePriceForNexttime_CheckBox,
+							"Save price for next time Check Box");
+					browser.Verify_elementisdisplayed_Report(
+							SCobjects.ManageProduct_AllProduct_AddStockForTheHealthTips_Save_Button, "Save Button");
+					browser.Verify_elementisdisplayed_Report(
+							SCobjects.ManageProduct_AllProduct_AddStockForTheHealthTips_Cancel_Button, "Cancel Button");
+					browser.click(SCobjects.ManageProduct_AllProduct_AddStockForTheHealthTips_Cancel_Button);
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on add stock button and Verify Decrease stock for the Health Tips Popup header is displayed",
+							"Decrease stock for the Health Tips Popup header should be displayed",
+							"Decrease stock for the Health Tips Popup header is not displayed");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Clicks on All Product Tab and verify Product header is displayed",
+						"Product header should be displayed", "Product header is not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/****TC_14_023 Check whether a stock can be added****/
+	public void checkWhether_StockAdded() {
+		String AddStcockQuant = "";
+		String BeforeStockOnHandsValue = "";
+		String AfterStockOnHandsValue = "";
+		try {
+			AddStcockQuant = browser.getdata("AddStockQuantity");
+			browser.click(SCobjects.ManageProducts_AllProducts_Tab);
+			if (browser.elementisdisplayed(SCobjects.ManageProducts_Products_Page)) {
+				browser.reportscomtep("Passed", "Clicks on All Product Tab and verify Product header is displayed",
+						"Product header should be displayed", "Product header is displayed");
+				List<WebElement> StockOnHandsList = SCobjects.ManageProduct_AllProduct_StockOnHand_List;
+				List<WebElement>  IncreaseButtons=SCobjects.ManageProduct_AllProduct_IncreaseStockAction_ButtonList;	
+				int Length= IncreaseButtons.size()-1;
+				browser.scrollintoviewelement(StockOnHandsList.get(Length));
+				BeforeStockOnHandsValue = browser.getelementtext(StockOnHandsList.get(Length));
+				browser.click(IncreaseButtons.get(Length));
+				if (browser
+						.elementisdisplayed(SCobjects.ManageProduct_AllProduct_AddStockForTheHealthTips_PopupHeader)) {
+					browser.reportscomtep("Passed",
+							"Click on add stock button and Verify Decrease stock for the Health Tips Popup header is displayed",
+							"Decrease stock for the Health Tips Popup header should be displayed",
+							"Decrease stock for the Health Tips Popup header is displayed");
+					browser.sendkeys(SCobjects.ManageProduct_AllProduct_AddStockForTheHealthTips_Quality_Textbox,
+							AddStcockQuant);
+					browser.selectByVisibleText(
+							SCobjects.ManageProduct_AllProduct_AddStockForTheHealthTips_AdjustmentReason_SelectionValues,
+							"Return");
+					String selectedType = browser.getDropdownSelectedValue(
+							SCobjects.ManageProduct_AllProduct_AddStockForTheHealthTips_AdjustmentReason_SelectionValues);
+					if (selectedType.equalsIgnoreCase("Return")) {
+						browser.reportscomtep("Passed",
+								"Verify The Adjustment reason from the dropdown list in " + selectedType
+										+ " is selected",
+								"The Adjustment reason from the dropdown list value should be selected",
+								" The Adjustment reason from the dropdown list value is selected as:" + selectedType);
+					} else {
+						browser.reportscomtep("Failed",
+								"Verify The Adjustment reason from the dropdown list value is selected",
+								"The Adjustment reason from the dropdown list value should be selected",
+								"The Adjustment reason from the dropdown list value is not selected");
+					}
+
+					browser.click(
+							SCobjects.ManageProduct_AllProduct_AddStockForTheHealthTips_SavePriceForNexttime_CheckBox);
+					browser.click(SCobjects.ManageProduct_AllProduct_AddStockForTheHealthTips_Save_Button);
+					browser.click(SCobjects.Confirmatio_OK_Button);
+					browser.scrollintoviewelement(StockOnHandsList.get(Length));
+					AfterStockOnHandsValue = browser.getelementtext(StockOnHandsList.get(Length));
+					if (!AfterStockOnHandsValue.equalsIgnoreCase(BeforeStockOnHandsValue)
+							&& browser.elementisdisplayed(StockOnHandsList.get(Length))) {
+						browser.reportscomtep("Passed",
+								"Enter Mandatory Fields enter and Select Select the Adjustment reason from the dropdown list And Click on continue Save & Ok button and verify The stock & quantity added is displayed",
+								"The stock & quantity added should be displayed",
+								"The stock & quantity added is displayed");
+
+					} else {
+						browser.reportscomtep("Failed",
+								"Enter Mandatory Fields enter and Select Select the Adjustment reason from the dropdown list And Click on continue Save & Ok button and verify The stock & quantity added is displayed",
+								"The stock & quantity added should be displayed",
+								"The stock & quantity added is not displayed");
+					}
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on add stock button and Verify Decrease stock for the Health Tips Popup header is displayed",
+							"Decrease stock for the Health Tips Popup header should be displayed",
+							"Decrease stock for the Health Tips Popup header is not displayed");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Clicks on All Product Tab and verify Product header is displayed",
+						"Product header should be displayed", "Product header is not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/**********TC_14_024 Check the decrease stock (-) button*********/
+	public void check_DecreaseStock_Button() {
+		try {
+			browser.click(SCobjects.ManageProducts_AllProducts_Tab);
+			if (browser.elementisdisplayed(SCobjects.ManageProducts_Products_Page)) {
+				browser.reportscomtep("Passed", "Clicks on All Product Tab and verify Product header is displayed",
+						"Product header should be displayed", "Product header is displayed");
+				 List<WebElement> DecreaseActionButtonsList= SCobjects.ManageProduct_AllProduct_DecreaseStockAction_ButtonList;
+				 int Length = DecreaseActionButtonsList.size()-1;
+				 browser.scrollintoviewelement(DecreaseActionButtonsList.get(Length));
+				browser.click(DecreaseActionButtonsList.get(Length));
+				if (browser.elementisdisplayed(
+						SCobjects.ManageProduct_AllProduct_DecreaseStockForTheHealthTips_PopupHeader)) {
+					browser.reportscomtep("Passed",
+							"Click on Decrease stock button and Verify Decrease stock for the Health Tips Popup header is displayed",
+							"Decrease stock for the Health Tips Popup header should be displayed",
+							"Decrease stock for the Health Tips Popup header is displayed");
+					browser.Verify_elementisdisplayed_Report(
+							SCobjects.ManageProduct_AllProduct_DecreaseStockForTheHealthTips_Quality_Textbox,
+							"Quantity TextBox");
+					browser.Verify_elementisdisplayed_Report(
+							SCobjects.ManageProduct_AllProduct_DecreaseStockForTheHealthTips_AdjustmentReason_SelectionValues,
+							"Adjustment Reason DropDown ");
+					browser.Verify_elementisdisplayed_Report(
+							SCobjects.ManageProduct_AllProduct_DecreaseStockForTheHealthTips_Save_Button,
+							"Save Button");
+					browser.Verify_elementisdisplayed_Report(
+							SCobjects.ManageProduct_AllProduct_DecreaseStockForTheHealthTips_Cancel_Button,
+							"Cancel Button");
+					browser.click(SCobjects.ManageProduct_AllProduct_DecreaseStockForTheHealthTips_Cancel_Button);
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Decrease stock button and Verify Decrease stock for the Health Tips Popup header is displayed",
+							"Decrease stock for the Health Tips Popup header should be displayed",
+							"Decrease stock for the Health Tips Popup header is not displayed");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Clicks on All Product Tab and verify Product header is displayed",
+						"Product header should be displayed", "Product header is not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	
+	/*****TC_14_025 Check whether a stock can be decreased****/
+	public void check_Stock_Decreased() {
+		String DecreaseQuant = "";
+		String BeforeDecreaseStockOnHandsValue = "";
+		String AfterDecreaseStockOnHandsValue = "";
+		try {
+			DecreaseQuant = browser.getdata("DecreaseQuantity");
+			browser.click(SCobjects.ManageProducts_AllProducts_Tab);
+			if (browser.elementisdisplayed(SCobjects.ManageProducts_Products_Page)) {
+				browser.reportscomtep("Passed", "Clicks on All Product Tab and verify Product header is displayed",
+						"Product header should be displayed", "Product header is displayed");
+				List<WebElement> DecreaseActionButtonsList = SCobjects.ManageProduct_AllProduct_DecreaseStockAction_ButtonList;
+				int Length = DecreaseActionButtonsList.size()-1;
+				List<WebElement> StockOnHandsList = SCobjects.ManageProduct_AllProduct_StockOnHand_List;
+				browser.scrollintoviewelement(DecreaseActionButtonsList.get(Length));
+				BeforeDecreaseStockOnHandsValue = browser.getelementtext(StockOnHandsList.get(Length));
+				browser.click(DecreaseActionButtonsList.get(Length));
+				if (browser.elementisdisplayed(
+						SCobjects.ManageProduct_AllProduct_DecreaseStockForTheHealthTips_PopupHeader)) {
+					browser.reportscomtep("Passed",
+							"Click on Decrease stock button and Verify Decrease stock for the Health Tips Popup header is displayed",
+							"Decrease stock for the Health Tips Popup header should be displayed",
+							"Decrease stock for the Health Tips Popup header is displayed");
+					browser.sendkeys(SCobjects.ManageProduct_AllProduct_DecreaseStockForTheHealthTips_Quality_Textbox,
+							DecreaseQuant);
+					browser.selectByVisibleText(
+							SCobjects.ManageProduct_AllProduct_DecreaseStockForTheHealthTips_AdjustmentReason_SelectionValues,
+							"Return");
+					String selectedType = browser.getDropdownSelectedValue(
+							SCobjects.ManageProduct_AllProduct_DecreaseStockForTheHealthTips_AdjustmentReason_SelectionValues);
+					if (selectedType.equalsIgnoreCase("Return")) {
+						browser.reportscomtep("Passed",
+								"Verify The Adjustment reason from the dropdown list in " + selectedType
+										+ " is selected",
+								"The Adjustment reason from the dropdown list value should be selected",
+								" The Adjustment reason from the dropdown list value is selected as:" + selectedType);
+					} else {
+						browser.reportscomtep("Failed",
+								"Verify The Adjustment reason from the dropdown list value is selected",
+								"The Adjustment reason from the dropdown list value should be selected",
+								"The Adjustment reason from the dropdown list value is not selected");
+					}
+					browser.click(SCobjects.ManageProduct_AllProduct_DecreaseStockForTheHealthTips_Save_Button);
+					browser.click(SCobjects.Confirmatio_OK_Button);
+					AfterDecreaseStockOnHandsValue = browser.getelementtext(StockOnHandsList.get(Length));
+					if (!AfterDecreaseStockOnHandsValue.equalsIgnoreCase(BeforeDecreaseStockOnHandsValue)
+							&& browser.elementisdisplayed(StockOnHandsList.get(Length))) {
+						browser.reportscomtep("Passed",
+								"Enter the quantity decrease, Select the adjustment reason from dropdown list & clicks on Continue Save & Ok buttons and Verify The stock decrease & quantity specified is decreased from actual Stock in Hand and Updated",
+								"The stock decrease & quantity specified should be decreased from actual Stock in Hand and Updated",
+								"The stock decrease & quantity specified is decreased from actual Stock in Hand and Updated");
+
+					} else {
+						browser.reportscomtep("Failed",
+								"Enter the quantity decrease, Select the adjustment reason from dropdown list & clicks on Continue Save & Ok buttons and Verify The stock decrease & quantity specified is decreased from actual Stock in Hand and Updated",
+								"The stock decrease & quantity specified should be decreased from actual Stock in Hand and Updated",
+								"The stock decrease & quantity specified is not decreased from actual Stock in Hand and Updated");
+
+					}
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Decrease stock button and Verify Decrease stock for the Health Tips Popup header is displayed",
+							"Decrease stock for the Health Tips Popup header should be displayed",
+							"Decrease stock for the Health Tips Popup header is not displayed");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Clicks on All Product Tab and verify Product header is displayed",
+						"Product header should be displayed", "Product header is not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/**********TC_14_026 Check the stock history**********/
+	
+	public void check_Stock_History() {
+		String TableHeadername = "";
+		try {
+			browser.click(SCobjects.ManageProducts_AllProducts_Tab);
+			if (browser.elementisdisplayed(SCobjects.ManageProducts_Products_Page)) {
+				browser.reportscomtep("Passed", "Clicks on All Product Tab and verify Product header is displayed",
+						"Product header should be displayed", "Product header is displayed");
+				List<WebElement> ViewStockHistoryButtonsList = SCobjects.ManageProduct_AllProduct_ViewStockHistoryAction_ButtonList;
+				int Length = ViewStockHistoryButtonsList.size() - 1;
+				browser.scrollintoviewelement(ViewStockHistoryButtonsList.get(Length));
+				browser.click(ViewStockHistoryButtonsList.get(Length));
+				if (browser.elementisdisplayed(
+						SCobjects.ManageProduct_AllProduct_StockHistoryForTheHealthTips_PopuHeader)) {
+					browser.reportscomtep("Passed",
+							"Click on Stock Histtory button and Verify Stock History for the Health Tips Popup header is displayed",
+							"Stock History for the Health Tips Popup header should be displayed",
+							"Stock History for the Health Tips Popup header is displayed");
+					String[] StockHistorytheader = new String[4];
+					StockHistorytheader[0] = "Time & Date";
+					StockHistorytheader[1] = "Action";
+					StockHistorytheader[2] = "Qty.Adjusted";
+					StockHistorytheader[3] = "Stock on Hand";
+					List<WebElement> StockHTL = SCobjects.ManageProduct_AllProduct_StockHistoryForTheHealthTips_TableHeaderList;
+					int i = 0;
+					for (WebElement theader : StockHTL) {
+						TableHeadername = browser.getelementtext(theader);
+						if (TableHeadername.equalsIgnoreCase(StockHistorytheader[i])
+								&& browser.elementisdisplayed(StockHTL.get(i))) {
+							browser.reportscomtep("Passed",
+									"Verify Stock History Table header " + TableHeadername + " is Displayed",
+									"Stock History Table header should be Displayed",
+									"Stock History Table header displayed as " + TableHeadername);
+						} else {
+							browser.reportscomtep("Failed",
+									"Verify Stock History Table header " + StockHistorytheader[i] + " is Displayed",
+									"Stock History Table header should be Displayed",
+									"Stock History Table header " + StockHistorytheader[i] + " Not displayed");
+						}
+
+						i++;
+					}
+					int J = 0;
+					List<WebElement> ACP_List = SCobjects.ManageProduct_AllProduct_StockHistoryForTheHealthTips_Actionperformed_List;
+					for (WebElement element : ACP_List) {
+						String Value = element.getText();
+						if (!Value.isEmpty() && browser.elementisdisplayed(ACP_List.get(J))) {
+							browser.reportscomtep("Passed",
+									"Verify The actions are performed in TC_14_023 & 25 are shown popup",
+									"The actions should be performed in TC_14_023 & 25 are shown popup",
+									"The actions are performed in TC_14_023 & 25 are shown popup");
+						}
+					}
+					J++;
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Stock Histtory button and Verify Stock History for the Health Tips Popup header is displayed",
+							"Stock History for the Health Tips Popup header should be displayed",
+							"Stock History for the Health Tips Popup header is not displayed");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Clicks on All Product Tab and verify Product header is displayed",
+						"Product header should be displayed", "Product header is not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
 
 
 }

@@ -12,7 +12,7 @@
     </packages>
     </test> -->
 
-     <!--<test name="Shearcircle_Testscenarios">
+    <!--  <test name="Shearcircle_Testscenarios">
         <classes>
         	<class name="com.shearcircle.testscenarios.DriverandBrowser_Launch" />        	
 			<class name="com.shearcircle.testscenarios.TS_1_01_CustomerclicksJoinOurCircleButton" />
@@ -47,7 +47,7 @@
 			<class name="com.shearcircle.testscenarios.TS_6_02_BookingAppointmentAfterSignIn_PayPal"/>
 			<class name="com.shearcircle.testscenarios.TS_6_03_ApplyPromocode"/>
 		</classes>
-    </test> -->
+    </test>  -->
   <!--  <test name="Shearcircle_Prod_Testscenarios">
         <classes>
         	<class name="com.shearcircle.prod_testscenarios.DriverandBrowser_Launch" />
@@ -93,9 +93,11 @@
 			<class name="com.shearcircle.testscenarios.TS_008_SubscriberClicksOnChangePassword" />	
 			<class name="com.shearcircle.testscenarios.TS_009_SubscriberClicksOnBusinessSettingsPage" />
 			<class name="com.shearcircle.testscenarios.TS_011_SubscriberClicksOnServicesInManageCircleMenu" />	
-			<class name="com.shearcircle.testscenarios.TS_012_SubscriberclicksonStaffunderManageCircleMenu" /> 
-			<class name="com.shearcircle.testscenarios.TS_019_SubscriberClicks_ClientsMenu" />-->
-			<class name="com.shearcircle.testscenarios.TS_020_SubscriberClicks_POSMenu" />				
+			<class name="com.shearcircle.testscenarios.TS_012_SubscriberclicksonStaffunderManageCircleMenu" />
+			<class name="com.shearcircle.testscenarios.TS_013_SubscriberClicks_PaymentProcessing_UnderMCmenu" />-->
+			<class name="com.shearcircle.testscenarios.TS_014_SubscriberClicksOn_ManageProducts_UnderMC_Menu" />
+			<!-- <class name="com.shearcircle.testscenarios.TS_019_SubscriberClicks_ClientsMenu" /> 
+			<class name="com.shearcircle.testscenarios.TS_020_SubscriberClicks_POSMenu" />	-->	
 		</classes>
     </test>
 </suite>

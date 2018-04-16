@@ -1373,5 +1373,392 @@ public class Subscriber_Module_Page_Objects {
 	
 	@FindBy(xpath="//*[@id='addStaffForm']//div[@class='col-md-8 detser']")
 	public WebElement Appointments_BSP_ServiceDetails_Table;
+	
+	/***TS014_Subscriber clicks on Manage Products under Manage
+    Circle Menu********/
+	/***TC_14_001 Open Manage Products page*****/
+	
+	@FindBy(xpath="//*[text()='Manage Products']")
+	public WebElement ManageProducts_DropDown_Value;
+	
+	@FindBy(xpath="//div[@class='col-md-9']/h3[text()='Products']")
+	public WebElement ManageProducts_Products_Page;
+	
+	@FindBy(xpath="//*[@id='products']//*[text()='No Data found']")
+	public WebElement ManageProducts_Products_NoDatafound;
+
+	@FindBy(xpath="//*[@id='yourTabWrapper']/li[4]")
+	public WebElement ManageProducts_AllProducts_Tab;
+
+	@FindBy(xpath="//table/tbody/tr[1]/td/button")
+	public List<WebElement> ManageProducts_Action_Buttons_List;
+	
+	@FindBy(xpath="//*[@id='products']/div/div[1]/table/tbody/tr/td[@class='col-md-3']")
+	public List<WebElement> ManageProducts_RelaventAction_Buttons_List;
+	
+	@FindBy(xpath="//*[@id='products']/div/div[1]/table/tbody/tr")
+	public List<WebElement> ManageProducts_Produts_List;
+	
+	@FindBy(xpath="//a[text()='Categories']")
+	public WebElement ManageProduct_Categories_Tab;
+	
+	@FindBy(xpath="//a[text()='Brands']")
+	public WebElement ManageProduct_Brands_Tab;
+	
+	@FindBy(xpath="//a[text()='Suppliers']")
+	public WebElement ManageProduct_Suppliers_Tab;
+	
+	@FindBy(xpath="//a[text()='Add New Product']")
+	public WebElement ManageProduct_AddNewProduct_Tab;
+	
+	/******
+	 * TC_14_002 Check the details & action buttons in All Products tab (when products are added)
+	 ***********/
+	
+	@FindBy(xpath="//*[@id='products']/div/div[1]/table/thead/tr/th")
+	public List<WebElement> ManageProduct_Product_Table_headersList;
+	
+	@FindBy(xpath="//*[@id='products']/div/div[1]/table/tbody/tr/td[1]")
+	public List<WebElement>  ManageProduct_ProductName_List;
+	
+	/*****TC_14_003 Check the Categories tab*********/
+	
+	@FindBy(xpath="//h3[text()='Categories']")
+	public WebElement ManageProduct_CategoriesPage_Header;
+	
+	@FindBy(xpath="//*[@id='categories']//*[text()='No Data found']")
+	public WebElement ManageProducts_CP_NoDatafound;
+	
+	@FindBy(xpath="//*[@id='categories']//*[text()='New Category']")
+	public WebElement ManageProduct_CP_NewCategory_Button;
+	
+	@FindBy(xpath="//*[@id='categories']/div/div[1]/table/tbody/tr")
+	public List<WebElement> ManageProducts_CP_Categories_List;
+	
+	@FindBy(xpath="//*[@id='categories']/div/div[1]/table/thead/tr/th")
+	public List<WebElement> ManageProduct_CP_TableHeadersList;
+	
+	@FindBy(xpath="//*[@id='categories']/div/div[1]/table/tbody/tr/td[1]")
+	public List<WebElement> ManageProduct_CP_categoryName_List;
+	
+	@FindBy(xpath="//*[@id='categories']/div/div[1]/table/tbody/tr/td[2]")
+	public List<WebElement> ManageProduct_CP_ProductAssigned_List;
+	
+	/*****TC_14_004 Check whether new category can be added**********/
+	
+	@FindBy(xpath="//*[@id='categoryModalPopUp']//h4")
+	public WebElement ManageProduct_CP_AddCategory_PopupHeader;
+	
+	@FindBy(xpath="//*[@id='categoryModalPopUp']//input[@ng-model='categoryData.name']")
+	public WebElement ManageProduct_CP_ACP_CategoryTextBox;
+	
+	@FindBy(xpath="//*[@id='categoryModalPopUp']//button[text()='Save']")
+	public WebElement ManageProduct_CP_ACP_SaveButton;
+	
+	/********TC_14_005 Check whether a Category name can be modified**************/
+	
+	@FindBy(xpath="//*[@id='categoryModalPopUp']//h4")
+	public WebElement ManageProduct_CP_ECP_Header;
+	
+	/**TC_14_006 Check whether a category can be deleted*********/
+	
+	@FindBy(xpath="//*[@id='categoryModalPopUp']//button[text()='Delete']")
+	public WebElement ManageProduct_CP_ACP_DeleteButton;
+	
+	@FindBy(xpath="//button[text()='Yes']")
+	public WebElement ManageProduct_CP_ACP_YesConformationPopup_Button;
+	
+	/*****TC_14_007 Check the Brands tab*****/
+	
+	@FindBy(xpath="//*[@id='brands']//div[1]/h3[text()='Brands']")
+	public WebElement ManageProduct_CP_BrandsPage_Header;
+	
+	@FindBy(xpath="//*[@id='brands']//*[text()='New Brand']")
+	public WebElement ManageProduct_BP_NewBrand_Button;
+	
+	@FindBy(xpath="//*[@id='brands']//*[text()='No Data found']")
+	public WebElement ManageProducts_Brands_NoDatafound;
+	
+	@FindBy(xpath="//*[@id='brands']/div/div[1]/table/tbody/tr")
+	public List<WebElement> ManageProduct_BP_Brand_List;
+	
+	@FindBy(xpath="//*[@id='brands']/div/div[1]/table/thead/tr/th")
+	public List<WebElement> ManageProduct_BP_TableHeadersList;
+
+	@FindBy(xpath="//*[@id='brands']/div/div[1]/table/tbody/tr/td[1]")
+	public List<WebElement> ManageProduct_BP_BrandName_List;
+	
+	@FindBy(xpath="//*[@id='brands']/div/div[1]/table/tbody/tr/td[2]")
+	public List<WebElement> ManageProduct_BP_ProductsAssigned_List;
+	
+	/****TC_14_008 Check whether a New Brand can be added *****/
+	
+	@FindBy(xpath="//*[@id='brandsModalPopUp']//*[text()='Add Brand']")
+	public WebElement ManageProduct_BP_AddBrand_PopupHeader;
+	
+	@FindBy(xpath="//*[@id='brandsModalPopUp']//input[@ng-model='brandData.name']")
+	public WebElement ManageProduct_BP_ABP_BrandTextBox;
+	
+	@FindBy(xpath="//*[@id='brandsModalPopUp']//button[text()='Save']")
+	public WebElement ManageProduct_BP_ABP_SaveButton;
+	
+	/********TC_14_010 Check whether a brand can be deleted********/
+	@FindBy(xpath="//*[@id='brandsModalPopUp']//*[text()='Edit Brand']")
+	public WebElement ManageProduct_BP_EBP_Header;
+	
+	@FindBy(xpath="//*[@id='brandsModalPopUp']//button[text()='Delete']")
+	public WebElement ManageProduct_BP_ACP_DeleteButton;
+	
+	@FindBy(xpath="//button[text()='Yes']")
+	public WebElement ManageProduct_BP_ACP_YesConformationPopup_Button;
+
+	/***TC_14_011 Check the Suppliers tab********/
+	
+	@FindBy(xpath="//*[@id='suppliers']//div[1]/h3[text()='Suppliers']")
+	public WebElement ManageProduct_SuppliersPage_Header;
+	
+	@FindBy(xpath="//*[@id='suppliers']//*[text()='No Data found']")
+	public WebElement ManageProducts_Suppliers_NoDatafound;
+	
+	@FindBy(xpath="//*[@id='suppliers']//*[text()='New Supplier']")
+	public WebElement ManageProduct_SP_NewSupplier_Button;
+	
+	@FindBy(xpath="//*[@id='suppliers']/div/div[1]/table/thead/tr/th")
+	public List<WebElement> ManageProduct_SP_TableHeadersList;
+	
+	@FindBy(xpath="//*[@id='suppliers']/div/div[1]/table/tbody/tr/td[1]")
+	public List<WebElement> ManageProduct_SP_SuppliersName_List;
+	
+	@FindBy(xpath="//*[@id='suppliers']/div/div[1]/table/tbody/tr/td[4]")
+	public List<WebElement> ManageProduct_SP_ProductAssigned_List;
+	
+	/****TC_14_012 Check whether a new supplier can be added *****/
+	
+	@FindBy(xpath="//*[@id='supplierModalPopUp']//h4")
+	public WebElement ManageProduct_SP_AddSupplierPopup_Header;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='supplier_name']")
+	public WebElement ManageProduct_Suppliers_ASP_SupplierName_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='supplier_mobile']")
+	public WebElement ManageProduct_Suppliers_ASP_SupplierMobile_TextBox;
+	
+	@FindBy(xpath="//*[@name='supplier_description']")
+	public WebElement ManageProduct_Suppliers_ASP_SupplieDescription_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='contact_person_name']")
+	public WebElement ManageProduct_Suppliers_ASP_ContactPersonName_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='contact_person_email']")
+	public WebElement ManageProduct_Suppliers_ASP_ContactPersonEmail_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='contact_person_website']")
+	public WebElement ManageProduct_Suppliers_ASP_ContactPersonWebSite_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='contact_person_mobile']")
+	public WebElement ManageProduct_Suppliers_ASP_ContactPersonMobile_TextBox;
+	
+	@FindBy(xpath="//textarea[@name='contact_person_address']")
+	public WebElement ManageProduct_Suppliers_ASP_ContactPersonAddress_TextBox;
+	
+	@FindBy(xpath="//*[@ng-submit='addorUpdateSupplier()']/button[text()='Save']")
+	public WebElement ManageProduct_Suppliers_ASP_SaveButton;
+	
+	/********TC_14_013 Check whether Supplier name/details can be edited********/
+	@FindBy(xpath="//*[@id='supplierModalPopUp']//h4[text()='Edit Supplier']")
+	public WebElement ManageProduct_Suppliers_ESP_Header;
+
+	/***TC_14_014 Check whether Supplier can be deleted********/
+	
+	@FindBy(xpath="//button[text()='Delete']")
+	public WebElement ManageProduct_Suppliers_ASP_DeleteButton;
+	
+	@FindBy(xpath="//button[text()='Yes']")
+	public WebElement ManageProduct_Suppliers_ASP_YesConformationPopup_Button;
+	
+	/*****TC_14_015 Check Add New Product tab************/
+	
+	@FindBy(xpath="//h3[text()='Add New Product']")
+	public WebElement ManageProduct_AddNewProduct_PageHeader;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div/input[@name='product_name']")
+	public WebElement ManageProduct_AddNewProduct_ProductName_Textbox;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div/textarea[@name='product_description']")
+	public WebElement ManageProduct_AddNewProduct_ProductDescription_Textbox;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div/input[@ng-model='productData.supply_price']")
+	public WebElement ManageProduct_AddNewProduct_SupplyPrice_Textbox;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div/input[@ng-model='productData.retail_price']")
+	public WebElement ManageProduct_AddNewProduct_RetailPrice_Textbox;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div/input[@ng-model='productData.special_price']")
+	public WebElement ManageProduct_AddNewProduct_SpecialPrice_Textbox;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div[1]/select")
+	public WebElement ManageProduct_AddNewProduct_Brand_DropdownValues;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div[2]/select")
+	public WebElement ManageProduct_AddNewProduct_Category_DropdownValues;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div[3]/select")
+	public WebElement ManageProduct_AddNewProduct_Supplier_DropdownValues;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//button[@title='Add New Brand']")
+	public WebElement ManageProduct_AddNewProduct_AddNewBrand_Button;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//button[@title='Add New Category']")
+	public WebElement ManageProduct_AddNewProduct_AddNewCategory_Button;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//button[@title='Add New Supplier']")
+	public WebElement ManageProduct_AddNewProduct_AddNewSupplier_Button;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//button[text()='Save']")
+	public WebElement ManageProduct_AddNewProduct_Save_Button;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div/input")
+	public List<WebElement> ManageProduct_AddNewProduct_Input_TextBox_List;
+	
+	/******TC_14_017 Check whether a new brand can be added in Add New Product page*****/
+	
+	@FindBy(xpath="//*[@id='brandsModalPopUp']//*[text()='Add Brand']")
+	public WebElement ManageProduct_AddNewProduct_AddBrand_PopupHeader;
+	
+	@FindBy(xpath="//*[@id='brandsModalPopUp']//input[@ng-model='brandData.name']")
+	public WebElement ManageProduct_AddNewProduct_ABP_BrandTextBox;
+	
+	@FindBy(xpath="//*[@id='brandsModalPopUp']//button[text()='Save']")
+	public WebElement ManageProduct_AddNewProduct_ABP_SaveButton;
+	
+	/************TC_14_018 Check whether a new Category can be added in Add New Product page******/
+	
+	@FindBy(xpath="//*[text()='Add Category']")
+	public WebElement ManageProduct_AddNewProduct_AddCategory_PopupHeader;
+	
+	@FindBy(xpath="//input[@ng-model='categoryData.name']")
+	public WebElement ManageProduct_AddNewProduct_AddCategory_CategoryTextBox;
+	
+	@FindBy(xpath="//*[@id='categoryModalPopUp']//button[text()='Save']")
+	public WebElement ManageProduct_AddNewProduct_AddCategory_SaveButton;
+	
+	/***TC_14_019 Check whether a new Supplier can be added in Add New Product page***/
+	
+	@FindBy(xpath="//*[text()='Add Supplier']")
+	public WebElement ManageProduct_AddNewProduct_AddSupplierPopup_Header;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='supplier_name']")
+	public WebElement ManageProduct_AddNewProduct_ASP_SupplierName_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='supplier_mobile']")
+	public WebElement ManageProduct_AddNewProduct_ASP_SupplierMobile_TextBox;
+	
+	@FindBy(xpath="//*[@name='supplier_description']")
+	public WebElement ManageProduct_AddNewProduct_ASP_SupplieDescription_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='contact_person_name']")
+	public WebElement ManageProduct_AddNewProduct_ASP_ContactPersonName_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='contact_person_email']")
+	public WebElement ManageProduct_AddNewProduct_ASP_ContactPersonEmail_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='contact_person_website']")
+	public WebElement ManageProduct_AddNewProduct_ASP_ContactPersonWebSite_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='contact_person_mobile']")
+	public WebElement ManageProduct_AddNewProduct_ASP_ContactPersonMobile_TextBox;
+	
+	@FindBy(xpath="//textarea[@name='contact_person_address']")
+	public WebElement ManageProduct_AddNewProduct_ASP_ContactPersonAddress_TextBox;
+	
+	@FindBy(xpath="//*[@ng-submit='addorUpdateSupplier()']/button[text()='Save']")
+	public WebElement ManageProduct_AddNewProduct_ASP_SaveButton;
+	
+	/*****TC_14_020 Check whether a product detail/price can be changed*********/
+	
+	@FindBy(xpath="//*[@id='productModalPopUp']//h4[text()='Edit Product']")
+	public WebElement ManageProduct_AllProduct_EditProductPopup_Header;
+
+	@FindBy(xpath="//*[@id='productModalPopUp']//input[@ng-model='productData.product_name']")
+	public WebElement ManageProduct_AllProduct_EPP_ProductName_TextBox;
+	
+	@FindBy(xpath="//*[@id='productModalPopUp']//input[@ng-model='productData.retail_price']")
+	public WebElement ManageProduct_AllProduct_EPP_ProductRetailPrice_TextBox;
+	
+	@FindBy(xpath="//*[@id='products']/div/div[1]/table/tbody/tr/td[2]")
+	public List<WebElement> ManageProduct_AllProduct_RetailPrice_List;
+	
+	@FindBy(xpath="//*[@id='productModalPopUp']//button[text()='Save']")
+	public WebElement ManageProduct_AllProduct_EPP_Save_Button;
+	
+	/*****TC_14_021 Check whether a product can be deleted********/
+	
+	@FindBy(xpath="//*[@id='productModalPopUp']//button[text()='Delete']")
+	public WebElement ManageProduct_AllProduct_EPP_Delete_Button;
+	
+	@FindBy(xpath="//button[text()='Yes']")
+	public WebElement ManageProduct_AllProduct_EPP_Yes_Button;
+	
+	
+	/*******TC_14_022 Check the Add Stock (+) button*********/
+	
+	@FindBy(xpath="//*[@id='increaseStockPopup']//h4")
+	public WebElement ManageProduct_AllProduct_AddStockForTheHealthTips_PopupHeader;
+	
+	@FindBy(xpath="//*[@id='products']//button[@ng-click='increaseStockAction(item)']")
+	public List<WebElement>  ManageProduct_AllProduct_IncreaseStockAction_ButtonList;
+	
+	@FindBy(xpath="//*[@id='increaseStockPopup']//input[@ng-model='increaseProductItem.qty']")
+	public WebElement ManageProduct_AllProduct_AddStockForTheHealthTips_Quality_Textbox;
+	
+	@FindBy(xpath="//*[@id='increaseStockPopup']//input[@ng-model='increaseProductItem.supply_price']")
+	public WebElement ManageProduct_AllProduct_AddStockForTheHealthTips_SupplyPrice_TextBox;
+	
+	@FindBy(xpath="//*[@id='increaseStockPopup']//select[@ng-model='increaseProductItem.action']")
+	public WebElement ManageProduct_AllProduct_AddStockForTheHealthTips_AdjustmentReason_SelectionValues;
+	
+	@FindBy(xpath="//*[@id='increaseStockPopup']//input[@name='save_price_for_next_time']")
+	public WebElement ManageProduct_AllProduct_AddStockForTheHealthTips_SavePriceForNexttime_CheckBox;
+	
+	@FindBy(xpath="//*[@id='increaseStockPopup']//button[text()='Save']")
+	public WebElement ManageProduct_AllProduct_AddStockForTheHealthTips_Save_Button;
+	
+	@FindBy(xpath="//*[@id='increaseStockPopup']//button[text()='Cancel']")
+	public WebElement ManageProduct_AllProduct_AddStockForTheHealthTips_Cancel_Button;
+
+	@FindBy(xpath="//*[@id='products']/div/div[1]/table/tbody/tr/td[3]")
+	public List<WebElement> ManageProduct_AllProduct_StockOnHand_List;
+	
+	/**********TC_14_024 Check the decrease stock (-) button*********/
+	@FindBy(xpath="//*[@id='products']//button[@ng-click='decreaseStockAction(item)']")
+	public List<WebElement>  ManageProduct_AllProduct_DecreaseStockAction_ButtonList;
+	
+	@FindBy(xpath="//*[@id='decreaseStockPopup']//h4[text()='Decrease Stock for the Health Tips']")
+	public WebElement ManageProduct_AllProduct_DecreaseStockForTheHealthTips_PopupHeader;
+	
+	@FindBy(xpath="//*[@id='decreaseStockPopup']//input[@ng-model='decreaseProductItem.qty']")
+	public WebElement ManageProduct_AllProduct_DecreaseStockForTheHealthTips_Quality_Textbox;
+	
+	@FindBy(xpath="//*[@id='decreaseStockPopup']//select[@name='action']")
+	public WebElement ManageProduct_AllProduct_DecreaseStockForTheHealthTips_AdjustmentReason_SelectionValues;
+	
+	@FindBy(xpath="//*[@id='decreaseStockPopup']//button[text()='Save']")
+	public WebElement ManageProduct_AllProduct_DecreaseStockForTheHealthTips_Save_Button;
+	
+	@FindBy(xpath="//*[@id='decreaseStockPopup']//button[text()='Cancel']")
+	public WebElement ManageProduct_AllProduct_DecreaseStockForTheHealthTips_Cancel_Button;
+	
+	/***************TC_14_026 Check the stock history**********/
+	@FindBy(xpath="//*[@id='products']//button[@ng-click='viewStockHistory(item)']")
+	public List<WebElement>  ManageProduct_AllProduct_ViewStockHistoryAction_ButtonList;
+	
+	@FindBy(xpath="//*[@id='stockHistoryPopup']//h4[text()='Stock History for the Health Tips']")
+	public WebElement ManageProduct_AllProduct_StockHistoryForTheHealthTips_PopuHeader;
+	
+	@FindBy(xpath="//*[@id='stockHistoryPopup']//table/thead/tr/th")
+	public List<WebElement> ManageProduct_AllProduct_StockHistoryForTheHealthTips_TableHeaderList;
+	
+	@FindBy(xpath="//*[@id='stockHistoryPopup']//table/tbody/tr")
+	public List<WebElement> ManageProduct_AllProduct_StockHistoryForTheHealthTips_Actionperformed_List;
 
 }
