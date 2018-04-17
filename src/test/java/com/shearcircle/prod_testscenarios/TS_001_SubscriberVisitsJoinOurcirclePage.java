@@ -25,8 +25,13 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 
 public class TS_001_SubscriberVisitsJoinOurcirclePage extends StaticVariables {
-	CommonFunctions cfn = new CommonFunctions();
+	
+	CommonFunctions cfn;
 	Subscriber_Module_Page_Components SR;
+	
+	public TS_001_SubscriberVisitsJoinOurcirclePage()throws IOException, InterruptedException{
+		cfn = new CommonFunctions();
+	}
 
 	@BeforeClass
 	@Parameters("browser")
