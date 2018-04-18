@@ -52,9 +52,9 @@
         <classes>
         	<class name="com.shearcircle.prod_testscenarios.DriverandBrowser_Launch" />
 			 <class name="com.shearcircle.prod_testscenarios.TS_1_01_CustomerclicksJoinOurCircleButton" />
-			<!-- <class name="com.shearcircle.prod_testscenarios.TS_1_02_CustomerclicksonJoinOurCirclebuttononAreyouaCustomer" />
+			<class name="com.shearcircle.prod_testscenarios.TS_1_02_CustomerclicksonJoinOurCirclebuttononAreyouaCustomer" />
 			<class name="com.shearcircle.prod_testscenarios.TS_1_03_CustomerclicksonJoinOurCirclebuttonafterenteringvaliddetails" />
-			<class name="com.shearcircle.prod_testscenarios.TS_1_05_CustomerclicksonJoinOurCirclebuttonafterenteringInvaliddetails" />
+			<!--<class name="com.shearcircle.prod_testscenarios.TS_1_05_CustomerclicksonJoinOurCirclebuttonafterenteringInvaliddetails" />
 			<class name="com.shearcircle.prod_testscenarios.TS_1_06_CustomerclicksonJoinOurCircleawithvaliddetailsandwithoutterms" /> 
 			<class name="com.shearcircle.prod_testscenarios.TS_1_07_CustomerclicksonthehyperlinksinCustomerRegistrationpage" />
 			<class name="com.shearcircle.prod_testscenarios.TS_2_01_CustomerclicksLoginonShearCirclehomepage" />
