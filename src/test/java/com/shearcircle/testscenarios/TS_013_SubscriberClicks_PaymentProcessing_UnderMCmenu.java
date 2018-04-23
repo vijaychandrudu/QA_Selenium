@@ -73,9 +73,9 @@ public class TS_013_SubscriberClicks_PaymentProcessing_UnderMCmenu extends Stati
 		SR.check_Details_PaymentProcessing_Page();
 	}
 
-	@Test(priority = 13005, description = "TC_13_003 Check the button – BYPSC")
+	@Test(priority = 13005, description = "TC_13_003 Check the button BYPSC")
 	public void TC_13_003_SubScriberr_check_Button_BYPSC() throws IOException {
-		ExtentTestManager.getTest().setDescription("TC_13_003 Check the button – BYPSC");
+		ExtentTestManager.getTest().setDescription("TC_13_003 Check the button BYPSC");
 		SR.check_Button_BYPSC();
 	}
 

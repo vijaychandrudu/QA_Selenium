@@ -135,10 +135,10 @@ public class TS_021_SubscriberClicksOn_AppointmentsMenu extends StaticVariables 
 		SR.check_Customer_ReceivesNotification_ForCancelledAppointments();
 	}
 
-	@Test(priority = 21014, description = "TC_21_012 Check the options available for booking with status as – Completed")
+	@Test(priority = 21014, description = "TC_21_012 Check the options available for booking with status as Completed")
 	public void TC_21_012_SubScriberr_checkwhether_NewBookingCan_BeCompleted() throws IOException {
 		ExtentTestManager.getTest()
-				.setDescription("TC_21_012 Check the options available for booking with status as – Completed");
+				.setDescription("TC_21_012 Check the options available for booking with status as Completed");
 		SR.checkwhether_NewBookingCan_BeCompleted();
 	}
 
@@ -181,21 +181,21 @@ public class TS_021_SubscriberClicksOn_AppointmentsMenu extends StaticVariables 
 		SR.check_AvailableOptions_For_ConfirmedBooking();
 	}
 
-	@Test(priority = 21021, description = "TC_21_019 Check filter by date – Today")
+	@Test(priority = 21021, description = "TC_21_019 Check filter by date Today")
 	public void TC_21_019_SubScriberr_check_FilterByDate_Today() throws IOException {
-		ExtentTestManager.getTest().setDescription("TC_21_019 Check filter by date – Today");
+		ExtentTestManager.getTest().setDescription("TC_21_019 Check filter by date Today");
 		SR.check_FilterByDate_Today();
 	}
 
-	@Test(priority = 21022, description = "TC_21_020 Check filter by date – All Appointments")
+	@Test(priority = 21022, description = "TC_21_020 Check filter by date All Appointments")
 	public void TC_21_020_SubScriberr_check_filterByDate_AllAppointments() throws IOException {
 		ExtentTestManager.getTest().setDescription("TC_21_020 Check filter by date – All Appointments");
 		SR.check_filterByDate_AllAppointments();
 	}
 
-	@Test(priority = 21023, description = "TC_21_021 Check filter by date – Custom Range")
+	@Test(priority = 21023, description = "TC_21_021 Check filter by date Custom Range")
 	public void TC_21_021_SubScriberr_check_filterByDate_CustomRange() throws IOException {
-		ExtentTestManager.getTest().setDescription("TC_21_021 Check filter by date – Custom Range");
+		ExtentTestManager.getTest().setDescription("TC_21_021 Check filter by date Custom Range");
 		SR.check_filterByDate_CustomRange();
 	}
 

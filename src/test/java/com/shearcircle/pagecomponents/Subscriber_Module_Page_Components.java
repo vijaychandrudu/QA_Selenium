@@ -1436,7 +1436,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 	 * 
 	 * 
 	 * 
-	 * 5-12 to 5-14 pending
+	 * 5(12) to 5(14) pending
 	 */
 
 	/*****TS006_Subscriber Set Up Profile By Clicking My Settings*****/
@@ -6874,7 +6874,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
 	}
-	/***TC_21_012 Check the options available for booking with status as – Completed***/
+	/***TC_21_012 Check the options available for booking with status as Completed***/
 	
 	public void checkwhether_NewBookingCan_BeCompleted() {
 		String ApBookingID = "";
@@ -7184,7 +7184,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		}
 	}
 	
-	/***TC_21_019 Check filter by date – Today*/
+	/***TC_21_019 Check filter by date Today*/
 	
 	public void check_FilterByDate_Today() {
 		try {
@@ -7221,7 +7221,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		}
 	}
 	
-	/****TC_21_020 Check filter by date – All Appointments*/
+	/****TC_21_020 Check filter by date All Appointments*/
 	
 	public void check_filterByDate_AllAppointments() {
 		try {
@@ -7257,7 +7257,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		}
 	}
 	
-	/***TC_21_021 Check filter by date – Custom Range**/
+	/***TC_21_021 Check filter by date Custom Range**/
 	
 	public void check_filterByDate_CustomRange() {
 		try {
