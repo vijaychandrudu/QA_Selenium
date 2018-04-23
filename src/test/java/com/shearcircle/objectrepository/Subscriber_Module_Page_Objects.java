@@ -1318,58 +1318,13 @@ public class Subscriber_Module_Page_Objects {
 	
 
 
-	/**********TS021_Subscriber clicks on Appointments menu**********/
-	/*****TC_21_001 Open Appointments page*****/
-	
-	@FindBy(xpath="//a[text()='Appointments']")
-	public WebElement Appointments_Menu_Link;
-	
-	@FindBy(xpath="//h3[text()='Appointments']")
-	public WebElement Appointments_AppointmentsPage_Header;
-	
-	@FindBy(xpath="//*[text()='No Appointments found']")
-	public WebElement Appointments_NoAppointmentsFound_Text;
-	
-	@FindBy(xpath="//h4[text()='All Appointments']")
-	public WebElement Appointments_AllAppointments_Text;
-	
-	@FindBy(xpath="//table/tbody/tr/td[@data-label='Booking Id']")
-	public List<WebElement> Appointments_AllAppointments_BookingID_List;
-
-	@FindBy(xpath="//table[@class='table styapp']/thead//th")
-	public List<WebElement> Appointments_AllAppointments_TableHeaders_List;
-	
-	@FindBy(xpath="//select[@name='date_range']")
-	public WebElement Appointments_AllAppointments_FilterByDate;
-	
-	@FindBy(xpath="//select[@ng-model='selectedStaff']")
-	public WebElement Appointments_AllAppointments_FilterByStaff;
-	
-	@FindBy(xpath="//select[@ng-model='appointment_status']")
-	public WebElement Appointments_AllAppointments_FilterByAppointmentStatus;
-	
-	@FindBy(xpath="//button[@ng-click='trackByTransactionAction()']")
-	public WebElement Appointments_AllAppointments_TrackTransactionStatus_Button;
-	
-	@FindBy(xpath="//*[@ng-click='addNewAppointment()']")
-	public WebElement Appointments_AllAppointments_AddNewAppointment_Button;
-	
-	@FindBy(xpath="//*[@ng-model='searchAppointmentById']")
-	public WebElement Appointments_AllAppointments_SearchBox;
-	
+		
 	@FindBy(xpath="//table[@class='table styapp']/tbody/tr/td[1]")
 	public List<WebElement> Appointments_AllAppointments_BookingId_List;
 	
 	/***TC_21_002******/
 	
-	@FindBy(xpath="//*[@id='addStaffForm']/div[1]/h4")
-	public WebElement Appointments_BookingSummaryPopupAnd_Id;
 	
-	@FindBy(xpath="//*[@id='addStaffForm']//strong[2]")
-	public WebElement Appointments_BSP_StaffBooked_Name;
-	
-	@FindBy(xpath="//*[@id='addStaffForm']//strong[3]")
-	public WebElement Appointments_BSP_AppointmentDateAndTime;
 	
 	@FindBy(xpath="//*[@id='addStaffForm']//div[@class='col-md-8 detser']")
 	public WebElement Appointments_BSP_ServiceDetails_Table;
@@ -1760,5 +1715,264 @@ public class Subscriber_Module_Page_Objects {
 	
 	@FindBy(xpath="//*[@id='stockHistoryPopup']//table/tbody/tr")
 	public List<WebElement> ManageProduct_AllProduct_StockHistoryForTheHealthTips_Actionperformed_List;
+	
+	/**********TS021_Subscriber clicks on Appointments menu**********/
+	/*****TC_21_001 Open Appointments page*****/
+	
+	@FindBy(xpath="//a[text()='Appointments']")
+	public WebElement Appointments_Menu_Link;
+	
+	@FindBy(xpath="//div[@class='dashboard_title']//h3[contains(text(),'Appointments')]")
+	public WebElement Appointments_AppointmentsPage_Header;
+	
+	@FindBy(xpath="//*[text()='No Appointments found']")
+	public WebElement Appointments_NoAppointmentsFound_Text;
+	
+	@FindBy(xpath="//h4[text()='All Appointments']")
+	public WebElement Appointments_AllAppointments_Text;
+	
+	@FindBy(xpath="//table/tbody/tr/td[@data-label='Booking Id']")
+	public List<WebElement> Appointments_AllAppointments_BookingID_List;
+
+	@FindBy(xpath="//table[@class='table styapp']/thead//th")
+	public List<WebElement> Appointments_AllAppointments_TableHeaders_List;
+	
+	@FindBy(xpath="//select[@name='date_range']")
+	public WebElement Appointments_AllAppointments_FilterByDate;
+	
+	@FindBy(xpath="//select[@ng-model='selectedStaff']")
+	public WebElement Appointments_AllAppointments_FilterByStaff;
+	
+	@FindBy(xpath="//select[@ng-model='appointment_status']")
+	public WebElement Appointments_AllAppointments_FilterByAppointmentStatus;
+	
+	@FindBy(xpath="//button[@ng-click='trackByTransactionAction()']")
+	public WebElement Appointments_AllAppointments_TrackTransactionStatus_Button;
+	
+	@FindBy(xpath="//*[@ng-click='addNewAppointment()']")
+	public WebElement Appointments_AllAppointments_AddNewAppointment_Button;
+	
+	@FindBy(xpath="//*[@ng-model='searchAppointmentById']")
+	public WebElement Appointments_AllAppointments_SearchBox;
+	
+	/*@FindBy(xpath="//table[@class='table styapp']/tbody/tr/td[2]")
+	public List<WebElement> Appointments_AllAppointments_AppointmentTime_List;
+	
+	@FindBy(xpath="//table[@class='table styapp']/tbody/tr/td[3]")
+	public List<WebElement> Appointments_AllAppointments_CustomerName_List;*/
+	
+	@FindBy(xpath="//table[@class='table styapp']/tbody/tr")
+	public List<WebElement> Appointments_AllAppointments_List;
+	
+	@FindBy(xpath="//table[@class='table styapp']/tbody/tr/td[8]")
+	public List<WebElement> Appointments_AllAppointments_StatusList;
+	
+	/***TC_21_002******/
+	
+	@FindBy(xpath="//*[@id='addStaffForm']/div[1]/h4")
+	public WebElement Appointments_BookingSummaryPopupAnd_Id;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//strong[2]")
+	public WebElement Appointments_BSP_StaffBooked_Name;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//strong[3]")
+	public WebElement Appointments_BSP_AppointmentDateAndTime;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//table/thead/tr/th")
+	public List<WebElement> Appointments_BSP_SelectedServices_TableHeadersList;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//table/tbody/tr/th")
+	public List<WebElement> Appointments_BSP_CustomerDetails_TableHeadersList;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//div[2]/table/tbody/tr/td")
+	public List<WebElement> Appointments_BSP_CustomerDetails_TableDataValue;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//div[1]/table/tbody/tr/td")
+	public List<WebElement> Appointments_BSP_SelectedService_DetailsDataValue;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//a[text()='  View Appointment']")
+	public WebElement Appointments_BSP_ViewAppointment_Button;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//div/a[text()='  Check Out']")
+	public WebElement Appointments_BSP_CheckOut_Button;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']/div[1]/button[@class='close']")
+	public WebElement Appointments_BSP_Close_Button;
+	
+	/****TC_21_003 Check the available options for booking with status as New**********/
+	
+	@FindBy(xpath="//table[@class='table styapp']//*[text()='New']//preceding::td[7]")
+	public List<WebElement> Appointments_AllAppointments_BookingIDHavig_NewStatus;
+	
+	@FindBy(xpath="//table[@class='table styapp']//button[text()='New']")
+	public List<WebElement>  Appointments_AllAppointments_NewStatusButton_List;
+	
+	@FindBy(xpath="//ul[@class='pagination']/li/a")
+	public List<WebElement>  Appointments_AllAppointments_PaginationButton_List;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//div/button[@ng-click='doCancelAppointment(bookingView)']")
+	public WebElement Appointments_BSP_CancelBooking_Button;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//div/button[@ng-click='doRescheduleAppointment(bookingView)']")
+	public WebElement Appointments_BSP_Reschedule_Button;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//div/button[text()='Confirmed']")
+	public WebElement Appointments_BSP_Confirmed_Button;
+	
+	
+	
+	/********TC_21_004 Check whether available timeslots are displayed when we click on Reschedule button.************/
+	
+	@FindBy(xpath="//*[@id='reschedulePopup']/div/div/div[1]/h4[contains(text(),'Reschedule Time for ')]")
+	public WebElement Appointments_RescheduleTimeForAppointment_PopupHeader;
+	
+	@FindBy(xpath="//*[@id='reschedulePopup']//h4[text()='Available Times']")
+	public WebElement Appointments_RTAPP_AvailableTimes;
+	
+	@FindBy(xpath="//*[@id='cal2']/div[2]//div[@class='cell-content']")
+	public List<WebElement>  Appointments_RTAPP_AvailableTimesDayList;
+	
+	@FindBy(xpath="//*[@id='reschedulePopup']//h4[@ng-if='availableProfessionalTimeslots.length == 0']")
+	public WebElement  Appointments_RTAPP_NoAvailableTime_Slots;
+	
+	/******TC_21_005 Check whether an appointment can be Rescheduled**********/
+	
+	@FindBy(xpath="//*[@id='reschedulePopup']//div[@class='col-md-11 ng-binding']")
+	public List<WebElement> Appointments_RTAPP_AvailableTimes_List;
+	
+	@FindBy(xpath="//*[text()='Yes, Proceed to reschedule!']")
+	public WebElement Appointments_RTAPP_YesProceedToReschedulePopup;
+	
+	/****TC_21_007 Check whether the Customer receives reschedule notification*******/
+	
+	
+	/***TC_21_009 Check the available options in a Cancelled booking*****///
+	@FindBy(xpath="//table/tbody/tr/td/label[text()='Cancelled']")
+	public List<WebElement> Appointments_AllAppointments_CancelledStatus_List;
+	
+	@FindBy(xpath="//table[@class='table styapp']//*[text()='Cancelled']//preceding::td[7]")
+	public List<WebElement> Appointments_AllAppointments_BookingIDHavig_CancelledStatus;
+	
+	/****TC_21_012 Check the options available for booking with status as – Completed***/
+	
+	@FindBy(xpath="//table/tbody/tr/td/button[text()='Completed']")
+	public List<WebElement> Appointments_AllAppointments_CompletedStatus_List;
+	
+	@FindBy(xpath="//table[@class='table styapp']//*[text()='Completed']//preceding::td[7]")
+	public List<WebElement> Appointments_AllAppointments_BookingIDHavig_CompletedStatus;
+	
+	/***TC_21_013 Check whether receipt/invoice can be viewed for Completed booking*****/
+	
+	@FindBy(xpath="//*[@id='container_pin']")
+	public WebElement Appointments_AllAppointments_ReceiptPDF_Page;
+	
+	@FindBy(xpath="//*[@class='container']//a")
+	public List<WebElement> Appointments_AllAppointments_ReceiptPDF_OptionList;
+	
+	@FindBy(xpath="//*[text()='Enter recipient email address']")
+	public WebElement Appointments_AllAppointments_EmailPopup;
+	
+	@FindBy(xpath="//input[@placeholder='Email Address']")
+	public WebElement Appointments_AllAppointments_EmailTextBox;
+		
+	/***TC_21_017 Check whether an appointment can be confirmed************/
+	@FindBy(xpath="//table/tbody/tr/td/button[text()='Confirmed']")
+	public List<WebElement>  Appointments_AllAppointments_ConfirmedStatus_List;
+	
+	@FindBy(xpath="//table[@class='table styapp']//*[text()='Confirmed']//preceding::td[7]")
+	public List<WebElement> Appointments_AllAppointments_BookingIDHavig_ConfirmedStatus;
+	
+	@FindBy(xpath="//div[@class='datatable_x_scroll table-mobile']")
+	public WebElement Appointments_AllAppointments_FilterTable;
+	
+	/***TC_21_021 Check filter by date – Custom Range**/
+	
+	@FindBy(xpath="//div[@class='xdsoft_calendar']/table/tbody/tr/td")
+	public List<WebElement>  Appointments_FromDate_List;
+	
+	/*******TC_21_024 Check the search box**********/
+	
+	@FindBy(xpath="//button[@ng-click='updateFilterAppointments()']")
+	public WebElement Appointments_AllAppointments_SeacrchIcon_Button;
+	
+	/*****TS022_Subscriber creates a Walk-in Appointment****/
+	/****TC_22_001 Check the +New Appointments button****/
+	
+	@FindBy(xpath="//*[@id='addBookingForm']/div[1]//*[text()='New Booking']")
+	public  WebElement NewAppointments_NewBooking_PageHeader;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//label/input")
+	public  List<WebElement> NewAppointments_Serviece_CheckBox_List;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//label")
+	public  List<WebElement> NewAppointments_ServiecesName_List;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//div/span")
+	public List<WebElement> NewAppointments_Servieces_Duration_List;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//strong")
+	public List<WebElement> NewAppointments_Servieces_PriceList;
+	
+	/***TC_22_002 Check whether single/multipleservices can be selected****/
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//table/tbody/tr/td/strong/span")
+	public List<WebElement> NewAppointments_Servieces_UpadateDetails_List;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']/div[2]/div/div/div[2]/table")
+	public WebElement  NewAppointments_Servieces_UpadtedTable;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//button[text()='Next']")
+	public WebElement NewAppointments_Next_Button;
+	
+	/*****TC_22_003 Check the Next button in services page***/
+	@FindBy(xpath="//*[@id='addBookingForm']//div[@ng-if='availableStaff.length > 0']")
+	public WebElement NewAppointments_StaffPage;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//label/object/img")
+	public List<WebElement> NewAppointments_Staff_List;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//button[text()='Back']")
+	public WebElement NewAppointments_Back_Button;
+	
+	/*****TC_22_004 Check whether the Back button in Staff page returns to Service page****/
+	@FindBy(xpath="//*[@id='addBookingForm']/div[2]/div/div/div[1]/div")
+	public WebElement  NewAppointments_Service_Page;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//table/tbody/tr[@class='ng-scope']")
+	public List<WebElement> NewAppointments_UpdateSelectedService_List;
+	
+	/***TC_22_006 Check the Next button in Staff selection page****/
+	@FindBy(xpath="//*[@id='addBookingForm']/div[2]/div/div/div[@ng-if='enableCustomerForm']")
+	public WebElement NewAppointments_CustomerDetails_Page;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//*[@id='email']")
+	public WebElement NewAppointments_CustomerEmail_TextBox;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//*[@id='customer_name']")
+	public WebElement NewAppointments_CustomerName_TextBox;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//*[@id='mobile']")
+	public WebElement NewAppointments_CustomerMobile_TextBox;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//center/img")
+	public WebElement NewAppointments_StaffImage;
+	
+	/***TC_22_009 Check whether available timeslots are displayed******/
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//h5[@ng-if='availableProfessionalTimeslots.length == 0']")
+	public WebElement NewAppointments_AvailableNoTimeslots;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//h4[text()='Available Times']")
+	public WebElement NewAppointments_AvailableTimes_Header;
+	
+	@FindBy(xpath="//*[@id='newBookingCalendar']//div/div[@class='cell-content']")
+	public List<WebElement>  NewAppointments_AvailableTimesDayList;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//div[@class='col-md-11 ng-binding']")
+	public List<WebElement> NewAppointments_AvailableTimes_List;
+	
+	@FindBy(xpath="//*[text()='Yes, Proceed to reschedule!']")
+	public WebElement NewAppointments_YesProceedToPopup;
+
 
 }

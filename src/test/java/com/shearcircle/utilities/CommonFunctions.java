@@ -139,7 +139,7 @@ public class CommonFunctions extends StaticVariables {
 	public String chromeDriverPath() throws IOException {
 		String ChromeDriverPath = null;
 		try {
-			ChromeDriverPath = ProjectDir + "\\drivers\\chromedriver.exe";
+			ChromeDriverPath = ProjectDir + "/drivers/chromedriver.exe";
 		} catch (WebDriverException e) {
 			System.out.println(e.getMessage());
 			Reporter.log(e.getMessage());

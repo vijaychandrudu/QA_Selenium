@@ -106,5 +106,41 @@ public class TS_020_SubscriberClicks_POSMenu extends StaticVariables {
 		ExtentTestManager.getTest().setDescription("TC_20_008 Check whether a product can be deleted from the orders");
 		SR.Check_product_deleted_from_orders();
 	}
+	
+	@Test(priority = 20011, description = "TC_20_009 Check the +Services button in Add New Sale popup")
+	public void TC_20_009_SubScriberr_Check_ServicesbuttoninAddNewSalepopup() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_009 Check the +Services button in Add New Sale popup");
+		SR.Check_ServicesbuttoninAddNewSalepopup();
+	}
+	
+	@Test(priority = 20012, description = "TC_20_010 Check whether service(s) can be added")
+	public void TC_20_010_SubScriberr_Check_servicecanbeadded() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_010 Check whether service(s) can be added");
+		SR.Check_servicecanbeadded();
+	}
+	
+	@Test(priority = 20013, description = "TC_20_011 Check whether multiple quantity of a service can be added")
+	public void TC_20_011_SubScriberr_Check_multiplequantityofservice_can_added() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_011 Check whether multiple quantity of a service can be added");
+		SR.Check_multiplequantityofservice_can_added();
+	}
+	
+	@Test(priority = 20015, description = "TC_20_013 Check whether a discount can be applied to the service in the order")
+	public void TC_20_013_SubScriberr_Check_discountapplied_in_serviceorderstemplat() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_013 Check whether a discount can be applied to the service in the order");
+		SR.Check_discountapplied_in_serviceorderstemplat();
+	}
+	
+	@Test(priority = 20016, description = "TC_20_014 Check whether a staff can be assigned to a service")
+	public void TC_20_014_SubScriberr_Check_staffcanbeassignedtoservice() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_014 Check whether a staff can be assigned to a service");
+		SR.Check_staffcanbeassignedtoservice();
+	}
+	
+	@Test(priority = 20017, description = "TC_20_015 Check whether a service can be deleted")
+	public void TC_20_015_SubScriberr_Check_service_deleted_from_orders() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_015 Check whether a service can be deleted");
+		SR.Check_service_deleted_from_orders();
+	}	
 
 }

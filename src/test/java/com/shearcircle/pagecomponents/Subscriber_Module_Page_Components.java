@@ -4748,182 +4748,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
-	}
-	
-	/**********TS021_Subscriber clicks on Appointments menu**********/
-	/*****TC_21_001 Open Appointments page*****/
-	
-	public void open_AppointmentsPage() {
-		String TableHeadername = "";
-		String ExpectedFilterByDate = "Today;All Appointments;Custom Range";
-		String FilterByDateVlaues = "";
-		String FilterByStaffVlaues = "";
-		String FilterByStatusVlaues = "";
-		String ExpectedFilterByStatus = " Status;All;New;Canceled;Confirmed;Completed";
-
-		try {
-			List<WebElement> BookingID_List = SCobjects.Appointments_AllAppointments_BookingID_List;
-			List<WebElement> AllAppointmentsTableHeaders = SCobjects.Appointments_AllAppointments_TableHeaders_List;
-			if (browser.elementisdisplayed(SCobjects.Appointments_Menu_Link)) {
-				browser.reportscomtep("Passed", "Verify Appointments Menu link is displayed",
-						"Appointments Menu link should be displayed", "Appointments Menu link is displayed");
-				browser.click(SCobjects.Appointments_Menu_Link);
-				if (browser.elementisdisplayed(SCobjects.Appointments_AppointmentsPage_Header)) {
-					browser.reportscomtep("Passed",
-							"Clicks on Appointments Menu link and open verify Appointments page header is displayed",
-							" Appointments page header should be displayed", " Appointments page header is displayed");
-					if (BookingID_List.size() > 0
-							&& browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_Text)) {
-						String[] AATemplateHeadreds = new String[8];
-						AATemplateHeadreds[0] = "Booking Id";
-						AATemplateHeadreds[1] = "Appointment Time";
-						AATemplateHeadreds[2] = "Customer Name";
-						AATemplateHeadreds[3] = "Mobile & Email";
-						AATemplateHeadreds[4] = "Services";
-						AATemplateHeadreds[5] = "Amount";
-						AATemplateHeadreds[6] = "Payment Status";
-						AATemplateHeadreds[7] = "Status";
-						int i = 0;
-						for (WebElement theader : AllAppointmentsTableHeaders) {
-							TableHeadername = browser.getelementtext(theader);
-							if (TableHeadername.equalsIgnoreCase(AATemplateHeadreds[i])
-									&& browser.elementisdisplayed(AllAppointmentsTableHeaders.get(i))) {
-								browser.reportscomtep("Passed",
-										"Verify Table header " + TableHeadername + " is Displayed",
-										"Table header should be Displayed",
-										"Table header displayed as " + TableHeadername);
-							} else {
-								browser.reportscomtep("Failed",
-										"Verify Table header " + AATemplateHeadreds[i] + " is Displayed",
-										"Table header should be Displayed",
-										"Table header " + AATemplateHeadreds[i] + " Not displayed");
-							}
-
-							i++;
-						}
-						List<WebElement> FilterByDate = browser
-								.getOptions(SCobjects.Appointments_AllAppointments_FilterByDate);
-						int itemCount = FilterByDate.size();
-						if (itemCount > 0) {
-							for (WebElement listvalue : FilterByDate) {
-								FilterByDateVlaues = FilterByDateVlaues + ";" + listvalue.getText();
-								System.out.println("Type List value:" + FilterByDateVlaues);
-							}
-							if (ExpectedFilterByDate.equalsIgnoreCase(FilterByDateVlaues.substring(1)) && browser
-									.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterByDate)) {
-								browser.reportscomtep("Passed",
-										"Verify Filter by Date filters are dispalyed & All Appointments option is default selected) ",
-										"Filter by Date filters should be dispalyed & All Appointments option is default selected",
-										"List of filters dispalyed as : " + FilterByDateVlaues + " in Filter by Date");
-							} else {
-								browser.reportscomtep("Failed",
-										"Verify Filter by Date filters are dispalyed & All Appointments option is default selected) ",
-										"Filter by Date filters should be dispalyed & All Appointments option is default selected",
-										"List of Filter by Date Not dispalyed");
-							}
-						}
-						List<WebElement> FilterByStaff = browser
-								.getOptions(SCobjects.Appointments_AllAppointments_FilterByStaff);
-						int itemCountFilterByStaff = FilterByStaff.size();
-						if (itemCountFilterByStaff > 0) {
-							for (WebElement listvalue : FilterByStaff) {
-								FilterByStaffVlaues = FilterByStaffVlaues + ";" + listvalue.getText();
-								System.out.println("Type List value:" + FilterByStaffVlaues);
-							}
-							if (browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterByStaff)) {
-								browser.reportscomtep("Passed",
-										"Verify Filter by Staff filters are dispalyed & All Staff option is default selected) ",
-										"Filter by Staff filters should be dispalyed & All Staff option is default selected",
-										"List of filters dispalyed as : " + FilterByStaffVlaues
-												+ " in Filter by Satff");
-							} else {
-								browser.reportscomtep("Failed",
-										"Verify Filter by Staff filters are dispalyed & All Staff option is default selected) ",
-										"Filter by Date filters should be dispalyed & All Appointments option is default selected",
-										"List of Filter by Staff Not dispalyed");
-							}
-						}
-						List<WebElement> FilterByStatus = browser
-								.getOptions(SCobjects.Appointments_AllAppointments_FilterByAppointmentStatus);
-						int itemCountFilterByStatus = FilterByStatus.size();
-						if (itemCountFilterByStatus > 0) {
-							for (WebElement listvalue : FilterByStatus) {
-								FilterByStatusVlaues = FilterByStatusVlaues + ";" + listvalue.getText();
-								System.out.println("Type List value:" + FilterByStatusVlaues);
-							}
-							if (ExpectedFilterByStatus.equalsIgnoreCase(FilterByStatusVlaues.substring(1))
-									&& browser.elementisdisplayed(
-											SCobjects.Appointments_AllAppointments_FilterByAppointmentStatus)) {
-								browser.reportscomtep("Passed", "Verify Filter by Status filters are dispalyed",
-										"Verify Filter by Status filters are dispalyed",
-										"List of filters dispalyed as : " + FilterByStatusVlaues
-												+ " in Filter by Status");
-							} else {
-								browser.reportscomtep("Failed", "Verify Filter by Status filters are dispalyed",
-										"Verify Filter by Status filters are dispalyed",
-										"List of Filter by Status Not dispalyed");
-							}
-						}
-
-					} else if (browser.elementisdisplayed(SCobjects.Appointments_NoAppointmentsFound_Text)) {
-						String Appointments_Found = browser
-								.getelementtext(SCobjects.Appointments_NoAppointmentsFound_Text);
-						browser.reportscomtep("Passed",
-								"Verify For 1st login/ when no appointments available " + Appointments_Found
-										+ " is diaplayed ",
-								"For 1st login/ when no appointments available should be diaplayed ",
-								"For 1st login/ when no appointments available is diaplayed as : "
-										+ Appointments_Found);
-
-					}
-					browser.Verify_elementisdisplayed_Report(
-							SCobjects.Appointments_AllAppointments_AddNewAppointment_Button,
-							"+New Appointments button");
-					browser.Verify_elementisdisplayed_Report(
-							SCobjects.Appointments_AllAppointments_TrackTransactionStatus_Button,
-							"Track Transaction Status Button");
-					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_AllAppointments_SearchBox,
-							"Search Box");
-
-				} else {
-					browser.reportscomtep("Failed",
-							"Clicks on Appointments Menu link and open verify Appointments page header is displayed",
-							" Appointments page header should be displayed",
-							" Appointments page header is not displayed");
-				}
-
-			} else {
-				browser.reportscomtep("Failed", "Verify Appointments Menu link is displayed",
-						"Appointments Menu link should be displayed", "Appointments Menu link is not displayed");
-			}
-
-		} catch (Exception e) {
-			System.out.println("Error description: " + e.getStackTrace());
-		}
-	}
-	
-	/***TS_21_002 Check whether booking details can be viewed for a booking id****/
-	
-	public void check_BookingDetails_Viewe_BookingId(){
-		String BookingID ="";
-		int BS_BookingID=0;
-		try{
-			List<WebElement> BookingID_List = SCobjects.Appointments_AllAppointments_BookingID_List;
-			int BookingID_ListSize = BookingID_List.size();
-			if(BookingID_ListSize>1 && browser.elementisdisplayed(BookingID_List.get(1))){
-				BookingID = browser.getelementtext(BookingID_List.get(1));
-				browser.click(BookingID_List.get(1));
-				if(browser.elementisdisplayed(SCobjects.Appointments_BookingSummaryPopupAnd_Id)){
-					String BSPopupText = browser.getelementtext(SCobjects.Appointments_BookingSummaryPopupAnd_Id);
-					BS_BookingID = Integer.parseInt(BSPopupText.replaceAll("\\D", ""));
-				}
-			}
-			
-		}catch (Exception e) {
-			System.out.println("Error description: " + e.getStackTrace());
-		}
-	}
-	
+	}		
 	
 /**TS014_Subscriber clicks on Manage Products under Manage Circle Menu*********/
 	
@@ -6344,6 +6169,1823 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 				browser.reportscomtep("Failed", "Clicks on All Product Tab and verify Product header is displayed",
 						"Product header should be displayed", "Product header is not displayed");
 			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/**********TS021_Subscriber clicks on Appointments menu**********/
+	/*****TC_21_001 Open Appointments page*****/
+	
+	public void open_AppointmentsPage() {
+		String TableHeadername = "";
+		String ExpectedFilterByDate = " Today;All Appointments;Custom Range";
+		String FilterByDateVlaues = "";
+		String FilterByStaffVlaues = "";
+		String FilterByStatusVlaues = "";
+		String ExpectedFilterByStatus = "All;New;Canceled;Confirmed;Completed";
+
+		try {
+			List<WebElement> AllAppointmentsTableHeaders = SCobjects.Appointments_AllAppointments_TableHeaders_List;
+			if (browser.elementisdisplayed(SCobjects.Appointments_Menu_Link)) {
+				browser.reportscomtep("Passed", "Verify Appointments Menu link is displayed",
+						"Appointments Menu link should be displayed", "Appointments Menu link is displayed");
+				browser.click(SCobjects.Appointments_Menu_Link);
+				if (browser.elementisdisplayed(SCobjects.Appointments_AppointmentsPage_Header)) {
+					browser.reportscomtep("Passed",
+							"Clicks on Appointments Menu link and open verify Appointments page header is displayed",
+							" Appointments page header should be displayed", " Appointments page header is displayed");
+					if (browser.elementisdisplayed(SCobjects.Appointments_NoAppointmentsFound_Text)) {
+						browser.reportscomtep("Passed", "Verify For 1st login no Appointments Are available",
+								" For 1st login no Appointments should be available",
+								" For 1st login no Appointments Are available");
+					} else {
+						browser.reportscomtep("Passed", "Verify Appointments Are available ",
+								" Appointments should be available", " Appointments Are available");
+					}
+					if (browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_Text)) {
+						browser.reportscomtep("Passed", "Verify All Appointments Template is displayed",
+								"All Appointments Template shpuld be dispalyed",
+								"All Appointments Template is dispalyed");
+						String[] AATemplateHeadreds = new String[8];
+						AATemplateHeadreds[0] = "Booking Id";
+						AATemplateHeadreds[1] = "Appointment Time";
+						AATemplateHeadreds[2] = "Customer Name";
+						AATemplateHeadreds[3] = "Mobile & Email";
+						AATemplateHeadreds[4] = "Services";
+						AATemplateHeadreds[5] = "Amount";
+						AATemplateHeadreds[6] = "Payment Status";
+						AATemplateHeadreds[7] = "Status";
+						int i = 0;
+						for (WebElement theader : AllAppointmentsTableHeaders) {
+							TableHeadername = browser.getelementtext(theader);
+							if (TableHeadername.equalsIgnoreCase(AATemplateHeadreds[i])
+									&& browser.elementisdisplayed(AllAppointmentsTableHeaders.get(i))) {
+								browser.reportscomtep("Passed",
+										"Verify Table header " + TableHeadername + " is Displayed",
+										"Table header should be Displayed",
+										"Table header displayed as: " + TableHeadername);
+							} else {
+								browser.reportscomtep("Failed",
+										"Verify Table header " + AATemplateHeadreds[i] + " is Displayed",
+										"Table header should be Displayed",
+										"Table header " + AATemplateHeadreds[i] + " Not displayed");
+							}
+
+							i++;
+						}
+
+					} else {
+						browser.reportscomtep("Failed", "Verify All Appointments Template is displayed",
+								"All Appointments Template shpuld be dispalyed",
+								"All Appointments Template is not dispalyed");
+					}
+					List<WebElement> FilterByDate = browser
+							.getOptions(SCobjects.Appointments_AllAppointments_FilterByDate);
+					int itemCount = FilterByDate.size();
+					if (itemCount > 0) {
+						for (WebElement listvalue : FilterByDate) {
+							FilterByDateVlaues = FilterByDateVlaues + ";" + listvalue.getText();
+						}
+						if (ExpectedFilterByDate.trim().equalsIgnoreCase(FilterByDateVlaues.substring(16).trim())
+								&& browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterByDate)) {
+							browser.reportscomtep("Passed",
+									"Verify Filter by Date filters are dispalyed & All Appointments option is default selected",
+									"Filter by Date filters should be dispalyed & All Appointments option is default selected",
+									"List of filters dispalyed as : " + FilterByDateVlaues + " in Filter by Date");
+						} else {
+							browser.reportscomtep("Failed",
+									"Verify Filter by Date filters are dispalyed & All Appointments option is default selected) ",
+									"Filter by Date filters should be dispalyed & All Appointments option is default selected",
+									"List of Filter by Date Not dispalyed");
+						}
+					}
+					List<WebElement> FilterByStaff = browser
+							.getOptions(SCobjects.Appointments_AllAppointments_FilterByStaff);
+					int itemCountFilterByStaff = FilterByStaff.size();
+					if (itemCountFilterByStaff > 0) {
+						for (WebElement listvalue : FilterByStaff) {
+							FilterByStaffVlaues = FilterByStaffVlaues + ";" + listvalue.getText();
+						}
+						if (browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterByStaff)) {
+							browser.reportscomtep("Passed",
+									"Verify Filter by Staff filters are dispalyed & All Staff option is default selected) ",
+									"Filter by Staff filters should be dispalyed & All Staff option is default selected",
+									"List of filters dispalyed as : " + FilterByStaffVlaues + " in Filter by Satff");
+						} else {
+							browser.reportscomtep("Failed",
+									"Verify Filter by Staff filters are dispalyed & All Staff option is default selected) ",
+									"Filter by Date filters should be dispalyed & All Appointments option is default selected",
+									"List of Filter by Staff Not dispalyed");
+						}
+					}
+					List<WebElement> FilterByStatus = browser
+							.getOptions(SCobjects.Appointments_AllAppointments_FilterByAppointmentStatus);
+					int itemCountFilterByStatus = FilterByStatus.size();
+					if (itemCountFilterByStatus > 0) {
+						for (WebElement listvalue : FilterByStatus) {
+							FilterByStatusVlaues = FilterByStatusVlaues + ";" + listvalue.getText();
+						}
+						if (ExpectedFilterByStatus.equalsIgnoreCase(FilterByStatusVlaues.substring(9)) && browser
+								.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterByAppointmentStatus)) {
+							browser.reportscomtep("Passed", "Verify Filter by Status filters are dispalyed",
+									"Verify Filter by Status filters are dispalyed",
+									"List of filters dispalyed as : " + FilterByStatusVlaues + " in Filter by Status");
+						} else {
+							browser.reportscomtep("Failed", "Verify Filter by Status filters are dispalyed",
+									"Verify Filter by Status filters are dispalyed",
+									"List of Filter by Status Not dispalyed");
+						}
+					}
+					browser.Verify_elementisdisplayed_Report(
+							SCobjects.Appointments_AllAppointments_AddNewAppointment_Button,
+							"+New Appointments button");
+					browser.Verify_elementisdisplayed_Report(
+							SCobjects.Appointments_AllAppointments_TrackTransactionStatus_Button,
+							"Track Transaction Status Button");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_AllAppointments_SearchBox,
+							"Search Box");
+
+			} else {
+					browser.reportscomtep("Failed",
+							"Clicks on Appointments Menu link and open verify Appointments page header is displayed",
+							" Appointments page header should be displayed",
+							" Appointments page header is not displayed");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Verify Appointments Menu link is displayed",
+						"Appointments Menu link should be displayed", "Appointments Menu link is not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	/***TS_21_002 Check whether booking details can be viewed for a booking id****/
+	
+	public void check_BookingDetails_Viewe_BookingId() {
+		String ApBookingID = "";
+		String BS_DateandTime = "";
+		int BS_BookingID = 0;
+		String StaffBookedName = "";
+		String AppoinmentStatus = "";
+		String TableHeadername = "";
+
+		try {
+			List<WebElement> BookingID_List = SCobjects.Appointments_AllAppointments_BookingID_List;
+			int BookingID_ListSize = BookingID_List.size();
+			if (BookingID_ListSize > 1 && browser.elementisdisplayed(BookingID_List.get(0))) {
+				ApBookingID = browser.getelementtext(BookingID_List.get(0));
+				List<WebElement> Status = SCobjects.Appointments_AllAppointments_StatusList;
+				AppoinmentStatus = browser.getelementtext(Status.get(0));
+				browser.click(BookingID_List.get(0));
+				String BSPopupText = browser.getelementtext(SCobjects.Appointments_BookingSummaryPopupAnd_Id);
+				BS_BookingID = Integer.parseInt(BSPopupText.replaceAll("\\D", ""));
+				String BSBKID = String.valueOf(BS_BookingID);
+				if (browser.elementisdisplayed(SCobjects.Appointments_BookingSummaryPopupAnd_Id)
+						&& ApBookingID.equalsIgnoreCase(BSBKID)) {
+					browser.reportscomtep("Passed",
+							"Click on booking ID and verify Booking Summary for" + BS_BookingID + " Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is displayed as:" + BS_BookingID);
+					StaffBookedName = browser.getelementtext(SCobjects.Appointments_BSP_StaffBooked_Name);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_StaffBooked_Name,
+							StaffBookedName);
+					BS_DateandTime = browser.getelementtext(SCobjects.Appointments_BSP_AppointmentDateAndTime);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_AppointmentDateAndTime,
+							BS_DateandTime);
+					String[] SelectedServicestheader = new String[6];
+					SelectedServicestheader[0] = "Service/Product Name";
+					SelectedServicestheader[1] = "Duration";
+					SelectedServicestheader[2] = "Price";
+					SelectedServicestheader[3] = "Qty";
+					SelectedServicestheader[4] = "Disc (%)";
+					SelectedServicestheader[5] = "Total Price";
+					int i = 0;
+					List<WebElement> SelectedServicestHeaders = SCobjects.Appointments_BSP_SelectedServices_TableHeadersList;
+					for (WebElement theader : SelectedServicestHeaders) {
+						TableHeadername = browser.getelementtext(theader);
+						String tableDatavalue = browser
+								.getelementtext(SCobjects.Appointments_BSP_SelectedService_DetailsDataValue.get(i));
+						if (TableHeadername.trim().equalsIgnoreCase(SelectedServicestheader[i].trim())
+								&& browser.elementisdisplayed(SelectedServicestHeaders.get(i))
+								&& !tableDatavalue.isEmpty()) {
+							browser.reportscomtep("Passed",
+									"Verify Selected Services table header " + TableHeadername + " is Displayed",
+									"Selected Services table header should be Displayed",
+									"Selected Services table header displayed as : " + TableHeadername + ": "
+											+ tableDatavalue);
+						} else {
+							browser.reportscomtep("Failed",
+									"Verify Selected Services table header" + SelectedServicestheader[i]
+											+ " is Displayed",
+									"Selected Services table header should be Displayed",
+									"Selected Services table header is " + SelectedServicestheader[i]
+											+ " Not displayed");
+						}
+						i++;
+					}
+					String[] CustomerDetailstheader = new String[6];
+					CustomerDetailstheader[0] = "Name";
+					CustomerDetailstheader[1] = "Mobile";
+					CustomerDetailstheader[2] = "Email";
+					CustomerDetailstheader[3] = "Appointment Status";
+					CustomerDetailstheader[4] = "Payment Status";
+					CustomerDetailstheader[5] = "Payment Via";
+					int j = 0;
+					List<WebElement> CustomerDetailstHeaders = SCobjects.Appointments_BSP_CustomerDetails_TableHeadersList;
+					for (WebElement theader : CustomerDetailstHeaders) {
+						TableHeadername = browser.getelementtext(theader);
+						String tableDatavalue = browser
+								.getelementtext(SCobjects.Appointments_BSP_CustomerDetails_TableDataValue.get(j));
+						if (TableHeadername.trim().equalsIgnoreCase(CustomerDetailstheader[j].trim())
+								&& browser.elementisdisplayed(CustomerDetailstHeaders.get(j))
+								&& !tableDatavalue.isEmpty()) {
+							browser.reportscomtep("Passed",
+									"Verify Customer Details table header " + TableHeadername + " is Displayed",
+									"Customer Details table header should be Displayed",
+									"Customer Details table header displayed as : " + TableHeadername + ": "
+											+ tableDatavalue);
+						} else {
+							browser.reportscomtep("Failed",
+									"Verify Customer Details table header" + CustomerDetailstheader[j]
+											+ " is Displayed",
+									"Customer Details table header should be Displayed",
+									"Customer Details table header is " + CustomerDetailstheader[j] + " Not displayed");
+						}
+
+						j++;
+					}
+					if (AppoinmentStatus.equalsIgnoreCase("New")) {
+						browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_CancelBooking_Button,
+								"Cancel Booking Button");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_Reschedule_Button,
+								"Reschedule Booking Button");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_Confirmed_Button,
+								"Confirmed Booking Button");
+					} else if (AppoinmentStatus.equalsIgnoreCase("Cancelled")) {
+						System.out.println("Cancelled of the Status having buttons are not dispalyed");
+					} else if (AppoinmentStatus.equalsIgnoreCase("Completed")) {
+						browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_ViewAppointment_Button,
+								"View Appointment Button");
+					} else if (AppoinmentStatus.equalsIgnoreCase("Confirmed")) {
+						browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_CancelBooking_Button,
+								"Cancel Booking Button");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_Confirmed_Button,
+								"Confirmed Booking Button");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_CheckOut_Button,
+								"Check Out Button");
+					}
+				}
+				browser.click(SCobjects.Appointments_BSP_Close_Button);
+			} else {
+				browser.reportscomtep("Failed", "Click on booking ID and verify Booking Summary Id Popup is displayed",
+						"Booking Summary ID Popup should be displayed",
+						" Booking Summary for Popup ID is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	/****TC_21_003 Check the available options for booking with status as New**********/
+	
+	public void check_AvailableOptions_ForBooking_withStatusAs_New() {
+		String ApBookingID = "";
+		String AppoinmentStatus = "";
+		String StaffBookedName = "";
+		try {
+			List<WebElement> BookingID_List = SCobjects.Appointments_AllAppointments_BookingID_List;
+			int BookingID_ListSize = BookingID_List.size();
+			if (BookingID_ListSize > 1) {
+				List<WebElement> NewStatusList = SCobjects.Appointments_AllAppointments_NewStatusButton_List;
+				List<WebElement> PageList = SCobjects.Appointments_AllAppointments_PaginationButton_List;
+				int i = 0;
+				for (WebElement Status : PageList) {
+					if (browser.elementisdisplayed(NewStatusList.get(i))
+							&& browser.elementisdisplayed(BookingID_List.get(i))) {
+						AppoinmentStatus = browser.getelementtext(NewStatusList.get(i));
+						ApBookingID = browser
+								.getelementtext(SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i));
+						browser.click(SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i));
+						break;
+					} else {
+						Status.click();
+						if (browser.elementisdisplayed(
+								SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i))
+								&& browser.elementisdisplayed(
+										SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i))) {
+							AppoinmentStatus = browser.getelementtext(NewStatusList.get(i));
+							ApBookingID = browser.getelementtext(
+									SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i));
+							browser.click(SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i));
+							break;
+						}
+
+					}
+					i++;
+				}
+				String BSPopupText = browser.getelementtext(SCobjects.Appointments_BookingSummaryPopupAnd_Id);
+				int BS_BookingID = Integer.parseInt(BSPopupText.replaceAll("\\D", ""));
+				String BSBKID = String.valueOf(BS_BookingID);
+				if (browser.elementisdisplayed(SCobjects.Appointments_BookingSummaryPopupAnd_Id)
+						&& ApBookingID.equalsIgnoreCase(BSBKID)) {
+					browser.reportscomtep("Passed",
+							"Click on booking ID with Satatus as:" + AppoinmentStatus
+									+ " and verify Booking Summary for" + BS_BookingID + " Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is displayed as:" + BS_BookingID);
+					StaffBookedName = browser.getelementtext(SCobjects.Appointments_BSP_StaffBooked_Name);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_StaffBooked_Name,
+							StaffBookedName);
+					String BS_DateandTime = browser.getelementtext(SCobjects.Appointments_BSP_AppointmentDateAndTime);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_AppointmentDateAndTime,
+							BS_DateandTime);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_CancelBooking_Button,
+							"Cancel Booking Button");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_Reschedule_Button,
+							"Reschedule Booking Button");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_Confirmed_Button,
+							"Confirmed Booking Button");
+					browser.click(SCobjects.Appointments_BSP_Close_Button);
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on booking ID and verify Booking Summary Id Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is not displayed");
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/********TC_21_004 Check whether available timeslots are displayed when we click on Reschedule button.************/
+	
+	public void click_On_Reschedule_Button() {
+		String ApBookingID = "";
+		String AppoinmentStatus = "";
+		String StaffBookedName = "";
+		try {
+			List<WebElement> BookingID_List = SCobjects.Appointments_AllAppointments_BookingID_List;
+			int BookingID_ListSize = BookingID_List.size();
+			if (BookingID_ListSize > 1) {
+				List<WebElement> NewStatusList = SCobjects.Appointments_AllAppointments_NewStatusButton_List;
+				List<WebElement> PageList = SCobjects.Appointments_AllAppointments_PaginationButton_List;
+				int i = 0;
+				for (WebElement Status : PageList) {
+					if (browser.elementisdisplayed(NewStatusList.get(i))
+							&& browser.elementisdisplayed(BookingID_List.get(i))) {
+						AppoinmentStatus = browser.getelementtext(NewStatusList.get(i));
+						ApBookingID = browser
+								.getelementtext(SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i));
+						browser.click(SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i));
+						break;
+					} else {
+						Status.click();
+						if (browser.elementisdisplayed(
+								SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i))
+								&& browser.elementisdisplayed(
+										SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i))) {
+							AppoinmentStatus = browser.getelementtext(NewStatusList.get(i));
+							ApBookingID = browser.getelementtext(
+									SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i));
+							browser.click(SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i));
+							break;
+						}
+
+					}
+					i++;
+				}
+				String BSPopupText = browser.getelementtext(SCobjects.Appointments_BookingSummaryPopupAnd_Id);
+				int BS_BookingID = Integer.parseInt(BSPopupText.replaceAll("\\D", ""));
+				String BSBKID = String.valueOf(BS_BookingID);
+				if (browser.elementisdisplayed(SCobjects.Appointments_BookingSummaryPopupAnd_Id)
+						&& ApBookingID.equalsIgnoreCase(BSBKID)) {
+					browser.reportscomtep("Passed",
+							"Click on booking ID with Satatus as:" + AppoinmentStatus
+									+ " and verify Booking Summary for" + BS_BookingID + " Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is displayed as:" + BS_BookingID);
+					StaffBookedName = browser.getelementtext(SCobjects.Appointments_BSP_StaffBooked_Name);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_StaffBooked_Name,
+							StaffBookedName);
+					String BS_DateandTime = browser.getelementtext(SCobjects.Appointments_BSP_AppointmentDateAndTime);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_AppointmentDateAndTime,
+							BS_DateandTime);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_CancelBooking_Button,
+							"Cancel Booking Button");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_Reschedule_Button,
+							"Reschedule Booking Button");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_Confirmed_Button,
+							"Confirmed Booking Button");
+					browser.click(SCobjects.Appointments_BSP_Reschedule_Button);
+					String RescheduledPopupText = browser
+							.getelementtext(SCobjects.Appointments_RescheduleTimeForAppointment_PopupHeader);
+					int RAPT_BookingID = Integer.parseInt(RescheduledPopupText.replaceAll("\\D", ""));
+					String RTAID = String.valueOf(RAPT_BookingID);
+					if (RTAID.equals(ApBookingID) && browser
+							.elementisdisplayed(SCobjects.Appointments_RescheduleTimeForAppointment_PopupHeader)) {
+						browser.reportscomtep("Passed",
+								"Clicks on Reschedule Button and verify Reschedule Time for appointment Id as:" + RTAID
+										+ " Popup is displayed",
+								"Reschedule Time for appointment Id Popup should be displayed",
+								"Reschedule Time for appointment Popup Id is displayed as" + RTAID);
+						List<WebElement> AvailableDayList = SCobjects.Appointments_RTAPP_AvailableTimesDayList;
+						List<WebElement> AvailableTimeSlotsList = SCobjects.Appointments_RTAPP_AvailableTimes_List;
+						for (int j = 0; AvailableDayList.size() > 0; j++) {
+							browser.click(AvailableDayList.get(j));
+							if (AvailableTimeSlotsList.size() > 0) {
+								if (browser.elementisdisplayed(SCobjects.Appointments_RTAPP_AvailableTimes)
+										&& AvailableDayList.size() > 0 && AvailableTimeSlotsList.size() > 0) {
+									browser.reportscomtep("Passed", "Verify Available timeslots are Displayed",
+											"Available timeslots should be Displayed",
+											"Available timeslots are Displayed");
+									break;
+								} else if (AvailableTimeSlotsList.size() == 0 && browser
+										.elementisdisplayed(SCobjects.Appointments_RTAPP_NoAvailableTime_Slots)) {
+									browser.reportscomtep("Passed",
+											"Verify No slots are availabe for booking on the Date",
+											"slots should't be availabe for booking on the Date",
+											"No slots are availabe for booking on the Date");
+								}
+							}
+						}
+					} else {
+						browser.reportscomtep("Passed",
+								"Clicks on Reschedule Button and verify Reschedule Time for appointment Id Popup is displayed",
+								"Reschedule Time for appointment Id Popup should be displayed",
+								"Reschedule Time for appointment Popup Id is not displayed ");
+					}
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on booking ID and verify Booking Summary Id Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is not displayed");
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	
+	/******TC_21_005 Check whether an appointment can be Rescheduled**********/
+	public void check_AnAppointment_CanBeRescheduled() {
+		try {
+			List<WebElement> AvailableTimeSlotsList = SCobjects.Appointments_RTAPP_AvailableTimes_List;
+			String TimeSlot = AvailableTimeSlotsList.get(0).getText();
+			if (!TimeSlot.isEmpty() && AvailableTimeSlotsList.size() > 0
+					&& browser.elementisdisplayed(AvailableTimeSlotsList.get(0))) {
+				browser.click(AvailableTimeSlotsList.get(0));
+				browser.click(SCobjects.Appointments_RTAPP_YesProceedToReschedulePopup);
+				browser.click(SCobjects.Confirmatio_OK_Button);
+				if (browser.elementisdisplayed(SCobjects.Appointments_BookingSummaryPopupAnd_Id)) {
+					browser.reportscomtep("Passed",
+							"Click on continue " + TimeSlot
+									+ " time slot, Yes Proceed to Reschedule button & OK conformatiom Button and verify Redirects to Booking Summary popup is dispalyed",
+							"Redirects to Booking Summary popup should be dispalyed ",
+							"Redirects to Booking Summary popup is dispalyed ");
+					String RescheduleTime = browser.getelementtext(SCobjects.Appointments_BSP_AppointmentDateAndTime);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_AppointmentDateAndTime,
+							RescheduleTime);
+					browser.click(SCobjects.Appointments_BSP_Close_Button);
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on continue time slot, Yes Proceed to Reschedule button & OK conformatiom Button and verify Redirects to Booking Summary popup is dispalyed",
+							"Redirects to Booking Summary popup should be dispalyed ",
+							"Redirects to Booking Summary popup is not dispalyed ");
+				}
+
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	/***TC_21_006 Check whether the Staff receives reschedule notification***/
+	public void check_Staff_ReceivesReschedule_Notification(){
+		try{
+			
+		}catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/**TC_21_007 Check whether the Customer receives reschedule notification***/
+	
+	public void check_Customer_ReceivesReschedule_Notification(){
+		try{
+			
+		}catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	/***TC_21_008 Check whether a New booking can be Cancelled****/
+	
+	public void checkwhether_NewBookingCan_BeCancelled() {
+		String ApBookingID = "";
+		String AppoinmentStatus = "";
+		String StaffBookedName = "";
+		String BeforeStatusValue = "";
+		String AfterStatusValue = "";
+		try {
+			List<WebElement> BookingID_List = SCobjects.Appointments_AllAppointments_BookingID_List;
+			List<WebElement> StatusList = SCobjects.Appointments_AllAppointments_StatusList;
+			int BookingID_ListSize = BookingID_List.size();
+			if (BookingID_ListSize > 1) {
+				List<WebElement> NewStatusList = SCobjects.Appointments_AllAppointments_NewStatusButton_List;
+				List<WebElement> PageList = SCobjects.Appointments_AllAppointments_PaginationButton_List;
+				int i = 0;
+				int J = 0;
+				for (WebElement Status : PageList) {
+					if (browser.elementisdisplayed(NewStatusList.get(i))
+							&& browser.elementisdisplayed(BookingID_List.get(i))) {
+						AppoinmentStatus = browser.getelementtext(NewStatusList.get(i));
+						ApBookingID = browser
+								.getelementtext(SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i));
+						for (WebElement StatusValue : StatusList) {
+							BeforeStatusValue = BeforeStatusValue + ";" + StatusValue.getText();
+						}
+						browser.click(SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i));
+						break;
+
+					} else {
+						Status.click();
+						if (browser.elementisdisplayed(
+								SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i))
+								&& browser.elementisdisplayed(
+										SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i))) {
+							AppoinmentStatus = browser.getelementtext(NewStatusList.get(i));
+							ApBookingID = browser.getelementtext(
+									SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i));
+							for (WebElement StatusValue : StatusList) {
+								BeforeStatusValue = BeforeStatusValue + ";" + StatusValue.getText();
+							}
+							browser.click(SCobjects.Appointments_AllAppointments_BookingIDHavig_NewStatus.get(i));
+							break;
+						}
+
+					}
+					i++;
+				}
+				String BSPopupText = browser.getelementtext(SCobjects.Appointments_BookingSummaryPopupAnd_Id);
+				int BS_BookingID = Integer.parseInt(BSPopupText.replaceAll("\\D", ""));
+				String BSBKID = String.valueOf(BS_BookingID);
+				if (browser.elementisdisplayed(SCobjects.Appointments_BookingSummaryPopupAnd_Id)
+						&& ApBookingID.equalsIgnoreCase(BSBKID)) {
+					browser.reportscomtep("Passed",
+							"Click on booking ID with Satatus as:" + AppoinmentStatus
+									+ " and verify Booking Summary for" + BS_BookingID + " Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is displayed as:" + BS_BookingID);
+					StaffBookedName = browser.getelementtext(SCobjects.Appointments_BSP_StaffBooked_Name);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_StaffBooked_Name,
+							StaffBookedName);
+					String BS_DateandTime = browser.getelementtext(SCobjects.Appointments_BSP_AppointmentDateAndTime);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_AppointmentDateAndTime,
+							BS_DateandTime);
+					browser.click(SCobjects.Appointments_BSP_CancelBooking_Button);
+					browser.click(SCobjects.Appointments_RTAPP_YesProceedToReschedulePopup);
+					browser.click(SCobjects.Confirmatio_OK_Button);
+					for (WebElement StatusValue : StatusList) {
+						AfterStatusValue = BeforeStatusValue + ";" + StatusValue.getText();
+					}
+					if (!AfterStatusValue.equalsIgnoreCase(BeforeStatusValue)) {
+						browser.reportscomtep("Passed",
+								"Clicks on Continue Cancel Booking, Yes on the confirmation, Ok buttons and verify Redirects to Appointments page & Booking status is Cancelled",
+								"Redirects to Appointments page & Booking status should be Cancelled",
+								"Redirects to Appointments page & Booking status is Cancelled");
+
+					} else {
+						browser.reportscomtep("Failed",
+								"Clicks on Continue Cancel Booking, Yes on the confirmation, Ok buttons and verify Redirects to Appointments page & Booking status is Cancelled",
+								"Redirects to Appointments page & Booking status should be Cancelled",
+								"Redirects to Appointments page & Booking status is not Cancelled");
+					}
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on booking ID and verify Booking Summary Id Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is not displayed");
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+		
+	/***TC_21_009 Check the available options in a Cancelled booking*****///
+	
+	public void check_AvailableOptions_InCancelledBooking() {
+		String ApBookingID = "";
+		String AppoinmentStatus = "";
+		String StaffBookedName = "";
+		try {
+			List<WebElement> BookingID_List = SCobjects.Appointments_AllAppointments_BookingID_List;
+			int BookingID_ListSize = BookingID_List.size();
+			if (BookingID_ListSize > 1) {
+				List<WebElement> CancelledStatusList = SCobjects.Appointments_AllAppointments_CancelledStatus_List;
+				List<WebElement> CancelledStatusHavingIDList = SCobjects.Appointments_AllAppointments_BookingIDHavig_CancelledStatus;
+				List<WebElement> PageList = SCobjects.Appointments_AllAppointments_PaginationButton_List;
+				int i = 0;
+				for (WebElement Status : PageList) {
+					if (browser.elementisdisplayed(CancelledStatusList.get(i))
+							&& browser.elementisdisplayed(CancelledStatusHavingIDList.get(i))) {
+						AppoinmentStatus = browser.getelementtext(CancelledStatusList.get(i));
+						ApBookingID = browser.getelementtext(CancelledStatusHavingIDList.get(i));
+						browser.click(CancelledStatusHavingIDList.get(i));
+						break;
+
+					} else {
+						Status.click();
+						if (browser.elementisdisplayed(CancelledStatusList.get(i))
+								&& browser.elementisdisplayed(CancelledStatusHavingIDList.get(i))) {
+							AppoinmentStatus = browser.getelementtext(CancelledStatusList.get(i));
+							ApBookingID = browser.getelementtext(CancelledStatusHavingIDList.get(i));
+							browser.click(CancelledStatusHavingIDList.get(i));
+							break;
+						}
+
+					}
+					i++;
+				}
+				String BSPopupText = browser.getelementtext(SCobjects.Appointments_BookingSummaryPopupAnd_Id);
+				int BS_BookingID = Integer.parseInt(BSPopupText.replaceAll("\\D", ""));
+				String BSBKID = String.valueOf(BS_BookingID);
+				if (browser.elementisdisplayed(SCobjects.Appointments_BookingSummaryPopupAnd_Id)
+						&& ApBookingID.equalsIgnoreCase(BSBKID)) {
+					browser.reportscomtep("Passed",
+							"Click on booking ID with Satatus as:" + AppoinmentStatus
+									+ " and verify Booking Summary for" + BS_BookingID + " Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is displayed as:" + BS_BookingID);
+					StaffBookedName = browser.getelementtext(SCobjects.Appointments_BSP_StaffBooked_Name);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_StaffBooked_Name,
+							StaffBookedName);
+					String BS_DateandTime = browser.getelementtext(SCobjects.Appointments_BSP_AppointmentDateAndTime);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_AppointmentDateAndTime,
+							BS_DateandTime);
+					if (!browser.elementisdisplayed(SCobjects.Appointments_BSP_CancelBooking_Button)
+							&& !browser.elementisdisplayed(SCobjects.Appointments_BSP_Reschedule_Button)
+							&& !browser.elementisdisplayed(SCobjects.Appointments_BSP_Confirmed_Button)
+							&& !browser.elementisdisplayed(SCobjects.Appointments_BSP_ViewAppointment_Button)) {
+						browser.reportscomtep("Passed", "Verify Buttons are not available for cancelled booking",
+								"Buttons should not be available for cancelled booking",
+								"Buttons are not available for cancelled booking");
+					} else {
+						browser.reportscomtep("Failed", "Verify Buttons are available for cancelled booking",
+								"Buttons should be available for cancelled booking",
+								"Buttons are available for cancelled booking");
+
+					}
+					browser.click(SCobjects.Appointments_BSP_Close_Button);
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on booking ID and verify Booking Summary Id Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is not displayed");
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	/****TC_21_010 Check whether Staff receives notification for Cancelled appointments*****/
+	public void check_Staff_ReceivesNotification_ForCancelledAppointments(){
+		try{
+			
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	/**********TC_21_011 Check whether Customer receives Cancellation notification****/
+	
+	public void check_Customer_ReceivesNotification_ForCancelledAppointments() {
+		try {
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	/***TC_21_012 Check the options available for booking with status as – Completed***/
+	
+	public void checkwhether_NewBookingCan_BeCompleted() {
+		String ApBookingID = "";
+		String AppoinmentStatus = "";
+		String StaffBookedName = "";
+		try {
+			List<WebElement> BookingID_List = SCobjects.Appointments_AllAppointments_BookingID_List;
+			int BookingID_ListSize = BookingID_List.size();
+			if (BookingID_ListSize > 1) {
+				List<WebElement> CompletedStatusList = SCobjects.Appointments_AllAppointments_CompletedStatus_List;
+				List<WebElement> CompletedStatusHavingIDList = SCobjects.Appointments_AllAppointments_BookingIDHavig_CompletedStatus;
+				List<WebElement> PageList = SCobjects.Appointments_AllAppointments_PaginationButton_List;
+				int i = 0;
+				for (WebElement Status : PageList) {
+					if (browser.elementisdisplayed(CompletedStatusList.get(i))
+							&& browser.elementisdisplayed(CompletedStatusHavingIDList.get(i))) {
+						AppoinmentStatus = browser.getelementtext(CompletedStatusList.get(i));
+						ApBookingID = browser.getelementtext(CompletedStatusHavingIDList.get(i));
+						browser.click(CompletedStatusHavingIDList.get(i));
+						break;
+
+					} else {
+						Status.click();
+						if (browser.elementisdisplayed(CompletedStatusList.get(i))
+								&& browser.elementisdisplayed(CompletedStatusHavingIDList.get(i))) {
+							AppoinmentStatus = browser.getelementtext(CompletedStatusList.get(i));
+							ApBookingID = browser.getelementtext(CompletedStatusHavingIDList.get(i));
+							browser.click(CompletedStatusHavingIDList.get(i));
+							break;
+						}
+
+					}
+					i++;
+				}
+				String BSPopupText = browser.getelementtext(SCobjects.Appointments_BookingSummaryPopupAnd_Id);
+				int BS_BookingID = Integer.parseInt(BSPopupText.replaceAll("\\D", ""));
+				String BSBKID = String.valueOf(BS_BookingID);
+				if (browser.elementisdisplayed(SCobjects.Appointments_BookingSummaryPopupAnd_Id)
+						&& ApBookingID.equalsIgnoreCase(BSBKID)) {
+					browser.reportscomtep("Passed",
+							"Click on booking ID with Satatus as:" + AppoinmentStatus
+									+ " and verify Booking Summary for" + BS_BookingID + " Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is displayed as:" + BS_BookingID);
+					StaffBookedName = browser.getelementtext(SCobjects.Appointments_BSP_StaffBooked_Name);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_StaffBooked_Name,
+							StaffBookedName);
+					String BS_DateandTime = browser.getelementtext(SCobjects.Appointments_BSP_AppointmentDateAndTime);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_AppointmentDateAndTime,
+							BS_DateandTime);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_ViewAppointment_Button,
+							"ViewAppointment Booking Button");
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on booking ID and verify Booking Summary Id Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is not displayed");
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/***TC_21_013 Check whether receipt/invoice can be viewed for Completed booking*****/
+	
+	public void checkWhether_Receipt_ViewedFor_CompletedBooking() {
+		try {
+			browser.click(SCobjects.Appointments_BSP_ViewAppointment_Button);
+			browser.waitForNewWindowAndSwitchToIt(driver);
+			if (browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_ReceiptPDF_Page)) {
+				browser.reportscomtep("Passed",
+						"Click on View Appointment Button and Open receipt PDF page is displayed",
+						"Open receipt PDF page should be displayed", "Open receipt PDF page is displayed");
+				List<WebElement> PDFOptionList = SCobjects.Appointments_AllAppointments_ReceiptPDF_OptionList;
+				String[] PDFOptionListValue = new String[4];
+				PDFOptionListValue[0] = " Print";
+				PDFOptionListValue[1] = " Download";
+				PDFOptionListValue[2] = " Email Receipt";
+				PDFOptionListValue[3] = " Return To Appointments";
+				int i = 0;
+				for (WebElement Option : PDFOptionList) {
+					String OPtionValue = browser.getelementtext(Option);
+					if (OPtionValue.equalsIgnoreCase(PDFOptionListValue[i])) {
+						browser.reportscomtep("Passed", "Verify " + OPtionValue + " is displayed",
+								"Option Value should be displayed", "Option value displayed as:" + OPtionValue);
+					} else {
+						browser.reportscomtep("Failed", "Verify " + OPtionValue + " is displayed",
+								"Option Value should be displayed",
+								"Option value is not displayed as:" + PDFOptionListValue[i]);
+					}
+				}
+			} else {
+				browser.reportscomtep("Failed",
+						"Click on View Appointment Button and Open receipt PDF page is displayed",
+						"Open receipt PDF page should be displayed", "Open receipt PDF page is displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/****TC_21_014 Check whether the receipt can be downloaded****/
+	
+	public void checkWhether_Receipt_CanBeDownloaded() {
+		String OptionValue ="";
+		try {
+			List<WebElement> PDFOptionList = SCobjects.Appointments_AllAppointments_ReceiptPDF_OptionList;
+		
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/******TC_21_015 Check whether the receipt can be sent as email*********/
+	
+	public void checkWhether_Receipt_SentAsEmail() {
+		String OptionValue = "";
+		String ReceiptEmailID = "";
+		try {
+			ReceiptEmailID = browser.getdata("ReceiptEmailID");
+			List<WebElement> PDFOptionList = SCobjects.Appointments_AllAppointments_ReceiptPDF_OptionList;
+			OptionValue = PDFOptionList.get(2).getText();
+			if (OptionValue.equalsIgnoreCase(" Download")) {
+				browser.click(PDFOptionList.get(2));
+				if (browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_EmailPopup)) {
+					browser.reportscomtep("Passed",
+							"Clicks on Email Option and verify Enter recipient email address Popup is displayed",
+							"Enter recipient email address Popup should be displayed",
+							"Enter recipient email address Popup is displayed");
+					browser.sendkeys(SCobjects.Appointments_AllAppointments_EmailTextBox, ReceiptEmailID);
+					browser.click(SCobjects.Confirmatio_OK_Button);
+					browser.click(SCobjects.Confirmatio_OK_Button);
+				} else {
+					browser.reportscomtep("Failed",
+							"Clicks on Email Option and verify Enter recipient email address Popup is displayed",
+							"Enter recipient email address Popup should be displayed",
+							"Enter recipient email address Popup is not displayed");
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	
+	/********TC_21_016 Check whether the Return to Appointments button redirects to Appointments page****/
+	
+	public void checkWhether_ReturnToAppointmentsButton_Redirectsto_AppointmentsPage() {
+		String OptionValue = "";
+		try {
+			List<WebElement> PDFOptionList = SCobjects.Appointments_AllAppointments_ReceiptPDF_OptionList;
+			OptionValue = PDFOptionList.get(3).getText();
+			if (OptionValue.equalsIgnoreCase(" Return To Appointments")) {
+				browser.click(PDFOptionList.get(3));
+				if (browser.elementisdisplayed(SCobjects.Appointments_AppointmentsPage_Header)) {
+					browser.reportscomtep("Passed",
+							"Click on Return To Appointments Button and verify Redirects to Appointments page is displayed",
+							"Redirects to Appointments page should be displayed",
+							"Redirects to Appointments page is displayed");
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Return To Appointments Button and verify Redirects to Appointments page is displayed",
+							"Redirects to Appointments page should be displayed",
+							"Redirects to Appointments page is not displayed");
+				}
+
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/***TC_21_017 Check whether an appointment can be confirmed************/
+	
+	public void Checkwhether_AnAppointment_Confirmed() {
+		String ApBookingID = "";
+		String AppoinmentStatus = "";
+		String StaffBookedName = "";
+		try {
+			List<WebElement> BookingID_List = SCobjects.Appointments_AllAppointments_BookingID_List;
+			int BookingID_ListSize = BookingID_List.size();
+			if (BookingID_ListSize > 1) {
+				List<WebElement> ConfirmedStatusList = SCobjects.Appointments_AllAppointments_ConfirmedStatus_List;
+				List<WebElement> ConfirmedStatusHavingIDList = SCobjects.Appointments_AllAppointments_BookingIDHavig_ConfirmedStatus;
+				List<WebElement> PageList = SCobjects.Appointments_AllAppointments_PaginationButton_List;
+				browser.scrollintoviewelement(PageList.get(0));
+				int i = 0;
+				for (WebElement Status : PageList) {
+					PageList.get(i).click();
+					if (browser.elementisdisplayed(ConfirmedStatusList.get(i))
+							&& browser.elementisdisplayed(ConfirmedStatusHavingIDList.get(i))) {
+						AppoinmentStatus = browser.getelementtext(ConfirmedStatusList.get(i));
+						ApBookingID = browser.getelementtext(ConfirmedStatusHavingIDList.get(i));
+						browser.click(ConfirmedStatusHavingIDList.get(i));
+						break;
+					}
+					i++;
+				}
+				String BSPopupText = browser.getelementtext(SCobjects.Appointments_BookingSummaryPopupAnd_Id);
+				int BS_BookingID = Integer.parseInt(BSPopupText.replaceAll("\\D", ""));
+				String BSBKID = String.valueOf(BS_BookingID);
+				if (browser.elementisdisplayed(SCobjects.Appointments_BookingSummaryPopupAnd_Id)
+						&& ApBookingID.equalsIgnoreCase(BSBKID)) {
+					browser.reportscomtep("Passed",
+							"Click on booking ID with Satatus as:" + AppoinmentStatus
+									+ " and verify Booking Summary for" + BS_BookingID + " Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is displayed as:" + BS_BookingID);
+					StaffBookedName = browser.getelementtext(SCobjects.Appointments_BSP_StaffBooked_Name);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_StaffBooked_Name,
+							StaffBookedName);
+					String BS_DateandTime = browser.getelementtext(SCobjects.Appointments_BSP_AppointmentDateAndTime);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_AppointmentDateAndTime,
+							BS_DateandTime);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_Confirmed_Button,
+							"Confirmed Booking Button");
+					browser.click(SCobjects.Appointments_BSP_Confirmed_Button);
+					if (browser.elementisdisplayed(SCobjects.Appointments_AppointmentsPage_Header)) {
+						browser.reportscomtep("Passed",
+								"Click on Confirmed Button and verify Redirects to Appointments page is displayed",
+								"Redirects to Appointments page should be displayed",
+								"Redirects to Appointments page is displayed");
+					} else {
+						browser.reportscomtep("Failed",
+								"Click on Confirmed Button and verify Redirects to Appointments page is displayed",
+								"Redirects to Appointments page should be displayed",
+								"Redirects to Appointments page is not displayed");
+					}
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on booking ID and verify Booking Summary Id Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is not displayed");
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}
+	
+	/*********TC_21_018 Check the available options for a Confirmed booking************/
+	
+	public void check_AvailableOptions_For_ConfirmedBooking() {
+		String ApBookingID = "";
+		String AppoinmentStatus = "";
+		String StaffBookedName = "";
+		try {
+			List<WebElement> BookingID_List = SCobjects.Appointments_AllAppointments_BookingID_List;
+			int BookingID_ListSize = BookingID_List.size();
+			if (BookingID_ListSize > 1) {
+				List<WebElement> ConfirmedStatusList = SCobjects.Appointments_AllAppointments_ConfirmedStatus_List;
+				List<WebElement> ConfirmedStatusHavingIDList = SCobjects.Appointments_AllAppointments_BookingIDHavig_ConfirmedStatus;
+				List<WebElement> PageList = SCobjects.Appointments_AllAppointments_PaginationButton_List;
+				int i =0;
+				for (WebElement Status : PageList) {
+					Status.click();
+					if (browser.elementisdisplayed(ConfirmedStatusList.get(i))
+							&& browser.elementisdisplayed(ConfirmedStatusHavingIDList.get(i))) {
+						AppoinmentStatus = browser.getelementtext(ConfirmedStatusList.get(i));
+						ApBookingID = browser.getelementtext(ConfirmedStatusHavingIDList.get(i));
+						browser.click(ConfirmedStatusHavingIDList.get(i));
+						break;
+					}
+					i++;
+				}
+				
+				String BSPopupText = browser.getelementtext(SCobjects.Appointments_BookingSummaryPopupAnd_Id);
+				int BS_BookingID = Integer.parseInt(BSPopupText.replaceAll("\\D", ""));
+				String BSBKID = String.valueOf(BS_BookingID);
+				if (browser.elementisdisplayed(SCobjects.Appointments_BookingSummaryPopupAnd_Id)
+						&& ApBookingID.equalsIgnoreCase(BSBKID)) {
+					browser.reportscomtep("Passed",
+							"Click on booking ID with Satatus as:" + AppoinmentStatus
+									+ " and verify Booking Summary for" + BS_BookingID + " Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is displayed as:" + BS_BookingID);
+					StaffBookedName = browser.getelementtext(SCobjects.Appointments_BSP_StaffBooked_Name);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_StaffBooked_Name,
+							StaffBookedName);
+					String BS_DateandTime = browser.getelementtext(SCobjects.Appointments_BSP_AppointmentDateAndTime);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_AppointmentDateAndTime,
+							BS_DateandTime);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_CancelBooking_Button,
+							"Cancel Booking Button");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_CheckOut_Button,
+							"Check Out Booking Button");
+					browser.click(SCobjects.Appointments_BSP_Close_Button);
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on booking ID and verify Booking Summary Id Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is not displayed");
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/***TC_21_019 Check filter by date – Today*/
+	
+	public void check_FilterByDate_Today() {
+		try {
+			browser.refreshBrowser(driver);
+			browser.selectByVisibleText(SCobjects.Appointments_AllAppointments_FilterByDate, "Today");
+			String selectedFilterByDate = browser
+					.getDropdownSelectedValue(SCobjects.Appointments_AllAppointments_FilterByDate);
+			if (selectedFilterByDate.equalsIgnoreCase("Today")
+					&& browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterByDate)) {
+				browser.reportscomtep("Passed",
+						"Verify Filter by date option :" + selectedFilterByDate + " is selected",
+						"Filter by date option should be selected",
+						"Filter by date option is seleceted as:" + selectedFilterByDate);
+				List<WebElement> FilterApp_List = SCobjects.Appointments_AllAppointments_List;
+				browser.wait();
+				if (FilterApp_List.size() > 0
+						&& browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterTable)) {
+					browser.reportscomtep("Passed", "Verify Appointments scheduled for current date is displayed",
+							"Appointments scheduled for current date should be displayed",
+							"Appointments scheduled for current date is displayed");
+				} else{
+					browser.click(SCobjects.Confirmatio_OK_Button);
+					String Appointments_Text = browser.getelementtext(SCobjects.Appointments_NoAppointmentsFound_Text);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_NoAppointmentsFound_Text, Appointments_Text);
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Filter by date option today is selected",
+						"Filter by date option today should be selected", "Filter by date option today is not selected");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/****TC_21_020 Check filter by date – All Appointments*/
+	
+	public void check_filterByDate_AllAppointments() {
+		try {
+			browser.refreshBrowser(driver);
+			browser.selectByVisibleText(SCobjects.Appointments_AllAppointments_FilterByDate, "All Appointments");
+			String selectedFilterByDate = browser
+					.getDropdownSelectedValue(SCobjects.Appointments_AllAppointments_FilterByDate);
+			if (selectedFilterByDate.equalsIgnoreCase("All Appointments")
+					&& browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterByDate)) {
+				browser.reportscomtep("Passed",
+						"Verify Filter by date option :" + selectedFilterByDate + " is default selected",
+						"Filter by date option should be default selected",
+						"Filter by date option is default seleceted as:" + selectedFilterByDate);
+				List<WebElement> FilterApp_List = SCobjects.Appointments_AllAppointments_List;
+				if (FilterApp_List.size() > 0
+						&& browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterTable)) {
+					browser.reportscomtep("Passed", "Verify All Appointments are displayed",
+							"All Appointments should be displayed",
+							"All Appointments is displayed");
+				} else {
+					browser.click(SCobjects.Confirmatio_OK_Button);
+					String Appointments_Text = browser.getelementtext(SCobjects.Appointments_NoAppointmentsFound_Text);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_NoAppointmentsFound_Text, Appointments_Text);
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Filter by date option today is selected",
+						"Filter by date option today should be selected", "Filter by date option is not selected");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/***TC_21_021 Check filter by date – Custom Range**/
+	
+	public void check_filterByDate_CustomRange() {
+		try {
+			browser.refreshBrowser(driver);
+			browser.selectByVisibleText(SCobjects.Appointments_AllAppointments_FilterByDate, "Custom Range");
+			String selectedFilterByDate = browser
+					.getDropdownSelectedValue(SCobjects.Appointments_AllAppointments_FilterByDate);
+			if (selectedFilterByDate.equalsIgnoreCase("Custom Range")
+					&& browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterByDate)) {
+				browser.reportscomtep("Passed",
+						"Verify Filter by date option :" + selectedFilterByDate + " is default selected",
+						"Filter by date option should be default selected",
+						"Filter by date option is default seleceted as:" + selectedFilterByDate);
+				/*******
+				 * 
+				 * code pending
+				 * 
+				 * 
+				 */
+				List<WebElement> FilterApp_List = SCobjects.Appointments_AllAppointments_List;
+				if (FilterApp_List.size() > 0
+						&& browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterTable)) {
+					browser.reportscomtep("Passed", "Verify Appointments scheduled for current date is displayed",
+							"Appointments scheduled for current date should be displayed",
+							"Appointments scheduled for current date is displayed");
+				} else {
+					browser.click(SCobjects.Confirmatio_OK_Button);
+					String Appointments_Text = browser.getelementtext(SCobjects.Appointments_NoAppointmentsFound_Text);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_NoAppointmentsFound_Text, Appointments_Text);
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Filter by date option today is selected",
+						"Filter by date option today should be selected", "Filter by date option is not selected");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/****TC_21_022 Check filter by Staff name******/
+	public void check_filterBy_StaffName() {
+		try {
+			browser.refreshBrowser(driver);
+			browser.selectByIndex(SCobjects.Appointments_AllAppointments_FilterByStaff, 2);
+			String selectedFilterByStaffName = browser
+					.getDropdownSelectedValue(SCobjects.Appointments_AllAppointments_FilterByStaff);
+			if (browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterByStaff)) {
+				browser.reportscomtep("Passed",
+						"Verify Filter by Staff name  :" + selectedFilterByStaffName + " is selected",
+						"Filter by Staff name should be  selected",
+						"Filter by Staff name is seleceted as:" + selectedFilterByStaffName);
+				List<WebElement> FilterApp_List = SCobjects.Appointments_AllAppointments_List;
+				browser.wait();
+				if (FilterApp_List.size() > 0
+						&& browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterTable)) {
+					browser.reportscomtep("Passed",
+							"Verify Bookings for selected staff name Appointments are dispalyed",
+							"Bookings for selected staff name Appointments should be dispalyed",
+							"Bookings for selected staff name Appointments are dispalyed");
+				} else{
+				browser.click(SCobjects.Confirmatio_OK_Button);
+				String Appointments_Text = browser.getelementtext(SCobjects.Appointments_NoAppointmentsFound_Text);
+				browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_NoAppointmentsFound_Text, Appointments_Text);
+				}
+			} else {
+				browser.reportscomtep("Failed", "Filter by Staff name option is selected",
+						"Filter by Staff name option today should be selected", "Filter by Staff name is not selected");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*****TC_21_023 Check filter by booking status*****/
+	public void check_FilterBy_BookingStatus() {
+		try {
+			browser.refreshBrowser(driver);
+			String[] FilterByStatusList = { "New", "Canceled", "Confirmed", "Completed" };
+			int i = 0;
+			for (String statusListvalue : FilterByStatusList) {
+				browser.selectByVisibleText(SCobjects.Appointments_AllAppointments_FilterByAppointmentStatus,
+						FilterByStatusList[i]);
+				browser.wait();
+				String selectedFilterByStaffName = browser
+						.getDropdownSelectedValue(SCobjects.Appointments_AllAppointments_FilterByAppointmentStatus);
+				if (selectedFilterByStaffName.equalsIgnoreCase(FilterByStatusList[i])
+						&& browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterByDate)) {
+					browser.reportscomtep("Passed",
+							"Verify Filter by Status option :" + FilterByStatusList[i] + " is selected",
+							"Filter by Status option should be selected",
+							"Filter by Status option is seleceted as:" + selectedFilterByStaffName);
+					List<WebElement> FilterApp_List = SCobjects.Appointments_AllAppointments_List;
+					if (FilterApp_List.size() > 0
+							&& browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterTable)) {
+						browser.reportscomtep("Passed", "Verify " + FilterByStatusList[i] + " Bookings are dispalyed",
+								" " + FilterByStatusList[i] + " Bookings should be displayed",
+								"Booking Status is displayed as:" + FilterByStatusList[i]);
+					} else {
+						browser.click(SCobjects.Confirmatio_OK_Button);
+						String Appointments_Text = browser.getelementtext(SCobjects.Appointments_NoAppointmentsFound_Text);
+						browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_NoAppointmentsFound_Text, Appointments_Text);
+					}
+				} else {
+					browser.reportscomtep("Failed", "Filter by Staff name option today is selected",
+							"Filter by Staff name option today should be selected",
+							"Filter by Staff name is not selected");
+				}
+				i++;
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*******TC_21_024 Check the search box**********/
+	
+	public void check_SearchBoxInApponments(String Searchbooking_IdOrNameOrDate) {
+		String AppointmentID = "";
+		String AppintmentDate = "";
+		String AppointmentName = "";
+		try {
+			AppointmentID = browser.getdata("SearchId");
+			AppintmentDate = browser.getdata("SearchAppdate");
+			AppointmentName = browser.getdata("SearchAppName");
+			switch (Searchbooking_IdOrNameOrDate) {
+			case "ID":
+				browser.sendkeys(SCobjects.Appointments_AllAppointments_SearchBox, AppointmentID);
+				browser.click(SCobjects.Appointments_AllAppointments_SeacrchIcon_Button);
+				browser.wait();
+				List<WebElement> FilterApp_List = SCobjects.Appointments_AllAppointments_List;
+				if (FilterApp_List.size() > 0
+						&& browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterTable)) {
+					browser.reportscomtep("Passed",
+							"Enter" + AppointmentID
+									+ " and verify Based on characters typed, data is Automatically fetched",
+							"Based on characters typed, data is Automatically fetched",
+							"Based on characters type, data is Automatically fetched as:" + AppointmentID);
+				} else {
+					browser.click(SCobjects.Confirmatio_OK_Button);
+					String Appointments_Text = browser.getelementtext(SCobjects.Appointments_NoAppointmentsFound_Text);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_NoAppointmentsFound_Text,
+							Appointments_Text);
+				}
+				break;
+			case "Name":
+				browser.sendkeys(SCobjects.Appointments_AllAppointments_SearchBox, AppointmentName);
+				browser.click(SCobjects.Appointments_AllAppointments_SeacrchIcon_Button);
+				browser.wait();
+				List<WebElement> FilterApp_List1 = SCobjects.Appointments_AllAppointments_List;
+				if (FilterApp_List1.size() > 0
+						&& browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterTable)) {
+					browser.reportscomtep("Passed",
+							"Enter" + AppointmentName
+									+ " and verify Based on characters typed, data is Automatically fetched",
+							"Based on characters typed, data is Automatically fetched",
+							"Based on characters type, data is Automatically fetched as:" + AppointmentName);
+				} else {
+					browser.click(SCobjects.Confirmatio_OK_Button);
+					String Appointments_Text = browser.getelementtext(SCobjects.Appointments_NoAppointmentsFound_Text);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_NoAppointmentsFound_Text,
+							Appointments_Text);
+				}
+				break;
+			case "Date":
+				browser.sendkeys(SCobjects.Appointments_AllAppointments_SearchBox, AppintmentDate);
+				browser.click(SCobjects.Appointments_AllAppointments_SeacrchIcon_Button);
+				browser.wait();
+				List<WebElement> FilterApp_List2 = SCobjects.Appointments_AllAppointments_List;
+				if (FilterApp_List2.size() > 0
+						&& browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_FilterTable)) {
+					browser.reportscomtep("Passed",
+							"Enter" + AppintmentDate
+									+ " and verify Based on characters typed, data is Automatically fetched",
+							"Based on characters typed, data is Automatically fetched",
+							"Based on characters type, data is Automatically fetched as:" + AppintmentDate);
+				} else {
+					browser.click(SCobjects.Confirmatio_OK_Button);
+					String Appointments_Text = browser.getelementtext(SCobjects.Appointments_NoAppointmentsFound_Text);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_NoAppointmentsFound_Text,
+							Appointments_Text);
+				}
+				break;
+			case "Donothing":
+				break;
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	/****TS022_Subscriber creates a Walk-in Appointment***********/
+	/****TC_22_001 Check the +New Appointments button****/
+	
+	public void check_NewAppointments_Button() {
+		try {
+			if (browser.elementisdisplayed(SCobjects.Appointments_Menu_Link)) {
+				browser.reportscomtep("Passed", "Verify Appointments Menu link is displayed",
+						"Appointments Menu link should be displayed", "Appointments Menu link is displayed");
+				browser.click(SCobjects.Appointments_Menu_Link);
+				if (browser.elementisdisplayed(SCobjects.Appointments_AppointmentsPage_Header)) {
+					browser.reportscomtep("Passed",
+							"Clicks on Appointments Menu link and open verify Appointments page header is displayed",
+							" Appointments page header should be displayed", " Appointments page header is displayed");
+					browser.click(SCobjects.Appointments_AllAppointments_AddNewAppointment_Button);
+					if (browser.elementisdisplayed(SCobjects.NewAppointments_NewBooking_PageHeader)) {
+						browser.reportscomtep("Passed",
+								"Clicks on +New Appointments button and verify New Booking header popup is displayed",
+								"New Booking header should be popup displayed",
+								"New Booking header is popup displayed");
+						List<WebElement> ServicesNamesList = SCobjects.NewAppointments_ServiecesName_List;
+						List<WebElement> ServicesDurationList = SCobjects.NewAppointments_Servieces_Duration_List;
+						List<WebElement> ServicesPriceList = SCobjects.NewAppointments_Servieces_PriceList;
+						if (ServicesNamesList.size() > 0) {
+							if (browser.elementisdisplayed(ServicesNamesList.get(0))
+									&& browser.elementisdisplayed(ServicesDurationList.get(0))
+									&& browser.elementisdisplayed(ServicesPriceList.get(0))) {
+								browser.reportscomtep("Passed",
+										"Verify Services along with it's duration & price are displayed",
+										"Services along with it's duration & price should be displayed",
+										"Services along with it's duration & price are displayed");
+
+							} else {
+								browser.reportscomtep("Failed",
+										"Verify Services along with it's duration & price are displayed",
+										"Services along with it's duration & price should be displayed",
+										"Services along with it's duration & price are displayed");
+							}
+						}
+					} else {
+						browser.reportscomtep("Failed",
+								"Clicks on +New Appointments button and verify New Booking header popup is displayed",
+								"New Booking header should be popup displayed",
+								"New Booking header is not popup displayed");
+					}
+				} else {
+					browser.reportscomtep("Failed",
+							"Clicks on Appointments Menu link and open verify Appointments page header is displayed",
+							" Appointments page header should be displayed",
+							" Appointments page header is not displayed");
+				}
+
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/******TC_22_002 Check whether single/multiple services can be selected******/
+	
+	public void checkwhether_SingleOrMultiple_Services_Canbe_Selected(String SingleOrMultiple) {
+		try {
+			List<WebElement> ServicesNameCheckBoxList = SCobjects.NewAppointments_Serviece_CheckBox_List;
+			List<WebElement> ServicesUpadteDetailsList = SCobjects.NewAppointments_Servieces_UpadateDetails_List;
+			if (ServicesNameCheckBoxList.size() > 0) {
+				switch (SingleOrMultiple) {
+				case "ServicesSingleSelected":
+					browser.click(ServicesNameCheckBoxList.get(0));
+					String UpdatedNoOfServiceSelect = browser.getelementtext(ServicesUpadteDetailsList.get(0));
+					String updateServicesDuration = browser.getelementtext(ServicesUpadteDetailsList.get(1));
+					String updateServicesPrice = browser.getelementtext(ServicesUpadteDetailsList.get(2));
+					if (UpdatedNoOfServiceSelect.equals("1") && !updateServicesDuration.isEmpty()
+							&& !updateServicesPrice.isEmpty()
+							&& browser.elementisdisplayed(SCobjects.NewAppointments_Servieces_UpadtedTable)) {
+						browser.reportscomtep("Passed",
+								"Select One Service and verify The service details section is updated with number of service, total duration & total price ",
+								"The service details section should be updated with number of service, total duration & total price",
+								"The service details section is updated with number of service as: "
+										+ UpdatedNoOfServiceSelect + ", total duration is:" + updateServicesDuration
+										+ " & total price is:" + updateServicesPrice);
+						browser.Verify_elementisdisplayed_Report(SCobjects.NewAppointments_Next_Button, "Next Button");
+					} else {
+						browser.reportscomtep("Passed",
+								"Select One Service and verify The service details section is updated with number of service, total duration & total price ",
+								"The service details section should be updated with number of service, total duration & total price",
+								"The service details section is  not updated with number of service, total duration & total price");
+					}
+				case "ServicesMultipleSelected":
+					browser.click(ServicesNameCheckBoxList.get(0));
+					browser.click(ServicesNameCheckBoxList.get(1));
+					String UpdatedNoOfServiceSelect1 = browser.getelementtext(ServicesUpadteDetailsList.get(0));
+					String updateServicesDuration1 = browser.getelementtext(ServicesUpadteDetailsList.get(1));
+					String updateServicesPrice1 = browser.getelementtext(ServicesUpadteDetailsList.get(2));
+					if (UpdatedNoOfServiceSelect1.equals("2") && !updateServicesDuration1.isEmpty()
+							&& !updateServicesPrice1.isEmpty()
+							&& browser.elementisdisplayed(SCobjects.NewAppointments_Servieces_UpadtedTable)) {
+						browser.reportscomtep("Passed",
+								"Select One Service and verify The service details section is updated with number of service, total duration & total price ",
+								"The service details section should be updated with number of service, total duration & total price",
+								"The service details section is updated with number of service as: "
+										+ UpdatedNoOfServiceSelect1 + ", total duration is:" + updateServicesDuration1
+										+ " & total price is:" + updateServicesPrice1);
+						browser.Verify_elementisdisplayed_Report(SCobjects.NewAppointments_Next_Button, "Next Button");
+					} else {
+						browser.reportscomtep("Passed",
+								"Select One Service and verify The service details section is updated with number of service, total duration & total price ",
+								"The service details section should be updated with number of service, total duration & total price",
+								"The service details section is  not updated with number of service, total duration & total price");
+					}
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/***********TC_22_003 Check the Next button in services page*****/
+	public void check_NextButton_InServicesPage() {
+		try {
+			List<WebElement> StaffList = SCobjects.NewAppointments_Staff_List;
+			List<WebElement> ServicesUpadteDetailsList = SCobjects.NewAppointments_Servieces_UpadateDetails_List;
+			browser.click(SCobjects.NewAppointments_Next_Button);
+			if (StaffList.size() > 0) {
+				if (browser.elementisdisplayed(SCobjects.NewAppointments_StaffPage)&&browser.elementisdisplayed(StaffList.get(0))) {
+					browser.reportscomtep("Passed", "Clicks on Next Button and verify Available StaffPage is displayed",
+							"Available StaffPage should be displayed", "Available StaffPage is displayed");
+					String UpdatedNoOfServiceSelect = browser.getelementtext(ServicesUpadteDetailsList.get(0));
+					String updateServicesDuration = browser.getelementtext(ServicesUpadteDetailsList.get(1));
+					String updateServicesPrice = browser.getelementtext(ServicesUpadteDetailsList.get(2));
+					if (UpdatedNoOfServiceSelect.equals("1") && !updateServicesDuration.isEmpty()
+							&& !updateServicesPrice.isEmpty()
+							&& browser.elementisdisplayed(SCobjects.NewAppointments_Servieces_UpadtedTable)) {
+						browser.reportscomtep("Passed",
+								"Verify The service details section is displayed with number of service, total duration & total price ",
+								"The service details section should be displayed with number of service, total duration & total price",
+								"The service details section is displayed with number of service as: "
+										+ UpdatedNoOfServiceSelect + ", total duration is:" + updateServicesDuration
+										+ " & total price is:" + updateServicesPrice);
+						browser.Verify_elementisdisplayed_Report(SCobjects.NewAppointments_Back_Button, "Back Button");
+					} else {
+						browser.reportscomtep("Passed",
+								"Verify The service details section is displayed with number of service, total duration & total price ",
+								"The service details section should be displayed with number of service, total duration & total price",
+								"The service details section is  not displayed with number of service, total duration & total price");
+					}
+
+				} else {
+					browser.reportscomtep("Failed", "Clicks on Next Button and verify Available StaffPage is displayed",
+							"Available StaffPage should be displayed", "Available Staff Page is not displayed");
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*****TC_22_004 Check whether the Back button in Staff page returns to Service page****/
+	
+	public void checkwhether_BackButton_InStaffPage_ReturnsToServicePage() {
+		try {
+			List<WebElement> UpadteSelectedService = SCobjects.NewAppointments_UpdateSelectedService_List;
+			browser.click(SCobjects.NewAppointments_Back_Button);
+			if (browser.elementisdisplayed(SCobjects.NewAppointments_Service_Page)) {
+				browser.reportscomtep("Passed",
+						"Clicks on back Button in staff page and verify Service Page is dispalyed",
+						"Service Page should be dispalyed", "Service Page is dispalyed");
+				if (UpadteSelectedService.size() > 0) {
+					for (WebElement UpadetedServices : UpadteSelectedService) {
+						String ServiceNameAndDetails = UpadetedServices.getText();
+						if (!ServiceNameAndDetails.isEmpty()
+								&& browser.elementisdisplayed(SCobjects.NewAppointments_Servieces_UpadtedTable)) {
+							browser.reportscomtep("Passed",
+									"Service details section & selected services details are dispalyed ",
+									"Service details section & selected services details should be dispalyed",
+									"Service details section & selected services details are dispalyed as"
+											+ ServiceNameAndDetails);
+						} else {
+							browser.reportscomtep("Failed",
+									"Service details section & selected services details are dispalyed ",
+									"Service details section & selected services details should be dispalyed",
+									"Service details section & selected services details are dispalyed");
+						}
+					}
+				}
+
+			} else {
+				browser.reportscomtep("Failed",
+						"Clicks on back Button in staff page and verify Service Page is dispalyed",
+						"Service Page should be dispalyed", "Service Page is not dispalyed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/****TC_22_005 Check whether the Staff can be selected****/
+	 
+	public void checkwhether_Staff_Selected() {
+		try {
+			List<WebElement> StaffList = SCobjects.NewAppointments_Staff_List;
+			browser.click(SCobjects.NewAppointments_Next_Button);
+			if (StaffList.size() > 0) {
+				if (browser.elementisdisplayed(StaffList.get(0))) {
+					browser.click(StaffList.get(0));
+					browser.reportscomtep("Passed", "Clicks on Staff Verify Staff is selected ",
+							"Staff should be selected", "Staff is selected");
+					browser.Verify_elementisdisplayed_Report(SCobjects.NewAppointments_Next_Button, "Next Button");
+				} else {
+					browser.reportscomtep("Failed", "Clicks on Staff Verify Staff is selected ",
+							"Staff should be selected", "Staff is not selected");
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/***TC_22_006 Check the Next button in Staff selection page****/
+	
+	public void check_NextButton_inStaffSelection_Page() {
+		try {
+			browser.click(SCobjects.NewAppointments_Next_Button);
+			if (browser.elementisdisplayed(SCobjects.NewAppointments_CustomerDetails_Page)) {
+				browser.reportscomtep("Passed",
+						"Clicks on next button and verify Open customer details page is displayed",
+						"Open customer details page should be displayed", "Open customer details page is displayed");
+				browser.Verify_elementisdisplayed_Report(SCobjects.NewAppointments_CustomerEmail_TextBox,
+						"Customer Email TextBox");
+				browser.Verify_elementisdisplayed_Report(SCobjects.NewAppointments_CustomerName_TextBox,
+						"Customer Name TextBox");
+				browser.Verify_elementisdisplayed_Report(SCobjects.NewAppointments_CustomerMobile_TextBox,
+						"Customer Mobile TextBox");
+				List<WebElement> UpadteSelectedService = SCobjects.NewAppointments_UpdateSelectedService_List;
+				if (UpadteSelectedService.size() > 0) {
+					for (WebElement UpadetedServices : UpadteSelectedService) {
+						String ServiceNameAndDetails = UpadetedServices.getText();
+						if (!ServiceNameAndDetails.isEmpty()
+								&& browser.elementisdisplayed(SCobjects.NewAppointments_Servieces_UpadtedTable)) {
+							browser.reportscomtep("Passed",
+									"Service details section & selected services details are dispalyed ",
+									"Service details section & selected services details should be dispalyed",
+									"Service details section & selected services details are dispalyed as"
+											+ ServiceNameAndDetails);
+							if (browser.elementisdisplayed(SCobjects.NewAppointments_Back_Button)
+									&& browser.elementisdisplayed(SCobjects.NewAppointments_Back_Button)) {
+								browser.reportscomtep("Passed",
+										"Verify Next button is displayed along with Back button",
+										"Next button should be displayed along with Back button",
+										"Next button is displayed along with Back button");
+							} else {
+								browser.reportscomtep("Failed",
+										"Verify Next button is displayed along with Back button",
+										"Next button should be displayed along with Back button",
+										"Next button is not displayed along with Back button");
+							}
+						} else {
+							browser.reportscomtep("Failed",
+									"Service details section & selected services details are dispalyed ",
+									"Service details section & selected services details should be dispalyed",
+									"Service details section & selected services details are dispalyed");
+						}
+					}
+				}
+			} else {
+				browser.reportscomtep("Failed",
+						"Clicks on next button and verify Open customer details page is displayed",
+						"Open customer details page should be displayed",
+						"Open customer details page is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/********TC_22_007 Check whether the Back button in Customer details page takes you to Staff selection page**********/
+	
+	public void checkwhether_BackButton_inCustomerDetailsPage_TakesYou_ToStaffSelectionPage() {
+		try {
+			browser.click(SCobjects.NewAppointments_Back_Button);
+			if (browser.elementisdisplayed(SCobjects.NewAppointments_StaffPage)) {
+				browser.reportscomtep("Passed",
+						"Clicks on Back button in Customer Details Page and verify Open to Staff Selection page is displayed",
+						"Open to Staff Selection page should be displayed",
+						"Open to Staff Selection page is displayed");
+				browser.Verify_elementisdisplayed_Report(SCobjects.NewAppointments_StaffImage,
+						"Pre Selected Staff Image");
+				List<WebElement> UpadteSelectedService = SCobjects.NewAppointments_UpdateSelectedService_List;
+				if (UpadteSelectedService.size() > 0) {
+					for (WebElement UpadetedServices : UpadteSelectedService) {
+						String ServiceNameAndDetails = UpadetedServices.getText();
+						if (!ServiceNameAndDetails.isEmpty()
+								&& browser.elementisdisplayed(SCobjects.NewAppointments_Servieces_UpadtedTable)) {
+							browser.reportscomtep("Passed",
+									"Service details section & selected services details are dispalyed ",
+									"Service details section & selected services details should be dispalyed",
+									"Service details section & selected services details are dispalyed as");
+						} else {
+							browser.reportscomtep("Failed",
+									"Service details section & selected services details are dispalyed ",
+									"Service details section & selected services details should be dispalyed",
+									"Service details section & selected services details are dispalyed");
+						}
+					}
+				}
+
+			} else {
+				browser.reportscomtep("Failed",
+						"Clicks on Back button in Customer Details Page and verify Open to Staff Selection page is displayed",
+						"Open to Staff Selection page should be displayed",
+						"Open to Staff Selection page is not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*****TC_22_008 Check whether another available Staff can be selected***/
+	
+	public void checkwhether_AnotherAvailable_Staff_Selected() {
+		try {
+			List<WebElement> StaffList = SCobjects.NewAppointments_Staff_List;
+			browser.click(SCobjects.NewAppointments_Next_Button);
+			if (StaffList.size() > 1) {
+				if (browser.elementisdisplayed(StaffList.get(1))) {
+					browser.click(StaffList.get(1));
+					browser.reportscomtep("Passed", "Clicks on another Staff Verify Staff is selected ",
+							"Staff should be selected", "Staff is selected");
+					browser.click(SCobjects.NewAppointments_Next_Button);
+					if (browser.elementisdisplayed(SCobjects.NewAppointments_CustomerDetails_Page)) {
+						browser.reportscomtep("Passed",
+								"Clicks on next button and verify Open customer details page is displayed",
+								"Open customer details page should be displayed",
+								"Open customer details page is displayed");
+						browser.Verify_elementisdisplayed_Report(SCobjects.NewAppointments_StaffImage,
+								"Newly selected staff Image");
+					} else {
+						browser.reportscomtep("Failed",
+								"Clicks on next button and verify Open customer details page is displayed",
+								"Open customer details page should be displayed",
+								"Open customer details page is not displayed");
+					}
+				} else {
+					browser.reportscomtep("Failed", "Clicks on another Staff Verify Staff is selected ",
+							"Staff should be selected", "Staff is not selected");
+				}
+			} else {
+				System.out.println("Staffs are not available");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/***TC_22_009 Check whether available timeslots are displayed******/
+	
+	public void checkwhether_AvailableTimeslots_Displayed() {
+		String CustomerEmail = "";
+		String CustomerName = "";
+		String CustomerMobile = "";
+		try {
+			CustomerEmail = browser.getdata("CustomerEmailId");
+			CustomerName = browser.getdata("CustomerName");
+			CustomerMobile = browser.getdata("CustomerPhoneNO");
+			browser.click(SCobjects.NewAppointments_Next_Button);
+			browser.click(SCobjects.NewAppointments_Back_Button);
+			List<WebElement> StaffList = SCobjects.NewAppointments_Staff_List;
+			if (StaffList.size() > 0) {
+				if (browser.elementisdisplayed(StaffList.get(0))) {
+					browser.click(StaffList.get(0));
+					browser.reportscomtep("Passed", "Clicks on Staff Verify Staff is selected ",
+							"Staff should be selected", "Staff is selected");
+					if (browser.elementisdisplayed(SCobjects.NewAppointments_CustomerDetails_Page)) {
+						browser.reportscomtep("Passed",
+								"Clicks on next button and verify Open customer details page is displayed",
+								"Open customer details page should be displayed",
+								"Open customer details page is displayed");
+						browser.sendkeys(SCobjects.NewAppointments_CustomerEmail_TextBox, CustomerEmail);
+						browser.sendkeys(SCobjects.NewAppointments_CustomerName_TextBox, CustomerName);
+						browser.sendkeys(SCobjects.NewAppointments_CustomerMobile_TextBox, CustomerMobile);
+						browser.click(SCobjects.NewAppointments_Next_Button);
+						List<WebElement> AvailableDayList = SCobjects.NewAppointments_AvailableTimesDayList;
+						List<WebElement> AvailableTimeSlotsList = SCobjects.NewAppointments_AvailableTimes_List;
+						for (int i = 0; AvailableDayList.size() > 0; i++) {
+							browser.click(AvailableDayList.get(i));
+							if (AvailableTimeSlotsList.size() > 0) {
+								if (browser.elementisdisplayed(SCobjects.NewAppointments_AvailableTimes_Header)) {
+									browser.reportscomtep("Passed", "Verify Available timeslots are Displayed",
+											"Available timeslots should be Displayed",
+											"Available timeslots are Displayed");
+									break;
+								} else if (AvailableTimeSlotsList.size() == 0 && browser
+										.elementisdisplayed(SCobjects.NewAppointments_AvailableNoTimeslots)) {
+									browser.reportscomtep("Passed",
+											"Verify No slots are availabe for booking on the Date",
+											"slots should't be availabe for booking on the Date",
+											"No slots are availabe for booking on the Date");
+								}
+							}
+						}
+						if(browser.elementisdisplayed(SCobjects.NewAppointments_StaffImage) && browser.elementisdisplayed(SCobjects.NewAppointments_Servieces_UpadtedTable)){
+							browser.reportscomtep("Passed",
+									"Verify Service details & Staff selected image are displayed",
+									"Service details & Staff selected image should be displayed",
+									"Service details & Staff selected image are displayed");
+						}else{
+							browser.reportscomtep("Faileds",
+									"Verify Service details & Staff selected image are displayed",
+									"Service details & Staff selected image should be displayed",
+									"Service details & Staff selected image are displayed");
+						}
+					} else {
+						browser.reportscomtep("Failed",
+								"Clicks on next button and verify Open customer details page is displayed",
+								"Open customer details page should be displayed",
+								"Open customer details page is not displayed");
+					}
+
+				} else {
+					browser.reportscomtep("Failed", "Clicks on Staff Verify Staff is selected ",
+							"Staff should be selected", "Staff is not selected");
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/********TC_22_010 Check the Back button in timeslots page*****/
+	
+	public void check_BackButton_InTimeSlotsPage() {
+		try {
+			browser.click(SCobjects.NewAppointments_Back_Button);
+			if (browser.elementisdisplayed(SCobjects.NewAppointments_CustomerDetails_Page)) {
+				browser.reportscomtep("Passed",
+						"Click on Back butoon and verify Returns to Customer details page is displayed",
+						"Returns to Customer details page should be displayed",
+						"Returns to Customer details page is displayed");
+				if (browser.elementisdisplayed(SCobjects.NewAppointments_StaffImage)
+						&& browser.elementisdisplayed(SCobjects.NewAppointments_Servieces_UpadtedTable)) {
+					browser.reportscomtep("Passed", "Verify Service details & selected staff name are same",
+							"Service details & selected staff name should be displayed",
+							"Service details & selected staff name are displayed");
+				} else {
+					browser.reportscomtep("Faileds", "Verify Service details & selected staff name are displayed",
+							"Service details & selected staff name should be displayed",
+							"Service details & selected staff name are displayed");
+				}
+
+			} else {
+				browser.reportscomtep("Failed",
+						"Click on Back butoon and verify Returns to Customer details page is displayed",
+						"Returns to Customer details page should be displayed",
+						"Returns to Customer details page is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*****TC_22_011 Check whether appointment can be created without selecting timeslot******/
+	
+	public void checkwhether_Appointment_Createdwithout_SelectingTimeslot() {
+		try {
+			browser.click(SCobjects.NewAppointments_Next_Button);
+			List<WebElement> AvailableTimeSlotsList = SCobjects.NewAppointments_AvailableTimes_List;
+			if (AvailableTimeSlotsList.size() > 0) {
+				if (browser.elementisdisplayed(SCobjects.NewAppointments_AvailableTimes_Header)) {
+					browser.reportscomtep("Passed", "Verify Available timeslots are Displayed",
+							"Available timeslots should be Displayed", "Available timeslots are Displayed");
+					browser.click(SCobjects.NewAppointments_Next_Button);
+					if (browser.elementisdisplayed(SCobjects.NewAppointments_AvailableTimes_Header)) {
+						browser.reportscomtep("Passed",
+								"Click on with out selecting Timeslots and The page is refreshes but doesnot complete the booking",
+								"The page should be refreshes but doesnot complete the booking",
+								"The page is refreshes but doesnot complete the booking");
+					} else {
+						browser.reportscomtep("Failed",
+								"Click on with out selecting Timeslots and The page is refreshes but doesnot complete the booking",
+								"The page should be refreshes but doesnot complete the booking",
+								"The page is not refreshes but doesnot complete the booking");
+					}
+
+				} else if (AvailableTimeSlotsList.size() == 0
+						&& browser.elementisdisplayed(SCobjects.NewAppointments_AvailableNoTimeslots)) {
+					browser.reportscomtep("Passed", "Verify No slots are availabe for booking on the Date",
+							"slots should't be availabe for booking on the Date",
+							"No slots are availabe for booking on the Date");
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*********TC_22_012 Check whether appointment can be created by selecting timeslot******/
+	public void checkwhether_Appointment_CreatedBySelectingTimeslot() {
+		try {
+			List<WebElement> AvailableDayList = SCobjects.NewAppointments_AvailableTimesDayList;
+			List<WebElement> AvailableTimeSlotsList = SCobjects.NewAppointments_AvailableTimes_List;
+			for (int i = 0; AvailableDayList.size() > 0; i++) {
+				browser.click(AvailableDayList.get(i));
+				if (AvailableTimeSlotsList.size() > 0) {
+					if (browser.elementisdisplayed(SCobjects.NewAppointments_AvailableTimes_Header)) {
+						browser.reportscomtep("Passed", "Verify Available timeslots are Displayed",
+								"Available timeslots should be Displayed", "Available timeslots are Displayed");
+						browser.click(AvailableTimeSlotsList.get(i));
+						browser.click(SCobjects.NewAppointments_YesProceedToPopup);
+						browser.click(SCobjects.Confirmatio_OK_Button);
+						if (browser.elementisdisplayed(SCobjects.Appointments_AppointmentsPage_Header)) {
+							browser.reportscomtep("Passed",
+									"Click on continue Avilable timeslots,Yes proceede button, Ok buttons and verify Redirects to Appointments page is displayed",
+									"Redirects to Appointments page should be displayed",
+									"Redirects to Appointments page is displayed");
+
+						} else {
+							browser.reportscomtep("Failed",
+									"Click on continue Avilable timeslots,Yes proceede button, Ok buttons and verify Redirects to Appointments page is displayed",
+									"Redirects to Appointments page should be displayed",
+									"Redirects to Appointments page is not displayed");
+						}
+					} else if (AvailableTimeSlotsList.size() == 0
+							&& browser.elementisdisplayed(SCobjects.NewAppointments_AvailableNoTimeslots)) {
+						browser.reportscomtep("Passed", "Verify No slots are availabe for booking on the Date",
+								"slots should't be availabe for booking on the Date",
+								"No slots are availabe for booking on the Date");
+					}
+				}
+			}
+			browser.click(SCobjects.NewAppointments_Next_Button);
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
