@@ -1853,7 +1853,7 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//table[@class='table styapp']//*[text()='Cancelled']//preceding::td[7]")
 	public List<WebElement> Appointments_AllAppointments_BookingIDHavig_CancelledStatus;
 	
-	/****TC_21_012 Check the options available for booking with status as – Completed***/
+	/****TC_21_012 Check the options available for booking with status as Completed***/
 	
 	@FindBy(xpath="//table/tbody/tr/td/button[text()='Completed']")
 	public List<WebElement> Appointments_AllAppointments_CompletedStatus_List;
@@ -1885,7 +1885,7 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//div[@class='datatable_x_scroll table-mobile']")
 	public WebElement Appointments_AllAppointments_FilterTable;
 	
-	/***TC_21_021 Check filter by date – Custom Range**/
+	/***TC_21_021 Check filter by date Custom Range**/
 	
 	@FindBy(xpath="//div[@class='xdsoft_calendar']/table/tbody/tr/td")
 	public List<WebElement>  Appointments_FromDate_List;
