@@ -65,7 +65,7 @@ public class TS_020_SubscriberClicks_POSMenu extends StaticVariables {
 		SR.open_POSPage();
 	}
 
-	@Test(priority = 20004, description = "TC_20_002 Check the Create Sale Order button")
+	/*@Test(priority = 20004, description = "TC_20_002 Check the Create Sale Order button")
 	public void TC_20_002_SubScriberr_check_CreateSaleOrder_Button() throws IOException {
 		ExtentTestManager.getTest().setDescription("TC_20_002 Check the Create Sale Order button");
 		SR.check_CreateSaleOrder_Button();
@@ -141,6 +141,12 @@ public class TS_020_SubscriberClicks_POSMenu extends StaticVariables {
 	public void TC_20_015_SubScriberr_Check_service_deleted_from_orders() throws IOException {
 		ExtentTestManager.getTest().setDescription("TC_20_015 Check whether a service can be deleted");
 		SR.Check_service_deleted_from_orders();
+	}	*/
+	
+	@Test(priority = 20018, description = "TC_20_016 Check whether a new sale order can be created")
+	public void TC_20_016_SubScriberr_Check_service_newsaleorder_created() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_016 Check whether a new sale order can be created");
+		SR.Check_service_newsaleorder_created();
 	}	
 
 }

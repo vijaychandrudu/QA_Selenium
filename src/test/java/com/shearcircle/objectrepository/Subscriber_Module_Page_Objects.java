@@ -1171,6 +1171,9 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//section[2]/div[1]/div[2]//table/tbody/tr")
 	public List<WebElement> POS_BP_Details_List;
 	
+	@FindBy(xpath="//table/tbody/tr[contains(@ng-repeat,'bookings_list')]/td[1]")
+	public List<WebElement> POS_BookingId_List;
+	
 	@FindBy(xpath="//table/tbody/tr/td[5]/a[text()=' View']")
 	public List<WebElement> POS_BP_View_ButtonList;
 	
@@ -1294,6 +1297,9 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[contains(@ng-if,'Service')]")
 	public WebElement POS_asb_addedservices_tr;
 	
+	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[contains(@ng-if,'Product')]")
+	public WebElement POS_asb_addedProduct_tr;
+	
 	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[contains(@ng-if,'Service')]/td[1]")
 	public WebElement POS_asb_addedservicesname_text;
 	
@@ -1314,17 +1320,38 @@ public class Subscriber_Module_Page_Objects {
 	
 	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[contains(@ng-if,'Service')]/td/button")
 	public WebElement POS_asb_addedservicesclose_button;
-	
-	
-
-
 		
 	@FindBy(xpath="//table[@class='table styapp']/tbody/tr/td[1]")
-	public List<WebElement> Appointments_AllAppointments_BookingId_List;
+	public List<WebElement> Appointments_AllAppointments_BookingId_List;	
+	
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//h4[text()='Choose Payment Options']")
+	public WebElement POS_asb_ChoosePaymentOptions_popup_header;
+	
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//input[contains(@ng-click,'cash')]")
+	public WebElement POS_asb_ChoosePaymentOptions_popup_rbutton;
+	
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//button[text()='Proceed to Checkout']")
+	public WebElement POS_asb_CPO_popup_ProceedtoCheckout_button;
+	
+	@FindBy(xpath="//h2[text()='Are you sure?']")
+	public WebElement POS_asb_Areyousure_popup_Header;
+	
+	@FindBy(xpath="//button[text()='Cancel']")
+	public WebElement POS_asb_ays_popup_Cancel_Button;
+	
+	@FindBy(xpath="//button[text()='Yes, proceed to checkout!']")
+	public WebElement POS_asb_ays_popup_YesProceedtocheckout_Button;
+	
+	@FindBy(xpath="/html/body/div[2]/h2[text()='Success!']")
+	public WebElement POS_asb_Success_popup_Header;
+	
+	@FindBy(xpath="/html/body/div[2]/p[contains(text(),'Booking Created, Request id')]")
+	public WebElement POS_asb_Success_popup_BookingID_text;
+	
+	@FindBy(xpath="//button[text()='OK']")
+	public WebElement POS_asb_Success_popup_OK_button;
 	
 	/***TC_21_002******/
-	
-	
 	
 	@FindBy(xpath="//*[@id='addStaffForm']//div[@class='col-md-8 detser']")
 	public WebElement Appointments_BSP_ServiceDetails_Table;

@@ -4730,7 +4730,8 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 					browser.reportscomtep("Passed",
 							"click on close button in the order Services table and Verify the Service delete in Order Services table",
 							"The Service should be delete in Order Services table",
-							"The Service deleted in Order Services table");
+							"The Service deleted in Order Services table");				
+					
 				}else{
 					browser.reportscomtep("Failed",
 							"click on close button in the order Services table and Verify the Service delete in Order Services table",
@@ -4744,11 +4745,152 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 						"close button should be displayed in Services orders template",
 						"close button not displayed in Services orders template");
 			}
+			
+			browser.click(SCobjects.POS_Close_button);
 
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
-	}		
+	}
+	
+/****TC_20_016 Check whether a new sale order can be created ******/
+	
+	public void Check_service_newsaleorder_created() {
+		
+		String bookingCreatedRequestID = "";
+		String bookingid = "";
+		try {			
+			String servicestaff = browser.getdata("service_staff");	
+			
+			browser.click(SCobjects.Pos_BP_CreateSaleOrder_button);	
+			browser.waitforelementtobevisible(SCobjects.POS_AddNewSale_PopupHeader, 4);			
+			if (browser.elementisdisplayed(SCobjects.POS_AddNewSale_PopupHeader)) {
+				browser.reportscomtep("Passed",
+						"Verify Add NewSale PopupHeader is displayed",
+						"Add NewSale PopupHeader should be displayed", "Add NewSale PopupHeader is displayed");
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_AddProduct_Button, "+Products Button");
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_AddService_Button, "+Service Button");				
+				browser.click(SCobjects.POS_AddService_Button);
+				browser.waitforelementtobevisible(SCobjects.POS_asb_serviceswithplus_list.get(0), 4);
+				browser.click(SCobjects.POS_asb_serviceswithplus_list.get(0));	
+				browser.Verify_elementisdisplayed_Report(SCobjects.POS_OrderTemplate_Header, "Order Services/Products Template header");
+				if (browser.elementisdisplayed(SCobjects.POS_asb_addedservices_tr)) {
+					browser.reportscomtep("Passed", "Click on Add service '+Service' and Verify service is added into Order Services",
+							"service should be added into Order Services",
+							"service is added into Order Services");
+					
+					browser.selectByVisibleText(SCobjects.POS_asb_addedserviceschoosestaff_dropsown, servicestaff);
+					String selectedstaff = browser.getDropdownSelectedValue(SCobjects.POS_asb_addedserviceschoosestaff_dropsown);
+					if(selectedstaff.equalsIgnoreCase(servicestaff)){
+						browser.reportscomtep("Passed",
+								"Select staff to the service in the Order template table",
+								"staff should be selected to the service in the Order template table",
+								"Selected staff to the service in the Order template table as :"+selectedstaff);
+					}else{
+						browser.reportscomtep("Failed",
+								"Select staff to the service in the Order template table",
+								"staff should be selected to the service in the Order template table",
+								"staff not selected to the service in the Order template table");
+					}			
+					
+				} else {
+					browser.reportscomtep("Failed", "Click on Add service '+Service' and Verify service is added into Order Services",
+							"service should be added into Order Services",
+							"service is not added into Order Services");
+				}
+				
+				browser.click(SCobjects.POS_AddProduct_Button);
+				browser.waitforelementtobevisible(SCobjects.POS_ANSP_ProductNameList.get(0), 4);
+				browser.click(SCobjects.POS_ANSP_ProductNameList.get(0));
+				
+				if (browser.elementisdisplayed(SCobjects.POS_asb_addedProduct_tr)) {
+					browser.reportscomtep("Passed", "Click on Add Product '+Product' and Verify Product is added into Order Products",
+							"Product should be added into Order Products",
+							"Product is added into Order Products");						
+					
+				} else {
+					browser.reportscomtep("Failed", "Click on Add Product '+Product' and Verify Product is added into Order Products",
+							"Product should be added into Order Products",
+							"Product is not added into Order Products");
+				}
+				
+				browser.click(SCobjects.POS_Create_Button);
+				browser.waitforelementtobevisible(SCobjects.POS_asb_ChoosePaymentOptions_popup_header, 4);
+				if(browser.elementisdisplayed(SCobjects.POS_asb_ChoosePaymentOptions_popup_header)){
+					browser.reportscomtep("Passed", "Click on Create Order and Verify Choose Payment Options Popup is displayed",
+							"Choose Payment Options Popup should be displayed",
+							"Choose Payment Options Popup is displayed");
+					
+					browser.click(SCobjects.POS_asb_ChoosePaymentOptions_popup_rbutton);					
+					browser.click(SCobjects.POS_asb_CPO_popup_ProceedtoCheckout_button);
+					if(browser.elementisdisplayed(SCobjects.POS_asb_Areyousure_popup_Header)){
+						browser.reportscomtep("Passed", "Click on Proceed to Checkout and Verify Are you sure You want to proceed to checkout! Popup is displayed",
+								"Are you sure You want to proceed to checkout! Popup should be displayed",
+								"Are you sure You want to proceed to checkout! Popup is displayed");
+						
+						browser.click(SCobjects.POS_asb_ays_popup_YesProceedtocheckout_Button);	
+						if (browser.elementisdisplayed(SCobjects.POS_asb_Success_popup_Header) && browser.elementisdisplayed(SCobjects.POS_asb_Success_popup_BookingID_text)){
+							bookingCreatedRequestID = browser.getelementtext(SCobjects.POS_asb_Success_popup_BookingID_text);
+							browser.reportscomtep("Passed", "Click on Yes Proceed to Checkout and Verify Success Popup along with Booking Created RequestId is displayed",
+									"Success Popup along with Booking Created RequestId should be displayed",
+									"Success Popup along with Booking Created RequestId: "+ bookingCreatedRequestID +" is displayed");
+							
+							browser.click(SCobjects.POS_asb_Success_popup_OK_button);
+							
+							browser.Verify_elementisdisplayed_Report(SCobjects.POS_AddNewSale_PopupHeader, "Add New Sale header");							
+							browser.click(SCobjects.POS_Close_button);
+							
+							if(SCobjects.POS_BookingId_List.size()>0){
+								for (WebElement bid:SCobjects.POS_BookingId_List){
+									bookingid = bid.getText();
+									if(bookingCreatedRequestID.contains(bookingid)){
+										browser.reportscomtep("Passed", "Verify Booking Created RequestId is displayed in Bookings Table",
+												"Booking Created RequestId should be displayed in Bookings Table",
+												"Booking Created RequestId: "+ bookingid +" is displayed in Bookings Table");
+										break;
+									}else{
+										browser.reportscomtep("Failed", "Verify Booking Created RequestId is displayed in Bookings Table",
+												"Booking Created RequestId should be displayed in Bookings Table",
+												"Booking Created RequestId: "+ bookingid +" is displayed in Bookings Table");
+									}
+								}
+								
+							}else{
+								browser.reportscomtep("Failed", "Verify Booking Created RequestId is displayed in Bookings Table",
+										"Booking Created RequestId should be displayed in Bookings Table",
+										"Booking Created RequestIds not displayed in Bookings Table");
+							}
+							
+						}else{
+							browser.reportscomtep("Failed", "Click on Yes Proceed to Checkout and Verify Success Popup along with Booking Created RequestId is displayed",
+									"Success Popup along with Booking Created RequestId should be displayed",
+									"Success Popup along with Booking Created RequestId "+ bookingCreatedRequestID +" is not displayed");
+						}
+					}else{
+						browser.reportscomtep("Failed", "Click on Proceed to Checkout and Verify Are you sure You want to proceed to checkout! Popup is displayed",
+								"Are you sure You want to proceed to checkout! Popup should be displayed",
+								"Are you sure You want to proceed to checkout! Popup is not displayed");
+					}
+					
+				}else{
+					browser.reportscomtep("Failed", "Click on Create Order and Verify Choose Payment Options Popup is displayed",
+							"Choose Payment Options Popup should be displayed",
+							"Choose Payment Options Popup not displayed");					
+				}
+				
+
+			} else {
+				browser.reportscomtep("Failed",
+						"Verify Add NewSale PopupHeader is displayed",
+						"Add NewSale PopupHeader should be displayed", "Add NewSale PopupHeader is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	
 	
 /**TS014_Subscriber clicks on Manage Products under Manage Circle Menu*********/
 	
