@@ -96,9 +96,9 @@
 			<class name="com.shearcircle.testscenarios.TS_012_SubscriberclicksonStaffunderManageCircleMenu" />
 			<class name="com.shearcircle.testscenarios.TS_013_SubscriberClicks_PaymentProcessing_UnderMCmenu" />
 			<class name="com.shearcircle.testscenarios.TS_014_SubscriberClicksOn_ManageProducts_UnderMC_Menu" />
-			<class name="com.shearcircle.testscenarios.TS_019_SubscriberClicks_ClientsMenu" />
+			<class name="com.shearcircle.testscenarios.TS_019_SubscriberClicks_ClientsMenu" /> -->
 			<class name="com.shearcircle.testscenarios.TS_020_SubscriberClicks_POSMenu" />		
-			<class name="com.shearcircle.testscenarios.TS_021_SubscriberClicksOn_AppointmentsMenu" />
+			<!--<class name="com.shearcircle.testscenarios.TS_021_SubscriberClicksOn_AppointmentsMenu" />
 			<class name="com.shearcircle.testscenarios.TS_022_Subscriber_CreatesaWalk_InAppointment" /> -->
 		</classes>
     </test>

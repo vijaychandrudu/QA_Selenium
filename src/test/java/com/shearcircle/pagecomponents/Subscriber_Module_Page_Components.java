@@ -1842,7 +1842,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		}
 	}
 	
-	//TC_9_001
+	/*//TC_9_001
     public void openbusinesssettingspage() throws Exception {
     	browser.click(SCobjects.Subscriber_HumanIcon);
     	browser.click(SCobjects.Subscriber_Business_Settings_link);
@@ -1918,9 +1918,9 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 	
 	//TC_9_004
 	
-	//****************have to get TC sorted with Sunil. Only one error msg is displayed**********************************//
+	//****************have to get TC sorted with Sunil. Only one error msg is displayed**********************************/
 	
-	public void savechangeswithoutaddinganydata() throws Exception {
+	/*public void savechangeswithoutaddinganydata() throws Exception {
 
 		if (browser.elementisdisplayed(SCobjects.Settings_page_tabs_Business_Details)) {
 			browser.reportscomtep("Passed", "Verify Business Setting page is displayed",
@@ -2244,7 +2244,595 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 
 				}
 				
-//TC_9_025
+*/
+	// TC_9_001
+	public void openbusinesssettingspage(){
+		try {
+			browser.click(SCobjects.Subscriber_HumanIcon);
+			browser.click(SCobjects.Subscriber_Business_Settings_link);
+			if (browser.elementisdisplayed(SCobjects.Settings_page_tabs_Business_Details)) {
+				browser.reportscomtep("Passed",
+						"Click on Human Icon and Business Settings link and Verify Business Details page displayed",
+						"Business Details page should be displayed", "Business Details page displayed");
+			} else {
+				browser.reportscomtep("Failed",
+						"Click on Human Icon and Business Settings link and Verify Business Details page displayed",
+						"Business Details page should be displayed", "Business Details page not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}
+
+	// TC_9_002
+	public void businesspagetabsvalidation() {
+		try {
+			if (browser.elementisdisplayed(SCobjects.Settings_page_tabs_Business_Details)) {
+				browser.reportscomtep("Passed", "Verify Default Business Setting page is displayed",
+						"Default Business Details page should be displayed", "Default Business Details page displayed");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_tabs_Business_Details,
+						"Business Details tab");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_tabs_Online_Bookings,
+						"Online Bookings tab");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_tabs_Calender, "Calender Tab");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_tabs_Staff_Notifications,
+						"Staff Notification tab");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_tabs_Payment_Settings,
+						"Payment Settings tab");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_Manage_Menu, "Manage Menu tab");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_tabs_Business_Hours,
+						"Business Hours tab");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_tabs_Social_Links, "Social links tab");
+			} else {
+				browser.reportscomtep("Failed", "Verify Default Business Setting page is displayed",
+						"Default Business Details page should be displayed",
+						"Default Business Details page not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}
+
+	// TC_9_003
+
+	public void checkinfoinbusinessdetailstab() {
+		try {
+
+			if (browser.elementisdisplayed(SCobjects.Settings_page_tabs_Business_Details)) {
+				browser.reportscomtep("Passed", "Verify Business Setting page is displayed",
+						"Business Details page should be displayed", "Business Details page displayed");
+				browser.Verify_elementprepopulatedvalue_Report(SCobjects.Settings_page_input_Business_Name,
+						"Business Name");
+				browser.Verify_elementprepopulatedvalue_Report(SCobjects.Settings_page_input_Subdomain, "Subdomain ");
+				browser.Verify_elementprepopulatedvalue_Report(SCobjects.Settings_page_input_Address, "Address");
+				browser.scrollintoviewelement(SCobjects.Settings_Save_Change_Button);
+				browser.Verify_elementprepopulatedvalue_Report(SCobjects.Settings_page_input_ContactNum,
+						"Contact_Number");
+				browser.Verify_elementprepopulatedvalue_Report(SCobjects.Settings_page_input_Business_Type,
+						"Business_Type");
+				browser.Verify_elementprepopulatedvalue_Report(SCobjects.Settings_page_input_State, "State");
+				browser.scrollintoviewelement(SCobjects.Settings_page_Overview_Textarea);
+				browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_Overview_Textarea, "Overview");
+				browser.scrollintoviewelement(SCobjects.Settings_page_input_Website);
+				browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_input_Website, "Website");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_input_Time_Zone, "Time_Zone");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Settings_Save_Change_Button, "Save Change Button");
+			} else {
+				browser.reportscomtep("Failed", "Verify Business Setting page is displayed",
+						"Business Details page should be displayed", "Business Details page not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}
+
+	// TC_9_004
+	public void savechangeswithoutaddinganydata() {
+		try {
+			if (browser.elementisdisplayed(SCobjects.Settings_page_tabs_Business_Details)) {
+				browser.reportscomtep("Passed", "Verify Business Setting page is displayed",
+						"Business Details page should be displayed", "Business Details page displayed");
+				browser.clearText(SCobjects.Settings_page_input_Business_Name);
+				browser.clearText(SCobjects.Settings_page_input_Subdomain);
+				browser.clearText(SCobjects.Settings_page_input_Address);
+				browser.scrollintoviewelement(SCobjects.Settings_Save_Change_Button);
+				browser.clearText(SCobjects.Settings_page_input_ContactNum);
+				browser.clearText(SCobjects.Settings_page_input_Business_Type);
+				browser.click(SCobjects.Settings_Save_Change_Button);
+				browser.scrollintoviewelement(SCobjects.Settings_error_msg_save_with_invalid_entries);
+				if (browser.elementisdisplayed(SCobjects.Settings_error_msg_save_with_invalid_entries)) {
+					browser.reportscomtep("Passed",
+							"Leave all mandatory field and click on Save changes button and Verify An Error message is displayed",
+							"An Error message should be displayed", "An Error Message is displayed");
+				} else {
+
+					browser.reportscomtep("Failed",
+							"Leave all mandatory field and click on Save changes button and Verify An Error message is displayed",
+							"An Error message should be displayed", "An Error Message is displayed");
+				}
+			} else {
+				browser.reportscomtep("Failed", "Verify Business Setting page is displayed",
+						"Business Details page should be displayed", "Business Details page not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}
+
+	// TC_9_005
+
+	public void checkpopupmessgaeonsavingvaliddata() {
+		try {
+			browser.sendkeys(SCobjects.Settings_page_input_Business_Name, browser.getdata("DashboardBusinessName"));
+			browser.sendkeys(SCobjects.Settings_page_input_Subdomain, browser.getdata("Subdomain"));
+			browser.scrollintoviewelement(SCobjects.Settings_page_input_Address);
+			browser.sendkeys(SCobjects.Settings_page_input_Address, browser.getdata("DigitekAddr"));
+			browser.sendkeys(SCobjects.Settings_page_input_ContactNum, browser.getdata("BusinessContactno"));
+			browser.click(SCobjects.Settings_Save_Change_Button);
+			if (browser.elementisdisplayed(SCobjects.Subscriber_updatedsuccessfullymsg)) {
+				browser.reportscomtep("Passed",
+						"Add relevant data in mandatory fields, click on Save changes button and verify Updated Sucessfully message is displayed",
+						"Updated Sucessfully message should be displayed", "Updated Sucessfully message is displayed");
+				browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+
+			} else {
+
+				browser.reportscomtep("Failed",
+						"Add relevant data in mandatory fields ,click on Save changes button and verify Updated Sucessfully message is displayed",
+						"Updated Sucessfully message should be displayed", "Updated Sucessfully message not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}
+
+	// TC_9_007
+
+	public void checkbusinessnamecanbemodified() {
+		String BeforeModifiedbusinessname = "";
+		try {
+			BeforeModifiedbusinessname = browser.elementgetAttributevalue(SCobjects.Settings_page_input_Business_Name,
+					"value");
+			browser.sendkeys(SCobjects.Settings_page_input_Business_Name, browser.getdata("changedbusinessname"));
+			browser.scrollintoviewelement(SCobjects.Settings_Save_Change_Button);
+			browser.click(SCobjects.Settings_Save_Change_Button);
+			if (browser.elementisdisplayed(SCobjects.Subscriber_updatedsuccessfullymsg)) {
+				browser.reportscomtep("Passed",
+						"Business name modify and click on save change button and verify Updated Sucessfully popup is displayed",
+						"Updated Sucessfully popup should be displayed", "Updated Sucessfully popup is displayed");
+				browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+				browser.scrollintoviewelement(SCobjects.Settings_page_input_Business_Name);
+				if (!BeforeModifiedbusinessname.equalsIgnoreCase(browser.getdata("changedbusinessname"))
+						&& browser.elementisdisplayed(SCobjects.Settings_page_input_Business_Name)) {
+					browser.reportscomtep("Passed", "Verify Business name is modified",
+							" Business name should be modified", " Business name is modified");
+				} else {
+					browser.reportscomtep("Failed", "Verify Business name is modified",
+							" Business name should be modified", " Business name is not modified");
+				}
+
+			} else {
+
+				browser.reportscomtep("Failed",
+						"Business name modify and click on save change button and verify Updated Sucessfully popup is displayed",
+						"Updated Sucessfully popup should be displayed", "Updated Sucessfully popup is displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	// TC_9_009
+
+	public void checkexistsubdomainnamecanbemodified() {
+		try {
+			browser.sendkeys(SCobjects.Settings_page_input_Subdomain, browser.getdata("existingsubdomain"));
+			browser.scrollintoviewelement(SCobjects.Settings_Save_Change_Button);
+			browser.click(SCobjects.Settings_Save_Change_Button);
+			browser.scrollintoviewelement(SCobjects.subdomainalreadyregisteredmsg);
+			if (browser.elementisdisplayed(SCobjects.subdomainalreadyregisteredmsg)) {
+				browser.reportscomtep("Passed",
+						"The entered existing subdomain and verify The entered subdomain is already registered",
+						"The entered subdomain should be already registered",
+						"The entered subdomain is already registered");
+
+			} else {
+				browser.reportscomtep("Failed",
+						"The entered existing subdomain and verify The entered subdomain is already registered",
+						"The entered subdomain should be already registered",
+						"The entered subdomain is not already registered");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+		
+
+	// TC_9_0010
+
+	public void checknonexistsubdomainnamecanbemodified() {
+		try {
+			String Beforemodifiedsubdomainname = browser
+					.elementgetAttributevalue(SCobjects.Settings_page_input_Subdomain, "value");
+			browser.sendkeys(SCobjects.Settings_page_input_Subdomain, browser.getdata("nonexistingsubdomain"));
+			browser.scrollintoviewelement(SCobjects.Settings_Save_Change_Button);
+			browser.click(SCobjects.Settings_Save_Change_Button);
+			if (browser.elementisdisplayed(SCobjects.Subscriber_updatedsuccessfullymsg)) {
+				browser.reportscomtep("Passed",
+						"Enter non exist subdomain name and click on save change button and verify Updated Sucessfully popup is displayed",
+						"Updated Sucessfully popup  should be displayed", "Updated Sucessfully popup  is displayed");
+				browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+				browser.scrollintoviewelement(SCobjects.Settings_page_input_Subdomain);
+				String Aftermodifiedsubdomainname = browser
+						.elementgetAttributevalue(SCobjects.Settings_page_input_Subdomain, "value");
+				if (!Beforemodifiedsubdomainname.equalsIgnoreCase(Aftermodifiedsubdomainname)
+						&& browser.elementisdisplayed(SCobjects.Settings_page_input_Subdomain)) {
+					browser.reportscomtep("Passed", "Verify Subdomain existing one is modifed",
+							"Subdomain existing one should be modifed", "Subdomain existing one is modifed");
+				} else {
+					browser.reportscomtep("Faileds", "Verify Subdomain existing one is modifed",
+							"Subdomain existing one should be modifed", "Subdomain existing one is not modifed");
+				}
+
+			} else {
+
+				browser.reportscomtep("Failed",
+						"Enter non exist subdomain name and click on save change button and verify Updated Sucessfully popup is displayed",
+						"Updated Sucessfully popup  should be displayed",
+						"Updated Sucessfully popup  is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}
+
+	// TC_9_011
+
+	public void validateinfoinonlinebookingtab() {
+		try {
+			browser.click(SCobjects.Online_Booking_tab);
+			if (browser.elementisdisplayed(SCobjects.Online_Bookings_Settings_Header)) {
+				browser.reportscomtep("Passed",
+						"click on online booking tab and Verify Online Booking tools header is displayed",
+						"Online Booking tools header should be displayed", "Online Booking tools header is displayed");
+				String OnlineBookingToolCheckbox = browser
+						.elementgetAttributevalue(SCobjects.Online_Booking_Enable_checkbox_clicked, "value");
+				if (OnlineBookingToolCheckbox.equals("1")
+						&& browser.elementisdisplayed(SCobjects.Online_Booking_Enable_checkbox_clicked)) {
+					browser.reportscomtep("Passed", "Verify By default enable radio button is selected",
+							"By default enable radio button should be selected",
+							"By default enable radio button is selected");
+					if (browser.elementisdisplayed(SCobjects.Online_Booking_Booking_Policy_Header)) {
+						browser.reportscomtep("Passed", "Verify Booking policy header is displayed",
+								"Booking policy header should be displayed", "Booking policy header is displayed");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Online_Booking_Client_appointment_upto,
+								"Client can book appointment upto");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Online_Booking_Client_appointment_nomorethan,
+								"Client_can_book_appointment_nomorethan");
+						if (browser.elementisdisplayed(SCobjects.Online_Booking_Cancellation_Notice_Header)) {
+							browser.reportscomtep("Passed", "Verify Cancellation Notice header is displayed",
+									"Cancellation Notice header should be displayed",
+									"Cancellation Notice header is displayed");
+							browser.Verify_elementisdisplayed_Report(SCobjects.Online_Booking_Cancellation_in_advance,
+									"Cancellation in advance");
+							browser.Verify_elementisdisplayed_Report(
+									SCobjects.Online_Booking_Cancellation_CancellatiNotice, "Cancellation Notice");
+						} else {
+							browser.reportscomtep("Failed", "Verify Cancellation Notice header is displayed",
+									"Cancellation Notice header should be displayed",
+									"Cancellation Notice header is not displayed");
+						}
+						browser.Verify_elementisdisplayed_Report(
+								SCobjects.Online_Booking_Checkbox_Staff_Member_Selection,
+								"Checkbox Staff Member Selection");
+					} else {
+						browser.reportscomtep("Failed", "Verify Booking policy header is displayed",
+								"Booking policy header should be displayed", "Booking policy header is not displayed");
+					}
+
+				} else {
+					browser.reportscomtep("Failed", "Verify By default enable radio button is selected",
+							"By default enable radio button should be selected",
+							"By default enable radio button is not selected");
+				}
+			} else {
+				browser.reportscomtep("Failed",
+						"click on online booking tab and Verify Online Booking tools header is displayed",
+						"Online Booking tools header should be displayed",
+						"Online Booking tools header is not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}
+
+	// TC_9_012
+
+	public void verifyonlineinfofields(String WithoutAddingOrmodifyingAnydata) {
+		try {
+			String BeforeAdding_BookingInAddvance = browser
+					.elementgetAttributevalue(SCobjects.Online_Booking_Client_appointment_upto, "value");
+			String BeforeAdding_BookingInFuture = browser
+					.elementgetAttributevalue(SCobjects.Online_Booking_Client_appointment_nomorethan, "value");
+			String BeforeCancellationInAddvance = browser
+					.elementgetAttributevalue(SCobjects.Online_Booking_Cancellation_in_advance, "value");
+			switch (WithoutAddingOrmodifyingAnydata) {
+			case "WithOutAddingData":
+				browser.scrollintoviewelement(SCobjects.Save_Button_Online_Booking_Page);
+				browser.click(SCobjects.Save_Button_Online_Booking_Page);
+				if (browser.elementisdisplayed(SCobjects.Updates_successfully_msg_popup)) {
+					browser.reportscomtep("Passed", "Verify Updated Successfully Message is displayed",
+							"Updated Successfully Message should be displayed",
+							"Updated Successfully Message displayed");
+					browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+					String AfterAdding_BookingInAddvance = browser
+							.elementgetAttributevalue(SCobjects.Online_Booking_Client_appointment_upto, "value");
+					String AfterAdding_BookingInFuture = browser
+							.elementgetAttributevalue(SCobjects.Online_Booking_Client_appointment_nomorethan, "value");
+					String AfterCancellationInAddvance = browser
+							.elementgetAttributevalue(SCobjects.Online_Booking_Cancellation_in_advance, "value");
+					if (BeforeAdding_BookingInAddvance.equalsIgnoreCase(AfterAdding_BookingInAddvance)
+							&& BeforeAdding_BookingInFuture.equalsIgnoreCase(AfterAdding_BookingInFuture)
+							&& BeforeCancellationInAddvance.equalsIgnoreCase(AfterCancellationInAddvance)
+							&& browser.elementisdisplayed(SCobjects.Online_Booking_Client_appointment_upto)
+							&& browser.elementisdisplayed(SCobjects.Online_Booking_Client_appointment_nomorethan)
+							&& browser.elementisdisplayed(SCobjects.Online_Booking_Cancellation_in_advance)) {
+						browser.reportscomtep("Passed",
+								"Without adding data and click on Save changes button and verify Data is Updated Successfully",
+								"Data should be Updated Successfully", "Data is Updated Successfully");
+					} else {
+						browser.reportscomtep("Failed",
+								"Without adding data and click on Save changes button and verify Data is Updated Successfully",
+								"Data should be Updated Successfully", "Data is not Updated Successfully");
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify Updated Successfully Message is displayed",
+							"Updated Successfully Message should be displayed",
+							"Updated Successfully Message not displayed");
+
+				}
+			case "WithAddingData":
+				browser.scrollintoviewelement(SCobjects.Save_Button_Online_Booking_Page);
+				browser.click(SCobjects.Save_Button_Online_Booking_Page);
+				if (browser.elementisdisplayed(SCobjects.Updates_successfully_msg_popup)) {
+					browser.reportscomtep("Passed", "Verify Updated Successfully Message is displayed",
+							"Updated Successfully Message should be displayed",
+							"Updated Successfully Message displayed");
+					browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+					browser.selectByIndex(SCobjects.Online_Booking_Client_appointment_upto, 3);
+					String AfterAdding_BookingInAddvance = browser
+							.elementgetAttributevalue(SCobjects.Online_Booking_Client_appointment_upto, "value");
+					browser.selectByIndex(SCobjects.Online_Booking_Client_appointment_nomorethan, 3);
+					String AfterAdding_BookingInFuture = browser
+							.elementgetAttributevalue(SCobjects.Online_Booking_Client_appointment_nomorethan, "value");
+					browser.selectByIndex(SCobjects.Online_Booking_Cancellation_in_advance, 3);
+					String AfterCancellationInAddvance = browser
+							.elementgetAttributevalue(SCobjects.Online_Booking_Cancellation_in_advance, "value");
+					if (!BeforeAdding_BookingInAddvance.equalsIgnoreCase(AfterAdding_BookingInAddvance)
+							&& !BeforeAdding_BookingInFuture.equalsIgnoreCase(AfterAdding_BookingInFuture)
+							&& !BeforeCancellationInAddvance.equalsIgnoreCase(AfterCancellationInAddvance)
+							&& browser.elementisdisplayed(SCobjects.Online_Booking_Client_appointment_upto)
+							&& browser.elementisdisplayed(SCobjects.Online_Booking_Client_appointment_nomorethan)
+							&& browser.elementisdisplayed(SCobjects.Online_Booking_Cancellation_in_advance)) {
+						browser.reportscomtep("Passed",
+								"With adding data and click on Save changes button and verify Data is Updated Successfully",
+								"Data should be Updated Successfully", "Data is Updated Successfully");
+					} else {
+						browser.reportscomtep("Failed",
+								"With adding data and click on Save changes button and verify Data is Updated Successfully",
+								"Data should be Updated Successfully", "Data is not Updated Successfully");
+					}
+				} else {
+					browser.reportscomtep("Failed", "Verify Updated Successfully Message is displayed",
+							"Updated Successfully Message should be displayed",
+							"Updated Successfully Message not displayed");
+
+				}
+			case "DoNothing":
+
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
+	// TC_9_013
+
+	public void checkbookingpolicyisapplied() {
+		try {
+			String BeforeBookingPolicyInAddvance = browser
+					.elementgetAttributevalue(SCobjects.Online_Booking_Client_appointment_upto, "value");
+			String BeforeBookingPolicyInFuture = browser
+					.elementgetAttributevalue(SCobjects.Online_Booking_Client_appointment_nomorethan, "value");
+			browser.selectByVisibleText(SCobjects.Online_Booking_Client_appointment_upto, "1 Hour");
+			browser.selectByVisibleText(SCobjects.Online_Booking_Client_appointment_nomorethan, "1 Month");
+			browser.scrollintoviewelement(SCobjects.Save_Button_Online_Booking_Page);
+			browser.click(SCobjects.Save_Button_Online_Booking_Page);
+			if (browser.elementisdisplayed(SCobjects.Updates_successfully_msg_popup)) {
+				browser.reportscomtep("Passed", "Verify Updated Successfully Message is displayed",
+						"Updated Successfully Message should be displayed", "Updated Successfully Message displayed");
+				browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+				String AfterBookingPolicyInAddvance = browser
+						.elementgetAttributevalue(SCobjects.Online_Booking_Client_appointment_upto, "value");
+				String AfterBookingPolicyInFuture = browser
+						.elementgetAttributevalue(SCobjects.Online_Booking_Client_appointment_nomorethan, "value");
+				if (!BeforeBookingPolicyInAddvance.equalsIgnoreCase(AfterBookingPolicyInAddvance)
+						&& !BeforeBookingPolicyInFuture.equalsIgnoreCase(AfterBookingPolicyInFuture)
+						&& browser.elementisdisplayed(SCobjects.Online_Booking_Client_appointment_upto)
+						&& browser.elementisdisplayed(SCobjects.Online_Booking_Client_appointment_nomorethan)) {
+					browser.reportscomtep("Passed",
+							"In Booking policy, specify the time in both fields by selecting from respective dropdown list and click on save changes button and verify The changes are applied",
+							"The changes should be applied", "The changes are not applied");
+				} else {
+					browser.reportscomtep("Failed",
+							"In Booking policy, specify the time in both fields by selecting from respective dropdown list and click on save changes button and verify The changes are applied",
+							"The changes should be applied", "The changes are applied");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Verify Updated Successfully Message is displayed",
+						"Updated Successfully Message should be displayed",
+						"Updated Successfully Message not displayed");
+
+			}
+
+			browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}
+
+	// TC_9_016
+
+	public void checkinfoincalendartab() {
+		try {
+			browser.click(SCobjects.Calender_Settings_tab);
+			if (browser.elementisdisplayed(SCobjects.Calender_Settings_FormPage)) {
+				browser.reportscomtep("Passed",
+						"Click on Calendar tab and Verify Calendar Form Settings page is displayed",
+						"Calendar Form Settings page should be displayed", "Calendar Form Settings page displayed");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Calender_Settings_Time_Interval_Dropdown,
+						"Time Slot Interval Dropdown");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Calender_Settings_Default_View_Dropdown,
+						"Default View");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Calender_Settings_week_start_day_Dropdown,
+						"Week Start Day");
+
+			} else {
+				browser.reportscomtep("Failed",
+						"Click on Calendar tab and Verify Calendar Form Settings page is displayed",
+						"Calendar Form Settings page should be displayed", "Calendar Form Settings page displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}
+
+	// TC_9_017
+
+	public void checkcalendersettingscanbesaved() {
+		try {
+			browser.selectByVisibleText(SCobjects.Calender_Settings_Time_Interval_Dropdown, "30 Minutes");
+			browser.selectByVisibleText(SCobjects.Calender_Settings_Default_View_Dropdown, "Week");
+			browser.selectByVisibleText(SCobjects.Calender_Settings_week_start_day_Dropdown, "Monday");
+			browser.click(SCobjects.Calender_Settings_Save_Button);
+			if (browser.elementisdisplayed(SCobjects.Updates_successfully_msg_popup)) {
+				browser.reportscomtep("Passed",
+						"Select the values from respective dropdowns and click on Save Changes button Verify Updated Successfully Message is displayed",
+						"Updated Successfully Message should be displayed", "Updated Successfully Message displayed");
+				browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+				String TimeInterval = browser
+						.elementgetAttributevalue(SCobjects.Calender_Settings_Time_Interval_Dropdown, "value");
+				String DefaultView = browser.elementgetAttributevalue(SCobjects.Calender_Settings_Default_View_Dropdown,
+						"value");
+				String WeekStartDay = browser
+						.elementgetAttributevalue(SCobjects.Calender_Settings_week_start_day_Dropdown, "value");
+				if (!TimeInterval.isEmpty() && !DefaultView.isEmpty() && !WeekStartDay.isEmpty()) {
+					browser.reportscomtep("Passed", "Verify Changes are Changed", "Changes should be Changed",
+							"Changes are Changed");
+				} else {
+					browser.reportscomtep("Failed", "Verify Changes are Changed", "Changes should be Changed",
+							"Changes are not Changed");
+				}
+			} else {
+				browser.reportscomtep("Failed",
+						"Select the values from respective dropdowns and click on Save Changes button Verify Updated Successfully Message is displayed",
+						"Updated Successfully Message should be displayed",
+						"Updated Successfully Message not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}
+
+	// TC_9_019
+
+	public void verifytabsinstaffnotificationpage() {
+		try {
+			browser.click(SCobjects.Staff_Notification_tab);
+			if (browser.elementisdisplayed(SCobjects.Staff_Notification_Header)) {
+				browser.reportscomtep("Passed",
+						"Click on Notifivation tab and Verify Staff Notification page is displayed",
+						"Staff Notification page should be displayed", " Staff Notification page displayed");
+				String EnableNotification = browser
+						.elementgetAttributevalue(SCobjects.Staff_Notification_Enble_checkbox, "value");
+				if (EnableNotification.equalsIgnoreCase("1")
+						&& browser.elementisdisplayed(SCobjects.Staff_Notification_Enble_checkbox)) {
+					browser.reportscomtep("Passed", "Verify Enable Staff Notification check box is Enabled by default",
+							"Enable Staff Notification check box should be Enabled by default",
+							"Enable Staff Notification check box is Enabled by default");
+					browser.Verify_elementisdisplayed_Report(
+							SCobjects.Staff_Notification_send_to_staff_members_checkbox,
+							"Send to staff members check box");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Staff_Notification_send_to_email_address,
+							"Send to specific email");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Staff_Notification_save_changes_button,
+							"SAVE CHANGES BUTTON");
+
+				} else {
+					browser.reportscomtep("Failed", "Verify Enable Staff Notification check box is Enabled by default",
+							"Enable Staff Notification check box should be Enabled by default",
+							"Enable Staff Notification check box is Enabled by default");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Verify Staff Notification page is displayed",
+						"Staff Notification page should be displayed", " Staff Notification page not displayed");
+
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}
+
+	// TC_9_020
+
+	public void checkvalidationinstaffnotificationpage() {
+		try {
+			browser.click(SCobjects.Staff_Notification_send_to_staff_members_checkbox);
+			browser.click(SCobjects.Staff_Notification_save_changes_button);
+			if (browser.elementisdisplayed(SCobjects.Updates_msg_popup_successful)) {
+				browser.reportscomtep("Passed", "Verify Updated Successfully Message is displayed",
+						"Updated Successfully Message should be displayed", "Updated Successfully Message displayed");
+				browser.click(SCobjects.Popup_msg_Alert_OK_Button);
+
+			} else {
+				browser.reportscomtep("Failed", "Verify Updated Successfully Message is displayed",
+						"Updated Successfully Message should be displayed",
+						"Updated Successfully Message not displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}
+
+	
+	
+	//TC_9_025
 				
 				public void checkinfoinpaymentsettings() throws Exception {
 					
@@ -4759,6 +5347,13 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		
 		String bookingCreatedRequestID = "";
 		String bookingid = "";
+		String MulserviceName = "";
+		String serviceName = "";
+		String serviceQty = "";
+		String servicePrice = "";
+		String productName = "";
+		String productQty = "";
+		String productPrice = "";
 		try {			
 			String servicestaff = browser.getdata("service_staff");	
 			
@@ -4791,7 +5386,16 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 								"Select staff to the service in the Order template table",
 								"staff should be selected to the service in the Order template table",
 								"staff not selected to the service in the Order template table");
-					}			
+					}	
+					
+					MulserviceName = browser.getelementtext(SCobjects.POS_asb_addedservicesname_text);
+					serviceName=MulserviceName.replaceAll("[\r\n]+", " ");
+					browser.setData("Out_POS_ServiceName", serviceName,"SubscriberTestData.properties");
+					serviceQty = browser.elementgetAttributevalue(SCobjects.POS_asb_addedservicesqty_text,"value");
+					browser.setData("Out_POS_ServiceQty", serviceQty,"SubscriberTestData.properties");
+					servicePrice = browser.getelementtext(SCobjects.POS_asb_addedservicestotalprice_text);
+					browser.setData("Out_POS_ServicePrice", servicePrice,"SubscriberTestData.properties");	
+					
 					
 				} else {
 					browser.reportscomtep("Failed", "Click on Add service '+Service' and Verify service is added into Order Services",
@@ -4806,7 +5410,14 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 				if (browser.elementisdisplayed(SCobjects.POS_asb_addedProduct_tr)) {
 					browser.reportscomtep("Passed", "Click on Add Product '+Product' and Verify Product is added into Order Products",
 							"Product should be added into Order Products",
-							"Product is added into Order Products");						
+							"Product is added into Order Products");	
+					productName = browser.getelementtext(SCobjects.POS_ANSP_AddedProduct_Name);					
+					productName=productName.replaceAll("[\r\n]+", " ");
+					browser.setData("Out_POS_productName", productName,"SubscriberTestData.properties");
+					productQty = browser.elementgetAttributevalue(SCobjects.POS_ANSP_AddedProduct_Qty,"value");
+					browser.setData("Out_POS_productQty", productQty,"SubscriberTestData.properties");
+					productPrice = browser.getelementtext(SCobjects.POS_ANSP_AddedProduct_TotalPrice);
+					browser.setData("Out_POS_productPrice", productPrice,"SubscriberTestData.properties");
 					
 				} else {
 					browser.reportscomtep("Failed", "Click on Add Product '+Product' and Verify Product is added into Order Products",
@@ -4891,6 +5502,185 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 	}
 	
 	
+	
+/****TC_20_017 Check the View button in bookings page(POS) ******/
+	
+	public void Check_Viewbuttoninbookingspage_POS() {
+		
+		String bookingCreatedRequestID = "";
+		String viewButton_text = "";
+		String POSBookingIdHeader = "";
+		try {		
+				
+			if(SCobjects.POS_BookingId_List.size()>0){
+				bookingCreatedRequestID = browser.getelementtext(SCobjects.POS_BookingId_List.get(0));
+				for (WebElement viewButton:SCobjects.POS_BP_View_ButtonList){
+					viewButton_text = viewButton.getText();
+					if(viewButton_text.contains("VIEW")){
+						viewButton.click();
+						browser.waitForNewWindowAndSwitchToIt(driver);
+						POSBookingIdHeader = browser.getelementtext(SCobjects.POS_BookingId_H3_header);
+						String[] POSBookingID = POSBookingIdHeader.split("#");
+						if(POSBookingID[1].equals(bookingCreatedRequestID)){						
+							browser.reportscomtep("Passed", "Click on View Button on a POS booking page and verify POS bookings Invoice is displayed in next tab",
+								"POS bookings Invoice should be displayed in next tab",
+								"POS bookings Invoice is displayed in next tab");
+							//driver.close();
+							//driver.switchTo().window(defaultWindowHandle);
+							break;
+							
+						}else{
+							browser.reportscomtep("Failed", "Click on View Button on a POS booking page and verify POS bookings Invoice is displayed in next tab",
+								"POS bookings Invoice should be displayed in next tab",
+								"POS bookings Invoice is not displayed in next tab");
+						}
+					}
+				}
+				
+			}else{
+				browser.reportscomtep("Failed", "Verify Booking Created RequestId is displayed in Bookings Table",
+						"Booking Created RequestId should be displayed in Bookings Table",
+						"Booking Created RequestIds not displayed in Bookings Table");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+/****TC_20_018 Check whether the details in the invoice are correct ******/
+	
+	public void Check_detailsintheinvoice() {
+		
+		String serviceName = "";
+		String productName = "";
+		String serviceQty = "";
+		String servicePrice = "";
+		String productQty = "";
+		String productPrice = "";
+		String invoice_serviceName = "Service Name";
+		String invoice_productName = "Product Name";
+		String invoice_serviceQty = "Service Qty";
+		String invoice_servicePrice = "Service Price";
+		String invoice_productQty = "Product Qty";
+		String invoice_productPrice = "Product Price";
+				
+		try {	
+			serviceName = browser.getdata("Out_POS_ServiceName");
+			serviceQty = browser.getdata("Out_POS_ServiceQty");
+			servicePrice = browser.getdata("Out_POS_ServicePrice").replace("$", "$ ");
+			productName = browser.getdata("Out_POS_productName");
+			productQty = browser.getdata("Out_POS_productQty");
+			productPrice = browser.getdata("Out_POS_productPrice").replace("$", "$ ");
+					
+			if(browser.elementisdisplayed(SCobjects.POS_BookingId_H3_header)){						
+				browser.reportscomtep("Passed", "Verify POS bookings Invoice is displayed in next tab",
+					"POS bookings Invoice should be displayed in next tab",
+					"POS bookings Invoice is displayed in next tab");				
+				browser.verifyElementextvalueandReport(SCobjects.POS_Invoice_ServiceName_text, invoice_serviceName, serviceName, "partial");
+				browser.verifyElementextvalueandReport(SCobjects.POS_Invoice_ServiceQty_text, invoice_serviceQty, serviceQty, "exact");
+				browser.verifyElementextvalueandReport(SCobjects.POS_Invoice_ServicePrice_text, invoice_serviceQty, servicePrice, "exact");
+				browser.verifyElementextvalueandReport(SCobjects.POS_Invoice_ProductName_text, invoice_productName, productName, "partial");
+				browser.verifyElementextvalueandReport(SCobjects.POS_Invoice_ProductQty_text, invoice_productQty, productQty, "exact");
+				browser.verifyElementextvalueandReport(SCobjects.POS_Invoice_ProductPrice_text, invoice_productPrice, productPrice, "exact");
+				
+			}else{
+				browser.reportscomtep("Failed", "Verify POS bookings Invoice is displayed in next tab",
+					"POS bookings Invoice should be displayed in next tab",
+					"POS bookings Invoice is not displayed in next tab");
+			}
+			
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+/***TC_20_019 Check whether the invoice can be sent through email*/
+	
+	public void Check_invoice_sentthroughemail() {
+		
+		
+		String invoice_Sent_Email = "";
+				
+		try {	
+			invoice_Sent_Email = browser.getdata("temp_LogIN_UserName");					
+			if(browser.elementisdisplayed(SCobjects.POS_Invoice_EmailReceipt_Link)){						
+				browser.reportscomtep("Passed", "Verify Invoice Email Receipt link is displayed in next tab",
+					"Invoice Email Receipt link should be displayed in next tab",
+					"Invoice Email Receipt link is displayed in next tab");	
+				browser.click(SCobjects.POS_Invoice_EmailReceipt_Link);
+				if(browser.elementisdisplayed(SCobjects.POS_Invoice_Popup_EmailAddress_input)){
+					browser.reportscomtep("Passed", "Click on Email Receipt link and Verify Enter recipient email address pop up is displayed",
+							"Enter recipient email address pop up should be displayed",
+							"Enter recipient email address pop up is displayed");
+					browser.sendkeys(SCobjects.POS_Invoice_Popup_EmailAddress_input, invoice_Sent_Email);
+					browser.click(SCobjects.POS_Invoice_Popup_OK_button);
+					if(browser.elementisdisplayed(SCobjects.POS_Invoice_ESS_Popup_MEssage)){
+						browser.reportscomtep("Passed", "Entered Email Address and Click on Ok Button and Verify Email send successfully pop up is displayed",
+								"Email send successfully pop up should be displayed",
+								"Email send successfully pop up is displayed");						
+						browser.click(SCobjects.POS_Invoice_ESS_Popup_OK_button);						
+						
+					}else{
+						browser.reportscomtep("Failed", "Entered Email Address and Click on Ok Button and Verify Email send successfully pop up is displayed",
+								"Email send successfully pop up should be displayed",
+								"Email send successfully pop up is not displayed");	
+					}
+					
+				}else{
+					browser.reportscomtep("Failed", "Click on Email Receipt link and Verify Enter recipient email address pop up is displayed",
+							"Enter recipient email address pop up should be displayed",
+							"Enter recipient email address pop up is not displayed");
+				}
+				
+				
+			}else{
+				browser.reportscomtep("Failed", "Verify Invoice Email Receipt link is displayed in next tab",
+						"Invoice Email Receipt link should be displayed in next tab",
+						"Invoice Email Receipt link is not displayed in next tab");		
+			}
+			
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+/***TC_20_021 Check the Return to POS Bookings button*/
+	
+	public void Check_Return_to_POSBookingsbutton() {		
+						
+		try {	
+						
+			if(browser.elementisdisplayed(SCobjects.POS_Invoice_ReturntoPOSBookings_Link)){						
+				browser.reportscomtep("Passed", "Verify Return To POS Bookings link is displayed in next tab",
+					"Return To POS Bookings link should be displayed in next tab",
+					"Return To POS Bookings link is displayed in next tab");	
+				browser.click(SCobjects.POS_Invoice_ReturntoPOSBookings_Link);
+				if(browser.elementisdisplayed(SCobjects.Pos_BookingsPage_Header)){
+					browser.reportscomtep("Passed", "Click on Return To POS Bookings link and Verify POS Bookings page is displayed",
+							"POS Bookings page should be displayed",
+							"POS Bookings page is displayed");					
+					
+				}else{
+					browser.reportscomtep("Failed", "Click on Return To POS Bookings link and Verify POS Bookings page is displayed",
+							"POS Bookings page should be displayed",
+							"POS Bookings page is not displayed");
+				}
+				
+				
+			}else{
+				browser.reportscomtep("Failed", "Verify Return To POS Bookings link is displayed in next tab",
+						"Return To POS Bookings link should be displayed in next tab",
+						"Return To POS Bookings link is not displayed in next tab");	
+			}
+			
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
 	
 /**TS014_Subscriber clicks on Manage Products under Manage Circle Menu*********/
 	

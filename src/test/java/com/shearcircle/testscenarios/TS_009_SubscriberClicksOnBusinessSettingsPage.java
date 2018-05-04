@@ -107,7 +107,7 @@ public class TS_009_SubscriberClicksOnBusinessSettingsPage extends StaticVariabl
 	
 	@Test(priority = 9012 , description = "Check the mandatory fields in Online Booking tab")
 	public void TC_9_012_verifyonlineinfofields() throws Exception { 
-		SR.verifyonlineinfofields();
+		SR.verifyonlineinfofields("WithAddingData");
 	}
 	
 	@Test(priority = 9013 , description = "Check whether Booking Policy is applied")
