@@ -2315,8 +2315,10 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 				browser.Verify_elementprepopulatedvalue_Report(SCobjects.Settings_page_input_Business_Type,
 						"Business_Type");
 				browser.Verify_elementprepopulatedvalue_Report(SCobjects.Settings_page_input_State, "State");
+				browser.switchToFrame();
 				browser.scrollintoviewelement(SCobjects.Settings_page_Overview_Textarea);
 				browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_Overview_Textarea, "Overview");
+				browser.switchToDefaultFrame();
 				browser.scrollintoviewelement(SCobjects.Settings_page_input_Website);
 				browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_input_Website, "Website");
 				browser.Verify_elementisdisplayed_Report(SCobjects.Settings_page_input_Time_Zone, "Time_Zone");
@@ -2396,6 +2398,16 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 
 	}
 
+/***TC_9_006 Verify whether the Business details are updated****/
+	
+	public void verifywhether_BusinessDetails_Updated(){
+		try{
+			this.subsriberLogOut("BusinessName");
+		}catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+		
+	}
 	// TC_9_007
 
 	public void checkbusinessnamecanbemodified() {
@@ -2428,6 +2440,16 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 						"Updated Sucessfully popup should be displayed", "Updated Sucessfully popup is displayed");
 			}
 
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+/*****TC_9_008 Verify whether the Business Name has changed***********/
+	
+	public void verify_BusinessNameChanged(){
+		try{
+			this.subsriberLogOut("BusinessNameModified");
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
@@ -2832,7 +2854,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 
 	
 	
-	//TC_9_025
+	/*//TC_9_025
 				
 				public void checkinfoinpaymentsettings() throws Exception {
 					
@@ -3003,9 +3025,592 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 						browser.reportscomtep("Failed", "Verify Business Hours page is displayed",
 								"Business Hours page should be displayed", "Business Hours page not displayed");
 					}
-}
-				
-				/*********TS011_Subscriber clicks on Services in Manage Circle Menu**************/
+}*/
+	
+	
+	
+	// TC_9_025
+
+		public void checkinfoinpaymentsettings() {
+			try {
+				browser.click(SCobjects.Settings_page_tabs_Payment_Settings);
+				if (browser.elementisdisplayed(SCobjects.Payment_Settings_Header)) {
+					browser.reportscomtep("Passed",
+							"Click on Payment Setting tab and Verify Payment Settings page is displayed",
+							"Payment Settings page should be displayed", "Payment Settings page displayed");
+					if (browser.elementisdisplayed(SCobjects.Payment_Settings_OnlinePaymentLabel)) {
+						browser.reportscomtep("Passed", "Verify Online Payment label is displayed",
+								"Online Payment label should be displayed", "Online Payment label is displayed");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Payment_Settings_Paypal_Yes_radio_button,
+								"Online Payment Yes button");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Payment_Settings_Paypal_No_radio_button,
+								"Online Payment No button");
+					} else {
+						browser.reportscomtep("Failed", "Verify Online Payment label is displayed",
+								"Online Payment label should be displayed", "Online Payment label is not displayed");
+					}
+					if (browser.elementisdisplayed(SCobjects.Payment_Settings_CashOnServiceLabel)) {
+						browser.reportscomtep("Passed", "Verify Cash on Service label is displayed",
+								"Cash on Service label should be displayed", "Cash on Service label is displayed");
+						browser.Verify_elementisdisplayed_Report(
+								SCobjects.Payment_Settings_Cash_on_service_Yes_radio_button, "Cash on Service Yes button");
+						browser.Verify_elementisdisplayed_Report(SCobjects.Payment_Settings_Cash_on_service_No_radio_button,
+								"Cash on Service No button");
+					} else {
+						browser.reportscomtep("Failed", "Verify Cash on Service label is displayed",
+								"Cash on Service label should be displayed", "Cash on Service label is not displayed");
+					}
+				}
+
+				else {
+					browser.reportscomtep("Failed",
+							"Click on Payment Setting tab and Verify Payment Settings page is displayed",
+							"Payment Settings page should be displayed", "Payment Settings page not displayed");
+
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+
+		}
+		
+		// TC_9_027
+		public void select_AppropriateRadiobutton_InPaymentSettings() {
+			try {
+				browser.check_Checkbox(SCobjects.Payment_Settings_Paypal_No_radio_button);
+				browser.check_Checkbox(SCobjects.Payment_Settings_Cash_on_service_Yes_radio_button);
+				browser.click(SCobjects.Payment_Settings_SaveButton);
+				if (browser.elementisdisplayed(SCobjects.Payment_Settings_PSUSuccessfully)) {
+					browser.reportscomtep("Passed",
+							"Clicks continue on Paypal No Radio,Cash on Service Yes Radio button and Save button and verify Payment Settings Updated Successfully popup is dispalyed ",
+							"Payment Settings Updated Successfully popup should be dispalyed",
+							"Payment Settings Updated Successfully popup is dispalyed");
+					browser.click(SCobjects.Confirmatio_OK_Button);
+					if (browser.elementisdisplayed(SCobjects.Payment_Settings_Paypal_No_radio_button)
+							&& browser.elementisdisplayed(SCobjects.Payment_Settings_Cash_on_service_Yes_radio_button)) {
+						browser.reportscomtep("Passed",
+								"Verify PayPal – No,Cash on Service – Yes Radio buttions are selected",
+								"PayPal – No,Cash on Service – Yes Radio buttions should be selected",
+								"PayPal – No,Cash on Service – Yes Radio buttions are selected");
+					} else {
+						browser.reportscomtep("Failed",
+								"Verify PayPal – No,Cash on Service – Yes Radio buttions are selected",
+								"PayPal – No,Cash on Service – Yes Radio buttions should be selected",
+								"PayPal – No,Cash on Service – Yes Radio buttions are not selected");
+					}
+				} else {
+					browser.reportscomtep("Failed",
+							"Clicks continue on Paypal No Radio,Cash on Service Yes Radio button and Save button and verify Payment Settings Updated Successfully popup is dispalyed ",
+							"Payment Settings Updated Successfully popup should be dispalyed",
+							"Payment Settings Updated Successfully popup is not dispalyed");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+		}
+		/**********TC_9_028 Verify whether the Payment Settings are applied**********/
+		
+		public void VerifywhetherPaymentSettingsAreapplied() {
+			try {
+				this.subsriberLogOut("BusinessNameModified");
+				String SalonName = browser.getelementtext(SCobjects.BusinessDetails_MBN_In_BP);
+				if (browser.elementisdisplayed(SCobjects.PaymentSettings_CashOnService_InBP)) {
+					browser.reportscomtep("Passed",
+							"Verify Salon Name:" + SalonName + " with payment option as Cash on Service is displayed",
+							"Salon Name  with payment option as Cash on Service should be displayed",
+							"Salon Name:" + SalonName + " with payment option as Cash on Service is displayed");
+				} else {
+					browser.reportscomtep("Failed",
+							"Verify Salon Name:" + SalonName + " with payment option as Cash on Service is displayed",
+							"Salon Name  with payment option as Cash on Service should be displayed",
+							"Salon Name with payment option as Cash on Service is not displayed");
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+		}
+
+		// TC_9_029
+		public void checkinfoinmanagemenu() {
+			try {
+				browser.click(SCobjects.Settings_page_Manage_Menu);
+				if (browser.elementisdisplayed(SCobjects.Manage_Menu_Header)) {
+					browser.reportscomtep("Passed", "Click on Manage menu and Verify Manage Menu page is displayed",
+							"Manage Menu page should be displayed", "Manage Menu page is displayed");
+					String ServicesYesCheckboxValue = browser
+							.elementgetAttributevalue(SCobjects.Manage_Menu_services_yes_radio_button, "value");
+					String OverViewYesCheckboxValue = browser
+							.elementgetAttributevalue(SCobjects.Manage_Menu_overview_yes_radio_button, "value");
+					String ReViewYesCheckboxValue = browser
+							.elementgetAttributevalue(SCobjects.Manage_Menu_review_yes_radio_button, "value");
+					String InquiryYesCheckboxValue = browser
+							.elementgetAttributevalue(SCobjects.Manage_Menu_inquiry_yes_radio_button, "value");
+					String PromotionsYesCheckboxValue = browser
+							.elementgetAttributevalue(SCobjects.Manage_Menu_promotions_yes_radio_button, "value");
+					String VideosYesCheckboxValue = browser
+							.elementgetAttributevalue(SCobjects.Manage_Menu_videos_yes_radio_button, "value");
+					String PhotosYesCheckboxValue = browser
+							.elementgetAttributevalue(SCobjects.Manage_Menu_photos_yes_radio_button, "value");
+					String ContactUsYesCheckboxValue = browser
+							.elementgetAttributevalue(SCobjects.Manage_Menu_contact_us_yes_radio_button, "value");
+					String JobYesCheckboxValue = browser
+							.elementgetAttributevalue(SCobjects.Manage_Menu_jobs_yes_radio_button, "value");
+					if (browser.elementisdisplayed(SCobjects.Manage_Menu_ServicesLabel)
+							&& ServicesYesCheckboxValue.equalsIgnoreCase("1")
+							&& browser.elementisdisplayed(SCobjects.Manage_Menu_services_yes_radio_button)) {
+						browser.reportscomtep("Passed", "Verify Service is yes option default selected ",
+								"Service should be yes option default selected ",
+								"Service is yes option default selected ");
+					}
+					if (browser.elementisdisplayed(SCobjects.Manage_Menu_OverViewLabel)
+							&& OverViewYesCheckboxValue.equalsIgnoreCase("1")
+							&& browser.elementisdisplayed(SCobjects.Manage_Menu_overview_yes_radio_button)) {
+						browser.reportscomtep("Passed", "Verify OverView is yes option default selected ",
+								"OverView should be yes option default selected ",
+								"OverView is yes option default selected ");
+					}
+					if (browser.elementisdisplayed(SCobjects.Manage_Menu_ReviwesLabel)
+							&& ReViewYesCheckboxValue.equalsIgnoreCase("1")
+							&& browser.elementisdisplayed(SCobjects.Manage_Menu_review_yes_radio_button)) {
+						browser.reportscomtep("Passed", "Verify Reviwes is yes option default selected ",
+								"Reviwes should be yes option default selected ",
+								"Reviwes is yes option default selected ");
+					}
+					if (browser.elementisdisplayed(SCobjects.Manage_Menu_InquiryLabel)
+							&& InquiryYesCheckboxValue.equalsIgnoreCase("1")
+							&& browser.elementisdisplayed(SCobjects.Manage_Menu_inquiry_yes_radio_button)) {
+						browser.reportscomtep("Passed", "Verify inquiry is yes option default selected ",
+								"inquiry should be yes option default selected ",
+								"inquiry is yes option default selected ");
+					}
+					if (browser.elementisdisplayed(SCobjects.Manage_Menu_PromotionsLabel)
+							&& PromotionsYesCheckboxValue.equalsIgnoreCase("1")
+							&& browser.elementisdisplayed(SCobjects.Manage_Menu_promotions_yes_radio_button)) {
+						browser.reportscomtep("Passed", "Verify Promotions is yes option default selected ",
+								"Promotions should be yes option default selected ",
+								"Promotions is yes option default selected ");
+					}
+					if (browser.elementisdisplayed(SCobjects.Manage_Menu_VideosLabel)
+							&& VideosYesCheckboxValue.equalsIgnoreCase("1")
+							&& browser.elementisdisplayed(SCobjects.Manage_Menu_videos_yes_radio_button)) {
+						browser.reportscomtep("Passed", "Verify Videos is yes option default selected ",
+								"Videos should be yes option default selected ",
+								"Videos is yes option default selected ");
+					}
+					if (browser.elementisdisplayed(SCobjects.Manage_Menu_PhotosLabel)
+							&& PhotosYesCheckboxValue.equalsIgnoreCase("1")
+							&& browser.elementisdisplayed(SCobjects.Manage_Menu_photos_yes_radio_button)) {
+						browser.reportscomtep("Passed", "Verify photos is yes option default selected ",
+								"Photos should be yes option default selected ",
+								"Phots is yes option default selected ");
+					}
+					if (browser.elementisdisplayed(SCobjects.Manage_Menu_ContactUsLabel)
+							&& ContactUsYesCheckboxValue.equalsIgnoreCase("1")
+							&& browser.elementisdisplayed(SCobjects.Manage_Menu_contact_us_yes_radio_button)) {
+						browser.reportscomtep("Passed", "Verify contact us is yes option default selected ",
+								"contact us should be yes option default selected ",
+								"contact usis yes option default selected ");
+					}
+					if (browser.elementisdisplayed(SCobjects.Manage_Menu_JobsLabel)
+							&& JobYesCheckboxValue.equalsIgnoreCase("1")
+							&& browser.elementisdisplayed(SCobjects.Manage_Menu_contact_us_yes_radio_button)) {
+						browser.reportscomtep("Passed", "Verify Job is yes option default selected ",
+								"Job  should be yes option default selected ",
+								"Job is yes option default selected ");
+					}
+					browser.Verify_elementisdisplayed_Report(SCobjects.Manage_Menu_save_button, "Save Button");
+				}
+
+				else {
+					browser.reportscomtep("Failed", "Verify Manage Menu page is displayed",
+							"Manage Menu page should be displayed", "Manage Menu page not displayed");
+
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+
+		}
+
+		// TC_9_030
+
+		public void verifychangesinmanagemenu() {
+			try {
+				if (browser.elementisdisplayed(SCobjects.Manage_Menu_Header)) {
+					browser.reportscomtep("Passed", "Verify Manage Menu page is displayed",
+							"Manage Menu page should be displayed", "Manage Menu page displayed");
+					browser.check_Checkbox(SCobjects.Manage_Menu_videos_no_radio_button);
+					browser.check_Checkbox(SCobjects.Manage_Menu_videos_no_radio_button);
+					browser.click(SCobjects.Manage_Menu_photos_no_radio_button);
+					browser.click(SCobjects.Manage_Menu_save_button);
+					browser.click(SCobjects.Confirmatio_OK_Button);
+					String VideosNoCheckboxValue = browser
+							.elementgetAttributevalue(SCobjects.Manage_Menu_videos_no_radio_button, "value");
+					String PhotosNoCheckboxValue = browser
+							.elementgetAttributevalue(SCobjects.Manage_Menu_photos_no_radio_button, "value");
+					if (browser.elementisdisplayed(SCobjects.Manage_Menu_VideosLabel)
+							&& VideosNoCheckboxValue.equalsIgnoreCase("0")
+							&& browser.elementisdisplayed(SCobjects.Manage_Menu_videos_yes_radio_button)) {
+						browser.reportscomtep("Passed", "Verify Videos no Option is selected ",
+								"Videos no Option should be selected ", "Videos no Option is selected ");
+					}
+					if (browser.elementisdisplayed(SCobjects.Manage_Menu_PhotosLabel)
+							&& PhotosNoCheckboxValue.equalsIgnoreCase("0")
+							&& browser.elementisdisplayed(SCobjects.Manage_Menu_photos_yes_radio_button)) {
+						browser.reportscomtep("Passed", "Verify Photos no Option is selected ",
+								"Photos no Option should be selected ", "Photos no Option is selected ");
+					}
+
+				}else {
+					browser.reportscomtep("Failed", "Verify Manage Menu page is displayed",
+							"Manage Menu page should be displayed", "Manage Menu page not displayed");
+
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+
+		}
+
+
+		// TC_9_031
+
+		public void checkinfoonsociallinkstab() {
+			try {
+				browser.click(SCobjects.Settings_page_tabs_Social_Links);
+				if (browser.elementisdisplayed(SCobjects.Social_Links_Header)) {
+					browser.reportscomtep("Passed", "Click on Social link tab and Verify Social Links page is displayed",
+							"Social Links page should be displayed", "Social Links page displayed");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Social_links_Facebook_field,
+							"Facebook Field TextBox");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Social_links_Instagram_field,
+							"Instagram Field TextBox");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Social_links_google_plus_field,
+							"Google plus Field TextBox");
+					String FacebookData = browser.elementgetAttributevalue(SCobjects.Social_links_Facebook_field, "value");
+					String InstagramData = browser.elementgetAttributevalue(SCobjects.Social_links_Facebook_field, "value");
+					String GooglePlusData = browser.elementgetAttributevalue(SCobjects.Social_links_Facebook_field,
+							"value");
+
+					if (FacebookData.isEmpty() && InstagramData.isEmpty() && GooglePlusData.isEmpty()
+							&& browser.elementisdisplayed(SCobjects.Social_Links_Save_button)) {
+						browser.reportscomtep("Passed",
+								"Verify The Save button is disabled by default when all the fields are empty",
+								"Save button should be disabled by default when all the fields are empty",
+								"Save button is disabled by default when all the fields are empty");
+					} else if (!FacebookData.isEmpty() && !InstagramData.isEmpty() && !GooglePlusData.isEmpty()
+							&& browser.elementisdisplayed(SCobjects.Social_Links_Save_button_after_text_entry)) {
+						browser.reportscomtep("Passed",
+								"Verify The Save button is enable when all the fields are not empty",
+								"The Save button should be  enablewhen all the fields are not empty",
+								"The Save button is enable when all the fields are not empty");
+					}
+
+				} else {
+					browser.reportscomtep("Failed", "Click on Social link tab and Verify Social Links page is displayed",
+							"Social Links page should be displayed", "Social Links page not displayed");
+
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+
+		}
+
+		// TC_9_032
+
+		public void dataentryfieldvalidity() {
+			try {
+				browser.click(SCobjects.Settings_page_tabs_Social_Links);
+				if (browser.elementisdisplayed(SCobjects.Social_Links_Header)) {
+					browser.reportscomtep("Passed", "Verify Social Links page is displayed",
+							"Social Links page should be displayed", "Social Links page displayed");
+					browser.sendkeys(SCobjects.Social_links_Facebook_field, browser.getdata("facebookentry"));
+					browser.click(SCobjects.Social_Links_Save_button_after_text_entry);
+					if (browser.elementisdisplayed(SCobjects.success_pop_up)) {
+						browser.reportscomtep("Passed",
+								"Enter Facebook fields and click on Enable save button and Verify Popup Success message is dispalyed",
+								"Popup Success message should be dispalyed", "Popup Success message is dispalyed");
+						browser.click(SCobjects.Confirmatio_OK_Button);
+
+					} else {
+						browser.reportscomtep("Failed",
+								"Enter Facebook fields and click on Enable save button and Verify Popup Success message is dispalyed",
+								"Popup Success message should be dispalyed", "Popup Success message is not dispalyed");
+					}
+
+				} else {
+					browser.reportscomtep("Failed", "Verify Social Links page is displayed",
+							"Social Links page should be displayed", "Social Links page not displayed");
+
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+
+		}
+
+		// TC_9_033
+
+		public void checkinfoinbusinessinfopage() {
+			try {
+				browser.click(SCobjects.Settings_page_tabs_Business_Hours);
+				if (browser.elementisdisplayed(SCobjects.Business_hours_header)) {
+					browser.reportscomtep("Passed",
+							"Click on Business hours Tab and Verify Business Hours page is displayed",
+							"Business Hours page should be displayed", "Business Hours page displayed");
+					browser.Verify_elementisdisplayed_Report(SCobjects.add_holiday_button, "Holiday Button");
+					browser.Verify_elementisdisplayed_Report(SCobjects.Update_button, "Update Button");
+					List<WebElement> DayCheckBox = SCobjects.Business_hours_CBDayList;
+					List<WebElement> DayLabel = SCobjects.Business_hours_DayLabelList;
+					List<WebElement> OpeningHours = SCobjects.Business_hours_Opening_hoursList;
+					List<WebElement> ClosinggHours = SCobjects.Business_hours_closing_hoursList;
+					int i = 0;
+					for (WebElement Day : DayCheckBox) {
+						String Dayname = browser.getelementtext(DayLabel.get(i));
+						if (!Dayname.isEmpty() && browser.elementisdisplayed(DayCheckBox.get(i))
+								&& browser.elementisdisplayed(DayLabel.get(i))) {
+							browser.reportscomtep("Passed",
+									"Business hour checkboxes with : " + Dayname + " day name is diaplayed ",
+									"Business hour checkboxes with day should be displayed",
+									"Business hour checkboxes with day name is diaplayed as:" + Dayname);
+						}
+						i++;
+					}
+					int j = 0;
+					for (WebElement Hours : DayCheckBox) {
+						String OpeningHour = browser.elementgetAttributevalue(OpeningHours.get(j), "value");
+						String ClosingHour = browser.elementgetAttributevalue(ClosinggHours.get(j), "value");
+						if (!OpeningHour.isEmpty() && !ClosingHour.isEmpty()
+								&& browser.elementisdisplayed(OpeningHours.get(j))
+								&& browser.elementisdisplayed(ClosinggHours.get(j))) {
+							browser.reportscomtep("Passed",
+									"Verify Opening hour as:" + OpeningHour + " & Closing Hour as: " + ClosingHour
+											+ " is dislayed ",
+									"Opening & Closing Hours dropdown list should be displayed", "Opening hour as:"
+											+ OpeningHour + " & Closing Hour as: " + ClosingHour + " is dislayed");
+						}
+						j++;
+					}
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Business hours Tab and Verify Business Hours page is displayed",
+							"Business Hours page should be displayed", "Business Hours page not displayed");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+
+		}
+
+		/******TC_9_034 Check for Validations if Updated without specifying business hours*******/
+		
+		public void check_UpdatedwithoutSpecifyingBusinesshours() {
+			try {
+				List<WebElement> DayCheckBox = SCobjects.Business_hours_CBDayList;
+				for (WebElement DayCheckbox : DayCheckBox) {
+					String Dayvalue = browser.elementgetAttributevalue(DayCheckbox, "class");
+					if (Dayvalue.equalsIgnoreCase("ng-valid ng-dirty ng-valid-parse ng-touched ng-not-empty")) {
+						browser.click(DayCheckbox);
+					} else if (Dayvalue.equalsIgnoreCase("ng-valid ng-dirty ng-valid-parse ng-touched ng-empty")) {
+						browser.doubleClick(DayCheckbox);
+					}
+				}
+				browser.click(SCobjects.Update_button);
+				if (browser.elementisdisplayed(SCobjects.Business_hours_US_Popup)) {
+					browser.reportscomtep("Passed",
+							"Without selecting any day checkboxes,click on upadate update button and Verify Updated successfully popup is displayed",
+							"Updated successfully popup should be displayed", " Updated successfully popup is displayed");
+					browser.click(SCobjects.Confirmatio_OK_Button);
+				} else {
+					browser.reportscomtep("Failed",
+							"Without selecting any day checkboxes,click on upadate update button and Verify Updated successfully popup is displayed",
+							"Updated successfully popup should be displayed",
+							" Updated successfully popup is not displayed");
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+		}
+		
+		/********TC_9_035 Check whether the Business Hours can be added*****************/
+		
+		public void checkwhether_BusinessHours_added() {
+			try {
+				List<WebElement> DayLabel = SCobjects.Business_hours_DayLabelList;
+				List<WebElement> OpeningHours = SCobjects.Business_hours_Opening_hoursList;
+				List<WebElement> ClosinggHours = SCobjects.Business_hours_closing_hoursList;
+				List<WebElement> DayCheckBox = SCobjects.Business_hours_CBDayList;
+				for (WebElement DayCheckbox : DayCheckBox) {
+					String Dayvalue = browser.elementgetAttributevalue(DayCheckbox, "class");
+					if (Dayvalue.equalsIgnoreCase("ng-valid ng-dirty ng-valid-parse ng-touched ng-empty")) {
+						browser.click(DayCheckbox);
+					}
+				}
+				String Dayname1 = browser.getelementtext(DayLabel.get(1));
+				String Dayname2 = browser.getelementtext(DayLabel.get(5));
+				browser.selectByVisibleText(OpeningHours.get(1), "10:00 AM");
+				browser.selectByVisibleText(ClosinggHours.get(1), "05:00 PM");
+				browser.selectByVisibleText(OpeningHours.get(5), "11:00 AM");
+				browser.selectByVisibleText(ClosinggHours.get(5), "03:00 PM");
+				String AfteraddingOpeningTm1 = browser.elementgetAttributevalue(OpeningHours.get(1), "value");
+				String AfteraddingClosingTm1 = browser.elementgetAttributevalue(ClosinggHours.get(1), "value");
+				String AfteraddingOpeningTm2 = browser.elementgetAttributevalue(OpeningHours.get(5), "value");
+				String AfteraddingClosingTm2 = browser.elementgetAttributevalue(ClosinggHours.get(5), "value");
+				browser.click(SCobjects.Update_button);
+				if (browser.elementisdisplayed(SCobjects.Business_hours_US_Popup)) {
+					browser.reportscomtep("Passed",
+							"Verify " + Dayname1 + ": " + AfteraddingOpeningTm1 + " to " + AfteraddingClosingTm1 + " & "
+									+ Dayname2 + ": " + AfteraddingOpeningTm2 + " to " + AfteraddingClosingTm2
+									+ " selected",
+							"Updated successfully popup should be displayed", " Updated successfully popup is displayed");
+					browser.click(SCobjects.Confirmatio_OK_Button);
+				} else {
+					browser.reportscomtep("Failed",
+							"Verify " + Dayname1 + ": " + AfteraddingOpeningTm1 + " to " + AfteraddingClosingTm1 + " & "
+									+ Dayname2 + ": " + AfteraddingOpeningTm2 + " to " + AfteraddingClosingTm2
+									+ " selected",
+							"Updated successfully popup should be displayed",
+							" Updated successfully popup is not displayed");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+		}
+		
+		/*********TC_9_037 Check whether the Add Holiday button is clickable*****/
+		
+		public void checkwhether_AddHoliday_ButtonIsClickable() {
+			try {
+				browser.click(SCobjects.add_holiday_button);
+				if (browser.elementisdisplayed(SCobjects.BusinessHours_AH_PopupHeader)) {
+					browser.reportscomtep("Passed", "Click on Add Holiday button and verify Add Holiday popup is displayed",
+							"Add Holiday popup should be displayed", "Add Holiday popup is displayed");
+					browser.Verify_elementisdisplayed_Report(SCobjects.BusinessHours_AH_StartDate_TB,
+							"Calendar field for Start Date");
+					browser.Verify_elementisdisplayed_Report(SCobjects.BusinessHours_AH_EndDate_TB,
+							"Calendar field for End Date");
+					browser.Verify_elementisdisplayed_Report(SCobjects.BusinessHours_AH_Descriptionfield,
+							"Description field");
+					browser.Verify_elementisdisplayed_Report(SCobjects.BusinessHours_AH_CloseButton, "Close Button");
+					browser.Verify_elementisdisplayed_Report(SCobjects.BusinessHours_AH_SaveButton, "Save Button");
+
+				} else {
+					browser.reportscomtep("Failed", "Click on Add Holiday button and verify Add Holiday popup is displayed",
+							"Add Holiday popup should be displayed", "Add Holiday popup is not displayed");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+		}
+		
+		
+		/*********TC_9_038 Check whether the close button is clickable**********/
+		
+		public void checkwhether_CloseButton_IsClickable() {
+			try {
+				browser.click(SCobjects.BusinessHours_AH_CloseButton);
+				if (browser.elementisdisplayed(SCobjects.Business_hours_header)) {
+					browser.reportscomtep("Passed",
+							"Click on close button and verify Close popu and Business hours page is displayed",
+							"Close popu and Business hours page is displayed",
+							"Close popu and Business hours page is displayed");
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on close button and verify Close popu and Business hours page is displayed",
+							"Close popu and Business hours page is displayed",
+							"Close popu and Business hours page is not displayed");
+				}
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+		}
+		
+		
+		/*********TC_9_039 Check the field validations in Add Holiday popup**********/
+		
+		public void check_FieldValidations_InAddHolidayPopup() {
+			try {
+				browser.click(SCobjects.add_holiday_button);
+				if (browser.elementisdisplayed(SCobjects.BusinessHours_AH_PopupHeader)) {
+					browser.reportscomtep("Passed", "Click on Add Holiday button and verify Add Holiday popup is displayed",
+							"Add Holiday popup should be displayed", "Add Holiday popup is displayed");
+					browser.click(SCobjects.BusinessHours_AH_SaveButton);
+					String StartDateEm = browser.getelementtext(SCobjects.BusinessHours_AH_StartDate_EM);
+					String EndDateEm = browser.getelementtext(SCobjects.BusinessHours_AH_EndDate_EM);
+					String CommentEm = browser.getelementtext(SCobjects.BusinessHours_AH_Comment_EM);
+					browser.verifyElementErrorMessage(SCobjects.BusinessHours_AH_StartDate_EM, StartDateEm, "exact");
+					browser.verifyElementErrorMessage(SCobjects.BusinessHours_AH_EndDate_EM, EndDateEm, "exact");
+					browser.verifyElementErrorMessage(SCobjects.BusinessHours_AH_Comment_EM, CommentEm, "exact");
+				} else {
+					browser.reportscomtep("Failed", "Click on Add Holiday button and verify Add Holiday popup is displayed",
+							"Add Holiday popup should be displayed", "Add Holiday popup is not displayed");
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+		}	
+			
+		public void subsriberLogOut(String BusinessNameOrChangeBusinessNameOr) {
+			try {
+				browser.click(SCobjects.Subscriber_HumanIcon);
+				browser.click(SCobjects.Subscriber_HumanIcon_logout_link);
+				switch (BusinessNameOrChangeBusinessNameOr) {
+				case "BusinessName":
+					browser.sendkeys(SCobjects.Professional_search_box, browser.getdata("DashboardBusinessName"));
+					browser.click(SCobjects.Professional_search_icon);
+					String BusinessName = browser.getelementtext(SCobjects.BusinessDetails_BN_In_BP);
+					if (BusinessName.equalsIgnoreCase(browser.getdata("DashboardBusinessName"))
+							&& browser.elementisdisplayed(SCobjects.BusinessDetails_BN_In_BP)) {
+						browser.reportscomtep("Passed",
+								"Enter Business name in search box and click on search icon and verify Business page in "
+										+ BusinessName + " business name is displayed",
+								"Business name details should be displayed",
+								" Business page in business name is displayed as:" + BusinessName);
+
+					} else {
+						browser.reportscomtep("Failed",
+								"Enter Business name in search box and click on search icon and verify Business page in "
+										+ BusinessName + " business name is displayed",
+								"Business name details should be displayed",
+								" Business page in business name is not displayed ");
+					}
+					break;
+				case "BusinessNameModified":
+					browser.sendkeys(SCobjects.Professional_search_box, browser.getdata("changedbusinessname"));
+					browser.click(SCobjects.Professional_search_icon);
+					String ModifiedBusinessName = browser.getelementtext(SCobjects.BusinessDetails_MBN_In_BP);
+					if (ModifiedBusinessName.equalsIgnoreCase(browser.getdata("changedbusinessname"))
+							&& browser.elementisdisplayed(SCobjects.BusinessDetails_MBN_In_BP)) {
+						browser.reportscomtep("Passed",
+								"Enter Business name in search box and click on search icon and verify Business page in "
+									+ ModifiedBusinessName + " business name is displayed",
+								"Business name details should be displayed",
+								" Business page in business name is displayed as:" + ModifiedBusinessName);
+
+					} else {
+						browser.reportscomtep("Failed",
+								"Enter Business name in search box and click on search icon and verify Business page in "
+										+ ModifiedBusinessName + " business name is displayed",
+								"Business name details should be displayed",
+								" Business page in business name is not displayed ");
+					}
+					break;
+				case "Donothing":
+
+				}
+
+			} catch (Exception e) {
+				System.out.println("Error description: " + e.getStackTrace());
+			}
+		}
+		/*********TS011_Subscriber clicks on Services in Manage Circle Menu**************/
 				
 				/**********TC_11_001 Open the Service page*******/
 				

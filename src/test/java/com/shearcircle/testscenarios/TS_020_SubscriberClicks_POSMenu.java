@@ -162,9 +162,15 @@ public class TS_020_SubscriberClicks_POSMenu extends StaticVariables {
 	}
 	
 	@Test(priority = 20021, description = "TC_20_019 Check whether the invoice can be sent through email")
-	public void TC_20_019_SubScriberr_Check_Check_invoice_sentthroughemail() throws IOException {
+	public void TC_20_019_SubScriberr_Check_invoice_sentthroughemail() throws IOException {
 		ExtentTestManager.getTest().setDescription("TC_20_019 Check whether the invoice can be sent through email");
 		SR.Check_invoice_sentthroughemail();
+	}
+	
+	@Test(priority = 20023, description = "TC_20_021 Check the Return to POS Bookings button")
+	public void TC_20_021_SubScriberr_Check_Return_to_POSBookingsbutton() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_021 Check the Return to POS Bookings button");
+		SR.Check_Return_to_POSBookingsbutton();
 	}
 
 }
