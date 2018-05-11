@@ -713,6 +713,29 @@ public class CommonFunctions extends StaticVariables {
 
 	}
 
+	
+	public boolean elementIsNotDisplayed(WebElement element) {
+		boolean elementdisplayedflag = false;
+		try {
+			// this.scrollintoviewelement(element);
+			//this.waitforelementtobevisible(element, 20);
+			try{
+				if (element.isDisplayed() && element.isEnabled()) {					
+					elementdisplayedflag = false;
+					System.out.println("Element Not existance status Failed");
+				} 
+			}
+			catch(Exception e) {
+				elementdisplayedflag = true;
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+		return elementdisplayedflag;
+
+	}
+	
 	/*********************** Verify_elementisdisplayed_Report *********************/
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:

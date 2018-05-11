@@ -31,7 +31,7 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Subscriber_Password_textbox;
 	@FindBy(xpath = "//input[@name='cnf_password']")
 	public WebElement Subscriber_ReEnterPassword_textbox;
-	@FindBy(xpath = ".//*[@id='register_form']/div[8]/div/label/input")
+	@FindBy(xpath = "//*[@id='register_form']/div/div/label/input[@name='has_agreed']")
 	public WebElement Subscriber_Termsofservice_checkbox;
 
 	@FindBy(xpath = "//input[@name='accepted_billing_agreement']")
@@ -41,20 +41,32 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Subscriber_StartFreeTrial_button;
 
 	// Error messages locater
-	@FindBy(xpath = ".//*[@id='register_form']/div[1]/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/em[@for='firstname']")
 	public WebElement Subscriber_FirstnameErrMsg;
-	@FindBy(xpath = ".//*[@id='register_form']/div[2]/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/em[@for='lastname']")
 	public WebElement Subscriber_LastnameErrMsg;
-	@FindBy(xpath = ".//*[@id='register_form']/div[3]/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/em[@for='username']")
 	public WebElement Subscriber_EmailaddressErrMsg;
+	
+	@FindBy(xpath = "//*[@id='register_form']/div/div/span[@class='promocode ng-scope']")
+	public WebElement Subscriber_PromocodeErrMsg;
+	
+	@FindBy(xpath = "//*[@id='register_form']//div/h2[text()='Applied Promo code']")
+	public WebElement Subscriber_Promocode_H2_header;
+	
+	@FindBy(xpath = "//*[@id='register_form']/div/div/div/p[contains(@class,'successmesg ')]")
+	public WebElement Subscriber_Promocode_validtime_message;
+	
+	@FindBy(xpath = "//*[@id='register_form']/div/div/div/a[text()='Remove']")
+	public WebElement Subscriber_Promocode_Remove_link;
 
-	@FindBy(xpath = ".//*[@id='register_form']/div[6]/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/label[text()='Password']//following-sibling::em")
 	public WebElement Subscriber_PasswordErrMsg;
-	@FindBy(xpath = ".//*[@id='register_form']/div[7]/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/em[@for='cnf_password']")
 	public WebElement Subscriber_ReEnterPasswordErrMsg;
-	@FindBy(xpath = ".//*[@id='register_form']/div[8]/div/em/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/div/em/em[text()='Please accept terms and conditions']")
 	public WebElement Subscriber_TermsErrMsg;
-	@FindBy(xpath = ".//*[@id='register_form']/div[9]/div/label/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/div/label/em[text()='This field is required']")
 	public WebElement Subscriber_BillingAgreementErrMsg;
 	@FindBy(linkText = "Terms of Service")
 	public WebElement Subscriber_TermsOfService_link;
@@ -66,12 +78,15 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Subscriber_TemrsAndConditions_Close;
 	@FindBy(xpath = "html/body/div[4]/div/div/div/div[1]/button")
 	public WebElement Subscriber_PrivacyPolicy_Close;
-
-	@FindBy(xpath = "html/body/section[2]/div/h5/a/u")
+	@FindBy(xpath = "//*[@id='promocode']")
+	public WebElement Subscriber_promocode_textbox;
+	@FindBy(xpath = "//*[@id='register_form']//div/button[text()=' APPLY']")
+	public WebElement Subscriber_Apply_button;
+	@FindBy(xpath = "//h5/a/u[text()='Sign in']")
 	public WebElement Subscriber_Sign_Link;
 	@FindBy(xpath = "html/body/section[2]/div/div/div/div/h2")
 	public WebElement Subscriber_Alreadyhaveanaccount;
-	@FindBy(xpath = ".//*[@id='register_form']/div[5]/div/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/div/em[text()='Please enter subdomain']")
 	public WebElement Subscriber_Subdomain_errMsg;
 
 	@FindBy(xpath = ".//*[@id='navbar-collapse-1']/span/a[1]")
@@ -665,7 +680,7 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath=".//*[@id='register_form']/div[4]/em")
 	public WebElement Subscriber_BusinessNameErrMsg;
 	
-	@FindBy(xpath = "//*[@id='register_form']/div[5]/div/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/em[@for='subdomain']")
 	public WebElement Subscriber_SubDomainErrMsg;
 	
 	@FindBy(xpath="//div/h3[text()='Privacy Policy']")
@@ -2446,6 +2461,86 @@ public class Subscriber_Module_Page_Objects {
 	
 	@FindBy(xpath="//*[text()='Yes, Proceed to reschedule!']")
 	public WebElement NewAppointments_YesProceedToPopup;
+	
+	/************TS023_Subscriber Completes an Appointment*********/
+	/***TC_23_002 Check whether the Checkout button is functioning*****/
+	
+	@FindBy(xpath="//div[@class='container']")
+	public WebElement Appointments_BillingPage;
+	
+	@FindBy(xpath="//*[@ng-controller='checkOutCtrl']//h3[contains(text(),' Appointment ID: ')]")
+	public WebElement Appointments_BP_ID;
+	
+	@FindBy(xpath="//*[@class='mmmm']/following::div//div[@class='row gutter_0 twotxts']")
+	public WebElement Appointments_BP_CustomerInfo;
+
+	@FindBy(xpath="//div[@class='inv_ul']/table/tbody/tr[1]/th")
+	public List<WebElement> Appointments_BP_ServiceHeadersList;
+	
+	@FindBy(xpath="//div[@class='inv_ul']/table/tbody/tr[2]/td")
+	public List<WebElement> Appointments_BP_ServiceDetailsList;
+
+	@FindBy(xpath="//*[@ng-click='addProducts()']")
+	public WebElement Appointments_BP_AddProductButton;
+
+	@FindBy(xpath="//button[text()='Proceed to Collect amount']")
+	public WebElement Appointments_BP_ProceedtoCollectAmounttButton;
+
+	/********TC_23_003 Check whether the service amount and other details are correct in the billing page***/
+	
+	@FindBy(xpath="//div[@class='inv_ul']/table/tbody/tr[3]/td")
+	public WebElement Appointments_BP_TipAmount;
+	
+	@FindBy(xpath="//div[@class='inv_ul']/table/tbody/tr[4]/td")
+	public WebElement Appointments_BP_TotalAmount;
+	
+	/******TC_23_007 Check the +Products button*********/
+	
+	@FindBy(xpath="//*[@id='selectProductForm']//h4[text()='Products']")
+	public WebElement Appointments_BP_SP_Popup;
+	
+	@FindBy(xpath="//*[@id='selectProductForm']//Strong")
+	public  List<WebElement> Appointments_BP_SP_ProductstNameList;
+	
+	@FindBy(xpath="//*[@id='selectProductForm']//Strong")
+	public  List<WebElement> Appointments_BP_SP_ProductsPriceList;
+	
+	@FindBy(xpath="//div[@class='inv_ul']//table/tbody/tr/td[@class='ng-binding']")
+	public  List<WebElement> Appointments_BP_SP_AddedProductsList;
+	
+	@FindBy(xpath="//div[@class='inv_ul']//table/tbody/tr[3]/td")
+	public  List<WebElement> Appointments_BP_SP_AddedProductsDetailsList;
+	
+	/****TC_23_012 Check the Proceed to Collect Amount button****/
+	
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//h4[text()='Choose Payment Options']")
+	public WebElement Appointments_BP_CPO_popup;
+	
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//a[text()='Cash']")
+	public WebElement Appointments_BP_CPO_CashLink;
+	
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//button[text()='Mark Appointment as Completed']")
+	public WebElement Appointments_BP_CPO_MACLink;
+	
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//table/tbody/tr[3]/td/input[@ng-model='tip']")
+	public WebElement Appointments_BP_CPO_TipText;
+
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//table/tbody/tr[4]/td")
+	public WebElement Appointments_BP_CPO_TotalAmount;
+
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//table/tbody/tr[1]/td")
+	public WebElement Appointments_BP_CPO_SubTotal;
+
+	
+	@FindBy(xpath="//*[text()='Is this appointment completed successfully']")
+	 public WebElement Appointments_BP_ACS_Popup;
+	
+   @FindBy(xpath="//button[text()='Yes, Completed!']")
+   public WebElement Appointments_BP_YesCompletedButton;
+   
+   @FindBy(xpath="//*[@ng-controller='trackBookingStatusCtrl']")
+   public WebElement Appointments_BP_ReceiptPage;
+
 
 
 }

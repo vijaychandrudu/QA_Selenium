@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -119,7 +121,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 				browser.reportscomtep("Passed",
 						"Click on Join OurCircle button under Are you a Professional section and Navigate to verify Join Our Circle page is displayed",
 						"Join Our Circle page should be displayed", "Join Our Circle page is displayed");
-				browser.scrollintoviewelement(SCobjects.Subscriber_JCP_Registration_Form);
+				browser.ScrollToElementBottom(SCobjects.Subscriber_JCP_Registration_Form);
 				if (browser.elementisdisplayed(SCobjects.Subscriber_JCP_Registration_Form)
 						&& browser.elementisdisplayed(SCobjects.Subscriber_StartFreeTrial_button)) {
 					browser.reportscomtep("Passed", "Verify Registration form & Start Free Trial buttons are Displayed",
@@ -151,7 +153,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 
 	public void joinOurCircle_Page_Filedvalidations() {
 		try {
-			browser.scrollintoviewelement(SCobjects.Subscriber_JCP_JoinNow_Header);
+			browser.ScrollToElementBottom(SCobjects.Subscriber_Apply_button);
 			if (browser.elementisdisplayed(SCobjects.Subscriber_JCP_JoinNow_Header)) {
 				browser.reportscomtep("Passed", "Verify Subscriber Registration form Join Now header is displayed",
 						"Subscriber Registration form Join Now header should be displayed",
@@ -160,12 +162,14 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_LastName_Textbox, "LastName Textbox");
 				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_Email_Textbox, "Email Textbox");
 				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_BusinessName_Textbox,
-						"Buisiness Name Textbox");
+						"Buisiness Name Textbox");				
 				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_Subdomain_textbox, "Subdomain Textbox");
+				browser.ScrollToElementBottom(SCobjects.Subscriber_Sign_Link);
+				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_promocode_textbox, "Apply Promo Code Textbox");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_Apply_button, "Apply Button");
 				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_Password_textbox, "Password Textbox");
 				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_ReEnterPassword_textbox,
-						"ReEnteredPassword textbox");
-				browser.scrollDown(150);
+						"ReEnteredPassword textbox");				
 				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_JCP_TermsOfService_Link,
 						"Terms Of Service Link");
 				browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_JCP_PrivacyPolicye_Link,
@@ -213,7 +217,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			Expect_BillingAgreement = browser.getdata("BillingAgreementErrMsg");
 
 			browser.click(SCobjects.Subscriber_StartFreeTrial_button);
-			browser.scrollintoviewelement(SCobjects.Subscriber_JC_Page);
+			browser.ScrollToElementBottom(SCobjects.Subscriber_Apply_button);
 
 			if (browser.elementisdisplayed(SCobjects.Subscriber_FirstnameErrMsg)) {
 				browser.verifyElementErrorMessage(SCobjects.Subscriber_FirstnameErrMsg, Expect_FirstNameErrorMessage,
@@ -236,7 +240,9 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			 * Subscriber_BusinessNameErrMsg, Expect_BussinessNameErrorMessag,
 			 * "exact"); System.out.print(Expect_BussinessNameErrorMessag); }
 			 */
-			browser.scrollDown(400);
+			//browser.scrollDown(400);
+			//browser.ScrollToElementBottom(SCobjects.Subscriber_Password_TextBox);
+			browser.ScrollToElementBottom(SCobjects.Subscriber_Sign_Link);
 			if (browser.elementisdisplayed(SCobjects.Subscriber_SubDomainErrMsg)) {
 				browser.verifyElementErrorMessage(SCobjects.Subscriber_SubDomainErrMsg,
 						Expect_SubdomainNameErrorMessage, "exact");
@@ -249,6 +255,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 				browser.verifyElementErrorMessage(SCobjects.Subscriber_ReEnterPasswordErrMsg,
 						Expect_RetypePasswordErrorMessage, "exact");
 			}
+			
 			if (browser.elementisdisplayed(SCobjects.Subscriber_TermsErrMsg)) {
 				browser.verifyElementErrorMessage(SCobjects.Subscriber_TermsErrMsg, Expect_TermsAndPrivacyErrorMessage,
 						"exact");
@@ -268,17 +275,32 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 	 * TC_1_006 Check whether the validation messages are removed
 	 *******/
 	public void check_Validation_ErrorMessages_AreRemoved() {
-		boolean ErrorMessages_AreRemoved = false;
+		boolean firstName_Erromessage = false;
+		boolean lasstName_Erromessage = false;
+		boolean email_Erromessage = false;
+		boolean subdomain_Erromessage = false;
+		boolean password_Erromessage = false;
+		boolean cnpassword_Erromessage = false;
+		boolean terms_Erromessage = false;
+		boolean billing_Erromessage = false;
 		try {
 			browser.refreshBrowser(driver);
-			browser.scrollintoviewelement(SCobjects.Subscriber_JC_Page);
-			if (browser.elementisdisplayed(SCobjects.Subscriber_JC_Page) && (ErrorMessages_AreRemoved = true)) {
+			browser.ScrollToElementBottom(SCobjects.Subscriber_Apply_button);
+			firstName_Erromessage = browser.elementIsNotDisplayed(SCobjects.Subscriber_FirstnameErrMsg);
+			lasstName_Erromessage = browser.elementIsNotDisplayed(SCobjects.Subscriber_LastnameErrMsg);
+			email_Erromessage = browser.elementIsNotDisplayed(SCobjects.Subscriber_EmailaddressErrMsg);
+			browser.ScrollToElementBottom(SCobjects.Subscriber_Sign_Link);
+			subdomain_Erromessage = browser.elementIsNotDisplayed(SCobjects.Subscriber_SubDomainErrMsg);
+			password_Erromessage = browser.elementIsNotDisplayed(SCobjects.Subscriber_PasswordErrMsg);
+			cnpassword_Erromessage = browser.elementIsNotDisplayed(SCobjects.Subscriber_ReEnterPasswordErrMsg);
+			terms_Erromessage = browser.elementIsNotDisplayed(SCobjects.Subscriber_TermsErrMsg);
+			billing_Erromessage = browser.elementIsNotDisplayed(SCobjects.Subscriber_BillingAgreementErrMsg);
+			if ((firstName_Erromessage)&&(lasstName_Erromessage) && (email_Erromessage) && (subdomain_Erromessage) && (password_Erromessage) && (cnpassword_Erromessage) && (terms_Erromessage) && (billing_Erromessage)) {
 				browser.reportscomtep("Passed",
 						"Navigate to refresh browser and displayed join our circle page and also Verify Error Messages are Removed",
 						" Error Messages should be Removed", "Error Messages are Removed");
-			} else {
-				if (ErrorMessages_AreRemoved)
-					browser.reportscomtep("Failed",
+			} else {				
+				browser.reportscomtep("Failed",
 							"Navigate to refresh browser and displayed join our circle page and also Verify Error Messages are Removed",
 							" Error Messages should be Removed", "Error Messages are not Removed");
 			}
@@ -293,7 +315,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 
 	public void checkTermsofServicelink() {
 		try {
-			browser.scrollintoviewelement(SCobjects.Subscriber_Subdomain_textbox);
+			browser.ScrollToElementBottom(SCobjects.Subscriber_Sign_Link);
 			browser.click(SCobjects.Subscriber_JCP_TermsOfService_Link);
 			if (browser.elementisdisplayed(SCobjects.Subscriber_TemrsAndConditions_Alert)) {
 				browser.reportscomtep("Passed",
@@ -401,6 +423,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		String Actual_SubdomainNameErrorMessage = null;
 		String Actual_PasswordErrorMessage = "";
 		String Actual_RetypePasswordErrorMessage = "";
+		
 		try {
 			SCInavlidFirstName = browser.getdata("SCFirstName");
 			SCInavlidLastName = browser.getdata("SCLastName");
@@ -409,15 +432,16 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			SCInavlidSubdomain = browser.getdata("SCSubdomain");
 			SCInavlidPassword = browser.getdata("SCPassword");
 			SCInavlidReTypePassword = browser.getdata("SCRetypePassword");
-			browser.scrollintoviewelement(SCobjects.Subscriber_JC_Page);
+			
+			browser.ScrollToElementBottom(SCobjects.Subscriber_BusinessName_Textbox);
 			if (browser.elementisdisplayed(SCobjects.Subscriber_JC_Page)) {
 				browser.reportscomtep("Passed", "Verify Join Our Circle page is displayed",
 						"Join Our Circle page should be displayed", "Join Our Circle page is displayed");
 				browser.sendkeys(SCobjects.Subscriber_FirstName_Textbox, SCInavlidFirstName);
 				browser.sendkeys(SCobjects.Subscriber_LastName_Textbox, SCInavlidLastName);
-				browser.sendkeys(SCobjects.Subscriber_Email_Textbox, SCInavlidEmail);
-				browser.scrollDown(400);
+				browser.sendkeys(SCobjects.Subscriber_Email_Textbox, SCInavlidEmail);				
 				browser.sendkeys(SCobjects.Subscriber_BusinessName_Textbox, SCInavlidBusinessName);
+				browser.ScrollToElementBottom(SCobjects.Subscriber_Sign_Link);
 				browser.sendkeys(SCobjects.Subscriber_Subdomain_textbox, SCInavlidSubdomain);
 				browser.sendkeys(SCobjects.Subscriber_Password_textbox, SCInavlidPassword);
 				browser.sendkeys(SCobjects.Subscriber_ReEnterPassword_textbox, SCInavlidReTypePassword);
@@ -425,7 +449,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 				browser.click(SCobjects.Subscriber_billingAgrement_checkbox);
 				browser.click(SCobjects.Subscriber_StartFreeTrial_button);
 			}
-			browser.scrollintoviewelement(SCobjects.Subscriber_JC_Page);
+			browser.scrollintoviewelement(SCobjects.Subscriber_Apply_button);
 			if (browser.elementisdisplayed(SCobjects.Subscriber_FirstnameErrMsg)) {
 				Actual_FirstNameErrorMessage = browser.getelementtext(SCobjects.Subscriber_FirstnameErrMsg);
 				browser.verifyElementErrorMessage(SCobjects.Subscriber_FirstnameErrMsg, Actual_FirstNameErrorMessage,
@@ -441,7 +465,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 				browser.verifyElementErrorMessage(SCobjects.Subscriber_EmailaddressErrMsg,
 						Actual_SubsciberEmailErrorMessage, "exact");
 			}
-			browser.scrollDown(400);
+			browser.ScrollToElementBottom(SCobjects.Subscriber_Sign_Link);
 			if (browser.elementisdisplayed(SCobjects.Subscriber_SubDomainErrMsg)) {
 				Actual_SubdomainNameErrorMessage = browser.getelementtext(SCobjects.Subscriber_SubDomainErrMsg);
 				browser.verifyElementErrorMessage(SCobjects.Subscriber_SubDomainErrMsg,
@@ -479,6 +503,8 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		String SCVlidPassword = "";
 		String SCVlidReTypePassword = "";
 		String Actual_WrongRetypePasswordErrorMessage = "";
+		int GetRandomNo = 0;
+		String AppendEmail = "";
 		try {
 			SCVlidFirstName = browser.getdata("ValidFirstname");
 			SCVlidLastName = browser.getdata("ValidLastname");
@@ -486,16 +512,18 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			SCvlidBusinessName = browser.getdata("ValidBusinessNameExisting");
 			SCVlidPassword = browser.getdata("ValidPassword");
 			SCVlidReTypePassword = browser.getdata("WrongRetypePassword");
+			GetRandomNo = browser.getRandomNumberInRange(0000, 9999);
+			AppendEmail =SCVlidEmail+GetRandomNo+"@yopmail.com";
 			driver.navigate().refresh();
-			browser.scrollintoviewelement(SCobjects.Subscriber_JC_Page);
+			browser.ScrollToElementBottom(SCobjects.Subscriber_BusinessName_Textbox);
 			if (browser.elementisdisplayed(SCobjects.Subscriber_JC_Page)) {
 				browser.reportscomtep("Passed", "Verify Join Our Circle page is displayed",
 						"Join Our Circle page should be displayed", "Join Our Circle page is displayed");
 				browser.sendkeys(SCobjects.Subscriber_FirstName_Textbox, SCVlidFirstName);
 				browser.sendkeys(SCobjects.Subscriber_LastName_Textbox, SCVlidLastName);
-				browser.sendkeys(SCobjects.Subscriber_Email_Textbox, SCVlidEmail);
-				browser.scrollDown(400);
+				browser.sendkeys(SCobjects.Subscriber_Email_Textbox, AppendEmail);				
 				browser.sendkeys(SCobjects.Subscriber_BusinessName_Textbox, SCvlidBusinessName);
+				browser.ScrollToElementBottom(SCobjects.Subscriber_Sign_Link);
 				browser.sendkeys(SCobjects.Subscriber_Password_textbox, SCVlidPassword);
 				browser.sendkeys(SCobjects.Subscriber_ReEnterPassword_textbox, SCVlidReTypePassword);
 				browser.click(SCobjects.Subscriber_Termsofservice_checkbox);
@@ -531,6 +559,8 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		String SCVlidReTypePassword = "";
 		String Actual_TermsAndPrivacyErrorMessage = "";
 		String Actual_BillingAgreementErrorMessage = "";
+		int GetRandomNo = 0;
+		String AppendEmail = "";
 		try {
 			SCVlidFirstName = browser.getdata("ValidFirstname");
 			SCVlidLastName = browser.getdata("ValidLastname");
@@ -538,20 +568,22 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			SCvlidBusinessName = browser.getdata("ValidBusinessNameExisting");
 			SCVlidPassword = browser.getdata("ValidPassword");
 			SCVlidReTypePassword = browser.getdata("ValidConfirmPassword");
+			GetRandomNo = browser.getRandomNumberInRange(0000, 9999);
+			AppendEmail =SCVlidEmail+GetRandomNo+"@yopmail.com";
 			driver.navigate().refresh();
-			browser.scrollintoviewelement(SCobjects.Subscriber_JC_Page);
+			browser.ScrollToElementBottom(SCobjects.Subscriber_BusinessName_Textbox);
 			if (browser.elementisdisplayed(SCobjects.Subscriber_JC_Page)) {
 				browser.reportscomtep("Passed", "Verify Join Our Circle page is displayed",
 						"Join Our Circle page should be displayed", "Join Our Circle page is displayed");
 				browser.sendkeys(SCobjects.Subscriber_FirstName_Textbox, SCVlidFirstName);
 				browser.sendkeys(SCobjects.Subscriber_LastName_Textbox, SCVlidLastName);
-				browser.sendkeys(SCobjects.Subscriber_Email_Textbox, SCVlidEmail);
+				browser.sendkeys(SCobjects.Subscriber_Email_Textbox, AppendEmail);
 				browser.sendkeys(SCobjects.Subscriber_BusinessName_Textbox, SCvlidBusinessName);
-				browser.scrollDown(400);
+				browser.ScrollToElementBottom(SCobjects.Subscriber_Sign_Link);
 				browser.sendkeys(SCobjects.Subscriber_Password_textbox, SCVlidPassword);
 				browser.sendkeys(SCobjects.Subscriber_ReEnterPassword_textbox, SCVlidReTypePassword);
 				browser.click(SCobjects.Subscriber_StartFreeTrial_button);
-				browser.scrollintoviewelement(SCobjects.Subscriber_ReEnterPassword_textbox);
+				browser.ScrollToElementBottom(SCobjects.Subscriber_Sign_Link);
 				if (browser.elementisdisplayed(SCobjects.Subscriber_TermsErrMsg)) {
 					Actual_TermsAndPrivacyErrorMessage = browser.getelementtext(SCobjects.Subscriber_TermsErrMsg);
 					browser.verifyElementErrorMessage(SCobjects.Subscriber_TermsErrMsg,
@@ -577,14 +609,14 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 	public void existingSubdomainValidation() {
 		String Actual_SubDomainErrMsg = "";
 		try {
-			browser.scrollintoviewelement(SCobjects.Subscriber_FirstName_Textbox);
+			driver.navigate().refresh();
+			browser.ScrollToElementBottom(SCobjects.Subscriber_Sign_Link);
 			browser.clearText(SCobjects.Subscriber_BusinessName_Textbox);
-			browser.sendkeys(SCobjects.Subscriber_BusinessName_Textbox, browser.getdata("ValidBusinessNameExisting"));
-			browser.scrollDown(400);
+			browser.sendkeys(SCobjects.Subscriber_BusinessName_Textbox, browser.getdata("ValidBusinessNameExisting"));			
 			browser.click(SCobjects.Subscriber_Termsofservice_checkbox);
 			browser.click(SCobjects.Subscriber_billingAgrement_checkbox);
 			browser.click(SCobjects.Subscriber_StartFreeTrial_button);
-			browser.scrollintoviewelement(SCobjects.Subscriber_FirstName_Textbox);
+			browser.ScrollToElementBottom(SCobjects.Subscriber_Sign_Link);
 			if (browser.elementisdisplayed(SCobjects.Subscriber_Subdomain_errMsg)) {
 				Actual_SubDomainErrMsg = browser.getelementtext(SCobjects.Subscriber_Subdomain_errMsg);
 				browser.verifyElementErrorMessage(SCobjects.Subscriber_TermsErrMsg, Actual_SubDomainErrMsg, "exact");
@@ -607,12 +639,12 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 	public void existing_Subscriber_EmailValidation() {
 		String Actual_EmailErrMsg = "";
 		try {
-			browser.scrollintoviewelement(SCobjects.Subscriber_FirstName_Textbox);
+			browser.ScrollToElementBottom(SCobjects.Subscriber_Subdomain_textbox);
 			browser.clearText(SCobjects.Subscriber_Email_Textbox);
 			browser.sendkeys(SCobjects.Subscriber_Email_Textbox, browser.getdata("UserName"));
-			browser.scrollDown(400);
+			browser.ScrollToElementBottom(SCobjects.Subscriber_Sign_Link);
 			browser.click(SCobjects.Subscriber_StartFreeTrial_button);
-			browser.scrollintoviewelement(SCobjects.Subscriber_FirstName_Textbox);
+			browser.ScrollToElementBottom(SCobjects.Subscriber_Subdomain_textbox);
 			Actual_EmailErrMsg = browser.getelementtext(SCobjects.Subscriber_EmailaddressErrMsg);
 			if (browser.elementisdisplayed(SCobjects.Subscriber_EmailaddressErrMsg)) {
 				browser.verifyElementErrorMessage(SCobjects.Subscriber_EmailaddressErrMsg, Actual_EmailErrMsg, "exact");
@@ -636,12 +668,12 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 	public void existing_Customer_EmailValidation() {
 		String Actual_EmailErrMsg = "";
 		try {
-			browser.scrollintoviewelement(SCobjects.Subscriber_FirstName_Textbox);
+			browser.ScrollToElementBottom(SCobjects.Subscriber_Subdomain_textbox);
 			browser.clearText(SCobjects.Subscriber_Email_Textbox);
 			browser.sendkeys(SCobjects.Subscriber_Email_Textbox, browser.getdata("CustomerUserName"));
-			browser.scrollDown(400);
+			browser.ScrollToElementBottom(SCobjects.Subscriber_Sign_Link);
 			browser.click(SCobjects.Subscriber_StartFreeTrial_button);
-			browser.scrollintoviewelement(SCobjects.Subscriber_FirstName_Textbox);
+			browser.ScrollToElementBottom(SCobjects.Subscriber_Subdomain_textbox);
 			Actual_EmailErrMsg = browser.getelementtext(SCobjects.Subscriber_EmailaddressErrMsg);
 			if (browser.elementisdisplayed(SCobjects.Subscriber_EmailaddressErrMsg)) {
 				browser.verifyElementErrorMessage(SCobjects.Subscriber_EmailaddressErrMsg, Actual_EmailErrMsg, "exact");
@@ -660,6 +692,90 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
 	}
+	
+	/******
+	 * TC_1_018 Check the Apply button below promo code field
+	 ******/
+	public void check_Applybutton_without_promo_code_field() {		
+		try {
+			String PromocodeErrMsg = browser.getdata("InvalidPromocodeErrMsg");
+			browser.ScrollToElementBottom(SCobjects.Subscriber_StartFreeTrial_button);
+			browser.clearText(SCobjects.Subscriber_promocode_textbox);				
+			browser.click(SCobjects.Subscriber_Apply_button);			
+			browser.verifyElementErrorMessage(SCobjects.Subscriber_PromocodeErrMsg, PromocodeErrMsg, "exact");			
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/******
+	 * TC_1_019 Check whether invalid promo code can be applied
+	 ******/
+	public void check_Applybutton_Invalid_promo_code_field() {		
+		try {
+			String before_SubscriberStartFreeButton = "";
+			String After_SubscriberStartFreeButton = "";
+			String InvalidPromocode = browser.getdata("InvalidPromocodeErrMsg");
+			String PromocodeErrMsg = browser.getdata("InvalidPromocodeErrMsg");
+			browser.ScrollToElementBottom(SCobjects.Subscriber_StartFreeTrial_button);
+			before_SubscriberStartFreeButton = browser.getelementtext(SCobjects.Subscriber_StartFreeTrial_button);
+			browser.clearText(SCobjects.Subscriber_promocode_textbox);	
+			browser.sendkeys(SCobjects.Subscriber_promocode_textbox, InvalidPromocode);
+			browser.click(SCobjects.Subscriber_Apply_button);			
+			browser.verifyElementErrorMessage(SCobjects.Subscriber_PromocodeErrMsg, PromocodeErrMsg, "exact");			
+			After_SubscriberStartFreeButton = browser.getelementtext(SCobjects.Subscriber_StartFreeTrial_button);
+			if(After_SubscriberStartFreeButton.equalsIgnoreCase(before_SubscriberStartFreeButton)){
+				browser.reportscomtep("Passed",
+						"Verify Start Trial button text after entering invalid promocode and Start Trial button text is not change.",
+						"Start Trial button text should not change",
+						"Start Trial button text is not changed");
+			}else{
+				browser.reportscomtep("Failed",
+						"Verify Start Trial button text after entering invalid promocode and Start Trial button text is not change.",
+						"Start Trial button text should not change",
+						"Start Trial button text is changed");
+			}			
+			
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/******
+	 * TC_1_020 Check whether valid promo code can be applied
+	 ******/
+	public void check_Applybutton_valid_promo_code_field() {		
+		try {
+			String SubscriberStartFreeButton_text = "Start Your Free Subscription";
+			String After_SubscriberStartFreeButton_text = "";
+			String validPromocode = browser.getdata("ValidPromocode");
+			String PromocodeSuccessMessage = browser.getdata("ValidPromocodesuccessMsg");
+			browser.ScrollToElementBottom(SCobjects.Subscriber_StartFreeTrial_button);			
+			browser.clearText(SCobjects.Subscriber_promocode_textbox);	
+			browser.sendkeys(SCobjects.Subscriber_promocode_textbox, validPromocode);
+			browser.click(SCobjects.Subscriber_Apply_button);			
+			browser.verifyElementErrorMessage(SCobjects.Subscriber_PromocodeErrMsg, PromocodeSuccessMessage, "exact");
+			browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_Promocode_H2_header, "Applied Promo code Header");
+			browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_Promocode_validtime_message, "1 month free subscribern valid time");
+			browser.Verify_elementisdisplayed_Report(SCobjects.Subscriber_Promocode_Remove_link, "Remove Link");
+			After_SubscriberStartFreeButton_text = browser.getelementtext(SCobjects.Subscriber_StartFreeTrial_button);
+			if(After_SubscriberStartFreeButton_text.equalsIgnoreCase(SubscriberStartFreeButton_text)){
+				browser.reportscomtep("Passed",
+						"Verify Start Trial button text after entering valid promocode and Start Trial button text is change.",
+						"Start Trial button text should be change",
+						"Start Trial button text is changed as:"+ After_SubscriberStartFreeButton_text);
+			}else{
+				browser.reportscomtep("Failed",
+						"Verify Start Trial button text after entering valid promocode and Start Trial button text is change.",
+						"Start Trial button text should be change",
+						"Start Trial button text is not changed as:"+ SubscriberStartFreeButton_text);
+			}			
+			
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+
 
 	// TC_2_001
 	public void createAccountStartFreeTrialbutton() throws Exception {
@@ -758,10 +874,10 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			browser.click(SCobjects.Subscriber_SignIn_Button);
 			if (browser.elementisdisplayed(SCobjects.Subscriber_WhatDescribesYouBest_Text)) {
 				browser.reportscomtep("Passed", "Enter Valid Credential and click on SigIn Button and Verify What Describes you page is displayed",
-						" What Describes you page shpild be displayed", " What Describes you page is displayed");
+						" What Describes you page should be displayed", " What Describes you page is displayed");
 			} else {
 				browser.reportscomtep("Failed", "Enter Valid Credential and click on SigIn Button and Verify What Describes you page is displayed",
-						" What Describes you page shpild be displayed", " What Describes you page is not displayed");
+						" What Describes you page should be displayed", " What Describes you page is not displayed");
 			}
 
 		} catch (Exception e) {
@@ -9528,6 +9644,542 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 		}
 	}
 
+/*TC_23_001 Check whether the Checkout button is displayed for booking with status as Confirmed****/
+	
+	public void CheckoutButton_IsDisplayed_ForBookingwithStatusAsConfirmed() {
+		String ApBookingID = "";
+		String AppoinmentStatus = "";
+		try {
+			List<WebElement> BookingID_List = SCobjects.Appointments_AllAppointments_BookingID_List;
+			int BookingID_ListSize = BookingID_List.size();
+			if (BookingID_ListSize > 1) {
+				List<WebElement> ConfirmedStatusList = SCobjects.Appointments_AllAppointments_ConfirmedStatus_List;
+				List<WebElement> ConfirmedStatusHavingIDList = SCobjects.Appointments_AllAppointments_BookingIDHavig_ConfirmedStatus;
+				List<WebElement> PageList = SCobjects.Appointments_AllAppointments_PaginationButton_List;
+				int i =0;
+				for (WebElement Status : PageList) {
+					Status.click();
+					if (browser.elementisdisplayed(ConfirmedStatusList.get(i))
+							&& browser.elementisdisplayed(ConfirmedStatusHavingIDList.get(i))) {
+						AppoinmentStatus = browser.getelementtext(ConfirmedStatusList.get(i));
+						ApBookingID = browser.getelementtext(ConfirmedStatusHavingIDList.get(i));
+						browser.click(ConfirmedStatusHavingIDList.get(i));
+						break;
+					}
+					i++;
+				}
+				
+				String BSPopupText = browser.getelementtext(SCobjects.Appointments_BookingSummaryPopupAnd_Id);
+				int BS_BookingID = Integer.parseInt(BSPopupText.replaceAll("\\D", ""));
+				String BSBKID = String.valueOf(BS_BookingID);
+				if (browser.elementisdisplayed(SCobjects.Appointments_BookingSummaryPopupAnd_Id)
+						&& ApBookingID.equalsIgnoreCase(BSBKID)) {
+					browser.reportscomtep("Passed",
+							"Click on booking ID with Satatus as:" + AppoinmentStatus
+									+ " and verify Booking Summary for" + BS_BookingID + " Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is displayed as:" + BS_BookingID);
+					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_CheckOut_Button,
+							"Check Out Booking Button");
+					
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on booking ID and verify Booking Summary Id Popup is displayed",
+							"Booking Summary ID Popup should be displayed",
+							" Booking Summary for Popup ID is not displayed");
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*****TC_23_002 Check whether the Checkout button is functioning****/
+	
+	public void Checkwhether_CheckoutButton_IsFunctioning() {
+		String TableHeadername = "";
+		try {
+			browser.click(SCobjects.Appointments_BSP_CheckOut_Button);
+			if (browser.elementisdisplayed(SCobjects.Appointments_BillingPage)) {
+				browser.reportscomtep("Passed", "Click on Check Out button and verify Billing page is opened",
+						"Billing page should be opened", "Billing page is opened");
+				String[] ServiceHeader = new String[6];
+				ServiceHeader[0] = "Product/Service Name";
+				ServiceHeader[1] = "Qty";
+				ServiceHeader[2] = "Price";
+				ServiceHeader[3] = "Discount(% Only)";
+				ServiceHeader[4] = "Staff";
+				ServiceHeader[5] = "Total Price";
+				int i = 0;
+				List<WebElement> ServiceDetailstHeaders = SCobjects.Appointments_BP_ServiceHeadersList;
+				for (WebElement theader : ServiceDetailstHeaders) {
+					TableHeadername = browser.getelementtext(theader);
+					String tableDatavalue = browser.getelementtext(SCobjects.Appointments_BP_ServiceDetailsList.get(i));
+					if (TableHeadername.trim().equalsIgnoreCase(ServiceHeader[i].trim())
+							&& browser.elementisdisplayed(ServiceDetailstHeaders.get(i)) && !tableDatavalue.isEmpty()) {
+						browser.reportscomtep("Passed",
+								"Verify Service Details table header " + TableHeadername + " is Displayed",
+								"Service Details table header should be Displayed",
+								"Service Details table header displayed as : " + TableHeadername + ": "
+										+ tableDatavalue);
+					} else {
+						browser.reportscomtep("Failed",
+								"Verify Service Details table header" + ServiceHeader[i] + " is Displayed",
+								"Service Details table header should be Displayed",
+								"Service Details table header is " + ServiceHeader[i] + " Not displayed");
+					}
+
+					i++;
+				}
+				browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BP_AddProductButton,
+						"+Products button");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BP_ProceedtoCollectAmounttButton,
+						"Proceed to collect amount button");
+			} else {
+				browser.reportscomtep("Failed", "Click on Check Out button and verify Billing page is opened",
+						"Billing page should be opened", "Billing page is not opened");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	
+	/****TC_23_003 Check whether the service amount and other details are correct in the billing page***/
+	
+	public void checkwhether_ServiceAmountAnd_OtherDetails_AreCorrectInThe_BillingPage() {
+		String ToatalPrice = "";
+		String TotalTip = "";
+		String TotalAmount = "";
+		float totalprice = 0.0f;
+		float totaltip = 0.0f;
+		float totalamount = 0.0f;
+		float ServiceTotalAmount = 0.0f;
+		try {
+			ToatalPrice = browser.getelementtext(SCobjects.Appointments_BP_ServiceDetailsList.get(5));
+			String replaceString = ToatalPrice.trim().replaceAll("USD", "").replaceAll(",", "");
+			TotalTip = browser.getelementtext(SCobjects.Appointments_BP_TipAmount);
+			String replaceString1 = TotalTip.trim().replaceAll("USD", "").replaceAll(",", "");
+			TotalAmount = browser.getelementtext(SCobjects.Appointments_BP_TotalAmount);
+			String replaceString2 = TotalAmount.trim().replaceAll("USD", "").replaceAll(",", "");
+			DecimalFormat decimalFormat = new DecimalFormat("#");
+			try {
+				totalprice = decimalFormat.parse(replaceString).floatValue();
+				totaltip = decimalFormat.parse(replaceString1).floatValue();
+				totalamount = decimalFormat.parse(replaceString2).floatValue();
+				ServiceTotalAmount = totalprice + totaltip;
+				if (ServiceTotalAmount == totalamount
+						&& browser.elementisdisplayed(SCobjects.Appointments_BP_TotalAmount)) {
+					browser.reportscomtep("Passed", "Verify Amount details are displayed",
+							"Amount details should be displayed", "Amount details are displayed");
+				} else {
+					browser.reportscomtep("Failed", "Verify Amount details are displayed",
+							"Amount details should be displayed", "Amount details are displayed");
+				}
+			} catch (ParseException e) {
+				System.out.println(totalprice + " is not a valid number.");
+				System.out.println(totaltip + " is not a valid number.");
+				System.out.println(totalamount + " is not a valid number.");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/****TC_23_004 Check whether discount can be applied for the service*****/
+	
+	public void cheeckwhether_DiscountCanBe_AappliedFor_TheService() {
+		String Discount = "";
+		try {
+			Discount = browser.getdata("ServiceDiscount");
+			String ToatalPrice = browser.getelementtext(SCobjects.Appointments_BP_ServiceDetailsList.get(5));
+			String replaceString = ToatalPrice.trim().replaceAll("USD", "").replaceAll(",", "");
+			DecimalFormat decimalFormat = new DecimalFormat("#");
+			Float BeforetotalpriceValue = decimalFormat.parse(replaceString).floatValue();
+			browser.sendkeys(SCobjects.Appointments_BP_ServiceDetailsList.get(3), Discount);
+			String ToatalPrice1 = browser.getelementtext(SCobjects.Appointments_BP_ServiceDetailsList.get(5));
+			String replaceString1 = ToatalPrice1.trim().replaceAll("USD", "").replaceAll(",", "");
+			Float AftertotalpriceValue = decimalFormat.parse(replaceString1).floatValue();
+			if (BeforetotalpriceValue > AftertotalpriceValue
+					&& browser.elementisdisplayed(SCobjects.Appointments_BP_ServiceDetailsList.get(5))) {
+				browser.reportscomtep("Passed", "Enter discount field and Verify Total price is deducted & displayed ",
+						"Total price should be deducted & displayed", "Total price is deducted & displayed");
+
+			} else {
+				browser.reportscomtep("Failed", "Enter discount field and Verify Total price is deducted & displayed",
+						"Total price should be deducted & displayed", "Total price is not deducted & displayed ");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}
+	
+	/*****TC_23_005 Check whether removing the discount value,updates the total price*****/
+	
+	public void check_RemovingDiscount_ValueUpdates_TheTotalPrice() {
+		String Discount = "";
+		try {
+			Discount = browser.getdata("Servicediscountfieldvalue");
+			String ToatalPrice = browser.getelementtext(SCobjects.Appointments_BP_ServiceDetailsList.get(5));
+			String replaceString = ToatalPrice.trim().replaceAll("USD", "").replaceAll(",", "");
+			DecimalFormat decimalFormat = new DecimalFormat("#");
+			Float BeforetotalpriceValue = decimalFormat.parse(replaceString).floatValue();
+			browser.sendkeys(SCobjects.Appointments_BP_ServiceDetailsList.get(3), Discount);
+			String ToatalPrice1 = browser.getelementtext(SCobjects.Appointments_BP_ServiceDetailsList.get(5));
+			String replaceString1 = ToatalPrice1.trim().replaceAll("USD", "").replaceAll(",", "");
+			Float AftertotalpriceValue = decimalFormat.parse(replaceString1).floatValue();
+			if (BeforetotalpriceValue == AftertotalpriceValue
+					&& browser.elementisdisplayed(SCobjects.Appointments_BP_ServiceDetailsList.get(5))) {
+				browser.reportscomtep("Passed",
+						"Enter discount field " + Discount
+								+ " value and Verify The Total amount is reverted to the actual price displayed",
+						"The Total amount should be reverted to the actual price displayed",
+						"The Total amount is reverted to the actual price displayed");
+
+			} else {
+				browser.reportscomtep("Failed", "Enter discount field and Verify Total price is deducted & displayed",
+						"The Total amount should be reverted to the actual price displayed",
+						"The Total amount is not reverted to the actual price displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/***********TC_23_006 Check whether discount value >100 can be applied****/
+	
+	public void checkWhether_DiscountValueLessThan100CanBe_Applied() {
+		String Discount = "";
+		try {
+			Discount = browser.getdata("ServicediscountGreaterThan100");
+			browser.sendkeys(SCobjects.Appointments_BP_ServiceDetailsList.get(3), Discount);
+			String AfterEnterDiscountvalue = browser
+					.elementgetAttributevalue(SCobjects.Appointments_BP_ServiceDetailsList.get(2), "value").trim();
+			if (AfterEnterDiscountvalue.equals("100")
+					&& browser.elementisdisplayed(SCobjects.Appointments_BP_ServiceDetailsList.get(2))) {
+				browser.reportscomtep("Passed",
+						"Enter discount " + Discount + " value and verify Discount automatically assigns value as:"
+								+ AfterEnterDiscountvalue + " is displayed ",
+						"Discount automatically assigns value as:100 is displayed",
+						"Discount automatically assigns value as:" + AfterEnterDiscountvalue + " is displayed");
+			} else {
+				browser.reportscomtep("Failed",
+						"Enter discount " + Discount + " value and verify Discount automatically assigns value as:"
+								+ AfterEnterDiscountvalue + " is displayed ",
+						"Discount automatically assigns value as:100 is displayed",
+						"Discount automatically assigns value as:" + AfterEnterDiscountvalue + " not is displayed");
+			}
+			DecimalFormat decimalFormat = new DecimalFormat("#");
+			String ToatalPrice1 = browser.getelementtext(SCobjects.Appointments_BP_ServiceDetailsList.get(5)).trim();
+			String replaceString1 = ToatalPrice1.trim().replaceAll("USD", "").replaceAll(",", "");
+			Float AftertotalpriceValue = decimalFormat.parse(replaceString1).floatValue();
+			if (AftertotalpriceValue == 0.00
+					&& browser.elementisdisplayed(SCobjects.Appointments_BP_ServiceDetailsList.get(5))) {
+				browser.reportscomtep("Passed", "Verify Total Price is displayed", "Total Price should be displayed",
+						"Total Price is displayed as:" + AftertotalpriceValue);
+
+			} else {
+				browser.reportscomtep("Failed", "Verify Total Price is displayed", "Total Price should be displayed",
+						"Total Price is not displayed ");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/******TC_23_007 Check the +Products button*********/
+	
+	public void checkAddProductsButton() {
+		try {
+			browser.click(SCobjects.Appointments_BP_AddProductButton);
+			if (browser.elementisdisplayed(SCobjects.Appointments_BP_SP_Popup)) {
+				browser.reportscomtep("Passed", "Clck o Add product Button and verify Products popup is opened",
+						"Products popup should be opened", "Products popup is opened");
+				List<WebElement> ProdutNameList = SCobjects.Appointments_BP_SP_ProductstNameList;
+				if (ProdutNameList.size() > 0 && browser.elementisdisplayed(ProdutNameList.get(0))
+						&& browser.elementisdisplayed(SCobjects.Appointments_BP_SP_ProductsPriceList.get(0))) {
+					browser.reportscomtep("Passed", " Verify Product name & product price is displayed",
+							"Product name & product price should be displayed",
+							"Product name & product price is displayed");
+				} else {
+					browser.reportscomtep("Failed", " Verify Product name & product price is displayed",
+							"Product name & product price should be displayed",
+							"Product name & product price is not displayed");
+				}
+
+			} else {
+				browser.reportscomtep("Failed", "Clck o Add product Button and verify Products popup is opened",
+						"Products popup should be opened", "Products popup is opened");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/******TC_23_008 Check whether product can be added*********/
+	
+	public void checkWhether_ProductCanBeAdded() {
+		try {
+			List<WebElement> ProdutNameList = SCobjects.Appointments_BP_SP_ProductstNameList;
+			if (ProdutNameList.size() > 0) {
+				browser.click(ProdutNameList.get(0));
+				List<WebElement> AddedProductsList = SCobjects.Appointments_BP_SP_AddedProductsList;
+				List<WebElement> AddedProductsDeatislList = SCobjects.Appointments_BP_SP_AddedProductsDetailsList;
+				if (AddedProductsList.size() > 1 && browser.elementisdisplayed(AddedProductsList.get(1))) {
+					browser.reportscomtep("Passed", "Select on Product and verify Product is updated accordingly",
+							"Product should be updated accordingly", "Product is updated accordingly");
+					DecimalFormat decimalFormat = new DecimalFormat("#");
+					String ToatalPrice1 = browser.getelementtext(SCobjects.Appointments_BP_ServiceDetailsList.get(5))
+							.trim();
+					String replaceString1 = ToatalPrice1.trim().replaceAll("USD", "").replaceAll(",", "");
+					Float ActualtotalpriceValue1 = decimalFormat.parse(replaceString1).floatValue();
+					String ToatalPrice2 = browser.getelementtext(AddedProductsDeatislList.get(5)).trim();
+					String replaceString2 = ToatalPrice2.trim().replaceAll("USD", "").replaceAll(",", "");
+					Float ActualtotalpriceValue1totalpriceValue2 = decimalFormat.parse(replaceString2).floatValue();
+					Float ActulaTotlPrice = ActualtotalpriceValue1 + ActualtotalpriceValue1totalpriceValue2;
+					String TotalAmount = browser.getelementtext(SCobjects.Appointments_BP_TotalAmount);
+					String replaceString = TotalAmount.trim().replaceAll("USD", "").replaceAll(",", "");
+					Float ExpextedTotalAmount = decimalFormat.parse(replaceString).floatValue();
+					if (ActulaTotlPrice.equals(ExpextedTotalAmount)
+							&& browser.elementisdisplayed(SCobjects.Appointments_BP_TotalAmount)) {
+						browser.reportscomtep("Passed", "Verify The Products total Amount is updated",
+								"The Products total Amount should be updated", "The Products total Amount is updated");
+					} else {
+						browser.reportscomtep("Failed", "Verify The Products total Amount is updated",
+								"The Products total Amount should be updated",
+								"The Products total Amount is not updated");
+					}
+				} else {
+					browser.reportscomtep("Failed", "Select on Product and verify Product is updated accordingly",
+							"Product should be updated accordingly", "Product is not updated accordingly");
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/*******TC_23_009 Check whether the product quantity can be increased/decreased*****/
+	
+	public void checkwhether_TheroductQuantityCanBe_IncreasedOrdecreased(String IncreasedOrdecreased) {
+		String IncreaseQuantity = "";
+		String DecreseQuantity="";
+		try {
+			DecimalFormat decimalFormat = new DecimalFormat("#");
+			List<WebElement> AddedProductsDeatislList = SCobjects.Appointments_BP_SP_AddedProductsDetailsList;
+			String Beforeincreasedvlue = browser.elementgetAttributevalue((AddedProductsDeatislList.get(1)), "value");
+			String replaceString1 = Beforeincreasedvlue.trim().replaceAll("USD", "").replaceAll(",", "");
+			Float BeforeIncreased = decimalFormat.parse(replaceString1).floatValue();
+			String ProductPrice = browser.elementgetAttributevalue((AddedProductsDeatislList.get(2)), "value");
+			String replaceString = Beforeincreasedvlue.trim().replaceAll("USD", "").replaceAll(",", "");
+			Float ProductPricevalue = decimalFormat.parse(replaceString).floatValue();
+			String ActualTP = browser.elementgetAttributevalue((AddedProductsDeatislList.get(5)), "value");
+			String replaceString3 = Beforeincreasedvlue.trim().replaceAll("USD", "").replaceAll(",", "");
+			Float ActulTotalPrice = decimalFormat.parse(replaceString3).floatValue();
+			switch (IncreasedOrdecreased) {
+			case "Increasedquantity":
+				IncreaseQuantity = browser.getdata("ProductIncreasedQty");
+				browser.sendkeys(AddedProductsDeatislList.get(1), IncreaseQuantity);
+				Float increasedvalue = decimalFormat.parse(IncreaseQuantity).floatValue();
+				Float ExpectedTotalPrice = increasedvalue * ProductPricevalue;
+				if (!ExpectedTotalPrice.equals(ActulTotalPrice) && !BeforeIncreased.equals(increasedvalue)
+						&& browser.elementisdisplayed((AddedProductsDeatislList.get(5)))) {
+					browser.reportscomtep("Passed",
+							"Enter the Quantity Filed and Verify The total price of the product is updated accordingly",
+							"The total price of the product should be updated accordingly",
+							"The total price of the product is updated accordingly");
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Enter the Quantity Filed and Verify The total price of the product is updated accordingly",
+							"The total price of the product should be updated accordingly",
+							"The total price of the product is not updated accordingly");
+				}
+
+			case "Decreasedquantity":
+				DecreseQuantity = browser.getdata("ProductdecreasedQty");
+				browser.sendkeys(AddedProductsDeatislList.get(1), DecreseQuantity);
+				Float Dercreasedvalue = decimalFormat.parse(DecreseQuantity).floatValue();
+				Float ExpectedtotalPrice = Dercreasedvalue * ProductPricevalue;
+				if (!ExpectedtotalPrice.equals(ActulTotalPrice) && !BeforeIncreased.equals(Dercreasedvalue)
+						&& browser.elementisdisplayed((AddedProductsDeatislList.get(5)))) {
+					browser.reportscomtep("Passed",
+							"Enter the Quantity Filed and Verify The total price of the product is updated accordingly",
+							"The total price of the product should be updated accordingly",
+							"The total price of the product is updated accordingly");
+
+				} else {
+					browser.reportscomtep("Failed",
+							"Enter the Quantity Filed and Verify The total price of the product is updated accordingly",
+							"The total price of the product should be updated accordingly",
+							"The total price of the product is not updated accordingly");
+				}
+
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/****TC_23_010 Check whether discount can be applied for the product****/
+	
+	public void checkwhether_DiscountCanBe_AppliedforTheProduct() {
+		String Discount = "";
+		try {
+			DecimalFormat decimalFormat = new DecimalFormat("#");
+			List<WebElement> AddedProductsDeatislList = SCobjects.Appointments_BP_SP_AddedProductsDetailsList;
+			Discount = browser.getdata("ProductDiscount");
+			Float DiscountValue = decimalFormat.parse(Discount).floatValue();
+			browser.sendkeys(SCobjects.Appointments_BP_ServiceDetailsList.get(3), Discount);
+			String ProductPrice = browser.elementgetAttributevalue((AddedProductsDeatislList.get(2)), "value");
+			String replaceString1 = ProductPrice.trim().replaceAll("USD", "").replaceAll(",", "");
+			Float ProductPricevalue = decimalFormat.parse(replaceString1).floatValue();
+			String PriceQty = browser.elementgetAttributevalue(AddedProductsDeatislList.get(1), "value");
+			Float priceQty = decimalFormat.parse(PriceQty).floatValue();
+			Float ActualTotalPrice = (priceQty * ProductPricevalue * DiscountValue / 100);
+			String ToatalPrice1 = browser.getelementtext(SCobjects.Appointments_BP_ServiceDetailsList.get(5));
+			String replaceString2 = ToatalPrice1.trim().replaceAll("USD", "").replaceAll(",", "");
+			Float ExpectedtotalpriceValue = decimalFormat.parse(replaceString2).floatValue();
+			if (ActualTotalPrice == ExpectedtotalpriceValue
+					&& browser.elementisdisplayed(SCobjects.Appointments_BP_ServiceDetailsList.get(5))) {
+				browser.reportscomtep("Passed",
+						"Enter discount field and Verify The total amount is updated accordingly",
+						"The total amount should be updated accordingly", "The total amount is updated accordingly");
+
+			} else {
+				browser.reportscomtep("Failed",
+						"Enter discount field and Verify The total amount is updated accordingly",
+						"The total amount should be updated accordingly",
+						"The total amount is not updated accordingly");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/****TC_23_011 Check whether products can be added for bookings with payment status– Paid (PayPal transaction)*****/
+	
+	
+	/****TC_23_012 Check the Proceed to Collect Amount button****/
+	
+	public void checkProceed_ToCollectAmountButton() {
+		try {
+			browser.click(SCobjects.Appointments_BP_ProceedtoCollectAmounttButton);
+			if (browser.elementisdisplayed(SCobjects.Appointments_BP_CPO_popup)) {
+				browser.reportscomtep("Passed",
+						"Click on Proceed to Collect Amount Button and verify Payment options popup is displayed",
+						"Payment options popup should be displayed", "Payment options popup is displayed");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BP_CPO_CashLink, "Cash Button");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BP_CPO_MACLink,
+						"Mark Appointment As Completed button");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BP_CPO_SubTotal, "SubTotal");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BP_CPO_TotalAmount, "Total Amount");
+				browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BP_CPO_TipText, "Tip TextBox");
+
+			} else {
+				browser.reportscomtep("Failed",
+						"Click on Proceed to Collect Amount Button and verify Payment options popup is displayed",
+						"Payment options popup should be displayed", "Payment options popup is displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/****TC_23_013 Check whether tip amount can be added**********/
+	
+	public void checkwhether_TipAmount_CanBeAdded() {
+		String Tipamount = "";
+		try {
+			DecimalFormat decimalFormat = new DecimalFormat("#");
+			Tipamount = browser.getdata("TipAmount");
+			String BeforeTotalAmount = browser.elementgetAttributevalue(SCobjects.Appointments_BP_CPO_TotalAmount,
+					"value");
+			String replaceString = BeforeTotalAmount.trim().replaceAll("USD", "").replaceAll(",", "");
+			Float Beforetotalamount = decimalFormat.parse(replaceString).floatValue();
+			browser.sendkeys(SCobjects.Appointments_BP_CPO_TipText, Tipamount);
+			Float TipAmountsValue = decimalFormat.parse(Tipamount).floatValue();
+			String AfterTotalAmount = browser.elementgetAttributevalue(SCobjects.Appointments_BP_CPO_TotalAmount,
+					"value");
+			String replaceString1 = AfterTotalAmount.trim().replaceAll("USD", "").replaceAll(",", "");
+			Float Actualtotalamount = Beforetotalamount + TipAmountsValue;
+			Float Expetedtotalamount = decimalFormat.parse(replaceString1).floatValue();
+			if (Actualtotalamount.equals(Expetedtotalamount)
+					&& browser.elementisdisplayed(SCobjects.Appointments_BP_CPO_TotalAmount)) {
+				browser.reportscomtep("Passed",
+						"Enter Tip Filed value and verify The tip amount is added to the total amount Upadated",
+						"The tip amount is added to the total amount Upadated",
+						"The tip amount is added to the total amount Upadated");
+			} else {
+				browser.reportscomtep("Failed",
+						"Enter Tip Filed value and verify The tip amount is added to the total amount Upadated",
+						"The tip amount is added to the total amount Upadated",
+						"The tip amount is not added to the total amount Upadated");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
+	
+	/****TC_23_014 Check whether an appointment can be completed****/
+
+	public void checkwhetherAnAppointment_CanBeCompleted() {
+		try {
+			browser.click(SCobjects.Appointments_BP_CPO_CashLink);
+			browser.click(SCobjects.Appointments_BP_CPO_MACLink);
+			if (browser.elementisdisplayed(SCobjects.Appointments_BP_ACS_Popup)) {
+				browser.reportscomtep("Passed",
+						"Click on continue Cash button and Mark Appointment As Completed button and verify Appointment is completed successfully",
+						"Appointment should be completed successfully", "Appointment is completed successfully");
+				browser.click(SCobjects.Appointments_BP_YesCompletedButton);
+				if (browser.elementisdisplayed(SCobjects.Appointments_BP_ReceiptPage)) {
+					browser.reportscomtep("Passed",
+							"Click on Yes Completed button and verify Receipt Page is displayed ",
+							"verify Receipt Page should be displayed", "verify Receipt Page is displayed");
+					List<WebElement> PDFOptionList = SCobjects.Appointments_AllAppointments_ReceiptPDF_OptionList;
+					String[] PDFOptionListValue = new String[4];
+					PDFOptionListValue[0] = " Print";
+					PDFOptionListValue[1] = " Download";
+					PDFOptionListValue[2] = " Email Receipt";
+					PDFOptionListValue[3] = " Return To Appointments";
+					int i = 0;
+					for (WebElement Option : PDFOptionList) {
+						String OPtionValue = browser.getelementtext(Option);
+						if (OPtionValue.equalsIgnoreCase(PDFOptionListValue[i])) {
+							browser.reportscomtep("Passed", "Verify " + OPtionValue + " is displayed",
+									"Option Value should be displayed", "Option value displayed as:" + OPtionValue);
+						} else {
+							browser.reportscomtep("Failed", "Verify " + OPtionValue + " is displayed",
+									"Option Value should be displayed",
+									"Option value is not displayed as:" + PDFOptionListValue[i]);
+						}
+					}
+				} else {
+					browser.reportscomtep("Failed",
+							"Click on Yes Completed button and verify Receipt Page is displayed ",
+							"verify Receipt Page should be displayed", "verify Receipt Page is displayed");
+				}
+			} else {
+				browser.reportscomtep("Failed",
+						"Click on continue Cash button and Mark Appointment As Completed button and verify Appointment is completed successfully",
+						"Appointment should be completed successfully", "Appointment is not completed successfully");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
 
 
 }
