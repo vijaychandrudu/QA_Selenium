@@ -5154,7 +5154,7 @@ public void check_MultipleRatings_Filter() {
 					browser.click(CustomerModule.Customer_BookMe_Text);*/
 					browser.scrollintoviewelement(CustomerModule.Customer_AddtoFavorite_button);
 					if (browser.elementisdisplayed(CustomerModule.Customer_Inquiry_Tab)) {
-						browser.reportscomtep("passed", "Click on Bookme button and Verify Inqueary Tab is displayed", "Inqueary Tab  should be displayed",
+						browser.reportscomtep("passed", "Click on Bookme button and Verify Inqueary Tab is displayed", "Inqueary Tab should be displayed",
 								"Inqueary Tab is displayed");
 						browser.click(CustomerModule.Customer_Inquiry_Tab);
 						if (browser.elementisdisplayed(CustomerModule.Customer_Feedback_Header)) {

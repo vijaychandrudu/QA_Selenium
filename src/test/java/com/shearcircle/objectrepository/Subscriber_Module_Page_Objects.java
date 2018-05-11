@@ -31,7 +31,7 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Subscriber_Password_textbox;
 	@FindBy(xpath = "//input[@name='cnf_password']")
 	public WebElement Subscriber_ReEnterPassword_textbox;
-	@FindBy(xpath = ".//*[@id='register_form']/div[8]/div/label/input")
+	@FindBy(xpath = "//*[@id='register_form']/div/div/label/input[@name='has_agreed']")
 	public WebElement Subscriber_Termsofservice_checkbox;
 
 	@FindBy(xpath = "//input[@name='accepted_billing_agreement']")
@@ -41,20 +41,32 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Subscriber_StartFreeTrial_button;
 
 	// Error messages locater
-	@FindBy(xpath = ".//*[@id='register_form']/div[1]/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/em[@for='firstname']")
 	public WebElement Subscriber_FirstnameErrMsg;
-	@FindBy(xpath = ".//*[@id='register_form']/div[2]/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/em[@for='lastname']")
 	public WebElement Subscriber_LastnameErrMsg;
-	@FindBy(xpath = ".//*[@id='register_form']/div[3]/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/em[@for='username']")
 	public WebElement Subscriber_EmailaddressErrMsg;
+	
+	@FindBy(xpath = "//*[@id='register_form']/div/div/span[@class='promocode ng-scope']")
+	public WebElement Subscriber_PromocodeErrMsg;
+	
+	@FindBy(xpath = "//*[@id='register_form']//div/h2[text()='Applied Promo code']")
+	public WebElement Subscriber_Promocode_H2_header;
+	
+	@FindBy(xpath = "//*[@id='register_form']/div/div/div/p[contains(@class,'successmesg ')]")
+	public WebElement Subscriber_Promocode_validtime_message;
+	
+	@FindBy(xpath = "//*[@id='register_form']/div/div/div/a[text()='Remove']")
+	public WebElement Subscriber_Promocode_Remove_link;
 
-	@FindBy(xpath = ".//*[@id='register_form']/div[6]/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/label[text()='Password']//following-sibling::em")
 	public WebElement Subscriber_PasswordErrMsg;
-	@FindBy(xpath = ".//*[@id='register_form']/div[7]/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/em[@for='cnf_password']")
 	public WebElement Subscriber_ReEnterPasswordErrMsg;
-	@FindBy(xpath = ".//*[@id='register_form']/div[8]/div/em/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/div/em/em[text()='Please accept terms and conditions']")
 	public WebElement Subscriber_TermsErrMsg;
-	@FindBy(xpath = ".//*[@id='register_form']/div[9]/div/label/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/div/label/em[text()='This field is required']")
 	public WebElement Subscriber_BillingAgreementErrMsg;
 	@FindBy(linkText = "Terms of Service")
 	public WebElement Subscriber_TermsOfService_link;
@@ -66,12 +78,15 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Subscriber_TemrsAndConditions_Close;
 	@FindBy(xpath = "html/body/div[4]/div/div/div/div[1]/button")
 	public WebElement Subscriber_PrivacyPolicy_Close;
-
-	@FindBy(xpath = "html/body/section[2]/div/h5/a/u")
+	@FindBy(xpath = "//*[@id='promocode']")
+	public WebElement Subscriber_promocode_textbox;
+	@FindBy(xpath = "//*[@id='register_form']//div/button[text()=' APPLY']")
+	public WebElement Subscriber_Apply_button;
+	@FindBy(xpath = "//h5/a/u[text()='Sign in']")
 	public WebElement Subscriber_Sign_Link;
 	@FindBy(xpath = "html/body/section[2]/div/div/div/div/h2")
 	public WebElement Subscriber_Alreadyhaveanaccount;
-	@FindBy(xpath = ".//*[@id='register_form']/div[5]/div/em")
+	@FindBy(xpath = ".//*[@id='register_form']/div/div/em[text()='Please enter subdomain']")
 	public WebElement Subscriber_Subdomain_errMsg;
 
 	@FindBy(xpath = ".//*[@id='navbar-collapse-1']/span/a[1]")
@@ -345,8 +360,7 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath = ".//*[@id='step3Form']/div[2]/div[2]/select")
 	public WebElement Subscriber_BusinessDetails_PleaseEnterState_Dropdownbox;
 
-	@FindBy(xpath = "html/body/section[1]/nav/div/div[2]/ul[2]/li/a")
-	public WebElement Subscriber_HumanIcon;
+	
 	@FindBy(xpath = "html/body/section[1]/nav/div/div[2]/ul[2]/li/ul/li[5]/a")
 	public WebElement Subscriber_HumanIcon_logout_link;
 	@FindBy(xpath = "html/body/section[1]/nav/div/div[2]/ul[2]/li/ul/li[1]/a")
@@ -356,84 +370,6 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Subscriber_InvalidUserErrMsg;
 	
 	
-/****added***/
-	@FindBy(xpath="//div/h3[text()='Privacy Policy']")
-	public WebElement Subscriber_PrivacyPolicy_Alert;
-	
-	@FindBy(xpath="//*[@id='register_form']")
-	public WebElement Subscriber_JCP_Registration_Form;
-	
-	@FindBy(xpath="//*[@id='sub_content']/h1")
-	public WebElement Subscriber_JC_Page;
-	
-	@FindBy(xpath = ".//*[@id='sub_content']/h1")
-	public WebElement Subscriber_SigIn_Page;
-	
-	@FindBy(xpath="//div/h2/b[text()='Join Now']")
-	public WebElement Subscriber_JCP_JoinNow_Header;
-	
-	@FindBy(xpath="//*[@id='register_form']//u[text()='Terms of Service']")
-	public WebElement Subscriber_JCP_TermsOfService_Link;
-	
-	@FindBy(xpath="//*[@id='register_form']//u[text()='Privacy Policy']")
-	public WebElement Subscriber_JCP_PrivacyPolicye_Link;
-	
-	@FindBy(xpath="//*[@id='register_form']//u[text()='Billing Agreement']")
-	public WebElement Subscriber_JCP_BillingAgreement_Link;
-	
-	@FindBy(xpath=".//*[@id='register_form']/div[4]/em")
-	public WebElement Subscriber_BusinessNameErrMsg;
-	
-	@FindBy(xpath = "//*[@id='register_form']/div[5]/div/em")
-	public WebElement Subscriber_SubDomainErrMsg;
-	
-	@FindBy(xpath="//div/h1/b[text()='Customer?']//parent::h1/following-sibling::a[text()='Join Our Circle']")
-	public WebElement Subscriber_AreYouCustomer_JoinOurCircle_Button;
-	
-	@FindBy(xpath="/html/body/section[2]")
-	public WebElement Subscriber_DashBoard_Page;
-	
-	@FindBy(xpath="//*[@id='step3Form']/div[3]/div[2]/input")
-	public WebElement Subscriber_BusinessDetails_PleaseEnterPhoneNo_Editbox;
-	
-	@FindBy(xpath="//*[text()='Service Menu']")
-	public WebElement Subscriber_ServiceMenu_Page; 
-	
-	@FindBy(xpath = "//h3[text()='Staff']")
-	public WebElement Subscriber_StaffPage;
-	
-	
-	@FindBy(xpath="//*[text()='No appointments found']")
-	public WebElement Subscriber_NoAppointmentsFound_Popup;
-	
-	
-	@FindBy(xpath="//button[text()='OK']")
-	public WebElement Subscriber_NoAppointmentsFound_Popup_OKButton;
-	
-	/*******0006****************/
-	
-	@FindBy(xpath = "//*[@id='editProfile']/div[1]/div[1]/input")
-	public WebElement Subscriber_UP_FNTextBox;
-	
-	@FindBy(xpath = "//*[@id='editProfile']/div[1]/div[2]/input")
-	public WebElement Subscriber_UP_LNTextBox;
-	
-	@FindBy(xpath = "//*[@id='editProfile']/div[2]/div[1]/input")
-	public WebElement Subscriber_UP_Email_TextBox;
-	
-	@FindBy(xpath="//*[@id='editProfile']/div[2]/div[2]/div/label[2]/input")
-	public WebElement  Subscriber_UP_Male_SelectonButton;
-	
-	@FindBy(xpath="//*[@id='editProfile']/div[2]/div[2]/div/label[3]/input")
-	public WebElement  Subscriber_UP_Female_SelectonButton;
-	
-	@FindBy(xpath="//div/div[2]/div/img")
-	public WebElement Subscriber_UP_Logo;
-	
-	@FindBy(xpath="//*[@id='profile_view_header_background_image']/div/span[1]/center/button")
-	public WebElement Subscriber_UP_Cover_Image;
-	
-	//Scenario TS_09
 	@FindBy (xpath = "//p[text()='Profile updated successfully']")
 	public WebElement Subscriber_updatedsuccessfullymsg;
 	@FindBy (xpath = "//div//div/button[text()='OK']")
@@ -469,13 +405,15 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Settings_page_label_Subdomain;
 	@FindBy (xpath = "//*[@id='update_profile']/div/div/input[@name='subdomain']")
 	public WebElement Settings_page_input_Subdomain ;
-	@FindBy (xpath = "//*[@id='update_profile']/div/label[text()='Overview ']")
-	public WebElement Settings_page_label_Overview;
+	@FindBy (xpath = "//*[@id='cke_1_contents']/iframe")
+	public WebElement Settings_page_Overview_iframe;
+	@FindBy (xpath = "/html/body/p")
+	public WebElement Settings_page_Overview_Textarea;
 	@FindBy (xpath = "//*[@id='update_profile']/div/label[text()='Address ']")
 	public WebElement Settings_page_label_Address;
 	@FindBy (xpath = "//*[@id='update_profile']/div/textarea[@name='address']")
 	public WebElement Settings_page_input_Address ;	
-	@FindBy (xpath = "//*[@id=\"update_profile\"]/div/div/input[@ng-model='profileData.website']")
+	@FindBy (xpath = "//*[@id='update_profile']//input[@ng-model='profileData.website']")
 	public WebElement Settings_page_input_Website;	
 	@FindBy (xpath = "//*[@id='update_profile']/div/label[text()='Contact Number']")
 	public WebElement Settings_page_label_Contact_Number;
@@ -483,7 +421,7 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Settings_page_input_ContactNum ;	
 	@FindBy (xpath = "//*[@id='update_profile']/div/label[text()=' Business Type ']")
 	public WebElement Settings_page_label_Business_Type;
-	@FindBy (xpath = "//*[@id='update_profile']/div/div/input[@type='text']")
+	@FindBy (xpath = "//*[@id='update_profile']/div[8]/div/input[@type='text']")
 	public WebElement Settings_page_input_Business_Type ;	
 	@FindBy (xpath = "//*[@id='update_profile']/div/label[text()='State']")
 	public WebElement Settings_page_label_State;
@@ -491,11 +429,11 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Settings_page_input_State ;
 	@FindBy (xpath = "//*[@id=\"update_profile\"]/div/div/select[@name='timezone']")
 	public WebElement Settings_page_input_Time_Zone;
-	@FindBy (xpath = "//*[@id=\'update_profile\']/button[@type='submit']")
+	@FindBy (xpath = "//*[@id='update_profile']/button[text()='Save Changes']")
 	public WebElement Settings_Save_Change_Button;	
 	@FindBy (xpath = "//*[@id='update_profile']/div/div/em[@for='subdomain']")
 	public WebElement Settings_error_msg_save_with_invalid_entries;
-
+	
 	@FindBy (xpath = "//*[@id='yourTabWrapper']/li/a[text()='Online Booking']")
 	public WebElement Online_Booking_tab;
 	@FindBy (xpath = "//*[@id='online_booking']/div/div/form/div/div/div/label[text()='Enable']/input")
@@ -504,27 +442,23 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Online_Booking_Enable_checkbox_not_clicked;
 	@FindBy (xpath = "//*[@id='online_booking']/div/div[1]/form/div[2]/div[1]/div[1]/h4")
 	public WebElement Online_Booking_Booking_Policy_Header;	
-	@FindBy (xpath = "//*[@id='online_booking']/div/div[1]/form/div[2]/div[1]/div[2]/div[1]")
+	@FindBy (xpath = "//*[@id='online_booking']//select[contains(@ng-model,'advance_notice_time')]")
 	public WebElement Online_Booking_Client_appointment_upto;	
-	@FindBy (xpath = "//*[@id='online_booking']/div/div[1]/form/div[2]/div[1]/div[2]/div[2]")
+	@FindBy (xpath = "//*[@id='online_booking']//select[contains(@ng-model,'max_advance_time_in_months')]")
 	public WebElement Online_Booking_Client_appointment_nomorethan;
-	@FindBy (xpath = "//*[@id='online_booking']/div/div[1]/form/div[2]/div[2]/div[1]/h4")
+	@FindBy (xpath = "//*[@id='online_booking']/div/div[1]//h4[contains(text(),'Cancellation N')]")
 	public WebElement Online_Booking_Cancellation_Notice_Header;
-	@FindBy (xpath = "//*[@id='online_booking']/div/div[1]/form/div[2]/div[2]/div[2]/div")
+	@FindBy (xpath = "//*[@id='online_booking']//select[contains(@ng-model,'cancellation_time')]")
 	public WebElement Online_Booking_Cancellation_in_advance;
-	@FindBy (xpath = "//*[@id='online_booking']/div/div[1]/form/div[2]/div[3]/div/h4")
-	public WebElement Online_Booking_Cancellation_Policy_Header;
-	@FindBy (xpath = "//*[@id='provider_widget_allows_employee_selection']/input[@ng-model='onlineBookingSettings.allows_employee_selection']")
+	@FindBy (xpath = "//*[@id='cancellation_policy']")
+	public WebElement Online_Booking_Cancellation_CancellatiNotice;
+	@FindBy (xpath = "//*[@id='provider_widget_allows_employee_selection']/input[@value=1]")
 	public WebElement Online_Booking_Checkbox_Staff_Member_Selection;
-	@FindBy (xpath = "//*[@id=\"online_booking\"]//h3[text()='Online Booking Settings']")
+	@FindBy (xpath = "//*[@id='online_booking']//h2[text()='Online Booking Tools']")
 	public WebElement Online_Bookings_Settings_Header;
 	@FindBy (xpath = "//form[@ng-submit='saveOnlineBookingSettings()']//div[3]//div[@class='text-left']//input[@id='submit-button']")
 	public WebElement Save_Button_Online_Booking_Page;
-	@FindBy (xpath = "//*[@id=\"online_booking\"]/div/div[1]/form/div[2]/div[1]/div[2]/div[1]/div/select")
-	public WebElement Online_Booking_in_advance_dropdown_list;
-	@FindBy (xpath = "//*[@id=\"online_booking\"]/div/div[1]/form/div[2]/div[1]/div[2]/div[2]/div/select")
-	public WebElement Online_Booking_till_future_dropdown_list;
-	
+
 	@FindBy (xpath = "//body/div/p[text()='Updated Successfully']")                  
 	public WebElement Updates_successfully_msg_popup;
 	@FindBy (xpath = "//body/div/p[text()='Updated successfully']")                  
@@ -535,8 +469,8 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Calender_Settings_tab;
 	@FindBy (xpath = "//*[@id='calendar']//h3[text()='Calendar Settings']")
 	public WebElement Calender_Settings_Header;
-	@FindBy (xpath = "//*[@id='calendar']//div[@ng-if='calenderErrorMsg']")
-	public WebElement Calender_Settings_error_msg;
+	@FindBy (xpath = "//*[@id='calenderSettingsForm']")
+	public WebElement Calender_Settings_FormPage;
 	@FindBy (xpath= "//*[@id='calenderSettingsForm']//select[@name='time_slot_interval']")
 	public WebElement Calender_Settings_Time_Interval_Dropdown;
 	@FindBy (xpath = "//*[@id='calenderSettingsForm']//select[@name='view_type']")
@@ -558,8 +492,418 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Staff_Notification_send_to_staff_members_checkbox;
 	@FindBy (xpath = "//*[@id='provider_widget_allows_employee_selection' and contains(.,'EMAIL ADDRESS')]/input")
 	public WebElement Staff_Notification_send_to_email_address;
-	@FindBy (xpath = "//form[@ng-submit='saveStaffNotificationSettings()']//div[3]//div[@class='text-left']//input[@id='submit-button']")
+	@FindBy (xpath = "//*[@id='referalSourceForm']//input[@type='submit']")
 	public WebElement Staff_Notification_save_changes_button;
+
+	@FindBy (xpath = "//h3[text()='Payment Settings']")
+	public WebElement Payment_Settings_Header;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Online Payment:']")
+	public WebElement Payment_Settings_OnlinePaymentLabel;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']//label/input[@ng-model='paymentData.paypal' and @name='3']")
+	public WebElement Payment_Settings_Paypal_Yes_radio_button;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Cash on Service:']")
+	public WebElement Payment_Settings_CashOnServiceLabel;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']//label/input[@ng-model='paymentData.paypal' and @name='4']")
+	public WebElement Payment_Settings_Paypal_No_radio_button;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']//label/input[@ng-model='paymentData.cash' and @name='5']")
+	public WebElement Payment_Settings_Cash_on_service_Yes_radio_button;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']//label/input[@ng-model='paymentData.cash' and @name='6']")
+	public WebElement Payment_Settings_Cash_on_service_No_radio_button;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']/div[3]//button[text()='Save']")
+	public WebElement Payment_Settings_SaveButton;
+	@FindBy(xpath="//p[text()='Payment Settings Updated Successfully']")
+	public WebElement Payment_Settings_PSUSuccessfully;
+	
+	
+	
+	@FindBy (xpath = "//h3[text()='Manage Menu']")
+	public WebElement Manage_Menu_Header;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Services:']")
+	public WebElement Manage_Menu_ServicesLabel;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']//input[@name='7']")
+	public WebElement Manage_Menu_services_yes_radio_button;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Overview:']")
+	public WebElement Manage_Menu_OverViewLabel;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']//input[@name='9']")
+	public WebElement Manage_Menu_overview_yes_radio_button;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Reviews:']")
+	public WebElement Manage_Menu_ReviwesLabel;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']//input[@name='11']")
+	public WebElement Manage_Menu_review_yes_radio_button;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Inquiry:']")
+	public WebElement Manage_Menu_InquiryLabel;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']//input[@name='13']")
+	public WebElement Manage_Menu_inquiry_yes_radio_button;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Promotions:']")
+	public WebElement Manage_Menu_PromotionsLabel;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']//input[@name='15']")
+	public WebElement Manage_Menu_promotions_yes_radio_button;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Videos:']")
+	public WebElement Manage_Menu_VideosLabel;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']//input[@name='17']")
+	public WebElement Manage_Menu_videos_yes_radio_button;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']//input[@name='18']")
+	public WebElement Manage_Menu_videos_no_radio_button;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Photos:']")
+	public WebElement Manage_Menu_PhotosLabel;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']//input[@name='19']")
+	public WebElement Manage_Menu_photos_yes_radio_button;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']//input[@name='20']")
+	public WebElement Manage_Menu_photos_no_radio_button;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Contact Us:']")
+	public WebElement Manage_Menu_ContactUsLabel;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']//input[@name='21']")
+	public WebElement Manage_Menu_contact_us_yes_radio_button;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Jobs:']")
+	public WebElement Manage_Menu_JobsLabel;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']//input[@name='23']")
+	public WebElement Manage_Menu_jobs_yes_radio_button;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']/div[10]/div/button[text()='Save']")
+	public WebElement Manage_Menu_save_button;
+	
+	@FindBy (xpath = "//*[@id='navbar-collapse-1']/form/div/div/div/input[@placeholder='Salon/Spa/Professionals']")
+	public WebElement Professional_search_box;
+	@FindBy (xpath = "//*[@id='navbar-collapse-1']/form/div/div/button/i[@class='icon-search']")
+	public WebElement Professional_search_icon;
+	@FindBy (xpath = "//*[@id='searchResultsContainerBox']/div[2]/div[1]/div[1]/div/a/h3")
+	public WebElement Professional_search_result;
+	@FindBy (xpath = "//*[@id='container_pin']/div/ul/li/a[@href='#videos']")
+	public WebElement Business_page_videos_tab;
+	@FindBy (xpath = "//*[@id='container_pin']/div/ul/li/a[@href='#photos']")
+	public WebElement Business_page_photos_tab;
+	
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']/div/div/input[@placeholder='Enter your facebook page or profile link']")
+	public WebElement Social_links_Facebook_field;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']/div/div/input[@placeholder='Enter your Instagram profile link']")
+	public WebElement Social_links_Instagram_field;
+	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']/div/div/input[@placeholder='Enter your Google Plus page or profile link']")
+	public WebElement Social_links_google_plus_field;
+	@FindBy (xpath = "//h3[text()='Social Links']")
+	public WebElement Social_Links_Header;
+	@FindBy (xpath = "//form[@ng-submit='savePaymentSettings()'][@id='savePaymentDetailsForm']/div/div/button[text()='Save']")
+	public WebElement Social_Links_Save_button;
+	@FindBy (xpath = "//form[@ng-submit='saveLinks()'][@id='savePaymentDetailsForm']/div/div/button[text()='Save']")
+	public WebElement Social_Links_Save_button_after_text_entry;
+	@FindBy (xpath = "//h2[text()='Success']")
+	public WebElement success_pop_up;
+	
+	@FindBy (xpath = "//body//button[@ng-click='addHoliday()']")
+	public WebElement add_holiday_button;
+	@FindBy (xpath = "//h3[text()='Business Hours']")
+	public WebElement Business_hours_header;
+	@FindBy (xpath = "//button[text()='Update']")
+	public WebElement Update_button;
+	
+	@FindBy(xpath="//*[@id='businessHoursDiv']//div/label/input[@ng-model='work_schedule.is_working_day']")
+	public List<WebElement> Business_hours_CBDayList;
+	
+	@FindBy(xpath="//*[@id='businessHoursDiv']//div/label")
+	public List<WebElement> Business_hours_DayLabelList;
+	
+	@FindBy(xpath="//*[@id='businessHoursDiv']//select[@ng-model='work_schedule.opening_hours']")
+	public List<WebElement> Business_hours_Opening_hoursList;
+	
+	@FindBy(xpath="//*[@id='businessHoursDiv']//select[@ng-model='work_schedule.closing_hours']")
+	public List<WebElement> Business_hours_closing_hoursList;
+	
+	@FindBy(xpath="//*[text()='Updated successfully']")
+	public WebElement Business_hours_US_Popup;
+	
+	/*********TC_9_037 Check whether the Add Holiday button is clickable*****/
+	
+	@FindBy(xpath="//*[@id='add_holiday']//*[text()='Add Holiday']")
+	public WebElement BusinessHours_AH_PopupHeader;
+	
+	@FindBy(xpath="//*[@id='add_holiday']//input[@name='start_date']")
+	public WebElement BusinessHours_AH_StartDate_TB;
+	
+	@FindBy(xpath="//*[@id='add_holiday']//input[@name='end_date']")
+	public WebElement BusinessHours_AH_EndDate_TB;
+	
+	@FindBy(xpath="//*[@id='add_holiday']//input[@name='comment']")
+	public WebElement BusinessHours_AH_Descriptionfield;
+	
+	@FindBy(xpath="//*[@id='add_holiday']//button[text()='Close']")
+	public WebElement BusinessHours_AH_CloseButton;
+	
+	@FindBy(xpath="//*[@id='add_holiday']//button[text()='Save']")
+	public WebElement BusinessHours_AH_SaveButton;
+	
+	
+	/*********TC_9_039 Check the field validations in Add Holiday popup**********/
+	
+	@FindBy(xpath="//*[@id='add_holiday']//em[text()='Please enter start date']")
+	public WebElement BusinessHours_AH_StartDate_EM;
+	
+	@FindBy(xpath="//*[@id='add_holiday']//em[text()='Please enter end date']")
+	public WebElement BusinessHours_AH_EndDate_EM;
+	
+	@FindBy(xpath="//*[@id='add_holiday']//em[text()='Please enter comment']")
+	public WebElement BusinessHours_AH_Comment_EM;
+	
+	
+	/***************new*********/
+	
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div/a/h3")
+	public WebElement BusinessDetails_BN_In_BP;
+	
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div/a/h3")
+	public WebElement BusinessDetails_MBN_In_BP;
+	
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div/ul/li[text()=' Cash On Services']")
+	public WebElement PaymentSettings_CashOnService_InBP;
+	
+	@FindBy(xpath="//div/h1/b[text()='Customer?']//parent::h1/following-sibling::a[text()='Join Our Circle']")
+	public WebElement Subscriber_AreYouCustomer_JoinOurCircle_Button;
+	
+	@FindBy(xpath="//*[@id='sub_content']/h1")
+	public WebElement Subscriber_JC_Page;
+	
+	@FindBy(xpath="//*[@id='register_form']")
+	public WebElement Subscriber_JCP_Registration_Form;
+	
+	@FindBy(xpath = ".//*[@id='sub_content']/h1")
+	public WebElement Subscriber_SigIn_Page;
+	
+	@FindBy(xpath="//div/h2/b[text()='Join Now']")
+	public WebElement Subscriber_JCP_JoinNow_Header;
+	
+	@FindBy(xpath="//*[@id='register_form']//u[text()='Terms of Service']")
+	public WebElement Subscriber_JCP_TermsOfService_Link;
+	
+	@FindBy(xpath="//*[@id='register_form']//u[text()='Privacy Policy']")
+	public WebElement Subscriber_JCP_PrivacyPolicye_Link;
+	
+	@FindBy(xpath="//*[@id='register_form']//u[text()='Billing Agreement']")
+	public WebElement Subscriber_JCP_BillingAgreement_Link;
+	
+	@FindBy(xpath=".//*[@id='register_form']/div[4]/em")
+	public WebElement Subscriber_BusinessNameErrMsg;
+	
+	@FindBy(xpath = ".//*[@id='register_form']/div/em[@for='subdomain']")
+	public WebElement Subscriber_SubDomainErrMsg;
+	
+	@FindBy(xpath="//div/h3[text()='Privacy Policy']")
+	public WebElement Subscriber_PrivacyPolicy_Alert;
+	
+	@FindBy(xpath="/html/body/section[2]")
+	public WebElement Subscriber_DashBoard_Page;
+	
+	@FindBy(xpath="//*[@id='step3Form']/div[3]/div[2]/input")
+	public WebElement Subscriber_BusinessDetails_PleaseEnterPhoneNo_Editbox;
+	
+	@FindBy(xpath="//*[text()='Service Menu']")
+	public WebElement Subscriber_ServiceMenu_Page; 
+	
+	@FindBy(xpath = "//h3[text()='Staff']")
+	public WebElement Subscriber_StaffPage;	
+	
+	@FindBy(xpath="//*[text()='No appointments found']")
+	public WebElement Subscriber_NoAppointmentsFound_Popup;	
+	
+	@FindBy(xpath="//button[text()='OK']")
+	public WebElement Subscriber_NoAppointmentsFound_Popup_OKButton;
+	
+	@FindBy(xpath = "html/body/section[1]/nav/div/div[2]/ul[2]/li/a")
+	public WebElement Subscriber_HumanIcon;
+	
+	
+	@FindBy(xpath = "//*[@id='editProfile']/div[1]/div[1]/input")
+	public WebElement Subscriber_UP_FNTextBox;
+	
+	@FindBy(xpath = "//*[@id='editProfile']/div[1]/div[2]/input")
+	public WebElement Subscriber_UP_LNTextBox;
+	
+	@FindBy(xpath = "//*[@id='editProfile']/div[2]/div[1]/input")
+	public WebElement Subscriber_UP_Email_TextBox;
+	
+	@FindBy(xpath="//*[@id='editProfile']/div[2]/div[2]/div/label[2]/input")
+	public WebElement  Subscriber_UP_Male_SelectonButton;
+	
+	@FindBy(xpath="//*[@id='editProfile']/div[2]/div[2]/div/label[3]/input")
+	public WebElement  Subscriber_UP_Female_SelectonButton;
+	
+	@FindBy(xpath="//div/div[2]/div/img")
+	public WebElement Subscriber_UP_Logo;
+	
+	@FindBy(xpath="//*[@id='profile_view_header_background_image']/div/span[1]/center/button")
+	public WebElement Subscriber_UP_Cover_Image;
+	
+	@FindBy(xpath ="//*[text()='Manage Circle ']")
+	public WebElement Subscriber_ManageCircle_Dropdown_Link;
+	
+	@FindBy(xpath="//div/div[2]/ul[1]/li[8]/ul/li/a")
+	public WebElement Subscriber_ManageCircle_Dropdown_List;
+	
+	@FindBy(xpath="//a[text()='Staff']")
+	public WebElement Subscriber_ManageCircle_Staff_DDvalue;
+	/*
+	@FindBy(xpath = "html/body/section[1]/nav/div/div[2]/ul[2]/li/ul/li[4]/a")
+	public WebElement Subscriber_Business_Settings_link;
+	@FindBy(xpath = "//*[@id='yourTabWrapper']/li/a[text()='Business Details'] ")
+	public WebElement Settings_page_tabs_Business_Details;
+	@FindBy(xpath = "//*[@id='yourTabWrapper']/li/a[text()='Online Booking']")
+	public WebElement Settings_page_tabs_Online_Bookings;
+	@FindBy(xpath = "//*[@id='yourTabWrapper']/li/a[text()='Calendar']")
+	public WebElement Settings_page_tabs_Calender;
+	@FindBy(xpath = "//*[@id='yourTabWrapper']/li/a[text()='Staff Notifications']")
+	public WebElement Settings_page_tabs_Staff_Notifications;
+	@FindBy(xpath = "//*[@id='yourTabWrapper']/li/a[text()='Payment Settings']")
+	public WebElement Settings_page_tabs_Payment_Settings;
+	
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Online Payment:']")
+	public WebElement Payment_Settings_OnlinePaymentLabel;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Cash on Service:']")
+	public WebElement Payment_Settings_CashOnServiceLabel;
+	
+	@FindBy(xpath = "//*[@id='yourTabWrapper']/li/a[text()='Manage Menu']")
+	public WebElement Settings_page_Manage_Menu;
+	@FindBy(xpath = "//*[@id='yourTabWrapper']/li/a[text()='Business Hours']")
+	public WebElement Settings_page_tabs_Business_Hours;
+	@FindBy(xpath = "//*[@id='yourTabWrapper']/li/a[text()='Social Links']")
+	public WebElement Settings_page_tabs_Social_Links;	
+	@FindBy (xpath = "//*[@id='update_profile']/div/input[@type='business_name']")
+	public WebElement Settings_page_input_Business_Name;
+	@FindBy (xpath = "//*[@id='update_profile']/div/div/input[@name='subdomain']")
+	public WebElement Settings_page_input_Subdomain ;
+	@FindBy (xpath = "//*[@id='update_profile']/div/textarea[@name='address']")
+	public WebElement Settings_page_input_Address ;
+	@FindBy (xpath = "//*[@id='update_profile']/button[text()='Save Changes']")
+	public WebElement Settings_Save_Change_Button;	
+	@FindBy (xpath = "//*[@id='update_profile']/div/input[@name='mobile']")
+	public WebElement Settings_page_input_ContactNum ;
+	@FindBy (xpath = "//*[@id='update_profile']/div[8]/div/input[@type='text']")
+	public WebElement Settings_page_input_Business_Type ;
+	@FindBy (xpath = "//*[@id='update_profile']/div/select[@name='state']")
+	public WebElement Settings_page_input_State ;
+	@FindBy (xpath = "//*[@id='cke_1_contents']/iframe")
+	public WebElement Settings_page_Overview_Textarea;
+	@FindBy (xpath = "//*[@id='update_profile']//input[@ng-model='profileData.website']")
+	public WebElement Settings_page_input_Website;	
+	@FindBy (xpath = "//*[@id='update_profile']/div/label[text()='Contact Number']")
+	public WebElement Settings_page_label_Contact_Number;
+	
+	@FindBy (xpath = "//*[@id=\"update_profile\"]/div/div/select[@name='timezone']")
+	public WebElement Settings_page_input_Time_Zone;
+	@FindBy (xpath = "//*[@id='update_profile']/div/div/em[@for='subdomain']")
+	public WebElement Settings_error_msg_save_with_invalid_entries;*/
+	
+	
+	
+	/*@FindBy (xpath = "//p[text()='Profile updated successfully']")
+	public WebElement Subscriber_updatedsuccessfullymsg;
+	@FindBy (xpath = "//div//div/button[text()='OK']")
+	public WebElement Popup_msg_Alert_OK_Button;
+	@FindBy (xpath = "//*[@id='update_profile']/div/div/em[text()='The entered subdomain is already registered.']")
+	public WebElement subdomainalreadyregisteredmsg;
+	@FindBy (xpath = "//*[@id='online_booking']//h2[text()='Online Booking Tools']")
+	public WebElement Online_Bookings_Settings_Header;
+	@FindBy (xpath = "//form[@ng-submit='saveOnlineBookingSettings()']//div[3]//div[@class='text-left']//input[@id='submit-button']")
+	public WebElement Save_Button_Online_Booking_Page;
+	@FindBy (xpath = "//*[@id='online_booking']/div/div/form/div/div/div/label[text()='Enable']/input")
+	public WebElement Online_Booking_Enable_checkbox_clicked;
+	@FindBy (xpath = "//*[@id='online_booking']//select[contains(@ng-model,'max_advance_time_in_months')]")
+	public WebElement Online_Booking_Client_appointment_nomorethan;	
+	//Required clarification
+	@FindBy (xpath = "//*[@id='online_booking']//select[contains(@ng-model,'advance_notice_time')]")
+	public WebElement Online_Booking_Client_appointment_upto;
+	@FindBy (xpath = "//*[@id='online_booking']/div/div[1]/form/div[2]/div[1]/div[1]/h4")
+	public WebElement Online_Booking_Booking_Policy_Header;
+	  Object mismatch  
+	@FindBy (xpath = "//*[@id='online_booking']/div/div[1]//h4[contains(text(),'Cancellation N')]")
+	public WebElement Online_Booking_Cancellation_Notice_Header;
+	@FindBy (xpath = "//*[@id='online_booking']//select[contains(@ng-model,'cancellation_time')]")
+	public WebElement Online_Booking_Cancellation_in_advance;
+	@FindBy (xpath = "//*[@id='cancellation_policy']")
+	public WebElement Online_Booking_Cancellation_CancellatiNotice;
+	@FindBy (xpath = "//*[@id='provider_widget_allows_employee_selection']/input[@value=1]")
+	public WebElement Online_Booking_Checkbox_Staff_Member_Selection;
+	
+	@FindBy (xpath = "//*[@id='online_booking']//h2[text()='Online Booking Tools']")	                
+	public WebElement Updates_successfully_msg_popup;
+	@FindBy (xpath = "//body/div/p[text()='Updated successfully']")                  
+	public WebElement Updates_msg_popup_successful;	
+	
+	@FindBy (xpath = "//*[@id='yourTabWrapper']//a[text()='Calendar']")
+	public WebElement Calender_Settings_tab;
+	@FindBy (xpath = "//*[@id='calendar']//h3[text()='Calendar Settings']")
+	public WebElement Calender_Settings_Header;
+	@FindBy (xpath = "//*[@id='calenderSettingsForm']")
+	public WebElement Calender_Settings_FormPage;
+	@FindBy (xpath= "//*[@id='calenderSettingsForm']//select[@name='time_slot_interval']")
+	public WebElement Calender_Settings_Time_Interval_Dropdown;
+	@FindBy (xpath = "//*[@id='calenderSettingsForm']//select[@name='view_type']")
+	public WebElement Calender_Settings_Default_View_Dropdown;
+	@FindBy (xpath = "//*[@id='calenderSettingsForm']//select[@name='week_start_day']")
+	public WebElement Calender_Settings_week_start_day_Dropdown;
+	@FindBy (xpath = "//*[@id=\"calenderSettingsForm\"]/button[text()='Save Changes']")
+	public WebElement Calender_Settings_Save_Changes_Button;
+	@FindBy (xpath = "//*[@id='calenderSettingsForm']/button")
+	public WebElement Calender_Settings_Save_Button;
+
+	@FindBy (xpath = "//*[@id='yourTabWrapper']//a[text()='Staff Notifications']")
+	public WebElement Staff_Notification_tab;
+	@FindBy (xpath = "//*[@id='referalSourceForm']//h2[text()='Enable Staff Notifications']")
+	public WebElement Staff_Notification_Header;
+	@FindBy (xpath = "//*[@id=\"referalSourceForm\"]//label[text()='Enable']/input")
+	public WebElement Staff_Notification_Enble_checkbox;
+	@FindBy (xpath = "//*[@id='provider_widget_allows_employee_selection' and contains(.,'MEMBERS BOOKED')]/input")
+	public WebElement Staff_Notification_send_to_staff_members_checkbox;
+	@FindBy (xpath = "//*[@id='provider_widget_allows_employee_selection' and contains(.,'EMAIL ADDRESS')]/input")
+	public WebElement Staff_Notification_send_to_email_address;
+	@FindBy (xpath = "//*[@id='referalSourceForm']//input[@type='submit']")
+	public WebElement Staff_Notification_save_changes_button;
+	
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']/div[3]//button[text()='Save']")
+	public WebElement Payment_Settings_SaveButton;
+	@FindBy(xpath="//p[text()='Payment Settings Updated Successfully']")
+	public WebElement Payment_Settings_PSUSuccessfully;
+*//****added***//*
+	
+	
+	*//*******0006****************//*
+	
+	
+	
+	//Scenario TS_09
+		
+	@FindBy (xpath = "//*[@id='update_profile']/div/label[text()='Business Name ']")
+	public WebElement Settings_page_label_Business_Name;
+
+	@FindBy (xpath = "//*[@id='update_profile']/div/label[text()='Subdomain ']")
+	public WebElement Settings_page_label_Subdomain;
+	
+	@FindBy (xpath = "//*[@id='update_profile']/div/label[text()='Overview ']")
+	public WebElement Settings_page_label_Overview;
+	
+	@FindBy (xpath = "//*[@id='update_profile']/div/label[text()='Address ']")
+	public WebElement Settings_page_label_Address;	
+	
+	@FindBy (xpath = "//*[@id='update_profile']/div/label[text()=' Business Type ']")
+	public WebElement Settings_page_label_Business_Type;
+		
+	@FindBy (xpath = "//*[@id='update_profile']/div/label[text()='State']")
+	public WebElement Settings_page_label_State;
+	
+
+	@FindBy (xpath = "//*[@id='yourTabWrapper']/li/a[text()='Online Booking']")
+	public WebElement Online_Booking_tab;
+	
+	@FindBy (xpath = "//*[@id='online_booking']/div/div/form/div/div/div/label[text()='Disable']/input")	                 
+	public WebElement Online_Booking_Enable_checkbox_not_clicked;		
+	
+	@FindBy (xpath = "//*[@id='online_booking']/div/div[1]/form/div[2]/div[3]/div/h4")
+	public WebElement Online_Booking_Cancellation_Policy_Header;
+	
+	
+	@FindBy (xpath = "//*[@id=\"online_booking\"]/div/div[1]/form/div[2]/div[1]/div[2]/div[1]/div/select")
+	public WebElement Online_Booking_in_advance_dropdown_list;
+	@FindBy (xpath = "//*[@id=\"online_booking\"]/div/div[1]/form/div[2]/div[1]/div[2]/div[2]/div/select")
+	public WebElement Online_Booking_till_future_dropdown_list;	
+	
+	
+	@FindBy (xpath = "//*[@id='calendar']//div[@ng-if='calenderErrorMsg']")
+	public WebElement Calender_Settings_error_msg;	
 
 	@FindBy (xpath = "//h3[text()='Payment Settings']")
 	public WebElement Payment_Settings_Header;
@@ -596,6 +940,24 @@ public class Subscriber_Module_Page_Objects {
 	public WebElement Manage_Menu_contact_us_yes_radio_button;
 	@FindBy (xpath = "//*[@id='savePaymentDetailsForm']//input[@name='23']")
 	public WebElement Manage_Menu_jobs_yes_radio_button;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Services:']")
+	public WebElement Manage_Menu_ServicesLabel;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Overview:']")
+	public WebElement Manage_Menu_OverViewLabel;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Reviews:']")
+	public WebElement Manage_Menu_ReviwesLabel;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Inquiry:']")
+	public WebElement Manage_Menu_InquiryLabel;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Promotions:']")
+	public WebElement Manage_Menu_PromotionsLabel;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Videos:']")
+	public WebElement Manage_Menu_VideosLabel;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Photos:']")
+	public WebElement Manage_Menu_PhotosLabel;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Contact Us:']")
+	public WebElement Manage_Menu_ContactUsLabel;
+	@FindBy(xpath="//*[@id='savePaymentDetailsForm']//label[text()='Jobs:']")
+	public WebElement Manage_Menu_JobsLabel;
 	@FindBy (xpath = "//form[@ng-submit='saveProfessionalMenuSettings()']/div/div/button[text()='Save']")
 	public WebElement Manage_Menu_save_button;
 	@FindBy (xpath = "//*[@id='navbar-collapse-1']/form/div/div/div/input[@placeholder='Salon/Spa/Professionals']")
@@ -631,16 +993,68 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy (xpath = "//button[text()='Update']")
 	public WebElement Update_button;
 	
-	@FindBy(xpath ="//*[text()='Manage Circle ']")
-	public WebElement Subscriber_ManageCircle_Dropdown_Link;
-	
-	@FindBy(xpath="//div/div[2]/ul[1]/li[8]/ul/li/a")
-	public WebElement Subscriber_ManageCircle_Dropdown_List;
-	
-	@FindBy(xpath="//a[text()='Staff']")
-	public WebElement Subscriber_ManageCircle_Staff_DDvalue;
 	
 	
+	
+	
+	@FindBy(xpath="//*[@id='businessHoursDiv']//div/label/input[@ng-model='work_schedule.is_working_day']")
+	public List<WebElement> Business_hours_CBDayList;
+	
+	@FindBy(xpath="//*[@id='businessHoursDiv']//div/label")
+	public List<WebElement> Business_hours_DayLabelList;
+	
+	@FindBy(xpath="//*[@id='businessHoursDiv']//select[@ng-model='work_schedule.opening_hours']")
+	public List<WebElement> Business_hours_Opening_hoursList;
+	
+	@FindBy(xpath="//*[@id='businessHoursDiv']//select[@ng-model='work_schedule.closing_hours']")
+	public List<WebElement> Business_hours_closing_hoursList;
+	
+	@FindBy(xpath="//*[text()='Updated successfully']")
+	public WebElement Business_hours_US_Popup;
+	
+*//*********TC_9_037 Check whether the Add Holiday button is clickable*****//*
+	
+	@FindBy(xpath="//*[@id='add_holiday']//*[text()='Add Holiday']")
+	public WebElement BusinessHours_AH_PopupHeader;
+	
+	@FindBy(xpath="//*[@id='add_holiday']//input[@name='start_date']")
+	public WebElement BusinessHours_AH_StartDate_TB;
+	
+	@FindBy(xpath="//*[@id='add_holiday']//input[@name='end_date']")
+	public WebElement BusinessHours_AH_EndDate_TB;
+	
+	@FindBy(xpath="//*[@id='add_holiday']//input[@name='comment']")
+	public WebElement BusinessHours_AH_Descriptionfield;
+	
+	@FindBy(xpath="//*[@id='add_holiday']//button[text()='Close']")
+	public WebElement BusinessHours_AH_CloseButton;
+	
+	@FindBy(xpath="//*[@id='add_holiday']//button[text()='Save']")
+	public WebElement BusinessHours_AH_SaveButton;
+	
+	
+	*//*********TC_9_039 Check the field validations in Add Holiday popup**********//*
+	
+	@FindBy(xpath="//*[@id='add_holiday']//em[text()='Please enter start date']")
+	public WebElement BusinessHours_AH_StartDate_EM;
+	
+	@FindBy(xpath="//*[@id='add_holiday']//em[text()='Please enter end date']")
+	public WebElement BusinessHours_AH_EndDate_EM;
+	
+	@FindBy(xpath="//*[@id='add_holiday']//em[text()='Please enter comment']")
+	public WebElement BusinessHours_AH_Comment_EM;
+	
+	
+	*//***************new*********//*
+	
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div/a/h3")
+	public WebElement BusinessDetails_BN_In_BP;
+	
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div/a/h3")
+	public WebElement BusinessDetails_MBN_In_BP;
+	
+	@FindBy(xpath="//*[@id='searchResultsContainerBox']//div/ul/li[text()=' Cash On Services']")
+	public WebElement PaymentSettings_CashOnService_InBP;*/
 	
 /*********TS011_Subscriber clicks on Services in Manage Circle Menu**************/
 	
@@ -1171,11 +1585,17 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//section[2]/div[1]/div[2]//table/tbody/tr")
 	public List<WebElement> POS_BP_Details_List;
 	
+	@FindBy(xpath="//table/tbody/tr[contains(@ng-repeat,'bookings_list')]/td[1]")
+	public List<WebElement> POS_BookingId_List;
+	
 	@FindBy(xpath="//table/tbody/tr/td[5]/a[text()=' View']")
 	public List<WebElement> POS_BP_View_ButtonList;
 	
 	@FindBy(xpath="//table/tbody/tr/td[5]/button[text()=' Delete']")
 	public List<WebElement> POS_BP_Delete_ButtonList;
+	
+	@FindBy(xpath="//*[@id='container_pin']//h3[contains(text(),'POS Booking ID : #')]")
+	public WebElement POS_BookingId_H3_header;
 	
 	/******TC_20_002 Check the Create Sale Order button**********/
 	
@@ -1294,6 +1714,9 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[contains(@ng-if,'Service')]")
 	public WebElement POS_asb_addedservices_tr;
 	
+	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[contains(@ng-if,'Product')]")
+	public WebElement POS_asb_addedProduct_tr;
+	
 	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[contains(@ng-if,'Service')]/td[1]")
 	public WebElement POS_asb_addedservicesname_text;
 	
@@ -1314,17 +1737,480 @@ public class Subscriber_Module_Page_Objects {
 	
 	@FindBy(xpath="//*[@id='add_new_offline_booking']//table/tbody/tr[contains(@ng-if,'Service')]/td/button")
 	public WebElement POS_asb_addedservicesclose_button;
+		
+	@FindBy(xpath="//table[@class='table styapp']/tbody/tr/td[1]")
+	public List<WebElement> Appointments_AllAppointments_BookingId_List;	
+	
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//h4[text()='Choose Payment Options']")
+	public WebElement POS_asb_ChoosePaymentOptions_popup_header;
+	
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//input[contains(@ng-click,'cash')]")
+	public WebElement POS_asb_ChoosePaymentOptions_popup_rbutton;
+	
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//button[text()='Proceed to Checkout']")
+	public WebElement POS_asb_CPO_popup_ProceedtoCheckout_button;
+	
+	@FindBy(xpath="//h2[text()='Are you sure?']")
+	public WebElement POS_asb_Areyousure_popup_Header;
+	
+	@FindBy(xpath="//button[text()='Cancel']")
+	public WebElement POS_asb_ays_popup_Cancel_Button;
+	
+	@FindBy(xpath="//button[text()='Yes, proceed to checkout!']")
+	public WebElement POS_asb_ays_popup_YesProceedtocheckout_Button;
+	
+	@FindBy(xpath="/html/body/div[2]/h2[text()='Success!']")
+	public WebElement POS_asb_Success_popup_Header;
+	
+	@FindBy(xpath="/html/body/div[2]/p[contains(text(),'Booking Created, Request id')]")
+	public WebElement POS_asb_Success_popup_BookingID_text;
+	
+	@FindBy(xpath="//button[text()='OK']")
+	public WebElement POS_asb_Success_popup_OK_button;
+	
+	@FindBy(xpath="//*[@id='container_pin']//table/tbody/tr[1]/td[1]")
+	public WebElement POS_Invoice_ServiceName_text;	
+	
+	@FindBy(xpath="//*[@id='container_pin']//table/tbody/tr[1]/td[4]")
+	public WebElement POS_Invoice_ServiceQty_text;
+	
+	@FindBy(xpath="//*[@id='container_pin']//table/tbody/tr[1]/td[3]")
+	public WebElement POS_Invoice_ServicePrice_text;
+	
+	@FindBy(xpath="//*[@id='container_pin']//table/tbody/tr[2]/td[1]")
+	public WebElement POS_Invoice_ProductName_text;	
+	
+	@FindBy(xpath="//*[@id='container_pin']//table/tbody/tr[2]/td[4]")
+	public WebElement POS_Invoice_ProductQty_text;
+	
+	@FindBy(xpath="//*[@id='container_pin']//table/tbody/tr[2]/td[3]")
+	public WebElement POS_Invoice_ProductPrice_text;
+	
+	@FindBy(xpath="//a[text()=' Email Receipt']")
+	public WebElement POS_Invoice_EmailReceipt_Link;
+	
+	@FindBy(xpath="//a[text()=' Download']")
+	public WebElement POS_Invoice_Download_Link;
+	
+	@FindBy(xpath="//div/a[text()=' Return To POS Bookings']")
+	public WebElement POS_Invoice_ReturntoPOSBookings_Link;
+	
+	@FindBy(xpath="//div[2]/fieldset/input[@placeholder='Email Address']")
+	public WebElement POS_Invoice_Popup_EmailAddress_input;
+	
+	@FindBy(xpath="//div/button[text()='OK']")
+	public WebElement POS_Invoice_Popup_OK_button;
+	
+	@FindBy(xpath="//div/button[text()='Cancel']")
+	public WebElement POS_Invoice_Popup_CAncel_button;
+	
+	@FindBy(xpath="//div/p[text()='Email send successfully']")
+	public WebElement POS_Invoice_ESS_Popup_MEssage;
+	
+	@FindBy(xpath="//div/button[text()='OK']")
+	public WebElement POS_Invoice_ESS_Popup_OK_button;
 	
 	
+	
+	/***TC_21_002******/
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//div[@class='col-md-8 detser']")
+	public WebElement Appointments_BSP_ServiceDetails_Table;
+	
+	/***TS014_Subscriber clicks on Manage Products under Manage
+    Circle Menu********/
+	/***TC_14_001 Open Manage Products page*****/
+	
+	@FindBy(xpath="//*[text()='Manage Products']")
+	public WebElement ManageProducts_DropDown_Value;
+	
+	@FindBy(xpath="//div[@class='col-md-9']/h3[text()='Products']")
+	public WebElement ManageProducts_Products_Page;
+	
+	@FindBy(xpath="//*[@id='products']//*[text()='No Data found']")
+	public WebElement ManageProducts_Products_NoDatafound;
 
+	@FindBy(xpath="//*[@id='yourTabWrapper']/li[4]")
+	public WebElement ManageProducts_AllProducts_Tab;
 
+	@FindBy(xpath="//table/tbody/tr[1]/td/button")
+	public List<WebElement> ManageProducts_Action_Buttons_List;
+	
+	@FindBy(xpath="//*[@id='products']/div/div[1]/table/tbody/tr/td[@class='col-md-3']")
+	public List<WebElement> ManageProducts_RelaventAction_Buttons_List;
+	
+	@FindBy(xpath="//*[@id='products']/div/div[1]/table/tbody/tr")
+	public List<WebElement> ManageProducts_Produts_List;
+	
+	@FindBy(xpath="//a[text()='Categories']")
+	public WebElement ManageProduct_Categories_Tab;
+	
+	@FindBy(xpath="//a[text()='Brands']")
+	public WebElement ManageProduct_Brands_Tab;
+	
+	@FindBy(xpath="//a[text()='Suppliers']")
+	public WebElement ManageProduct_Suppliers_Tab;
+	
+	@FindBy(xpath="//a[text()='Add New Product']")
+	public WebElement ManageProduct_AddNewProduct_Tab;
+	
+	/******
+	 * TC_14_002 Check the details & action buttons in All Products tab (when products are added)
+	 ***********/
+	
+	@FindBy(xpath="//*[@id='products']/div/div[1]/table/thead/tr/th")
+	public List<WebElement> ManageProduct_Product_Table_headersList;
+	
+	@FindBy(xpath="//*[@id='products']/div/div[1]/table/tbody/tr/td[1]")
+	public List<WebElement>  ManageProduct_ProductName_List;
+	
+	/*****TC_14_003 Check the Categories tab*********/
+	
+	@FindBy(xpath="//h3[text()='Categories']")
+	public WebElement ManageProduct_CategoriesPage_Header;
+	
+	@FindBy(xpath="//*[@id='categories']//*[text()='No Data found']")
+	public WebElement ManageProducts_CP_NoDatafound;
+	
+	@FindBy(xpath="//*[@id='categories']//*[text()='New Category']")
+	public WebElement ManageProduct_CP_NewCategory_Button;
+	
+	@FindBy(xpath="//*[@id='categories']/div/div[1]/table/tbody/tr")
+	public List<WebElement> ManageProducts_CP_Categories_List;
+	
+	@FindBy(xpath="//*[@id='categories']/div/div[1]/table/thead/tr/th")
+	public List<WebElement> ManageProduct_CP_TableHeadersList;
+	
+	@FindBy(xpath="//*[@id='categories']/div/div[1]/table/tbody/tr/td[1]")
+	public List<WebElement> ManageProduct_CP_categoryName_List;
+	
+	@FindBy(xpath="//*[@id='categories']/div/div[1]/table/tbody/tr/td[2]")
+	public List<WebElement> ManageProduct_CP_ProductAssigned_List;
+	
+	/*****TC_14_004 Check whether new category can be added**********/
+	
+	@FindBy(xpath="//*[@id='categoryModalPopUp']//h4")
+	public WebElement ManageProduct_CP_AddCategory_PopupHeader;
+	
+	@FindBy(xpath="//*[@id='categoryModalPopUp']//input[@ng-model='categoryData.name']")
+	public WebElement ManageProduct_CP_ACP_CategoryTextBox;
+	
+	@FindBy(xpath="//*[@id='categoryModalPopUp']//button[text()='Save']")
+	public WebElement ManageProduct_CP_ACP_SaveButton;
+	
+	/********TC_14_005 Check whether a Category name can be modified**************/
+	
+	@FindBy(xpath="//*[@id='categoryModalPopUp']//h4")
+	public WebElement ManageProduct_CP_ECP_Header;
+	
+	/**TC_14_006 Check whether a category can be deleted*********/
+	
+	@FindBy(xpath="//*[@id='categoryModalPopUp']//button[text()='Delete']")
+	public WebElement ManageProduct_CP_ACP_DeleteButton;
+	
+	@FindBy(xpath="//button[text()='Yes']")
+	public WebElement ManageProduct_CP_ACP_YesConformationPopup_Button;
+	
+	/*****TC_14_007 Check the Brands tab*****/
+	
+	@FindBy(xpath="//*[@id='brands']//div[1]/h3[text()='Brands']")
+	public WebElement ManageProduct_CP_BrandsPage_Header;
+	
+	@FindBy(xpath="//*[@id='brands']//*[text()='New Brand']")
+	public WebElement ManageProduct_BP_NewBrand_Button;
+	
+	@FindBy(xpath="//*[@id='brands']//*[text()='No Data found']")
+	public WebElement ManageProducts_Brands_NoDatafound;
+	
+	@FindBy(xpath="//*[@id='brands']/div/div[1]/table/tbody/tr")
+	public List<WebElement> ManageProduct_BP_Brand_List;
+	
+	@FindBy(xpath="//*[@id='brands']/div/div[1]/table/thead/tr/th")
+	public List<WebElement> ManageProduct_BP_TableHeadersList;
+
+	@FindBy(xpath="//*[@id='brands']/div/div[1]/table/tbody/tr/td[1]")
+	public List<WebElement> ManageProduct_BP_BrandName_List;
+	
+	@FindBy(xpath="//*[@id='brands']/div/div[1]/table/tbody/tr/td[2]")
+	public List<WebElement> ManageProduct_BP_ProductsAssigned_List;
+	
+	/****TC_14_008 Check whether a New Brand can be added *****/
+	
+	@FindBy(xpath="//*[@id='brandsModalPopUp']//*[text()='Add Brand']")
+	public WebElement ManageProduct_BP_AddBrand_PopupHeader;
+	
+	@FindBy(xpath="//*[@id='brandsModalPopUp']//input[@ng-model='brandData.name']")
+	public WebElement ManageProduct_BP_ABP_BrandTextBox;
+	
+	@FindBy(xpath="//*[@id='brandsModalPopUp']//button[text()='Save']")
+	public WebElement ManageProduct_BP_ABP_SaveButton;
+	
+	/********TC_14_010 Check whether a brand can be deleted********/
+	@FindBy(xpath="//*[@id='brandsModalPopUp']//*[text()='Edit Brand']")
+	public WebElement ManageProduct_BP_EBP_Header;
+	
+	@FindBy(xpath="//*[@id='brandsModalPopUp']//button[text()='Delete']")
+	public WebElement ManageProduct_BP_ACP_DeleteButton;
+	
+	@FindBy(xpath="//button[text()='Yes']")
+	public WebElement ManageProduct_BP_ACP_YesConformationPopup_Button;
+
+	/***TC_14_011 Check the Suppliers tab********/
+	
+	@FindBy(xpath="//*[@id='suppliers']//div[1]/h3[text()='Suppliers']")
+	public WebElement ManageProduct_SuppliersPage_Header;
+	
+	@FindBy(xpath="//*[@id='suppliers']//*[text()='No Data found']")
+	public WebElement ManageProducts_Suppliers_NoDatafound;
+	
+	@FindBy(xpath="//*[@id='suppliers']//*[text()='New Supplier']")
+	public WebElement ManageProduct_SP_NewSupplier_Button;
+	
+	@FindBy(xpath="//*[@id='suppliers']/div/div[1]/table/thead/tr/th")
+	public List<WebElement> ManageProduct_SP_TableHeadersList;
+	
+	@FindBy(xpath="//*[@id='suppliers']/div/div[1]/table/tbody/tr/td[1]")
+	public List<WebElement> ManageProduct_SP_SuppliersName_List;
+	
+	@FindBy(xpath="//*[@id='suppliers']/div/div[1]/table/tbody/tr/td[4]")
+	public List<WebElement> ManageProduct_SP_ProductAssigned_List;
+	
+	/****TC_14_012 Check whether a new supplier can be added *****/
+	
+	@FindBy(xpath="//*[@id='supplierModalPopUp']//h4")
+	public WebElement ManageProduct_SP_AddSupplierPopup_Header;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='supplier_name']")
+	public WebElement ManageProduct_Suppliers_ASP_SupplierName_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='supplier_mobile']")
+	public WebElement ManageProduct_Suppliers_ASP_SupplierMobile_TextBox;
+	
+	@FindBy(xpath="//*[@name='supplier_description']")
+	public WebElement ManageProduct_Suppliers_ASP_SupplieDescription_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='contact_person_name']")
+	public WebElement ManageProduct_Suppliers_ASP_ContactPersonName_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='contact_person_email']")
+	public WebElement ManageProduct_Suppliers_ASP_ContactPersonEmail_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='contact_person_website']")
+	public WebElement ManageProduct_Suppliers_ASP_ContactPersonWebSite_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='contact_person_mobile']")
+	public WebElement ManageProduct_Suppliers_ASP_ContactPersonMobile_TextBox;
+	
+	@FindBy(xpath="//textarea[@name='contact_person_address']")
+	public WebElement ManageProduct_Suppliers_ASP_ContactPersonAddress_TextBox;
+	
+	@FindBy(xpath="//*[@ng-submit='addorUpdateSupplier()']/button[text()='Save']")
+	public WebElement ManageProduct_Suppliers_ASP_SaveButton;
+	
+	/********TC_14_013 Check whether Supplier name/details can be edited********/
+	@FindBy(xpath="//*[@id='supplierModalPopUp']//h4[text()='Edit Supplier']")
+	public WebElement ManageProduct_Suppliers_ESP_Header;
+
+	/***TC_14_014 Check whether Supplier can be deleted********/
+	
+	@FindBy(xpath="//button[text()='Delete']")
+	public WebElement ManageProduct_Suppliers_ASP_DeleteButton;
+	
+	@FindBy(xpath="//button[text()='Yes']")
+	public WebElement ManageProduct_Suppliers_ASP_YesConformationPopup_Button;
+	
+	/*****TC_14_015 Check Add New Product tab************/
+	
+	@FindBy(xpath="//h3[text()='Add New Product']")
+	public WebElement ManageProduct_AddNewProduct_PageHeader;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div/input[@name='product_name']")
+	public WebElement ManageProduct_AddNewProduct_ProductName_Textbox;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div/textarea[@name='product_description']")
+	public WebElement ManageProduct_AddNewProduct_ProductDescription_Textbox;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div/input[@ng-model='productData.supply_price']")
+	public WebElement ManageProduct_AddNewProduct_SupplyPrice_Textbox;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div/input[@ng-model='productData.retail_price']")
+	public WebElement ManageProduct_AddNewProduct_RetailPrice_Textbox;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div/input[@ng-model='productData.special_price']")
+	public WebElement ManageProduct_AddNewProduct_SpecialPrice_Textbox;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div[1]/select")
+	public WebElement ManageProduct_AddNewProduct_Brand_DropdownValues;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div[2]/select")
+	public WebElement ManageProduct_AddNewProduct_Category_DropdownValues;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div[3]/select")
+	public WebElement ManageProduct_AddNewProduct_Supplier_DropdownValues;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//button[@title='Add New Brand']")
+	public WebElement ManageProduct_AddNewProduct_AddNewBrand_Button;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//button[@title='Add New Category']")
+	public WebElement ManageProduct_AddNewProduct_AddNewCategory_Button;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//button[@title='Add New Supplier']")
+	public WebElement ManageProduct_AddNewProduct_AddNewSupplier_Button;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//button[text()='Save']")
+	public WebElement ManageProduct_AddNewProduct_Save_Button;
+	
+	@FindBy(xpath="//*[@id='addProductTab']//div/input")
+	public List<WebElement> ManageProduct_AddNewProduct_Input_TextBox_List;
+	
+	/******TC_14_017 Check whether a new brand can be added in Add New Product page*****/
+	
+	@FindBy(xpath="//*[@id='brandsModalPopUp']//*[text()='Add Brand']")
+	public WebElement ManageProduct_AddNewProduct_AddBrand_PopupHeader;
+	
+	@FindBy(xpath="//*[@id='brandsModalPopUp']//input[@ng-model='brandData.name']")
+	public WebElement ManageProduct_AddNewProduct_ABP_BrandTextBox;
+	
+	@FindBy(xpath="//*[@id='brandsModalPopUp']//button[text()='Save']")
+	public WebElement ManageProduct_AddNewProduct_ABP_SaveButton;
+	
+	/************TC_14_018 Check whether a new Category can be added in Add New Product page******/
+	
+	@FindBy(xpath="//*[text()='Add Category']")
+	public WebElement ManageProduct_AddNewProduct_AddCategory_PopupHeader;
+	
+	@FindBy(xpath="//input[@ng-model='categoryData.name']")
+	public WebElement ManageProduct_AddNewProduct_AddCategory_CategoryTextBox;
+	
+	@FindBy(xpath="//*[@id='categoryModalPopUp']//button[text()='Save']")
+	public WebElement ManageProduct_AddNewProduct_AddCategory_SaveButton;
+	
+	/***TC_14_019 Check whether a new Supplier can be added in Add New Product page***/
+	
+	@FindBy(xpath="//*[text()='Add Supplier']")
+	public WebElement ManageProduct_AddNewProduct_AddSupplierPopup_Header;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='supplier_name']")
+	public WebElement ManageProduct_AddNewProduct_ASP_SupplierName_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='supplier_mobile']")
+	public WebElement ManageProduct_AddNewProduct_ASP_SupplierMobile_TextBox;
+	
+	@FindBy(xpath="//*[@name='supplier_description']")
+	public WebElement ManageProduct_AddNewProduct_ASP_SupplieDescription_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='contact_person_name']")
+	public WebElement ManageProduct_AddNewProduct_ASP_ContactPersonName_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='contact_person_email']")
+	public WebElement ManageProduct_AddNewProduct_ASP_ContactPersonEmail_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='contact_person_website']")
+	public WebElement ManageProduct_AddNewProduct_ASP_ContactPersonWebSite_TextBox;
+	
+	@FindBy(xpath="//*[@id='categoryDataForm']//input[@name='contact_person_mobile']")
+	public WebElement ManageProduct_AddNewProduct_ASP_ContactPersonMobile_TextBox;
+	
+	@FindBy(xpath="//textarea[@name='contact_person_address']")
+	public WebElement ManageProduct_AddNewProduct_ASP_ContactPersonAddress_TextBox;
+	
+	@FindBy(xpath="//*[@ng-submit='addorUpdateSupplier()']/button[text()='Save']")
+	public WebElement ManageProduct_AddNewProduct_ASP_SaveButton;
+	
+	/*****TC_14_020 Check whether a product detail/price can be changed*********/
+	
+	@FindBy(xpath="//*[@id='productModalPopUp']//h4[text()='Edit Product']")
+	public WebElement ManageProduct_AllProduct_EditProductPopup_Header;
+
+	@FindBy(xpath="//*[@id='productModalPopUp']//input[@ng-model='productData.product_name']")
+	public WebElement ManageProduct_AllProduct_EPP_ProductName_TextBox;
+	
+	@FindBy(xpath="//*[@id='productModalPopUp']//input[@ng-model='productData.retail_price']")
+	public WebElement ManageProduct_AllProduct_EPP_ProductRetailPrice_TextBox;
+	
+	@FindBy(xpath="//*[@id='products']/div/div[1]/table/tbody/tr/td[2]")
+	public List<WebElement> ManageProduct_AllProduct_RetailPrice_List;
+	
+	@FindBy(xpath="//*[@id='productModalPopUp']//button[text()='Save']")
+	public WebElement ManageProduct_AllProduct_EPP_Save_Button;
+	
+	/*****TC_14_021 Check whether a product can be deleted********/
+	
+	@FindBy(xpath="//*[@id='productModalPopUp']//button[text()='Delete']")
+	public WebElement ManageProduct_AllProduct_EPP_Delete_Button;
+	
+	@FindBy(xpath="//button[text()='Yes']")
+	public WebElement ManageProduct_AllProduct_EPP_Yes_Button;
+	
+	
+	/*******TC_14_022 Check the Add Stock (+) button*********/
+	
+	@FindBy(xpath="//*[@id='increaseStockPopup']//h4")
+	public WebElement ManageProduct_AllProduct_AddStockForTheHealthTips_PopupHeader;
+	
+	@FindBy(xpath="//*[@id='products']//button[@ng-click='increaseStockAction(item)']")
+	public List<WebElement>  ManageProduct_AllProduct_IncreaseStockAction_ButtonList;
+	
+	@FindBy(xpath="//*[@id='increaseStockPopup']//input[@ng-model='increaseProductItem.qty']")
+	public WebElement ManageProduct_AllProduct_AddStockForTheHealthTips_Quality_Textbox;
+	
+	@FindBy(xpath="//*[@id='increaseStockPopup']//input[@ng-model='increaseProductItem.supply_price']")
+	public WebElement ManageProduct_AllProduct_AddStockForTheHealthTips_SupplyPrice_TextBox;
+	
+	@FindBy(xpath="//*[@id='increaseStockPopup']//select[@ng-model='increaseProductItem.action']")
+	public WebElement ManageProduct_AllProduct_AddStockForTheHealthTips_AdjustmentReason_SelectionValues;
+	
+	@FindBy(xpath="//*[@id='increaseStockPopup']//input[@name='save_price_for_next_time']")
+	public WebElement ManageProduct_AllProduct_AddStockForTheHealthTips_SavePriceForNexttime_CheckBox;
+	
+	@FindBy(xpath="//*[@id='increaseStockPopup']//button[text()='Save']")
+	public WebElement ManageProduct_AllProduct_AddStockForTheHealthTips_Save_Button;
+	
+	@FindBy(xpath="//*[@id='increaseStockPopup']//button[text()='Cancel']")
+	public WebElement ManageProduct_AllProduct_AddStockForTheHealthTips_Cancel_Button;
+
+	@FindBy(xpath="//*[@id='products']/div/div[1]/table/tbody/tr/td[3]")
+	public List<WebElement> ManageProduct_AllProduct_StockOnHand_List;
+	
+	/**********TC_14_024 Check the decrease stock (-) button*********/
+	@FindBy(xpath="//*[@id='products']//button[@ng-click='decreaseStockAction(item)']")
+	public List<WebElement>  ManageProduct_AllProduct_DecreaseStockAction_ButtonList;
+	
+	@FindBy(xpath="//*[@id='decreaseStockPopup']//h4[text()='Decrease Stock for the Health Tips']")
+	public WebElement ManageProduct_AllProduct_DecreaseStockForTheHealthTips_PopupHeader;
+	
+	@FindBy(xpath="//*[@id='decreaseStockPopup']//input[@ng-model='decreaseProductItem.qty']")
+	public WebElement ManageProduct_AllProduct_DecreaseStockForTheHealthTips_Quality_Textbox;
+	
+	@FindBy(xpath="//*[@id='decreaseStockPopup']//select[@name='action']")
+	public WebElement ManageProduct_AllProduct_DecreaseStockForTheHealthTips_AdjustmentReason_SelectionValues;
+	
+	@FindBy(xpath="//*[@id='decreaseStockPopup']//button[text()='Save']")
+	public WebElement ManageProduct_AllProduct_DecreaseStockForTheHealthTips_Save_Button;
+	
+	@FindBy(xpath="//*[@id='decreaseStockPopup']//button[text()='Cancel']")
+	public WebElement ManageProduct_AllProduct_DecreaseStockForTheHealthTips_Cancel_Button;
+	
+	/***************TC_14_026 Check the stock history**********/
+	@FindBy(xpath="//*[@id='products']//button[@ng-click='viewStockHistory(item)']")
+	public List<WebElement>  ManageProduct_AllProduct_ViewStockHistoryAction_ButtonList;
+	
+	@FindBy(xpath="//*[@id='stockHistoryPopup']//h4[text()='Stock History for the Health Tips']")
+	public WebElement ManageProduct_AllProduct_StockHistoryForTheHealthTips_PopuHeader;
+	
+	@FindBy(xpath="//*[@id='stockHistoryPopup']//table/thead/tr/th")
+	public List<WebElement> ManageProduct_AllProduct_StockHistoryForTheHealthTips_TableHeaderList;
+	
+	@FindBy(xpath="//*[@id='stockHistoryPopup']//table/tbody/tr")
+	public List<WebElement> ManageProduct_AllProduct_StockHistoryForTheHealthTips_Actionperformed_List;
+	
 	/**********TS021_Subscriber clicks on Appointments menu**********/
 	/*****TC_21_001 Open Appointments page*****/
 	
 	@FindBy(xpath="//a[text()='Appointments']")
 	public WebElement Appointments_Menu_Link;
 	
-	@FindBy(xpath="//h3[text()='Appointments']")
+	@FindBy(xpath="//div[@class='dashboard_title']//h3[contains(text(),'Appointments')]")
 	public WebElement Appointments_AppointmentsPage_Header;
 	
 	@FindBy(xpath="//*[text()='No Appointments found']")
@@ -1357,8 +2243,17 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//*[@ng-model='searchAppointmentById']")
 	public WebElement Appointments_AllAppointments_SearchBox;
 	
-	@FindBy(xpath="//table[@class='table styapp']/tbody/tr/td[1]")
-	public List<WebElement> Appointments_AllAppointments_BookingId_List;
+	/*@FindBy(xpath="//table[@class='table styapp']/tbody/tr/td[2]")
+	public List<WebElement> Appointments_AllAppointments_AppointmentTime_List;
+	
+	@FindBy(xpath="//table[@class='table styapp']/tbody/tr/td[3]")
+	public List<WebElement> Appointments_AllAppointments_CustomerName_List;*/
+	
+	@FindBy(xpath="//table[@class='table styapp']/tbody/tr")
+	public List<WebElement> Appointments_AllAppointments_List;
+	
+	@FindBy(xpath="//table[@class='table styapp']/tbody/tr/td[8]")
+	public List<WebElement> Appointments_AllAppointments_StatusList;
 	
 	/***TC_21_002******/
 	
@@ -1371,7 +2266,281 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//*[@id='addStaffForm']//strong[3]")
 	public WebElement Appointments_BSP_AppointmentDateAndTime;
 	
-	@FindBy(xpath="//*[@id='addStaffForm']//div[@class='col-md-8 detser']")
-	public WebElement Appointments_BSP_ServiceDetails_Table;
+	@FindBy(xpath="//*[@id='addStaffForm']//table/thead/tr/th")
+	public List<WebElement> Appointments_BSP_SelectedServices_TableHeadersList;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//table/tbody/tr/th")
+	public List<WebElement> Appointments_BSP_CustomerDetails_TableHeadersList;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//div[2]/table/tbody/tr/td")
+	public List<WebElement> Appointments_BSP_CustomerDetails_TableDataValue;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//div[1]/table/tbody/tr/td")
+	public List<WebElement> Appointments_BSP_SelectedService_DetailsDataValue;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//a[text()='  View Appointment']")
+	public WebElement Appointments_BSP_ViewAppointment_Button;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//div/a[text()='  Check Out']")
+	public WebElement Appointments_BSP_CheckOut_Button;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']/div[1]/button[@class='close']")
+	public WebElement Appointments_BSP_Close_Button;
+	
+	/****TC_21_003 Check the available options for booking with status as New**********/
+	
+	@FindBy(xpath="//table[@class='table styapp']//*[text()='New']//preceding::td[7]")
+	public List<WebElement> Appointments_AllAppointments_BookingIDHavig_NewStatus;
+	
+	@FindBy(xpath="//table[@class='table styapp']//button[text()='New']")
+	public List<WebElement>  Appointments_AllAppointments_NewStatusButton_List;
+	
+	@FindBy(xpath="//ul[@class='pagination']/li/a")
+	public List<WebElement>  Appointments_AllAppointments_PaginationButton_List;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//div/button[@ng-click='doCancelAppointment(bookingView)']")
+	public WebElement Appointments_BSP_CancelBooking_Button;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//div/button[@ng-click='doRescheduleAppointment(bookingView)']")
+	public WebElement Appointments_BSP_Reschedule_Button;
+	
+	@FindBy(xpath="//*[@id='addStaffForm']//div/button[text()='Confirmed']")
+	public WebElement Appointments_BSP_Confirmed_Button;
+	
+	
+	
+	/********TC_21_004 Check whether available timeslots are displayed when we click on Reschedule button.************/
+	
+	@FindBy(xpath="//*[@id='reschedulePopup']/div/div/div[1]/h4[contains(text(),'Reschedule Time for ')]")
+	public WebElement Appointments_RescheduleTimeForAppointment_PopupHeader;
+	
+	@FindBy(xpath="//*[@id='reschedulePopup']//h4[text()='Available Times']")
+	public WebElement Appointments_RTAPP_AvailableTimes;
+	
+	@FindBy(xpath="//*[@id='cal2']/div[2]//div[@class='cell-content']")
+	public List<WebElement>  Appointments_RTAPP_AvailableTimesDayList;
+	
+	@FindBy(xpath="//*[@id='reschedulePopup']//h4[@ng-if='availableProfessionalTimeslots.length == 0']")
+	public WebElement  Appointments_RTAPP_NoAvailableTime_Slots;
+	
+	/******TC_21_005 Check whether an appointment can be Rescheduled**********/
+	
+	@FindBy(xpath="//*[@id='reschedulePopup']//div[@class='col-md-11 ng-binding']")
+	public List<WebElement> Appointments_RTAPP_AvailableTimes_List;
+	
+	@FindBy(xpath="//*[text()='Yes, Proceed to reschedule!']")
+	public WebElement Appointments_RTAPP_YesProceedToReschedulePopup;
+	
+	/****TC_21_007 Check whether the Customer receives reschedule notification*******/
+	
+	
+	/***TC_21_009 Check the available options in a Cancelled booking*****///
+	@FindBy(xpath="//table/tbody/tr/td/label[text()='Cancelled']")
+	public List<WebElement> Appointments_AllAppointments_CancelledStatus_List;
+	
+	@FindBy(xpath="//table[@class='table styapp']//*[text()='Cancelled']//preceding::td[7]")
+	public List<WebElement> Appointments_AllAppointments_BookingIDHavig_CancelledStatus;
+	
+	/****TC_21_012 Check the options available for booking with status as Completed***/
+	
+	@FindBy(xpath="//table/tbody/tr/td/button[text()='Completed']")
+	public List<WebElement> Appointments_AllAppointments_CompletedStatus_List;
+	
+	@FindBy(xpath="//table[@class='table styapp']//*[text()='Completed']//preceding::td[7]")
+	public List<WebElement> Appointments_AllAppointments_BookingIDHavig_CompletedStatus;
+	
+	/***TC_21_013 Check whether receipt/invoice can be viewed for Completed booking*****/
+	
+	@FindBy(xpath="//*[@id='container_pin']")
+	public WebElement Appointments_AllAppointments_ReceiptPDF_Page;
+	
+	@FindBy(xpath="//*[@class='container']//a")
+	public List<WebElement> Appointments_AllAppointments_ReceiptPDF_OptionList;
+	
+	@FindBy(xpath="//*[text()='Enter recipient email address']")
+	public WebElement Appointments_AllAppointments_EmailPopup;
+	
+	@FindBy(xpath="//input[@placeholder='Email Address']")
+	public WebElement Appointments_AllAppointments_EmailTextBox;
+		
+	/***TC_21_017 Check whether an appointment can be confirmed************/
+	@FindBy(xpath="//table/tbody/tr/td/button[text()='Confirmed']")
+	public List<WebElement>  Appointments_AllAppointments_ConfirmedStatus_List;
+	
+	@FindBy(xpath="//table[@class='table styapp']//*[text()='Confirmed']//preceding::td[7]")
+	public List<WebElement> Appointments_AllAppointments_BookingIDHavig_ConfirmedStatus;
+	
+	@FindBy(xpath="//div[@class='datatable_x_scroll table-mobile']")
+	public WebElement Appointments_AllAppointments_FilterTable;
+	
+	/***TC_21_021 Check filter by date Custom Range**/
+	
+	@FindBy(xpath="//div[@class='xdsoft_calendar']/table/tbody/tr/td")
+	public List<WebElement>  Appointments_FromDate_List;
+	
+	/*******TC_21_024 Check the search box**********/
+	
+	@FindBy(xpath="//button[@ng-click='updateFilterAppointments()']")
+	public WebElement Appointments_AllAppointments_SeacrchIcon_Button;
+	
+	/*****TS022_Subscriber creates a Walk-in Appointment****/
+	/****TC_22_001 Check the +New Appointments button****/
+	
+	@FindBy(xpath="//*[@id='addBookingForm']/div[1]//*[text()='New Booking']")
+	public  WebElement NewAppointments_NewBooking_PageHeader;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//label/input")
+	public  List<WebElement> NewAppointments_Serviece_CheckBox_List;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//label")
+	public  List<WebElement> NewAppointments_ServiecesName_List;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//div/span")
+	public List<WebElement> NewAppointments_Servieces_Duration_List;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//strong")
+	public List<WebElement> NewAppointments_Servieces_PriceList;
+	
+	/***TC_22_002 Check whether single/multipleservices can be selected****/
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//table/tbody/tr/td/strong/span")
+	public List<WebElement> NewAppointments_Servieces_UpadateDetails_List;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']/div[2]/div/div/div[2]/table")
+	public WebElement  NewAppointments_Servieces_UpadtedTable;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//button[text()='Next']")
+	public WebElement NewAppointments_Next_Button;
+	
+	/*****TC_22_003 Check the Next button in services page***/
+	@FindBy(xpath="//*[@id='addBookingForm']//div[@ng-if='availableStaff.length > 0']")
+	public WebElement NewAppointments_StaffPage;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//label/object/img")
+	public List<WebElement> NewAppointments_Staff_List;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//button[text()='Back']")
+	public WebElement NewAppointments_Back_Button;
+	
+	/*****TC_22_004 Check whether the Back button in Staff page returns to Service page****/
+	@FindBy(xpath="//*[@id='addBookingForm']/div[2]/div/div/div[1]/div")
+	public WebElement  NewAppointments_Service_Page;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//table/tbody/tr[@class='ng-scope']")
+	public List<WebElement> NewAppointments_UpdateSelectedService_List;
+	
+	/***TC_22_006 Check the Next button in Staff selection page****/
+	@FindBy(xpath="//*[@id='addBookingForm']/div[2]/div/div/div[@ng-if='enableCustomerForm']")
+	public WebElement NewAppointments_CustomerDetails_Page;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//*[@id='email']")
+	public WebElement NewAppointments_CustomerEmail_TextBox;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//*[@id='customer_name']")
+	public WebElement NewAppointments_CustomerName_TextBox;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//*[@id='mobile']")
+	public WebElement NewAppointments_CustomerMobile_TextBox;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//center/img")
+	public WebElement NewAppointments_StaffImage;
+	
+	/***TC_22_009 Check whether available timeslots are displayed******/
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//h5[@ng-if='availableProfessionalTimeslots.length == 0']")
+	public WebElement NewAppointments_AvailableNoTimeslots;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//h4[text()='Available Times']")
+	public WebElement NewAppointments_AvailableTimes_Header;
+	
+	@FindBy(xpath="//*[@id='newBookingCalendar']//div/div[@class='cell-content']")
+	public List<WebElement>  NewAppointments_AvailableTimesDayList;
+	
+	@FindBy(xpath="//*[@id='addBookingForm']//div[@class='col-md-11 ng-binding']")
+	public List<WebElement> NewAppointments_AvailableTimes_List;
+	
+	@FindBy(xpath="//*[text()='Yes, Proceed to reschedule!']")
+	public WebElement NewAppointments_YesProceedToPopup;
+	
+	/************TS023_Subscriber Completes an Appointment*********/
+	/***TC_23_002 Check whether the Checkout button is functioning*****/
+	
+	@FindBy(xpath="//div[@class='container']")
+	public WebElement Appointments_BillingPage;
+	
+	@FindBy(xpath="//*[@ng-controller='checkOutCtrl']//h3[contains(text(),' Appointment ID: ')]")
+	public WebElement Appointments_BP_ID;
+	
+	@FindBy(xpath="//*[@class='mmmm']/following::div//div[@class='row gutter_0 twotxts']")
+	public WebElement Appointments_BP_CustomerInfo;
+
+	@FindBy(xpath="//div[@class='inv_ul']/table/tbody/tr[1]/th")
+	public List<WebElement> Appointments_BP_ServiceHeadersList;
+	
+	@FindBy(xpath="//div[@class='inv_ul']/table/tbody/tr[2]/td")
+	public List<WebElement> Appointments_BP_ServiceDetailsList;
+
+	@FindBy(xpath="//*[@ng-click='addProducts()']")
+	public WebElement Appointments_BP_AddProductButton;
+
+	@FindBy(xpath="//button[text()='Proceed to Collect amount']")
+	public WebElement Appointments_BP_ProceedtoCollectAmounttButton;
+
+	/********TC_23_003 Check whether the service amount and other details are correct in the billing page***/
+	
+	@FindBy(xpath="//div[@class='inv_ul']/table/tbody/tr[3]/td")
+	public WebElement Appointments_BP_TipAmount;
+	
+	@FindBy(xpath="//div[@class='inv_ul']/table/tbody/tr[4]/td")
+	public WebElement Appointments_BP_TotalAmount;
+	
+	/******TC_23_007 Check the +Products button*********/
+	
+	@FindBy(xpath="//*[@id='selectProductForm']//h4[text()='Products']")
+	public WebElement Appointments_BP_SP_Popup;
+	
+	@FindBy(xpath="//*[@id='selectProductForm']//Strong")
+	public  List<WebElement> Appointments_BP_SP_ProductstNameList;
+	
+	@FindBy(xpath="//*[@id='selectProductForm']//Strong")
+	public  List<WebElement> Appointments_BP_SP_ProductsPriceList;
+	
+	@FindBy(xpath="//div[@class='inv_ul']//table/tbody/tr/td[@class='ng-binding']")
+	public  List<WebElement> Appointments_BP_SP_AddedProductsList;
+	
+	@FindBy(xpath="//div[@class='inv_ul']//table/tbody/tr[3]/td")
+	public  List<WebElement> Appointments_BP_SP_AddedProductsDetailsList;
+	
+	/****TC_23_012 Check the Proceed to Collect Amount button****/
+	
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//h4[text()='Choose Payment Options']")
+	public WebElement Appointments_BP_CPO_popup;
+	
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//a[text()='Cash']")
+	public WebElement Appointments_BP_CPO_CashLink;
+	
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//button[text()='Mark Appointment as Completed']")
+	public WebElement Appointments_BP_CPO_MACLink;
+	
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//table/tbody/tr[3]/td/input[@ng-model='tip']")
+	public WebElement Appointments_BP_CPO_TipText;
+
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//table/tbody/tr[4]/td")
+	public WebElement Appointments_BP_CPO_TotalAmount;
+
+	@FindBy(xpath="//*[@id='choosePaymentOptionsPopup']//table/tbody/tr[1]/td")
+	public WebElement Appointments_BP_CPO_SubTotal;
+
+	
+	@FindBy(xpath="//*[text()='Is this appointment completed successfully']")
+	 public WebElement Appointments_BP_ACS_Popup;
+	
+   @FindBy(xpath="//button[text()='Yes, Completed!']")
+   public WebElement Appointments_BP_YesCompletedButton;
+   
+   @FindBy(xpath="//*[@ng-controller='trackBookingStatusCtrl']")
+   public WebElement Appointments_BP_ReceiptPage;
+
+
 
 }

@@ -13,7 +13,9 @@
 	          <artifactId>maven-compiler-plugin</artifactId>
 	          <version>3.7.0</version>
 	          <configuration>
-	            <!-- put your configurations here -->
+	           <source>1.8</source>
+               <target>1.8</target>
+               <encoding>UTF-8</encoding>
 	          </configuration>
 	        </plugin>
 	        <plugin>
@@ -22,8 +24,8 @@
 	          <version>2.20.1</version>
 	          <configuration>
            <suiteXmlFiles>
+           <!-- <suiteXmlFile>TestNG.xml</suiteXmlFile> -->
            <suiteXmlFile>TestNG.xml</suiteXmlFile>
-           <!-- <suiteXmlFile>src/main/resources/testng.xml</suiteXmlFile> -->
            </suiteXmlFiles>
            </configuration>  
 	        </plugin>

@@ -65,7 +65,7 @@ public class TS_020_SubscriberClicks_POSMenu extends StaticVariables {
 		SR.open_POSPage();
 	}
 
-	@Test(priority = 20004, description = "TC_20_002 Check the Create Sale Order button")
+	/*@Test(priority = 20004, description = "TC_20_002 Check the Create Sale Order button")
 	public void TC_20_002_SubScriberr_check_CreateSaleOrder_Button() throws IOException {
 		ExtentTestManager.getTest().setDescription("TC_20_002 Check the Create Sale Order button");
 		SR.check_CreateSaleOrder_Button();
@@ -105,6 +105,72 @@ public class TS_020_SubscriberClicks_POSMenu extends StaticVariables {
 	public void TC_20_008_SubScriberr_Check_product_deleted_from_orders() throws IOException {
 		ExtentTestManager.getTest().setDescription("TC_20_008 Check whether a product can be deleted from the orders");
 		SR.Check_product_deleted_from_orders();
+	}
+	
+	@Test(priority = 20011, description = "TC_20_009 Check the +Services button in Add New Sale popup")
+	public void TC_20_009_SubScriberr_Check_ServicesbuttoninAddNewSalepopup() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_009 Check the +Services button in Add New Sale popup");
+		SR.Check_ServicesbuttoninAddNewSalepopup();
+	}
+	
+	@Test(priority = 20012, description = "TC_20_010 Check whether service(s) can be added")
+	public void TC_20_010_SubScriberr_Check_servicecanbeadded() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_010 Check whether service(s) can be added");
+		SR.Check_servicecanbeadded();
+	}
+	
+	@Test(priority = 20013, description = "TC_20_011 Check whether multiple quantity of a service can be added")
+	public void TC_20_011_SubScriberr_Check_multiplequantityofservice_can_added() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_011 Check whether multiple quantity of a service can be added");
+		SR.Check_multiplequantityofservice_can_added();
+	}
+	
+	@Test(priority = 20015, description = "TC_20_013 Check whether a discount can be applied to the service in the order")
+	public void TC_20_013_SubScriberr_Check_discountapplied_in_serviceorderstemplat() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_013 Check whether a discount can be applied to the service in the order");
+		SR.Check_discountapplied_in_serviceorderstemplat();
+	}
+	
+	@Test(priority = 20016, description = "TC_20_014 Check whether a staff can be assigned to a service")
+	public void TC_20_014_SubScriberr_Check_staffcanbeassignedtoservice() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_014 Check whether a staff can be assigned to a service");
+		SR.Check_staffcanbeassignedtoservice();
+	}
+	
+	@Test(priority = 20017, description = "TC_20_015 Check whether a service can be deleted")
+	public void TC_20_015_SubScriberr_Check_service_deleted_from_orders() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_015 Check whether a service can be deleted");
+		SR.Check_service_deleted_from_orders();
+	}	*/
+	
+	@Test(priority = 20018, description = "TC_20_016 Check whether a new sale order can be created")
+	public void TC_20_016_SubScriberr_Check_service_newsaleorder_created() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_016 Check whether a new sale order can be created");
+		SR.Check_service_newsaleorder_created();
+	}	
+	
+	@Test(priority = 20019, description = "TC_20_017 Check the View button in bookings page(POS)")
+	public void TC_20_017_SubScriberr_Check_Viewbuttoninbookingspage_POS() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_017 Check the View button in bookings page(POS)");
+		SR.Check_Viewbuttoninbookingspage_POS();
+	}
+	
+	@Test(priority = 20020, description = "TC_20_018 Check whether the details in the invoice are correct")
+	public void TC_20_018_SubScriberr_Check_detailsintheinvoice() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_018 Check whether the details in the invoice are correct");
+		SR.Check_detailsintheinvoice();
+	}
+	
+	@Test(priority = 20021, description = "TC_20_019 Check whether the invoice can be sent through email")
+	public void TC_20_019_SubScriberr_Check_invoice_sentthroughemail() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_019 Check whether the invoice can be sent through email");
+		SR.Check_invoice_sentthroughemail();
+	}
+	
+	@Test(priority = 20023, description = "TC_20_021 Check the Return to POS Bookings button")
+	public void TC_20_021_SubScriberr_Check_Return_to_POSBookingsbutton() throws IOException {
+		ExtentTestManager.getTest().setDescription("TC_20_021 Check the Return to POS Bookings button");
+		SR.Check_Return_to_POSBookingsbutton();
 	}
 
 }

@@ -3,7 +3,9 @@ package com.shearcircle.utilities;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -377,7 +379,7 @@ public class CommonFunctions extends StaticVariables {
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
 	 */
 
-	public void Fluent_Wait(WebElement El) {
+	/*public void Fluent_Wait(WebElement El) {
 		try {
 
 			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(30, TimeUnit.SECONDS)
@@ -394,7 +396,7 @@ public class CommonFunctions extends StaticVariables {
 			Reporter.log(e.getMessage());
 		}
 	}
-
+*/
 	/**
 	 * instead of fluent wait use customized While loop statement
 	 * 
@@ -654,6 +656,26 @@ public class CommonFunctions extends StaticVariables {
 		}
 		return keyvlaue;
 
+	}	
+	
+	public void setData(String key, String vlaue, String fileName) {		
+		
+		try {
+			String filepath = this.TestDataPathOf(fileName);
+			File file = new File(filepath);
+			OutputStream FileOutputStream = null;
+			try {
+				FileOutputStream = new FileOutputStream(file);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			prop.setProperty(key, vlaue);
+			// save properties to project root folder
+			prop.store(FileOutputStream, null);
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
 	}
 
 	/********************** TestDataPathOf ******************/
@@ -691,6 +713,29 @@ public class CommonFunctions extends StaticVariables {
 
 	}
 
+	
+	public boolean elementIsNotDisplayed(WebElement element) {
+		boolean elementdisplayedflag = false;
+		try {
+			// this.scrollintoviewelement(element);
+			//this.waitforelementtobevisible(element, 20);
+			try{
+				if (element.isDisplayed() && element.isEnabled()) {					
+					elementdisplayedflag = false;
+					System.out.println("Element Not existance status Failed");
+				} 
+			}
+			catch(Exception e) {
+				elementdisplayedflag = true;
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+		return elementdisplayedflag;
+
+	}
+	
 	/*********************** Verify_elementisdisplayed_Report *********************/
 	/*
 	 * Created date:21/10/2017 Description: Parameters: ReturnType:
@@ -730,7 +775,6 @@ public class CommonFunctions extends StaticVariables {
 				textvalue = element.getText();
 				switch (textType.toLowerCase()) {
 				case "exact":
-
 					if (textvalue.equalsIgnoreCase(text)) {
 						verificationflag = true;
 					}
@@ -747,6 +791,42 @@ public class CommonFunctions extends StaticVariables {
 			System.out.println("Error in description: " + e.getStackTrace());
 		}
 		return verificationflag;
+	}
+	
+	public void verifyElementextvalueandReport(WebElement element, String text, String value, String textType) {
+		String textvalue = "";
+		boolean verificationflag = false;
+		try {
+			// this.scrollintoviewelement(element);
+			this.waitforelementtobevisible(element, 10);
+			if (element.isDisplayed()) {
+				textvalue = element.getText();
+				switch (textType.toLowerCase()) {
+				case "exact":
+					if (value.equalsIgnoreCase(textvalue)) {
+						verificationflag = true;
+					}
+				case "partial":
+					if (value.contains(textvalue)) {
+						verificationflag = true;
+					}
+				}
+				
+				if(verificationflag){
+					this.reportscomtep("Passed", "Verify The Element " + text + ":"+ textvalue +" is displayed",
+							"The Element " + text + ":"+ textvalue +" should be displayed", "The Element as: " + text + ":"+ textvalue +" displayed");
+				}else{
+					this.reportscomtep("Failed", "Verify The Element " + text + ":"+ textvalue +" is displayed",
+							"The Element " + text + ":"+ textvalue +" should be displayed", "The Element as: " + text + ":"+ textvalue +" not displayed");
+				}
+			} else {
+				System.out.println("Element existance and enabled status Failed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error in description: " + e.getStackTrace());
+		}
+		
 	}
 	
 	public void verifyElementErrorMessage(WebElement element, String text,String textType) {

@@ -143,4 +143,19 @@ public class TS_001_SubscriberVisitsJoinOurcirclePage extends StaticVariables {
 	public void TC_1_017_Subscriber_existing_Customer_EmailValidation() throws Exception {
 		SR.existing_Customer_EmailValidation();
 	}
+	
+	@Test(priority = 1018, description = "Check the Apply button below promo code field")
+	public void TC_1_018_Subscriber_check_Applybutton_without_promo_code_field() throws Exception {
+		SR.check_Applybutton_without_promo_code_field();
+	}
+	
+	@Test(priority = 1019, description = "Check whether invalid promo code can be applied")
+	public void TC_1_019_Subscriber_check_Applybutton_Invalid_promo_code_field() throws Exception {
+		SR.check_Applybutton_Invalid_promo_code_field();
+	}
+	
+	@Test(priority = 1020, description = "Check whether valid promo code can be applied")
+	public void TC_1_020_Subscriber_check_Applybutton_valid_promo_code_field() throws Exception {
+		SR.check_Applybutton_valid_promo_code_field();
+	}
 }
