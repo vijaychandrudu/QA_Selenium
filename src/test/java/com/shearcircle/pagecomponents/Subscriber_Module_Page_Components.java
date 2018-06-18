@@ -1024,10 +1024,72 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
 	}
+	
+/****TC_4_008a/b	Check if you can navigate to next page without adding School Name*************/
+	
+	public void check_CurrentOrFormerBeauty_SchoolStudent(String SchoolName_WithAndWithoutAdding) {
+		String SchoolOrGraduatefrom = "";
+		try {
+			browser.click(SCobjects.Subscriber_WhatDescribesYouBest_SelectCFBSS);
+			switch (SchoolName_WithAndWithoutAdding) {
+			case "SchoolNameWithoutAdding":
+				browser.selectByVisibleText(SCobjects.Subscriber_WhatDescribesYouBest_CABSORGraduated_Option, "YES");
+				browser.click(SCobjects.Subscriber_WhatDescribesYouBest_NextStep);
+				if (browser.elementisdisplayed(SCobjects.Subscriber_WhatDescribesYouBest_EMPopup)) {
+					browser.reportscomtep("Passed",
+							"In What Describes you page, select – Current/Former beauty school student & In the dropdown select Yes(default) and verify It wont navigate to next page and popup alert is displayed",
+							"It wont navigate to next page and popup alert should be displayed",
+							"It wont navigate to next page and popup alert is displayed");
+				} else {
+					browser.reportscomtep("Failed",
+							"In What Describes you page, select – Current/Former beauty school student & In the dropdown select Yes(default) and verify It wont navigate to next page and popup alert is displayed",
+							"It wont navigate to next page and popup alert should be displayed",
+							"It wont navigate to next page and popup alert is not displayed");
+				}
+			case "SchoolNameWithAdding":
+				browser.selectByVisibleText(SCobjects.Subscriber_WhatDescribesYouBest_CABSORGraduated_Option, "YES");
+				SchoolOrGraduatefrom = browser.getdata("SchoolOrGraduateFrom");
+				browser.sendkeys(SCobjects.Subscriber_WhatDescribesYouBest_SchoolOrGFTextbox, SchoolOrGraduatefrom);
+				browser.click(SCobjects.Subscriber_WhatDescribesYouBest_NextStep);
+				if (browser.elementisdisplayed(SCobjects.Subscriber_WhatDescribesYouBest_YourBusinessDetails)) {
+					browser.reportscomtep("Passed",
+							"In What Describes you page, select – Current/Former beauty school student & In the dropdown select Yes(default) and verify Navigates to Your Business Details page is displayed",
+							"Navigates to Your Business Details page should be displayed",
+							"Navigates to Your Business Details page is displayed");
+				} else {
+					browser.reportscomtep("Failed",
+							"In What Describes you page, select – Current/Former beauty school student & In the dropdown select Yes(default) and verify Navigates to Your Business Details page is displayed",
+							"Navigates to Your Business Details page should be displayed",
+							"Navigates to Your Business Details page is not displayed");
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
 
 	/***
 	 * TC_4_009 Check if you can navigate to next page by selecting an option(except Other Services *******/
 	public void clickonNextStepaddingService() throws InterruptedException {
+		try {
+			browser.click(SCobjects.Subscriber_WhatDescribesYouBest_SpaChechBox);
+			browser.click(SCobjects.Subscriber_WhatDescribesYouBest_NextStep);
+			if (browser.elementisdisplayed(SCobjects.Subscriber_WhatDescribesYouBest_YourBusinessDetails)) {
+				browser.reportscomtep("Passed",
+						"Click on continue what Describes You option and nextstep and verify Navigates to Your Business Details page is displayed",
+						"Navigates to Your Business Details page should be displayed",
+						"Navigates to Your Business Details page is displayed");
+			} else {
+				browser.reportscomtep("Failed",
+						"Click on continue what Describes You option and nextstep and verify Navigates to Your Business Details page is displayed",
+						"Navigates to Your Business Details page should be displayed",
+						"Navigates to Your Business Details page is not displayed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
 	}
 
 	/**** TC_4_010 Check if you can access Dashboard from Your Business Details  page ****/
@@ -1075,7 +1137,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 	}
 	/***TC_4_012 Check if can navigate to next page by clicking on Next Step button without entering the details****/
 	
-	public void clickOn_NextStepButton_WithoutEnteringDetails_InYBDP() {
+	/*public void clickOn_NextStepButton_WithoutEnteringDetails_InYBDP() {
 		String AddressEM = "";
 		String cityEM = "";
 		String ZipCodeEm = "";
@@ -1103,6 +1165,63 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 							"ZipCode Error message should bedisplayed",
 							"ZipCode Error message is displayed as:" + ZipCodeEm);
 				}
+			} else {
+				browser.reportscomtep("Failed",
+						"With Out entering Details and click on Next step button and verify Doesn't navigate to next page, Error messages are displayed",
+						"Doesn't navigate to next page, Error messages should be displayed",
+						"Doesn't navigate to next page, Error messages are displayed");
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+
+	}*/
+	
+	public void clickOn_NextStepButton_WithoutEnteringDetails_InYBDP() {
+		String AddressEM = "";
+		String cityEM = "";
+		String ZipCodeEm = "";
+		String StateEm="";
+		String ContactNumberEm="";
+		try {
+			browser.click(SCobjects.Subscriber_WhatDescribesYouBest_BusinessDetailsNextStep);
+			if (browser.elementisdisplayed(SCobjects.Subscriber_WhatDescribesYouBest_YourBusinessDetails)) {
+				browser.reportscomtep("Passed",
+						"With Out entering Details and click on Next step button and verify Doesn't navigate to next page,following Error messages are displayed",
+						"Doesn't navigate to next page, followingError messages should be displayed",
+						"Doesn't navigate to next page, following Error messages are displayed");
+				if (browser.elementisdisplayed(SCobjects.Subscriber_BusinessDetails_PleaseEnterAddress_Text)) {
+					AddressEM = browser.getelementtext(SCobjects.Subscriber_BusinessDetails_PleaseEnterAddress_Text);
+					browser.reportscomtep("Passed", "Verify Address Error message is displayed",
+							"Address Error message should bedisplayed",
+							"Address Error message is displayed as:" + AddressEM);
+				}
+				if (browser.elementisdisplayed(SCobjects.Subscriber_BusinessDetails_PleaseEnterCity_Text)) {
+					cityEM = browser.getelementtext(SCobjects.Subscriber_BusinessDetails_PleaseEnterCity_Text);
+					browser.reportscomtep("Passed", "Verify City Error message is displayed",
+							"City Error message should bedisplayed", "City Error message is displayed as:" + cityEM);
+				}
+				if (browser.elementisdisplayed(SCobjects.Subscriber_BusinessDetails_PleaseEnterZipcode_Text)) {
+					ZipCodeEm = browser.getelementtext(SCobjects.Subscriber_BusinessDetails_PleaseEnterZipcode_Text);
+					browser.reportscomtep("Passed", "Verify ZipCode Error message is displayed",
+							"ZipCode Error message should bedisplayed",
+							"ZipCode Error message is displayed as:" + ZipCodeEm);
+				}
+				if (browser.elementisdisplayed(SCobjects.BusinessDetails_PleaseEnterStateEM_Text)) {
+					StateEm = browser.getelementtext(SCobjects.BusinessDetails_PleaseEnterStateEM_Text);
+					browser.reportscomtep("Passed", "Verify State Error message is displayed",
+							"State Error message should bedisplayed",
+							"State Error message is displayed as:" + StateEm);
+				}
+				
+				if (browser.elementisdisplayed(SCobjects.BusinessDetails_PleaseEnterContactnumberEM_Text)) {
+					ContactNumberEm = browser.getelementtext(SCobjects.BusinessDetails_PleaseEnterContactnumberEM_Text);
+					browser.reportscomtep("Passed", "Verify Contact Number Error message is displayed",
+							"Contcat number Error message should bedisplayed",
+							"Contcat number Error message is displayed as:" + ContactNumberEm);
+				}
+				
 			} else {
 				browser.reportscomtep("Failed",
 						"With Out entering Details and click on Next step button and verify Doesn't navigate to next page, Error messages are displayed",
@@ -1327,6 +1446,25 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
 	}	
+	
+/***TC_5_002a	Check the information on Welcome page for First time login when you applied Promo Code***/
+	
+	public void checkInformation_OnWelcomePageFor_FirstTimeLoginWhen_YouAppliedPromoCode() {
+		String TrialExpiresOn[] = null;
+		try {
+			browser.Verify_elementisdisplayed_Report(SCobjects.Dashboard_PremiumText,
+					"Yellow circle with Premium text");
+			if (browser.elementisdisplayed(SCobjects.Subscriber_TrialExpiresOn)) {
+				TrialExpiresOn = browser.getelementtext(SCobjects.Subscriber_TrialExpiresOn).split(" on ");
+				browser.reportscomtep("Passed", "Verify Trial expires on text is displayed",
+						"Trial expires on text should be displayed",
+						"Trial expires on text is displayed as :" + TrialExpiresOn[1]);
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+		}
+	}
 	/****TC_5_003 Check whether Last Login Date & Time are correct*****/
 	public void validate_LastLoginDateAndTime() {
 		String LastLoginDateAndTime = "";
@@ -7848,14 +7986,20 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 					browser.reportscomtep("Passed",
 							"Clicks on Appointments Menu link and open verify Appointments page header is displayed",
 							" Appointments page header should be displayed", " Appointments page header is displayed");
-					if (browser.elementisdisplayed(SCobjects.Appointments_NoAppointmentsFound_Text)) {
+					if(AllAppointmentsTableHeaders.size()>0) {
+						browser.reportscomtep("Passed", "Verify Appointments Are available ",
+								" Appointments should be available", " Appointments Are available");
+						
+					} else if (browser.elementisdisplayed(SCobjects.Appointments_NoAppointmentsFound_Text))  {
 						browser.reportscomtep("Passed", "Verify For 1st login no Appointments Are available",
 								" For 1st login no Appointments should be available",
 								" For 1st login no Appointments Are available");
-					} else {
-						browser.reportscomtep("Passed", "Verify Appointments Are available ",
-								" Appointments should be available", " Appointments Are available");
+					} else{
+						browser.reportscomtep("Failed", "Verify Appointments Are available",
+								"Appointments should be available",
+								" For 1st login no Appointments Are available text not available and for not first login also appointments not available");
 					}
+					
 					if (browser.elementisdisplayed(SCobjects.Appointments_AllAppointments_Text)) {
 						browser.reportscomtep("Passed", "Verify All Appointments Template is displayed",
 								"All Appointments Template shpuld be dispalyed",
@@ -8113,7 +8257,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			int BookingID_ListSize = BookingID_List.size();
 			if (BookingID_ListSize > 1) {
 				List<WebElement> NewStatusList = SCobjects.Appointments_AllAppointments_NewStatusButton_List;
-				List<WebElement> PageList = SCobjects.Appointments_AllAppointments_PaginationButton_List;
+				List<WebElement> PageList = SCobjects.Appointments_PaginationButton_List;
 				int i = 0;
 				for (WebElement Status : PageList) {
 					if (browser.elementisdisplayed(NewStatusList.get(i))
@@ -8186,7 +8330,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			int BookingID_ListSize = BookingID_List.size();
 			if (BookingID_ListSize > 1) {
 				List<WebElement> NewStatusList = SCobjects.Appointments_AllAppointments_NewStatusButton_List;
-				List<WebElement> PageList = SCobjects.Appointments_AllAppointments_PaginationButton_List;
+				List<WebElement> PageList = SCobjects.Appointments_PaginationButton_List;
 				int i = 0;
 				for (WebElement Status : PageList) {
 					if (browser.elementisdisplayed(NewStatusList.get(i))
@@ -8351,7 +8495,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			int BookingID_ListSize = BookingID_List.size();
 			if (BookingID_ListSize > 1) {
 				List<WebElement> NewStatusList = SCobjects.Appointments_AllAppointments_NewStatusButton_List;
-				List<WebElement> PageList = SCobjects.Appointments_AllAppointments_PaginationButton_List;
+				List<WebElement> PageList = SCobjects.Appointments_PaginationButton_List;
 				int i = 0;
 				int J = 0;
 				for (WebElement Status : PageList) {
@@ -8444,7 +8588,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			if (BookingID_ListSize > 1) {
 				List<WebElement> CancelledStatusList = SCobjects.Appointments_AllAppointments_CancelledStatus_List;
 				List<WebElement> CancelledStatusHavingIDList = SCobjects.Appointments_AllAppointments_BookingIDHavig_CancelledStatus;
-				List<WebElement> PageList = SCobjects.Appointments_AllAppointments_PaginationButton_List;
+				List<WebElement> PageList = SCobjects.Appointments_PaginationButton_List;
 				int i = 0;
 				for (WebElement Status : PageList) {
 					if (browser.elementisdisplayed(CancelledStatusList.get(i))
@@ -8539,7 +8683,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			if (BookingID_ListSize > 1) {
 				List<WebElement> CompletedStatusList = SCobjects.Appointments_AllAppointments_CompletedStatus_List;
 				List<WebElement> CompletedStatusHavingIDList = SCobjects.Appointments_AllAppointments_BookingIDHavig_CompletedStatus;
-				List<WebElement> PageList = SCobjects.Appointments_AllAppointments_PaginationButton_List;
+				List<WebElement> PageList = SCobjects.Appointments_PaginationButton_List;
 				int i = 0;
 				for (WebElement Status : PageList) {
 					if (browser.elementisdisplayed(CompletedStatusList.get(i))
@@ -8717,8 +8861,8 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			int BookingID_ListSize = BookingID_List.size();
 			if (BookingID_ListSize > 1) {
 				List<WebElement> ConfirmedStatusList = SCobjects.Appointments_AllAppointments_ConfirmedStatus_List;
-				List<WebElement> ConfirmedStatusHavingIDList = SCobjects.Appointments_AllAppointments_BookingIDHavig_ConfirmedStatus;
-				List<WebElement> PageList = SCobjects.Appointments_AllAppointments_PaginationButton_List;
+				List<WebElement> ConfirmedStatusHavingIDList = SCobjects.Appointments_ConfirmedStatus_BookingID;
+				List<WebElement> PageList = SCobjects.Appointments_PaginationButton_List;
 				browser.scrollintoviewelement(PageList.get(0));
 				int i = 0;
 				for (WebElement Status : PageList) {
@@ -8788,8 +8932,8 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 			int BookingID_ListSize = BookingID_List.size();
 			if (BookingID_ListSize > 1) {
 				List<WebElement> ConfirmedStatusList = SCobjects.Appointments_AllAppointments_ConfirmedStatus_List;
-				List<WebElement> ConfirmedStatusHavingIDList = SCobjects.Appointments_AllAppointments_BookingIDHavig_ConfirmedStatus;
-				List<WebElement> PageList = SCobjects.Appointments_AllAppointments_PaginationButton_List;
+				List<WebElement> ConfirmedStatusHavingIDList = SCobjects.Appointments_ConfirmedStatus_BookingID;
+				List<WebElement> PageList = SCobjects.Appointments_PaginationButton_List;
 				int i =0;
 				for (WebElement Status : PageList) {
 					Status.click();
@@ -9648,48 +9792,61 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 	
 	public void CheckoutButton_IsDisplayed_ForBookingwithStatusAsConfirmed() {
 		String ApBookingID = "";
-		String AppoinmentStatus = "";
+		String AppoinmentStatus = "";		
+		String select_AppoinmentStatus = "Confirmed";
+		String paymentStatus = "Pending";
+		int BookingID_ListSize = 0;
+		int counteri =0;
+		String BSPopupText = "";
+		int BS_BookingID = 0;
+		String BSBKID = "";
+		String act_PaymentStatus = "";
+		
 		try {
+			
+			browser.selectByVisibleText(SCobjects.Appointments_AllAppointments_FilterByAppointmentStatus, select_AppoinmentStatus);
 			List<WebElement> BookingID_List = SCobjects.Appointments_AllAppointments_BookingID_List;
-			int BookingID_ListSize = BookingID_List.size();
+			BookingID_ListSize = BookingID_List.size();
 			if (BookingID_ListSize > 1) {
 				List<WebElement> ConfirmedStatusList = SCobjects.Appointments_AllAppointments_ConfirmedStatus_List;
-				List<WebElement> ConfirmedStatusHavingIDList = SCobjects.Appointments_AllAppointments_BookingIDHavig_ConfirmedStatus;
-				List<WebElement> PageList = SCobjects.Appointments_AllAppointments_PaginationButton_List;
-				int i =0;
-				for (WebElement Status : PageList) {
-					Status.click();
-					if (browser.elementisdisplayed(ConfirmedStatusList.get(i))
-							&& browser.elementisdisplayed(ConfirmedStatusHavingIDList.get(i))) {
-						AppoinmentStatus = browser.getelementtext(ConfirmedStatusList.get(i));
-						ApBookingID = browser.getelementtext(ConfirmedStatusHavingIDList.get(i));
-						browser.click(ConfirmedStatusHavingIDList.get(i));
-						break;
-					}
-					i++;
-				}
+				//List<WebElement> ConfirmedStatusHavingIDList = SCobjects.Appointments_ConfirmedStatus_BookingID;
+				//List<WebElement> PageList = SCobjects.Appointments_PaginationButton_List;
 				
-				String BSPopupText = browser.getelementtext(SCobjects.Appointments_BookingSummaryPopupAnd_Id);
-				int BS_BookingID = Integer.parseInt(BSPopupText.replaceAll("\\D", ""));
-				String BSBKID = String.valueOf(BS_BookingID);
-				if (browser.elementisdisplayed(SCobjects.Appointments_BookingSummaryPopupAnd_Id)
-						&& ApBookingID.equalsIgnoreCase(BSBKID)) {
-					browser.reportscomtep("Passed",
-							"Click on booking ID with Satatus as:" + AppoinmentStatus
-									+ " and verify Booking Summary for" + BS_BookingID + " Popup is displayed",
-							"Booking Summary ID Popup should be displayed",
-							" Booking Summary for Popup ID is displayed as:" + BS_BookingID);
-					browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_CheckOut_Button,
-							"Check Out Booking Button");
+				for (WebElement Status : ConfirmedStatusList) {					
+					AppoinmentStatus = browser.getelementtext(Status);		
+					act_PaymentStatus = browser.getelementtext(SCobjects.Appointments_AllAppointments_PaymentStatus_List.get(counteri));
+					if(AppoinmentStatus.equalsIgnoreCase(select_AppoinmentStatus) && act_PaymentStatus.trim().equalsIgnoreCase(paymentStatus)){
+						ApBookingID = browser.getelementtext(BookingID_List.get(counteri));
+						browser.click(BookingID_List.get(counteri));
+						break;
+					}				
 					
-				} else {
-					browser.reportscomtep("Failed",
-							"Click on booking ID and verify Booking Summary Id Popup is displayed",
-							"Booking Summary ID Popup should be displayed",
-							" Booking Summary for Popup ID is not displayed");
+					counteri++;
 				}
-			}
-
+							
+				BSPopupText	= browser.getelementtext(SCobjects.Appointments_BookingSummaryPopupAnd_Id);
+				BS_BookingID = Integer.parseInt(BSPopupText.replaceAll("\\D", ""));
+				BSBKID = String.valueOf(BS_BookingID);
+					if (browser.elementisdisplayed(SCobjects.Appointments_BookingSummaryPopupAnd_Id)
+							&& ApBookingID.equalsIgnoreCase(BSBKID)) {
+						browser.reportscomtep("Passed",
+								"Click on booking ID with Satatus as:" + AppoinmentStatus
+										+ " and verify Booking Summary for" + BS_BookingID + " Popup is displayed",
+								"Booking Summary ID Popup should be displayed",
+								" Booking Summary for Popup ID is displayed as:" + BS_BookingID);
+						browser.ScrollToElementBottom(SCobjects.Appointments_BSP_CheckOut_Button);	
+						browser.Verify_elementisdisplayed_Report(SCobjects.Appointments_BSP_CheckOut_Button,
+								"Check Out Booking Button");
+						
+					} else {
+						browser.reportscomtep("Failed",
+								"Click on booking ID and verify Booking Summary Id Popup is displayed",
+								"Booking Summary ID Popup should be displayed",
+								" Booking Summary for Popup ID is not displayed");
+					}
+				}			
+				
+			
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
@@ -9854,7 +10011,7 @@ public class Subscriber_Module_Page_Components extends StaticVariables {
 	
 	/***********TC_23_006 Check whether discount value >100 can be applied****/
 	
-	public void checkWhether_DiscountValueLessThan100CanBe_Applied() {
+	public void checkWhether_DiscountValueGreaterThan100CanBe_Applied() {
 		String Discount = "";
 		try {
 			Discount = browser.getdata("ServicediscountGreaterThan100");

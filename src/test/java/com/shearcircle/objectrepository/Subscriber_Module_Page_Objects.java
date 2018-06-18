@@ -2296,7 +2296,7 @@ public class Subscriber_Module_Page_Objects {
 	public List<WebElement>  Appointments_AllAppointments_NewStatusButton_List;
 	
 	@FindBy(xpath="//ul[@class='pagination']/li/a")
-	public List<WebElement>  Appointments_AllAppointments_PaginationButton_List;
+	public List<WebElement>  Appointments_PaginationButton_List;
 	
 	@FindBy(xpath="//*[@id='addStaffForm']//div/button[@ng-click='doCancelAppointment(bookingView)']")
 	public WebElement Appointments_BSP_CancelBooking_Button;
@@ -2367,8 +2367,11 @@ public class Subscriber_Module_Page_Objects {
 	@FindBy(xpath="//table/tbody/tr/td/button[text()='Confirmed']")
 	public List<WebElement>  Appointments_AllAppointments_ConfirmedStatus_List;
 	
+	@FindBy(xpath="//table/tbody/tr/td[@data-label='Payment Status']/span")
+	public List<WebElement>  Appointments_AllAppointments_PaymentStatus_List;
+	
 	@FindBy(xpath="//table[@class='table styapp']//*[text()='Confirmed']//preceding::td[7]")
-	public List<WebElement> Appointments_AllAppointments_BookingIDHavig_ConfirmedStatus;
+	public List<WebElement> Appointments_ConfirmedStatus_BookingID;
 	
 	@FindBy(xpath="//div[@class='datatable_x_scroll table-mobile']")
 	public WebElement Appointments_AllAppointments_FilterTable;
@@ -2541,6 +2544,31 @@ public class Subscriber_Module_Page_Objects {
    @FindBy(xpath="//*[@ng-controller='trackBookingStatusCtrl']")
    public WebElement Appointments_BP_ReceiptPage;
 
+   @FindBy(xpath="//*[@id='validateStep2']//label/input[@value='Current/Former  beauty school student']")
+  	public WebElement Subscriber_WhatDescribesYouBest_SelectCFBSS;
+  
+	@FindBy(xpath="//*[@id='validateStep2']//button[text()='Add']")
+	public WebElement Subscriber_WhatDescribesYouBest_AddButton;
+	
+	@FindBy(xpath="//*[@id='validateStep2']//div/select")
+	public WebElement Subscriber_WhatDescribesYouBest_CABSORGraduated_Option;
+	
+	@FindBy(xpath="//*[text()='School Name Required']")
+	public WebElement Subscriber_WhatDescribesYouBest_EMPopup;
+	
+	@FindBy(xpath="//*[@id='validateStep2']//input[@name='school_name']")
+	public WebElement Subscriber_WhatDescribesYouBest_SchoolOrGFTextbox;
+	
+	@FindBy(xpath="//*[@id='validateStep2']//label/input[@value='Spa']")
+	public WebElement Subscriber_WhatDescribesYouBest_SpaChechBox;
+	
+	@FindBy(xpath="//div[@class='free_premium  active']")
+	public WebElement Dashboard_PremiumText;
 
+	@FindBy(xpath="//*[@id='step3Form']//em[text()='Please enter state']")
+	public WebElement BusinessDetails_PleaseEnterStateEM_Text;
+	
+	@FindBy(xpath=".//*[@id='step3Form']//em[text()='Please enter contact number']")
+	public WebElement BusinessDetails_PleaseEnterContactnumberEM_Text;
 
 }
