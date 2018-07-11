@@ -12,12 +12,12 @@
     </packages>
     </test> -->
 
-    <!--  <test name="Shearcircle_Testscenarios">
+   <test name="Shearcircle_Testscenarios">
         <classes>
         	<class name="com.shearcircle.testscenarios.DriverandBrowser_Launch" />        	
 			<class name="com.shearcircle.testscenarios.TS_1_01_CustomerclicksJoinOurCircleButton" />
 			<class name="com.shearcircle.testscenarios.TS_1_02_CustomerclicksonJoinOurCirclebuttononAreyouaCustomer" />
-			<class name="com.shearcircle.testscenarios.TS_1_03_CustomerclicksonJoinOurCirclebuttonafterenteringvaliddetails" />
+			  <!-- <class name="com.shearcircle.testscenarios.TS_1_03_CustomerclicksonJoinOurCirclebuttonafterenteringvaliddetails" />
 			<class name="com.shearcircle.testscenarios.TS_1_05_CustomerclicksonJoinOurCirclebuttonafterenteringInvaliddetails" />
 			<class name="com.shearcircle.testscenarios.TS_1_06_CustomerclicksonJoinOurCircleawithvaliddetailsandwithoutterms" />
 			<class name="com.shearcircle.testscenarios.TS_1_07_CustomerclicksonthehyperlinksinCustomerRegistrationpage" />
@@ -45,14 +45,14 @@
 			<class name="com.shearcircle.testscenarios.TS_5_01_CustomervisitsBusinessPage"/>
 			<class name="com.shearcircle.testscenarios.TS_6_01_BookingAppoinment_WithoutSignin"/>
 			<class name="com.shearcircle.testscenarios.TS_6_02_BookingAppointmentAfterSignIn_PayPal"/>
-			<class name="com.shearcircle.testscenarios.TS_6_03_ApplyPromocode"/>
+			<class name="com.shearcircle.testscenarios.TS_6_03_ApplyPromocode"/> -->
 		</classes>
-    </test>  -->
+    </test> 
   <!--<test name="Shearcircle_Prod_Testscenarios">
         <classes>
         	<class name="com.shearcircle.prod_testscenarios.DriverandBrowser_Launch" />
-			 <class name="com.shearcircle.prod_testscenarios.TS_1_01_CustomerclicksJoinOurCircleButton" />
-			<class name="com.shearcircle.prod_testscenarios.TS_1_02_CustomerclicksonJoinOurCirclebuttononAreyouaCustomer" />
+			<class name="com.shearcircle.prod_testscenarios.TS_1_01_CustomerclicksJoinOurCircleButton" />
+			<!--<class name="com.shearcircle.prod_testscenarios.TS_1_02_CustomerclicksonJoinOurCirclebuttononAreyouaCustomer" />
 			<class name="com.shearcircle.prod_testscenarios.TS_1_03_CustomerclicksonJoinOurCirclebuttonafterenteringvaliddetails" />
 			<class name="com.shearcircle.prod_testscenarios.TS_1_05_CustomerclicksonJoinOurCirclebuttonafterenteringInvaliddetails" />
 			<class name="com.shearcircle.prod_testscenarios.TS_1_06_CustomerclicksonJoinOurCircleawithvaliddetailsandwithoutterms" /> 
@@ -79,13 +79,13 @@
 			<class name="com.shearcircle.prod_testscenarios.TS_4_01_Customer_SearchforProfessionals_Servicesusingsearchbox" /> 
 			<class name="com.shearcircle.prod_testscenarios.TS_4_02_Customer_appliesfiltersinsearchpage"/>
 			<class name="com.shearcircle.prod_testscenarios.TS_5_01_CustomervisitsBusinessPage"/>
-			<class name="com.shearcircle.prod_testscenarios.TS_6_01_BookingAppoinment_WithoutSignin"/> 					
+			<class name="com.shearcircle.prod_testscenarios.TS_6_01_BookingAppoinment_WithoutSignin"/>				
 		</classes>
-    </test>-->	
-   <test name="Shearcircle_Subscriber_QA_Testscenarios">
+    </test>-->	 	
+   <!-- <test name="Shearcircle_Subscriber_QA_Testscenarios">
         <classes>
         	<class name="com.shearcircle.testscenarios.DriverandBrowser_Launch" />        	
-			 <!-- <class name="com.shearcircle.testscenarios.TS_001_SubscriberVisitsJoinOurcirclePage" />
+			 <class name="com.shearcircle.testscenarios.TS_001_SubscriberVisitsJoinOurcirclePage" />
 			<class name="com.shearcircle.testscenarios.TS_002_SubscriberClicksOnStartFreeTrialButton" />
 			<class name="com.shearcircle.testscenarios.TS_003_SubscriberClicksOnVerificationLinkSentToEmail" /> 
 			<class name="com.shearcircle.testscenarios.TS_004_SubscriberLoginforFirstTime" />
@@ -99,8 +99,8 @@
 			<class name="com.shearcircle.testscenarios.TS_019_SubscriberClicks_ClientsMenu" />
 			<class name="com.shearcircle.testscenarios.TS_020_SubscriberClicks_POSMenu" />		
 			<class name="com.shearcircle.testscenarios.TS_021_SubscriberClicksOn_AppointmentsMenu" />
-			<class name="com.shearcircle.testscenarios.TS_022_Subscriber_CreatesaWalk_InAppointment" /> -->
+			<class name="com.shearcircle.testscenarios.TS_022_Subscriber_CreatesaWalk_InAppointment" />
 			<class name="com.shearcircle.testscenarios.TS_023_SubscriberCompletesAnAppointment" />
 		</classes>
-    </test>
+    </test> -->
 </suite>
