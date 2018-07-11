@@ -6,7 +6,7 @@
         <listener class-name="utils.Listeners.AnnotationTransformer"/>
     </listeners>
     
-   <!--  <test name="Shearcircle_Testscenarios">
+   <!-- <test name="Shearcircle_Testscenarios">
     <packages>
     <package name="com.shearcircle.testscenarios"></package>
     </packages>
@@ -52,7 +52,7 @@
         <classes>
         	<class name="com.shearcircle.prod_testscenarios.DriverandBrowser_Launch" />
 			<class name="com.shearcircle.prod_testscenarios.TS_1_01_CustomerclicksJoinOurCircleButton" />
-			<!--<class name="com.shearcircle.prod_testscenarios.TS_1_02_CustomerclicksonJoinOurCirclebuttononAreyouaCustomer" />
+			<class name="com.shearcircle.prod_testscenarios.TS_1_02_CustomerclicksonJoinOurCirclebuttononAreyouaCustomer" />
 			<class name="com.shearcircle.prod_testscenarios.TS_1_03_CustomerclicksonJoinOurCirclebuttonafterenteringvaliddetails" />
 			<class name="com.shearcircle.prod_testscenarios.TS_1_05_CustomerclicksonJoinOurCirclebuttonafterenteringInvaliddetails" />
 			<class name="com.shearcircle.prod_testscenarios.TS_1_06_CustomerclicksonJoinOurCircleawithvaliddetailsandwithoutterms" /> 
